@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.10 - 2026-03-29
+
+### Added
+
+- structured admin JSON export for user master data, projects, chats, assistant and mentor histories, audits, and related school records
+- admin-only hard-delete workflow for users including associated chat histories, selected school data records, and owned workspace paths under the configured Nova roots
+- configurable chat and audit retention plus a manual admin retention run action in the UI
+- explicit privacy notices for students in chat and local AI areas explaining teacher/admin visibility of stored communication
+
+### Changed
+
+- direct local AI helper conversations are now stored server-side so export, deletion, and retention cover the same KI support flows as the rest of the platform
+- retention maintenance now runs automatically during server startup
+- admin management screens now expose export, hard-delete, and retention actions directly in the browser
+
 ## v0.1.9 - 2026-03-29
 
 ### Changed

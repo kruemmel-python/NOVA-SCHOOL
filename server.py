@@ -102,6 +102,8 @@ ADMIN_SETTING_KEYS = [
     "scheduler_max_concurrent_student",
     "scheduler_max_concurrent_teacher",
     "scheduler_max_concurrent_admin",
+    "retention_chat_days",
+    "retention_audit_days",
 ]
 RUNTIME_FILE_CONFIG_KEYS = [
     "host",
@@ -124,7 +126,7 @@ class NovaSchoolApplication:
         self.docs = DocumentationCatalog(config.docs_path)
         self.wiki_manual = WikiManualService(config.base_path / "wiki")
         self.workspace = WorkspaceManager(config)
-        self.user_admin = UserAdministrationService(self.repository)
+        self.user_admin = UserAdministrationService(self.repository, self.workspace, config)
         self.runner = CodeRunner(config, self.tool_sandbox, self.workspace, self.repository)
         self.ai = LocalAIService(self.repository, base_path=config.base_path, data_path=config.data_path)
         self.curriculum = CurriculumService(self.repository)
@@ -146,6 +148,10 @@ class NovaSchoolApplication:
         )
         self.realtime = RealtimeService(self)
         self.seed_info = bootstrap_application(self.repository, self.auth, self.docs, self.workspace)
+        try:
+            self.user_admin.apply_retention()
+        except Exception:
+            pass
 
     def close(self) -> None:
         self.realtime.close()
@@ -791,12 +797,40 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
             prompt = str(body.get("prompt") or "").strip()
             if not prompt:
                 raise ValueError("Prompt fehlt.")
+            project_id = str(body.get("project_id") or "").strip()
+            project = self.application.get_project_for_session(session, project_id) if project_id else None
             payload = self.application.ai.complete_direct_completion(
                 prompt=prompt,
                 code=str(body.get("code") or ""),
                 path_hint=str(body.get("path") or ""),
             )
-            self.application.repository.add_audit(session.username, "assistant.chat", "assistant", self.application.ai.provider_id, {"model": payload["model"]})
+            room_key = f"assistant:{project['project_id'] if project else 'workspace'}:{session.username}"
+            self.application.repository.add_chat_message(
+                room_key,
+                session.username,
+                session.user["display_name"],
+                prompt[:4000],
+                metadata={"role": "user", "mode": "assistant", "project_id": project["project_id"] if project else None},
+            )
+            self.application.repository.add_chat_message(
+                room_key,
+                "assistant.bot",
+                "Nova KI",
+                str(payload.get("text") or "")[:8000],
+                metadata={
+                    "role": "assistant",
+                    "mode": "assistant",
+                    "project_id": project["project_id"] if project else None,
+                    "model": str(payload.get("model") or ""),
+                },
+            )
+            self.application.repository.add_audit(
+                session.username,
+                "assistant.chat",
+                "assistant",
+                self.application.ai.provider_id,
+                {"model": payload["model"], "project_id": project["project_id"] if project else None},
+            )
             self._send_json(HTTPStatus.OK, payload)
             return
 
@@ -1163,6 +1197,14 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
             self._send_json(HTTPStatus.OK, {"entries": self.application.user_admin.audit_entries(username)})
             return
 
+        if method == "GET" and len(segments) == 5 and segments[:3] == ["api", "admin", "users"] and segments[4] == "export":
+            self._require_permission(session, "admin.manage")
+            username = unquote(str(segments[3] or "")).strip()
+            if not username:
+                raise ValueError("username fehlt.")
+            self._send_json(HTTPStatus.OK, self.application.user_admin.export_user_data(username))
+            return
+
         if method == "POST" and path == "/api/admin/users":
             self._require_permission(session, "admin.manage")
             body = self._read_json_body()
@@ -1202,6 +1244,16 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                 status=str(body.get("status") or "").strip(),
                 password=str(body.get("password") or ""),
             )
+            self._send_json(HTTPStatus.OK, payload)
+            return
+
+        if method == "POST" and path == "/api/admin/users/delete":
+            self._require_permission(session, "admin.manage")
+            body = self._read_json_body()
+            username = str(body.get("username") or "").strip()
+            if not username:
+                raise ValueError("username fehlt.")
+            payload = self.application.user_admin.hard_delete_user(actor_username=session.username, username=username)
             self._send_json(HTTPStatus.OK, payload)
             return
 
@@ -1301,6 +1353,11 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                 save_server_config_payload(self.application.config.base_path, file_updates)
             self.application.repository.add_audit(session.username, "admin.settings.update", "settings", "server", {})
             self._send_json(HTTPStatus.OK, self.application.server_settings_overview())
+            return
+
+        if method == "POST" and path == "/api/admin/data-retention/run":
+            self._require_permission(session, "admin.manage")
+            self._send_json(HTTPStatus.OK, self.application.user_admin.apply_retention(actor_username=session.username))
             return
 
         self._send_json(HTTPStatus.NOT_FOUND, {"error": "not found"})

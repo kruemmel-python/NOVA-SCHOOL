@@ -217,6 +217,7 @@
               <h2>Chat</h2>
               <button id="refresh-chat" type="button">Neu laden</button>
             </div>
+            <p id="chat-privacy-notice" class="privacy-notice hidden"></p>
             <label><span>Raum</span><select id="chat-room"></select></label>
             <div id="chat-messages" class="chat-messages"></div>
             <form id="chat-form" class="stack compact">
@@ -250,6 +251,7 @@
           <section id="assistant-panel" class="panel-section">
             <h2>Lokale KI-Codehilfe</h2>
             <p id="assistant-status" class="muted"></p>
+            <p id="assistant-privacy-notice" class="privacy-notice hidden"></p>
             <div class="stack compact">
               <div class="inline-actions">
                 <button id="assistant-load-url" type="button">Serverstatus</button>
@@ -416,6 +418,8 @@
                   <label><span>Top-K</span><input id="setting-ondevice-top-k" type="number" min="1" max="100" placeholder="40" /></label>
                   <label><span>Temperatur</span><input id="setting-ondevice-temperature" type="number" min="0" max="2" step="0.1" placeholder="0.8" /></label>
                   <label><span>Zufalls-Seed</span><input id="setting-ondevice-random-seed" type="number" min="0" placeholder="1" /></label>
+                  <label><span>Chat-Retention in Tagen</span><input id="setting-retention-chat-days" type="number" min="0" placeholder="180" /></label>
+                  <label><span>Audit-Retention in Tagen</span><input id="setting-retention-audit-days" type="number" min="0" placeholder="365" /></label>
                   <label><span>HTTP/HTTPS-Proxy fuer Webfreigaben</span><input id="setting-web-proxy-url" type="text" placeholder="http://proxy.schule.local:3128" /></label>
                   <label><span>NO_PROXY-Ausnahmen</span><input id="setting-web-proxy-no-proxy" type="text" placeholder="localhost,127.0.0.1" /></label>
                   <label><span>Playground-Dispatch</span>
@@ -533,6 +537,8 @@
                 <label><span>Neues Passwort optional</span><input id="manage-user-password" type="text" placeholder="leer lassen fuer keine Aenderung" /></label>
                 <p id="manage-user-meta" class="muted"></p>
                 <button type="submit">Benutzer aktualisieren</button>
+                <button id="manage-user-export" type="button">Nutzerdaten exportieren (JSON)</button>
+                <button id="manage-user-hard-delete" type="button" class="danger">Benutzer hart loeschen</button>
               </form>
 
               <form id="create-group-form" class="stack compact admin-card">
@@ -577,6 +583,15 @@
               <h3>Benutzerprotokoll</h3>
               <p class="muted">Alle sichtbaren Änderungen aus der Benutzerverwaltung werden hier pro Benutzer protokolliert und bleiben nachvollziehbar.</p>
               <div id="manage-user-audit" class="stack compact"></div>
+            </div>
+
+            <div class="admin-card stack compact">
+              <div class="section-head">
+                <h3>Datenschutz und Retention</h3>
+                <button id="run-retention-now" type="button">Retention jetzt ausfuehren</button>
+              </div>
+              <p class="muted">JSON-Exporte, Loeschungen und automatische Aufraeumlaeufe werden hier rueckgemeldet. Die Aufbewahrungsfristen sind in den Servereinstellungen konfigurierbar.</p>
+              <pre id="privacy-admin-output" class="output-box">Noch keine Datenschutz-Aktion ausgefuehrt.</pre>
             </div>
 
             <div class="admin-card">

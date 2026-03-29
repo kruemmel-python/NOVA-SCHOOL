@@ -93,6 +93,7 @@ const ui = {
   chatRoom: $("chat-room"),
   chatMessages: $("chat-messages"),
   chatInput: $("chat-input"),
+  chatPrivacyNotice: $("chat-privacy-notice"),
   docSelect: $("doc-select"),
   docContent: $("doc-content"),
   curriculumPanel: $("curriculum-panel"),
@@ -129,6 +130,7 @@ const ui = {
   assistantMode: $("assistant-mode"),
   assistantPrompt: $("assistant-prompt"),
   assistantOutput: $("assistant-output"),
+  assistantPrivacyNotice: $("assistant-privacy-notice"),
   mentorThread: $("mentor-thread"),
   reviewPanel: $("review-panel"),
   reviewSubmissions: $("review-submissions"),
@@ -141,6 +143,10 @@ const ui = {
   adminSummary: $("admin-summary"),
   manageUserMeta: $("manage-user-meta"),
   manageUserAudit: $("manage-user-audit"),
+  manageUserExportButton: $("manage-user-export"),
+  manageUserHardDeleteButton: $("manage-user-hard-delete"),
+  privacyAdminOutput: $("privacy-admin-output"),
+  runRetentionNowButton: $("run-retention-now"),
   materialPrompt: $("material-prompt"),
   materialGenerateButton: $("generate-material"),
   materialRunButton: $("run-material"),
@@ -197,6 +203,18 @@ const formatWhen = (value) => value ? new Date(value * 1000).toLocaleString() : 
 const nonEmptyText = (value, fallback = "Keine Daten.") => {
   const text = String(value || "").trim();
   return text || fallback;
+};
+
+const downloadJsonFile = (filename, payload) => {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 };
 
 function readFileAsBase64(file) {
@@ -274,6 +292,8 @@ const MANAGED_SETTING_KEYS = new Set([
   "ondevice_top_k",
   "ondevice_temperature",
   "ondevice_random_seed",
+  "retention_chat_days",
+  "retention_audit_days",
   "runner_backend",
   "unsafe_process_backend_enabled",
   "playground_dispatch_mode",
@@ -420,6 +440,8 @@ function populateServerSettingsPanel(settings = {}, runtime = {}) {
   $("setting-ondevice-top-k").value = settings.ondevice_top_k || 40;
   $("setting-ondevice-temperature").value = settings.ondevice_temperature ?? 0.8;
   $("setting-ondevice-random-seed").value = settings.ondevice_random_seed ?? 1;
+  $("setting-retention-chat-days").value = settings.retention_chat_days ?? 180;
+  $("setting-retention-audit-days").value = settings.retention_audit_days ?? 365;
   $("setting-playground-dispatch-mode").value = settings.playground_dispatch_mode || "worker";
   $("setting-runner-backend").value = settings.runner_backend || "container";
   $("setting-unsafe-process").checked = Boolean(settings.unsafe_process_backend_enabled);
@@ -1647,6 +1669,23 @@ function currentAiConfig() {
   return state.bootstrap?.ai || {};
 }
 
+function renderPrivacyNotices() {
+  const session = state.bootstrap?.session;
+  const isStudent = session?.role === "student";
+  if (ui.chatPrivacyNotice) {
+    ui.chatPrivacyNotice.classList.toggle("hidden", !isStudent);
+    ui.chatPrivacyNotice.textContent = isStudent
+      ? "Hinweis fuer Lernende: Nachrichten in Schul-, Gruppen- und Projektraeumen werden serverseitig gespeichert. Lehrkraefte und Admins koennen sie im Rahmen von Unterrichtsaufsicht, Administration und Datenschutzanfragen einsehen; strukturierte Exporte erfolgen administrativ."
+      : "";
+  }
+  if (ui.assistantPrivacyNotice) {
+    ui.assistantPrivacyNotice.classList.toggle("hidden", !isStudent);
+    ui.assistantPrivacyNotice.textContent = isStudent
+      ? "Hinweis fuer Lernende: Auch Mentor- und KI-Codehilfe-Verlaeufe werden serverseitig protokolliert. Lehrkraefte und Admins koennen sie im Rahmen von Unterrichtsaufsicht, Administration und Datenschutzanfragen einsehen; strukturierte Exporte erfolgen administrativ."
+      : "";
+  }
+}
+
 function renderAssistantStatus() {
   const session = state.bootstrap?.session;
   const aiAllowed = Boolean(session?.permissions?.["ai.use"]);
@@ -1705,6 +1744,7 @@ function renderBootstrap() {
   $("open-ai-assistant")?.classList.toggle("hidden", !session.permissions["ai.use"]);
   ui.materialStudioPanel?.classList.toggle("hidden", !canUseMaterialStudio(session));
   arrangeRightPanel(session);
+  renderPrivacyNotices();
 
   const aiAllowed = Boolean(session.permissions["ai.use"]);
   const mentorAllowed = aiAllowed && Boolean(session.permissions["mentor.use"]);
@@ -3515,12 +3555,18 @@ async function askAssistant(event) {
 
     const prepared = await api("/api/assistant/chat", {
       method: "POST",
-      body: { prompt, code: ui.fileEditor.value, path: ui.filePath.value },
+      body: {
+        prompt,
+        code: ui.fileEditor.value,
+        path: ui.filePath.value,
+        project_id: state.project?.project_id || "",
+      },
     });
     const payload = await completeSingleInference(prepared, "/api/assistant/chat", {
       prompt,
       code: ui.fileEditor.value,
       path: ui.filePath.value,
+      project_id: state.project?.project_id || "",
     });
     ui.assistantOutput.textContent = payload.text || "Keine Antwort.";
     notify(`Lokale KI Antwort von ${payload.model || "dem aktiven Modell"} erhalten.`);
@@ -3818,6 +3864,8 @@ function renderManagedUserForm() {
     $("manage-user-status").value = "active";
     $("manage-user-password").value = "";
     ui.manageUserMeta.textContent = "Keine Benutzer vorhanden.";
+    ui.manageUserExportButton?.toggleAttribute("disabled", true);
+    ui.manageUserHardDeleteButton?.toggleAttribute("disabled", true);
     return;
   }
   $("manage-user-target").value = user.username;
@@ -3826,6 +3874,8 @@ function renderManagedUserForm() {
   $("manage-user-status").value = user.status || "active";
   $("manage-user-password").value = "";
   ui.manageUserMeta.textContent = `Erstellt: ${formatWhen(user.created_at)} | Letzte Aenderung: ${formatWhen(user.updated_at)}`;
+  ui.manageUserExportButton?.removeAttribute("disabled");
+  ui.manageUserHardDeleteButton?.toggleAttribute("disabled", user.username === state.bootstrap?.session?.username);
 }
 
 function auditChangeMarkup(changes) {
@@ -3881,6 +3931,57 @@ async function loadManagedUserAudit() {
   renderManagedUserAudit();
 }
 
+async function exportManagedUserData() {
+  const user = selectedManagedUser();
+  if (!user) throw new Error("Kein Benutzer fuer den Export ausgewaehlt.");
+  const payload = await api(`/api/admin/users/${encodeURIComponent(user.username)}/export`);
+  downloadJsonFile(`nova-user-export-${user.username}.json`, payload);
+  if (ui.privacyAdminOutput) {
+    ui.privacyAdminOutput.textContent = JSON.stringify({
+      action: "user-export",
+      username: user.username,
+      exported_at: payload.exported_at,
+      summary: payload.summary || {},
+    }, null, 2);
+  }
+  notify(`Nutzerdatenexport fuer ${user.username} heruntergeladen.`);
+}
+
+async function hardDeleteManagedUser() {
+  const user = selectedManagedUser();
+  if (!user) throw new Error("Kein Benutzer fuer die Loeschung ausgewaehlt.");
+  const confirmed = window.confirm(
+    `Benutzer ${user.username} wirklich hart loeschen?\n\nDies entfernt Konto, persoenliche Projekte, Chatverlaeufe, Mentor-/KI-Verlaeufe, Artefakte und zugehoerige Lernhistorie dauerhaft.`
+  );
+  if (!confirmed) return;
+  const payload = await api("/api/admin/users/delete", {
+    method: "POST",
+    body: { username: user.username },
+  });
+  if (ui.privacyAdminOutput) {
+    ui.privacyAdminOutput.textContent = JSON.stringify({
+      action: "user-hard-delete",
+      username: user.username,
+      summary: payload,
+    }, null, 2);
+  }
+  notify(`Benutzer ${user.username} wurde dauerhaft geloescht.`);
+  await loadAdminOverview();
+  await refreshBootstrap();
+}
+
+async function runRetentionNow() {
+  const payload = await api("/api/admin/data-retention/run", { method: "POST", body: {} });
+  if (ui.privacyAdminOutput) {
+    ui.privacyAdminOutput.textContent = JSON.stringify({
+      action: "retention-run",
+      ...payload,
+    }, null, 2);
+  }
+  notify("Retention-Lauf abgeschlossen.");
+  await loadAdminOverview();
+}
+
 async function loadAdminOverview() {
   const previousMembershipUser = $("membership-user").value;
   const previousMuteUser = $("mute-user").value;
@@ -3899,6 +4000,8 @@ async function loadAdminOverview() {
     <p><strong>Worker:</strong> ${(workers || []).filter((item) => item.online).length} aktiv / ${(workers || []).length} gesamt</p>
     <p><strong>Dispatch-Jobs:</strong> ${(dispatch_jobs || []).length}</p>
     <p><strong>Host-Fallback:</strong> ${settings.unsafe_process_backend_enabled ? "aktiv" : "deaktiviert"}</p>
+    <p><strong>Chat-Retention:</strong> ${escapeHtml(String(settings.retention_chat_days ?? 180))} Tage</p>
+    <p><strong>Audit-Retention:</strong> ${escapeHtml(String(settings.retention_audit_days ?? 365))} Tage</p>
     <p><strong>Review-Einreichungen:</strong> ${(reviews?.submissions || []).length}</p>
     <p><strong>Deployment-Artefakte:</strong> ${(artifacts || []).length}</p>
   `;
@@ -4175,6 +4278,10 @@ $("manage-user-form").addEventListener("submit", async (event) => {
   await loadAdminOverview();
 });
 
+ui.manageUserExportButton?.addEventListener("click", () => exportManagedUserData().catch((error) => notify(error.message)));
+ui.manageUserHardDeleteButton?.addEventListener("click", () => hardDeleteManagedUser().catch((error) => notify(error.message)));
+ui.runRetentionNowButton?.addEventListener("click", () => runRetentionNow().catch((error) => notify(error.message)));
+
 $("create-group-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   await api("/api/admin/groups", {
@@ -4311,6 +4418,8 @@ $("settings-form").addEventListener("submit", async (event) => {
       ondevice_top_k: Number($("setting-ondevice-top-k").value || 40),
       ondevice_temperature: Number($("setting-ondevice-temperature").value || 0.8),
       ondevice_random_seed: Number($("setting-ondevice-random-seed").value || 1),
+      retention_chat_days: Number($("setting-retention-chat-days").value || 180),
+      retention_audit_days: Number($("setting-retention-audit-days").value || 365),
       playground_dispatch_mode: $("setting-playground-dispatch-mode").value,
       runner_backend: $("setting-runner-backend").value,
       unsafe_process_backend_enabled: $("setting-unsafe-process").checked,
