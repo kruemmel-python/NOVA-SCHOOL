@@ -1435,11 +1435,44 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
             raise PermissionError("Recht fehlt: server.settings")
 
     def _certificate_verification_url(self, certificate_id: str) -> str:
-        public_host = str(self.application.repository.get_setting("server_public_host", "") or "").strip()
-        if public_host and not public_host.startswith(("http://", "https://")):
-            public_host = f"http://{public_host}"
-        base = public_host.rstrip("/") if public_host else f"http://127.0.0.1:{self.application.config.port}"
+        base = self._external_base_url()
         return f"{base}/certificate/verify?certificate_id={quote(certificate_id)}"
+
+    def _configured_public_host(self) -> str:
+        return str(self.application.repository.get_setting("server_public_host", "") or "").strip()
+
+    def _request_scheme(self) -> str:
+        forwarded = str(self.headers.get("Forwarded", "") or "")
+        for chunk in forwarded.split(";"):
+            key, _, value = chunk.partition("=")
+            if key.strip().lower() == "proto" and value.strip():
+                return value.strip().strip('"').lower()
+        forwarded_proto = str(self.headers.get("X-Forwarded-Proto", "") or "").split(",", 1)[0].strip().lower()
+        if forwarded_proto:
+            return forwarded_proto
+        return "http"
+
+    def _request_host(self) -> str:
+        return str(self.headers.get("X-Forwarded-Host", "") or "").split(",", 1)[0].strip() or str(self.headers.get("Host", "") or "").strip()
+
+    def _request_origin(self) -> str:
+        host = self._request_host() or f"127.0.0.1:{self.application.config.port}"
+        return f"{self._request_scheme()}://{host}"
+
+    def _external_base_url(self) -> str:
+        public_host = self._configured_public_host()
+        if public_host:
+            if public_host.startswith(("http://", "https://")):
+                return public_host.rstrip("/")
+            scheme = "https" if self._request_scheme() == "https" else "http"
+            return f"{scheme}://{public_host.rstrip('/')}"
+        return self._request_origin().rstrip("/")
+
+    def _request_uses_tls(self) -> bool:
+        public_host = self._configured_public_host().lower()
+        if public_host.startswith("https://"):
+            return True
+        return self._request_scheme() == "https"
 
     def _read_json_body(self) -> dict[str, Any]:
         payload = self._read_raw_body()
@@ -1513,13 +1546,13 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
             return auth_header[len("Bearer ") :].strip()
         return None
 
-    @staticmethod
-    def _cookie_header(token: str) -> str:
-        return f"{COOKIE_NAME}={token}; HttpOnly; SameSite=Lax; Path=/"
+    def _cookie_header(self, token: str) -> str:
+        secure = "; Secure" if self._request_uses_tls() else ""
+        return f"{COOKIE_NAME}={token}; HttpOnly; SameSite=Lax; Path=/{secure}"
 
-    @staticmethod
-    def _clear_cookie_header() -> str:
-        return f"{COOKIE_NAME}=; Max-Age=0; HttpOnly; SameSite=Lax; Path=/"
+    def _clear_cookie_header(self) -> str:
+        secure = "; Secure" if self._request_uses_tls() else ""
+        return f"{COOKIE_NAME}=; Max-Age=0; HttpOnly; SameSite=Lax; Path=/{secure}"
 
 
 def run_server(application: NovaSchoolApplication) -> None:

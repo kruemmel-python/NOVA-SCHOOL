@@ -15,6 +15,12 @@ NOVA SCHOOL combines:
 
 The project is built for school networks, teacher notebooks, lab systems, and controlled low-cloud or offline environments.
 
+Frontend delivery is repository-local:
+
+- no production UI JavaScript is loaded from public CDNs
+- static assets are served from the local `/static` path
+- the former browser WebGPU path remains only as a local compatibility stub and no longer loads remote packages
+
 ## Repository Layout
 
 | Path | Purpose |
@@ -49,12 +55,15 @@ Default local URL:
 http://127.0.0.1:8877
 ```
 
+For production, do not expose this HTTP listener directly. Publish only the HTTPS endpoint of a reverse proxy.
+
 ## Requirements
 
 - Python `3.12`
 - embedded security/runtime components are included in the repository
 - Docker or Podman for isolated runners
 - `LiteRT-LM` runtime in `LIT/` as the preferred local AI stack
+- a TLS-capable reverse proxy such as `Caddy` or `Nginx` for institutional deployments
 
 Install Python dependencies:
 
@@ -139,6 +148,23 @@ Embedded runtime:
 
 - the repository includes its own local security and sandbox runtime components
 - no external `Nova-shell` checkout is required for the default server path
+
+## TLS and Reverse Proxy
+
+Repository templates are included in:
+
+- [deploy/reverse-proxy/Caddyfile](deploy/reverse-proxy/Caddyfile)
+- [deploy/reverse-proxy/nginx.conf](deploy/reverse-proxy/nginx.conf)
+- [deploy/reverse-proxy/README.md](deploy/reverse-proxy/README.md)
+
+Recommended production pattern:
+
+1. bind NOVA SCHOOL internally to `127.0.0.1:8877`
+2. publish only an HTTPS host such as `https://nova.schule.local`
+3. set `server_public_host` to the full external HTTPS URL
+4. let the proxy forward `Host`, `X-Forwarded-Host`, and `X-Forwarded-Proto`
+
+With this setup the server emits `Secure` session cookies automatically when it detects HTTPS via the configured public host or proxy headers.
 
 ## Documentation
 

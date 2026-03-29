@@ -74,12 +74,32 @@ Positiv:
 
 Wichtige Grenze:
 
-- Das Cookie wird aktuell **nicht** mit dem Attribut `Secure` gesetzt.
-- Der eingebaute Server spricht **HTTP**, nicht HTTPS.
+- Der eingebaute Server spricht weiterhin **HTTP**, nicht HTTPS.
+- `Secure` am Cookie wird gesetzt, wenn der Server einen HTTPS-Betrieb ueber `server_public_host = https://...` oder ueber Proxy-Header wie `X-Forwarded-Proto: https` erkennt.
 
 Konsequenz fuer Lehranstalten:
 
 - Der Nova School Server darf produktiv nur hinter einem TLS-terminierenden Reverse Proxy betrieben werden.
+- Die direkte HTTP-Freigabe des Python-Servers ins Schulnetz bleibt nicht empfohlen.
+
+## 3.4 Reverse-Proxy-Betrieb
+
+Das Repository enthaelt produktionsnahe Vorlagen fuer:
+
+- `deploy/reverse-proxy/Caddyfile`
+- `deploy/reverse-proxy/nginx.conf`
+
+Erwarteter Betrieb:
+
+- NOVA SCHOOL intern auf `127.0.0.1:8877`
+- TLS-Terminierung auf dem Reverse Proxy
+- Weitergabe von `Host`, `X-Forwarded-Host` und `X-Forwarded-Proto`
+- `server_public_host` auf die externe HTTPS-URL setzen
+
+Damit werden:
+
+- oeffentliche Verifikationslinks mit `https://` erzeugt
+- Session-Cookies mit `Secure` ausgegeben
 
 ## 4. Autorisierung und Rollenmodell
 
@@ -293,6 +313,16 @@ Fuer LiteRT-LM gilt in der aktuellen Implementierung:
 - der Server bevorzugt automatisch `LIT/` im Projektordner fuer Binary, Modell und Cache-Herkunft
 - Promptdateien werden temporaer im lokalen Cachebereich abgelegt
 - nach dem Lauf werden diese Promptdateien wieder geloescht
+
+## 8.2a Browser-Assets und CDNs
+
+Die produktive Hauptoberflaeche laedt keine externen JavaScript-CDNs.
+
+Aktueller Zustand:
+
+- produktive Browser-Assets kommen aus dem lokalen Ordner `static/`
+- der fruehere Browser-WebGPU-Pfad ist nur noch als lokaler Kompatibilitaets-Stub vorhanden
+- fuer den Standardbetrieb mit LiteRT-LM oder llama.cpp ist kein externer Browser-Download noetig
 
 ## 8.3 Wichtige Grenze
 

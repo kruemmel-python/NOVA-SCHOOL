@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.4 - 2026-03-29
+
+### Changed
+
+- the legacy browser on-device AI helper no longer references external JavaScript CDNs
+- the server now emits `Secure` session cookies when HTTPS is detected via `server_public_host` or reverse-proxy headers
+- repository-level reverse-proxy templates for Caddy and Nginx were added for TLS-first deployments
+
+### Added
+
+- reverse-proxy deployment templates under `deploy/reverse-proxy/`
+- regression coverage for HTTPS-aware cookie handling and external verification URLs
+
 ## v0.1.3 - 2026-03-29
 
 ### Changed

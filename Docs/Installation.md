@@ -55,6 +55,12 @@ Das bedeutet:
 - Reverse Proxy mit TLS
 - Ein `LIT/`-Ordner mit LiteRT-Binary und Modell
 
+Die Repository-Templates fuer den TLS-Pfad liegen unter:
+
+- `deploy/reverse-proxy/Caddyfile`
+- `deploy/reverse-proxy/nginx.conf`
+- `deploy/reverse-proxy/README.md`
+
 ## 2.3 Primaerer KI-Stack: LiteRT-LM
 
 Benoetigt:
@@ -295,6 +301,34 @@ Danach im Browser:
 http://127.0.0.1:8877
 ```
 
+Fuer Produktivbetrieb gilt stattdessen:
+
+- internen Server nur auf `127.0.0.1:8877` oder im internen Servernetz binden
+- oeffentlich nur den TLS-Reverse-Proxy bereitstellen
+- `server_public_host` auf die externe HTTPS-URL setzen, z. B. `https://nova.schule.local`
+
+## 5.1 Beispiel fuer TLS mit Caddy
+
+1. `deploy/reverse-proxy/Caddyfile` auf den echten Hostnamen anpassen
+2. Caddy auf dem Server installieren
+3. NOVA SCHOOL lokal auf `127.0.0.1:8877` starten
+4. Caddy mit dieser Konfiguration starten
+
+Der Proxy uebergibt:
+
+- `Host`
+- `X-Forwarded-Host`
+- `X-Forwarded-Proto`
+
+Damit setzt NOVA SCHOOL bei HTTPS automatisch `Secure` am Session-Cookie.
+
+## 5.2 Beispiel fuer TLS mit Nginx
+
+1. `deploy/reverse-proxy/nginx.conf` auf Domain und Zertifikatspfade anpassen
+2. die Konfiguration in die Nginx-Site-Definition uebernehmen
+3. NOVA SCHOOL intern auf `127.0.0.1:8877` betreiben
+4. nur `443/tcp` nach aussen freigeben
+
 ## 6. Erststart pruefen
 
 ## 6.1 Demo-Accounts
@@ -344,7 +378,8 @@ Dann:
 Erwartung:
 
 - sichtbare Programmausgabe
-- zusaetzliche Container-Hinweise im Ausgabefeld
+- bei Lehrkraft/Admin zusaetzliche Container-Hinweise im Ausgabefeld
+- bei Schuelern keine operativen Runner-Details
 
 ## 7. Empfohlene Servereinstellungen
 
