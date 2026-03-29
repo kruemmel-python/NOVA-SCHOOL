@@ -120,6 +120,16 @@ Empfohlene Ablage:
 - `C:\nova_school_server\LIT\lit.windows_x86_64.exe`
 - `C:\nova_school_server\LIT\gemma-3n-E4B-it-int4.litertlm`
 
+Externer Downloadpfad:
+
+- Hugging Face: `https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main`
+- bevorzugte Serverdatei: `gemma-3n-E4B-it-int4.litertlm`
+
+Wichtig:
+
+- das Modell-Repository ist gated
+- vor dem Download muessen die Hugging-Face-Anmeldung und die Gemma-Lizenzfreigabe erfolgt sein
+
 Automatisch erkannte Orte:
 
 - `LIT/` im Projektordner

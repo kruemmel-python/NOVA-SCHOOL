@@ -240,6 +240,17 @@ Wichtig:
 - Du musst in den Servereinstellungen nichts eintragen, wenn Binary und Modell dort liegen.
 - Das Cache-/Home-Verzeichnis wird ebenfalls automatisch aus `LIT/` abgeleitet, solange kein expliziter `litertlm_home_path` gesetzt ist.
 
+Externer Modell-Download:
+
+- Hugging Face: `https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main`
+- bevorzugte Datei fuer den Serverbetrieb: `gemma-3n-E4B-it-int4.litertlm`
+
+Wichtig:
+
+- das Repository ist gated
+- vor dem Download muss sich die Institution oder Lehrkraft bei Hugging Face anmelden und Googles Gemma-Nutzungsbedingungen akzeptieren
+- die `.litertlm`-Datei wird danach lokal nach `LIT/` kopiert und nicht in Git eingecheckt
+
 ## 4.7 Optionale Konfigurationsdatei anlegen
 
 Datei:

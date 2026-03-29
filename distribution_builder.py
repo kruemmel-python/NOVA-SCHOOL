@@ -305,6 +305,13 @@ Erwartete Inhalte:
 - Linux/macOS: eine passende native `lit`-Binary
 - ein lokales `.litertlm`-Modell, z. B. `gemma-3n-E4B-it-int4.litertlm`
 
+Externer Downloadpfad fuer das empfohlene Modell:
+- `https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main`
+
+Hinweis:
+- das Hugging-Face-Repository ist gated
+- vor dem Download muessen Anmeldung und Gemma-Lizenzfreigabe erfolgt sein
+
 Die Release-Pakete enthalten diesen Ordner absichtlich leer, damit keine mehrgigabytegrossen Modelle oder maschinenspezifischen Binaries in jedem ZIP mitgeliefert werden.
 """
     (staging_root / "LIT" / "README.md").write_text(notes, encoding="utf-8")

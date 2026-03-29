@@ -89,6 +89,16 @@ If no explicit server settings are provided, NOVA SCHOOL automatically looks for
 - `LIT/*.litertlm`
 - `LIT/lit.windows_x86_64.exe`, `LIT/lit.exe`, or a native `lit` on `PATH`
 
+External model download path:
+
+- Hugging Face model tree: `https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main`
+- preferred server model file: `gemma-3n-E4B-it-int4.litertlm`
+
+Important:
+
+- the Hugging Face repository is gated
+- staff must log in and accept Google's Gemma usage license before downloading files
+
 `llama.cpp` remains supported, but it is no longer the primary documented path.
 
 ## Demo Accounts

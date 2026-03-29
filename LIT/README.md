@@ -12,4 +12,13 @@ Empfohlene Inhalte auf Linux:
 - eine native `lit`-Binary
 - ein kompatibles `.litertlm`-Modell
 
+Externer Downloadpfad fuer das empfohlene Modell:
+
+- `https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main`
+
+Vor dem Download:
+
+- bei Hugging Face anmelden
+- Googles Gemma-Nutzungsbedingungen fuer das gated Modell akzeptieren
+
 Der Server bevorzugt diesen Ordner automatisch, wenn keine expliziten Pfade in den Servereinstellungen gesetzt sind.
