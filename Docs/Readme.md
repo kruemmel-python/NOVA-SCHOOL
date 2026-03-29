@@ -178,6 +178,7 @@ Die Server-ZIPs enthalten absichtlich **keine** grossen Modellartefakte. Der Ord
 Fuer die vollstaendige Einrichtung siehe:
 
 - [Installation.md](Installation.md)
+- [Service.md](Service.md)
 - [Secure.md](Secure.md)
 
 ## Sicherheitsprofil

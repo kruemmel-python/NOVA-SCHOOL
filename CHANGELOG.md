@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.6 - 2026-03-29
+
+### Added
+
+- a new service technician guide in `Docs/Service.md` with minimum hardware profiles for `60-90` students
+- a full Linux production runbook for Ubuntu, Docker, LiteRT-LM, TLS, and systemd-based autostart
+
+### Changed
+
+- repository documentation indexes now link the new service guide from the root README and docs guides
+
 ## v0.1.5 - 2026-03-29
 
 ### Changed

@@ -169,6 +169,7 @@ With this setup the server emits `Secure` session cookies automatically when it 
 ## Documentation
 
 - [Installation Guide](Docs/Installation.md)
+- [Service Guide](Docs/Service.md)
 - [Security Guide](Docs/Secure.md)
 - [Extended Project Readme](Docs/Readme.md)
 
