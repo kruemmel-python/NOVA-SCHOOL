@@ -19,6 +19,7 @@ const state = {
   curriculumManageCourseId: "",
   curriculumAttemptUsername: "",
   curriculumDraft: null,
+  curriculumBundlePreview: null,
   playground: null,
   materialStudio: {
     prompt: "",
@@ -110,6 +111,11 @@ const ui = {
   curriculumLearnerList: $("curriculum-learner-list"),
   curriculumAttemptUser: $("curriculum-attempt-user"),
   curriculumAttemptList: $("curriculum-attempt-list"),
+  curriculumBundleCard: $("curriculum-bundle-card"),
+  curriculumBundleFile: $("curriculum-bundle-file"),
+  curriculumBundleSecret: $("curriculum-bundle-secret"),
+  curriculumBundleStatus: $("curriculum-bundle-status"),
+  curriculumBundleList: $("curriculum-bundle-list"),
   curriculumAuthorSource: $("curriculum-author-source"),
   curriculumAuthorStatus: $("curriculum-author-status"),
   curriculumAuthorEditor: $("curriculum-author-editor"),
@@ -192,6 +198,19 @@ const nonEmptyText = (value, fallback = "Keine Daten.") => {
   const text = String(value || "").trim();
   return text || fallback;
 };
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("Curriculum-Bundle konnte im Browser nicht gelesen werden."));
+    reader.onload = () => {
+      const result = String(reader.result || "");
+      const commaIndex = result.indexOf(",");
+      resolve(commaIndex >= 0 ? result.slice(commaIndex + 1) : result);
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 function formatElapsedLabel(startedAt) {
   const started = Number(startedAt || 0);
@@ -3107,6 +3126,88 @@ function updateCurriculumReleaseTargets() {
   }).join("");
 }
 
+function renderCurriculumBundleManager() {
+  const canUpdate = hasPermission("curriculum.update") && hasPermission("admin.manage");
+  ui.curriculumBundleCard?.classList.toggle("hidden", !canUpdate);
+  if (!canUpdate || !ui.curriculumBundleList || !ui.curriculumBundleStatus) return;
+  const manager = state.curriculum?.manager || {};
+  const bundles = manager.bundles || [];
+  const activeId = manager.active_bundle_id || "";
+  const preview = state.curriculumBundlePreview;
+  const previewText = preview
+    ? `Validiert: ${preview.manifest?.title || preview.bundle_id} | Kurse: ${(preview.courses || []).length} | Presets: ${(preview.material_presets || []).length} | Mentor-Regeln: ${(preview.mentor_rules || []).length}`
+    : "Noch kein Curriculum-Bundle geladen.";
+  ui.curriculumBundleStatus.textContent = previewText;
+  ui.curriculumBundleList.innerHTML = bundles.map((bundle) => `
+    <article class="review-card">
+      <div class="section-head">
+        <h3>${escapeHtml(bundle.title || bundle.bundle_id)}</h3>
+        <small>${bundle.bundle_id === activeId ? "aktiv" : escapeHtml(bundle.status || "importiert")}</small>
+      </div>
+      <p><strong>Version:</strong> ${escapeHtml(bundle.version || "-")} | <strong>Quelle:</strong> ${escapeHtml(bundle.source_name || "-")}</p>
+      <p><strong>Importiert:</strong> ${formatWhen(bundle.imported_at)} | <strong>Aktiviert:</strong> ${formatWhen(bundle.activated_at)}</p>
+      <p><strong>Inhalt:</strong> ${escapeHtml(bundle.course_count || 0)} Kurse | ${escapeHtml(bundle.material_preset_count || 0)} Presets | ${escapeHtml(bundle.mentor_rule_count || 0)} Mentor-Regeln</p>
+      <div class="inline-actions">
+        ${bundle.bundle_id !== activeId ? `<button type="button" data-curriculum-bundle-activate="${escapeHtml(bundle.bundle_id)}">Aktivieren</button>` : ""}
+      </div>
+    </article>
+  `).join("") || "<p class=\"muted\">Noch kein Curriculum-Bundle importiert.</p>";
+  ui.curriculumBundleList.querySelectorAll("[data-curriculum-bundle-activate]").forEach((button) => button.addEventListener("click", () => {
+    activateCurriculumBundle(button.dataset.curriculumBundleActivate || "").catch((error) => notify(error.message));
+  }));
+}
+
+async function currentCurriculumBundleUpload() {
+  const file = ui.curriculumBundleFile?.files?.[0];
+  if (!file) throw new Error("Bitte zuerst ein Curriculum-Bundle auswaehlen.");
+  return {
+    filename: file.name,
+    bundle_base64: await readFileAsBase64(file),
+    signature_secret: ui.curriculumBundleSecret?.value || "",
+  };
+}
+
+async function validateCurriculumBundle() {
+  const payload = await api("/api/admin/curriculum/bundles/validate", {
+    method: "POST",
+    body: await currentCurriculumBundleUpload(),
+  });
+  state.curriculumBundlePreview = payload;
+  renderCurriculumBundleManager();
+  notify(`Curriculum-Bundle validiert: ${payload.manifest?.title || payload.bundle_id}`);
+}
+
+async function importCurriculumBundle() {
+  const payload = await api("/api/admin/curriculum/bundles/import", {
+    method: "POST",
+    body: await currentCurriculumBundleUpload(),
+  });
+  state.curriculumBundlePreview = payload.preview || null;
+  notify(`Curriculum-Bundle importiert: ${payload.bundle?.title || payload.bundle?.bundle_id || "Bundle"}`);
+  await refreshBootstrap();
+  await loadCurriculumDashboard();
+}
+
+async function activateCurriculumBundle(bundleId) {
+  await api("/api/admin/curriculum/bundles/activate", {
+    method: "POST",
+    body: { bundle_id: bundleId },
+  });
+  notify(`Curriculum-Bundle aktiviert: ${bundleId}`);
+  await refreshBootstrap();
+  await loadCurriculumDashboard();
+}
+
+async function rollbackCurriculumBundle() {
+  const payload = await api("/api/admin/curriculum/bundles/rollback", {
+    method: "POST",
+    body: {},
+  });
+  notify(`Curriculum-Rollback aktiviert: ${payload.bundle?.title || payload.bundle?.bundle_id || "Bundle"}`);
+  await refreshBootstrap();
+  await loadCurriculumDashboard();
+}
+
 function renderCurriculumManager() {
   const canManage = hasPermission("curriculum.manage");
   ui.curriculumManagePanel.classList.toggle("hidden", !canManage);
@@ -3121,6 +3222,7 @@ function renderCurriculumManager() {
     ui.curriculumLearnerList.innerHTML = "";
     ui.curriculumAttemptUser.innerHTML = "";
     ui.curriculumAttemptList.innerHTML = "<p class=\"muted\">Noch kein Pruefungsprotokoll verfuegbar.</p>";
+    renderCurriculumBundleManager();
     renderCurriculumAuthoring();
     return;
   }
@@ -3158,6 +3260,7 @@ function renderCurriculumManager() {
   if (!learners.length) {
     state.curriculumAttemptUsername = "";
     ui.curriculumAttemptList.innerHTML = "<p class=\"muted\">Fuer diesen Kurs liegen noch keine Schuelerzuordnungen vor.</p>";
+    renderCurriculumBundleManager();
     renderCurriculumAuthoring();
     return;
   }
@@ -3165,6 +3268,7 @@ function renderCurriculumManager() {
     state.curriculumAttemptUsername = learners[0].username;
   }
   ui.curriculumAttemptUser.value = state.curriculumAttemptUsername;
+  renderCurriculumBundleManager();
   renderCurriculumAuthoring();
 }
 
@@ -3396,6 +3500,8 @@ async function askAssistant(event) {
           code: ui.fileEditor.value,
           path: ui.filePath.value,
           run_output: ui.runOutput.textContent,
+          course_id: state.curriculumCourseId || "",
+          module_id: state.curriculumModuleId || "",
         },
       });
       const payload = await completeSingleInference(prepared, `/api/projects/${state.project.project_id}/mentor/ask`, {
@@ -3986,6 +4092,9 @@ $("share-project").addEventListener("click", () => shareCurrentProject().catch((
 $("export-project").addEventListener("click", () => exportCurrentProject().catch((error) => notify(error.message)));
 $("refresh-curriculum").addEventListener("click", () => loadCurriculumDashboard().catch((error) => notify(error.message)));
 $("refresh-curriculum-manage").addEventListener("click", () => loadCurriculumDashboard().catch((error) => notify(error.message)));
+$("curriculum-bundle-validate")?.addEventListener("click", () => validateCurriculumBundle().catch((error) => notify(error.message)));
+$("curriculum-bundle-import")?.addEventListener("click", () => importCurriculumBundle().catch((error) => notify(error.message)));
+$("curriculum-bundle-rollback")?.addEventListener("click", () => rollbackCurriculumBundle().catch((error) => notify(error.message)));
 ui.curriculumCourse?.addEventListener("change", () => {
   state.curriculumCourseId = ui.curriculumCourse.value;
   state.curriculumModuleId = "";

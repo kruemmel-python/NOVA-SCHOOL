@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.8 - 2026-03-29
+
+### Added
+
+- admin-only signed curriculum bundle import, validation, activation, rollback, and bundle listing APIs
+- curriculum-aware mentor context with active bundle mentor rules and course/module-aware guidance
+- curriculum bundle integration for Material Studio presets, plus new regression coverage in `tests/test_curriculum.py`, `tests/test_material_studio.py`, `tests/test_mentor.py`, and `tests/test_seed.py`
+
+### Changed
+
+- teacher defaults are now explicitly defined for a usable school start profile instead of relying on implicit broad grants
+- bootstrap seeding now normalizes the demo users and demo group on server start so broken legacy overrides do not leave the system without essential rights
+- the admin UI now includes a curriculum bundle management flow for validate/import/activate/rollback operations
+
 ## v0.1.7 - 2026-03-29
 
 ### Changed

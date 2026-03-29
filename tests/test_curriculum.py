@@ -1,7 +1,13 @@
 from __future__ import annotations
 
+import hashlib
+import hmac
+import io
+import json
 import tempfile
+import time
 import unittest
+import zipfile
 from pathlib import Path
 
 from PIL import Image
@@ -105,16 +111,133 @@ def _custom_course_payload() -> dict:
     }
 
 
+def _bundle_archive_bytes(*, secret: str, version: str = "2026.03", module_title: str = "Einfuhrung in Python und Programmieren") -> bytes:
+    bundle_id = f"support-python-{version.replace('.', '-')}"
+    course_payload = {
+        "course_id": "python-grundlagen",
+        "title": "Python Grundlagen",
+        "subtitle": "Aktualisierter Curriculum-Baustein",
+        "subject_area": "Programmierung mit Python",
+        "summary": "Aktualisierte Lernziele fuer Einstieg und erste Ausgabe.",
+        "audience": "Klasse 7/8",
+        "estimated_hours": 8,
+        "certificate_title": "Nova School Zertifikat Python Grundlagen",
+        "pass_ratio": 0.7,
+        "final_pass_ratio": 0.75,
+        "certificate_theme": {
+            "label": "Python Grundlagen",
+            "accent": "#126d67",
+            "accent_dark": "#0a4d49",
+            "warm": "#8f412f",
+            "paper": "#fbf3e5",
+        },
+        "modules": [
+            {
+                "module_id": "p01_einstieg",
+                "title": module_title,
+                "estimated_minutes": 35,
+                "objectives": ["print() verstehen", "Input und Output einordnen"],
+                "lesson_markdown": "## Einstieg\n\nAktualisierte Unterrichtssequenz.",
+                "quiz_pass_ratio": 0.6,
+                "questions": [
+                    {
+                        "id": "q1",
+                        "type": "single",
+                        "prompt": "Welche Funktion erzeugt in Python eine sichtbare Ausgabe?",
+                        "options": [
+                            {"id": "a", "label": "print"},
+                            {"id": "b", "label": "input"},
+                        ],
+                        "correct": ["a"],
+                        "points": 1,
+                        "explanation": "print erzeugt die Ausgabe.",
+                    }
+                ],
+            }
+        ],
+        "final_assessment": {
+            "assessment_id": "python-grundlagen-final",
+            "title": "Abschlusspruefung Python Grundlagen",
+            "instructions": "Bearbeite alle Fragen.",
+            "questions": [
+                {
+                    "id": "f1",
+                    "type": "text",
+                    "prompt": "Welches Stichwort startet in Python eine Schleife ueber Elemente?",
+                    "accepted": ["for"],
+                    "points": 1,
+                    "explanation": "for startet die Schleife.",
+                }
+            ],
+        },
+    }
+    material_preset = {
+        "key": "python-example-code:p01_einstieg",
+        "label": "Einfuhrung in Python und Programmieren",
+        "description": "Gebuendeltes Preset aus dem Support-Service.",
+        "profile": "example-code",
+        "language": "python",
+        "course_id": "python-grundlagen",
+        "module_id": "p01_einstieg",
+        "objectives": ["print() verstehen", "Input und Output einordnen"],
+        "prompt": "Erstelle kommentierten Beispielcode fuer den Einstieg in Python mit Fokus auf print() und einfache Ein-/Ausgabe.",
+    }
+    mentor_rule = {
+        "key": "python-grundlagen:p01_einstieg",
+        "course_id": "python-grundlagen",
+        "module_id": "p01_einstieg",
+        "mentor_instruction": "Fuehre die Lernenden mit kurzen Rueckfragen zur Bedeutung von print() und input().",
+        "already_taught": ["Quelltext", "Interpreter", "Maschinencode"],
+        "avoid_revealing": ["komplette Musterloesung", "fertigen Endcode"],
+        "focus_questions": ["Welche Zeile erzeugt die sichtbare Ausgabe?", "Wo kommt Eingabe ins Programm hinein?"],
+    }
+    manifest = {
+        "bundle_id": bundle_id,
+        "schema_version": 1,
+        "version": version,
+        "title": "Support-Update Python Grundlagen",
+        "issuer": "Nova Support",
+        "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    canonical = json.dumps(
+        {
+            "manifest": manifest,
+            "courses": [course_payload],
+            "material_presets": [material_preset],
+            "mentor_rules": [mentor_rule],
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    signature = {
+        "algorithm": "hmac-sha256",
+        "canonical_sha256": hashlib.sha256(canonical.encode("utf-8")).hexdigest(),
+        "signature": hmac.new(secret.encode("utf-8"), canonical.encode("utf-8"), hashlib.sha256).hexdigest(),
+    }
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+        archive.writestr("signature.json", json.dumps(signature, ensure_ascii=False, indent=2))
+        archive.writestr("courses/python-grundlagen.json", json.dumps(course_payload, ensure_ascii=False, indent=2))
+        archive.writestr("material_presets/python-example.json", json.dumps(material_preset, ensure_ascii=False, indent=2))
+        archive.writestr("mentor_rules/python-einstieg.json", json.dumps(mentor_rule, ensure_ascii=False, indent=2))
+    return buffer.getvalue()
+
+
 class CurriculumServiceTests(unittest.TestCase):
     def setUp(self) -> None:
         self.tmp = tempfile.TemporaryDirectory()
         self.repository = SchoolRepository(Path(self.tmp.name) / "school.db")
         self.service = CurriculumService(self.repository)
+        self.repository.put_setting("curriculum_bundle_secret", "curriculum-secret")
         self.repository.create_user("teacher", "Lehrkraft", "hash", "salt", "teacher", permissions={"curriculum.use": True, "curriculum.manage": True})
+        self.repository.create_user("admin", "Admin", "hash", "salt", "admin", permissions={"curriculum.use": True, "curriculum.manage": True, "curriculum.update": True, "admin.manage": True})
         self.repository.create_user("student", "Schueler", "hash", "salt", "student", permissions={"curriculum.use": True})
         self.repository.create_group("python-a", "Python A")
         self.repository.add_membership("student", "python-a")
         self.teacher = _Session("teacher", is_teacher=True, permissions={"curriculum.use": True, "curriculum.manage": True})
+        self.admin = _Session("admin", is_teacher=True, permissions={"curriculum.use": True, "curriculum.manage": True, "curriculum.update": True, "admin.manage": True})
         self.student = _Session("student", permissions={"curriculum.use": True}, group_ids=["python-a"])
 
     def tearDown(self) -> None:
@@ -447,6 +570,80 @@ class CurriculumServiceTests(unittest.TestCase):
         self.assertTrue(passed_final["passed"])
         self.assertIsNotNone(passed_final["certificate"])
         self.assertEqual(passed_final["certificate"]["status"], "issued")
+
+    def test_bundle_import_activation_and_rollback_switch_course_definition(self) -> None:
+        preview = self.service.validate_bundle_archive(_bundle_archive_bytes(secret="curriculum-secret"))
+        self.assertEqual(preview["bundle_id"], "support-python-2026-03")
+        self.assertEqual(len(preview["courses"]), 1)
+
+        imported = self.service.import_bundle_archive(
+            self.admin,
+            archive_bytes=_bundle_archive_bytes(secret="curriculum-secret", module_title="Bundle Einstieg"),
+            source_name="support-python-2026-03.zip",
+            signature_secret="curriculum-secret",
+        )
+        self.assertEqual(imported["bundle"]["status"], "imported")
+        self.assertEqual(imported["bundle"]["course_count"], 1)
+
+        active = self.service.activate_bundle(self.admin, imported["bundle"]["bundle_id"])
+        self.assertTrue(active["is_active"])
+        self.assertEqual(self.service.active_bundle_id(), "support-python-2026-03")
+
+        dashboard = self.service.dashboard(self.student)
+        course = next(item for item in dashboard["courses"] if item["course_id"] == "python-grundlagen")
+        self.assertEqual(course["modules"][0]["title"], "Bundle Einstieg")
+
+        imported_v2 = self.service.import_bundle_archive(
+            self.admin,
+            archive_bytes=_bundle_archive_bytes(secret="curriculum-secret", version="2026.04", module_title="Neuer Bundle Einstieg"),
+            source_name="support-python-2026-04.zip",
+            signature_secret="curriculum-secret",
+        )
+        active_v2 = self.service.activate_bundle(self.admin, imported_v2["bundle"]["bundle_id"])
+        self.assertEqual(active_v2["version"], "2026.04")
+
+        rollback = self.service.rollback_bundle(self.admin)
+        self.assertEqual(rollback["bundle_id"], "support-python-2026-03")
+        dashboard_after = self.service.dashboard(self.student)
+        course_after = next(item for item in dashboard_after["courses"] if item["course_id"] == "python-grundlagen")
+        self.assertEqual(course_after["modules"][0]["title"], "Bundle Einstieg")
+
+    def test_dashboard_manager_exposes_bundle_controls_only_for_update_permission(self) -> None:
+        self.service.import_bundle_archive(
+            self.admin,
+            archive_bytes=_bundle_archive_bytes(secret="curriculum-secret"),
+            source_name="support-python-2026-03.zip",
+            signature_secret="curriculum-secret",
+        )
+
+        teacher_dashboard = self.service.dashboard(self.teacher)
+        self.assertNotIn("bundles", teacher_dashboard["manager"])
+
+        admin_dashboard = self.service.dashboard(self.admin)
+        self.assertIn("bundles", admin_dashboard["manager"])
+        self.assertEqual(admin_dashboard["manager"]["bundles"][0]["bundle_id"], "support-python-2026-03")
+
+    def test_bundle_material_preset_and_mentor_rule_are_resolved_from_active_bundle(self) -> None:
+        imported = self.service.import_bundle_archive(
+            self.admin,
+            archive_bytes=_bundle_archive_bytes(secret="curriculum-secret"),
+            source_name="support-python-2026-03.zip",
+            signature_secret="curriculum-secret",
+        )
+        self.service.activate_bundle(self.admin, imported["bundle"]["bundle_id"])
+
+        preset = self.service.resolve_material_studio_instruction_preset(
+            "python-example-code:p01_einstieg",
+            profile="example-code",
+            language="python",
+        )
+        self.assertIsNotNone(preset)
+        self.assertIn("print()", preset["prompt"])
+
+        context = self.service.mentor_context(self.student, course_id="python-grundlagen", module_id="p01_einstieg")
+        self.assertIsNotNone(context)
+        self.assertEqual(context["module_title"], "Einfuhrung in Python und Programmieren")
+        self.assertEqual(context["mentor_rule"]["key"], "python-grundlagen:p01_einstieg")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import html
+import hmac
+import io
 import json
 import re
 import time
 import uuid
+import zipfile
 from typing import Any
 
 from .curriculum_catalog import get_course, list_courses
@@ -13,6 +17,10 @@ from .curriculum_certificate_pdf import build_curriculum_certificate_pdf
 
 
 FINAL_MODULE_ID = "__final__"
+CURRICULUM_BUNDLE_SCHEMA_VERSION = 1
+CURRICULUM_ACTIVE_BUNDLE_SETTING = "curriculum_active_bundle_id"
+CURRICULUM_BUNDLE_SECRET_SETTING = "curriculum_bundle_secret"
+CURRICULUM_BUNDLE_ALLOWED_TOP_LEVEL = frozenset({"manifest.json", "signature.json"})
 
 
 class CurriculumService:
@@ -21,16 +29,143 @@ class CurriculumService:
         self._ensure_schema()
 
     def _catalog_courses(self) -> list[dict[str, Any]]:
-        courses = [copy.deepcopy(course) for course in list_courses()]
+        courses_by_id = {
+            str(course.get("course_id") or ""): copy.deepcopy(course)
+            for course in list_courses()
+            if str(course.get("course_id") or "").strip()
+        }
+        for course in self._active_bundle_courses():
+            courses_by_id[str(course["course_id"])] = course
+        courses = list(courses_by_id.values())
         courses.extend(self._custom_courses())
-        return sorted(courses, key=lambda course: (0 if not course.get("is_custom") else 1, str(course.get("title") or "").lower()))
+        return sorted(
+            courses,
+            key=lambda course: (
+                0 if not course.get("is_custom") else 1,
+                str(course.get("title") or "").lower(),
+            ),
+        )
 
     def _catalog_course(self, course_id: str) -> dict[str, Any] | None:
         custom = self._custom_course(course_id)
         if custom is not None:
             return custom
+        bundle_course = self._active_bundle_course(course_id)
+        if bundle_course is not None:
+            return bundle_course
         course = get_course(course_id)
         return copy.deepcopy(course) if course else None
+
+    def active_bundle_id(self) -> str:
+        return str(self.repository.get_setting(CURRICULUM_ACTIVE_BUNDLE_SETTING, "") or "").strip()
+
+    def _active_bundle_row(self) -> dict[str, Any] | None:
+        bundle_id = self.active_bundle_id()
+        if not bundle_id:
+            return None
+        with self.repository._lock:
+            row = self.repository._conn.execute(
+                "SELECT * FROM curriculum_update_bundles WHERE bundle_id=?",
+                (bundle_id,),
+            ).fetchone()
+        return dict(row) if row is not None else None
+
+    def active_bundle(self) -> dict[str, Any] | None:
+        row = self._active_bundle_row()
+        if row is None:
+            return None
+        return self._bundle_row_payload(row)
+
+    def _active_bundle_courses(self) -> list[dict[str, Any]]:
+        bundle_id = self.active_bundle_id()
+        if not bundle_id:
+            return []
+        with self.repository._lock:
+            rows = self.repository._conn.execute(
+                """
+                SELECT course_id, payload_json
+                FROM curriculum_bundle_courses
+                WHERE bundle_id=?
+                ORDER BY course_id ASC
+                """,
+                (bundle_id,),
+            ).fetchall()
+        courses: list[dict[str, Any]] = []
+        for row in rows:
+            payload = json.loads(row["payload_json"] or "{}")
+            payload["is_bundle"] = True
+            payload["bundle_id"] = bundle_id
+            courses.append(payload)
+        return courses
+
+    def _active_bundle_course(self, course_id: str) -> dict[str, Any] | None:
+        bundle_id = self.active_bundle_id()
+        if not bundle_id:
+            return None
+        with self.repository._lock:
+            row = self.repository._conn.execute(
+                """
+                SELECT payload_json
+                FROM curriculum_bundle_courses
+                WHERE bundle_id=? AND course_id=?
+                """,
+                (bundle_id, course_id),
+            ).fetchone()
+        if row is None:
+            return None
+        payload = json.loads(row["payload_json"] or "{}")
+        payload["is_bundle"] = True
+        payload["bundle_id"] = bundle_id
+        return payload
+
+    def _active_bundle_material_presets(self) -> list[dict[str, Any]]:
+        bundle_id = self.active_bundle_id()
+        if not bundle_id:
+            return []
+        with self.repository._lock:
+            rows = self.repository._conn.execute(
+                """
+                SELECT payload_json
+                FROM curriculum_bundle_material_presets
+                WHERE bundle_id=?
+                ORDER BY language ASC, profile_key ASC, preset_key ASC
+                """,
+                (bundle_id,),
+            ).fetchall()
+        return [json.loads(row["payload_json"] or "{}") for row in rows]
+
+    def _active_bundle_mentor_rules(self) -> list[dict[str, Any]]:
+        bundle_id = self.active_bundle_id()
+        if not bundle_id:
+            return []
+        with self.repository._lock:
+            rows = self.repository._conn.execute(
+                """
+                SELECT payload_json
+                FROM curriculum_bundle_mentor_rules
+                WHERE bundle_id=?
+                ORDER BY course_id ASC, module_id ASC, rule_key ASC
+                """,
+                (bundle_id,),
+            ).fetchall()
+        return [json.loads(row["payload_json"] or "{}") for row in rows]
+
+    def _resolve_mentor_rule(self, course_id: str, module_id: str) -> dict[str, Any] | None:
+        best_rule: dict[str, Any] | None = None
+        best_score = -1
+        for item in self._active_bundle_mentor_rules():
+            if str(item.get("course_id") or "").strip() != str(course_id or "").strip():
+                continue
+            item_module_id = str(item.get("module_id") or "").strip()
+            score = 1
+            if item_module_id:
+                if item_module_id != str(module_id or "").strip():
+                    continue
+                score = 2
+            if score > best_score:
+                best_rule = dict(item)
+                best_score = score
+        return best_rule
 
     def _custom_courses(self) -> list[dict[str, Any]]:
         with self.repository._lock:
@@ -127,12 +262,19 @@ class CurriculumService:
             payload["placeholder"] = str(raw.get("placeholder") or "").strip()
         return payload
 
-    def _normalize_course_definition(self, payload: dict[str, Any], *, editor_username: str) -> dict[str, Any]:
+    def _normalize_course_definition(
+        self,
+        payload: dict[str, Any],
+        *,
+        editor_username: str,
+        allow_standard_override: bool = False,
+        is_custom: bool = True,
+    ) -> dict[str, Any]:
         requested_course_id = str(payload.get("course_id") or "").strip()
         course_id = self._slug(requested_course_id)
         if not course_id:
             raise ValueError("Kurs-ID fehlt.")
-        if get_course(course_id) is not None and self._custom_course(course_id) is None:
+        if not allow_standard_override and self._catalog_course(course_id) is not None and self._custom_course(course_id) is None:
             raise ValueError("Vordefinierte Standardkurse koennen nicht direkt ueberschrieben werden.")
         title = str(payload.get("title") or "").strip()
         if not title:
@@ -198,7 +340,7 @@ class CurriculumService:
                 "instructions": str(final_raw.get("instructions") or "").strip(),
                 "questions": final_questions,
             },
-            "is_custom": True,
+            "is_custom": bool(is_custom),
             "updated_by": editor_username,
         }
         return normalized
@@ -231,18 +373,513 @@ class CurriculumService:
             )
         return self._custom_course(normalized["course_id"]) or normalized
 
+    def validate_bundle_archive(self, archive_bytes: bytes, *, signature_secret: str = "") -> dict[str, Any]:
+        bundle = self._parse_bundle_archive(archive_bytes, signature_secret=signature_secret)
+        return self._bundle_preview_payload(bundle)
+
+    def import_bundle_archive(
+        self,
+        session: Any,
+        *,
+        archive_bytes: bytes,
+        source_name: str = "",
+        signature_secret: str = "",
+    ) -> dict[str, Any]:
+        bundle = self._parse_bundle_archive(archive_bytes, signature_secret=signature_secret)
+        preview = self._bundle_preview_payload(bundle)
+        now = time.time()
+        source_label = str(source_name or bundle["manifest"].get("title") or bundle["bundle_id"]).strip()
+        manifest = dict(bundle["manifest"])
+        signature = dict(bundle["signature"])
+        with self.repository._lock, self.repository._conn:
+            existing = self.repository._conn.execute(
+                "SELECT bundle_id FROM curriculum_update_bundles WHERE bundle_id=?",
+                (bundle["bundle_id"],),
+            ).fetchone()
+            if existing is not None:
+                raise ValueError("Dieses Curriculum-Bundle wurde bereits importiert.")
+            self.repository._conn.execute(
+                """
+                INSERT INTO curriculum_update_bundles(
+                    bundle_id, title, version, status, source_name, archive_sha256,
+                    manifest_json, signature_json, imported_by, imported_at, activated_by, activated_at
+                )
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    bundle["bundle_id"],
+                    str(manifest.get("title") or bundle["bundle_id"]),
+                    str(manifest.get("version") or ""),
+                    "imported",
+                    source_label,
+                    bundle["archive_sha256"],
+                    json.dumps(manifest, ensure_ascii=False),
+                    json.dumps(signature, ensure_ascii=False),
+                    session.username,
+                    now,
+                    "",
+                    0.0,
+                ),
+            )
+            for course in bundle["courses"]:
+                self.repository._conn.execute(
+                    """
+                    INSERT INTO curriculum_bundle_courses(bundle_id, course_id, title, payload_json)
+                    VALUES(?, ?, ?, ?)
+                    """,
+                    (
+                        bundle["bundle_id"],
+                        course["course_id"],
+                        str(course.get("title") or course["course_id"]),
+                        json.dumps(course, ensure_ascii=False),
+                    ),
+                )
+            for preset in bundle["material_presets"]:
+                self.repository._conn.execute(
+                    """
+                    INSERT INTO curriculum_bundle_material_presets(bundle_id, preset_key, profile_key, language, payload_json)
+                    VALUES(?, ?, ?, ?, ?)
+                    """,
+                    (
+                        bundle["bundle_id"],
+                        str(preset["key"]),
+                        str(preset["profile"]),
+                        str(preset["language"]),
+                        json.dumps(preset, ensure_ascii=False),
+                    ),
+                )
+            for rule in bundle["mentor_rules"]:
+                self.repository._conn.execute(
+                    """
+                    INSERT INTO curriculum_bundle_mentor_rules(bundle_id, rule_key, course_id, module_id, payload_json)
+                    VALUES(?, ?, ?, ?, ?)
+                    """,
+                    (
+                        bundle["bundle_id"],
+                        str(rule["key"]),
+                        str(rule.get("course_id") or ""),
+                        str(rule.get("module_id") or ""),
+                        json.dumps(rule, ensure_ascii=False),
+                    ),
+                )
+        imported = self._bundle_payload(bundle["bundle_id"])
+        if imported is None:
+            raise RuntimeError("Curriculum-Bundle konnte nach dem Import nicht gelesen werden.")
+        return {"bundle": imported, "preview": preview}
+
+    def activate_bundle(self, session: Any, bundle_id: str) -> dict[str, Any]:
+        target_id = str(bundle_id or "").strip()
+        if not target_id:
+            raise ValueError("bundle_id fehlt.")
+        target = self._bundle_payload(target_id)
+        if target is None:
+            raise FileNotFoundError("Curriculum-Bundle nicht gefunden.")
+        now = time.time()
+        with self.repository._lock, self.repository._conn:
+            self.repository._conn.execute(
+                "UPDATE curriculum_update_bundles SET status='imported' WHERE status='active' AND bundle_id<>?",
+                (target_id,),
+            )
+            self.repository._conn.execute(
+                """
+                UPDATE curriculum_update_bundles
+                SET status='active', activated_by=?, activated_at=?
+                WHERE bundle_id=?
+                """,
+                (session.username, now, target_id),
+            )
+            self.repository._conn.execute(
+                """
+                INSERT INTO settings(key, value_json, updated_at)
+                VALUES(?, ?, ?)
+                ON CONFLICT(key) DO UPDATE SET
+                    value_json=excluded.value_json,
+                    updated_at=excluded.updated_at
+                """,
+                (
+                    CURRICULUM_ACTIVE_BUNDLE_SETTING,
+                    json.dumps(target_id, ensure_ascii=False),
+                    now,
+                ),
+            )
+        return self._bundle_payload(target_id) or target
+
+    def rollback_bundle(self, session: Any, *, bundle_id: str = "") -> dict[str, Any]:
+        target_id = str(bundle_id or "").strip()
+        if not target_id:
+            current_id = self.active_bundle_id()
+            candidates = [
+                item for item in self.list_bundles()
+                if item["bundle_id"] != current_id and item["status"] != "retired"
+            ]
+            candidates.sort(key=lambda item: float(item.get("activated_at") or item.get("imported_at") or 0.0), reverse=True)
+            if not candidates:
+                raise FileNotFoundError("Kein vorheriges Curriculum-Bundle fuer einen Rollback verfuegbar.")
+            target_id = str(candidates[0]["bundle_id"])
+        return self.activate_bundle(session, target_id)
+
+    def list_bundles(self) -> list[dict[str, Any]]:
+        with self.repository._lock:
+            rows = self.repository._conn.execute(
+                "SELECT * FROM curriculum_update_bundles ORDER BY imported_at DESC, bundle_id DESC"
+            ).fetchall()
+        return [self._bundle_row_payload(dict(row)) for row in rows]
+
+    def _bundle_payload(self, bundle_id: str) -> dict[str, Any] | None:
+        with self.repository._lock:
+            row = self.repository._conn.execute(
+                "SELECT * FROM curriculum_update_bundles WHERE bundle_id=?",
+                (bundle_id,),
+            ).fetchone()
+        return self._bundle_row_payload(dict(row)) if row is not None else None
+
+    def _bundle_row_payload(self, row: dict[str, Any]) -> dict[str, Any]:
+        manifest = json.loads(row.get("manifest_json") or "{}")
+        signature = json.loads(row.get("signature_json") or "{}")
+        with self.repository._lock:
+            course_count = self.repository._conn.execute(
+                "SELECT COUNT(*) AS count FROM curriculum_bundle_courses WHERE bundle_id=?",
+                (row["bundle_id"],),
+            ).fetchone()["count"]
+            preset_count = self.repository._conn.execute(
+                "SELECT COUNT(*) AS count FROM curriculum_bundle_material_presets WHERE bundle_id=?",
+                (row["bundle_id"],),
+            ).fetchone()["count"]
+            mentor_rule_count = self.repository._conn.execute(
+                "SELECT COUNT(*) AS count FROM curriculum_bundle_mentor_rules WHERE bundle_id=?",
+                (row["bundle_id"],),
+            ).fetchone()["count"]
+        return {
+            "bundle_id": row["bundle_id"],
+            "title": row["title"],
+            "version": row["version"],
+            "status": row["status"],
+            "source_name": row["source_name"],
+            "archive_sha256": row["archive_sha256"],
+            "imported_by": row["imported_by"],
+            "imported_at": row["imported_at"],
+            "activated_by": row["activated_by"],
+            "activated_at": row["activated_at"],
+            "course_count": int(course_count),
+            "material_preset_count": int(preset_count),
+            "mentor_rule_count": int(mentor_rule_count),
+            "manifest": manifest,
+            "signature": signature,
+            "is_active": row["bundle_id"] == self.active_bundle_id(),
+        }
+
+    def _bundle_preview_payload(self, bundle: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "bundle_id": bundle["bundle_id"],
+            "manifest": dict(bundle["manifest"]),
+            "signature": dict(bundle["signature"]),
+            "courses": [
+                {
+                    "course_id": str(course.get("course_id") or ""),
+                    "title": str(course.get("title") or ""),
+                    "module_count": len(list(course.get("modules") or [])),
+                }
+                for course in bundle["courses"]
+            ],
+            "material_presets": [
+                {
+                    "key": str(item.get("key") or ""),
+                    "label": str(item.get("label") or ""),
+                    "profile": str(item.get("profile") or ""),
+                    "language": str(item.get("language") or ""),
+                }
+                for item in bundle["material_presets"]
+            ],
+            "mentor_rules": [
+                {
+                    "key": str(item.get("key") or ""),
+                    "course_id": str(item.get("course_id") or ""),
+                    "module_id": str(item.get("module_id") or ""),
+                }
+                for item in bundle["mentor_rules"]
+            ],
+            "archive_sha256": bundle["archive_sha256"],
+        }
+
+    def _parse_bundle_archive(self, archive_bytes: bytes, *, signature_secret: str = "") -> dict[str, Any]:
+        payload_bytes = bytes(archive_bytes or b"")
+        if not payload_bytes:
+            raise ValueError("Curriculum-Bundle ist leer.")
+        try:
+            archive = zipfile.ZipFile(io.BytesIO(payload_bytes))
+        except zipfile.BadZipFile as exc:
+            raise ValueError("Curriculum-Bundle ist kein gueltiges ZIP-Archiv.") from exc
+        with archive:
+            members = archive.namelist()
+            if "manifest.json" not in members or "signature.json" not in members:
+                raise ValueError("Curriculum-Bundle braucht mindestens manifest.json und signature.json.")
+            for member in members:
+                normalized_member = str(member or "").replace("\\", "/").strip()
+                if not normalized_member:
+                    raise ValueError("Leerer ZIP-Eintrag ist nicht erlaubt.")
+                if normalized_member.startswith("/") or normalized_member.startswith("../") or "/../" in normalized_member:
+                    raise ValueError("Curriculum-Bundle enthaelt einen ungueltigen Pfad.")
+            manifest = self._decode_bundle_json(archive, "manifest.json")
+            signature = self._decode_bundle_json(archive, "signature.json")
+            bundle_id = self._slug(str(manifest.get("bundle_id") or ""))
+            if not bundle_id:
+                raise ValueError("manifest.json braucht eine bundle_id.")
+            manifest["bundle_id"] = bundle_id
+            schema_version = int(manifest.get("schema_version") or 0)
+            if schema_version != CURRICULUM_BUNDLE_SCHEMA_VERSION:
+                raise ValueError("Curriculum-Bundle nutzt eine nicht unterstuetzte schema_version.")
+            raw_courses = self._load_bundle_raw_section(archive, "courses")
+            raw_material_presets = self._load_bundle_raw_section(archive, "material_presets")
+            raw_mentor_rules = self._load_bundle_raw_section(archive, "mentor_rules")
+        self._verify_bundle_signature(
+            manifest,
+            raw_courses,
+            raw_material_presets,
+            raw_mentor_rules,
+            signature,
+            signature_secret=signature_secret,
+        )
+        courses = [self._normalize_bundle_course(item) for item in raw_courses]
+        material_presets = [self._normalize_material_preset(item) for item in raw_material_presets]
+        mentor_rules = [self._normalize_mentor_rule(item) for item in raw_mentor_rules]
+        self._ensure_unique_bundle_entries(courses, key_name="course_id", section="courses")
+        self._ensure_unique_bundle_entries(material_presets, key_name="key", section="material_presets")
+        self._ensure_unique_bundle_entries(mentor_rules, key_name="key", section="mentor_rules")
+        return {
+            "bundle_id": bundle_id,
+            "manifest": manifest,
+            "signature": signature,
+            "courses": courses,
+            "material_presets": material_presets,
+            "mentor_rules": mentor_rules,
+            "archive_sha256": hashlib.sha256(payload_bytes).hexdigest(),
+        }
+
+    @staticmethod
+    def _decode_bundle_json(archive: zipfile.ZipFile, member: str) -> dict[str, Any]:
+        try:
+            raw = archive.read(member)
+        except KeyError as exc:
+            raise ValueError(f"Curriculum-Bundle-Eintrag fehlt: {member}") from exc
+        try:
+            payload = json.loads(raw.decode("utf-8"))
+        except Exception as exc:
+            raise ValueError(f"Curriculum-Bundle-Eintrag ist kein gueltiges UTF-8-JSON: {member}") from exc
+        if not isinstance(payload, dict):
+            raise ValueError(f"Curriculum-Bundle-Eintrag muss ein JSON-Objekt sein: {member}")
+        return payload
+
+    def _load_bundle_section(
+        self,
+        archive: zipfile.ZipFile,
+        folder_name: str,
+        normalizer: Any,
+    ) -> list[dict[str, Any]]:
+        prefix = f"{folder_name}/"
+        items: list[dict[str, Any]] = []
+        seen_keys: set[str] = set()
+        for member in sorted(archive.namelist()):
+            normalized_member = str(member or "").replace("\\", "/").strip()
+            if not normalized_member.startswith(prefix) or not normalized_member.endswith(".json"):
+                continue
+            raw = self._decode_bundle_json(archive, normalized_member)
+            normalized = normalizer(raw)
+            unique_key = str(normalized.get("key") or normalized.get("course_id") or "")
+            if unique_key in seen_keys:
+                raise ValueError(f"Doppelte Curriculum-Bundle-ID in {folder_name}: {unique_key}")
+            seen_keys.add(unique_key)
+            items.append(normalized)
+        return items
+
+    def _load_bundle_raw_section(self, archive: zipfile.ZipFile, folder_name: str) -> list[dict[str, Any]]:
+        prefix = f"{folder_name}/"
+        items: list[dict[str, Any]] = []
+        for member in sorted(archive.namelist()):
+            normalized_member = str(member or "").replace("\\", "/").strip()
+            if not normalized_member.startswith(prefix) or not normalized_member.endswith(".json"):
+                continue
+            items.append(self._decode_bundle_json(archive, normalized_member))
+        return items
+
+    @staticmethod
+    def _ensure_unique_bundle_entries(items: list[dict[str, Any]], *, key_name: str, section: str) -> None:
+        seen: set[str] = set()
+        for item in items:
+            value = str(item.get(key_name) or "").strip()
+            if value in seen:
+                raise ValueError(f"Doppelte Curriculum-Bundle-ID in {section}: {value}")
+            seen.add(value)
+
+    def _normalize_bundle_course(self, payload: dict[str, Any]) -> dict[str, Any]:
+        normalized = self._normalize_course_definition(
+            dict(payload or {}),
+            editor_username=str(payload.get("updated_by") or payload.get("issuer") or "curriculum-update"),
+            allow_standard_override=True,
+            is_custom=False,
+        )
+        normalized["is_bundle"] = True
+        return normalized
+
+    @staticmethod
+    def _normalize_material_preset(payload: dict[str, Any]) -> dict[str, Any]:
+        from .material_studio import PROFILE_BY_KEY, SUPPORTED_LANGUAGES
+
+        key = str(payload.get("key") or "").strip()
+        label = str(payload.get("label") or "").strip()
+        profile = str(payload.get("profile") or "").strip().lower()
+        language = str(payload.get("language") or "").strip().lower()
+        prompt = str(payload.get("prompt") or "").strip()
+        if not key or not label or not profile or not language or not prompt:
+            raise ValueError("Material-Presets im Curriculum-Bundle brauchen key, label, profile, language und prompt.")
+        if profile not in PROFILE_BY_KEY:
+            raise ValueError("Material-Preset nutzt ein ungueltiges Agentenprofil.")
+        if language not in SUPPORTED_LANGUAGES:
+            raise ValueError("Material-Preset nutzt eine ungueltige Lernsprache.")
+        course_id = CurriculumService._slug(str(payload.get("course_id") or "").strip()) or str(payload.get("course_id") or "").strip()
+        module_id = CurriculumService._slug(str(payload.get("module_id") or "").strip()) or str(payload.get("module_id") or "").strip()
+        return {
+            "key": key,
+            "label": label,
+            "summary": str(payload.get("summary") or payload.get("description") or "").strip(),
+            "description": str(payload.get("description") or "").strip(),
+            "profile": profile,
+            "language": language,
+            "prompt": prompt,
+            "course_id": course_id,
+            "module_id": module_id,
+            "objectives": CurriculumService._listify(payload.get("objectives")),
+        }
+
+    @staticmethod
+    def _normalize_mentor_rule(payload: dict[str, Any]) -> dict[str, Any]:
+        key = str(payload.get("key") or "").strip()
+        course_id = CurriculumService._slug(str(payload.get("course_id") or "").strip()) or str(payload.get("course_id") or "").strip()
+        if not key or not course_id:
+            raise ValueError("Mentor-Regeln im Curriculum-Bundle brauchen key und course_id.")
+        module_id = CurriculumService._slug(str(payload.get("module_id") or "").strip()) or str(payload.get("module_id") or "").strip()
+        return {
+            "key": key,
+            "course_id": course_id,
+            "module_id": module_id,
+            "mentor_instruction": str(payload.get("mentor_instruction") or "").strip(),
+            "already_taught": CurriculumService._listify(payload.get("already_taught")),
+            "avoid_revealing": CurriculumService._listify(payload.get("avoid_revealing")),
+            "focus_questions": CurriculumService._listify(payload.get("focus_questions")),
+        }
+
+    def _verify_bundle_signature(
+        self,
+        manifest: dict[str, Any],
+        courses: list[dict[str, Any]],
+        material_presets: list[dict[str, Any]],
+        mentor_rules: list[dict[str, Any]],
+        signature: dict[str, Any],
+        *,
+        signature_secret: str = "",
+    ) -> None:
+        secret = str(signature_secret or self.repository.get_setting(CURRICULUM_BUNDLE_SECRET_SETTING, "") or "").strip()
+        if not secret:
+            raise ValueError("Kein Curriculum-Signaturschluessel vorhanden. Bitte im Admin-Importdialog mitgeben oder serverseitig hinterlegen.")
+        algorithm = str(signature.get("algorithm") or "").strip().lower()
+        if algorithm != "hmac-sha256":
+            raise ValueError("Curriculum-Bundle-Signatur muss algorithm=hmac-sha256 verwenden.")
+        canonical = self._canonical_bundle_payload(manifest, courses, material_presets, mentor_rules)
+        expected_digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+        if str(signature.get("canonical_sha256") or "").strip().lower() != expected_digest:
+            raise ValueError("Curriculum-Bundle-Signatur passt nicht zum Paketinhalt.")
+        expected_signature = hmac.new(secret.encode("utf-8"), canonical.encode("utf-8"), hashlib.sha256).hexdigest()
+        actual_signature = str(signature.get("signature") or "").strip().lower()
+        if not actual_signature or not hmac.compare_digest(expected_signature, actual_signature):
+            raise ValueError("Curriculum-Bundle-Signatur ist ungueltig.")
+
+    @staticmethod
+    def _canonical_bundle_payload(
+        manifest: dict[str, Any],
+        courses: list[dict[str, Any]],
+        material_presets: list[dict[str, Any]],
+        mentor_rules: list[dict[str, Any]],
+    ) -> str:
+        payload = {
+            "manifest": manifest,
+            "courses": sorted(courses, key=lambda item: str(item.get("course_id") or "")),
+            "material_presets": sorted(material_presets, key=lambda item: str(item.get("key") or "")),
+            "mentor_rules": sorted(mentor_rules, key=lambda item: str(item.get("key") or "")),
+        }
+        return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
     def dashboard(self, session: Any) -> dict[str, Any]:
         courses = [self._course_payload(session, course) for course in self._catalog_courses()]
         payload: dict[str, Any] = {"courses": courses}
-        if session.permissions.get("curriculum.manage", False) or getattr(session, "is_teacher", False):
-            payload["manager"] = {
+        if session.permissions.get("curriculum.manage", False):
+            manager_payload: dict[str, Any] = {
                 "users": [self._sanitize_user(user) for user in self.repository.list_users()],
                 "groups": self.repository.list_groups(),
                 "releases": self._list_releases(),
                 "learners": self._learner_overview(),
                 "course_definitions": [copy.deepcopy(course) for course in self._catalog_courses()],
             }
+            if session.permissions.get("admin.manage", False):
+                manager_payload["bundles"] = self.list_bundles()
+                manager_payload["active_bundle_id"] = self.active_bundle_id()
+            payload["manager"] = manager_payload
         return payload
+
+    def material_studio_instruction_preset_catalog(self) -> list[dict[str, Any]]:
+        from .material_studio import material_studio_instruction_preset_catalog
+
+        defaults = material_studio_instruction_preset_catalog()
+        bundle_presets = self._active_bundle_material_presets()
+        if not bundle_presets:
+            return defaults
+        by_key = {str(item.get("key") or ""): dict(item) for item in defaults}
+        for item in bundle_presets:
+            by_key[str(item.get("key") or "")] = dict(item)
+        return list(by_key.values())
+
+    def resolve_material_studio_instruction_preset(self, preset_key: str, *, profile: str, language: str) -> dict[str, Any] | None:
+        key = str(preset_key or "").strip()
+        resolved_profile = str(profile or "").strip().lower()
+        resolved_language = str(language or "").strip().lower()
+        if not key:
+            return None
+        for item in self._active_bundle_material_presets():
+            if str(item.get("key") or "").strip() != key:
+                continue
+            if str(item.get("profile") or "").strip().lower() != resolved_profile:
+                continue
+            if str(item.get("language") or "").strip().lower() != resolved_language:
+                continue
+            return dict(item)
+        from .material_studio import resolve_material_studio_instruction_preset
+
+        return resolve_material_studio_instruction_preset(key, profile=resolved_profile, language=resolved_language)
+
+    def mentor_context(self, session: Any, *, course_id: str = "", module_id: str = "") -> dict[str, Any] | None:
+        resolved_course_id = str(course_id or "").strip()
+        if not resolved_course_id:
+            return None
+        course = self._catalog_course(resolved_course_id)
+        if course is None:
+            return None
+        course_payload = self._course_payload(session, course)
+        selected_module = None
+        raw_module_id = str(module_id or "").strip()
+        resolved_module_id = self._slug(raw_module_id) or raw_module_id
+        if resolved_module_id and resolved_module_id != FINAL_MODULE_ID:
+            selected_module = next((item for item in list(course.get("modules") or []) if str(item.get("module_id") or "") == resolved_module_id), None)
+        mentor_rule = self._resolve_mentor_rule(resolved_course_id, resolved_module_id)
+        passed_modules = [item["title"] for item in course_payload["modules"] if bool(item.get("passed"))]
+        return {
+            "course_id": resolved_course_id,
+            "course_title": str(course.get("title") or resolved_course_id),
+            "course_summary": str(course.get("summary") or ""),
+            "module_id": resolved_module_id,
+            "module_title": str((selected_module or {}).get("title") or ("Abschlusspruefung" if resolved_module_id == FINAL_MODULE_ID else "")),
+            "module_objectives": list((selected_module or {}).get("objectives") or []),
+            "passed_modules": passed_modules,
+            "release_enabled": bool(course_payload.get("release", {}).get("enabled")),
+            "mentor_rule": mentor_rule,
+        }
 
     def attempt_history(self, course_id: str, username: str) -> dict[str, Any]:
         course = self._catalog_course(course_id)
@@ -631,6 +1268,47 @@ class CurriculumService:
                     updated_by TEXT NOT NULL,
                     created_at REAL NOT NULL,
                     updated_at REAL NOT NULL
+                );
+
+                CREATE TABLE IF NOT EXISTS curriculum_update_bundles (
+                    bundle_id TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    version TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    source_name TEXT NOT NULL,
+                    archive_sha256 TEXT NOT NULL,
+                    manifest_json TEXT NOT NULL,
+                    signature_json TEXT NOT NULL,
+                    imported_by TEXT NOT NULL,
+                    imported_at REAL NOT NULL,
+                    activated_by TEXT NOT NULL,
+                    activated_at REAL NOT NULL
+                );
+
+                CREATE TABLE IF NOT EXISTS curriculum_bundle_courses (
+                    bundle_id TEXT NOT NULL,
+                    course_id TEXT NOT NULL,
+                    title TEXT NOT NULL,
+                    payload_json TEXT NOT NULL,
+                    PRIMARY KEY(bundle_id, course_id)
+                );
+
+                CREATE TABLE IF NOT EXISTS curriculum_bundle_material_presets (
+                    bundle_id TEXT NOT NULL,
+                    preset_key TEXT NOT NULL,
+                    profile_key TEXT NOT NULL,
+                    language TEXT NOT NULL,
+                    payload_json TEXT NOT NULL,
+                    PRIMARY KEY(bundle_id, preset_key)
+                );
+
+                CREATE TABLE IF NOT EXISTS curriculum_bundle_mentor_rules (
+                    bundle_id TEXT NOT NULL,
+                    rule_key TEXT NOT NULL,
+                    course_id TEXT NOT NULL,
+                    module_id TEXT NOT NULL,
+                    payload_json TEXT NOT NULL,
+                    PRIMARY KEY(bundle_id, rule_key)
                 );
                 """
             )

@@ -4,7 +4,15 @@ from .auth import AuthService
 from .code_runner import DEFAULT_CONTAINER_IMAGES
 from .database import SchoolRepository
 from .docs_catalog import DocumentationCatalog
+from .permissions import ROLE_DEFAULTS
 from .workspace import WorkspaceManager, slugify
+
+
+DEMO_GROUP_PERMISSIONS = {
+    "workspace.group": True,
+    "chat.use": True,
+    "docs.read": True,
+}
 
 
 def bootstrap_application(repository: SchoolRepository, auth_service: AuthService, docs_catalog: DocumentationCatalog, workspace_manager: WorkspaceManager) -> dict[str, object]:
@@ -60,13 +68,17 @@ def bootstrap_application(repository: SchoolRepository, auth_service: AuthServic
     repository.put_setting("scheduler_max_concurrent_admin", repository.get_setting("scheduler_max_concurrent_admin", 3))
 
     users = [
-        auth_service.ensure_user("admin", "NovaSchool!admin", "admin", "Server Admin"),
-        auth_service.ensure_user("teacher", "NovaSchool!teacher", "teacher", "Lehrkraft"),
-        auth_service.ensure_user("student", "NovaSchool!student", "student", "Schueler Demo"),
+        auth_service.ensure_user("admin", "NovaSchool!admin", "admin", "Server Admin", permissions={}),
+        auth_service.ensure_user("teacher", "NovaSchool!teacher", "teacher", "Lehrkraft", permissions={}),
+        auth_service.ensure_user("student", "NovaSchool!student", "student", "Schueler Demo", permissions={}),
     ]
 
-    if repository.get_group("class-1a") is None:
-        repository.create_group("class-1a", "Klasse 1A", description="Demo-Klasse fuer den Nova School Server", permissions={"workspace.group": True, "chat.use": True, "docs.read": True})
+    repository.create_group(
+        "class-1a",
+        "Klasse 1A",
+        description="Demo-Klasse fuer den Nova School Server",
+        permissions=DEMO_GROUP_PERMISSIONS,
+    )
     repository.add_membership("student", "class-1a")
 
     for user in users:
@@ -122,4 +134,9 @@ def bootstrap_application(repository: SchoolRepository, auth_service: AuthServic
             {"username": "student", "password": "NovaSchool!student"},
         ],
         "seed_group": "class-1a",
+        "role_defaults": {
+            "student": dict(ROLE_DEFAULTS["student"]),
+            "teacher": dict(ROLE_DEFAULTS["teacher"]),
+            "admin": dict(ROLE_DEFAULTS["admin"]),
+        },
     }

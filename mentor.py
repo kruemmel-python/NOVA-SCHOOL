@@ -15,8 +15,9 @@ MENTOR_SYSTEM_PROMPT = (
 
 
 class SocraticMentorService:
-    def __init__(self, repository: SchoolRepository) -> None:
+    def __init__(self, repository: SchoolRepository, *, curriculum_service: Any | None = None) -> None:
         self.repository = repository
+        self.curriculum_service = curriculum_service
 
     def thread(self, session: Any, project: dict[str, Any], *, username: str | None = None) -> list[dict[str, Any]]:
         owner = username or session.username
@@ -45,11 +46,28 @@ class SocraticMentorService:
         code: str,
         path_hint: str,
         run_output: str,
+        course_id: str = "",
+        module_id: str = "",
     ) -> dict[str, str]:
         history = self.thread(session, project)
         compact_history = "\n".join(f"{item['role'].upper()}: {item['text']}" for item in history[-8:])
+        curriculum_context = None
+        if self.curriculum_service is not None:
+            curriculum_context = self.curriculum_service.mentor_context(
+                session,
+                course_id=str(course_id or ""),
+                module_id=str(module_id or ""),
+            )
         return {
-            "prompt": self._compose_prompt(project, prompt, code, path_hint, run_output, compact_history),
+            "prompt": self._compose_prompt(
+                project,
+                prompt,
+                code,
+                path_hint,
+                run_output,
+                compact_history,
+                curriculum_context=curriculum_context,
+            ),
             "system_prompt": MENTOR_SYSTEM_PROMPT,
         }
 
@@ -84,12 +102,49 @@ class SocraticMentorService:
         return f"mentor:{project_id}:{username}"
 
     @staticmethod
-    def _compose_prompt(project: dict[str, Any], prompt: str, code: str, path_hint: str, run_output: str, history: str) -> str:
+    def _compose_prompt(
+        project: dict[str, Any],
+        prompt: str,
+        code: str,
+        path_hint: str,
+        run_output: str,
+        history: str,
+        *,
+        curriculum_context: dict[str, Any] | None = None,
+    ) -> str:
         sections = [
             f"Projekt: {project['name']}",
             f"Datei: {path_hint or project.get('main_file') or 'unbekannt'}",
             f"Aktuelle Frage:\n{prompt}",
         ]
+        if curriculum_context:
+            context_lines = [
+                f"Kurskontext: {curriculum_context.get('course_title') or curriculum_context.get('course_id')}",
+            ]
+            if str(curriculum_context.get("module_title") or "").strip():
+                context_lines.append(
+                    f"Aktuelles Modul: {curriculum_context.get('module_title')} ({curriculum_context.get('module_id') or ''})"
+                )
+            objectives = [str(item).strip() for item in list(curriculum_context.get("module_objectives") or []) if str(item).strip()]
+            if objectives:
+                context_lines.append("Lernziele:")
+                context_lines.extend(f"- {item}" for item in objectives[:4])
+            passed_modules = [str(item).strip() for item in list(curriculum_context.get("passed_modules") or []) if str(item).strip()]
+            if passed_modules:
+                context_lines.append(f"Bereits bestanden: {', '.join(passed_modules[:6])}")
+            mentor_rule = dict(curriculum_context.get("mentor_rule") or {})
+            mentor_instruction = str(mentor_rule.get("mentor_instruction") or "").strip()
+            if mentor_instruction:
+                context_lines.append(f"Verbindliche Mentor-Vorgabe: {mentor_instruction}")
+            if mentor_rule.get("avoid_revealing"):
+                context_lines.append(
+                    "Nicht direkt vorwegnehmen: " + ", ".join(str(item) for item in mentor_rule.get("avoid_revealing")[:5])
+                )
+            if mentor_rule.get("focus_questions"):
+                context_lines.append(
+                    "Bevorzugte Rueckfragen: " + "; ".join(str(item) for item in mentor_rule.get("focus_questions")[:4])
+                )
+            sections.append("\n".join(context_lines))
         if run_output.strip():
             sections.append(f"Letzte Lauf-Ausgabe oder Fehlermeldung:\n```text\n{run_output}\n```")
         if code.strip():

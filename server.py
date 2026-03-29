@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import atexit
+import base64
 import json
 import mimetypes
 import re
@@ -31,7 +32,6 @@ from .distributed import DistributedPlaygroundService
 from .ai_service import LocalAIService
 from .material_studio import (
     TeacherMaterialStudioService,
-    material_studio_instruction_preset_catalog,
     material_studio_profile_catalog,
 )
 from .mentor import SocraticMentorService
@@ -127,14 +127,19 @@ class NovaSchoolApplication:
         self.user_admin = UserAdministrationService(self.repository)
         self.runner = CodeRunner(config, self.tool_sandbox, self.workspace, self.repository)
         self.ai = LocalAIService(self.repository, base_path=config.base_path, data_path=config.data_path)
-        self.material_studio = TeacherMaterialStudioService(self.repository, self.runner, ai_service=self.ai)
+        self.curriculum = CurriculumService(self.repository)
+        self.material_studio = TeacherMaterialStudioService(
+            self.repository,
+            self.runner,
+            ai_service=self.ai,
+            curriculum_service=self.curriculum,
+        )
         self.collaboration = NotebookCollaborationService(self.repository, self.workspace)
-        self.mentor = SocraticMentorService(self.repository)
+        self.mentor = SocraticMentorService(self.repository, curriculum_service=self.curriculum)
         self.playground = DistributedPlaygroundService(self.repository, self.workspace, self.security, config, runner=self.runner)
         self.worker_dispatch = self.playground.dispatch
         self.reviews = ReviewService(self.repository, self.security, self.workspace, config.tenant_id, config.data_path / "review_submissions")
         self.deployments = DeploymentService(self.repository, self.workspace, self.security, config)
-        self.curriculum = CurriculumService(self.repository)
         self.reference_library = ReferenceLibraryService(
             config.data_path / "reference_library",
             docs_source_root=config.base_path / "docs" / "nova_school",
@@ -203,7 +208,7 @@ class NovaSchoolApplication:
             "templates": self.template_catalog(),
             "ai": ai_status,
             "material_studio_profiles": material_studio_profile_catalog() if session.permissions.get("teacher.materials.use", False) else [],
-            "material_studio_instruction_presets": material_studio_instruction_preset_catalog() if session.permissions.get("teacher.materials.use", False) else [],
+            "material_studio_instruction_presets": self.curriculum.material_studio_instruction_preset_catalog() if session.permissions.get("teacher.materials.use", False) else [],
         }
 
     def template_catalog(self) -> list[dict[str, Any]]:
@@ -264,7 +269,7 @@ class NovaSchoolApplication:
             },
             "workers": self.worker_dispatch.list_workers(),
             "dispatch_jobs": self.repository.list_dispatch_jobs(),
-            "curriculum": self.curriculum.dashboard(type("AdminSession", (), {"username": "admin", "permissions": {"curriculum.use": True, "curriculum.manage": True}, "is_teacher": True, "group_ids": []})()),
+            "curriculum": self.curriculum.dashboard(type("AdminSession", (), {"username": "admin", "permissions": {"curriculum.use": True, "curriculum.manage": True, "curriculum.update": True, "admin.manage": True}, "is_teacher": True, "group_ids": []})()),
         }
 
     def runtime_config_payload(self) -> dict[str, Any]:
@@ -720,6 +725,8 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                     code=str(body.get("code") or ""),
                     path_hint=str(body.get("path") or ""),
                     run_output=str(body.get("run_output") or ""),
+                    course_id=str(body.get("course_id") or ""),
+                    module_id=str(body.get("module_id") or ""),
                 )
                 reply_text, model_name = self.application.ai.complete(
                     prompt=prepared["prompt"],
@@ -1008,6 +1015,88 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                 },
             )
             self._send_json(HTTPStatus.OK, payload)
+            return
+
+        if method == "GET" and path == "/api/admin/curriculum/bundles":
+            self._require_permission(session, "admin.manage")
+            self._send_json(
+                HTTPStatus.OK,
+                {
+                    "bundles": self.application.curriculum.list_bundles(),
+                    "active_bundle_id": self.application.curriculum.active_bundle_id(),
+                },
+            )
+            return
+
+        if method == "POST" and path == "/api/admin/curriculum/bundles/validate":
+            self._require_permission(session, "admin.manage")
+            body = self._read_json_body()
+            bundle_bytes, filename = self._decode_uploaded_bundle(body)
+            payload = self.application.curriculum.validate_bundle_archive(
+                bundle_bytes,
+                signature_secret=str(body.get("signature_secret") or ""),
+            )
+            self.application.repository.add_audit(
+                session.username,
+                "curriculum.bundle.validate",
+                "curriculum_bundle",
+                str(payload["bundle_id"]),
+                {"filename": filename},
+            )
+            self._send_json(HTTPStatus.OK, payload)
+            return
+
+        if method == "POST" and path == "/api/admin/curriculum/bundles/import":
+            self._require_permission(session, "admin.manage")
+            body = self._read_json_body()
+            bundle_bytes, filename = self._decode_uploaded_bundle(body)
+            payload = self.application.curriculum.import_bundle_archive(
+                session,
+                archive_bytes=bundle_bytes,
+                source_name=filename,
+                signature_secret=str(body.get("signature_secret") or ""),
+            )
+            self.application.repository.add_audit(
+                session.username,
+                "curriculum.bundle.import",
+                "curriculum_bundle",
+                str(payload["bundle"]["bundle_id"]),
+                {
+                    "filename": filename,
+                    "version": payload["bundle"]["version"],
+                    "course_count": payload["bundle"]["course_count"],
+                },
+            )
+            self._send_json(HTTPStatus.OK, payload)
+            return
+
+        if method == "POST" and path == "/api/admin/curriculum/bundles/activate":
+            self._require_permission(session, "admin.manage")
+            body = self._read_json_body()
+            bundle_id = str(body.get("bundle_id") or "").strip()
+            payload = self.application.curriculum.activate_bundle(session, bundle_id)
+            self.application.repository.add_audit(
+                session.username,
+                "curriculum.bundle.activate",
+                "curriculum_bundle",
+                str(payload["bundle_id"]),
+                {"version": payload["version"]},
+            )
+            self._send_json(HTTPStatus.OK, {"bundle": payload})
+            return
+
+        if method == "POST" and path == "/api/admin/curriculum/bundles/rollback":
+            self._require_permission(session, "admin.manage")
+            body = self._read_json_body()
+            payload = self.application.curriculum.rollback_bundle(session, bundle_id=str(body.get("bundle_id") or ""))
+            self.application.repository.add_audit(
+                session.username,
+                "curriculum.bundle.rollback",
+                "curriculum_bundle",
+                str(payload["bundle_id"]),
+                {"version": payload["version"]},
+            )
+            self._send_json(HTTPStatus.OK, {"bundle": payload})
             return
 
         if method == "GET" and path == "/api/admin/workers":
@@ -1479,6 +1568,17 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
         if not payload:
             return {}
         return dict(json.loads(payload.decode("utf-8")))
+
+    @staticmethod
+    def _decode_uploaded_bundle(body: dict[str, Any]) -> tuple[bytes, str]:
+        encoded = str(body.get("bundle_base64") or "").strip()
+        if not encoded:
+            raise ValueError("Curriculum-Bundle fehlt.")
+        try:
+            bundle_bytes = base64.b64decode(encoded, validate=True)
+        except Exception as exc:
+            raise ValueError("Curriculum-Bundle ist kein gueltiges Base64-Archiv.") from exc
+        return bundle_bytes, str(body.get("filename") or "").strip()
 
     def _read_raw_body(self) -> bytes:
         cached = getattr(self, "_cached_request_body", None)

@@ -43,6 +43,18 @@ class _FakeAI:
         return response
 
 
+class _FakeCurriculumService:
+    def __init__(self, preset: dict[str, object] | None = None) -> None:
+        self.preset = preset
+        self.calls: list[dict[str, str]] = []
+
+    def resolve_material_studio_instruction_preset(self, preset_key: str, *, profile: str, language: str):
+        self.calls.append({"preset_key": preset_key, "profile": profile, "language": language})
+        if self.preset and self.preset.get("key") == preset_key and self.preset.get("profile") == profile and self.preset.get("language") == language:
+            return dict(self.preset)
+        return None
+
+
 class _TeacherSession:
     username = "teacher"
     role = "teacher"
@@ -131,6 +143,32 @@ class MaterialStudioTests(unittest.TestCase):
         )
         self.assertIn("Node.js-Grundkurs", node_worksheet["prompt"])
         self.assertIn("keine DOM- oder Browser-APIs", node_worksheet["prompt"])
+
+    def test_curriculum_service_can_override_instruction_preset_resolution(self) -> None:
+        runner = _FakeRunner([])
+        curriculum = _FakeCurriculumService(
+            {
+                "key": "bundle-python",
+                "label": "Bundle Python",
+                "profile": "example-code",
+                "language": "python",
+                "prompt": "Bundle-Preset fuer print() und input().",
+                "objectives": ["print()", "input()"],
+            }
+        )
+        service = TeacherMaterialStudioService(self.repository, runner, curriculum_service=curriculum)
+
+        resolved = service._instruction_preset_from_state(
+            {
+                "profile_key": "example-code",
+                "language": "python",
+                "instruction_preset_key": "bundle-python",
+            }
+        )
+
+        self.assertIsNotNone(resolved)
+        self.assertEqual(resolved["label"], "Bundle Python")
+        self.assertEqual(curriculum.calls[0]["preset_key"], "bundle-python")
 
     def test_extract_json_object_merges_multiple_fenced_objects(self) -> None:
         raw = """```json

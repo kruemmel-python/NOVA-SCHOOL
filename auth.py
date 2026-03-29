@@ -78,7 +78,15 @@ class AuthService:
                 role=role,
                 permissions=permissions,
             )
-        return existing
+        if (
+            str(existing.get("display_name") or "") != str(display_name)
+            or str(existing.get("role") or "") != str(role)
+            or str(existing.get("status") or "") != "active"
+        ):
+            self.repository.update_user_account(username, display_name, role, "active")
+        if permissions is not None:
+            self.repository.update_user_permissions(username, permissions)
+        return self.repository.get_user(username) or existing
 
     def create_user(
         self,

@@ -507,10 +507,18 @@ def resolve_material_studio_instruction_preset(preset_key: str, *, profile: str,
 
 
 class TeacherMaterialStudioService:
-    def __init__(self, repository: SchoolRepository, runner: CodeRunner, *, ai_service: Any | None = None) -> None:
+    def __init__(
+        self,
+        repository: SchoolRepository,
+        runner: CodeRunner,
+        *,
+        ai_service: Any | None = None,
+        curriculum_service: Any | None = None,
+    ) -> None:
         self.repository = repository
         self.runner = runner
         self.ai_service = ai_service
+        self.curriculum_service = curriculum_service
 
     def _ai_provider_id(self) -> str:
         return str(getattr(self.ai_service, "provider_id", "") or "").strip().lower()
@@ -804,11 +812,17 @@ class TeacherMaterialStudioService:
 
     def _instruction_preset_from_state(self, state: dict[str, Any]) -> dict[str, Any] | None:
         profile = self._profile_from_state(state)
-        return self._normalize_instruction_preset(
-            str(state.get("instruction_preset_key") or ""),
-            profile["key"],
-            str(state.get("language") or "python"),
-        )
+        preset_key = str(state.get("instruction_preset_key") or "")
+        language = str(state.get("language") or "python")
+        if self.curriculum_service is not None:
+            resolved = self.curriculum_service.resolve_material_studio_instruction_preset(
+                preset_key,
+                profile=profile["key"],
+                language=language,
+            )
+            if resolved is not None:
+                return resolved
+        return self._normalize_instruction_preset(preset_key, profile["key"], language)
 
     @staticmethod
     def _normalize_instruction_preset(preset_key: str, profile_key: str, language: str) -> dict[str, Any] | None:

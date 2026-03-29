@@ -12,8 +12,17 @@ class PermissionTests(unittest.TestCase):
         self.assertTrue(permissions["mentor.use"])
         self.assertFalse(permissions["teacher.materials.use"])
         self.assertTrue(permissions["curriculum.use"])
+        self.assertFalse(permissions["curriculum.update"])
         self.assertFalse(permissions["web.access"])
         self.assertTrue(permissions["run.python"])
+
+    def test_teacher_defaults_do_not_gain_curriculum_update(self) -> None:
+        permissions = resolve_permissions("teacher")
+        self.assertTrue(permissions["curriculum.manage"])
+        self.assertFalse(permissions["curriculum.update"])
+        self.assertFalse(permissions["admin.manage"])
+        self.assertTrue(permissions["teacher.materials.use"])
+        self.assertTrue(permissions["teacher.chat.moderate"])
 
     def test_user_override_wins_over_group_false(self) -> None:
         permissions = resolve_permissions(

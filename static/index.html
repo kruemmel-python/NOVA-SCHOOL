@@ -312,6 +312,20 @@
               <div id="curriculum-learner-list" class="stack compact"></div>
               <label><span>Pruefungsprotokoll fuer Schueler</span><select id="curriculum-attempt-user"></select></label>
               <div id="curriculum-attempt-list" class="stack compact"></div>
+              <div id="curriculum-bundle-card" class="admin-card stack compact hidden">
+                <div class="section-head">
+                  <h3>Signierte Curriculum-Updates</h3>
+                  <div class="inline-actions">
+                    <button id="curriculum-bundle-validate" type="button">Validieren</button>
+                    <button id="curriculum-bundle-import" type="button" class="primary">Importieren</button>
+                    <button id="curriculum-bundle-rollback" type="button">Rollback</button>
+                  </div>
+                </div>
+                <label><span>Bundle-Datei</span><input id="curriculum-bundle-file" type="file" accept=".zip,.nova-curriculum,.nova-curriculum.zip" /></label>
+                <label><span>Signaturschluessel fuer dieses Paket</span><input id="curriculum-bundle-secret" type="password" autocomplete="off" placeholder="Admin-only Geheimnis fuer HMAC-Signatur" /></label>
+                <p id="curriculum-bundle-status" class="muted">Noch kein Curriculum-Bundle geladen.</p>
+                <div id="curriculum-bundle-list" class="stack compact"></div>
+              </div>
               <div class="admin-card stack compact">
                 <div class="section-head">
                   <h3>Kurse entwickeln</h3>
