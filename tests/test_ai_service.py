@@ -3,8 +3,9 @@ from __future__ import annotations
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from nova_school_server.ai_service import LiteRTLmService, LocalAIService, LlamaCppService
+from nova_school_server.ai_service import PROMPT_TRUNCATION_MARKER, LiteRTLmService, LocalAIService, LlamaCppService
 from nova_school_server.database import SchoolRepository
 
 
@@ -151,6 +152,39 @@ class LiteRTLmServiceTests(unittest.TestCase):
         self.assertIn("Codekontext", payload["prompt"])
         self.assertIn("Aktive Datei: main.py", payload["prompt"])
         self.assertIn("lokaler Codehelfer", payload["system_prompt"])
+
+    def test_prepare_direct_completion_trims_large_code_context(self) -> None:
+        service = LiteRTLmService(self.repository, base_path=self.base_path, data_path=self.data_path)
+
+        payload = service.prepare_direct_completion(
+            prompt="Was macht dieser Code?",
+            code="\n".join(f"print({index})" for index in range(5000)),
+            path_hint="main.py",
+        )
+
+        self.assertIn("Was macht dieser Code?", payload["prompt"])
+        self.assertIn("Aktive Datei: main.py", payload["prompt"])
+        self.assertIn(PROMPT_TRUNCATION_MARKER.strip(), payload["prompt"])
+        self.assertLess(len(payload["prompt"]), 8000)
+
+    def test_complete_ignores_xnnpack_info_only_error_output(self) -> None:
+        model_file = self.model_path / "gemma-3n-E4B-it-int4.litertlm"
+        binary_file = self.bin_path / "lit.windows_x86_64.exe"
+        model_file.write_bytes(b"LITERT")
+        binary_file.write_bytes(b"EXE")
+        self.repository.put_setting("litertlm_binary_path", str(binary_file))
+        service = LiteRTLmService(self.repository, base_path=self.base_path, data_path=self.data_path)
+
+        class _Result:
+            returncode = 1
+            stdout = ""
+            stderr = "INFO: Created TensorFlow Lite XNNPACK delegate for CPU.\n"
+
+        with patch("nova_school_server.ai_service.subprocess.run", return_value=_Result()):
+            with self.assertRaises(RuntimeError) as error:
+                service.complete(prompt="Test", timeout_seconds=1.0)
+
+        self.assertEqual(str(error.exception), "LiteRT-LM beendet sich mit Exit-Code 1.")
 
 
 if __name__ == "__main__":

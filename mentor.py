@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from .ai_service import _prepare_prompt_with_budget
 from .database import SchoolRepository
 
 
@@ -12,6 +13,7 @@ MENTOR_SYSTEM_PROMPT = (
     "das zugrunde liegende Konzept knapp. Wenn der Nutzer explizit nach der Loesung fragt, gib eine "
     "kompakte Musterloesung plus Begruendung. Bleibe freundlich, klar und technisch praezise."
 )
+MENTOR_INPUT_TOKEN_BUDGET = 2400
 
 
 class SocraticMentorService:
@@ -155,4 +157,10 @@ class SocraticMentorService:
             "Aufgabe: Fuehre den Nutzer ueber Fragen und Hinweise zur Ursache oder Verbesserung. "
             "Nutze Debugging-Denken, Clean-Code-Hinweise und moegliche Tests."
         )
-        return "\n\n".join(sections)
+        prepared_prompt, _, _ = _prepare_prompt_with_budget(
+            "\n\n".join(sections),
+            system_prompt=MENTOR_SYSTEM_PROMPT,
+            input_budget=MENTOR_INPUT_TOKEN_BUDGET,
+            reserved_tokens=1024,
+        )
+        return prepared_prompt

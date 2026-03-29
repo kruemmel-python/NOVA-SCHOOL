@@ -25,6 +25,8 @@ DIRECT_ASSISTANT_SYSTEM_PROMPT = (
     "Wenn die Nutzernachricht eine exakt kurze Antwort verlangt, gib genau diese Antwort ohne Zusatztext aus. "
     "Nutze Codekontext nur, wenn die Nutzernachricht erkennbar danach fragt oder ein Codeproblem beschreibt."
 )
+DIRECT_INPUT_TOKEN_BUDGET = 1800
+PROMPT_TRUNCATION_MARKER = "\n\n[... gekuerzter Kontext ...]\n\n"
 
 LLAMA_CPP_RELEASE_API = "https://api.github.com/repos/ggml-org/llama.cpp/releases/latest"
 LLAMA_CPP_RUNTIME_DIRNAME = "llama_cpp_runtime"
@@ -75,6 +77,68 @@ def _sanitize_model_text(value: Any) -> str:
     text = THINK_TAG_PATTERN.sub("", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
+
+
+def _normalize_prompt_text(text: str) -> str:
+    normalized = str(text or "").replace("\r\n", "\n").replace("\r", "\n")
+    normalized = re.sub(r"[ \t]+\n", "\n", normalized)
+    normalized = re.sub(r"\n{3,}", "\n\n", normalized)
+    return normalized.strip()
+
+
+def _estimate_token_count(text: str) -> int:
+    normalized = _normalize_prompt_text(text)
+    if not normalized:
+        return 0
+    compact = re.sub(r"\s+", " ", normalized).strip()
+    word_count = len(re.findall(r"\S+", compact))
+    char_based = max(1, int((len(compact) / 2.8) + 0.999))
+    word_based = max(1, int((word_count * 1.45) + 0.999))
+    return max(char_based, word_based, 1)
+
+
+def _trim_text_middle(text: str, *, max_chars: int) -> str:
+    normalized = _normalize_prompt_text(text)
+    if len(normalized) <= max_chars:
+        return normalized
+    marker = PROMPT_TRUNCATION_MARKER
+    if max_chars <= len(marker) + 96:
+        return normalized[:max_chars].rstrip()
+    head_chars = int(max_chars * 0.56)
+    tail_chars = max_chars - head_chars - len(marker)
+    if tail_chars < 80:
+        tail_chars = 80
+        head_chars = max(80, max_chars - tail_chars - len(marker))
+    return (
+        normalized[:head_chars].rstrip()
+        + marker
+        + normalized[-tail_chars:].lstrip()
+    ).strip()
+
+
+def _prepare_prompt_with_budget(
+    prompt: str,
+    *,
+    system_prompt: str,
+    input_budget: int,
+    reserved_tokens: int,
+) -> tuple[str, int, bool]:
+    normalized_prompt = _normalize_prompt_text(prompt)
+    if not normalized_prompt:
+        return "", 0, False
+    available_tokens = max(256, int(input_budget) - _estimate_token_count(system_prompt) - max(0, int(reserved_tokens)))
+    estimated_tokens = _estimate_token_count(normalized_prompt)
+    if estimated_tokens <= available_tokens:
+        return normalized_prompt, estimated_tokens, False
+    max_chars = min(len(normalized_prompt), max(720, int(available_tokens * 2.35)))
+    trimmed_prompt = _trim_text_middle(normalized_prompt, max_chars=max_chars)
+    while _estimate_token_count(trimmed_prompt) > available_tokens and max_chars > 720:
+        next_chars = max(720, int(max_chars * 0.82))
+        if next_chars >= max_chars:
+            break
+        max_chars = next_chars
+        trimmed_prompt = _trim_text_middle(normalized_prompt, max_chars=max_chars)
+    return trimmed_prompt, _estimate_token_count(trimmed_prompt), trimmed_prompt != normalized_prompt
 
 
 def _unwrap_short_reply(value: str) -> str:
@@ -588,8 +652,14 @@ class LlamaCppService:
         path_text = str(path_hint or "").strip()
         if path_text:
             context_bits.append(f"Aktive Datei: {path_text}")
+        prepared_prompt, _, _ = _prepare_prompt_with_budget(
+            "\n\n".join(context_bits),
+            system_prompt=DIRECT_ASSISTANT_SYSTEM_PROMPT,
+            input_budget=DIRECT_INPUT_TOKEN_BUDGET,
+            reserved_tokens=448,
+        )
         return {
-            "prompt": "\n\n".join(context_bits),
+            "prompt": prepared_prompt,
             "system_prompt": DIRECT_ASSISTANT_SYSTEM_PROMPT,
         }
 
@@ -1102,6 +1172,12 @@ class LiteRTLmService:
         return prompt_dir / f"prompt-{suffix}.txt"
 
     def _extract_cli_response_text(self, raw_output: str) -> str:
+        cleaned = self._clean_cli_output(raw_output)
+        if not cleaned:
+            raise RuntimeError("LiteRT-LM hat keine Textantwort geliefert.")
+        return cleaned
+
+    def _clean_cli_output(self, raw_output: str) -> str:
         text = str(raw_output or "").replace("\r\n", "\n").replace("\r", "\n")
         cleaned_lines: list[str] = []
         for line in text.splitlines():
@@ -1116,10 +1192,7 @@ class LiteRTLmService:
             if stripped == "Exiting." or stripped == ">>>":
                 continue
             cleaned_lines.append(line)
-        cleaned = _sanitize_model_text("\n".join(cleaned_lines))
-        if not cleaned:
-            raise RuntimeError("LiteRT-LM hat keine Textantwort geliefert.")
-        return cleaned
+        return _sanitize_model_text("\n".join(cleaned_lines))
 
     def _extract_response_text(self, response: dict[str, Any]) -> str:
         candidates = list(response.get("candidates") or [])
@@ -1185,7 +1258,8 @@ class LiteRTLmService:
                         "Der Prompt muss vor dem Modellaufruf weiter gekuerzt werden."
                     )
                 else:
-                    self._last_error = combined_output.strip() or f"LiteRT-LM beendet sich mit Exit-Code {result.returncode}."
+                    cleaned_error = self._clean_cli_output(combined_output)
+                    self._last_error = cleaned_error or f"LiteRT-LM beendet sich mit Exit-Code {result.returncode}."
                 raise RuntimeError(self._last_error)
             text = self._extract_cli_response_text(combined_output)
             self._last_error = ""
@@ -1218,8 +1292,14 @@ class LiteRTLmService:
         path_text = str(path_hint or "").strip()
         if path_text:
             context_bits.append(f"Aktive Datei: {path_text}")
+        prepared_prompt, _, _ = _prepare_prompt_with_budget(
+            "\n\n".join(context_bits),
+            system_prompt=DIRECT_ASSISTANT_SYSTEM_PROMPT,
+            input_budget=DIRECT_INPUT_TOKEN_BUDGET,
+            reserved_tokens=448,
+        )
         return {
-            "prompt": "\n\n".join(context_bits),
+            "prompt": prepared_prompt,
             "system_prompt": DIRECT_ASSISTANT_SYSTEM_PROMPT,
         }
 

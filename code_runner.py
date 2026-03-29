@@ -78,6 +78,19 @@ _PYTHON_GUI_USAGE_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("wx", re.compile(r"\bwx\.App\s*\(", re.IGNORECASE)),
 )
 
+_PYTHON_TRACEBACK_WRAPPER_PATHS = (
+    "/workspace/.nova-build/python_entry.py",
+    ".nova-build/python_entry.py",
+    "python_entry.py",
+)
+
+_PYTHON_TRACEBACK_WRAPPER_PATTERNS: tuple[re.Pattern[str], ...] = (
+    re.compile(r'^\s*File\s+"[^"]*python_entry\.py",\s+line\s+\d+,\s+in\s+<module>\s*$'),
+    re.compile(r'^\s*File\s+"<frozen runpy>",\s+line\s+\d+,\s+in\s+run_path\s*$'),
+    re.compile(r'^\s*File\s+"<frozen runpy>",\s+line\s+\d+,\s+in\s+_run_module_code\s*$'),
+    re.compile(r'^\s*File\s+"<frozen runpy>",\s+line\s+\d+,\s+in\s+_run_code\s*$'),
+)
+
 
 @dataclass(slots=True)
 class RunResult:
@@ -639,6 +652,46 @@ class CodeRunner:
             encoding="utf-8",
         )
         return bootstrap_path
+
+    @staticmethod
+    def _is_python_traceback_wrapper_line(line: str) -> bool:
+        if any(pattern.match(line) for pattern in _PYTHON_TRACEBACK_WRAPPER_PATTERNS):
+            return True
+        stripped = line.strip()
+        return any(path in stripped for path in _PYTHON_TRACEBACK_WRAPPER_PATHS)
+
+    def _sanitize_python_stderr(self, stderr: str) -> str:
+        text = str(stderr or "")
+        if not text or "Traceback (most recent call last):" not in text:
+            return text
+        lines = text.splitlines()
+        sanitized: list[str] = []
+        in_traceback = False
+        skip_next_context = False
+        removed_wrapper = False
+
+        for line in lines:
+            stripped = line.strip()
+            if stripped == "Traceback (most recent call last):":
+                in_traceback = True
+                sanitized.append(line)
+                skip_next_context = False
+                continue
+            if not in_traceback:
+                sanitized.append(line)
+                continue
+            if self._is_python_traceback_wrapper_line(line):
+                removed_wrapper = True
+                skip_next_context = True
+                continue
+            if skip_next_context and not stripped.startswith("File ") and (line.startswith("  ") or line.startswith("    ") or not stripped):
+                continue
+            skip_next_context = False
+            sanitized.append(line)
+
+        if not removed_wrapper:
+            return text
+        return "\n".join(sanitized).strip()
 
     def _python_entry_env(self, env: dict[str, str], entrypoint_path: str, deps_path: str | None) -> dict[str, str]:
         prepared = dict(env)
@@ -1280,12 +1333,13 @@ class CodeRunner:
 
     def _execute(self, run_id: str, language: str, command: list[str], cwd: Path, stdin_text: str, env: dict[str, str], tool_session: dict[str, Any], permissions: dict[str, bool]) -> RunResult:
         result = self._execute_raw(command, cwd, stdin_text, env)
+        stderr = self._sanitize_python_stderr(result.stderr) if language == "python" else result.stderr
         return RunResult(
             run_id=run_id,
             language=language,
             command=command,
             stdout=result.stdout,
-            stderr=result.stderr,
+            stderr=stderr,
             returncode=result.returncode,
             duration_ms=result.duration_ms,
             notes=self._backend_notes(permissions, "process"),
@@ -1294,12 +1348,13 @@ class CodeRunner:
 
     def _execute_container(self, run_id: str, language: str, runtime_executable: str, image: str, inner_command: list[str], project_root: Path, container_workspace: Path, stdin_text: str, env: dict[str, str], tool_session: dict[str, Any], permissions: dict[str, bool]) -> RunResult:
         result = self._execute_container_raw(runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, permissions)
+        stderr = self._sanitize_python_stderr(result.stderr) if language == "python" else result.stderr
         return RunResult(
             run_id=run_id,
             language=language,
             command=result.command,
             stdout=result.stdout,
-            stderr=result.stderr,
+            stderr=stderr,
             returncode=result.returncode,
             duration_ms=result.duration_ms,
             notes=self._backend_notes(permissions, "container", Path(runtime_executable).name, image),

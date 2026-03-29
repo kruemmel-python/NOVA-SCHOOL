@@ -10,6 +10,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
+from nova_school_server.ai_service import PROMPT_TRUNCATION_MARKER
 from nova_school_server.curriculum import CurriculumService
 from nova_school_server.database import SchoolRepository
 from nova_school_server.mentor import SocraticMentorService
@@ -154,6 +155,23 @@ class MentorTests(unittest.TestCase):
         self.assertIn("Aktuelles Modul: Einfuhrung in Python und Programmieren", payload["prompt"])
         self.assertIn("Verbindliche Mentor-Vorgabe: Frage zuerst nach der Funktion von print().", payload["prompt"])
         self.assertIn("Welche Zeile zeigt etwas auf dem Bildschirm?", payload["prompt"])
+
+    def test_prepare_trims_large_runtime_context(self) -> None:
+        payload = self.mentor.prepare(
+            self.session,
+            self.project,
+            prompt="Warum bricht mein Programm ab?",
+            code="\n".join(f"print({index})" for index in range(6000)),
+            path_hint="main.py",
+            run_output="\n".join(f"Fehlerzeile {index}" for index in range(2000)),
+            course_id="python-grundlagen",
+            module_id="p01_einstieg",
+        )
+
+        self.assertIn("Warum bricht mein Programm ab?", payload["prompt"])
+        self.assertIn("Aufgabe: Fuehre den Nutzer ueber Fragen", payload["prompt"])
+        self.assertIn(PROMPT_TRUNCATION_MARKER.strip(), payload["prompt"])
+        self.assertLess(len(payload["prompt"]), 9000)
 
 
 if __name__ == "__main__":

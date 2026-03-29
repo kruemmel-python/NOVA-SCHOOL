@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.9 - 2026-03-29
+
+### Changed
+
+- Python runner tracebacks shown to students now strip internal wrapper frames from `.nova-build/python_entry.py` and `runpy`, leaving only the relevant student-code locations such as `main.py`
+- LiteRT-LM direct-help prompts now enforce a stricter input budget so large code contexts no longer crash the local runtime on Windows laptops
+- the Sokratischer Mentor now trims oversized code, run output, and conversation context before invoking LiteRT-LM, reducing XNNPACK reshape/runtime failures
+- harmless TensorFlow Lite/XNNPACK info-only lines are no longer surfaced as user-facing local AI errors
+
+### Added
+
+- regression coverage for sanitized Python tracebacks in `tests/test_code_runner.py`
+- regression coverage for LiteRT prompt-budget trimming in `tests/test_ai_service.py` and `tests/test_mentor.py`
+
 ## v0.1.8 - 2026-03-29
 
 ### Added

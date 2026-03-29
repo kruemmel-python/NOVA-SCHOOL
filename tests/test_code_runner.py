@@ -82,6 +82,91 @@ class _TeacherSession(_Session):
 
 
 class CodeRunnerTests(unittest.TestCase):
+    def test_execute_container_python_hides_bootstrap_frames_from_traceback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = CodeRunner(
+                config,
+                _FakeToolSandbox(),
+                WorkspaceManager(config),
+                _FakeRepository({}),
+            )
+            raw_stderr = (
+                "Traceback (most recent call last):\n"
+                "  File \"/workspace/.nova-build/python_entry.py\", line 25, in <module>\n"
+                "    runpy.run_path(str(entry), run_name=\"__main__\")\n"
+                "  File \"<frozen runpy>\", line 287, in run_path\n"
+                "  File \"<frozen runpy>\", line 98, in _run_module_code\n"
+                "  File \"<frozen runpy>\", line 88, in _run_code\n"
+                "  File \"/workspace/main.py\", line 15, in <module>\n"
+                "    print(greet(read_name() or \"Nova School\"))\n"
+                "                ^^^^^^^^^\n"
+                "NameError: name 'read_name' is not defined. Did you mean: 'read_nam'?\n"
+            )
+            raw_result = _RawResult("", raw_stderr, 1, 12, ["docker", "run"])
+
+            with patch.object(runner, "_execute_container_raw", return_value=raw_result):
+                result = runner._execute_container(
+                    "run123",
+                    "python",
+                    "docker",
+                    "python:3.12-slim",
+                    ["python", "/workspace/.nova-build/python_entry.py"],
+                    Path(tmp),
+                    Path(tmp),
+                    "",
+                    {},
+                    {},
+                    {"web.access": False},
+                )
+
+            self.assertEqual(result.returncode, 1)
+            self.assertIn('/workspace/main.py", line 15', result.stderr)
+            self.assertIn("NameError", result.stderr)
+            self.assertNotIn(".nova-build/python_entry.py", result.stderr)
+            self.assertNotIn("<frozen runpy>", result.stderr)
+
+    def test_execute_python_process_hides_bootstrap_frames_from_traceback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = CodeRunner(
+                config,
+                _FakeToolSandbox(),
+                WorkspaceManager(config),
+                _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": True}),
+            )
+            raw_stderr = (
+                "Traceback (most recent call last):\n"
+                "  File \"C:\\\\tmp\\\\.nova-build\\\\python_entry.py\", line 25, in <module>\n"
+                "    runpy.run_path(str(entry), run_name=\"__main__\")\n"
+                "  File \"<frozen runpy>\", line 287, in run_path\n"
+                "  File \"<frozen runpy>\", line 98, in _run_module_code\n"
+                "  File \"<frozen runpy>\", line 88, in _run_code\n"
+                "  File \"C:\\\\tmp\\\\main.py\", line 15, in <module>\n"
+                "    print(greet(read_name() or \"Nova School\"))\n"
+                "                ^^^^^^^^^\n"
+                "NameError: name 'read_name' is not defined. Did you mean: 'read_nam'?\n"
+            )
+            raw_result = _RawResult("", raw_stderr, 1, 9, [r"C:\Python312\python.exe", "-I", "python_entry.py"])
+
+            with patch.object(runner, "_execute_raw", return_value=raw_result):
+                result = runner._execute(
+                    "run123",
+                    "python",
+                    [r"C:\Python312\python.exe", "-I", "python_entry.py"],
+                    Path(tmp),
+                    "",
+                    {},
+                    {},
+                    {"web.access": True},
+                )
+
+            self.assertEqual(result.returncode, 1)
+            self.assertIn('C:\\\\tmp\\\\main.py", line 15', result.stderr)
+            self.assertIn("NameError", result.stderr)
+            self.assertNotIn(".nova-build\\python_entry.py", result.stderr)
+            self.assertNotIn("<frozen runpy>", result.stderr)
+
     def test_run_bundle_executes_python_without_project_record(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             config = ServerConfig.from_base_path(Path(tmp))
