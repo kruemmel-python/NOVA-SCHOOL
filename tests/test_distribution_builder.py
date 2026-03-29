@@ -18,6 +18,9 @@ class DistributionBuilderTests(unittest.TestCase):
             (root / "start_server.ps1").write_text("start", encoding="utf-8")
             (root / "data").mkdir()
             (root / "data" / "school.db").write_text("secret", encoding="utf-8")
+            (root / "LIT").mkdir()
+            (root / "LIT" / "lit.windows_x86_64.exe").write_text("exe", encoding="utf-8")
+            (root / "LIT" / "gemma-3n-E4B-it-int4.litertlm").write_text("model", encoding="utf-8")
             (root / "server.zip").write_text("zip", encoding="utf-8")
             (root / ".nova").mkdir()
             (root / ".nova" / "secret.txt").write_text("secret", encoding="utf-8")
@@ -30,9 +33,12 @@ class DistributionBuilderTests(unittest.TestCase):
             self.assertIn("Nova-School-Server-v1.2.3-distribution/README.md", names)
             self.assertIn("Nova-School-Server-v1.2.3-distribution/server_config.json.example", names)
             self.assertIn("Nova-School-Server-v1.2.3-distribution/DISTRIBUTION_README.md", names)
+            self.assertIn("Nova-School-Server-v1.2.3-distribution/LIT/README.md", names)
             self.assertIn("Nova-School-Server-v1.2.3-distribution/data/workspaces/users/.gitkeep", names)
             self.assertNotIn("Nova-School-Server-v1.2.3-distribution/data/school.db", names)
             self.assertNotIn("Nova-School-Server-v1.2.3-distribution/server.zip", names)
+            self.assertNotIn("Nova-School-Server-v1.2.3-distribution/LIT/lit.windows_x86_64.exe", names)
+            self.assertNotIn("Nova-School-Server-v1.2.3-distribution/LIT/gemma-3n-E4B-it-int4.litertlm", names)
             self.assertNotIn("Nova-School-Server-v1.2.3-distribution/.nova/secret.txt", names)
 
     def test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide(self) -> None:

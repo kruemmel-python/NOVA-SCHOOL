@@ -98,6 +98,21 @@ class LiteRTLmServiceTests(unittest.TestCase):
         self.assertEqual(status["backend"], "cpu")
         self.assertFalse(status["requires_webgpu"])
 
+    def test_status_auto_discovers_project_local_lit_folder(self) -> None:
+        lit_root = self.base_path / "LIT"
+        lit_root.mkdir(parents=True, exist_ok=True)
+        model_file = lit_root / "gemma-3n-E4B-it-int4.litertlm"
+        binary_file = lit_root / "lit.windows_x86_64.exe"
+        model_file.write_bytes(b"LITERT")
+        binary_file.write_bytes(b"EXE")
+        service = LiteRTLmService(self.repository, base_path=self.base_path, data_path=self.data_path)
+
+        status = service.status(enabled=True)
+
+        self.assertTrue(status["configured"])
+        self.assertEqual(status["model_path"], str(model_file))
+        self.assertEqual(status["binary_path"], str(binary_file))
+
     def test_auto_provider_prefers_litert_when_binary_and_model_exist(self) -> None:
         litert_model = self.model_path / "gemma-3n-E4B-it-int4.litertlm"
         binary_file = self.bin_path / "lit.windows_x86_64.exe"

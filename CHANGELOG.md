@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.1.1 - 2026-03-29
+
+### Changed
+
+- LiteRT-LM is now documented and configured as the primary local AI path
+- automatic LiteRT discovery now prefers the project-local `LIT/` folder before legacy paths
+- server settings placeholders and UI copy now point to `C:\nova_school_server\LIT`
+- release packaging now scaffolds `LIT/` while excluding local model blobs from ZIP archives
+
+### Added
+
+- tracked `LIT/README.md` with the expected runtime layout
+- root `server_config.json.example` for repository installs
+- regression tests for project-local LiteRT discovery and release packaging of the `LIT/` scaffold
+
+### Notes
+
+- `llama.cpp` remains available as a fallback provider
+- local `.litertlm` model files stay outside normal Git history and server ZIP packages
+
 ## v0.1.0 - 2026-03-29
 
 ### Added

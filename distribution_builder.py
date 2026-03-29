@@ -20,11 +20,12 @@ SKIP_NAMES = {
     ".pytest_cache",
     "__pycache__",
     ".nova",
+    "LIT",
     "node_modules",
     "dist",
     "build",
 }
-SKIP_FILE_SUFFIXES = {".pyc", ".pyo", ".pyd", ".db", ".shm", ".wal", ".zip"}
+SKIP_FILE_SUFFIXES = {".pyc", ".pyo", ".pyd", ".db", ".shm", ".wal", ".zip", ".litertlm", ".gguf", ".task"}
 SKIP_FILE_NAMES = {
     "analysis_dump.md",
     "Projektcode_analysis_dump.md",
@@ -139,6 +140,7 @@ def _should_skip_entry(path: Path) -> bool:
 
 
 def _create_distribution_scaffold(staging_root: Path, version: str, flavor: str) -> None:
+    _ensure_placeholder(staging_root / "LIT" / ".gitkeep")
     _ensure_placeholder(staging_root / "Model" / ".gitkeep")
     _ensure_placeholder(staging_root / "data" / "workspaces" / "users" / ".gitkeep")
     _ensure_placeholder(staging_root / "data" / "workspaces" / "groups" / ".gitkeep")
@@ -185,6 +187,7 @@ Enthaelt:
 - Startskripte fuer Windows und Linux
 - Wiki- und Produktdokumentation
 - leere Datenordner fuer den Erststart
+- leerer `LIT`-Ordner fuer den primären LiteRT-LM-Betrieb
 - Beispielkonfiguration `server_config.json.example`
 
 Nicht enthalten:
@@ -193,6 +196,7 @@ Nicht enthalten:
 - Laufzeit-Workspaces
 - PKI-/Secret-Artefakte
 - lokale Referenz-Mirror-Caches
+- lokale KI-Modelle und grosse Runtime-Binaries
 
 Start:
 - Windows: `start_server.ps1`
@@ -202,9 +206,10 @@ Vor dem ersten produktiven Einsatz:
 1. `requirements.txt` installieren
 2. `server_config.json.example` nach `server_config.json` kopieren und anpassen
 3. optionale Offline-Referenzbibliotheken importieren
-4. lokale GGUF-KI und Container-Runtime nach Bedarf konfigurieren
+4. `LIT/` mit `lit`-Binary und `.litertlm`-Modell befuellen oder alternative lokale KI konfigurieren
 """
     (staging_root / "DISTRIBUTION_README.md").write_text(notes, encoding="utf-8")
+    _write_lit_scaffold(staging_root)
     _write_platform_installation_guide(staging_root, flavor, version)
 
 
@@ -229,15 +234,16 @@ Empfohlene Voraussetzungen:
 - Windows 11 oder Windows Server
 - Python 3.12
 - Docker Desktop fuer den Containerbetrieb
-- optionale lokale GGUF-KI ueber llama.cpp
+- LiteRT-LM als primäre lokale KI in `LIT\\`
 
 Installation:
 1. Paket entpacken
 2. PowerShell als Benutzer mit Schreibrechten im Zielordner oeffnen
 3. `py -3 -m pip install -r requirements.txt`
 4. `server_config.json.example` nach `server_config.json` kopieren und anpassen
-5. optional Docker Desktop starten und bei Bedarf ein GGUF-Modell in `Model` ablegen
-6. `./start_server.ps1`
+5. `LIT\\lit.windows_x86_64.exe` und eine `.litertlm`-Datei in `LIT\\` ablegen
+6. optional Docker Desktop fuer isolierte Runner starten
+7. `./start_server.ps1`
 
 Wichtige Betriebsaspekte:
 - Windows-Firewall fuer Port 8877 freigeben
@@ -255,7 +261,7 @@ Empfohlene Voraussetzungen:
 - Ubuntu 24.04 LTS oder vergleichbare Distribution
 - Python 3.12
 - Docker oder Podman
-- optionale lokale GGUF-KI ueber llama.cpp oder ein kompatibler lokaler KI-Dienst
+- LiteRT-LM als primäre lokale KI in `LIT/`
 
 Installation:
 1. Paket entpacken
@@ -264,7 +270,8 @@ Installation:
 4. `. .venv/bin/activate`
 5. `python3 -m pip install -r requirements.txt`
 6. `cp server_config.json.example server_config.json`
-7. `./start_server.sh`
+7. native `lit`-Binary und eine `.litertlm`-Datei in `LIT/` ablegen
+8. `./start_server.sh`
 
 Empfehlungen fuer den produktiven Betrieb:
 - Reverse Proxy oder internes Schulnetz fuer den Zugriff verwenden
@@ -286,6 +293,21 @@ def _ensure_placeholder(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if not path.exists():
         path.write_text("", encoding="utf-8")
+
+
+def _write_lit_scaffold(staging_root: Path) -> None:
+    notes = """# LIT Runtime
+
+Der Nova School Server nutzt standardmaessig LiteRT-LM aus diesem Ordner.
+
+Erwartete Inhalte:
+- Windows: `lit.windows_x86_64.exe`
+- Linux/macOS: eine passende native `lit`-Binary
+- ein lokales `.litertlm`-Modell, z. B. `gemma-3n-E4B-it-int4.litertlm`
+
+Die Release-Pakete enthalten diesen Ordner absichtlich leer, damit keine mehrgigabytegrossen Modelle oder maschinenspezifischen Binaries in jedem ZIP mitgeliefert werden.
+"""
+    (staging_root / "LIT" / "README.md").write_text(notes, encoding="utf-8")
 
 
 def _zip_tree(root: Path, archive_path: Path) -> None:

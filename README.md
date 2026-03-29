@@ -1,6 +1,6 @@
 # NOVA SCHOOL
 
-Local school server for programming classes, project work, isolated code execution, and local AI-assisted teaching workflows.
+Local school server for programming classes, isolated code execution, and teacher-facing lesson preparation with a primary local `LiteRT-LM` runtime.
 
 ## Overview
 
@@ -8,11 +8,12 @@ NOVA SCHOOL combines:
 
 - browser-based project and notebook workspaces
 - isolated execution for `Python`, `JavaScript`, `Node.js`, `C++`, `Java`, `Rust`, and `HTML`
-- local AI support via `LiteRT-LM` or `llama.cpp`
-- Material Studio for teacher-facing lesson preparation
+- local AI support with `LiteRT-LM` as the primary provider
+- `llama.cpp` as an alternative fallback provider
+- Material Studio for teacher-facing lesson planning and worksheet generation
 - Socratic mentoring, peer review, curriculum modules, and reference docs
 
-The codebase is designed for school networks, teacher notebooks, and controlled offline or low-cloud environments.
+The project is built for school networks, teacher notebooks, lab systems, and controlled low-cloud or offline environments.
 
 ## Repository Layout
 
@@ -22,6 +23,7 @@ The codebase is designed for school networks, teacher notebooks, and controlled 
 | `code_runner.py` | isolated code execution, container hardening, scheduler |
 | `ai_service.py` | local AI providers for LiteRT-LM and llama.cpp |
 | `material_studio.py` | multi-step teaching-material generation |
+| `LIT/` | primary local LiteRT runtime folder for `lit` and `.litertlm` models |
 | `static/` | browser frontend |
 | `tests/` | regression and unit tests |
 | `Docs/` | installation, security, and project documentation |
@@ -51,14 +53,43 @@ http://127.0.0.1:8877
 
 - Python `3.12`
 - Nova-shell runtime or `NOVA_SHELL_PATH`
-- optional Docker or Podman for isolated runners
-- optional local AI model for LiteRT-LM or llama.cpp
+- Docker or Podman for isolated runners
+- `LiteRT-LM` runtime in `LIT/` as the preferred local AI stack
 
 Install Python dependencies:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
+
+## Primary LiteRT Setup
+
+The server now prefers a project-local `LIT/` folder before older external paths such as `D:\LIT`.
+
+Recommended Windows layout:
+
+```text
+C:\nova_school_server\
+  LIT\
+    lit.windows_x86_64.exe
+    gemma-3n-E4B-it-int4.litertlm
+```
+
+Recommended Linux layout:
+
+```text
+/srv/nova_school_server/
+  LIT/
+    lit
+    gemma-3n-E4B-it-int4.litertlm
+```
+
+If no explicit server settings are provided, NOVA SCHOOL automatically looks for:
+
+- `LIT/*.litertlm`
+- `LIT/lit.windows_x86_64.exe`, `LIT/lit.exe`, or a native `lit` on `PATH`
+
+`llama.cpp` remains supported, but it is no longer the primary documented path.
 
 ## Demo Accounts
 
@@ -72,25 +103,34 @@ Change these passwords immediately in any non-demo environment.
 
 ## Release Assets
 
-The GitHub release is intended to contain:
+The GitHub releases are intended to contain:
 
 - Windows server package ZIP
 - Linux server package ZIP
-- one or more optional local model assets
+- generic distribution ZIP
+- checksums
+- Windows `lit` binary as a separate asset when available
 
-The core server packages do not embed local databases, cached workspaces, or machine-specific runtime state.
+The ZIP packages intentionally do **not** embed:
+
+- local databases
+- cached workspaces
+- machine-local runtime state
+- large `.litertlm` or `.gguf` model blobs
+
+This keeps the packages reproducible and avoids shipping multi-gigabyte local model files inside every server archive.
 
 ## Documentation
 
 - [Installation Guide](Docs/Installation.md)
 - [Security Guide](Docs/Secure.md)
-- [Project Readme (extended)](Docs/Readme.md)
+- [Extended Project Readme](Docs/Readme.md)
 
 ## Security Notes
 
 - run behind a TLS-capable reverse proxy in institutional environments
 - keep the container runner as the default execution backend
+- provision the `LIT/` runtime before classes or assessments
 - restrict public share/export features if policy requires it
-- prewarm models and container images before class
 
 Detailed controls and current limitations are documented in [Docs/Secure.md](Docs/Secure.md).

@@ -342,8 +342,11 @@ class NovaSchoolApplication:
         files: list[Path] = []
         seen: set[str] = set()
         for root in [
+            self.config.base_path / "LIT",
             self.config.base_path / "Model",
+            self.config.static_path.parent / "LIT",
             self.config.static_path.parent / "Model",
+            Path(__file__).resolve(strict=False).parent / "LIT",
             Path(__file__).resolve(strict=False).parent / "Model",
             Path("D:/LIT"),
         ]:
@@ -387,9 +390,12 @@ class NovaSchoolApplication:
         path = self.default_litertlm_model_path()
         return Path(path).stem if path else ""
 
-    @staticmethod
-    def default_litertlm_binary_path() -> str:
+    def default_litertlm_binary_path(self) -> str:
         candidates = [
+            self.config.base_path / "LIT" / "lit.windows_x86_64.exe",
+            self.config.base_path / "LIT" / "lit.exe",
+            self.config.static_path.parent / "LIT" / "lit.windows_x86_64.exe",
+            self.config.static_path.parent / "LIT" / "lit.exe",
             Path("D:/LIT/lit.windows_x86_64.exe"),
             Path("D:/LIT/lit.exe"),
         ]

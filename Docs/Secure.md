@@ -29,7 +29,7 @@ Der Nova School Server verfolgt folgende Sicherheitsziele:
 | Rollen-/Rechtesystem | Zugriff auf API, Runner, KI, Moderation, Deployments |
 | `CodeRunner` | isolierte Codeausfuehrung mit Container-Haertung |
 | `SchoolRepository` | SQLite mit Audit- und Konfigurationspersistenz |
-| Lokale KI | LiteRT-LM oder llama.cpp ohne zwingende Cloud-Nutzung |
+| Lokale KI | Primaer LiteRT-LM aus `LIT/`, alternativ llama.cpp ohne zwingende Cloud-Nutzung |
 | Worker-Dispatch | signierte und nonce-geschuetzte Worker-Requests |
 
 ## 3. Identitaet, Authentisierung und Sessions
@@ -273,9 +273,12 @@ Das gilt unter anderem fuer:
 
 ## 8.1 Lokale KI-Pfade
 
-Die Anwendung unterstuetzt lokale KI ueber:
+Die Anwendung unterstuetzt lokale KI lokal auf dem Server. Der primaere Pfad ist:
 
-- `LiteRT-LM`
+- `LiteRT-LM` ueber den projektlokalen Ordner `LIT/`
+
+Optional bleibt moeglich:
+
 - `llama.cpp`
 
 Das reduziert Datenschutzrisiken gegenueber externen Cloud-Diensten deutlich.
@@ -287,6 +290,7 @@ Die KI-Anfragen werden lokal verarbeitet.
 Fuer LiteRT-LM gilt in der aktuellen Implementierung:
 
 - der Server nutzt die `lit`-CLI lokal pro Anfrage
+- der Server bevorzugt automatisch `LIT/` im Projektordner fuer Binary, Modell und Cache-Herkunft
 - Promptdateien werden temporaer im lokalen Cachebereich abgelegt
 - nach dem Lauf werden diese Promptdateien wieder geloescht
 
@@ -297,6 +301,7 @@ Wenn `llama.cpp` genutzt wird und noch keine Binary vorhanden ist, kann die Runt
 Fuer strikt abgeschottete Umgebungen bedeutet das:
 
 - alle benoetigten Binaries und Modelle vorab lokal bereitstellen
+- fuer den Standardbetrieb `LIT/` bereits vor dem Unterricht mit Binary und Modell befuellen
 - keine Auto-Downloads im Produktivnetz zulassen
 
 ## 9. Auditierung und Nachvollziehbarkeit

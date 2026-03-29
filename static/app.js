@@ -1658,7 +1658,7 @@ function renderAssistantStatus() {
     return;
   }
   if (status.provider_preference === "litert-lm" || status.provider === "server-litert-lm") {
-    ui.assistantStatus.textContent = "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei ablegen oder den LiteRT-Modellpfad in den Servereinstellungen setzen.";
+    ui.assistantStatus.textContent = "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei im Ordner LIT oder Model ablegen oder den LiteRT-Modellpfad in den Servereinstellungen setzen.";
     return;
   }
   ui.assistantStatus.textContent = "Kein lokales Modell gefunden. Bitte eine .litertlm- oder .gguf-Datei ablegen oder den Modellpfad in den Servereinstellungen setzen.";
@@ -3965,7 +3965,7 @@ ui.assistantForm?.addEventListener("submit", (event) => askAssistant(event).catc
 $("assistant-load-url")?.addEventListener("click", async () => {
   const provider = currentAiConfig()?.provider;
   if (provider === "server-litert-lm") {
-    notify("Das LiteRT-LM-Modell wird serverseitig ueber 'lit serve' verwaltet und bei der ersten Anfrage automatisch gestartet.");
+    notify("Das LiteRT-LM-Modell wird serverseitig ueber 'lit run' pro Anfrage genutzt. Standardpfad ist der Ordner LIT im Projektverzeichnis.");
     return;
   }
   notify("Das lokale Modell wird serverseitig verwaltet und bei der ersten Anfrage automatisch gestartet.");

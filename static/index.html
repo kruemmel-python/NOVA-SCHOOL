@@ -256,7 +256,7 @@
                 <button id="assistant-load-file" type="button">Modellpfad</button>
                 <button id="assistant-unload-model" type="button">Auto-Entladen</button>
               </div>
-              <p class="muted">Das Modell wird serverseitig ueber den konfigurierten lokalen KI-Provider geladen. Fuer <code>LiteRT-LM</code> wird eine <code>.litertlm</code>-Datei und die passende <code>lit</code>-Binary verwendet; fuer <code>llama.cpp</code> eine <code>.gguf</code>-Datei. Der Server startet das Modell bei Bedarf und entlaedt es nach Leerlauf automatisch wieder.</p>
+              <p class="muted">Das Modell wird serverseitig ueber den konfigurierten lokalen KI-Provider geladen. Standardpfad ist <code>LIT</code> im Projektordner. Fuer <code>LiteRT-LM</code> werden dort eine <code>.litertlm</code>-Datei und die passende <code>lit</code>-Binary erwartet; <code>llama.cpp</code> bleibt ein alternativer Fallback mit <code>.gguf</code>-Datei. Der Server startet das Modell bei Bedarf und entlaedt es nach Leerlauf automatisch wieder.</p>
             </div>
             <form id="assistant-form" class="stack compact">
               <label><span>Modus</span><select id="assistant-mode"><option value="direct">Direkte Hilfe</option><option value="mentor">Sokratischer Mentor</option></select></label>
@@ -372,7 +372,7 @@
                       <option value="llama.cpp">llama.cpp</option>
                     </select>
                   </label>
-                  <label><span>LiteRT-LM-Modellpfad</span><input id="setting-litertlm-model-path" type="text" placeholder="D:\\LIT\\gemma-3n-E4B-it-int4.litertlm" /></label>
+                  <label><span>LiteRT-LM-Modellpfad</span><input id="setting-litertlm-model-path" type="text" placeholder="C:\\nova_school_server\\LIT\\gemma-3n-E4B-it-int4.litertlm" /></label>
                   <label><span>LiteRT-LM-Modell-Alias</span><input id="setting-litertlm-model-alias" type="text" placeholder="z. B. Gemma 3n E4B Local" /></label>
                   <label><span>LiteRT-LM-Backend</span>
                     <select id="setting-litertlm-backend">
@@ -381,8 +381,8 @@
                     </select>
                   </label>
                   <label><span>LiteRT-LM-Port</span><input id="setting-litertlm-port" type="number" min="1025" max="65535" placeholder="9379" /></label>
-                  <label><span>Lit-Binary-Pfad</span><input id="setting-litertlm-binary-path" type="text" placeholder="D:\\LIT\\lit.windows_x86_64.exe" /></label>
-                  <label><span>LiteRT-Home/Cache-Pfad</span><input id="setting-litertlm-home-path" type="text" placeholder="D:\\LIT" /></label>
+                  <label><span>Lit-Binary-Pfad</span><input id="setting-litertlm-binary-path" type="text" placeholder="C:\\nova_school_server\\LIT\\lit.windows_x86_64.exe" /></label>
+                  <label><span>LiteRT-Home/Cache-Pfad</span><input id="setting-litertlm-home-path" type="text" placeholder="C:\\nova_school_server\\LIT" /></label>
                   <label><span>LiteRT-Idle-Sleep in Sekunden</span><input id="setting-litertlm-sleep-idle" type="number" min="5" max="3600" placeholder="45" /></label>
                   <label><span>GGUF-Modellpfad</span><input id="setting-llamacpp-model-path" type="text" placeholder="H:\\nova_school_server\\Model\\dein-modell.gguf" /></label>
                   <label><span>Modell-Alias</span><input id="setting-llamacpp-model-alias" type="text" placeholder="z. B. Gemma 3 1B Local" /></label>

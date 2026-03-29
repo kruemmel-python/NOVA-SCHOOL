@@ -9,7 +9,8 @@ Wichtige Einordnung:
 - Der Server ist ein lokaler Schulserver fuer Projektarbeit, lokale KI-Unterstuetzung, Material-Studio, Peer Review, Exporte, Freigaben und einen verteilten Playground.
 - Der Einstiegspunkt ist `python -m nova_school_server`.
 - Die Laufzeitdaten liegen **nicht** im Repo-Ordner, sondern im `data`-Verzeichnis neben dem Paketordner.
-- Die Standard-Konfiguration ist fuer lokale Testsysteme geeignet. Fuer produktive Schulumgebungen sind zusaetzliche Haertungsmassnahmen erforderlich. Diese stehen in [Secure.md](Secure.md).
+- Der primäre KI-Pfad ist **LiteRT-LM** im projektlokalen Ordner `LIT/`.
+- `llama.cpp` bleibt als alternativer Fallback erhalten, ist aber nicht mehr der Standard in dieser Dokumentation.
 
 ## 1. Zielarchitektur
 
@@ -19,16 +20,16 @@ Empfohlene Basisarchitektur fuer produktive Umgebungen:
 2. Python `3.12` als Serverlaufzeit.
 3. Docker oder Podman fuer den isolierten Runner-Betrieb.
 4. Ein lokaler KI-Provider:
-   `LiteRT-LM` mit `.litertlm`-Modell oder `llama.cpp` mit `.gguf`-Modell.
+   `LiteRT-LM` mit `.litertlm`-Modell im Ordner `LIT/`.
 5. Ein Reverse Proxy mit TLS vor dem HTTP-Server.
 6. Ein eingeschraenktes Netzsegment fuer Lehr-/Schulbetrieb.
 
-Fuer reine Entwicklung oder Laptop-Tests reicht auch:
+Fuer Entwicklung oder Laptop-Tests reicht auch:
 
 - Windows 10/11
 - Python `3.12`
-- optional Docker Desktop
-- optional `LiteRT-LM` in `D:\LIT`
+- Docker Desktop
+- `LiteRT-LM` direkt in `C:\nova_school_server\LIT`
 
 ## 2. Technische Voraussetzungen
 
@@ -49,34 +50,32 @@ Das bedeutet:
 - Entweder sind `nova` und `nova_shell` bereits im aktiven Python-Interpreter installiert.
 - Oder `NOVA_SHELL_PATH` zeigt auf ein ausgechecktes Nova-shell-Repository.
 
-## 2.2 Empfohlene Pflichtkomponenten fuer produktiven Betrieb
+## 2.2 Pflichtkomponenten fuer den empfohlenen Betrieb
 
 - Docker Desktop oder Podman
 - Genuegend lokaler Speicher fuer Modelle, Container-Images und Schulprojekte
 - Reverse Proxy mit TLS
+- Ein `LIT/`-Ordner mit LiteRT-Binary und Modell
 
-## 2.3 Optionale KI-Komponenten
-
-### LiteRT-LM
-
-Empfohlen, wenn eine schnelle lokale Inferenz mit `.litertlm`-Modellen genutzt werden soll.
+## 2.3 Primaerer KI-Stack: LiteRT-LM
 
 Benoetigt:
 
-- `lit.windows_x86_64.exe` oder kompatible `lit`-Binary
+- `lit.windows_x86_64.exe` oder eine native `lit`-Binary
 - eine `.litertlm`-Modelldatei
 - ein schreibbares Cache-/Home-Verzeichnis
 
-Vom Server automatisch erkannte Standardorte:
+Automatisch erkannte Standardorte:
 
-- `D:\LIT\lit.windows_x86_64.exe`
-- `D:\LIT\lit.exe`
-- `.litertlm`-Dateien im Ordner `Model`
-- `.litertlm`-Dateien in `D:\LIT`
+- `C:\nova_school_server\LIT\lit.windows_x86_64.exe`
+- `C:\nova_school_server\LIT\gemma-3n-E4B-it-int4.litertlm`
+- allgemein `LIT/` im Projektordner
+- explizit gesetzte Servereinstellungen
+- danach erst aeltere Legacy-Pfade wie `D:\LIT`
 
-### llama.cpp
+## 2.4 Alternativer KI-Stack: llama.cpp
 
-Empfohlen, wenn ein `.gguf`-Modell verwendet werden soll.
+Unterstuetzt fuer `.gguf`-Modelle.
 
 Benoetigt:
 
@@ -87,7 +86,7 @@ Hinweis:
 
 - Wenn keine passende `llama-server`-Binary gefunden wird, kann der Server sie bei Bedarf aus dem aktuellen Release nachladen.
 
-## 2.4 Optionale Host-Toolchains
+## 2.5 Optionale Host-Toolchains
 
 Nur relevant, wenn der **unsichere Host-Prozess-Runner** explizit aktiviert wird. Standardmaessig ist dieser Modus deaktiviert.
 
@@ -106,25 +105,26 @@ Fuer den empfohlenen Container-Betrieb sind diese Toolchains auf dem Host **nich
 
 Der Einstiegspunkt `__main__.py` bestimmt den `base_path` als **Elternordner des Paketverzeichnisses**.
 
-Beispiel:
+Beispiel auf Windows:
 
-- Paketordner: `H:\nova_school_server`
-- Start aus `H:\`
-- effektiver `base_path`: `H:\`
+- Paketordner: `C:\nova_school_server`
+- Start aus `C:\`
+- effektiver `base_path`: `C:\`
 
 Dann verwendet der Server standardmaessig:
 
 | Bereich | Pfad |
 |---|---|
-| Paketcode | `H:\nova_school_server` |
-| Laufzeitdaten | `H:\data` |
-| SQLite-Datenbank | `H:\data\school.db` |
-| Nutzer-Workspaces | `H:\data\workspaces\users` |
-| Gruppen-Workspaces | `H:\data\workspaces\groups` |
-| interne Dokumente | `H:\data\docs` |
-| Repo-Dokumentation | `H:\nova_school_server\Docs` |
-| Modelle | `H:\nova_school_server\Model` oder `H:\Model` |
-| Konfigurationsdatei | `H:\server_config.json` |
+| Paketcode | `C:\nova_school_server` |
+| Laufzeitdaten | `C:\data` |
+| SQLite-Datenbank | `C:\data\school.db` |
+| Nutzer-Workspaces | `C:\data\workspaces\users` |
+| Gruppen-Workspaces | `C:\data\workspaces\groups` |
+| interne Dokumente | `C:\data\docs` |
+| Repo-Dokumentation | `C:\nova_school_server\Docs` |
+| LiteRT-LM | `C:\nova_school_server\LIT` |
+| alternative GGUF-Modelle | `C:\nova_school_server\Model` oder `C:\Model` |
+| Konfigurationsdatei | `C:\server_config.json` |
 
 Wichtig:
 
@@ -138,14 +138,23 @@ Wichtig:
 Empfohlene Struktur auf Windows:
 
 ```text
-H:\
+C:\
   nova_school_server\
+    LIT\
   Nova-shell-main\
-  data\          (wird beim ersten Start erzeugt)
+  data\                (wird beim ersten Start erzeugt)
   server_config.json   (optional)
 ```
 
-Wenn das Repo bereits unter `H:\nova_school_server` liegt, ist keine weitere Umstrukturierung noetig.
+Auf Linux entsprechend:
+
+```text
+/srv/
+  nova_school_server/
+    LIT/
+  nova-shell/
+  data/
+```
 
 ## 4.2 Python pruefen
 
@@ -159,12 +168,18 @@ Empfohlen:
 Python 3.12.x
 ```
 
-## 4.3 Nova-shell verfuegbar machen
+## 4.3 Python-Abhaengigkeiten installieren
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+## 4.4 Nova-shell verfuegbar machen
 
 ### Variante A: Nova-shell per Umgebungsvariable anbinden
 
 ```powershell
-$env:NOVA_SHELL_PATH = 'H:\Nova-shell-main'
+$env:NOVA_SHELL_PATH = 'C:\Nova-shell-main'
 ```
 
 ### Variante B: Nova-shell im aktiven Interpreter installiert
@@ -175,7 +190,7 @@ Praktischer Hinweis:
 
 - Wenn der Server beim Start meldet, dass `Nova-shell classes could not be loaded`, fehlt entweder `NOVA_SHELL_PATH` oder die Nova-shell-Pakete sind im Interpreter nicht vorhanden.
 
-## 4.4 Container-Runtime installieren
+## 4.5 Container-Runtime installieren
 
 Empfohlen:
 
@@ -199,52 +214,38 @@ Der Server verwendet standardmaessig:
 - Backend: `container`
 - Runtime: `docker`
 
-## 4.5 KI-Backend installieren
+## 4.6 LiteRT-LM in `LIT/` bereitstellen
 
-### Variante A: LiteRT-LM
+### Windows
 
-1. Binary herunterladen und ablegen, z. B.:
-
-```text
-D:\LIT\lit.windows_x86_64.exe
-```
-
-2. Modell ablegen, z. B.:
+Empfohlene Ablage:
 
 ```text
-D:\LIT\gemma-3n-E4B-it-int4.litertlm
+C:\nova_school_server\LIT\lit.windows_x86_64.exe
+C:\nova_school_server\LIT\gemma-3n-E4B-it-int4.litertlm
 ```
 
-oder
+### Linux
+
+Empfohlene Ablage:
 
 ```text
-H:\nova_school_server\Model\gemma-3n-E4B-it-int4.litertlm
+/srv/nova_school_server/LIT/lit
+/srv/nova_school_server/LIT/gemma-3n-E4B-it-int4.litertlm
 ```
 
-3. Optional einen Cache-/Home-Pfad vorsehen:
+Wichtig:
 
-```text
-D:\LIT
-```
+- Der Server bevorzugt `LIT/` automatisch.
+- Du musst in den Servereinstellungen nichts eintragen, wenn Binary und Modell dort liegen.
+- Das Cache-/Home-Verzeichnis wird ebenfalls automatisch aus `LIT/` abgeleitet, solange kein expliziter `litertlm_home_path` gesetzt ist.
 
-### Variante B: llama.cpp
-
-1. `.gguf`-Modell in den Modellordner legen:
-
-```text
-H:\nova_school_server\Model\dein-modell.gguf
-```
-
-2. Optional `llama-server.exe` konfigurieren.
-
-3. Wenn keine Binary vorhanden ist, kann der Server sie bei passendem Backend nachladen.
-
-## 4.6 Optionale Konfigurationsdatei anlegen
+## 4.7 Optionale Konfigurationsdatei anlegen
 
 Datei:
 
 ```text
-H:\server_config.json
+C:\server_config.json
 ```
 
 Beispiel:
@@ -257,61 +258,44 @@ Beispiel:
   "run_timeout_seconds": 20,
   "live_run_timeout_seconds": 300,
   "tenant_id": "nova-school",
-  "nova_shell_path": "H:\\Nova-shell-main"
+  "nova_shell_path": "C:\\Nova-shell-main"
 }
 ```
 
-Diese Datei steuert nur die Runtime-Dateikonfiguration. Weitere Servereinstellungen werden in der Datenbank gespeichert und ueber die Anwendung verwaltet.
+## 5. Server starten
 
-## 4.7 Alternative Konfiguration per Umgebungsvariablen
+### Windows
 
-Unterstuetzte Variablen:
-
-| Variable | Bedeutung |
-|---|---|
-| `NOVA_SCHOOL_HOST` | Bind-Adresse |
-| `NOVA_SCHOOL_PORT` | HTTP-Port |
-| `NOVA_SCHOOL_SESSION_TTL` | Session-TTL in Sekunden |
-| `NOVA_SCHOOL_RUN_TIMEOUT` | Timeout fuer Direktlaeufe |
-| `NOVA_SCHOOL_LIVE_RUN_TIMEOUT` | Timeout fuer Live-Laeufe |
-| `NOVA_SCHOOL_TENANT` | Tenant-ID |
-| `NOVA_SCHOOL_NAME` | Schulname |
-| `NOVA_SHELL_PATH` | Pfad zur Nova-shell-Laufzeit |
-
-## 4.8 Server starten
-
-Wichtiger Punkt:
-
-- Der Modulstart muss aus dem **Elternordner** des Paketverzeichnisses erfolgen.
-
-Empfohlener Start:
+Empfohlen:
 
 ```powershell
-Set-Location H:\
+Set-Location C:\
 python -m nova_school_server
 ```
 
-Alternative, wenn man im Repo-Ordner bleiben will:
+Alternativ:
 
 ```powershell
-$env:PYTHONPATH = 'H:\'
-python -m nova_school_server
+Set-Location C:\nova_school_server
+.\start_server.ps1
 ```
 
-## 4.9 Erwartete Startausgabe
+### Linux
 
-Bei erfolgreichem Start meldet der Server in etwa:
+```bash
+cd /srv/nova_school_server
+./start_server.sh
+```
+
+Danach im Browser:
 
 ```text
-Nova School Server lauscht auf 0.0.0.0:8877
-Lokal: http://127.0.0.1:8877
-Im LAN: http://<server-ip>:8877
-Seed-Benutzer: admin/NovaSchool!admin, teacher/NovaSchool!teacher, student/NovaSchool!student
+http://127.0.0.1:8877
 ```
 
-## 4.10 Erster Login
+## 6. Erststart pruefen
 
-Standard-Seed-Benutzer:
+## 6.1 Demo-Accounts
 
 | Benutzer | Passwort | Rolle |
 |---|---|---|
@@ -319,159 +303,109 @@ Standard-Seed-Benutzer:
 | `teacher` | `NovaSchool!teacher` | Lehrkraft |
 | `student` | `NovaSchool!student` | Demo-Schueler |
 
-Wichtiger Sicherheitshinweis:
+Diese Passwoerter muessen in jeder echten Schulumgebung sofort ersetzt werden.
 
-- Diese Kennwoerter muessen in produktiven Umgebungen sofort geaendert werden.
+## 6.2 Serverstatus
 
-## 5. Erste Basiskonfiguration nach dem Start
+Nach dem Login als `teacher` oder `admin`:
 
-Nach dem ersten Login sollte mindestens Folgendes gesetzt werden:
+1. `Servereinstellungen` oeffnen
+2. `Lokaler KI-Provider` pruefen
+3. erwartet:
+   - `Provider: LiteRT-LM`
+   - Modellpfad in `LIT/`
+   - Binary-Pfad in `LIT/`
 
-1. Demo-Kennwoerter aendern.
-2. Schulname setzen.
-3. Oeffentlichen Hostnamen setzen, falls Zertifikatslinks oder externe Freigaben genutzt werden.
-4. KI-Provider festlegen:
-   `auto`, `litert-lm` oder `llama.cpp`
-5. Modellpfade pruefen.
-6. Container-Runtime und Container-Images pruefen.
-7. Web-Proxy setzen, falls Schuelerlaeufe nur ueber Proxy ins Netz duerfen.
+## 6.3 Funktionstest fuer die lokale KI
 
-## 6. Standardwerte der wichtigsten Betriebsparameter
+In `Lokale KI-Codehilfe`:
 
-| Bereich | Standardwert |
-|---|---|
-| Host | `0.0.0.0` |
-| Port | `8877` |
-| Session-TTL | `43200` Sekunden |
-| Direktlauf-Timeout | `20` Sekunden |
-| Live-Timeout | `300` Sekunden |
-| Runner-Backend | `container` |
-| Container-Runtime | `docker` |
-| Python-Image | `python:3.12-slim` |
-| Node-Image | `node:20-bookworm-slim` |
-| C++-Image | `gcc:14` |
-| Java-Image | `eclipse-temurin:21` |
-| Rust-Image | `rust:1.81` |
-| Container RAM | `512m` |
-| Container CPU | `1.5` |
-| Container PIDs | `128` |
-| Container tmpfs | `64m` |
-| Seccomp | aktiviert |
-| LiteRT-LM Backend | `cpu` |
-| LiteRT-LM Idle | `45` Sekunden |
-| llama.cpp Backend | `vulkan` |
-| llama.cpp Kontext | `4096` |
-| llama.cpp GPU-Layer | `99` |
+- Modus: `Direkte Hilfe`
+- Prompt: `Antworte nur mit OK!`
 
-## 7. Empfohlener KI-Setup fuer Schule und Laptop-Test
+Erwartung:
 
-### Empfohlener Test-Setup mit LiteRT-LM
+- Antwort: `OK`
 
-- Binary:
-  `D:\LIT\lit.windows_x86_64.exe`
-- Modell:
-  `D:\LIT\gemma-3n-E4B-it-int4.litertlm`
-- Provider:
-  `litert-lm`
-- Backend:
-  `cpu`
+## 6.4 Funktionstest fuer Runner
 
-### Empfohlener produktiver Setup
+In einem Python-Projekt:
 
-- lokaler KI-Server ohne Cloud-Zwang
-- pregeladene Modelle im internen Speicherpfad
-- kein Modell-Download waehrend des Unterrichts
-- ggf. dedizierter Server mit schneller CPU/GPU
-
-## 8. Betriebsverifikation
-
-Nach erfolgreicher Installation sollten diese Punkte funktionieren:
-
-1. Login unter `http://127.0.0.1:8877`
-2. Projektliste sichtbar
-3. Datei-Lauf in einem Demo-Projekt
-4. Material-Studio fuer Lehrkraft
-5. Direkte KI-Hilfe
-6. Speichern von Servereinstellungen
-
-## 9. Typische Fehlerbilder und Behebung
-
-### Fehler: `No module named nova_school_server`
-
-Ursache:
-
-- Start aus dem Paketordner statt aus dem Elternordner.
-
-Loesung:
-
-```powershell
-Set-Location H:\
-python -m nova_school_server
+```python
+print("Hallo Nova School")
 ```
 
-### Fehler: `Nova-shell classes could not be loaded`
+Dann:
 
-Ursache:
+- `Datei ausfuehren`
 
-- Nova-shell ist weder installiert noch ueber `NOVA_SHELL_PATH` erreichbar.
+Erwartung:
 
-Loesung:
+- sichtbare Programmausgabe
+- zusaetzliche Container-Hinweise im Ausgabefeld
 
-- `NOVA_SHELL_PATH` korrekt setzen
-- oder Nova-shell in denselben Interpreter installieren
+## 7. Empfohlene Servereinstellungen
+
+| Einstellung | Empfehlung |
+|---|---|
+| KI-Provider | `litert-lm` |
+| LiteRT-LM Backend | `cpu` |
+| LiteRT-LM Idle | `45` Sekunden |
+| Ausfuehrungs-Backend | `container` |
+| Runtime | `docker` |
+| Webzugriff fuer Schueler standardmaessig | deaktiviert |
+| Reverse Proxy | vorgeschaltet |
+
+`llama.cpp`-Einstellungen nur setzen, wenn bewusst ein GGUF-Fallback betrieben werden soll.
+
+## 8. GitHub-Release und Distributionspakete
+
+Die GitHub-Releases enthalten:
+
+- Windows-Server-Paket
+- Linux-Server-Paket
+- generisches Distribution-ZIP
+- Checksummen
+- optional die Windows-`lit`-Binary als separates Asset
+
+Die Release-ZIPs enthalten bewusst **keine** grossen lokalen Modellartefakte. Der Ordner `LIT/` wird scaffolded ausgeliefert und anschliessend lokal befuellt.
+
+## 9. Typische Fehlerbilder
 
 ### Fehler: `Kein LiteRT-LM-Modell gefunden`
 
-Loesung:
+Pruefen:
 
-- `.litertlm` in `Model` oder `D:\LIT` ablegen
-- oder `litertlm_model_path` setzen
+- liegt eine `.litertlm`-Datei in `LIT/`?
+- wurde versehentlich nur `Model/` statt `LIT/` befuellt?
+- ist `litertlm_model_path` auf einen falschen Pfad gesetzt?
 
 ### Fehler: `LiteRT-LM-Binary nicht gefunden`
 
-Loesung:
+Pruefen:
 
-- `lit.windows_x86_64.exe` nach `D:\LIT` legen
-- oder `litertlm_binary_path` setzen
+- liegt `lit.windows_x86_64.exe` unter `LIT/`?
+- ist der Binary-Pfad in den Servereinstellungen leer oder korrekt?
+- auf Linux: existiert eine native `lit`-Binary?
 
-### Fehler: `Kein GGUF-Modell gefunden`
+### Fehler: `Input token ids are too long`
 
-Loesung:
+Dann ist der Material-Studio-Prompt fuer das Modell zu gross. Die aktuelle Implementierung kuerzt und retried bereits automatisch, aber lange Lehrerprompts oder sehr grosse Vorgabebloecke sollten trotzdem komprimiert werden.
 
-- `.gguf` in `Model` ablegen
-- oder `llamacpp_model_path` setzen
+### Fehler: `docker info` liefert einen 500-Fehler oder Timeout
 
-### Fehler: Container startet nicht
+Dann liegt das Problem in der Container-Runtime selbst, nicht im Nova-Server. Docker Desktop oder Podman neu starten, dann den Server neu starten.
 
-Loesung:
+## 10. Produktionshinweise fuer Lehranstalten
 
-1. `docker info` oder `podman info` pruefen
-2. Runtime neu starten
-3. fehlende Images automatisch ziehen lassen oder vorab manuell laden
+- HTTP niemals ungeschuetzt ins offene Netz stellen
+- Reverse Proxy mit TLS und Logging verwenden
+- Lehrer- und Admin-Zugaenge organisatorisch absichern
+- Container-Images und LiteRT-Artefakte vor Unterrichtsbeginn vorladen
+- Backups von `data/` regelmaessig und versioniert erstellen
+- fuer groessere Deployments Linux-Server oder Linux-Worker bevorzugen
 
-## 10. Backup- und Betriebsdaten
+## 11. Weiterfuehrende Dokumente
 
-Fuer Backups mindestens sichern:
-
-- `data/school.db`
-- `data/workspaces`
-- `data/public_shares`
-- `data/exports`
-- `data/worker_dispatch`
-- `server_config.json`
-
-Empfehlung:
-
-- taegliches Dateisystem-Backup
-- zusaetzliche Versionierung fuer Konfiguration und Schulvorlagen
-
-## 11. Empfohlene Schritte vor Inbetriebnahme in Lehranstalten
-
-1. TLS per Reverse Proxy aktivieren.
-2. Demo-Benutzerkennwoerter aendern oder Demo-Konten entfernen.
-3. Rollen und Berechtigungen pruefen.
-4. `deploy.use` deaktivieren, wenn keine oeffentlichen Shares erlaubt sind.
-5. `unsafe_process_backend_enabled` deaktiviert lassen.
-6. Containerbetrieb als Standard festschreiben.
-7. Webzugriff nur bei Bedarf und moeglichst ueber Proxy freigeben.
-8. Betriebs- und Datenschutzdokumentation mit [Secure.md](Secure.md) abstimmen.
+- [Readme.md](Readme.md)
+- [Secure.md](Secure.md)

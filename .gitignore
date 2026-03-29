@@ -14,6 +14,8 @@ build/
 data/
 Model/
 !Model/.gitkeep
+LIT/*
+!LIT/README.md
 *.zip
 _tmp_*.txt
 tmp_dxdiag.txt

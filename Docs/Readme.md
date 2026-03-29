@@ -2,7 +2,7 @@
 
 Ein lokaler Schulserver fuer Programmierunterricht, Projektarbeit und KI-gestuetzte Unterrichtsvorbereitung.
 
-Der **Nova School Server** verbindet einen browserbasierten Arbeitsbereich mit lokalen Runnern, rollenbasierter Rechtevergabe, Peer Review, Offline-Dokumentation, verteilten Playground-Szenarien und lokalem KI-Support ueber **LiteRT-LM** oder **llama.cpp**.
+Der **Nova School Server** verbindet einen browserbasierten Arbeitsbereich mit lokalen Runnern, rollenbasierter Rechtevergabe, Peer Review, Offline-Dokumentation, verteilten Playground-Szenarien und lokalem KI-Support. Der primaere KI-Pfad ist jetzt **LiteRT-LM** ueber den projektlokalen Ordner `LIT/`. `llama.cpp` bleibt als alternativer Fallback erhalten.
 
 ## Warum dieses Projekt?
 
@@ -22,7 +22,8 @@ Genau dafuer ist der Nova School Server gebaut.
 - Browserbasierter Editor mit Datei- und Live-Ausfuehrung
 - Isolierte Codeausfuehrung fuer `Python`, `JavaScript`, `Node.js`, `C++`, `Java`, `Rust` und `HTML`
 - Material-Studio fuer mehrstufige Erstellung von Unterrichtsmaterial
-- Lokale KI-Codehilfe ueber `LiteRT-LM` oder `llama.cpp`
+- Lokale KI-Codehilfe ueber `LiteRT-LM`
+- `llama.cpp` als alternativer lokaler KI-Pfad fuer `.gguf`
 - Sokratischer Mentor fuer Lernbegleitung
 - Peer Review mit Snapshot-basierten Einreichungen
 - Freigaben und Exporte von Projekten
@@ -41,6 +42,7 @@ Genau dafuer ist der Nova School Server gebaut.
 | `ai_service.py` | Lokale KI-Provider fuer LiteRT-LM und llama.cpp |
 | `material_studio.py` | Mehrstufiger Agenten-Workflow fuer Unterrichtsmaterial |
 | `distributed.py` / `worker_dispatch.py` | Lokaler oder entfernter Playground-Betrieb |
+| `LIT/` | Primaerer Runtime-Ordner fuer `lit` und `.litertlm`-Modelle |
 | `static/` | Browser-Frontend |
 
 ## Betriebsmodell
@@ -52,10 +54,13 @@ Der Server selbst ist eine lokale Python-Anwendung. Die eigentliche Codeausfuehr
 - mit limitierter CPU-, RAM-, PID- und Dateigroesse
 - mit deaktiviertem oder kontrolliertem Webzugriff
 
-Die lokale KI laeuft wahlweise:
+Die lokale KI laeuft standardmaessig:
 
-- ueber `LiteRT-LM` mit `.litertlm`-Modellen
-- oder ueber `llama.cpp` mit `.gguf`-Modellen
+- ueber `LiteRT-LM` mit `.litertlm`-Modellen im Ordner `LIT/`
+
+Optional bleibt moeglich:
+
+- `llama.cpp` mit `.gguf`-Modellen
 
 ## Schnellstart
 
@@ -63,15 +68,25 @@ Die lokale KI laeuft wahlweise:
 
 - Python `3.12`
 - Nova-shell-Laufzeit erreichbar
-- optional Docker oder Podman
-- optional lokales KI-Modell
+- Docker oder Podman fuer isolierte Runner
+- `LiteRT-LM` im Ordner `LIT/`
 
-### 2. Server starten
+### 2. Empfohlene Projektstruktur auf Windows
 
-Wenn das Repo unter `H:\nova_school_server` liegt:
+```text
+C:\
+  nova_school_server\
+    LIT\
+      lit.windows_x86_64.exe
+      gemma-3n-E4B-it-int4.litertlm
+```
+
+### 3. Server starten
+
+Wenn das Repo unter `C:\nova_school_server` liegt:
 
 ```powershell
-Set-Location H:\
+Set-Location C:\
 python -m nova_school_server
 ```
 
@@ -81,7 +96,7 @@ Danach im Browser:
 http://127.0.0.1:8877
 ```
 
-### 3. Seed-Logins
+### 4. Seed-Logins
 
 | Benutzer | Passwort | Rolle |
 |---|---|---|
@@ -91,38 +106,30 @@ http://127.0.0.1:8877
 
 Wichtig:
 
-- Diese Konten sind fuer den Erststart gedacht.
+- Diese Konten sind nur fuer den Erststart gedacht.
 - In jeder echten Schulumgebung muessen die Kennwoerter sofort geaendert werden.
-
-## Installation und Betrieb
-
-Fuer die vollstaendige Einrichtung siehe:
-
-- [Installation.md](Installation.md)
-- [Secure.md](Secure.md)
 
 ## KI-Backends
 
 ## LiteRT-LM
 
-Geeignet fuer:
+Der primaere KI-Pfad fuer dieses Projekt.
 
-- schnelle lokale Inferenz mit `.litertlm`
-- kompakte lokale Modelle
-- Material-Studio und direkte Hilfe ohne Cloud-Pfad
+Empfohlene Ablage:
 
-Typischer Setup:
+- `C:\nova_school_server\LIT\lit.windows_x86_64.exe`
+- `C:\nova_school_server\LIT\gemma-3n-E4B-it-int4.litertlm`
 
-- Binary in `D:\LIT\lit.windows_x86_64.exe`
-- Modell in `D:\LIT` oder `Model`
+Automatisch erkannte Orte:
+
+- `LIT/` im Projektordner
+- `LIT/` neben dem Paketordner
+- explizit gesetzte Servereinstellungen
+- danach erst aeltere Fallbacks wie `D:\LIT`
 
 ## llama.cpp
 
-Geeignet fuer:
-
-- `.gguf`-Modelle
-- alternative lokale Modellpfade
-- automatische Runtime-Binary-Bereitstellung, falls noch keine lokale `llama-server`-Binary vorhanden ist
+Unterstuetzter Fallback fuer Umgebungen mit `.gguf`-Modellen. Dieser Pfad bleibt erhalten, ist aber nicht mehr der vorrangig dokumentierte Standard.
 
 ## Runner-Backends
 
@@ -146,6 +153,23 @@ Der Host-Prozess-Runner ist bewusst als unsicherer Ausnahmebetrieb markiert:
 - nur fuer Lehrkraefte oder Administration freigebbar
 - nicht fuer produktive Hochsicherheitsumgebungen empfohlen
 
+## Release-Strategie
+
+Die GitHub-Releases enthalten:
+
+- Windows-, Linux- und generische Serverpakete
+- Checksummen
+- bei Verfuegbarkeit die Windows-`lit`-Binary als separates Asset
+
+Die Server-ZIPs enthalten absichtlich **keine** grossen Modellartefakte. Der Ordner `LIT/` wird in den Paketen scaffolded, damit Modelle und native Runtimes lokal nachgelegt werden koennen.
+
+## Installation und Betrieb
+
+Fuer die vollstaendige Einrichtung siehe:
+
+- [Installation.md](Installation.md)
+- [Secure.md](Secure.md)
+
 ## Sicherheitsprofil
 
 Sicherheitsrelevante Kernpunkte:
@@ -165,65 +189,3 @@ Wichtig:
 - Oeffentliche Shares und Downloads sind absichtlich URL-basiert. Wenn das institutionell unzulaessig ist, muss `deploy.use` entzogen oder organisatorisch gesperrt werden.
 
 Alle Details stehen in [Secure.md](Secure.md).
-
-## Projektstruktur
-
-Typische Struktur:
-
-```text
-H:\
-  nova_school_server\
-    Docs\
-    Model\
-    static\
-    tests\
-    server.py
-    code_runner.py
-    ai_service.py
-    material_studio.py
-  data\
-    school.db
-    workspaces\
-    docs\
-```
-
-Wichtig:
-
-- Das Repo `Docs/` enthaelt Entwickler- und Betriebsdokumentation.
-- `data/docs` ist die zur Laufzeit verwendete interne Dokumentationsbibliothek.
-
-## Einsatzszenarien
-
-Der Nova School Server eignet sich fuer:
-
-- Informatik-Unterricht in Schulnetzen
-- Lehrergeraete zur Vorbereitung von Materialien
-- abgeschottete Lernumgebungen mit lokaler KI
-- Laborraeume mit Projektarbeit
-- Demonstrationen verteilter Systeme im Unterricht
-
-## Empfohlene Produktionspraxis
-
-1. Server hinter Reverse Proxy mit TLS betreiben.
-2. Container-Runner als Standard erzwingen.
-3. Webzugriff standardmaessig deaktivieren und nur gezielt freigeben.
-4. Demo-Konten sofort absichern.
-5. Rollen und Rechte vor Inbetriebnahme fachlich pruefen.
-6. Oeffentliche Shares nur dann aktiv lassen, wenn dies organisatorisch erlaubt ist.
-7. KI-Modelle und Container-Images vor dem Unterricht lokal vorwaermen.
-
-## Entwicklungsstatus
-
-Die Codebasis ist funktionsfaehig, aber bewusst praxisnah und direkt am Schulbetrieb orientiert. Sie ist kein generisches LMS, sondern ein lokaler Server fuer Unterrichtsprojekte, Ausfuehrung, Materialerstellung und Moderation.
-
-Besonders stark ist das Projekt dort, wo gebraucht wird:
-
-- lokale Kontrolle
-- niedrige Cloud-Abhaengigkeit
-- transparente Sicherheitsgrenzen
-- hoher Unterrichtsbezug
-
-## Weiterfuehrende Dokumente
-
-- [Installation.md](Installation.md)
-- [Secure.md](Secure.md)

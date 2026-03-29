@@ -661,8 +661,11 @@ class LiteRTLmService:
     def model_roots(self) -> list[Path]:
         package_root = Path(__file__).resolve(strict=False).parent
         candidates = [
+            self.base_path / "LIT",
             self.base_path / "Model",
+            self.base_path / "nova_school_server" / "LIT",
             self.base_path / "nova_school_server" / "Model",
+            package_root / "LIT",
             package_root / "Model",
         ]
         binary_dir = self._explicit_binary_directory()
@@ -833,6 +836,14 @@ class LiteRTLmService:
         explicit = self.explicit_binary_path
         if explicit:
             candidates.append(Path(explicit).expanduser().resolve(strict=False))
+        candidates.extend(
+            [
+                self.base_path / "LIT" / "lit.windows_x86_64.exe",
+                self.base_path / "LIT" / "lit.exe",
+                self.base_path / "nova_school_server" / "LIT" / "lit.windows_x86_64.exe",
+                self.base_path / "nova_school_server" / "LIT" / "lit.exe",
+            ]
+        )
         for name in LITERT_LM_WINDOWS_BINARIES:
             discovered = shutil.which(name)
             if discovered:
@@ -862,7 +873,7 @@ class LiteRTLmService:
                 self._binary_path = candidate
                 return candidate
         raise RuntimeError(
-            "LiteRT-LM-Binary nicht gefunden. Bitte lit.windows_x86_64.exe ablegen oder litertlm_binary_path setzen."
+            "LiteRT-LM-Binary nicht gefunden. Bitte lit.windows_x86_64.exe im Ordner LIT ablegen oder litertlm_binary_path setzen."
         )
 
     def _register_model_file(self, target: Path, source: Path) -> None:
@@ -897,7 +908,7 @@ class LiteRTLmService:
         model_path = self.resolved_model_path()
         if model_path is None:
             raise RuntimeError(
-                "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner Model legen oder litertlm_model_path setzen."
+                "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner LIT oder Model legen oder litertlm_model_path setzen."
             )
         registry_model_path = self.registry_model_path()
         self._register_model_file(registry_model_path, model_path)
@@ -1009,7 +1020,7 @@ class LiteRTLmService:
             model_path = self.resolved_model_path()
             if model_path is None:
                 raise RuntimeError(
-                    "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner Model legen oder litertlm_model_path setzen."
+                    "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner LIT oder Model legen oder litertlm_model_path setzen."
                 )
             self.ensure_model_registered()
             binary_path = self._ensure_binary_path()
@@ -1143,7 +1154,7 @@ class LiteRTLmService:
         model_path = self.resolved_model_path()
         if model_path is None:
             raise RuntimeError(
-                "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner Model legen oder litertlm_model_path setzen."
+                "Kein LiteRT-LM-Modell gefunden. Bitte eine .litertlm-Datei in den Ordner LIT oder Model legen oder litertlm_model_path setzen."
             )
         binary_path = self._ensure_binary_path()
         prompt_file = self._prompt_file_path()
