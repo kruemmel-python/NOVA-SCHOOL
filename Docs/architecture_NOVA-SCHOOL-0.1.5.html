@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA SCHOOL Architektur</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; line-height: 1.65; max-width: 1080px; margin: 0 auto; padding: 32px 20px 60px; color: #1f2937; background: #f7f7f4; }
+    .card { background: #fff; border: 1px solid #d7dce2; border-radius: 18px; padding: 24px 28px; box-shadow: 0 12px 34px rgba(17, 24, 39, 0.05); margin-bottom: 20px; }
+    h1, h2, h3 { color: #0f172a; line-height: 1.2; }
+    h1 { margin: 0 0 10px; font-size: 2.2rem; }
+    h2 { margin-top: 0; font-size: 1.4rem; border-top: 1px solid #e5e7eb; padding-top: 18px; }
+    h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    p, ul, table, pre { margin: 0 0 16px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #d7dce2; padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; font-family: Consolas, monospace; }
+    pre { background: #f3f4f6; border: 1px solid #d7dce2; border-radius: 14px; padding: 16px; overflow-x: auto; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .08em; color: #0f766e; font-weight: 700; font-size: .88rem; margin-bottom: 8px; }
+    .muted { color: #586375; }
+  </style>
+</head>
+<body>
+  <section class="card">
+    <p class="eyebrow">NOVA SCHOOL</p>
+    <h1>Architektur und Struktur</h1>
+    <p class="muted">Historischer Dateiname <code>...0.1.5.html</code>, inhaltlich aktualisiert auf den aktuellen Projektstand.</p>
+    <p>
+      NOVA SCHOOL ist weiterhin ein lokaler, modular gegliederter Monolith. Die groessten Architekturentscheidungen
+      sind aktuell: eingebettete Runtime-Komponenten, lokale KI ueber <code>LIT/</code>, Container-basierte Runner
+      und TLS nur ueber einen vorgeschalteten Reverse Proxy.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Architektur in Schichten</h2>
+    <table>
+      <tr><th>Schicht</th><th>Bausteine</th><th>Rolle</th></tr>
+      <tr><td>Frontend</td><td><code>static/</code>, <code>app.js</code>, HTML, CSS</td><td>Browser-UI fuer Projekte, Material-Studio, KI-Hilfe, Reviews und Administration</td></tr>
+      <tr><td>HTTP/API</td><td><code>server.py</code></td><td>Routing, Session-Handling, Dateizugriffe, Settings, Projekt-APIs</td></tr>
+      <tr><td>Echtzeit</td><td><code>realtime.py</code>, <code>pty_host.py</code></td><td>Live-Runs, WebSocket-Terminals, interaktive Eingabe</td></tr>
+      <tr><td>Sicherheit</td><td><code>auth.py</code>, <code>permissions.py</code>, <code>embedded_nova.py</code></td><td>Passwoerter, Sessions, Rollen, eingebettete Security-/Sandbox-Schicht</td></tr>
+      <tr><td>Runner</td><td><code>code_runner.py</code>, <code>container_seccomp.py</code></td><td>Isolierte Code-Ausfuehrung in Docker/Podman oder bewusst unsicherem Fallback</td></tr>
+      <tr><td>KI</td><td><code>ai_service.py</code>, <code>mentor.py</code>, <code>material_studio.py</code></td><td>Lokale KI-Provider, Socratischer Mentor, Lehrkraft-Workflows</td></tr>
+      <tr><td>Persistenz</td><td><code>database.py</code>, <code>workspace.py</code></td><td>SQLite, Workspaces, Nutzer- und Gruppendaten</td></tr>
+      <tr><td>Verteilt</td><td><code>distributed.py</code>, <code>worker_dispatch.py</code>, <code>worker_agent.py</code></td><td>Optionaler Worker-Betrieb fuer verteilte Playground-Laeufe</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Aktueller Runtime-Standard</h2>
+    <ul>
+      <li>Serverprozess: Python <code>3.12</code></li>
+      <li>integrierter HTTP-Server: <code>ThreadingHTTPServer</code></li>
+      <li>Datenbank: SQLite im WAL-Modus</li>
+      <li>Primaerer KI-Provider: <code>LiteRT-LM</code></li>
+      <li>Standardpfad fuer LiteRT: projektlokales <code>LIT/</code></li>
+      <li>Runner-Backend: <code>container</code></li>
+      <li>Produktiver Netzpfad: Reverse Proxy mit HTTPS vor dem internen Server</li>
+      <li>Keine externe <code>Nova-shell</code>-Installation mehr erforderlich</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Textuelles Architekturdiagramm</h2>
+    <pre><code>Browser
+  |
+  | HTTPS / WSS
+  v
+Reverse Proxy (Caddy oder Nginx)
+  |
+  | HTTP / WS auf 127.0.0.1:8877
+  v
+NOVA SCHOOL SERVER (Python)
+  |
+  +-- server.py          -> HTTP, API, Sessions, Dateien
+  +-- realtime.py        -> WebSocket-Terminals und Live-Runs
+  +-- auth.py            -> Login, Session, Rollen
+  +-- code_runner.py     -> Container-Ausfuehrung und Scheduler
+  +-- ai_service.py      -> LiteRT-LM und llama.cpp
+  +-- material_studio.py -> Lehrkraft-Workflow
+  +-- mentor.py          -> Socratischer Mentor
+  +-- database.py        -> SQLite WAL
+  +-- workspace.py       -> Projekte und Workspaces
+  |
+  +-- LIT/               -> lit-Binary + .litertlm-Modell
+  +-- data/              -> Datenbank, Workspaces, Exporte, Reviews
+  +-- Docker/Podman      -> isolierte Runner fuer Schuelercode</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>Wichtige Architekturentscheidungen</h2>
+    <ul>
+      <li><strong>Monolith statt Microservices:</strong> fuer Schulbetrieb, einfache Wartung und Release-Pakete.</li>
+      <li><strong>SQLite statt externer DB:</strong> geringe Betriebsbarriere, ausreichend fuer lokale Schulserver.</li>
+      <li><strong>LiteRT-LM lokal:</strong> keine Cloud-Abhaengigkeit im Standardpfad.</li>
+      <li><strong>Container-Sandbox:</strong> isolierte Laufumgebung statt direkte Host-Ausfuehrung.</li>
+      <li><strong>Reverse Proxy Pflicht:</strong> der Python-Server ist bewusst intern gehalten; TLS entsteht davor.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Aktuelle Grenzen</h2>
+    <ul>
+      <li>WebSocket- und HTTP-Schicht laufen weiterhin synchron/threadbasiert, nicht auf ASGI.</li>
+      <li>SQLite bleibt write-seitig serialisiert; fuer den Zielbereich Schule ist das aktuell akzeptabel.</li>
+      <li>LiteRT-LM ist bewusst lokal und dateisystemnah; dadurch gibt es keinen externen Modell-Cluster.</li>
+      <li>Der unsichere Host-Prozess-Runner existiert nur als Notfallpfad und sollte produktiv deaktiviert bleiben.</li>
+    </ul>
+  </section>
+</body>
+</html>

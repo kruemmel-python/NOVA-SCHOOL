@@ -45,7 +45,10 @@ class WebSocketConnection:
         while True:
             opcode, payload = self._recv_frame()
             if opcode == 0x1:
-                return payload.decode("utf-8")
+                try:
+                    return payload.decode("utf-8")
+                except UnicodeDecodeError as exc:
+                    raise ConnectionError("WebSocket-Textframe enthaelt ungueltiges UTF-8.") from exc
             if opcode == 0x8:
                 self.close()
                 raise ConnectionError("WebSocket wurde geschlossen.")
@@ -83,8 +86,11 @@ class WebSocketConnection:
         header = self._recv_exact(2)
         first, second = header[0], header[1]
         fin = bool(first & 0x80)
+        rsv = first & 0x70
         opcode = first & 0x0F
         masked = bool(second & 0x80)
+        if rsv:
+            raise ConnectionError("WebSocket-Extensionsbits werden nicht unterstuetzt.")
         if not fin:
             raise ConnectionError("Fragmentierte WebSocket-Frames werden nicht unterstuetzt.")
         if not masked:
@@ -94,6 +100,8 @@ class WebSocketConnection:
             payload_len = struct.unpack("!H", self._recv_exact(2))[0]
         elif payload_len == 127:
             payload_len = struct.unpack("!Q", self._recv_exact(8))[0]
+        if opcode >= 0x8 and payload_len > 125:
+            raise ConnectionError("WebSocket-Control-Frames duerfen hoechstens 125 Bytes Nutzlast enthalten.")
         if payload_len > MAX_CLIENT_WS_FRAME_BYTES:
             raise ConnectionError(f"WebSocket-Frame ueberschreitet das erlaubte Limit von {MAX_CLIENT_WS_FRAME_BYTES} Bytes.")
         mask = self._recv_exact(4) if masked else b""

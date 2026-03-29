@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA SCHOOL Business Layer</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; line-height: 1.65; max-width: 1080px; margin: 0 auto; padding: 32px 20px 60px; color: #1f2937; background: #f7f7f4; }
+    .card { background: #fff; border: 1px solid #d7dce2; border-radius: 18px; padding: 24px 28px; box-shadow: 0 12px 34px rgba(17, 24, 39, 0.05); margin-bottom: 20px; }
+    h1, h2 { color: #0f172a; line-height: 1.2; }
+    h1 { margin: 0 0 10px; font-size: 2.2rem; }
+    h2 { margin-top: 0; font-size: 1.4rem; border-top: 1px solid #e5e7eb; padding-top: 18px; }
+    p, ul, table { margin: 0 0 16px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #d7dce2; padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: #f3f4f6; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; font-family: Consolas, monospace; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .08em; color: #0f766e; font-weight: 700; font-size: .88rem; margin-bottom: 8px; }
+    .muted { color: #586375; }
+  </style>
+</head>
+<body>
+  <section class="card">
+    <p class="eyebrow">NOVA SCHOOL</p>
+    <h1>Business und Rollout-Perspektive</h1>
+    <p class="muted">Historischer Dateiname <code>...0.1.5.html</code>, inhaltlich auf den aktuellen Projektstand gebracht.</p>
+    <p>
+      NOVA SCHOOL ist fuer Schulen, Schultraeger und technische Dienstleister interessant, weil es genau das Spannungsfeld
+      aus Datenschutz, Unterrichtspraxis und lokaler Betriebsfaehigkeit adressiert. Der aktuelle Projektstand ist staerker
+      als Appliance-/Serviceprodukt zu denken als als generischer Cloud-Service.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Welches Problem wird wirtschaftlich adressiert</h2>
+    <ul>
+      <li>Cloud-IDE und Cloud-KI kollidieren oft mit Datenschutz- und Beschaffungsregeln.</li>
+      <li>Schulen wollen kein Chaos aus lokalen Compilern, Benutzerprofilen und Firewall-Ausnahmen auf jedem Client.</li>
+      <li>Lehrkraefte brauchen ein System, das Material vorbereitet, aber nicht erst im Unterricht improvisiert werden muss.</li>
+      <li>IT-Abteilungen bevorzugen standardisierbare On-Premise-Systeme statt vieler Einzelloesungen.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Aktuelle Produktpositionierung</h2>
+    <table>
+      <tr><th>Dimension</th><th>Position</th></tr>
+      <tr><td>Kernmarkt</td><td>Schulen, Schultraeger, Systemhaeuser, Medienzentren, Berufsschulen</td></tr>
+      <tr><td>Liefermodell</td><td>On-Premise Serverpaket oder zentral vorbereitete Schulserver-Installation</td></tr>
+      <tr><td>Technischer Standard</td><td>Linux-Hauptserver, Docker Engine, LiteRT-LM, Reverse Proxy mit TLS</td></tr>
+      <tr><td>Bedienlogik</td><td>Schueler nutzen Browser, Lehrkraefte nutzen Material-Studio, IT liefert den Betriebsrahmen</td></tr>
+      <tr><td>Differenzierungsmerkmal</td><td>lokale KI, lokale Runner, keine produktiven Browser-CDNs, Unterrichtsorientierung statt allgemeiner Dev-Plattform</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Realistisches Betriebs- und Serviceangebot</h2>
+    <ul>
+      <li><strong>Serverbereitstellung:</strong> fertig installierter Linux-Server fuer eine Schule oder einen Fachbereich</li>
+      <li><strong>Einfuehrungspaket:</strong> LiteRT-LM, Docker-Images, TLS, Seed-Konten, Ersttests, Backup-Konzept</li>
+      <li><strong>Wartungsvertrag:</strong> OS-Updates, Docker-/Caddy-Updates, Funktionspruefungen, Release-Einspielung</li>
+      <li><strong>Rollout-Standardisierung:</strong> identischer Serverstack fuer mehrere Schulen eines Traegers</li>
+      <li><strong>Optionale Worker-Erweiterung:</strong> zusaetzliche Linux-Worker bei steigendem Durchsatzbedarf</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Wichtige Korrektur gegenueber alten Investor-Slides</h2>
+    <p>
+      Die aktuelle Service- und Hardwareplanung geht <strong>nicht</strong> mehr davon aus, dass jede Installation eine
+      dedizierte GPU oder teure Datacenter-KI-Beschleuniger braucht. Der wirtschaftlich sinnvolle Standardpfad ist:
+    </p>
+    <ul>
+      <li>CPU-basierter Linux-Hauptserver</li>
+      <li>LiteRT-LM lokal auf dem Server</li>
+      <li>KI vor allem fuer Lehrkraefte und vorbereitende Workflows</li>
+      <li>kontrollierte Parallelitaet ueber Scheduler statt “alles gleichzeitig”</li>
+    </ul>
+    <p>
+      Das veraendert die Wirtschaftlichkeit deutlich positiv, weil der Einstieg nicht mit einer teuren GPU-Appliance
+      beginnen muss.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Strategischer Mehrwert</h2>
+    <ul>
+      <li>lokaler Betrieb passt zu Ausschreibungen und Schultraeger-IT eher als unausweichliche SaaS-Abhaengigkeit</li>
+      <li>Material-Studio und Mentor schaffen konkreten Mehrwert fuer Lehrkraefte statt nur technischer Spielerei</li>
+      <li>standardisierte Infrastruktur reduziert die Supportkosten gegenueber Client-seitigen IDE-Installationen</li>
+      <li>je mehr Curriculum, Material und Projektarbeit im System landet, desto stabiler wird die Bindung an die Plattform</li>
+    </ul>
+  </section>
+</body>
+</html>

@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.7 - 2026-03-29
+
+### Changed
+
+- the WebSocket parser now rejects reserved RSV bits, oversized control frames, and invalid UTF-8 text frames with explicit connection errors
+- the HTML companion documents in `Docs/` were rewritten to match the current product, service, security, and hardware guidance instead of the stale v0.1.5 analysis text
+
+### Added
+
+- a deterministic fuzz/regression harness for `realtime.py` in `tests/test_realtime.py`
+
 ## v0.1.6 - 2026-03-29
 
 ### Added
