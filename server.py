@@ -110,14 +110,13 @@ RUNTIME_FILE_CONFIG_KEYS = [
     "run_timeout_seconds",
     "live_run_timeout_seconds",
     "tenant_id",
-    "nova_shell_path",
 ]
 
 
 class NovaSchoolApplication:
     def __init__(self, config: ServerConfig) -> None:
         self.config = config
-        bridge = load_nova_bridge(config.nova_shell_path)
+        bridge = load_nova_bridge()
         self.security = bridge.SecurityPlane(config.base_path)
         self.tool_sandbox = bridge.ToolSandbox()
         self.repository = SchoolRepository(config.database_path)
@@ -288,7 +287,6 @@ class NovaSchoolApplication:
                 "docs_path": str(self.config.docs_path),
                 "users_workspace_path": str(self.config.users_workspace_path),
                 "groups_workspace_path": str(self.config.groups_workspace_path),
-                "nova_shell_path": str(self.config.nova_shell_path or ""),
             },
             "urls": {
                 "local_url": local_url,
@@ -1207,8 +1205,6 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                 value = body[key]
                 if key in {"port", "session_ttl_seconds", "run_timeout_seconds", "live_run_timeout_seconds"}:
                     value = int(value or 0)
-                elif key == "nova_shell_path":
-                    value = str(value or "").strip()
                 else:
                     value = str(value or "").strip()
                 file_updates[key] = value

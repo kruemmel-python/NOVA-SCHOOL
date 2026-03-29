@@ -162,7 +162,6 @@ def _create_distribution_scaffold(staging_root: Path, version: str, flavor: str)
         "live_run_timeout_seconds": 300,
         "tenant_id": "nova-school",
         "school_name": "Nova School Server",
-        "nova_shell_path": "",
     }
     (staging_root / "server_config.json.example").write_text(
         json.dumps(server_config_example, ensure_ascii=False, indent=2),
@@ -299,6 +298,9 @@ def _write_lit_scaffold(staging_root: Path) -> None:
     notes = """# LIT Runtime
 
 Der Nova School Server nutzt standardmaessig LiteRT-LM aus diesem Ordner.
+
+Offizielle Herkunft der `lit`-Binary:
+- `https://github.com/google-ai-edge/LiteRT-LM`
 
 Erwartete Inhalte:
 - Windows: `lit.windows_x86_64.exe`

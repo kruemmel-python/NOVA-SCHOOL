@@ -365,7 +365,6 @@ function populateServerSettingsPanel(settings = {}, runtime = {}) {
     { label: "Dokumentationspfad", value: runtimePaths.docs_path || "-" },
     { label: "User-Workspaces", value: runtimePaths.users_workspace_path || "-" },
     { label: "Gruppen-Workspaces", value: runtimePaths.groups_workspace_path || "-" },
-    { label: "NovaShell-Pfad", value: runtimePaths.nova_shell_path || "-" },
   ]);
   $("setting-school-name").value = settings.school_name || "";
   $("setting-host").value = storedConfig.host || activeConfig.host || "0.0.0.0";
@@ -374,7 +373,6 @@ function populateServerSettingsPanel(settings = {}, runtime = {}) {
   $("setting-run-timeout").value = storedConfig.run_timeout_seconds || activeConfig.run_timeout_seconds || 20;
   $("setting-live-run-timeout").value = storedConfig.live_run_timeout_seconds || activeConfig.live_run_timeout_seconds || 300;
   $("setting-tenant-id").value = storedConfig.tenant_id || activeConfig.tenant_id || "nova-school";
-  $("setting-nova-shell-path").value = storedConfig.nova_shell_path || activeConfig.nova_shell_path || "";
   $("setting-server-public-host").value = settings.server_public_host || "";
   $("setting-certificate-logo-path").value = settings.certificate_logo_path || "";
   $("setting-certificate-signatory-name").value = settings.certificate_signatory_name || "";
@@ -4176,7 +4174,6 @@ $("settings-form").addEventListener("submit", async (event) => {
       run_timeout_seconds: Number($("setting-run-timeout").value || 20),
       live_run_timeout_seconds: Number($("setting-live-run-timeout").value || 300),
       tenant_id: $("setting-tenant-id").value,
-      nova_shell_path: $("setting-nova-shell-path").value,
       server_public_host: $("setting-server-public-host").value,
       certificate_logo_path: $("setting-certificate-logo-path").value,
       certificate_signatory_name: $("setting-certificate-signatory-name").value,

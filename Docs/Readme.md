@@ -67,9 +67,9 @@ Optional bleibt moeglich:
 ### 1. Voraussetzungen
 
 - Python `3.12`
-- Nova-shell-Laufzeit erreichbar
 - Docker oder Podman fuer isolierte Runner
 - `LiteRT-LM` im Ordner `LIT/`
+- keine externe `Nova-shell`-Installation fuer den Standardbetrieb
 
 ### 2. Empfohlene Projektstruktur auf Windows
 

@@ -24,7 +24,7 @@ Der Nova School Server verfolgt folgende Sicherheitsziele:
 
 | Schicht | Zweck |
 |---|---|
-| `SecurityPlane` aus Nova-shell | Token-Ausgabe, Tenant- und Worker-Sicherheitskontext |
+| Eingebaute `SecurityPlane`-kompatible Schicht | Token-Ausgabe, Tenant- und Worker-Sicherheitskontext |
 | `AuthService` | Login, Session-Aufbau, Passwortpruefung |
 | Rollen-/Rechtesystem | Zugriff auf API, Runner, KI, Moderation, Deployments |
 | `CodeRunner` | isolierte Codeausfuehrung mit Container-Haertung |
@@ -49,7 +49,7 @@ Das ist fuer schulische Standardanwendungen ein solider lokaler Basisschutz.
 
 ## 3.2 Session-Erzeugung
 
-Nach erfolgreichem Login wird ueber die Nova-shell `SecurityPlane` ein Token ausgestellt.
+Nach erfolgreichem Login wird ueber die eingebaute `SecurityPlane`-kompatible Schicht ein Token ausgestellt.
 
 Dieses Token wird serverseitig fuer den Session-Kontext genutzt:
 

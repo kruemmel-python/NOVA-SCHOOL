@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.2 - 2026-03-29
+
+### Changed
+
+- the embedded runtime is now the only supported default path for security and sandbox services
+- all remaining `Nova-shell` legacy configuration fields and UI controls were removed
+- installation and `LIT/` documentation now reference the official LiteRT-LM repository as the source of the `lit` binary
+
+### Added
+
+- embedded local implementations for the security plane and tool sandbox in `embedded_nova.py`
+- regression coverage for the embedded bridge path
+
+### Notes
+
+- the server no longer reads or stores `nova_shell_path`
+- LiteRT-LM remains the primary local AI stack, with the model still documented as an external download
+
 ## v0.1.1 - 2026-03-29
 
 ### Changed
@@ -8,6 +26,7 @@
 - automatic LiteRT discovery now prefers the project-local `LIT/` folder before legacy paths
 - server settings placeholders and UI copy now point to `C:\nova_school_server\LIT`
 - release packaging now scaffolds `LIT/` while excluding local model blobs from ZIP archives
+- the server no longer depends on an external `Nova-shell` checkout for its default runtime path
 
 ### Added
 
@@ -37,4 +56,4 @@
 ### Notes
 
 - optional AI models are published as separate release assets instead of being committed into the repository
-- container runtimes, Python, and Nova-shell remain external prerequisites
+- container runtimes and Python remain external prerequisites

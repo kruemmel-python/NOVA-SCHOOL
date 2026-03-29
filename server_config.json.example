@@ -5,6 +5,5 @@
   "run_timeout_seconds": 20,
   "live_run_timeout_seconds": 300,
   "tenant_id": "nova-school",
-  "school_name": "Nova School Server",
-  "nova_shell_path": ""
+  "school_name": "Nova School Server"
 }

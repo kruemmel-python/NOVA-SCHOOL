@@ -2,6 +2,10 @@
 
 Der Nova School Server erwartet den primären LiteRT-LM-Stack in diesem Ordner.
 
+Offizielle Herkunft der `lit`-Binary:
+
+- `https://github.com/google-ai-edge/LiteRT-LM`
+
 Empfohlene Inhalte auf Windows:
 
 - `lit.windows_x86_64.exe`

@@ -13,7 +13,6 @@ RUNTIME_FILE_CONFIG_KEYS = (
     "run_timeout_seconds",
     "live_run_timeout_seconds",
     "tenant_id",
-    "nova_shell_path",
 )
 
 
@@ -33,7 +32,6 @@ class ServerConfig:
     live_run_timeout_seconds: int = 300
     tenant_id: str = "nova-school"
     school_name: str = "Nova School Server"
-    nova_shell_path: Path | None = None
 
     @classmethod
     def from_base_path(cls, base_path: Path) -> "ServerConfig":
@@ -42,9 +40,6 @@ class ServerConfig:
 
         def env_or_payload(name: str, key: str, default: Any) -> Any:
             return os.environ.get(name) or payload.get(key) or default
-
-        nova_shell_value = env_or_payload("NOVA_SHELL_PATH", "nova_shell_path", r"H:\Nova-shell-main")
-        nova_shell_path = Path(str(nova_shell_value)).resolve(strict=False) if nova_shell_value else None
 
         data_path = base_path / "data"
         docs_path = data_path / "docs"
@@ -67,7 +62,6 @@ class ServerConfig:
             live_run_timeout_seconds=int(env_or_payload("NOVA_SCHOOL_LIVE_RUN_TIMEOUT", "live_run_timeout_seconds", 300)),
             tenant_id=str(env_or_payload("NOVA_SCHOOL_TENANT", "tenant_id", "nova-school")),
             school_name=str(env_or_payload("NOVA_SCHOOL_NAME", "school_name", "Nova School Server")),
-            nova_shell_path=nova_shell_path,
         )
 
 
@@ -99,7 +93,6 @@ def active_runtime_config(config: ServerConfig) -> dict[str, Any]:
         "run_timeout_seconds": int(config.run_timeout_seconds),
         "live_run_timeout_seconds": int(config.live_run_timeout_seconds),
         "tenant_id": str(config.tenant_id),
-        "nova_shell_path": str(config.nova_shell_path or ""),
     }
 
 
@@ -113,16 +106,11 @@ def stored_runtime_config(base_path: Path, config: ServerConfig) -> dict[str, An
         "run_timeout_seconds": int(payload.get("run_timeout_seconds", active["run_timeout_seconds"])),
         "live_run_timeout_seconds": int(payload.get("live_run_timeout_seconds", active["live_run_timeout_seconds"])),
         "tenant_id": str(payload.get("tenant_id", active["tenant_id"])),
-        "nova_shell_path": str(payload.get("nova_shell_path", active["nova_shell_path"])),
     }
 
 
 def runtime_config_requires_restart(active: dict[str, Any], stored: dict[str, Any]) -> bool:
     for key in RUNTIME_FILE_CONFIG_KEYS:
-        if key == "nova_shell_path":
-            if str(active.get(key, "") or "") != str(stored.get(key, "") or ""):
-                return True
-            continue
         if str(active.get(key)) != str(stored.get(key)):
             return True
     return False

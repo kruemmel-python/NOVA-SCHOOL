@@ -37,18 +37,16 @@ Fuer Entwicklung oder Laptop-Tests reicht auch:
 
 - Python `3.12`
 - Zugriff auf dieses Repository
-- Zugriff auf die **Nova-shell**-Laufzeit
 
-Der Server laedt zur Laufzeit folgende Klassen aus Nova-shell:
+Der Server bringt die benoetigten Laufzeitbausteine inzwischen direkt im Projekt mit:
 
-- `nova.runtime.security.SecurityPlane`
-- `nova.agents.sandbox.ToolSandbox`
-- `nova_shell.NovaAIProviderRuntime`
+- eine eingebaute `SecurityPlane`-kompatible Schicht
+- eine eingebaute `ToolSandbox`
+- eine eingebaute `NovaAIProviderRuntime`-kompatible Platzhalterklasse
 
 Das bedeutet:
 
-- Entweder sind `nova` und `nova_shell` bereits im aktiven Python-Interpreter installiert.
-- Oder `NOVA_SHELL_PATH` zeigt auf ein ausgechecktes Nova-shell-Repository.
+- fuer den Standardbetrieb ist **keine** externe `Nova-shell`-Installation mehr noetig
 
 ## 2.2 Pflichtkomponenten fuer den empfohlenen Betrieb
 
@@ -141,7 +139,6 @@ Empfohlene Struktur auf Windows:
 C:\
   nova_school_server\
     LIT\
-  Nova-shell-main\
   data\                (wird beim ersten Start erzeugt)
   server_config.json   (optional)
 ```
@@ -152,7 +149,6 @@ Auf Linux entsprechend:
 /srv/
   nova_school_server/
     LIT/
-  nova-shell/
   data/
 ```
 
@@ -174,21 +170,12 @@ Python 3.12.x
 python -m pip install -r requirements.txt
 ```
 
-## 4.4 Nova-shell verfuegbar machen
+## 4.4 Eingebaute Laufzeitbausteine
 
-### Variante A: Nova-shell per Umgebungsvariable anbinden
+Standard:
 
-```powershell
-$env:NOVA_SHELL_PATH = 'C:\Nova-shell-main'
-```
-
-### Variante B: Nova-shell im aktiven Interpreter installiert
-
-Dann ist keine zusaetzliche Pfadangabe noetig.
-
-Praktischer Hinweis:
-
-- Wenn der Server beim Start meldet, dass `Nova-shell classes could not be loaded`, fehlt entweder `NOVA_SHELL_PATH` oder die Nova-shell-Pakete sind im Interpreter nicht vorhanden.
+- keine zusaetzliche Security-/Sandbox-Installation notwendig
+- der Server nutzt die eingebauten lokalen Laufzeitbausteine aus dem Repo
 
 ## 4.5 Container-Runtime installieren
 
@@ -215,6 +202,11 @@ Der Server verwendet standardmaessig:
 - Runtime: `docker`
 
 ## 4.6 LiteRT-LM in `LIT/` bereitstellen
+
+Offizielle Herkunft der `lit`-Binary:
+
+- LiteRT-LM Repository: `https://github.com/google-ai-edge/LiteRT-LM`
+- die Windows-Binary `lit.windows_x86_64.exe` sollte aus dem offiziellen LiteRT-LM-Projekt oder dessen veroeffentlichten Desktop-Artefakten stammen
 
 ### Windows
 
@@ -268,8 +260,7 @@ Beispiel:
   "session_ttl_seconds": 43200,
   "run_timeout_seconds": 20,
   "live_run_timeout_seconds": 300,
-  "tenant_id": "nova-school",
-  "nova_shell_path": "C:\\Nova-shell-main"
+  "tenant_id": "nova-school"
 }
 ```
 

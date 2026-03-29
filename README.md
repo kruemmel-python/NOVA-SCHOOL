@@ -52,7 +52,7 @@ http://127.0.0.1:8877
 ## Requirements
 
 - Python `3.12`
-- Nova-shell runtime or `NOVA_SHELL_PATH`
+- embedded security/runtime components are included in the repository
 - Docker or Podman for isolated runners
 - `LiteRT-LM` runtime in `LIT/` as the preferred local AI stack
 
@@ -74,6 +74,11 @@ C:\nova_school_server\
     lit.windows_x86_64.exe
     gemma-3n-E4B-it-int4.litertlm
 ```
+
+Official LiteRT-LM source:
+
+- LiteRT-LM repository: `https://github.com/google-ai-edge/LiteRT-LM`
+- the Windows `lit.windows_x86_64.exe` binary should come from the official LiteRT-LM project or its published prebuilt desktop artifacts
 
 Recommended Linux layout:
 
@@ -129,6 +134,11 @@ The ZIP packages intentionally do **not** embed:
 - large `.litertlm` or `.gguf` model blobs
 
 This keeps the packages reproducible and avoids shipping multi-gigabyte local model files inside every server archive.
+
+Embedded runtime:
+
+- the repository includes its own local security and sandbox runtime components
+- no external `Nova-shell` checkout is required for the default server path
 
 ## Documentation
 
