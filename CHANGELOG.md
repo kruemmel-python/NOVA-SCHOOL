@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.3 - 2026-03-29
+
+### Changed
+
+- student run output no longer exposes operational container, hardening, network, or scheduler notes
+- teacher and admin sessions continue to receive detailed runner diagnostics for project, bundle, and live runs
+
+### Added
+
+- regression coverage for note visibility in normal and live execution paths
+
 ## v0.1.2 - 2026-03-29
 
 ### Changed

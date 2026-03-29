@@ -393,6 +393,88 @@ class CodeRunnerTests(unittest.TestCase):
             self.assertTrue(any(command[1:] == ["pull", "gcc:14"] for command in commands))
             self.assertTrue(any("automatisch nachgeladen: gcc:14" in note for note in result["notes"]))
 
+    def test_student_run_hides_operational_notes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = _ContainerObservedRunner(config, _FakeToolSandbox(), WorkspaceManager(config), _FakeRepository({}))
+            project = {
+                "project_id": "proj-student-notes",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "student-notes",
+                "template": "python",
+                "runtime": "python",
+                "main_file": "main.py",
+            }
+
+            result = runner.run(
+                _Session(),
+                project,
+                {
+                    "path": "main.py",
+                    "language": "python",
+                    "code": "print('ok')\n",
+                },
+            )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["notes"], [])
+
+    def test_teacher_run_keeps_operational_notes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = _ContainerObservedRunner(config, _FakeToolSandbox(), WorkspaceManager(config), _FakeRepository({}))
+            project = {
+                "project_id": "proj-teacher-notes",
+                "owner_type": "user",
+                "owner_key": "teacher",
+                "slug": "teacher-notes",
+                "template": "python",
+                "runtime": "python",
+                "main_file": "main.py",
+            }
+
+            result = runner.run(
+                _TeacherSession(),
+                project,
+                {
+                    "path": "main.py",
+                    "language": "python",
+                    "code": "print('ok')\n",
+                },
+            )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertTrue(any("Container-Isolation aktiv" in note for note in result["notes"]))
+            self.assertTrue(any("Run-Scheduler aktiv" in note for note in result["notes"]))
+
+    def test_student_live_run_hides_operational_notes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = _ContainerObservedRunner(config, _FakeToolSandbox(), WorkspaceManager(config), _FakeRepository({}))
+            project = {
+                "project_id": "proj-live-notes",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "live-notes",
+                "template": "python",
+                "runtime": "python",
+                "main_file": "main.py",
+            }
+
+            prepared = runner.prepare_live_run(
+                _Session(),
+                project,
+                {
+                    "path": "main.py",
+                    "language": "python",
+                    "code": "print('ok')\n",
+                },
+            )
+
+            self.assertIsNone(prepared.failed_returncode)
+            self.assertEqual(prepared.notes, [])
+
     def test_backend_notes_omit_default_image_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             config = ServerConfig.from_base_path(Path(tmp))
@@ -575,7 +657,7 @@ class CodeRunnerTests(unittest.TestCase):
             self.assertIsNotNone(runner.last_container_command)
             assert runner.last_container_command is not None
             self.assertIn("python_gui_snapshot.sh", " ".join(runner.last_container_command))
-            self.assertIn("GUI-Snapshot-Modus aktiv", "\n".join(result["notes"]))
+            self.assertEqual(result["notes"], [])
 
     def test_containerized_python_mainloop_without_direct_import_uses_gui_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

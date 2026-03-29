@@ -247,7 +247,7 @@ class CodeRunner:
         if language == "html":
             source_path = self._prepare_source_file(project, payload, language, run_root)
             preview_target = self._prepare_html_preview(project, payload, source_path, project_root)
-            return RunResult(
+            result = RunResult(
                 run_id=run_id,
                 language=language,
                 command=["preview"],
@@ -255,13 +255,14 @@ class CodeRunner:
                 preview_path=preview_target,
                 tool_session=tool_session,
                 notes=self._backend_notes(session.permissions, backend),
-            ).to_dict()
+            )
+            return self._finalize_run_result(session, result)
 
         execution_root, source_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
         if language == "python":
             syntax_error = self._python_syntax_error(source_path, display_path=Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix())
             if syntax_error:
-                return RunResult(
+                result = RunResult(
                     run_id=run_id,
                     language=language,
                     command=["python", "-m", "py_compile", Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix()],
@@ -269,7 +270,8 @@ class CodeRunner:
                     returncode=1,
                     notes=self._backend_notes(session.permissions, backend),
                     tool_session=tool_session,
-                ).to_dict()
+                )
+                return self._finalize_run_result(session, result)
         stdin_text = str(payload.get("stdin") or "")
         env = self._execution_env(execution_root, web_access=bool(session.permissions.get("web.access", False)))
         lease = self.scheduler.acquire(session.username, self._session_role(session))
@@ -292,10 +294,7 @@ class CodeRunner:
                 raise ValueError(f"unsupported language: {language}")
         finally:
             self.scheduler.release(lease)
-        notes = list(result.notes or [])
-        notes.extend(self._scheduler_notes(lease))
-        result.notes = notes
-        return result.to_dict()
+        return self._finalize_run_result(session, result, lease)
 
     def run_bundle(self, session: Any, payload: dict[str, Any]) -> dict[str, Any]:
         run_id = uuid.uuid4().hex[:10]
@@ -319,7 +318,7 @@ class CodeRunner:
         if language == "python":
             syntax_error = self._python_syntax_error(source_path, display_path=source_path.relative_to(source_root).as_posix())
             if syntax_error:
-                return RunResult(
+                result = RunResult(
                     run_id=run_id,
                     language=language,
                     command=["python", "-m", "py_compile", source_path.relative_to(source_root).as_posix()],
@@ -327,10 +326,11 @@ class CodeRunner:
                     returncode=1,
                     notes=self._backend_notes(session.permissions, backend),
                     tool_session=tool_session,
-                ).to_dict()
+                )
+                return self._finalize_run_result(session, result)
 
         if language == "html":
-            return RunResult(
+            result = RunResult(
                 run_id=run_id,
                 language=language,
                 command=["preview"],
@@ -338,7 +338,8 @@ class CodeRunner:
                 preview_path="",
                 notes=self._backend_notes(session.permissions, backend),
                 tool_session=tool_session,
-            ).to_dict()
+            )
+            return self._finalize_run_result(session, result)
 
         stdin_text = str(payload.get("stdin") or "")
         env = self._execution_env(source_root, web_access=bool(session.permissions.get("web.access", False)))
@@ -362,10 +363,7 @@ class CodeRunner:
                 raise ValueError(f"unsupported language: {language}")
         finally:
             self.scheduler.release(lease)
-        notes = list(result.notes or [])
-        notes.extend(self._scheduler_notes(lease))
-        result.notes = notes
-        return result.to_dict()
+        return self._finalize_run_result(session, result, lease)
 
     def prepare_live_run(self, session: Any, project: dict[str, Any], payload: dict[str, Any]) -> LivePreparedRun:
         run_id = uuid.uuid4().hex[:10]
@@ -392,7 +390,7 @@ class CodeRunner:
             notes = self._backend_notes(session.permissions, backend)
             preview_target = self._prepare_html_preview(project, payload, source_path, project_root)
             env = self._execution_env(project_root, web_access=bool(session.permissions.get("web.access", False)))
-            return LivePreparedRun(
+            prepared = LivePreparedRun(
                 session_id=session_id,
                 run_id=run_id,
                 language=language,
@@ -405,12 +403,13 @@ class CodeRunner:
                 prelude_stdout="HTML-Vorschau aktualisiert.\n",
                 failed_returncode=0,
             )
+            return self._finalize_prepared_run(session, prepared)
 
         execution_root, source_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
         if language == "python":
             syntax_error = self._python_syntax_error(source_path, display_path=Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix())
             if syntax_error:
-                return LivePreparedRun(
+                prepared = LivePreparedRun(
                     session_id=session_id,
                     run_id=run_id,
                     language=language,
@@ -422,9 +421,9 @@ class CodeRunner:
                     prelude_stderr=syntax_error,
                     failed_returncode=1,
                 )
+                return self._finalize_prepared_run(session, prepared)
         env = self._execution_env(execution_root, web_access=bool(session.permissions.get("web.access", False)))
         lease = self.scheduler.acquire(session.username, self._session_role(session))
-        notes = self._backend_notes(session.permissions, backend) + self._scheduler_notes(lease)
         try:
             if backend == "container":
                 prepared = self._prepare_live_containerized(session_id, run_id, language, source_path, run_root, execution_root, env, tool_session, session.permissions, payload)
@@ -433,9 +432,7 @@ class CodeRunner:
         except Exception:
             self.scheduler.release(lease)
             raise
-        prepared.notes = list(prepared.notes or []) + self._scheduler_notes(lease)
-        prepared.scheduler_lease = lease
-        return prepared
+        return self._finalize_prepared_run(session, prepared, lease)
 
     def _resolve_language(self, project: dict[str, Any], payload: dict[str, Any]) -> str:
         explicit = str(payload.get("language") or "").strip().lower()
@@ -1487,6 +1484,28 @@ class CodeRunner:
     @staticmethod
     def _session_role(session: Any) -> str:
         return str(getattr(session, "role", "student") or "student")
+
+    def _session_can_view_operational_notes(self, session: Any) -> bool:
+        role = self._session_role(session)
+        return role in {"teacher", "admin"} or bool(getattr(session, "is_teacher", False))
+
+    def _visible_notes_for_session(self, session: Any, notes: list[str] | None) -> list[str]:
+        if not self._session_can_view_operational_notes(session):
+            return []
+        return list(notes or [])
+
+    def _finalize_run_result(self, session: Any, result: RunResult, lease: SchedulerLease | None = None) -> dict[str, Any]:
+        notes = list(result.notes or [])
+        notes.extend(self._scheduler_notes(lease))
+        result.notes = self._visible_notes_for_session(session, notes)
+        return result.to_dict()
+
+    def _finalize_prepared_run(self, session: Any, prepared: LivePreparedRun, lease: SchedulerLease | None = None) -> LivePreparedRun:
+        notes = list(prepared.notes or [])
+        notes.extend(self._scheduler_notes(lease))
+        prepared.notes = self._visible_notes_for_session(session, notes)
+        prepared.scheduler_lease = lease
+        return prepared
 
     def _container_runtime(self, payload: dict[str, Any]) -> str:
         explicit = str(payload.get("container_runtime") or "").strip().lower()
