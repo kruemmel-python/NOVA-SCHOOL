@@ -234,6 +234,7 @@ class RemoteWorkerDispatchService:
             return None
         payload = dict(job)
         payload["artifact_url"] = f"{self.server_base_url()}/api/worker/jobs/{job['job_id']}/artifact"
+        payload["artifact_sha256"] = self._artifact_sha256(str(job["job_id"]))
         payload["issued_at"] = int(time.time())
         payload["job_signature"] = self.sign_job_payload(worker_id, payload)
         return payload
@@ -392,6 +393,7 @@ class RemoteWorkerDispatchService:
             "status": payload.get("status"),
             "payload": payload.get("payload"),
             "artifact_url": payload.get("artifact_url"),
+            "artifact_sha256": payload.get("artifact_sha256"),
             "issued_at": payload.get("issued_at"),
         }
 
@@ -408,6 +410,17 @@ class RemoteWorkerDispatchService:
                 if any(part in _IGNORED_ARTIFACT_NAMES for part in path.relative_to(runtime_root).parts):
                     continue
                 archive.write(path, arcname=path.relative_to(runtime_root).as_posix())
+
+    def _artifact_sha256(self, job_id: str) -> str:
+        target = self.resolve_job_artifact(job_id)
+        digest = hashlib.sha256()
+        with target.open("rb") as handle:
+            while True:
+                chunk = handle.read(1024 * 1024)
+                if not chunk:
+                    break
+                digest.update(chunk)
+        return digest.hexdigest()
 
     def _job_root(self, job_id: str) -> Path:
         return self.dispatch_root / "jobs" / job_id

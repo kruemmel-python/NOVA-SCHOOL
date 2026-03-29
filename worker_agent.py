@@ -18,6 +18,7 @@ import zipfile
 from pathlib import Path
 from typing import Any
 
+from .archive_utils import extract_zip_safely
 from .container_seccomp import resolve_seccomp_profile_option
 from .worker_dispatch import RemoteWorkerDispatchService
 
@@ -89,8 +90,9 @@ class WorkerAgent:
             shutil.rmtree(runtime_root.parent, ignore_errors=True)
         runtime_root.parent.mkdir(parents=True, exist_ok=True)
         self._download(str(job["artifact_url"]), artifact_path)
+        self._verify_artifact_integrity(job, artifact_path)
         with zipfile.ZipFile(artifact_path) as archive:
-            archive.extractall(runtime_root)
+            extract_zip_safely(archive, runtime_root)
 
         env = dict(os.environ)
         env.update({str(key): str(value) for key, value in dict(payload.get("env") or {}).items()})
@@ -215,6 +217,22 @@ class WorkerAgent:
         )
         with urllib.request.urlopen(request, timeout=60) as response:
             target.write_bytes(response.read())
+
+    @staticmethod
+    def _verify_artifact_integrity(job: dict[str, Any], artifact_path: Path) -> None:
+        expected = str(job.get("artifact_sha256") or "").strip().lower()
+        if not expected:
+            return
+        digest = hashlib.sha256()
+        with artifact_path.open("rb") as handle:
+            while True:
+                chunk = handle.read(1024 * 1024)
+                if not chunk:
+                    break
+                digest.update(chunk)
+        actual = digest.hexdigest().lower()
+        if not hmac.compare_digest(actual, expected):
+            raise RuntimeError("Dispatch-Artefakt ist beschaedigt oder wurde auf dem Transportweg veraendert.")
 
     def _verify_job(self, job: dict[str, Any]) -> None:
         signature = str(job.get("job_signature") or "")

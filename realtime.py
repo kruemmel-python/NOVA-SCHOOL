@@ -21,6 +21,7 @@ from .pty_host import PtyProcess, create_pty_process, normalize_terminal_size
 
 
 WS_MAGIC = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+MAX_CLIENT_WS_FRAME_BYTES = 4 * 1024 * 1024
 
 
 class WebSocketConnection:
@@ -81,13 +82,20 @@ class WebSocketConnection:
     def _recv_frame(self) -> tuple[int, bytes]:
         header = self._recv_exact(2)
         first, second = header[0], header[1]
+        fin = bool(first & 0x80)
         opcode = first & 0x0F
         masked = bool(second & 0x80)
+        if not fin:
+            raise ConnectionError("Fragmentierte WebSocket-Frames werden nicht unterstuetzt.")
+        if not masked:
+            raise ConnectionError("Client-WebSocket-Frames muessen maskiert sein.")
         payload_len = second & 0x7F
         if payload_len == 126:
             payload_len = struct.unpack("!H", self._recv_exact(2))[0]
         elif payload_len == 127:
             payload_len = struct.unpack("!Q", self._recv_exact(8))[0]
+        if payload_len > MAX_CLIENT_WS_FRAME_BYTES:
+            raise ConnectionError(f"WebSocket-Frame ueberschreitet das erlaubte Limit von {MAX_CLIENT_WS_FRAME_BYTES} Bytes.")
         mask = self._recv_exact(4) if masked else b""
         payload = self._recv_exact(payload_len) if payload_len else b""
         if masked:

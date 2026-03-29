@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.5 - 2026-03-29
+
+### Changed
+
+- worker ZIP artifacts are now extracted through a safe path validator that blocks traversal and symlink entries
+- downloaded worker artifacts are now verified against a signed SHA-256 before extraction
+- downloaded llama.cpp runtime archives now use the same safe ZIP extraction path
+- realtime WebSocket handling now rejects oversized, unmasked, and fragmented client frames
+
+### Added
+
+- shared archive hardening helpers in `archive_utils.py`
+- regression coverage for safe ZIP extraction, worker artifact integrity checks, and WebSocket frame limits
+
 ## v0.1.4 - 2026-03-29
 
 ### Changed

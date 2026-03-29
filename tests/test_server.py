@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 from nova_school_server.server import NovaSchoolRequestHandler
 
@@ -53,6 +55,12 @@ class RequestHandlerTlsTests(unittest.TestCase):
         )
         url = handler._certificate_verification_url("course:student")
         self.assertTrue(url.startswith("https://nova.schule.local/certificate/verify?certificate_id="))
+
+    def test_resolve_relative_file_rejects_traversal(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            with self.assertRaises(PermissionError):
+                NovaSchoolRequestHandler._resolve_relative_file(root, "../secret.txt")
 
 
 if __name__ == "__main__":

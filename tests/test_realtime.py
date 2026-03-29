@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import struct
 import tempfile
 import threading
 import time
@@ -11,7 +12,7 @@ from pathlib import Path
 from nova_school_server.code_runner import CodeRunner
 from nova_school_server.config import ServerConfig
 from nova_school_server.database import SchoolRepository
-from nova_school_server.realtime import LiveRunManager, RealtimeClient, WebSocketConnection
+from nova_school_server.realtime import MAX_CLIENT_WS_FRAME_BYTES, LiveRunManager, RealtimeClient, WebSocketConnection
 from nova_school_server.workspace import WorkspaceManager
 
 
@@ -100,6 +101,21 @@ class RealtimeTests(unittest.TestCase):
 
     def test_websocket_timeout_is_reported_as_connection_close(self) -> None:
         fake_socket = _FakeSocket(raise_timeout=True)
+        connection = WebSocketConnection(fake_socket)
+        with self.assertRaises(ConnectionError):
+            connection.recv_text()
+        connection.close()
+
+    def test_websocket_rejects_unmasked_client_frames(self) -> None:
+        fake_socket = _FakeSocket([b"\x81\x02"])
+        connection = WebSocketConnection(fake_socket)
+        with self.assertRaises(ConnectionError):
+            connection.recv_text()
+        connection.close()
+
+    def test_websocket_rejects_oversized_frames_before_payload_read(self) -> None:
+        frame_len = MAX_CLIENT_WS_FRAME_BYTES + 1
+        fake_socket = _FakeSocket([b"\x81\xff", struct.pack("!Q", frame_len)])
         connection = WebSocketConnection(fake_socket)
         with self.assertRaises(ConnectionError):
             connection.recv_text()

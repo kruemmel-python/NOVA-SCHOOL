@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -43,6 +44,20 @@ class WorkerAgentTests(unittest.TestCase):
             self.assertNotIn("/workspace-src", " ".join(command))
             self.assertNotIn("cp -a", " ".join(command))
             self.assertTrue((runtime_root.parent / "container-workspace" / "main.py").exists())
+
+    def test_verify_artifact_integrity_rejects_hash_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            artifact = Path(tmp) / "payload.zip"
+            artifact.write_bytes(b"zip")
+            with self.assertRaises(RuntimeError):
+                WorkerAgent._verify_artifact_integrity({"artifact_sha256": "0" * 64}, artifact)
+
+    def test_verify_artifact_integrity_accepts_matching_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            artifact = Path(tmp) / "payload.zip"
+            artifact.write_bytes(b"zip")
+            digest = hashlib.sha256(b"zip").hexdigest()
+            WorkerAgent._verify_artifact_integrity({"artifact_sha256": digest}, artifact)
 
 
 if __name__ == "__main__":

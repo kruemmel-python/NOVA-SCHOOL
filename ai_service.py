@@ -15,6 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
+from .archive_utils import extract_zip_safely
 from .database import SchoolRepository
 
 
@@ -342,7 +343,7 @@ class LlamaCppService:
                 shutil.copyfileobj(response, target)
 
         with zipfile.ZipFile(archive_path) as archive:
-            archive.extractall(extract_root)
+            extract_zip_safely(archive, extract_root)
         binary_path = next((path for path in extract_root.rglob("llama-server.exe") if path.is_file()), None)
         if not binary_path:
             raise RuntimeError("Die heruntergeladene llama.cpp-Binary enthaelt kein llama-server.exe.")
