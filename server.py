@@ -124,7 +124,7 @@ class NovaSchoolApplication:
         self.repository = SchoolRepository(config.database_path)
         self.auth = AuthService(self.repository, self.security, config.tenant_id, config.session_ttl_seconds)
         self.docs = DocumentationCatalog(config.docs_path)
-        self.wiki_manual = WikiManualService(config.base_path / "wiki")
+        self.wiki_manual = WikiManualService(config.static_path.parent / "wiki")
         self.workspace = WorkspaceManager(config)
         self.user_admin = UserAdministrationService(self.repository, self.workspace, config)
         self.runner = CodeRunner(config, self.tool_sandbox, self.workspace, self.repository)

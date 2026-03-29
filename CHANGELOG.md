@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.11 - 2026-03-29
+
+### Added
+
+- seeded built-in manuals for `student-user` and `teacher-admin` so fresh installs always have a usable web handbook
+- tracked default handbook markdown files under `wiki/Schüler_User/` and `wiki/Lehrer_Admin/`
+
+### Changed
+
+- the manual service now resolves the handbook root from the package directory instead of the outer launch base path, fixing broken `/manual` pages on standard installs
+- distribution packages now include the handbook content from `wiki/`, so release installs no longer start with an empty manual area
+
 ## v0.1.10 - 2026-03-29
 
 ### Added

@@ -18,6 +18,19 @@ class _Session:
 
 
 class WikiManualTests(unittest.TestCase):
+    def test_service_seeds_manuals_when_scope_folders_are_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            wiki_root = Path(tmp)
+            service = WikiManualService(wiki_root)
+
+            student_docs = service.documents("student-user")
+            teacher_docs = service.documents("teacher-admin")
+
+            self.assertTrue(student_docs)
+            self.assertTrue(teacher_docs)
+            self.assertEqual(student_docs[0]["slug"], "README")
+            self.assertEqual(teacher_docs[0]["slug"], "README")
+
     def test_student_gets_student_manual_and_markdown_is_rendered(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             wiki_root = Path(tmp)

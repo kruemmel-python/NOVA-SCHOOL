@@ -20,10 +20,168 @@ SCOPE_CONFIG: dict[str, dict[str, str]] = {
     },
 }
 
+SEED_MANUALS: dict[str, dict[str, str]] = {
+    "student-user": {
+        "README.md": """# Schüler-Handbuch
+
+Willkommen bei **Nova School**. Dieses Handbuch zeigt dir die wichtigsten Wege fuer deinen Schulalltag.
+
+## Dein Start
+
+- Melde dich mit deinem Schulkonto an.
+- Oeffne dein Projekt oder lege ein neues Projekt an.
+- Nutze den Editor fuer Code, Text und Notizen.
+- Fuehre Programme nur innerhalb der vorgesehenen Projektumgebung aus.
+
+## Bereiche im Alltag
+
+| Bereich | Wofuer du ihn nutzt |
+| --- | --- |
+| **Projekte** | Eigene Aufgaben, Uebungen und Abgaben |
+| **Notebook-Zellen** | Kleine Tests, Zwischenloesungen und Experimente |
+| **Chat** | Rueckfragen an Gruppe, Lehrkraft oder Projektraum |
+| **KI-Hilfe** | Hinweise, Erklaerungen und Denkanstoesse |
+
+## Datenschutz und Aufsicht
+
+- Nachrichten in Schul-, Gruppen- und Projektraeumen werden serverseitig gespeichert.
+- Auch Verlaeufe mit Mentor und lokaler KI-Hilfe koennen gespeichert werden.
+- **Lehrkraefte und Administration** duerfen diese Inhalte im Rahmen von Unterrichtsaufsicht, Support und Datenschutzanfragen einsehen.
+
+## Gute Arbeitsweise
+
+1. Lies die Aufgabe zuerst komplett.
+2. Arbeite in kleinen, pruefbaren Schritten.
+3. Speichere regelmaessig.
+4. Nutze Fehlermeldungen als Hinweis auf die genaue Stelle im Code.
+
+Siehe auch [01_Editor_und_Projekte](./01_Editor_und_Projekte.md) und [02_Chat_KI_Abgabe](./02_Chat_KI_Abgabe.md).
+""",
+        "01_Editor_und_Projekte.md": """# Editor und Projekte
+
+## Projekte oeffnen
+
+- In der linken Spalte siehst du deine persoenlichen und freigegebenen Projekte.
+- Ein Projekt kann dir selbst, deiner Gruppe oder einer Lehrkraft gehoeren.
+
+## Dateien bearbeiten
+
+- Oeffne eine Datei ueber die Dateiliste.
+- Aendere den Inhalt im Editor.
+- Speichere ueber den Button **Speichern**.
+
+## Code ausfuehren
+
+```python
+print("Hallo Nova School")
+```
+
+- Starte Programme nur ueber die vorgesehenen Run-Buttons.
+- Wenn dein Programm Eingaben braucht, nutze das Eingabefeld unter dem Editor.
+- Lies die Ausgabe von oben nach unten und suche die erste relevante Fehlermeldung in deiner Datei.
+""",
+        "02_Chat_KI_Abgabe.md": """# Chat, KI-Hilfe und Abgabe
+
+## Chat
+
+- Nutze den Chat fuer fachliche Rueckfragen und Zusammenarbeit im erlaubten Rahmen.
+- Bleibe bei Unterrichtsinhalten und achte auf respektvolle Sprache.
+
+## KI-Hilfe
+
+- Die KI soll dir beim **Verstehen** helfen, nicht das Denken ersetzen.
+- Bitte um Erklaerungen, Beispiele oder naechste Schritte.
+- Uebernimm Antworten nie blind, sondern pruefe sie im eigenen Projekt.
+
+## Abgaben
+
+1. Pruefe, ob dein Projekt laeuft.
+2. Vergleiche deine Loesung mit den Aufgabenanforderungen.
+3. Reiche erst ein, wenn dein Stand nachvollziehbar und sauber gespeichert ist.
+""",
+    },
+    "teacher-admin": {
+        "README.md": """# Handbuch fuer Lehrkraft und Administration
+
+Dieses Handbuch beschreibt die wichtigsten Arbeitsablaeufe fuer Unterricht, Betreuung und Systemaufsicht.
+
+## Lehrkraft
+
+- Projekte anlegen und fuer Gruppen strukturieren
+- Material-Studio fuer Unterrichtsmaterial nutzen
+- Mentor- und KI-Nutzung im Unterricht begleiten
+- Chat, Reviews und Lernstaende moderieren
+
+## Administration
+
+- Benutzer, Gruppen und Rechte verwalten
+- Retention, Export und Loeschanfragen ausfuehren
+- Servereinstellungen, lokale KI und Runtime ueberwachen
+- Curriculum-Bundles pruefen und aktivieren
+
+Siehe auch [01_Unterrichtsalltag](./01_Unterrichtsalltag.md) und [02_Administration_und_Datenschutz](./02_Administration_und_Datenschutz.md).
+""",
+        "01_Unterrichtsalltag.md": """# Unterrichtsalltag
+
+## Projekte und Gruppen
+
+- Lege Projekte fuer einzelne Lernende oder Gruppen an.
+- Nutze klare Namen, Beschreibungen und passende Vorlagen.
+
+## Material-Studio
+
+- Formuliere einen klaren Lehrkraft-Prompt.
+- Waehle Profil und Lernsprache passend zum Modul.
+- Pruefe das Ergebnis vor einer Freigabe fuer die Lerngruppe.
+
+## Mentoring und Chat
+
+- Mentor und KI-Hilfe sollen Hilfe zur Selbsthilfe geben.
+- Chatverlaeufe koennen im Rahmen der Unterrichtsaufsicht eingesehen werden.
+- Moderation, Stummschaltung und Review-Zuweisung bleiben Lehrkraft-/Admin-Aufgaben.
+""",
+        "02_Administration_und_Datenschutz.md": """# Administration und Datenschutz
+
+## Datenschutzrechte
+
+- Admins koennen strukturierte JSON-Exporte fuer Nutzer ausloesen.
+- Hard-Delete und Retention sind nur fuer administrative Rollen vorgesehen.
+- Chat-, KI- und Audit-Daten muessen nach dem Schulkonzept behandelt werden.
+
+## Betrieb
+
+| Bereich | Mindestmassnahme |
+| --- | --- |
+| **TLS** | Reverse Proxy mit HTTPS |
+| **Runner** | Isolierte Container-Laeufe |
+| **KI** | Lokale Modelle, keine Cloud-Prompts |
+| **Backups** | Regelmaessige Sicherung von `data/` und Konfiguration |
+
+## Sicherheit
+
+- Produktiv nur mit HTTPS und gesicherter Netzumgebung betreiben.
+- Rechte moeglichst rollenbasiert und sparsam vergeben.
+- Aendere Demo-Zugangsdaten vor produktivem Einsatz.
+""",
+    },
+}
+
 
 class WikiManualService:
     def __init__(self, wiki_root: Path) -> None:
         self.wiki_root = wiki_root
+        self.ensure_seed_manuals()
+
+    def ensure_seed_manuals(self) -> None:
+        self.wiki_root.mkdir(parents=True, exist_ok=True)
+        for scope, config in SCOPE_CONFIG.items():
+            folder = self.wiki_root / config["folder"]
+            folder.mkdir(parents=True, exist_ok=True)
+            existing_docs = list(folder.glob("*.md"))
+            if existing_docs:
+                continue
+            for filename, content in SEED_MANUALS.get(scope, {}).items():
+                (folder / filename).write_text(content, encoding="utf-8")
 
     def allowed_scopes(self, session: Any) -> list[str]:
         return ["teacher-admin", "student-user"] if bool(getattr(session, "is_teacher", False)) else ["student-user"]
