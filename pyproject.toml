@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nova-school-server"
+version = "0.1.0"
+description = "Local school server for programming classes, isolated code execution, and local AI-assisted teaching workflows."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+  { name = "kruemmel-python" }
+]
+dependencies = [
+  "Pillow>=10.0.0"
+]
+
+[tool.nova-school]
+package_layout = "flat-package-root"
+entry_script = "nova_launch.py"

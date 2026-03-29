@@ -1,0 +1,2 @@
+# Core runtime dependency for certificate rendering and image post-processing.
+Pillow>=10.0.0
