@@ -41,9 +41,10 @@ PROJECT_TEMPLATES: dict[str, dict[str, object]] = {
     "rust": {
         "label": "Rust Starter",
         "runtime": "rust",
-        "main_file": "main.rs",
+        "main_file": "src/main.rs",
         "files": {
-            "main.rs": """fn main() {\n    let values = [5, 7, 9];\n    let sum: i32 = values.iter().sum();\n    println!(\"Rust Summe: {}\", sum);\n}\n""",
+            "Cargo.toml": """[package]\nname = \"nova-school-rust-starter\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n[dependencies]\n""",
+            "src/main.rs": """fn main() {\n    let values = [5, 7, 9];\n    let sum: i32 = values.iter().sum();\n    println!(\"Rust Summe: {}\", sum);\n}\n""",
         },
         "notebook": [],
     },

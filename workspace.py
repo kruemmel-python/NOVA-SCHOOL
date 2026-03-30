@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -87,6 +88,68 @@ class WorkspaceManager:
         target.write_text(content, encoding="utf-8")
         return {"path": relative_path, "absolute_path": str(target), "size": len(content.encode("utf-8"))}
 
+    def create_directory(self, project: dict[str, Any], relative_path: str) -> dict[str, Any]:
+        normalized_relative = self._normalize_relative_path(relative_path)
+        target = self.resolve_project_path(project, normalized_relative)
+        target.mkdir(parents=True, exist_ok=True)
+        return {"path": normalized_relative, "absolute_path": str(target), "kind": "directory"}
+
+    def delete_file(self, project: dict[str, Any], relative_path: str) -> dict[str, Any]:
+        normalized_relative = str(relative_path or "").replace("\\", "/").strip("/")
+        normalized_main = str(project.get("main_file") or "").replace("\\", "/").strip("/")
+        if not normalized_relative:
+            raise ValueError("Dateipfad fehlt.")
+        if normalized_relative == normalized_main:
+            raise ValueError("Die Hauptdatei des Projekts kann nicht einzeln geloescht werden. Loesche stattdessen das ganze Projekt oder waehle eine andere Datei.")
+        target = self.resolve_project_path(project, normalized_relative)
+        if not target.exists() or not target.is_file():
+            raise FileNotFoundError(relative_path)
+        target.unlink()
+        self._prune_empty_parent_dirs(target.parent, self.project_root(project))
+        return {"path": normalized_relative, "absolute_path": str(target)}
+
+    def delete_entry(self, project: dict[str, Any], relative_path: str) -> dict[str, Any]:
+        normalized_relative = self._normalize_relative_path(relative_path)
+        if self._path_matches_or_contains(normalized_relative, self._normalize_relative_path(project.get("main_file") or "")):
+            raise ValueError("Der Hauptdatei-Pfad des Projekts kann nicht geloescht werden. Waehle einen anderen Eintrag.")
+        target = self.resolve_project_path(project, normalized_relative)
+        if not target.exists():
+            raise FileNotFoundError(relative_path)
+        if target.is_dir():
+            shutil.rmtree(target)
+            self._prune_empty_parent_dirs(target.parent, self.project_root(project))
+            return {"path": normalized_relative, "absolute_path": str(target), "kind": "directory"}
+        target.unlink()
+        self._prune_empty_parent_dirs(target.parent, self.project_root(project))
+        return {"path": normalized_relative, "absolute_path": str(target), "kind": "file"}
+
+    def rename_entry(self, project: dict[str, Any], relative_path: str, new_relative_path: str) -> dict[str, Any]:
+        old_path = self._normalize_relative_path(relative_path)
+        new_path = self._normalize_relative_path(new_relative_path)
+        if old_path == new_path:
+            raise ValueError("Alter und neuer Pfad sind identisch.")
+        source = self.resolve_project_path(project, old_path)
+        if not source.exists():
+            raise FileNotFoundError(relative_path)
+        target = self.resolve_project_path(project, new_path)
+        if target.exists():
+            raise ValueError("Am Zielpfad existiert bereits ein Eintrag.")
+        if source.is_dir() and self._path_matches_or_contains(old_path, new_path):
+            raise ValueError("Ein Ordner kann nicht in sich selbst verschoben werden.")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        source.rename(target)
+        self._prune_empty_parent_dirs(source.parent, self.project_root(project))
+        current_main = self._normalize_relative_path(project.get("main_file") or "")
+        updated_main = self._renamed_path(current_main, old_path, new_path) if current_main and self._path_matches_or_contains(old_path, current_main) else current_main
+        return {
+            "path": old_path,
+            "new_path": new_path,
+            "absolute_path": str(source),
+            "new_absolute_path": str(target),
+            "kind": "directory" if target.is_dir() else "file",
+            "main_file": updated_main,
+        }
+
     def load_notebook(self, project: dict[str, Any]) -> list[dict[str, Any]]:
         notebook_path = self._notebook_path(project)
         if not notebook_path.exists():
@@ -110,8 +173,40 @@ class WorkspaceManager:
             raise ValueError(f"illegal project path: {relative_path}")
         return target
 
+    @staticmethod
+    def _normalize_relative_path(relative_path: str) -> str:
+        normalized = str(relative_path or "").replace("\\", "/").strip().strip("/")
+        if not normalized:
+            raise ValueError("Pfad fehlt.")
+        return normalized
+
+    @staticmethod
+    def _path_matches_or_contains(prefix: str, candidate: str) -> bool:
+        normalized_prefix = str(prefix or "").strip("/")
+        normalized_candidate = str(candidate or "").strip("/")
+        if not normalized_prefix or not normalized_candidate:
+            return normalized_prefix == normalized_candidate and bool(normalized_prefix)
+        return normalized_candidate == normalized_prefix or normalized_candidate.startswith(f"{normalized_prefix}/")
+
+    @staticmethod
+    def _renamed_path(candidate: str, old_path: str, new_path: str) -> str:
+        if candidate == old_path:
+            return new_path
+        return f"{new_path}{candidate[len(old_path):]}" if candidate.startswith(f"{old_path}/") else candidate
+
     def _notebook_path(self, project: dict[str, Any]) -> Path:
         return self.project_root(project) / ".nova-school" / "notebook.json"
+
+    @staticmethod
+    def _prune_empty_parent_dirs(start: Path, stop_root: Path) -> None:
+        current = start.resolve(strict=False)
+        stop = stop_root.resolve(strict=False)
+        while current != stop and current.is_relative_to(stop):
+            try:
+                current.rmdir()
+            except OSError:
+                break
+            current = current.parent
 
     @staticmethod
     def _normalize_legacy_notebook_cell(cell: dict[str, Any]) -> dict[str, Any]:

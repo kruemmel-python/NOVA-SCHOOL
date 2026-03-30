@@ -43,6 +43,7 @@ from .reference_library import ReferenceLibraryService
 from .seed import bootstrap_application
 from .templates import PROJECT_TEMPLATES
 from .user_admin import UserAdministrationService
+from .virtual_lecturer import VirtualLecturerService
 from .wiki_manual import WikiManualService
 from .workspace import WorkspaceManager, slugify
 
@@ -138,6 +139,7 @@ class NovaSchoolApplication:
         )
         self.collaboration = NotebookCollaborationService(self.repository, self.workspace)
         self.mentor = SocraticMentorService(self.repository, curriculum_service=self.curriculum)
+        self.lecturer = VirtualLecturerService(self.repository, curriculum_service=self.curriculum)
         self.playground = DistributedPlaygroundService(self.repository, self.workspace, self.security, config, runner=self.runner)
         self.worker_dispatch = self.playground.dispatch
         self.reviews = ReviewService(self.repository, self.security, self.workspace, config.tenant_id, config.data_path / "review_submissions")
@@ -244,6 +246,13 @@ class NovaSchoolApplication:
         if project["owner_type"] == "group":
             return project["owner_key"] in session.group_ids and session.permissions.get("workspace.group", False)
         return False
+
+    def can_manage_project_data(self, session: SessionContext, project: dict[str, Any]) -> bool:
+        if session.is_teacher:
+            return True
+        if project["owner_type"] == "user":
+            return project["owner_key"] == session.username
+        return project["created_by"] == session.username
 
     def can_access_room(self, session: SessionContext, room_key: str) -> bool:
         if not session.permissions.get("chat.use", False) and not session.is_teacher:
@@ -441,6 +450,9 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
 
     def do_PUT(self) -> None:
         self._dispatch("PUT")
+
+    def do_DELETE(self) -> None:
+        self._dispatch("DELETE")
 
     def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
         return
@@ -640,8 +652,41 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
             if method == "GET" and len(segments) == 3:
                 self._send_json(HTTPStatus.OK, self.application.project_payload(project))
                 return
+            if method == "DELETE" and len(segments) == 3:
+                if not self.application.can_manage_project_data(session, project):
+                    raise PermissionError("Dieses Projekt kann in der aktuellen Sitzung nicht geloescht werden.")
+                payload = self.application.user_admin.hard_delete_project(actor_username=session.username, project=project)
+                self._send_json(HTTPStatus.OK, payload)
+                return
             if method == "GET" and len(segments) == 4 and segments[3] == "tree":
                 self._send_json(HTTPStatus.OK, {"entries": self.application.workspace.list_tree(project)})
+                return
+            if method == "POST" and len(segments) == 4 and segments[3] == "directory":
+                self._require_permission(session, "files.write")
+                body = self._read_json_body()
+                relative_path = str(body.get("path") or "").strip()
+                if not relative_path:
+                    raise ValueError("Ordnerpfad fehlt.")
+                payload = self.application.workspace.create_directory(project, relative_path)
+                self.application.repository.add_audit(session.username, "directory.create", "project", project["project_id"], {"path": relative_path})
+                self._send_json(HTTPStatus.OK, payload)
+                return
+            if method == "GET" and len(segments) == 4 and segments[3] == "export":
+                bundle = self.application.user_admin.export_project_archive(actor_username=session.username, project=project)
+                self._send_bytes(
+                    HTTPStatus.OK,
+                    bundle["content"],
+                    content_type="application/zip",
+                    filename=bundle["filename"],
+                )
+                return
+            if method == "POST" and len(segments) == 4 and segments[3] == "archive":
+                if not self.application.can_manage_project_data(session, project):
+                    raise PermissionError("Dieses Projekt kann in der aktuellen Sitzung nicht archiviert werden.")
+                self._send_json(
+                    HTTPStatus.OK,
+                    self.application.user_admin.archive_project(actor_username=session.username, project=project),
+                )
                 return
             if len(segments) == 4 and segments[3] == "file":
                 if method == "GET":
@@ -660,6 +705,59 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                     self.application.repository.add_audit(session.username, "file.write", "project", project["project_id"], {"path": relative_path})
                     self._send_json(HTTPStatus.OK, payload)
                     return
+                if method == "DELETE":
+                    self._require_permission(session, "files.write")
+                    query = parse_qs(parsed.query)
+                    relative_path = str(query.get("path", [""])[0] or "")
+                    if not relative_path:
+                        raise ValueError("Dateipfad fehlt.")
+                    payload = self.application.workspace.delete_file(project, relative_path)
+                    self.application.repository.add_audit(session.username, "file.delete", "project", project["project_id"], {"path": relative_path})
+                    self._send_json(HTTPStatus.OK, payload)
+                    return
+            if len(segments) == 4 and segments[3] == "entry":
+                if method == "DELETE":
+                    self._require_permission(session, "files.write")
+                    query = parse_qs(parsed.query)
+                    relative_path = str(query.get("path", [""])[0] or "").strip()
+                    if not relative_path:
+                        raise ValueError("Pfad fehlt.")
+                    payload = self.application.workspace.delete_entry(project, relative_path)
+                    self.application.repository.add_audit(
+                        session.username,
+                        "entry.delete",
+                        "project",
+                        project["project_id"],
+                        {"path": relative_path, "kind": payload.get("kind")},
+                    )
+                    self._send_json(HTTPStatus.OK, payload)
+                    return
+            if len(segments) == 5 and segments[3] == "entry" and segments[4] == "rename" and method == "POST":
+                self._require_permission(session, "files.write")
+                body = self._read_json_body()
+                relative_path = str(body.get("path") or "").strip()
+                new_relative_path = str(body.get("new_path") or "").strip()
+                if not relative_path or not new_relative_path:
+                    raise ValueError("Alter und neuer Pfad sind erforderlich.")
+                payload = self.application.workspace.rename_entry(project, relative_path, new_relative_path)
+                updated_project = project
+                if str(payload.get("main_file") or "") and str(payload.get("main_file")) != str(project.get("main_file") or ""):
+                    updated_project = self.application.repository.update_project_main_file(project["project_id"], str(payload["main_file"])) or project
+                self.application.repository.add_audit(
+                    session.username,
+                    "entry.rename",
+                    "project",
+                    project["project_id"],
+                    {
+                        "path": relative_path,
+                        "new_path": new_relative_path,
+                        "kind": payload.get("kind"),
+                        "main_file": payload.get("main_file"),
+                    },
+                )
+                payload["project"] = self.application.project_payload(updated_project)
+                self._send_json(HTTPStatus.OK, payload)
+                return
             if len(segments) == 4 and segments[3] == "notebook":
                 if method == "GET":
                     self._send_json(HTTPStatus.OK, {"cells": self.application.workspace.load_notebook(project)})
@@ -748,6 +846,68 @@ class NovaSchoolRequestHandler(BaseHTTPRequestHandler):
                         prompt=prompt,
                         reply=reply_text,
                         model=model_name or None,
+                    ),
+                )
+                return
+            if len(segments) == 5 and segments[3] == "lecturer" and segments[4] == "session" and method == "GET":
+                self._require_permission(session, "mentor.use")
+                self._require_permission(session, "ai.use")
+                self._require_permission(session, "curriculum.use")
+                self._send_json(
+                    HTTPStatus.OK,
+                    {
+                        "session": self.application.lecturer.session(session, project),
+                        "thread": self.application.lecturer.thread(session, project),
+                    },
+                )
+                return
+            if len(segments) == 5 and segments[3] == "lecturer" and segments[4] == "start" and method == "POST":
+                self._require_permission(session, "mentor.use")
+                self._require_permission(session, "ai.use")
+                self._require_permission(session, "curriculum.use")
+                body = self._read_json_body()
+                payload = self.application.lecturer.start(
+                    session,
+                    project,
+                    course_id=str(body.get("course_id") or "").strip(),
+                    module_id=str(body.get("module_id") or "").strip(),
+                )
+                self._send_json(HTTPStatus.OK, payload)
+                return
+            if len(segments) == 5 and segments[3] == "lecturer" and segments[4] == "respond" and method == "POST":
+                self._require_permission(session, "mentor.use")
+                self._require_permission(session, "ai.use")
+                self._require_permission(session, "curriculum.use")
+                body = self._read_json_body()
+                prepared = self.application.lecturer.prepare(
+                    session,
+                    project,
+                    prompt=str(body.get("prompt") or "").strip(),
+                    code=str(body.get("code") or ""),
+                    path_hint=str(body.get("path") or ""),
+                    run_output=str(body.get("run_output") or ""),
+                    event_type=str(body.get("event_type") or "message"),
+                    run_returncode=body.get("run_returncode") if isinstance(body.get("run_returncode"), int) else None,
+                )
+                if prepared.get("mode") == "direct":
+                    reply_text = str(prepared.get("reply") or "")
+                    model_name = str(prepared.get("model") or "nova-lecturer-rules")
+                else:
+                    reply_text, model_name = self.application.ai.complete(
+                        prompt=prepared["prompt"],
+                        system_prompt=prepared["system_prompt"],
+                        generation_options={"max_tokens": min(self.application.ai.max_tokens, 960)},
+                        timeout_seconds=120.0,
+                    )
+                self._send_json(
+                    HTTPStatus.OK,
+                    self.application.lecturer.store_reply(
+                        session,
+                        project,
+                        prompt=str(prepared["resolved_prompt"] or ""),
+                        reply=reply_text,
+                        model=model_name or None,
+                        event_type=str(prepared["event_type"] or "message"),
                     ),
                 )
                 return

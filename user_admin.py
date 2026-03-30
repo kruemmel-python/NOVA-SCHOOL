@@ -1,16 +1,18 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import shutil
 import time
+import zipfile
 from pathlib import Path
 from typing import Any
 
 from .auth import hash_password
 from .config import ServerConfig
 from .database import SchoolRepository
-from .workspace import WorkspaceManager
+from .workspace import WorkspaceManager, slugify
 
 
 VALID_USER_ROLES: tuple[str, ...] = ("student", "teacher", "admin")
@@ -447,6 +449,148 @@ class UserAdministrationService:
         )
         return summary
 
+    def export_project_archive(self, *, actor_username: str, project: dict[str, Any]) -> dict[str, Any]:
+        bundle = self._build_project_archive_bundle(project, archive_kind="export", actor_username=actor_username)
+        self.repository.add_audit(
+            actor_username,
+            "project.export",
+            "project",
+            str(project["project_id"]),
+            {
+                "filename": bundle["filename"],
+                "size_bytes": bundle["size_bytes"],
+                "file_count": bundle["file_count"],
+            },
+        )
+        return bundle
+
+    def archive_project(self, *, actor_username: str, project: dict[str, Any]) -> dict[str, Any]:
+        if self.config is None:
+            raise RuntimeError("Archivierung ist ohne Server-Konfiguration nicht verfuegbar.")
+        bundle = self._build_project_archive_bundle(project, archive_kind="archive", actor_username=actor_username)
+        archive_root = self.config.data_path / "project_archives" / slugify(str(project["owner_type"])) / slugify(str(project["owner_key"]))
+        archive_root.mkdir(parents=True, exist_ok=True)
+        archive_path = archive_root / bundle["filename"]
+        archive_path.write_bytes(bundle["content"])
+        payload = {
+            "project_id": str(project["project_id"]),
+            "archive_name": bundle["filename"],
+            "archive_path": str(archive_path),
+            "size_bytes": bundle["size_bytes"],
+            "file_count": bundle["file_count"],
+            "stored_at": time.time(),
+        }
+        self.repository.add_audit(actor_username, "project.archive", "project", str(project["project_id"]), payload)
+        return payload
+
+    def hard_delete_project(self, *, actor_username: str, project: dict[str, Any]) -> dict[str, Any]:
+        project_id = str(project["project_id"])
+        project_root = self.workspace_manager.project_root(project) if self.workspace_manager is not None else None
+        review_snapshots = [
+            Path(snapshot_path).resolve(strict=False)
+            for item in self._rows_to_dicts_optional("review_submissions", "SELECT snapshot_path FROM review_submissions WHERE project_id=?", (project_id,))
+            for snapshot_path in [str(item.get("snapshot_path") or "").strip()]
+            if snapshot_path
+        ]
+        artifact_paths = [
+            self._artifact_fs_path(item)
+            for item in self._rows_to_dicts_optional("deployment_artifacts", "SELECT relative_path FROM deployment_artifacts WHERE project_id=?", (project_id,))
+        ]
+        summary = {
+            "deleted_project": project_id,
+            "project_name": str(project.get("name") or ""),
+            "counts": {},
+        }
+        with self.repository._lock, self.repository._conn:
+            counts = summary["counts"]
+            counts["review_assignments"] = self._execute_optional(
+                "review_assignments",
+                "DELETE FROM review_assignments WHERE submission_id IN (SELECT submission_id FROM review_submissions WHERE project_id=?)",
+                (project_id,),
+            )
+            counts["review_submissions"] = self._execute_optional(
+                "review_submissions",
+                "DELETE FROM review_submissions WHERE project_id=?",
+                (project_id,),
+            )
+            counts["deployment_artifacts"] = self._execute_optional(
+                "deployment_artifacts",
+                "DELETE FROM deployment_artifacts WHERE project_id=?",
+                (project_id,),
+            )
+            counts["virtual_lecturer_sessions"] = self._execute_optional(
+                "virtual_lecturer_sessions",
+                "DELETE FROM virtual_lecturer_sessions WHERE project_id=?",
+                (project_id,),
+            )
+            counts["project_chat_messages"] = self.repository._conn.execute(
+                "DELETE FROM chat_messages WHERE room_key=?",
+                (f"project:{project_id}",),
+            ).rowcount
+            counts["project_mentor_messages"] = self.repository._conn.execute(
+                "DELETE FROM chat_messages WHERE room_key LIKE ?",
+                (f"mentor:{project_id}:%",),
+            ).rowcount
+            counts["project_assistant_messages"] = self.repository._conn.execute(
+                "DELETE FROM chat_messages WHERE room_key LIKE ?",
+                (f"assistant:{project_id}:%",),
+            ).rowcount
+            counts["project_lecturer_messages"] = self.repository._conn.execute(
+                "DELETE FROM chat_messages WHERE room_key LIKE ?",
+                (f"lecturer:{project_id}:%",),
+            ).rowcount
+            counts["project_audits"] = self.repository._conn.execute(
+                "DELETE FROM audit_logs WHERE target_type='project' AND target_id=?",
+                (project_id,),
+            ).rowcount
+            counts["notebook_collab_ops"] = self._execute_optional(
+                "notebook_collab_ops",
+                "DELETE FROM notebook_collab_ops WHERE project_id=?",
+                (project_id,),
+            )
+            counts["notebook_collab_state"] = self._execute_optional(
+                "notebook_collab_state",
+                "DELETE FROM notebook_collab_state WHERE project_id=?",
+                (project_id,),
+            )
+            counts["notebook_collab_snapshots"] = self._execute_optional(
+                "notebook_collab_snapshots",
+                "DELETE FROM notebook_collab_snapshots WHERE project_id=?",
+                (project_id,),
+            )
+            counts["notebook_presence"] = self._execute_optional(
+                "notebook_presence",
+                "DELETE FROM notebook_presence WHERE project_id=?",
+                (project_id,),
+            )
+            counts["dispatch_jobs"] = self._execute_optional(
+                "dispatch_jobs",
+                "DELETE FROM dispatch_jobs WHERE project_id=?",
+                (project_id,),
+            )
+            counts["projects"] = self.repository._conn.execute(
+                "DELETE FROM projects WHERE project_id=?",
+                (project_id,),
+            ).rowcount
+
+        self._remove_path(project_root.resolve(strict=False) if project_root is not None else None)
+        for path in artifact_paths:
+            self._remove_path(path)
+        for path in review_snapshots:
+            self._remove_path(path)
+
+        self.repository.add_audit(
+            actor_username,
+            "project.hard_delete",
+            "project",
+            project_id,
+            {
+                "project_name": summary["project_name"],
+                "counts": dict(summary["counts"]),
+            },
+        )
+        return summary
+
     def apply_retention(self, *, actor_username: str = "system-retention") -> dict[str, Any]:
         policy = self.retention_policy()
         now = time.time()
@@ -569,12 +713,15 @@ class UserAdministrationService:
     def _project_export_payload(project: dict[str, Any]) -> dict[str, Any]:
         return {
             "project_id": project["project_id"],
+            "owner_type": project["owner_type"],
+            "owner_key": project["owner_key"],
             "name": project["name"],
             "slug": project["slug"],
             "template": project["template"],
             "runtime": project["runtime"],
             "main_file": project["main_file"],
             "description": project["description"],
+            "created_by": project["created_by"],
             "created_at": project["created_at"],
             "updated_at": project["updated_at"],
         }
@@ -591,3 +738,47 @@ class UserAdministrationService:
 
     def _group_mentor_threads(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         return self._group_chat_threads(rows)
+
+    def _build_project_archive_bundle(self, project: dict[str, Any], *, archive_kind: str, actor_username: str) -> dict[str, Any]:
+        if self.workspace_manager is None:
+            raise RuntimeError("Projektarchivierung ist ohne Workspace-Manager nicht verfuegbar.")
+        project_root = self.workspace_manager.project_root(project)
+        if not project_root.exists():
+            raise FileNotFoundError("Projektordner nicht gefunden.")
+
+        timestamp_label = time.strftime("%Y%m%d-%H%M%S", time.localtime())
+        archive_prefix = "nova-project-archive" if archive_kind == "archive" else "nova-project-export"
+        filename = f"{archive_prefix}-{slugify(str(project.get('name') or project.get('slug') or project['project_id']))}-{timestamp_label}.zip"
+        manifest = {
+            "schema_version": 1,
+            "archive_kind": archive_kind,
+            "generated_at": time.time(),
+            "generated_by": actor_username,
+            "project": self._project_export_payload(project),
+            "workspace_root": str(project_root),
+            "files": [],
+        }
+        readme_name = "README_ARCHIVE.txt" if archive_kind == "archive" else "README_EXPORT.txt"
+        readme_text = (
+            "Nova School Server Projektarchiv\n\n"
+            "Dieses Archiv enthaelt den Projektstand samt Dateien und Metadaten zum angegebenen Zeitpunkt.\n"
+            "manifest.json beschreibt Projekt und Dateiliste.\n"
+        )
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            archive.writestr(readme_name, readme_text)
+            for path in sorted(project_root.rglob("*"), key=lambda item: item.as_posix().lower()):
+                if not path.is_file():
+                    continue
+                relative_path = path.relative_to(project_root).as_posix()
+                archive.write(path, f"project/{relative_path}")
+                manifest["files"].append(relative_path)
+            archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+        content = buffer.getvalue()
+        return {
+            "filename": filename,
+            "content": content,
+            "size_bytes": len(content),
+            "file_count": len(manifest["files"]),
+            "manifest": manifest,
+        }

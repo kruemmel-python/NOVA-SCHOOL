@@ -409,6 +409,14 @@ class SchoolRepository:
             rows = self._conn.execute(query, tuple(params)).fetchall()
         return [self._row_to_project(row) for row in rows if row is not None]
 
+    def update_project_main_file(self, project_id: str, main_file: str) -> dict[str, Any] | None:
+        with self._lock, self._conn:
+            self._conn.execute(
+                "UPDATE projects SET main_file=?, updated_at=? WHERE project_id=?",
+                (main_file, time.time(), project_id),
+            )
+        return self.get_project(project_id)
+
     def put_setting(self, key: str, value: Any) -> None:
         with self._lock, self._conn:
             self._conn.execute(

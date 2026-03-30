@@ -240,10 +240,11 @@ class CodeRunnerTests(unittest.TestCase):
     def test_html_preview_bypasses_process_backend_block(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             config = ServerConfig.from_base_path(Path(tmp))
+            workspace = WorkspaceManager(config)
             runner = CodeRunner(
                 config,
                 _FakeToolSandbox(),
-                WorkspaceManager(config),
+                workspace,
                 _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": False}),
             )
             project = {
@@ -255,20 +256,213 @@ class CodeRunnerTests(unittest.TestCase):
                 "runtime": "html",
                 "main_file": "index.html",
             }
+            project_root = workspace.materialize_project(project)
+            original_css = (project_root / "src" / "app.css").read_text(encoding="utf-8")
 
             result = runner.run(
                 _Session(),
                 project,
                 {
-                    "path": "index.html",
-                    "language": "html",
-                    "code": "<h1>Preview</h1>",
+                    "path": "src/app.css",
+                    "language": "python",
+                    "code": "body { color: rgb(1, 2, 3); }\n",
                 },
             )
 
             self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["language"], "html")
             self.assertEqual(result["command"], ["preview"])
             self.assertTrue(result["preview_path"])
+            self.assertTrue(result["preview_path"].endswith("/workspace/index.html"))
+            preview_index = project_root / Path(result["preview_path"])
+            preview_root = preview_index.parent
+            self.assertTrue(preview_index.exists())
+            self.assertIn('src="src/main.js"', preview_index.read_text(encoding="utf-8"))
+            self.assertEqual((preview_root / "src" / "app.css").read_text(encoding="utf-8"), "body { color: rgb(1, 2, 3); }\n")
+            self.assertTrue((preview_root / "src" / "main.js").exists())
+            self.assertEqual((project_root / "src" / "app.css").read_text(encoding="utf-8"), original_css)
+
+    def test_python_project_run_uses_main_file_even_when_helper_is_open(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            workspace = WorkspaceManager(config)
+            runner = _ObservedCodeRunner(
+                config,
+                _FakeToolSandbox(),
+                workspace,
+                _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": True}),
+            )
+            project = {
+                "project_id": "proj-python-main",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "python-main-run",
+                "template": "python",
+                "runtime": "python",
+                "main_file": "main.py",
+            }
+            root = workspace.materialize_project(project)
+            (root / "lib").mkdir(parents=True, exist_ok=True)
+            (root / "lib" / "helper.py").write_text("VALUE = 1\n", encoding="utf-8")
+
+            with patch("nova_school_server.code_runner.shutil.which", side_effect=[r"C:\Python312\python.exe"]):
+                result = runner.run(
+                    _TeacherSession(),
+                    project,
+                    {
+                        "path": "lib/helper.py",
+                        "language": "javascript",
+                        "code": "VALUE = 2\n",
+                    },
+                )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["language"], "python")
+            assert runner.last_env is not None
+            entrypoint = runner.last_env["NOVA_SCHOOL_ENTRYPOINT"].replace("\\", "/")
+            self.assertTrue(entrypoint.endswith("/workspace/main.py"))
+            self.assertFalse(entrypoint.endswith("/workspace/lib/helper.py"))
+
+    def test_javascript_project_run_uses_main_file_even_when_helper_is_open(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            workspace = WorkspaceManager(config)
+            runner = _ObservedCodeRunner(
+                config,
+                _FakeToolSandbox(),
+                workspace,
+                _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": True}),
+            )
+            project = {
+                "project_id": "proj-js-main",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "javascript-main-run",
+                "template": "javascript",
+                "runtime": "javascript",
+                "main_file": "main.js",
+            }
+            root = workspace.materialize_project(project)
+            (root / "lib").mkdir(parents=True, exist_ok=True)
+            (root / "lib" / "helper.js").write_text("export const value = 1;\n", encoding="utf-8")
+
+            with patch("nova_school_server.code_runner.shutil.which", side_effect=[r"C:\Program Files\nodejs\node.exe"]):
+                result = runner.run(
+                    type("JsTeacherSession", (), {"username": "teacher", "role": "teacher", "is_teacher": True, "permissions": {"run.javascript": True, "web.access": False}})(),
+                    project,
+                    {
+                        "path": "lib/helper.js",
+                        "language": "python",
+                        "code": "export const value = 2;\n",
+                    },
+                )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["language"], "javascript")
+            assert runner.last_command is not None
+            command_path = runner.last_command[-1].replace("\\", "/")
+            self.assertTrue(command_path.endswith("/workspace/main.js"))
+            self.assertFalse(command_path.endswith("/workspace/lib/helper.js"))
+
+    def test_cpp_project_run_compiles_all_project_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            workspace = WorkspaceManager(config)
+            runner = _ObservedCodeRunner(
+                config,
+                _FakeToolSandbox(),
+                workspace,
+                _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": True}),
+            )
+            project = {
+                "project_id": "proj-cpp-main",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "cpp-main-run",
+                "template": "cpp",
+                "runtime": "cpp",
+                "main_file": "main.cpp",
+            }
+            root = workspace.materialize_project(project)
+            (root / "math.cpp").write_text("int add(int a, int b) { return a + b; }\n", encoding="utf-8")
+            compile_commands: list[list[str]] = []
+
+            def fake_execute_raw(command, cwd, stdin_text, env, *, timeout_seconds=None):
+                compile_commands.append(list(command))
+                return _RawResult("", "", 0, 1, list(command))
+
+            with patch("nova_school_server.code_runner.shutil.which", side_effect=[r"C:\mingw\bin\g++.exe"]), patch.object(runner, "_execute_raw", side_effect=fake_execute_raw):
+                result = runner.run(
+                    type("CppTeacherSession", (), {"username": "teacher", "role": "teacher", "is_teacher": True, "permissions": {"run.cpp": True, "web.access": False}})(),
+                    project,
+                    {
+                        "path": "notes.txt",
+                        "language": "python",
+                        "code": "nur notizen",
+                    },
+                )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["language"], "cpp")
+            compile_command = [item.replace("\\", "/") for item in compile_commands[0]]
+            self.assertTrue(any(item.endswith("/workspace/main.cpp") for item in compile_command))
+            self.assertTrue(any(item.endswith("/workspace/math.cpp") for item in compile_command))
+
+    def test_java_project_run_compiles_all_sources_and_uses_main_class(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            workspace = WorkspaceManager(config)
+            runner = _ObservedCodeRunner(
+                config,
+                _FakeToolSandbox(),
+                workspace,
+                _FakeRepository({"runner_backend": "process", "unsafe_process_backend_enabled": True}),
+            )
+            project = {
+                "project_id": "proj-java-main",
+                "owner_type": "user",
+                "owner_key": "student",
+                "slug": "java-main-run",
+                "template": "java",
+                "runtime": "java",
+                "main_file": "app/Main.java",
+            }
+            root = workspace.project_root(project)
+            root.mkdir(parents=True, exist_ok=True)
+            (root / ".nova-school").mkdir(parents=True, exist_ok=True)
+            (root / "app").mkdir(parents=True, exist_ok=True)
+            (root / "app" / "Main.java").write_text(
+                "package app;\npublic class Main {\n  public static void main(String[] args) {\n    Helper.say();\n  }\n}\n",
+                encoding="utf-8",
+            )
+            (root / "app" / "Helper.java").write_text(
+                "package app;\npublic class Helper {\n  static void say() {\n    System.out.println(\"hi\");\n  }\n}\n",
+                encoding="utf-8",
+            )
+            compile_commands: list[list[str]] = []
+
+            def fake_execute_raw(command, cwd, stdin_text, env, *, timeout_seconds=None):
+                compile_commands.append(list(command))
+                return _RawResult("", "", 0, 1, list(command))
+
+            with patch("nova_school_server.code_runner.shutil.which", side_effect=[r"C:\Java\bin\javac.exe", r"C:\Java\bin\java.exe"]), patch.object(runner, "_execute_raw", side_effect=fake_execute_raw):
+                result = runner.run(
+                    type("JavaTeacherSession", (), {"username": "teacher", "role": "teacher", "is_teacher": True, "permissions": {"run.java": True, "web.access": False}})(),
+                    project,
+                    {
+                        "path": "app/Helper.java",
+                        "language": "python",
+                        "code": "package app;\npublic class Helper {}\n",
+                    },
+                )
+
+            self.assertEqual(result["returncode"], 0)
+            self.assertEqual(result["language"], "java")
+            compile_command = [item.replace("\\", "/") for item in compile_commands[0]]
+            self.assertTrue(any(item.endswith("/workspace/app/Main.java") for item in compile_command))
+            self.assertTrue(any(item.endswith("/workspace/app/Helper.java") for item in compile_command))
+            assert runner.last_command is not None
+            self.assertEqual(runner.last_command[-1], "app.Main")
 
     def test_scheduler_serializes_same_student_user(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -322,6 +516,13 @@ class CodeRunnerTests(unittest.TestCase):
             self.assertIn("--runtime", command)
             self.assertIn("runsc", command)
 
+    def test_container_base_command_converts_file_size_limit_from_kb_to_bytes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = CodeRunner(config, _FakeToolSandbox(), WorkspaceManager(config), _FakeRepository({"container_file_size_limit_kb": 65536}))
+            command = runner._container_base_command("docker", "python:3.12-slim", Path(tmp), Path(tmp) / "container-workspace", {"web.access": False})
+            self.assertIn("fsize=67108864:67108864", command)
+
     def test_execution_env_requires_proxy_when_enforced(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             config = ServerConfig.from_base_path(Path(tmp))
@@ -329,14 +530,14 @@ class CodeRunnerTests(unittest.TestCase):
             with self.assertRaises(PermissionError):
                 runner._execution_env(Path(tmp), web_access=True)
 
-    def test_containerized_env_replaces_windows_host_path(self) -> None:
+    def test_containerized_env_does_not_forward_windows_host_path(self) -> None:
         env = {
             "PATH": r"C:\Windows\System32;C:\Python312",
             "SystemRoot": r"C:\Windows",
             "NOVA_SCHOOL_NETWORK": "off",
         }
         payload = CodeRunner._containerized_env(env)
-        self.assertEqual(payload["PATH"], "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin")
+        self.assertNotIn("PATH", payload)
         self.assertNotIn("SystemRoot", payload)
         self.assertEqual(payload["NOVA_SCHOOL_NETWORK"], "off")
 

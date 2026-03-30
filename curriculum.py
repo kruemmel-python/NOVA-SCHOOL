@@ -1332,11 +1332,11 @@ class CurriculumService:
             return {"enabled": bool(row["enabled"]), "source": "user", "scope_type": "user", "scope_key": row["scope_key"], "note": row["note"], "updated_at": row["updated_at"]}
 
         group_rows = self._query_releases(course_id, "group", list(getattr(session, "group_ids", []) or []))
-        enabled_group = next((row for row in group_rows if bool(row["enabled"])), None)
-        if enabled_group:
-            return {"enabled": True, "source": "group", "scope_type": "group", "scope_key": enabled_group["scope_key"], "note": enabled_group["note"], "updated_at": enabled_group["updated_at"]}
+        if group_rows:
+            row = group_rows[0]
+            return {"enabled": bool(row["enabled"]), "source": "group", "scope_type": "group", "scope_key": row["scope_key"], "note": row["note"], "updated_at": row["updated_at"]}
 
-        return {"enabled": False, "source": "none", "scope_type": "", "scope_key": "", "note": ""}
+        return {"enabled": True, "source": "default", "scope_type": "default", "scope_key": "all-students", "note": "Standardfreigabe fuer Lernende"}
 
     def _query_releases(self, course_id: str, scope_type: str, scope_keys: list[str]) -> list[dict[str, Any]]:
         if not scope_keys:
@@ -1409,7 +1409,6 @@ class CurriculumService:
         attempts = self._latest_attempts(session.username, course["course_id"])
         certificate = self._certificate_for(session.username, course["course_id"])
         released = bool(release["enabled"])
-        previous_passed = released or getattr(session, "is_teacher", False)
         passed_modules = 0
         modules: list[dict[str, Any]] = []
 
@@ -1418,9 +1417,7 @@ class CurriculumService:
             passed = bool(row and row["passed"])
             if passed:
                 passed_modules += 1
-            status = "locked"
-            if getattr(session, "is_teacher", False) or released:
-                status = "passed" if passed else ("available" if previous_passed else "locked")
+            status = "passed" if passed else ("available" if (getattr(session, "is_teacher", False) or released) else "locked")
             modules.append(
                 {
                     "module_id": module["module_id"],
@@ -1441,10 +1438,9 @@ class CurriculumService:
                     "index": index,
                 }
             )
-            previous_passed = previous_passed and passed
 
         final_row = attempts.get(("final", FINAL_MODULE_ID))
-        final_unlocked = released and all(item["passed"] for item in modules)
+        final_unlocked = released or getattr(session, "is_teacher", False)
         final_passed = bool(final_row and final_row["passed"])
         return {
             "course_id": course["course_id"],

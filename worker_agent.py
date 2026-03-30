@@ -48,6 +48,14 @@ _BLOCKED_CONTAINER_ENV_KEYS = {
 }
 
 
+def _container_file_size_limit_bytes(raw_value: Any) -> str:
+    try:
+        limit_kb = int(str(raw_value or 65536).strip())
+    except Exception:
+        limit_kb = 65536
+    return str(max(1, limit_kb) * 1024)
+
+
 class WorkerAgent:
     def __init__(
         self,
@@ -289,7 +297,6 @@ class WorkerAgent:
             env["TMPDIR"] = "/tmp"
             env["XDG_CACHE_HOME"] = "/workspace/.nova-cache"
             env = {key: value for key, value in env.items() if key.strip().lower() not in _BLOCKED_CONTAINER_ENV_KEYS}
-            env["PATH"] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
             oci_runtime = str(payload.get("container_oci_runtime") or "").strip()
             command = [
                 runtime_executable,
@@ -305,7 +312,7 @@ class WorkerAgent:
                 "--pids-limit",
                 str(payload.get("container_pids_limit") or "128"),
                 "--ulimit",
-                f"fsize={payload.get('container_file_size_limit_kb') or 65536}:{payload.get('container_file_size_limit_kb') or 65536}",
+                f"fsize={_container_file_size_limit_bytes(payload.get('container_file_size_limit_kb'))}:{_container_file_size_limit_bytes(payload.get('container_file_size_limit_kb'))}",
                 "--ulimit",
                 f"nofile={payload.get('container_nofile_limit') or 256}:{payload.get('container_nofile_limit') or 256}",
                 "--cap-drop",

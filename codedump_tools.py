@@ -421,9 +421,15 @@ def _is_dump_artifact(path: str) -> bool:
     return (name.startswith("codedump") and name.endswith(".md")) or name.endswith(".codedump.md")
 
 
+def _is_directory_like_target(target: Path) -> bool:
+    if target.exists():
+        return target.is_dir()
+    return target.suffix == ""
+
+
 def default_output_path(target: str | Path) -> Path:
     target_path = Path(target)
-    if target_path.is_dir():
+    if _is_directory_like_target(target_path):
         return target_path / "CODEDUMP.md"
     return target_path.with_suffix(".codedump.md")
 
@@ -450,7 +456,7 @@ def config_for_profile(profile: str, *, max_file_size: int | None = None) -> Dum
 def default_output_path_for_profile(target: str | Path, profile: str) -> Path:
     normalized = (profile or "standard").strip().lower()
     target_path = Path(target)
-    if target_path.is_dir():
+    if _is_directory_like_target(target_path):
         if normalized == "standard":
             return target_path / "CODEDUMP.md"
         return target_path / f"CODEDUMP.{normalized}.md"

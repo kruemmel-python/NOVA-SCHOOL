@@ -2,6 +2,10 @@ const state = {
   bootstrap: null,
   project: null,
   filePath: "",
+  treeEntries: [],
+  treeSelectionPath: "",
+  treeSelectionKind: "",
+  lastFileRun: null,
   admin: null,
   adminUserAudit: [],
   room: "lounge:school",
@@ -9,6 +13,14 @@ const state = {
   fileDirty: false,
   mentorThread: [],
   assistantBusy: false,
+  lecturer: {
+    session: null,
+    thread: [],
+    busy: false,
+    autoRun: true,
+    selectedCourseId: "",
+    selectedModuleId: "",
+  },
   reviews: null,
   artifacts: [],
   curriculum: null,
@@ -78,7 +90,15 @@ const ui = {
   materialStudioPanel: $("material-studio-panel"),
   assistantPanel: $("assistant-panel"),
   projectList: $("project-list"),
+  projectPrivacyMeta: $("project-privacy-meta"),
+  projectPrivacyStatus: $("project-privacy-status"),
+  projectExportButton: $("project-export"),
+  projectArchiveButton: $("project-archive"),
+  projectDeleteButton: $("project-delete"),
   fileTree: $("file-tree"),
+  createFolderButton: $("create-folder"),
+  renameEntryButton: $("rename-entry"),
+  deleteFileButton: $("delete-file"),
   filePath: $("file-path"),
   fileEditor: $("file-editor"),
   runStdin: $("run-stdin"),
@@ -102,6 +122,17 @@ const ui = {
   curriculumResultBanner: $("curriculum-result-banner"),
   curriculumModuleList: $("curriculum-module-list"),
   curriculumModuleDetail: $("curriculum-module-detail"),
+  lecturerPanel: $("lecturer-panel"),
+  lecturerStatus: $("lecturer-status"),
+  lecturerStartForm: $("lecturer-start-form"),
+  lecturerCourse: $("lecturer-course"),
+  lecturerModule: $("lecturer-module"),
+  lecturerAutoRun: $("lecturer-auto-run"),
+  lecturerBriefing: $("lecturer-briefing"),
+  lecturerThread: $("lecturer-thread"),
+  lecturerForm: $("lecturer-form"),
+  lecturerInput: $("lecturer-input"),
+  lecturerRunFollowup: $("lecturer-run-followup"),
   curriculumManagePanel: $("curriculum-manage-panel"),
   curriculumManageCourse: $("curriculum-manage-course"),
   curriculumReleaseScopeType: $("curriculum-release-scope-type"),
@@ -182,6 +213,7 @@ const notify = (text) => { ui.status.textContent = text || ""; };
 const hasPermission = (key) => Boolean(state.bootstrap?.session?.permissions?.[key]);
 const canManageServerSettings = (session = state.bootstrap?.session) => Boolean(session && (session.role === "admin" || session.role === "teacher" || session.permissions?.["admin.manage"]));
 const canUseMaterialStudio = (session = state.bootstrap?.session) => Boolean(session?.permissions?.["teacher.materials.use"]);
+const canUseLecturer = (session = state.bootstrap?.session) => Boolean(session?.permissions?.["ai.use"] && session?.permissions?.["mentor.use"] && session?.permissions?.["curriculum.use"]);
 const projectSupportsPlayground = (project = state.project) => Boolean(project && project.template === "distributed-system");
 const inferLanguage = (path) => ({
   py: "python",
@@ -196,6 +228,7 @@ const inferLanguage = (path) => ({
   html: "html",
   htm: "html",
 })[(path.split(".").pop() || "").toLowerCase()] || "python";
+const inferRunLanguage = (project, path) => (project?.runtime || inferLanguage(path) || "python");
 const encodePath = (path) => path.split("/").map(encodeURIComponent).join("/");
 const buildWsUrl = (path) => `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}${path}`;
 const sameJson = (left, right) => JSON.stringify(left) === JSON.stringify(right);
@@ -215,6 +248,32 @@ const downloadJsonFile = (filename, payload) => {
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
+};
+
+const downloadFromUrl = (url) => {
+  const link = document.createElement("a");
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+};
+
+const normalizeProjectPath = (value) => String(value || "").replace(/\\/g, "/").trim().replace(/^\/+|\/+$/g, "");
+const pathMatchesOrContains = (prefix, candidate) => {
+  const normalizedPrefix = normalizeProjectPath(prefix);
+  const normalizedCandidate = normalizeProjectPath(candidate);
+  if (!normalizedPrefix || !normalizedCandidate) return normalizedPrefix === normalizedCandidate && Boolean(normalizedPrefix);
+  return normalizedCandidate === normalizedPrefix || normalizedCandidate.startsWith(`${normalizedPrefix}/`);
+};
+const renamedPath = (candidate, oldPath, newPath) => {
+  const normalizedCandidate = normalizeProjectPath(candidate);
+  const normalizedOld = normalizeProjectPath(oldPath);
+  const normalizedNew = normalizeProjectPath(newPath);
+  if (!normalizedCandidate || !normalizedOld || !normalizedNew) return normalizedCandidate;
+  if (normalizedCandidate === normalizedOld) return normalizedNew;
+  return normalizedCandidate.startsWith(`${normalizedOld}/`)
+    ? `${normalizedNew}${normalizedCandidate.slice(normalizedOld.length)}`
+    : normalizedCandidate;
 };
 
 function readFileAsBase64(file) {
@@ -1333,12 +1392,107 @@ function setView(authenticated) {
   ui.appView.classList.toggle("hidden", !authenticated);
 }
 
-function markdownToHtml(source) {
+function markdownInlineToHtml(source) {
   let html = escapeHtml(source || "");
-  html = html.replace(/```([\s\S]*?)```/g, (_, code) => `<pre><code>${code.trim()}</code></pre>`);
-  html = html.replace(/^### (.*)$/gm, "<h3>$1</h3>").replace(/^## (.*)$/gm, "<h2>$1</h2>").replace(/^# (.*)$/gm, "<h1>$1</h1>");
-  html = html.replace(/^- (.*)$/gm, "<li>$1</li>").replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>");
-  return `<p>${html.replace(/\n\n/g, "</p><p>")}</p>`.replace(/<p><\/p>/g, "");
+  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return html;
+}
+
+function markdownToHtml(source) {
+  const lines = String(source || "").replace(/\r\n/g, "\n").split("\n");
+  const blocks = [];
+  let paragraph = [];
+  let listItems = [];
+  let orderedItems = [];
+  let codeLines = [];
+  let inCodeBlock = false;
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    blocks.push(`<p>${markdownInlineToHtml(paragraph.join(" "))}</p>`);
+    paragraph = [];
+  };
+
+  const flushList = () => {
+    if (!listItems.length) return;
+    blocks.push(`<ul>${listItems.map((item) => `<li>${markdownInlineToHtml(item)}</li>`).join("")}</ul>`);
+    listItems = [];
+  };
+
+  const flushOrderedList = () => {
+    if (!orderedItems.length) return;
+    blocks.push(`<ol>${orderedItems.map((item) => `<li>${markdownInlineToHtml(item)}</li>`).join("")}</ol>`);
+    orderedItems = [];
+  };
+
+  const flushCodeBlock = () => {
+    if (!codeLines.length) return;
+    blocks.push(`<pre><code>${escapeHtml(codeLines.join("\n").trim())}</code></pre>`);
+    codeLines = [];
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trimEnd();
+    if (trimmed.startsWith("```")) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      if (inCodeBlock) {
+        flushCodeBlock();
+      }
+      inCodeBlock = !inCodeBlock;
+      return;
+    }
+    if (inCodeBlock) {
+      codeLines.push(line);
+      return;
+    }
+    if (!trimmed.trim()) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      return;
+    }
+    const heading = trimmed.match(/^(#{1,3})\s+(.*)$/);
+    if (heading) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      blocks.push(`<h${heading[1].length}>${markdownInlineToHtml(heading[2])}</h${heading[1].length}>`);
+      return;
+    }
+    const bullet = trimmed.match(/^- (.*)$/);
+    if (bullet) {
+      flushParagraph();
+      flushOrderedList();
+      listItems.push(bullet[1]);
+      return;
+    }
+    const ordered = trimmed.match(/^\d+\. (.*)$/);
+    if (ordered) {
+      flushParagraph();
+      flushList();
+      orderedItems.push(ordered[1]);
+      return;
+    }
+    if (listItems.length) {
+      listItems[listItems.length - 1] = `${listItems[listItems.length - 1]} ${trimmed.trim()}`;
+      return;
+    }
+    if (orderedItems.length) {
+      orderedItems[orderedItems.length - 1] = `${orderedItems[orderedItems.length - 1]} ${trimmed.trim()}`;
+      return;
+    }
+    paragraph.push(trimmed.trim());
+  });
+
+  if (inCodeBlock) flushCodeBlock();
+  flushParagraph();
+  flushList();
+  flushOrderedList();
+  return blocks.join("");
 }
 
 function materialStudioFilesWithCurrentMainFile() {
@@ -1630,6 +1784,32 @@ function renderProjects() {
   document.querySelectorAll("[data-project]").forEach((button) => button.addEventListener("click", () => {
     selectProject(button.dataset.project).catch((error) => notify(error.message));
   }));
+  renderProjectPrivacyControls();
+}
+
+function renderProjectPrivacyControls() {
+  const project = state.project;
+  const selectedPath = normalizeProjectPath(state.treeSelectionPath || ui.filePath?.value || state.filePath || "");
+  const selectedKind = state.treeSelectionKind || (selectedPath ? "file" : "");
+  const mainFile = normalizeProjectPath(project?.main_file || "");
+  const mainPathProtected = selectedPath && mainFile && pathMatchesOrContains(selectedPath, mainFile);
+  if (ui.projectPrivacyMeta) {
+    ui.projectPrivacyMeta.textContent = project
+      ? `${project.name} | ${project.owner_type}: ${project.owner_key} | ${project.runtime}`
+      : "Kein Projekt ausgewaehlt.";
+  }
+  if (ui.projectPrivacyStatus && !project) {
+    ui.projectPrivacyStatus.textContent = "";
+  }
+  if (ui.projectExportButton) ui.projectExportButton.disabled = !project;
+  if (ui.projectArchiveButton) ui.projectArchiveButton.disabled = !project;
+  if (ui.projectDeleteButton) ui.projectDeleteButton.disabled = !project;
+  if (ui.createFolderButton) ui.createFolderButton.disabled = !project;
+  if (ui.renameEntryButton) ui.renameEntryButton.disabled = !project || !selectedPath;
+  if (ui.deleteFileButton) {
+    ui.deleteFileButton.disabled = !project || !selectedPath || mainPathProtected;
+    ui.deleteFileButton.textContent = selectedKind === "directory" ? "Ordner loeschen" : "Auswahl loeschen";
+  }
 }
 
 function renderRooms() {
@@ -1737,10 +1917,12 @@ function renderBootstrap() {
   ui.reviewPanel.classList.toggle("hidden", !session.permissions["review.use"]);
   ui.deploymentPanel.classList.toggle("hidden", !session.permissions["deploy.use"]);
   ui.curriculumPanel.classList.toggle("hidden", !session.permissions["curriculum.use"]);
+  ui.lecturerPanel.classList.toggle("hidden", !canUseLecturer(session));
   ui.curriculumManagePanel.classList.toggle("hidden", !session.permissions["curriculum.manage"]);
   ui.playgroundPanel.classList.toggle("hidden", !session.permissions["playground.manage"] || !projectSupportsPlayground());
   $("open-server-settings").classList.toggle("hidden", !canManageServerSettings(session));
   $("open-material-studio").classList.toggle("hidden", !canUseMaterialStudio(session));
+  $("open-virtual-lecturer")?.classList.toggle("hidden", !canUseLecturer(session));
   $("open-ai-assistant")?.classList.toggle("hidden", !session.permissions["ai.use"]);
   ui.materialStudioPanel?.classList.toggle("hidden", !canUseMaterialStudio(session));
   arrangeRightPanel(session);
@@ -1761,15 +1943,25 @@ function renderBootstrap() {
     ui.assistantOutput.textContent = "Keine Codehilfe verfuegbar.";
     ui.mentorThread.innerHTML = "";
   }
+  renderLecturerPanel();
   renderMaterialStudio();
 }
 
 function clearProjectView() {
   state.project = null;
   state.filePath = "";
+  state.treeEntries = [];
+  state.treeSelectionPath = "";
+  state.treeSelectionKind = "";
   state.fileDirty = false;
+  state.lastFileRun = null;
   state.collab.revision = 0;
   state.mentorThread = [];
+  state.lecturer.session = null;
+  state.lecturer.thread = [];
+  state.lecturer.busy = false;
+  state.lecturer.selectedCourseId = "";
+  state.lecturer.selectedModuleId = "";
   state.playground = null;
   resetLiveRunState();
   renderProjects();
@@ -1778,12 +1970,15 @@ function clearProjectView() {
   ui.fileEditor.value = "";
   ui.runStdin.value = "";
   setRunOutput("Kein Projekt gewaehlt.");
+  if (ui.projectPrivacyStatus) ui.projectPrivacyStatus.textContent = "";
   $("editor-project-name").textContent = "Editor";
   $("editor-project-meta").textContent = "";
   renderNotebook([]);
   renderCollabPresence([]);
   ui.collabStatus.textContent = "";
   renderMentorThread([]);
+  renderProjectPrivacyControls();
+  renderLecturerPanel();
   renderPlayground();
 }
 
@@ -2090,17 +2285,55 @@ async function connectProjectSocket() {
   });
 }
 
+function applyProjectPayload(project) {
+  if (!project?.project_id) return;
+  if (!state.bootstrap) state.bootstrap = { projects: [] };
+  const projects = Array.isArray(state.bootstrap.projects) ? [...state.bootstrap.projects] : [];
+  const index = projects.findIndex((item) => item.project_id === project.project_id);
+  if (index >= 0) projects[index] = project;
+  else projects.push(project);
+  state.bootstrap.projects = projects;
+  if (state.project?.project_id === project.project_id) {
+    state.project = project;
+    $("editor-project-name").textContent = project.name || "Editor";
+    $("editor-project-meta").textContent = `${project.runtime} | ${project.workspace_root}`;
+  }
+  renderProjects();
+  renderProjectPrivacyControls();
+}
+
+function selectTreeEntry(path, kind) {
+  state.treeSelectionPath = normalizeProjectPath(path);
+  state.treeSelectionKind = kind || "";
+  renderTree(state.treeEntries || []);
+  renderProjectPrivacyControls();
+}
+
+async function refreshProjectTree() {
+  if (!state.project) {
+    state.treeEntries = [];
+    renderTree([]);
+    return [];
+  }
+  const tree = await api(`/api/projects/${state.project.project_id}/tree`);
+  state.treeEntries = tree.entries || [];
+  renderTree(state.treeEntries);
+  return state.treeEntries;
+}
+
 async function selectProject(projectId) {
   stopCollaborationLoops();
   closeProjectSocket();
   state.project = (state.bootstrap?.projects || []).find((item) => item.project_id === projectId) || null;
+  state.treeSelectionPath = "";
+  state.treeSelectionKind = "";
   renderProjects();
   $("editor-project-name").textContent = state.project?.name || "Editor";
   $("editor-project-meta").textContent = state.project ? `${state.project.runtime} | ${state.project.workspace_root}` : "";
+  renderProjectPrivacyControls();
   if (!state.project) return;
 
-  const tree = await api(`/api/projects/${state.project.project_id}/tree`);
-  renderTree(tree.entries || []);
+  await refreshProjectTree();
   await loadFile(state.project.main_file);
   await connectProjectSocket().catch(() => false);
   await loadNotebookState();
@@ -2109,6 +2342,7 @@ async function selectProject(projectId) {
   await refreshChat();
   await Promise.allSettled([
     loadMentorThread(),
+    loadLecturerSession(),
     loadPlayground(),
     loadReviewDashboard(),
     loadArtifacts(),
@@ -2116,12 +2350,35 @@ async function selectProject(projectId) {
 }
 
 function renderTree(entries) {
-  const files = entries.filter((entry) => entry.kind === "file");
-  ui.fileTree.innerHTML = files.map((entry) => `
-    <button class="tree-button ${state.filePath === entry.path ? "active" : ""}" data-file="${escapeHtml(entry.path)}">${escapeHtml(entry.path)}</button>
-  `).join("");
-  document.querySelectorAll("[data-file]").forEach((button) => button.addEventListener("click", () => {
-    loadFile(button.dataset.file).catch((error) => notify(error.message));
+  const sorted = [...(entries || [])].sort((left, right) => {
+    if (left.kind !== right.kind) return left.kind === "directory" ? -1 : 1;
+    return String(left.path || "").localeCompare(String(right.path || ""), "de");
+  });
+  const activePath = normalizeProjectPath(state.treeSelectionPath || state.filePath);
+  ui.fileTree.innerHTML = sorted.map((entry) => {
+    const depth = Math.max(0, String(entry.path || "").split("/").length - 1);
+    const label = entry.kind === "directory" ? `${entry.name}/` : entry.name;
+    return `
+      <button
+        class="tree-button tree-entry ${entry.kind === "directory" ? "tree-directory" : "tree-file"} ${activePath === entry.path ? "active" : ""}"
+        data-path="${escapeHtml(entry.path)}"
+        data-kind="${escapeHtml(entry.kind)}"
+        style="--tree-depth:${depth};"
+      >
+        <span class="tree-entry-label">${entry.kind === "directory" ? "Ordner" : "Datei"}: ${escapeHtml(label)}</span>
+        <small class="tree-entry-path">${escapeHtml(entry.path)}</small>
+      </button>
+    `;
+  }).join("");
+  document.querySelectorAll("[data-path][data-kind]").forEach((button) => button.addEventListener("click", () => {
+    const path = normalizeProjectPath(button.dataset.path || "");
+    const kind = button.dataset.kind || "";
+    if (!path) return;
+    if (kind === "file") {
+      loadFile(path).catch((error) => notify(error.message));
+      return;
+    }
+    selectTreeEntry(path, kind);
   }));
 }
 
@@ -2129,11 +2386,16 @@ async function loadFile(path) {
   if (!state.project) return;
   const payload = await api(`/api/projects/${state.project.project_id}/file?path=${encodeURIComponent(path)}`);
   state.filePath = payload.path;
+  state.treeSelectionPath = payload.path;
+  state.treeSelectionKind = "file";
   state.fileDirty = false;
+  state.lastFileRun = null;
   ui.filePath.value = payload.path;
   ui.fileEditor.value = payload.content;
   setRunOutput("Datei geladen. Noch nicht ausgefuehrt.");
-  renderTree((await api(`/api/projects/${state.project.project_id}/tree`)).entries || []);
+  renderProjectPrivacyControls();
+  renderLecturerPanel();
+  renderTree(state.treeEntries || []);
 }
 
 async function saveFile() {
@@ -2144,10 +2406,145 @@ async function saveFile() {
     body: { path, content: ui.fileEditor.value },
   });
   state.filePath = path;
+  state.treeSelectionPath = path;
+  state.treeSelectionKind = "file";
   state.fileDirty = false;
+  state.lastFileRun = null;
   notify(`Gespeichert: ${path}`);
   setRunOutput("Datei gespeichert. Noch nicht neu ausgefuehrt.");
-  renderTree((await api(`/api/projects/${state.project.project_id}/tree`)).entries || []);
+  renderLecturerPanel();
+  await refreshProjectTree();
+}
+
+function defaultNewFolderPath() {
+  const selectedPath = normalizeProjectPath(state.treeSelectionPath);
+  const currentFile = normalizeProjectPath(ui.filePath.value || state.filePath || "");
+  if (state.treeSelectionKind === "directory" && selectedPath) {
+    return `${selectedPath}/neuer-ordner`;
+  }
+  if (currentFile.includes("/")) {
+    return `${currentFile.split("/").slice(0, -1).join("/")}/neuer-ordner`;
+  }
+  return "src";
+}
+
+async function createFolder() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  const initial = defaultNewFolderPath();
+  const requestedPath = window.prompt("Ordnerpfad anlegen", initial);
+  const path = normalizeProjectPath(requestedPath);
+  if (!path) return;
+  const payload = await api(`/api/projects/${state.project.project_id}/directory`, {
+    method: "POST",
+    body: { path },
+  });
+  state.treeSelectionPath = payload.path;
+  state.treeSelectionKind = "directory";
+  await refreshProjectTree();
+  notify(`Ordner angelegt: ${payload.path}`);
+}
+
+async function renameSelectedEntry() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  const path = normalizeProjectPath(state.treeSelectionPath || ui.filePath.value || state.filePath || "");
+  const kind = state.treeSelectionKind || "file";
+  if (!path) throw new Error("Kein Eintrag zum Umbenennen ausgewaehlt.");
+  if (state.fileDirty && pathMatchesOrContains(path, normalizeProjectPath(state.filePath || ui.filePath.value || ""))) {
+    throw new Error("Bitte zuerst die geoeffnete Datei speichern, bevor du sie oder ihren Ordner umbenennst.");
+  }
+  const suggested = window.prompt(`Neuen Pfad fuer ${kind === "directory" ? "Ordner" : "Datei"} eingeben`, path);
+  const newPath = normalizeProjectPath(suggested);
+  if (!newPath || newPath === path) return;
+  const payload = await api(`/api/projects/${state.project.project_id}/entry/rename`, {
+    method: "POST",
+    body: { path, new_path: newPath },
+  });
+  applyProjectPayload(payload.project);
+  const currentFilePath = normalizeProjectPath(state.filePath || ui.filePath.value || "");
+  const currentFileMoved = currentFilePath && pathMatchesOrContains(path, currentFilePath);
+  state.treeSelectionPath = payload.new_path;
+  state.treeSelectionKind = payload.kind || kind;
+  await refreshProjectTree();
+  if (currentFileMoved) {
+    await loadFile(renamedPath(currentFilePath, path, payload.new_path));
+  } else {
+    renderProjectPrivacyControls();
+  }
+  notify(`${kind === "directory" ? "Ordner" : "Eintrag"} umbenannt: ${path} -> ${payload.new_path}`);
+}
+
+async function deleteSelectedEntry() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  const path = normalizeProjectPath(state.treeSelectionPath || ui.filePath.value || state.filePath || "");
+  const kind = state.treeSelectionKind || "file";
+  if (!path) throw new Error("Kein Eintrag zum Loeschen ausgewaehlt.");
+  if (state.fileDirty && pathMatchesOrContains(path, normalizeProjectPath(state.filePath || ui.filePath.value || ""))) {
+    throw new Error("Bitte zuerst die geoeffnete Datei speichern, bevor du sie oder ihren Ordner loeschst.");
+  }
+  const label = kind === "directory" ? "Ordner" : "Datei";
+  const confirmed = window.confirm(`${label} ${path} wirklich dauerhaft loeschen?`);
+  if (!confirmed) return;
+  await api(`/api/projects/${state.project.project_id}/entry?path=${encodeURIComponent(path)}`, { method: "DELETE" });
+  state.lastFileRun = null;
+  notify(`${label} geloescht: ${path}`);
+  if (ui.projectPrivacyStatus) ui.projectPrivacyStatus.textContent = `${label} geloescht: ${path}`;
+  const currentFilePath = normalizeProjectPath(state.filePath || ui.filePath.value || "");
+  if (currentFilePath && pathMatchesOrContains(path, currentFilePath)) {
+    await refreshProjectTree();
+    state.treeSelectionPath = normalizeProjectPath(state.project.main_file || "");
+    state.treeSelectionKind = "file";
+    await loadFile(state.project.main_file);
+    return;
+  }
+  state.treeSelectionPath = "";
+  state.treeSelectionKind = "";
+  await refreshProjectTree();
+  renderProjectPrivacyControls();
+}
+
+function exportCurrentProjectData() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  downloadFromUrl(`/api/projects/${state.project.project_id}/export`);
+  if (ui.projectPrivacyStatus) {
+    ui.projectPrivacyStatus.textContent = `Projekt-Export gestartet: ${state.project.name}`;
+  }
+  notify(`Projekt-Export gestartet: ${state.project.name}`);
+}
+
+async function archiveCurrentProject() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  const confirmed = window.confirm(
+    `Projekt ${state.project.name} wirklich archivieren?\n\nEs wird ein ZIP-Archiv im Server-Datenordner abgelegt. Das Projekt bleibt dabei erhalten.`
+  );
+  if (!confirmed) return;
+  const payload = await api(`/api/projects/${state.project.project_id}/archive`, { method: "POST", body: {} });
+  if (ui.projectPrivacyStatus) {
+    ui.projectPrivacyStatus.textContent = `Archiv gespeichert: ${payload.archive_path}`;
+  }
+  notify(`Projekt archiviert: ${payload.archive_name}`);
+}
+
+async function deleteCurrentProject() {
+  if (!state.project) throw new Error("Kein Projekt gewaehlt.");
+  const projectName = state.project.name;
+  const confirmed = window.confirm(
+    `Projekt ${projectName} wirklich dauerhaft loeschen?\n\nDies entfernt Dateien, projektbezogene Chats, Dozenten-/Mentor-Verlaeufe, Notebook-Zustaende, Review-Snapshots und Artefakte unwiderruflich.`
+  );
+  if (!confirmed) return;
+  const payload = await api(`/api/projects/${state.project.project_id}`, { method: "DELETE" });
+  notify(`Projekt dauerhaft geloescht: ${projectName}`);
+  if (ui.projectPrivacyStatus) {
+    ui.projectPrivacyStatus.textContent = `Projekt geloescht: ${projectName}`;
+  }
+  await refreshBootstrap();
+  if (ui.privacyAdminOutput && hasPermission("admin.manage")) {
+    ui.privacyAdminOutput.textContent = JSON.stringify({
+      action: "project-hard-delete",
+      project_id: payload.deleted_project,
+      project_name: payload.project_name,
+      summary: payload.counts || {},
+    }, null, 2);
+  }
 }
 
 async function runFile() {
@@ -2156,13 +2553,16 @@ async function runFile() {
   const stdin = ui.runStdin.value.trim() ? (ui.runStdin.value.endsWith("\n") ? ui.runStdin.value : `${ui.runStdin.value}\n`) : ui.runStdin.value;
   const payload = await api(`/api/projects/${state.project.project_id}/run`, {
     method: "POST",
-    body: { path, code: ui.fileEditor.value, language: inferLanguage(path), stdin },
+    body: { path, code: ui.fileEditor.value, language: inferRunLanguage(state.project, path), stdin },
   });
   state.fileDirty = false;
+  state.lastFileRun = payload ? { ...payload, path, code: ui.fileEditor.value } : null;
   setRunOutput(formatRunOutput(payload));
+  renderLecturerPanel();
   if (payload.preview_path) {
     window.open(`/preview/${state.project.project_id}/${encodePath(payload.preview_path)}`, "_blank");
   }
+  await notifyLecturerAboutRun(payload).catch((error) => notify(error.message));
 }
 
 async function startLiveRun() {
@@ -2183,7 +2583,7 @@ async function startLiveRun() {
     payload: {
       path,
       code: ui.fileEditor.value,
-      language: inferLanguage(path),
+      language: inferRunLanguage(state.project, path),
       client_meta: { target_kind: "file" },
       terminal: { ...terminal, pty: true },
     },
@@ -2565,6 +2965,7 @@ function addCell() {
 function markFileDirty() {
   state.fileDirty = true;
   setRunOutput("Datei geaendert. Die angezeigte Ausgabe gehoert eventuell zu einem aelteren Stand. Speichern oder Datei ausfuehren.");
+  renderProjectPrivacyControls();
 }
 
 async function refreshChat() {
@@ -2995,11 +3396,22 @@ function curriculumStatusMarkup(status) {
   return `<span class="presence-chip">${escapeHtml(labels[status] || status || "offen")}</span>`;
 }
 
+function curriculumReleaseSourceLabel(source) {
+  const labels = {
+    default: "Standardfreigabe",
+    user: "Benutzerfreigabe",
+    group: "Gruppenfreigabe",
+    teacher: "Lehrkraftzugriff",
+  };
+  return labels[source] || source || "direkt";
+}
+
 function renderCurriculumDashboard() {
   if (!hasPermission("curriculum.use")) {
     state.curriculum = null;
     state.curriculumLastResult = null;
     ui.curriculumPanel.classList.add("hidden");
+    renderLecturerPanel();
     return;
   }
   ui.curriculumPanel.classList.remove("hidden");
@@ -3010,6 +3422,7 @@ function renderCurriculumDashboard() {
     ui.curriculumResultBanner.innerHTML = "";
     ui.curriculumModuleList.innerHTML = "";
     ui.curriculumModuleDetail.innerHTML = "<p class=\"muted\">Kein Kurs geladen.</p>";
+    renderLecturerPanel();
     return;
   }
   if (!courses.some((course) => course.course_id === state.curriculumCourseId)) {
@@ -3018,13 +3431,16 @@ function renderCurriculumDashboard() {
   }
   ui.curriculumCourse.value = state.curriculumCourseId;
   const course = selectedCurriculumCourse();
-  if (!course) return;
+  if (!course) {
+    renderLecturerPanel();
+    return;
+  }
   const allowedModuleIds = new Set([...(course.modules || []).map((module) => module.module_id), "__final__"]);
   if (!allowedModuleIds.has(state.curriculumModuleId)) {
     state.curriculumModuleId = course.modules[0]?.module_id || "__final__";
   }
   const releaseText = course.release?.enabled
-    ? `Freigeschaltet (${course.release.source || "direkt"})`
+    ? `Freigeschaltet (${curriculumReleaseSourceLabel(course.release.source)})`
     : "Noch nicht freigeschaltet";
   ui.curriculumCourseMeta.textContent = `${course.subject_area || "Modullehrplan"} | ${course.summary} | Fortschritt: ${course.progress.passed_modules}/${course.progress.total_modules} Mini-Module | ${releaseText}`;
   const moduleCards = (course.modules || []).map((module) => `
@@ -3080,6 +3496,7 @@ function renderCurriculumDashboard() {
   }
   if (!item) {
     ui.curriculumModuleDetail.innerHTML = "<p class=\"muted\">Kein Modul ausgewaehlt.</p>";
+    renderLecturerPanel();
     return;
   }
   const isFinal = item.assessment_id === course.final_assessment?.assessment_id;
@@ -3151,6 +3568,7 @@ function renderCurriculumDashboard() {
     submitCurriculumAssessment(form).catch((error) => notify(error.message));
   }));
   bindCurriculumCertificateButtons(ui.curriculumPanel);
+  renderLecturerPanel();
 }
 
 function updateCurriculumReleaseTargets() {
@@ -3483,6 +3901,273 @@ async function saveCurriculumDraft() {
     restoreSelectValue("curriculum-author-source", payload.course.course_id);
     ui.curriculumAuthorSource.value = payload.course.course_id;
     renderCurriculumAuthoring();
+  }
+}
+
+function renderLecturerThread(thread = state.lecturer.thread || []) {
+  state.lecturer.thread = thread || [];
+  if (!ui.lecturerThread) return;
+  if (!state.lecturer.thread.length) {
+    ui.lecturerThread.innerHTML = "<p class=\"muted\">Noch kein Dozenten-Verlauf vorhanden.</p>";
+    return;
+  }
+  ui.lecturerThread.innerHTML = state.lecturer.thread.map((item) => `
+    <article class="chat-message chat-message-${escapeHtml(item.role || "assistant")}">
+      <div class="chat-author">${escapeHtml(item.author || item.role || "Nova Dozent")}</div>
+      <div class="chat-body doc-content lecturer-message-body">${markdownToHtml(item.text || "")}</div>
+      <small>${formatWhen(item.created_at)}</small>
+    </article>
+  `).join("");
+}
+
+function selectedLecturerCourseId() {
+  return state.lecturer.selectedCourseId || state.lecturer.session?.course_id || state.curriculumCourseId || "";
+}
+
+function selectedLecturerCourse() {
+  const courses = state.curriculum?.courses || [];
+  const preferredCourseId = selectedLecturerCourseId();
+  return courses.find((course) => course.course_id === preferredCourseId) || courses[0] || null;
+}
+
+function syncLecturerSelection() {
+  const courses = state.curriculum?.courses || [];
+  if (!courses.length) {
+    state.lecturer.selectedCourseId = "";
+    state.lecturer.selectedModuleId = "";
+    return null;
+  }
+  const selectedCourse = courses.find((course) => course.course_id === selectedLecturerCourseId()) || courses[0];
+  state.lecturer.selectedCourseId = selectedCourse.course_id;
+  const allowedModuleIds = new Set([...(selectedCourse.modules || []).map((module) => module.module_id), "__final__"]);
+  const preferredModuleId = state.lecturer.selectedModuleId
+    || (state.lecturer.session?.course_id === selectedCourse.course_id ? state.lecturer.session?.module_id : "")
+    || (state.curriculumCourseId === selectedCourse.course_id ? state.curriculumModuleId : "")
+    || selectedCourse.modules?.[0]?.module_id
+    || "__final__";
+  state.lecturer.selectedModuleId = allowedModuleIds.has(preferredModuleId)
+    ? preferredModuleId
+    : (selectedCourse.modules?.[0]?.module_id || "__final__");
+  return selectedCourse;
+}
+
+function lecturerSelectionDiffersFromSession() {
+  const currentSession = state.lecturer.session;
+  if (!currentSession) return false;
+  return currentSession.course_id !== state.lecturer.selectedCourseId || currentSession.module_id !== state.lecturer.selectedModuleId;
+}
+
+function renderLecturerPanel() {
+  if (!ui.lecturerPanel) return;
+  const allowed = canUseLecturer();
+  ui.lecturerPanel.classList.toggle("hidden", !allowed);
+  if (!allowed) {
+    state.lecturer.session = null;
+    state.lecturer.thread = [];
+    return;
+  }
+
+  const courses = state.curriculum?.courses || [];
+  ui.lecturerAutoRun.checked = state.lecturer.autoRun;
+  ui.lecturerCourse.innerHTML = courses.map((course) => `<option value="${escapeHtml(course.course_id)}">${escapeHtml(course.title)}</option>`).join("");
+  const course = syncLecturerSelection();
+  restoreSelectValue("lecturer-course", state.lecturer.selectedCourseId || courses[0]?.course_id || "");
+  const moduleOptions = course ? [
+    ...(course.modules || []).map((module) => {
+      const statusLabel = module.status === "passed" ? "bestanden" : (module.status === "available" ? "frei" : "gesperrt");
+      return `<option value="${escapeHtml(module.module_id)}">${escapeHtml(module.title)} (${escapeHtml(statusLabel)})</option>`;
+    }),
+    `<option value="__final__">Abschlusspruefung (${escapeHtml(course.final_assessment?.unlocked ? "frei" : "gesperrt")})</option>`,
+  ] : [];
+  ui.lecturerModule.innerHTML = moduleOptions.join("");
+  restoreSelectValue("lecturer-module", state.lecturer.selectedModuleId || course?.modules?.[0]?.module_id || "__final__");
+
+  const currentSession = state.lecturer.session;
+  const currentCourse = courses.find((item) => item.course_id === currentSession?.course_id) || course;
+  const currentModule = currentSession
+    ? ((currentCourse?.modules || []).find((item) => item.module_id === currentSession.module_id)
+      || (currentSession.module_id === "__final__" ? currentCourse?.final_assessment : null))
+    : null;
+  const selectedCourseRelease = course?.release?.enabled;
+  const selectedModule = course
+    ? ((course.modules || []).find((item) => item.module_id === state.lecturer.selectedModuleId)
+      || (state.lecturer.selectedModuleId === "__final__" ? course.final_assessment : null)
+      || null)
+    : null;
+  const selectionDiffers = lecturerSelectionDiffersFromSession();
+  const hasDiscussableRun = Boolean(state.lastFileRun);
+  const startButton = ui.lecturerStartForm?.querySelector("button[type=submit]");
+  if (startButton) startButton.disabled = !state.project || !courses.length || state.lecturer.busy;
+  const sendButton = ui.lecturerForm?.querySelector("button[type=submit]");
+  if (sendButton) sendButton.disabled = !currentSession || state.lecturer.busy;
+  if (ui.lecturerRunFollowup) ui.lecturerRunFollowup.disabled = !currentSession || state.lecturer.busy || !hasDiscussableRun;
+  ui.lecturerForm?.classList.toggle("hidden", !currentSession);
+  if (startButton) {
+    startButton.textContent = selectionDiffers ? "Neue Dozenten-Sitzung starten" : "Dozenten-Sitzung starten";
+  }
+
+  if (state.lecturer.busy) {
+    ui.lecturerStatus.textContent = "Der virtuelle Dozent verarbeitet gerade den aktuellen Stand...";
+  } else if (!state.project) {
+    ui.lecturerStatus.textContent = "Bitte zuerst ein Projekt waehlen. Die Dozenten-Sitzung arbeitet immer im Kontext eines Projekts.";
+  } else if (!courses.length) {
+    ui.lecturerStatus.textContent = "Es ist noch kein freigegebener Kurs verfuegbar.";
+  } else if (currentSession && selectionDiffers) {
+    ui.lecturerStatus.textContent = `Aktive Sitzung: ${currentSession.course_title} | ${currentSession.module_title}. Neue Auswahl bereit: ${course?.title || ""} | ${selectedModule?.title || ""}.`;
+  } else if (currentSession) {
+    ui.lecturerStatus.textContent = `Aktive Sitzung: ${currentSession.course_title} | ${currentSession.module_title} | Auto-Laufanalyse: ${state.lecturer.autoRun ? "an" : "aus"}.`;
+  } else if (selectedCourseRelease || state.bootstrap?.session?.role !== "student") {
+    ui.lecturerStatus.textContent = "Waehle Kurs und Modul und starte dann die Dozenten-Sitzung.";
+  } else {
+    ui.lecturerStatus.textContent = "Der aktuell gewaehlte Kurs ist fuer diese Sitzung noch nicht freigeschaltet.";
+  }
+
+  if (!currentSession || selectionDiffers) {
+    ui.lecturerBriefing.innerHTML = course ? `
+      <h3>Startbereit: ${escapeHtml(course.title)}</h3>
+      <p><strong>Ausgewaehltes Modul:</strong> ${escapeHtml(selectedModule?.title || "Kein Modul")}</p>
+      <p>${escapeHtml(course.summary || "Noch keine Kurszusammenfassung vorhanden.")}</p>
+      <p><strong>Hinweis:</strong> Nach dem Start begruesst der Dozent den Lernenden, formuliert einen Arbeitsauftrag und reagiert anschliessend automatisch auf Code-Laeufe.</p>
+    ` : "<p class=\"muted\">Noch kein Kurs ausgewaehlt.</p>";
+    renderLecturerThread(selectionDiffers ? state.lecturer.thread || [] : []);
+    return;
+  }
+
+  const objectives = currentSession.module_objectives || [];
+  const successChecks = currentSession.success_checks || [];
+  ui.lecturerBriefing.innerHTML = `
+    <h3>${escapeHtml(currentSession.task_title || currentSession.module_title || "Aktueller Auftrag")}</h3>
+    <p><strong>Kurs:</strong> ${escapeHtml(currentSession.course_title || currentSession.course_id || "")}</p>
+    <p><strong>Modul:</strong> ${escapeHtml(currentSession.module_title || currentSession.module_id || "")}${currentModule?.passed ? " | bereits im Lehrplan bestanden" : ""}</p>
+    <p>${escapeHtml(currentSession.course_history || currentSession.lesson_focus || currentSession.course_summary || "")}</p>
+    <p><strong>Arbeitsauftrag:</strong> ${escapeHtml(currentSession.task_instructions || "Noch kein Arbeitsauftrag vorhanden.")}</p>
+    ${objectives.length ? `<p><strong>Lernziele:</strong> ${objectives.map((item) => escapeHtml(item)).join(" | ")}</p>` : ""}
+    ${successChecks.length ? `<p><strong>Erfolgskriterien:</strong> ${successChecks.map((item) => escapeHtml(item)).join(" | ")}</p>` : ""}
+  `;
+  renderLecturerThread(state.lecturer.thread || []);
+}
+
+async function loadLecturerSession() {
+  if (!state.project || !canUseLecturer()) {
+    state.lecturer.session = null;
+    state.lecturer.thread = [];
+    renderLecturerPanel();
+    return;
+  }
+  const payload = await api(`/api/projects/${state.project.project_id}/lecturer/session`);
+  state.lecturer.session = payload.session || null;
+  state.lecturer.thread = payload.thread || [];
+  renderLecturerPanel();
+}
+
+async function startLecturerSession(event) {
+  event.preventDefault();
+  if (!state.project) throw new Error("Bitte zuerst ein Projekt waehlen.");
+  if (!canUseLecturer()) throw new Error("Der virtuelle Dozent ist fuer diese Sitzung nicht freigegeben.");
+  const courseId = state.lecturer.selectedCourseId || ui.lecturerCourse.value || state.curriculumCourseId || "";
+  const moduleId = state.lecturer.selectedModuleId || ui.lecturerModule.value || state.curriculumModuleId || "";
+  if (!courseId) throw new Error("Bitte zuerst einen Kurs auswaehlen.");
+  state.lecturer.busy = true;
+  renderLecturerPanel();
+  try {
+    const payload = await api(`/api/projects/${state.project.project_id}/lecturer/start`, {
+      method: "POST",
+      body: { course_id: courseId, module_id: moduleId },
+    });
+    state.lecturer.session = payload.session || null;
+    state.lecturer.thread = payload.thread || [];
+    ui.lecturerInput.value = "";
+    notify(`Dozenten-Sitzung gestartet: ${state.lecturer.session?.course_title || courseId}`);
+  } finally {
+    state.lecturer.busy = false;
+    renderLecturerPanel();
+  }
+}
+
+async function sendLecturerMessage(event) {
+  event.preventDefault();
+  if (!state.project) throw new Error("Bitte zuerst ein Projekt waehlen.");
+  if (!state.lecturer.session) throw new Error("Bitte zuerst eine Dozenten-Sitzung starten.");
+  if (state.lecturer.busy) throw new Error("Der virtuelle Dozent verarbeitet bereits eine Nachricht.");
+  const prompt = ui.lecturerInput.value.trim();
+  if (!prompt) throw new Error("Bitte zuerst eine Nachricht an den Dozenten eingeben.");
+  state.lecturer.busy = true;
+  renderLecturerPanel();
+  try {
+    const payload = await api(`/api/projects/${state.project.project_id}/lecturer/respond`, {
+      method: "POST",
+      body: {
+        prompt,
+        code: ui.fileEditor.value,
+        path: ui.filePath.value,
+        run_output: ui.runOutput.textContent,
+        event_type: "message",
+      },
+    });
+    state.lecturer.session = payload.session || state.lecturer.session;
+    state.lecturer.thread = payload.thread || [];
+    ui.lecturerInput.value = "";
+    notify(`Dozenten-Antwort von ${payload.model || "dem aktiven Modell"} erhalten.`);
+  } finally {
+    state.lecturer.busy = false;
+    renderLecturerPanel();
+  }
+}
+
+async function notifyLecturerAboutRun(runPayload) {
+  if (!state.project || !state.lecturer.session || !state.lecturer.autoRun || state.lecturer.busy) return;
+  state.lecturer.busy = true;
+  renderLecturerPanel();
+  try {
+    const payload = await api(`/api/projects/${state.project.project_id}/lecturer/respond`, {
+      method: "POST",
+      body: {
+        prompt: "",
+        code: ui.fileEditor.value,
+        path: ui.filePath.value,
+        run_output: formatRunOutput(runPayload),
+        event_type: "run_result",
+        run_returncode: Number.isInteger(runPayload?.returncode) ? runPayload.returncode : null,
+      },
+    });
+    state.lecturer.session = payload.session || state.lecturer.session;
+    state.lecturer.thread = payload.thread || [];
+    notify("Der virtuelle Dozent hat den aktuellen Lauf bewertet.");
+  } finally {
+    state.lecturer.busy = false;
+    renderLecturerPanel();
+  }
+}
+
+async function discussCurrentRunWithLecturer() {
+  if (!state.project) throw new Error("Bitte zuerst ein Projekt waehlen.");
+  if (!state.lecturer.session) throw new Error("Bitte zuerst eine Dozenten-Sitzung starten.");
+  if (state.lecturer.busy) throw new Error("Der virtuelle Dozent verarbeitet bereits eine Nachricht.");
+  const runPayload = state.lastFileRun;
+  if (!runPayload) {
+    throw new Error("Es gibt noch keinen aktuellen Editor-Lauf zum Besprechen. Bitte zuerst `Datei ausfuehren`.");
+  }
+
+  state.lecturer.busy = true;
+  renderLecturerPanel();
+  try {
+    const payload = await api(`/api/projects/${state.project.project_id}/lecturer/respond`, {
+      method: "POST",
+      body: {
+        prompt: "Bitte bewerte meinen aktuellen Lauf und fuehre mich zum naechsten sinnvollen Schritt.",
+        code: runPayload.code || ui.fileEditor.value,
+        path: runPayload.path || ui.filePath.value,
+        run_output: formatRunOutput(runPayload),
+        event_type: "run_result",
+        run_returncode: Number.isInteger(runPayload?.returncode) ? runPayload.returncode : null,
+      },
+    });
+    state.lecturer.session = payload.session || state.lecturer.session;
+    state.lecturer.thread = payload.thread || [];
+    notify("Der aktuelle Lauf wurde an den virtuellen Dozenten uebergeben.");
+  } finally {
+    state.lecturer.busy = false;
+    renderLecturerPanel();
   }
 }
 
@@ -4064,6 +4749,9 @@ $("logout-button").addEventListener("click", async () => {
 $("open-material-studio")?.addEventListener("click", () => {
   ui.materialStudioPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
+$("open-virtual-lecturer")?.addEventListener("click", () => {
+  ui.lecturerPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 $("open-ai-assistant")?.addEventListener("click", () => {
   ui.assistantPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
@@ -4193,8 +4881,21 @@ $("submit-review-project").addEventListener("click", () => submitCurrentProjectF
 $("refresh-artifacts").addEventListener("click", () => loadArtifacts().catch((error) => notify(error.message)));
 $("share-project").addEventListener("click", () => shareCurrentProject().catch((error) => notify(error.message)));
 $("export-project").addEventListener("click", () => exportCurrentProject().catch((error) => notify(error.message)));
+$("project-export")?.addEventListener("click", () => {
+  try {
+    exportCurrentProjectData();
+  } catch (error) {
+    notify(error.message);
+  }
+});
+$("project-archive")?.addEventListener("click", () => archiveCurrentProject().catch((error) => notify(error.message)));
+$("project-delete")?.addEventListener("click", () => deleteCurrentProject().catch((error) => notify(error.message)));
+$("create-folder")?.addEventListener("click", () => createFolder().catch((error) => notify(error.message)));
+$("rename-entry")?.addEventListener("click", () => renameSelectedEntry().catch((error) => notify(error.message)));
+$("delete-file")?.addEventListener("click", () => deleteSelectedEntry().catch((error) => notify(error.message)));
 $("refresh-curriculum").addEventListener("click", () => loadCurriculumDashboard().catch((error) => notify(error.message)));
 $("refresh-curriculum-manage").addEventListener("click", () => loadCurriculumDashboard().catch((error) => notify(error.message)));
+$("refresh-lecturer")?.addEventListener("click", () => loadLecturerSession().catch((error) => notify(error.message)));
 $("curriculum-bundle-validate")?.addEventListener("click", () => validateCurriculumBundle().catch((error) => notify(error.message)));
 $("curriculum-bundle-import")?.addEventListener("click", () => importCurriculumBundle().catch((error) => notify(error.message)));
 $("curriculum-bundle-rollback")?.addEventListener("click", () => rollbackCurriculumBundle().catch((error) => notify(error.message)));
@@ -4203,6 +4904,25 @@ ui.curriculumCourse?.addEventListener("change", () => {
   state.curriculumModuleId = "";
   state.curriculumLastResult = null;
   renderCurriculumDashboard();
+});
+ui.lecturerCourse?.addEventListener("change", () => {
+  state.lecturer.selectedCourseId = ui.lecturerCourse.value || "";
+  const course = selectedLecturerCourse();
+  state.lecturer.selectedModuleId = course?.modules?.[0]?.module_id || "__final__";
+  renderLecturerPanel();
+});
+ui.lecturerModule?.addEventListener("change", () => {
+  state.lecturer.selectedModuleId = ui.lecturerModule.value || "";
+  renderLecturerPanel();
+});
+ui.lecturerAutoRun?.addEventListener("change", () => {
+  state.lecturer.autoRun = Boolean(ui.lecturerAutoRun.checked);
+  renderLecturerPanel();
+});
+ui.lecturerStartForm?.addEventListener("submit", (event) => startLecturerSession(event).catch((error) => notify(error.message)));
+ui.lecturerForm?.addEventListener("submit", (event) => sendLecturerMessage(event).catch((error) => notify(error.message)));
+ui.lecturerRunFollowup?.addEventListener("click", () => {
+  discussCurrentRunWithLecturer().catch((error) => notify(error.message));
 });
 ui.curriculumManageCourse?.addEventListener("change", () => {
   state.curriculumManageCourseId = ui.curriculumManageCourse.value;

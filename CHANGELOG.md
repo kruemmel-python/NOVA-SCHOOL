@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.12 - 2026-03-30
+
+### Added
+
+- virtual lecturer sessions for students, teachers, and admins with centered UI, structured teaching replies, run discussion, and curriculum-aware exercises
+- project privacy operations for file deletion, project export/archive/hard-delete, and continued per-student data export support
+- project explorer support for creating, renaming, and deleting folders directly in the workspace tree
+- `analysis_archive_builder.py` for a source-only `NovaSchoolAnalyzer` ZIP that excludes runtime data, binaries, and local LLM model blobs such as `.gguf` files
+
+### Fixed
+
+- project execution now starts language projects through their configured project entry instead of only the currently open file, including full web-project previews
+- Rust container runs now keep the image-provided Cargo path and apply the container file-size limit with the correct KB-to-bytes conversion
+- the virtual lecturer no longer leaks internal prompt fragments and evaluates Python/Web starter tasks more reliably
+
+### Changed
+
+- student curriculum modules are available from the start unless explicitly restricted by staff
+- the virtual lecturer panel now lives in the central workspace area instead of the cramped right sidebar
+- project and privacy UI layouts were widened and made more resilient on narrower browser widths
+
 ## v0.1.11 - 2026-03-29
 
 ### Added

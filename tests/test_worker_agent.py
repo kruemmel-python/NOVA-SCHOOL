@@ -45,6 +45,44 @@ class WorkerAgentTests(unittest.TestCase):
             self.assertNotIn("cp -a", " ".join(command))
             self.assertTrue((runtime_root.parent / "container-workspace" / "main.py").exists())
 
+    def test_container_command_preserves_image_path_and_converts_file_limit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            work_root = Path(tmp)
+            runtime_root = work_root / "job" / "workspace"
+            runtime_root.mkdir(parents=True, exist_ok=True)
+            (runtime_root / "Cargo.toml").write_text("[package]\nname = 'demo'\nversion = '0.1.0'\nedition = '2021'\n", encoding="utf-8")
+            (runtime_root / "src").mkdir(parents=True, exist_ok=True)
+            (runtime_root / "src" / "main.rs").write_text("fn main() {}\n", encoding="utf-8")
+
+            agent = WorkerAgent(
+                server_url="http://127.0.0.1:8877",
+                worker_id="lab-node-01",
+                token="secret",
+                advertise_host="127.0.0.1",
+                work_root=work_root,
+            )
+            job = {
+                "backend": "container",
+                "payload": {
+                    "runtime": "rust",
+                    "entrypoint": "src/main.rs",
+                    "container_runtime": "docker",
+                    "container_image": "rust:1.81",
+                    "container_file_size_limit_kb": 65536,
+                    "env": {
+                        "PATH": r"C:\\Windows\\System32;C:\\Rust",
+                    },
+                },
+            }
+
+            with patch("nova_school_server.worker_agent.shutil.which", return_value="docker"):
+                command = agent._build_command(job, runtime_root)
+
+            command_text = " ".join(command)
+            self.assertIn("fsize=67108864:67108864", command)
+            self.assertNotIn("PATH=/usr/local", command_text)
+            self.assertNotIn(r"PATH=C:\\Windows\\System32;C:\\Rust", command_text)
+
     def test_verify_artifact_integrity_rejects_hash_mismatch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             artifact = Path(tmp) / "payload.zip"

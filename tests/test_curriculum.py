@@ -244,20 +244,25 @@ class CurriculumServiceTests(unittest.TestCase):
         self.repository.close()
         self.tmp.cleanup()
 
-    def test_course_is_locked_until_released_for_student(self) -> None:
-        dashboard = self.service.dashboard(self.student)
-        course = next(item for item in dashboard["courses"] if item["course_id"] == "python-grundlagen")
-        self.assertFalse(course["release"]["enabled"])
-        self.assertEqual(course["modules"][0]["status"], "locked")
-
-        release = self.service.set_release(self.teacher, "python-grundlagen", "user", "student", True, "Start nach Einstiegsstunde")
-        self.assertTrue(release["enabled"])
-
+    def test_course_is_available_by_default_for_student(self) -> None:
         dashboard = self.service.dashboard(self.student)
         course = next(item for item in dashboard["courses"] if item["course_id"] == "python-grundlagen")
         self.assertTrue(course["release"]["enabled"])
+        self.assertEqual(course["release"]["source"], "default")
         self.assertEqual(course["modules"][0]["status"], "available")
-        self.assertEqual(course["modules"][1]["status"], "locked")
+        self.assertEqual(course["modules"][1]["status"], "available")
+        self.assertTrue(course["final_assessment"]["unlocked"])
+
+    def test_explicit_user_disable_locks_course_for_student(self) -> None:
+        release = self.service.set_release(self.teacher, "python-grundlagen", "user", "student", False, "Manuell gesperrt")
+        self.assertFalse(release["enabled"])
+
+        dashboard = self.service.dashboard(self.student)
+        course = next(item for item in dashboard["courses"] if item["course_id"] == "python-grundlagen")
+        self.assertFalse(course["release"]["enabled"])
+        self.assertEqual(course["release"]["source"], "user")
+        self.assertEqual(course["modules"][0]["status"], "locked")
+        self.assertFalse(course["final_assessment"]["unlocked"])
 
     def test_dashboard_exposes_multiple_courses(self) -> None:
         dashboard = self.service.dashboard(self.student)
@@ -279,7 +284,6 @@ class CurriculumServiceTests(unittest.TestCase):
         self.assertEqual(course["modules"][0]["status"], "available")
 
     def test_module_progression_unlocks_next_module(self) -> None:
-        self.service.set_release(self.teacher, "python-grundlagen", "user", "student", True)
         course = get_course("python-grundlagen")
         assert course is not None
 
@@ -296,10 +300,9 @@ class CurriculumServiceTests(unittest.TestCase):
         course_payload = result["course"]
         self.assertTrue(next(item for item in course_payload["modules"] if item["module_id"] == first_module["module_id"])["passed"])
         self.assertEqual(course_payload["modules"][1]["status"], "available")
-        self.assertFalse(course_payload["progress"]["final_unlocked"])
+        self.assertTrue(course_payload["progress"]["final_unlocked"])
 
     def test_final_exam_issues_certificate_after_all_modules(self) -> None:
-        self.service.set_release(self.teacher, "python-grundlagen", "user", "student", True)
         course = get_course("python-grundlagen")
         assert course is not None
 
@@ -331,7 +334,6 @@ class CurriculumServiceTests(unittest.TestCase):
         self.assertTrue(course_payload["progress"]["final_passed"])
 
     def test_attempt_history_returns_all_submissions_for_teacher_view(self) -> None:
-        self.service.set_release(self.teacher, "python-grundlagen", "user", "student", True)
         course = get_course("python-grundlagen")
         assert course is not None
         first_module = course["modules"][0]
@@ -532,8 +534,9 @@ class CurriculumServiceTests(unittest.TestCase):
 
         student_dashboard = self.service.dashboard(self.student)
         student_course = next(item for item in student_dashboard["courses"] if item["course_id"] == payload["course_id"])
-        self.assertFalse(student_course["release"]["enabled"])
-        self.assertEqual(student_course["modules"][0]["status"], "locked")
+        self.assertTrue(student_course["release"]["enabled"])
+        self.assertEqual(student_course["release"]["source"], "default")
+        self.assertEqual(student_course["modules"][0]["status"], "available")
 
     def test_custom_course_uses_final_exam_threshold_and_issues_certificate(self) -> None:
         payload = _custom_course_payload()

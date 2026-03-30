@@ -45,6 +45,8 @@ EXTENSION_TO_LANGUAGE = {
     ".htm": "html",
 }
 
+JAVA_PACKAGE_PATTERN = re.compile(r"^\s*package\s+([A-Za-z_][\w.]*)\s*;", re.MULTILINE)
+
 DEFAULT_CONTAINER_IMAGES = {
     "python": "python:3.12-slim",
     "node": "node:20-bookworm-slim",
@@ -258,8 +260,7 @@ class CodeRunner:
         run_root.mkdir(parents=True, exist_ok=True)
 
         if language == "html":
-            source_path = self._prepare_source_file(project, payload, language, run_root)
-            preview_target = self._prepare_html_preview(project, payload, source_path, project_root)
+            preview_target = self._prepare_html_preview(project, payload, project_root, run_root)
             result = RunResult(
                 run_id=run_id,
                 language=language,
@@ -271,14 +272,15 @@ class CodeRunner:
             )
             return self._finalize_run_result(session, result)
 
-        execution_root, source_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
+        execution_root, _edited_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
+        source_path = self._resolve_project_entry_path(project, payload, language, execution_root)
         if language == "python":
-            syntax_error = self._python_syntax_error(source_path, display_path=Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix())
+            syntax_error = self._python_syntax_error(source_path, display_path=source_path.relative_to(execution_root).as_posix())
             if syntax_error:
                 result = RunResult(
                     run_id=run_id,
                     language=language,
-                    command=["python", "-m", "py_compile", Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix()],
+                    command=["python", "-m", "py_compile", source_path.relative_to(execution_root).as_posix()],
                     stderr=syntax_error,
                     returncode=1,
                     notes=self._backend_notes(session.permissions, backend),
@@ -399,9 +401,8 @@ class CodeRunner:
         run_root.mkdir(parents=True, exist_ok=True)
 
         if language == "html":
-            source_path = self._prepare_source_file(project, payload, language, run_root)
             notes = self._backend_notes(session.permissions, backend)
-            preview_target = self._prepare_html_preview(project, payload, source_path, project_root)
+            preview_target = self._prepare_html_preview(project, payload, project_root, run_root)
             env = self._execution_env(project_root, web_access=bool(session.permissions.get("web.access", False)))
             prepared = LivePreparedRun(
                 session_id=session_id,
@@ -418,15 +419,16 @@ class CodeRunner:
             )
             return self._finalize_prepared_run(session, prepared)
 
-        execution_root, source_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
+        execution_root, _edited_path = self._prepare_execution_workspace(project, payload, language, project_root, run_root)
+        source_path = self._resolve_project_entry_path(project, payload, language, execution_root)
         if language == "python":
-            syntax_error = self._python_syntax_error(source_path, display_path=Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix())
+            syntax_error = self._python_syntax_error(source_path, display_path=source_path.relative_to(execution_root).as_posix())
             if syntax_error:
                 prepared = LivePreparedRun(
                     session_id=session_id,
                     run_id=run_id,
                     language=language,
-                    command=["python", "-m", "py_compile", Path(payload.get("path") or project.get("main_file") or source_path.name).as_posix()],
+                    command=["python", "-m", "py_compile", source_path.relative_to(execution_root).as_posix()],
                     cwd=project_root,
                     env={},
                     notes=self._backend_notes(session.permissions, backend),
@@ -448,6 +450,9 @@ class CodeRunner:
         return self._finalize_prepared_run(session, prepared, lease)
 
     def _resolve_language(self, project: dict[str, Any], payload: dict[str, Any]) -> str:
+        project_runtime = str(project.get("runtime") or "").strip().lower()
+        if project_runtime in LANGUAGE_TO_PERMISSION:
+            return project_runtime
         explicit = str(payload.get("language") or "").strip().lower()
         if explicit:
             return explicit
@@ -511,6 +516,43 @@ class CodeRunner:
         (runtime_root / ".nova-tmp").mkdir(parents=True, exist_ok=True)
         return runtime_root, source_path
 
+    def _resolve_project_entry_path(self, project: dict[str, Any], payload: dict[str, Any], language: str, runtime_root: Path) -> Path:
+        relative_entry = self._resolve_project_entry_relative_path(project, payload, language)
+        entry_path = runtime_root / relative_entry
+        if not entry_path.exists() or not entry_path.is_file():
+            raise FileNotFoundError(f"Projekt-Einstiegsdatei nicht gefunden: {relative_entry.as_posix()}")
+        return entry_path
+
+    def _resolve_project_entry_relative_path(self, project: dict[str, Any], payload: dict[str, Any], language: str) -> Path:
+        main_file = str(project.get("main_file") or "").strip()
+        if main_file:
+            return self._safe_relative_path(main_file)
+        path_text = str(payload.get("path") or "").strip()
+        if path_text:
+            return self._safe_relative_path(path_text)
+        return self._safe_relative_path(self._default_filename(language))
+
+    @staticmethod
+    def _project_source_files(project_root: Path, suffixes: set[str]) -> list[Path]:
+        ignored_parts = {".nova-school", ".nova-build", ".nova-cache", ".nova-tmp", "__pycache__", "node_modules", "dist", "build", "target"}
+        return sorted(
+            (
+                path for path in project_root.rglob("*")
+                if path.is_file()
+                and path.suffix.lower() in suffixes
+                and not any(part in ignored_parts for part in path.relative_to(project_root).parts)
+            ),
+            key=lambda item: item.as_posix().lower(),
+        )
+
+    def _java_main_class(self, source_path: Path, project_root: Path) -> str:
+        source_text = self._read_source_text(source_path)
+        package_match = JAVA_PACKAGE_PATTERN.search(source_text)
+        class_name = source_path.stem
+        if package_match:
+            return f"{package_match.group(1)}.{class_name}"
+        return class_name
+
     def _copy_project_tree(self, project_root: Path, runtime_root: Path) -> None:
         ignored_names = {"__pycache__", ".git", ".venv", "venv", "node_modules", "dist", "build", "target", ".nova-school"}
         self._mirror_tree_securely(project_root, runtime_root, ignored_names)
@@ -525,13 +567,39 @@ class CodeRunner:
             raise PermissionError("Leerer Projektpfad fuer die Ausfuehrung.")
         return Path(*parts)
 
-    def _prepare_html_preview(self, project: dict[str, Any], payload: dict[str, Any], source_path: Path, project_root: Path) -> str:
-        if payload.get("code") is not None:
-            preview_file = project_root / ".nova-school" / "live-preview.html"
-            preview_file.parent.mkdir(parents=True, exist_ok=True)
-            preview_file.write_text(str(payload.get("code") or ""), encoding="utf-8")
-            return preview_file.relative_to(project_root).as_posix()
-        return source_path.relative_to(project_root).as_posix()
+    def _prepare_html_preview(self, project: dict[str, Any], payload: dict[str, Any], project_root: Path, run_root: Path) -> str:
+        preview_root, source_path = self._prepare_execution_workspace(project, payload, "html", project_root, run_root)
+        preview_entry = self._resolve_html_preview_entry(project, payload, preview_root, source_path)
+        target = preview_root / preview_entry
+        if not target.exists() or not target.is_file():
+            raise FileNotFoundError(f"HTML-Einstieg fuer die Vorschau nicht gefunden: {preview_entry.as_posix()}")
+        return target.relative_to(project_root).as_posix()
+
+    def _resolve_html_preview_entry(self, project: dict[str, Any], payload: dict[str, Any], preview_root: Path, source_path: Path) -> Path:
+        candidates: list[Path] = []
+        main_file = str(project.get("main_file") or "").strip()
+        if main_file:
+            candidates.append(self._safe_relative_path(main_file))
+        path_text = str(payload.get("path") or "").strip()
+        if path_text:
+            selected = self._safe_relative_path(path_text)
+            if selected.suffix.lower() in {".html", ".htm"}:
+                candidates.append(selected)
+        source_relative = source_path.relative_to(preview_root)
+        if source_relative.suffix.lower() in {".html", ".htm"}:
+            candidates.append(source_relative)
+        if Path("index.html") not in candidates:
+            candidates.append(Path("index.html"))
+
+        seen: set[str] = set()
+        for candidate in candidates:
+            key = candidate.as_posix()
+            if key in seen:
+                continue
+            seen.add(key)
+            if (preview_root / candidate).exists():
+                return candidate
+        raise FileNotFoundError("Keine HTML-Einstiegsdatei fuer die Projektvorschau gefunden.")
 
     def _detect_python_gui_frameworks(self, language: str, source_path: Path, payload: dict[str, Any]) -> list[str]:
         if language != "python":
@@ -792,11 +860,20 @@ class CodeRunner:
             result.notes = list(result.notes or []) + extra_notes
             return result
         if language == "cpp":
-            container_source = self._container_path(project_root, source_path)
+            source_files = self._project_source_files(project_root, {".cpp", ".cc", ".cxx"})
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
             container_binary = self._container_path(project_root, build_root / ("program.exe" if os.name == "nt" else "program"))
-            compile = self._execute_container_raw(runtime_executable, image, ["g++", "-std=c++20", "-O2", container_source, "-o", container_binary], project_root, container_workspace, "", env, permissions)
+            compile = self._execute_container_raw(
+                runtime_executable,
+                image,
+                ["g++", "-std=c++20", "-O2", *(self._container_path(project_root, path) for path in (source_files or [source_path])), "-o", container_binary],
+                project_root,
+                container_workspace,
+                "",
+                env,
+                permissions,
+            )
             if compile.returncode != 0:
                 return RunResult(run_id, language, compile.command, compile.stdout, compile.stderr, compile.returncode, compile.duration_ms, notes=self._backend_notes(permissions, "container", runtime, image) + extra_notes, tool_session=tool_session)
             run_result = self._execute_container(run_id, language, runtime_executable, image, [container_binary], project_root, container_workspace, stdin_text, env, tool_session, permissions)
@@ -804,14 +881,23 @@ class CodeRunner:
             run_result.notes = list(run_result.notes or []) + extra_notes
             return run_result
         if language == "java":
-            container_source = self._container_path(project_root, source_path)
+            source_files = self._project_source_files(project_root, {".java"})
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
             container_output = self._container_path(project_root, build_root)
-            compile = self._execute_container_raw(runtime_executable, image, ["javac", "-d", container_output, container_source], project_root, container_workspace, "", env, permissions)
+            compile = self._execute_container_raw(
+                runtime_executable,
+                image,
+                ["javac", "-d", container_output, *(self._container_path(project_root, path) for path in (source_files or [source_path]))],
+                project_root,
+                container_workspace,
+                "",
+                env,
+                permissions,
+            )
             if compile.returncode != 0:
                 return RunResult(run_id, language, compile.command, compile.stdout, compile.stderr, compile.returncode, compile.duration_ms, notes=self._backend_notes(permissions, "container", runtime, image) + extra_notes, tool_session=tool_session)
-            run_result = self._execute_container(run_id, language, runtime_executable, image, ["java", "-cp", container_output, source_path.stem], project_root, container_workspace, stdin_text, env, tool_session, permissions)
+            run_result = self._execute_container(run_id, language, runtime_executable, image, ["java", "-cp", container_output, self._java_main_class(source_path, project_root)], project_root, container_workspace, stdin_text, env, tool_session, permissions)
             run_result.stdout = (compile.stdout + run_result.stdout).strip() + ("\n" if (compile.stdout or run_result.stdout) else "")
             run_result.notes = list(run_result.notes or []) + extra_notes
             return run_result
@@ -875,7 +961,8 @@ class CodeRunner:
         build_root = project_root / ".nova-build"
         build_root.mkdir(parents=True, exist_ok=True)
         binary = build_root / ("program.exe" if os.name == "nt" else "program")
-        compile_command = [compiler, "-std=c++20", "-O2", str(source_path), "-o", str(binary)]
+        source_files = self._project_source_files(project_root, {".cpp", ".cc", ".cxx"})
+        compile_command = [compiler, "-std=c++20", "-O2", *(str(path) for path in (source_files or [source_path])), "-o", str(binary)]
         compile_result = self._execute_raw(compile_command, project_root, "", env)
         if compile_result.returncode != 0:
             return RunResult(run_id, "cpp", compile_command, compile_result.stdout, compile_result.stderr, compile_result.returncode, compile_result.duration_ms, notes=self._network_notes(permissions), tool_session=tool_session)
@@ -890,11 +977,12 @@ class CodeRunner:
             raise RuntimeError("javac und java muessen auf dem Server vorhanden sein")
         build_root = project_root / ".nova-build"
         build_root.mkdir(parents=True, exist_ok=True)
-        compile_command = [javac, "-d", str(build_root), str(source_path)]
+        source_files = self._project_source_files(project_root, {".java"})
+        compile_command = [javac, "-d", str(build_root), *(str(path) for path in (source_files or [source_path]))]
         compile_result = self._execute_raw(compile_command, project_root, "", env)
         if compile_result.returncode != 0:
             return RunResult(run_id, "java", compile_command, compile_result.stdout, compile_result.stderr, compile_result.returncode, compile_result.duration_ms, notes=self._network_notes(permissions), tool_session=tool_session)
-        run_result = self._execute(run_id, "java", [java, "-cp", str(build_root), source_path.stem], project_root, stdin_text, env, tool_session, permissions)
+        run_result = self._execute(run_id, "java", [java, "-cp", str(build_root), self._java_main_class(source_path, project_root)], project_root, stdin_text, env, tool_session, permissions)
         run_result.stdout = (compile_result.stdout + run_result.stdout).strip() + ("\n" if (compile_result.stdout or run_result.stdout) else "")
         return run_result
 
@@ -1152,7 +1240,8 @@ class CodeRunner:
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
             binary = build_root / ("program.exe" if os.name == "nt" else "program")
-            compile_command = [compiler, "-std=c++20", "-O2", str(source_path), "-o", str(binary)]
+            source_files = self._project_source_files(project_root, {".cpp", ".cc", ".cxx"})
+            compile_command = [compiler, "-std=c++20", "-O2", *(str(path) for path in (source_files or [source_path])), "-o", str(binary)]
             compile_result = self._execute_raw(compile_command, project_root, "", env)
             if compile_result.returncode != 0:
                 return LivePreparedRun(session_id, run_id, language, compile_command, project_root, env, self._backend_notes(permissions, "process"), tool_session, prelude_stdout=compile_result.stdout, prelude_stderr=compile_result.stderr, failed_returncode=compile_result.returncode)
@@ -1165,11 +1254,12 @@ class CodeRunner:
                 raise RuntimeError("javac und java muessen auf dem Server vorhanden sein")
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
-            compile_command = [javac, "-d", str(build_root), str(source_path)]
+            source_files = self._project_source_files(project_root, {".java"})
+            compile_command = [javac, "-d", str(build_root), *(str(path) for path in (source_files or [source_path]))]
             compile_result = self._execute_raw(compile_command, project_root, "", env)
             if compile_result.returncode != 0:
                 return LivePreparedRun(session_id, run_id, language, compile_command, project_root, env, self._backend_notes(permissions, "process"), tool_session, prelude_stdout=compile_result.stdout, prelude_stderr=compile_result.stderr, failed_returncode=compile_result.returncode)
-            return LivePreparedRun(session_id, run_id, language, [java, "-cp", str(build_root), source_path.stem], project_root, env, self._backend_notes(permissions, "process"), tool_session, prelude_stdout=compile_result.stdout)
+            return LivePreparedRun(session_id, run_id, language, [java, "-cp", str(build_root), self._java_main_class(source_path, project_root)], project_root, env, self._backend_notes(permissions, "process"), tool_session, prelude_stdout=compile_result.stdout)
 
         if language == "rust":
             cargo_manifest = project_root / "Cargo.toml"
@@ -1282,23 +1372,41 @@ class CodeRunner:
             inner_command = ["node", self._container_path(project_root, source_path)]
             return LivePreparedRun(session_id, run_id, language, self._container_wrapped_command(base_command, inner_command), project_root, env, notes, tool_session, pty_command=(self._container_wrapped_command(pty_base_command, inner_command) if pty_base_command else None))
         if language == "cpp":
-            container_source = self._container_path(project_root, source_path)
+            source_files = self._project_source_files(project_root, {".cpp", ".cc", ".cxx"})
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
             container_binary = self._container_path(project_root, build_root / ("program.exe" if os.name == "nt" else "program"))
-            compile = self._execute_container_raw(runtime_executable, image, ["g++", "-std=c++20", "-O2", container_source, "-o", container_binary], project_root, container_workspace, "", env, permissions)
+            compile = self._execute_container_raw(
+                runtime_executable,
+                image,
+                ["g++", "-std=c++20", "-O2", *(self._container_path(project_root, path) for path in (source_files or [source_path])), "-o", container_binary],
+                project_root,
+                container_workspace,
+                "",
+                env,
+                permissions,
+            )
             if compile.returncode != 0:
                 return LivePreparedRun(session_id, run_id, language, compile.command or inspect_command, project_root, env, notes, tool_session, prelude_stdout=compile.stdout, prelude_stderr=compile.stderr, failed_returncode=compile.returncode)
             return LivePreparedRun(session_id, run_id, language, self._container_wrapped_command(base_command, [container_binary]), project_root, env, notes, tool_session, pty_command=(self._container_wrapped_command(pty_base_command, [container_binary]) if pty_base_command else None), prelude_stdout=compile.stdout)
         if language == "java":
-            container_source = self._container_path(project_root, source_path)
+            source_files = self._project_source_files(project_root, {".java"})
             build_root = project_root / ".nova-build"
             build_root.mkdir(parents=True, exist_ok=True)
             container_output = self._container_path(project_root, build_root)
-            compile = self._execute_container_raw(runtime_executable, image, ["javac", "-d", container_output, container_source], project_root, container_workspace, "", env, permissions)
+            compile = self._execute_container_raw(
+                runtime_executable,
+                image,
+                ["javac", "-d", container_output, *(self._container_path(project_root, path) for path in (source_files or [source_path]))],
+                project_root,
+                container_workspace,
+                "",
+                env,
+                permissions,
+            )
             if compile.returncode != 0:
                 return LivePreparedRun(session_id, run_id, language, compile.command or inspect_command, project_root, env, notes, tool_session, prelude_stdout=compile.stdout, prelude_stderr=compile.stderr, failed_returncode=compile.returncode)
-            inner_command = ["java", "-cp", container_output, source_path.stem]
+            inner_command = ["java", "-cp", container_output, self._java_main_class(source_path, project_root)]
             return LivePreparedRun(session_id, run_id, language, self._container_wrapped_command(base_command, inner_command), project_root, env, notes, tool_session, pty_command=(self._container_wrapped_command(pty_base_command, inner_command) if pty_base_command else None), prelude_stdout=compile.stdout)
         if language == "rust":
             cargo_manifest = project_root / "Cargo.toml"
@@ -1481,7 +1589,6 @@ class CodeRunner:
             "homepath",
         }
         payload = {key: value for key, value in dict(env).items() if key.strip().lower() not in blocked}
-        payload["PATH"] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         payload["HOME"] = "/workspace"
         payload["USERPROFILE"] = "/workspace"
         payload["TMP"] = "/tmp"
@@ -1489,6 +1596,14 @@ class CodeRunner:
         payload["TMPDIR"] = "/tmp"
         payload["XDG_CACHE_HOME"] = "/workspace/.nova-cache"
         return payload
+
+    def _container_file_size_limit_bytes(self) -> str:
+        raw_value = self._setting("container_file_size_limit_kb", 65536)
+        try:
+            limit_kb = int(str(raw_value).strip())
+        except Exception:
+            limit_kb = 65536
+        return str(max(1, limit_kb) * 1024)
 
     def _network_notes(self, permissions: dict[str, bool]) -> list[str]:
         if permissions.get("web.access", False):
@@ -1611,7 +1726,7 @@ class CodeRunner:
         memory = str(self._setting("container_memory_limit", "512m"))
         cpus = str(self._setting("container_cpu_limit", "1.5"))
         pids_limit = str(self._setting("container_pids_limit", "128"))
-        file_size_limit = str(self._setting("container_file_size_limit_kb", "65536"))
+        file_size_limit = self._container_file_size_limit_bytes()
         nofile_limit = str(self._setting("container_nofile_limit", "256"))
         tmpfs_size = str(self._setting("container_tmpfs_limit", "64m"))
         workspace_mount = f"{workspace_root.resolve(strict=False)}:/workspace"

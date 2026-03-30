@@ -3,6 +3,7 @@ from __future__ import annotations
 import tempfile
 import time
 import unittest
+import zipfile
 from pathlib import Path
 
 from nova_school_server.config import ServerConfig
@@ -184,6 +185,44 @@ class UserAdministrationTests(unittest.TestCase):
         self.assertEqual(int(remaining["count"]), 0)
         audits = self.repository.list_audit_logs(target_type="user", limit=10)
         self.assertTrue(any(entry["action"] == "admin.user.hard_delete" for entry in audits))
+
+    def test_export_project_archive_contains_manifest_and_project_files(self) -> None:
+        project = self._create_personal_project()
+        project_root = self.workspace.project_root(project)
+        (project_root / "notes.txt").write_text("Datenschutz Demo", encoding="utf-8")
+
+        payload = self.service.export_project_archive(actor_username="teacher", project=project)
+
+        self.assertTrue(payload["filename"].endswith(".zip"))
+        archive_path = self.base_path / "tmp-project-export.zip"
+        archive_path.write_bytes(payload["content"])
+        with zipfile.ZipFile(archive_path) as archive:
+            self.assertIn("manifest.json", archive.namelist())
+            self.assertIn("project/main.py", archive.namelist())
+            self.assertIn("project/notes.txt", archive.namelist())
+
+    def test_hard_delete_project_removes_workspace_and_project_chats(self) -> None:
+        project = self._create_personal_project()
+        project_root = self.workspace.project_root(project)
+        self.repository.add_chat_message(f"project:{project['project_id']}", "student", "Student Demo", "Projektchat", metadata={})
+        self.repository.add_chat_message(f"assistant:{project['project_id']}:student", "assistant.bot", "Nova KI", "Codehilfe", metadata={})
+        self.repository.add_chat_message(f"mentor:{project['project_id']}:student", "mentor.bot", "Nova Mentor", "Hinweis", metadata={})
+        self.repository.add_audit("teacher", "project.create", "project", project["project_id"], {})
+
+        summary = self.service.hard_delete_project(actor_username="teacher", project=project)
+
+        self.assertFalse(project_root.exists())
+        self.assertIsNone(self.repository.get_project(project["project_id"]))
+        self.assertEqual(summary["counts"]["projects"], 1)
+        with self.repository._lock:
+            remaining = self.repository._conn.execute(
+                "SELECT COUNT(*) AS count FROM chat_messages WHERE room_key=? OR room_key LIKE ? OR room_key LIKE ?",
+                (f"project:{project['project_id']}", f"mentor:{project['project_id']}:%", f"assistant:{project['project_id']}:%"),
+            ).fetchone()
+        self.assertEqual(int(remaining["count"]), 0)
+        self.assertEqual(summary["counts"]["project_assistant_messages"], 1)
+        audits = self.repository.list_audit_logs(target_type="project", target_id=project["project_id"], limit=10)
+        self.assertTrue(any(entry["action"] == "project.hard_delete" for entry in audits))
 
     def test_apply_retention_deletes_old_chat_and_audits(self) -> None:
         old = time.time() - (10 * 86400)

@@ -36,6 +36,7 @@
         </div>
         <div class="topbar-actions">
           <button id="open-material-studio" type="button" class="hidden">Material-Studio</button>
+          <button id="open-virtual-lecturer" type="button" class="hidden">Virtueller Dozent</button>
           <button id="open-ai-assistant" type="button" class="hidden">KI-Codehilfe</button>
           <button id="open-server-settings" type="button" class="hidden">Servereinstellungen</button>
           <button id="open-manual" type="button">Bedienungsanleitung</button>
@@ -54,6 +55,16 @@
               <button id="reload-projects" type="button">Neu laden</button>
             </div>
             <div id="project-list" class="project-list"></div>
+            <article class="admin-card stack compact">
+              <h3>Projekt-Datenschutz</h3>
+              <p id="project-privacy-meta" class="muted">Kein Projekt ausgewaehlt.</p>
+              <div class="inline-actions project-privacy-actions">
+                <button id="project-export" type="button">Projekt exportieren</button>
+                <button id="project-archive" type="button">Projekt archivieren</button>
+                <button id="project-delete" type="button" class="danger">Projekt loeschen</button>
+              </div>
+              <p id="project-privacy-status" class="muted"></p>
+            </article>
           </section>
 
           <section class="panel-section">
@@ -78,8 +89,8 @@
               </div>
               <div class="inline-actions">
                 <button id="save-file" type="button">Speichern</button>
-                <button id="run-file" type="button" class="primary">Datei ausfuehren</button>
-                <button id="run-file-live" type="button">Live ausfuehren</button>
+                <button id="run-file" type="button" class="primary">Projekt ausfuehren</button>
+                <button id="run-file-live" type="button">Projekt live ausfuehren</button>
                 <button id="stop-live-run" type="button">Session beenden</button>
                 <button id="open-preview" type="button">Vorschau</button>
               </div>
@@ -87,7 +98,14 @@
 
             <div class="editor-layout">
               <div class="file-tree-wrap">
-                <h3>Dateien</h3>
+                <div class="section-head file-tree-head">
+                  <h3>Dateien</h3>
+                  <div class="inline-actions file-tree-actions">
+                    <button id="create-folder" type="button">Ordner anlegen</button>
+                    <button id="rename-entry" type="button">Umbenennen</button>
+                    <button id="delete-file" type="button" class="danger">Auswahl loeschen</button>
+                  </div>
+                </div>
                 <div id="file-tree" class="file-tree"></div>
               </div>
 
@@ -195,6 +213,32 @@
             <p id="collab-status" class="muted"></p>
             <div id="collab-presence" class="presence-list"></div>
             <div id="notebook-cells" class="notebook-cells"></div>
+          </section>
+
+          <section id="lecturer-panel" class="panel-section hidden">
+            <div class="section-head">
+              <h2>Virtueller Dozent</h2>
+              <button id="refresh-lecturer" type="button">Neu laden</button>
+            </div>
+            <p id="lecturer-status" class="muted"></p>
+            <form id="lecturer-start-form" class="stack compact">
+              <label><span>Kurs</span><select id="lecturer-course"></select></label>
+              <label><span>Modul</span><select id="lecturer-module"></select></label>
+              <label class="toggle-row">
+                <input id="lecturer-auto-run" type="checkbox" checked />
+                <span>Code-Laeufe automatisch besprechen</span>
+              </label>
+              <button type="submit" class="primary">Dozenten-Sitzung starten</button>
+            </form>
+            <article id="lecturer-briefing" class="admin-card stack compact"></article>
+            <div id="lecturer-thread" class="chat-messages mentor-thread"></div>
+            <form id="lecturer-form" class="stack compact">
+              <textarea id="lecturer-input" rows="4" placeholder="Frage, Zwischenstand oder Reflexion an den Dozenten schicken"></textarea>
+              <div class="inline-actions">
+                <button type="submit" class="primary">Senden</button>
+                <button id="lecturer-run-followup" type="button">Aktuellen Lauf besprechen</button>
+              </div>
+            </form>
           </section>
 
           <section id="playground-panel" class="panel-section hidden">
