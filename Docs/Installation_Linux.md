@@ -52,6 +52,22 @@ Optional fuer Podman statt Docker:
 sudo apt install -y podman
 ```
 
+## Haeufiger Docker-Fehler unter Ubuntu
+
+Wenn beim Ausfuehren `permission denied` auf `unix:///var/run/docker.sock` erscheint, darf der aktuelle Benutzer noch nicht auf den Docker-Socket zugreifen.
+
+Typische Behebung:
+
+```sh
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker ps
+```
+
+Wenn `docker ps` danach ohne `sudo` funktioniert, den Nova School Server neu starten.
+Falls die Gruppenmitgliedschaft nicht sofort greift, einmal ab- und wieder anmelden.
+
 ## Python-Abhaengigkeiten
 
 Im gemeinsamen Projekt:

@@ -64,6 +64,19 @@ python3 -m venv .venv
 pip install -r ../requirements.txt
 ```
 
+## Docker-Socket-Berechtigung
+
+Wenn Docker unter Linux mit `permission denied` auf `unix:///var/run/docker.sock` antwortet, liegt das fast immer an fehlenden Benutzerrechten auf dem Docker-Socket.
+
+```sh
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker ps
+```
+
+Danach den Nova School Server neu starten. Wenn `docker ps` weiterhin nur mit `sudo` funktioniert, einmal komplett ab- und wieder anmelden.
+
 ## Modelle und lokale KI
 
 Bevorzugte Linux-Pfade:

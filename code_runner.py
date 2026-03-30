@@ -1896,6 +1896,20 @@ class CodeRunner:
                 f"Geplantes Image: {image}\n"
                 f"Originalfehler: {message}"
             )
+        if "permission denied" in lower and "/var/run/docker.sock" in lower:
+            return (
+                "Die Container-Runtime Docker laeuft, aber der aktuelle Linux-Benutzer darf nicht auf `/var/run/docker.sock` zugreifen.\n"
+                "Das ist ein Berechtigungsproblem des Docker-Sockets, nicht des Nova-Servers.\n\n"
+                "So behebst du das auf Ubuntu meist:\n"
+                "1. `sudo systemctl enable --now docker`\n"
+                "2. `sudo usermod -aG docker $USER`\n"
+                "3. einmal ab- und wieder anmelden oder `newgrp docker`\n"
+                "4. mit `docker ps` pruefen, dass der Zugriff ohne `sudo` funktioniert\n"
+                "5. danach den Nova School Server neu starten\n\n"
+                "Alternativ kann statt Docker auch Podman als Container-Runtime konfiguriert werden.\n\n"
+                f"Geplantes Image: {image}\n"
+                f"Originalfehler: {message}"
+            )
         if "no such image" in lower or "unable to find image" in lower:
             return (
                 "Das benoetigte Container-Image ist lokal nicht verfuegbar.\n"

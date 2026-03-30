@@ -580,6 +580,20 @@ class CodeRunnerTests(unittest.TestCase):
             self.assertIn("Linux-Worker", message)
             self.assertIn("python:3.12-slim", message)
 
+    def test_container_runtime_error_message_explains_linux_docker_socket_permissions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            runner = CodeRunner(config, _FakeToolSandbox(), WorkspaceManager(config), _FakeRepository({}))
+            message = runner._container_runtime_error_message(
+                "docker",
+                "python:3.12-slim",
+                'permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/info": dial unix /var/run/docker.sock: connect: permission denied',
+            )
+            self.assertIn("/var/run/docker.sock", message)
+            self.assertIn("usermod -aG docker", message)
+            self.assertIn("docker ps", message)
+            self.assertIn("python:3.12-slim", message)
+
     def test_container_runtime_health_fails_fast_before_run(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             config = ServerConfig.from_base_path(Path(tmp))

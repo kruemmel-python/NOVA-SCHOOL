@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.14 - 2026-03-30
+
+### Added
+
+- explicit Linux troubleshooting notes for Docker socket permission errors in `Docs/Installation_Linux.md` and `Linux/README.md`
+
+### Fixed
+
+- Docker runtime failures on Linux now explain the common `permission denied` error on `unix:///var/run/docker.sock` with concrete Ubuntu recovery steps
+
 ## v0.1.13 - 2026-03-30
 
 ### Added
