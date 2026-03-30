@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.13 - 2026-03-30
+
+### Added
+
+- Linux runtime documentation under `Docs/Installation_Linux.md` plus dedicated Linux launch helpers under `Linux/`
+- a materialized standalone Linux project under `Linux/project` together with a reproducible pure-Linux release archive format
+- Linux LiteRT-LM binary detection for `LIT/lit.linux_x86_64` and copying of that binary into the standalone Linux project/release when present
+
+### Fixed
+
+- package path resolution for `static/`, `Docs/`, seccomp profiles, and local runtime discovery no longer depends on Windows drive paths
+- Linux installs now resolve data and runtime roots from the Linux base directory instead of trying to serve files via `C:\\...` paths
+
+### Changed
+
+- release packaging now distinguishes between the generic Linux server package and a pure Linux standalone release archive
+- analyzer archives and tests explicitly skip generated `Linux/project` trees so release materialization does not recurse into itself
+
 ## v0.1.12 - 2026-03-30
 
 ### Added

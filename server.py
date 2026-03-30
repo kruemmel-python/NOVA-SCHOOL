@@ -146,7 +146,7 @@ class NovaSchoolApplication:
         self.deployments = DeploymentService(self.repository, self.workspace, self.security, config)
         self.reference_library = ReferenceLibraryService(
             config.data_path / "reference_library",
-            docs_source_root=config.base_path / "docs" / "nova_school",
+            docs_source_root=config.static_path.parent / "Docs",
         )
         self.realtime = RealtimeService(self)
         self.seed_info = bootstrap_application(self.repository, self.auth, self.docs, self.workspace)
@@ -366,7 +366,6 @@ class NovaSchoolApplication:
             self.config.static_path.parent / "Model",
             Path(__file__).resolve(strict=False).parent / "LIT",
             Path(__file__).resolve(strict=False).parent / "Model",
-            Path("D:/LIT"),
         ]:
             resolved_root = root.resolve(strict=False)
             if not resolved_root.exists() or not resolved_root.is_dir():
@@ -410,14 +409,16 @@ class NovaSchoolApplication:
 
     def default_litertlm_binary_path(self) -> str:
         candidates = [
-            self.config.base_path / "LIT" / "lit.windows_x86_64.exe",
+            self.config.base_path / "LIT" / "lit.linux_x86_64",
+            self.config.base_path / "LIT" / "lit",
             self.config.base_path / "LIT" / "lit.exe",
-            self.config.static_path.parent / "LIT" / "lit.windows_x86_64.exe",
+            self.config.base_path / "LIT" / "lit.windows_x86_64.exe",
+            self.config.static_path.parent / "LIT" / "lit.linux_x86_64",
+            self.config.static_path.parent / "LIT" / "lit",
             self.config.static_path.parent / "LIT" / "lit.exe",
-            Path("D:/LIT/lit.windows_x86_64.exe"),
-            Path("D:/LIT/lit.exe"),
+            self.config.static_path.parent / "LIT" / "lit.windows_x86_64.exe",
         ]
-        discovered = shutil.which("lit.windows_x86_64.exe") or shutil.which("lit.exe") or shutil.which("lit")
+        discovered = shutil.which("lit.linux_x86_64") or shutil.which("lit") or shutil.which("lit.exe") or shutil.which("lit.windows_x86_64.exe")
         if discovered:
             candidates.insert(0, Path(discovered))
         for item in candidates:

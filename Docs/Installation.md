@@ -4,6 +4,10 @@
 
 Diese Anleitung beschreibt die vollstaendige Installation des **Nova School Server** in der aktuell vorliegenden Codebasis. Sie ist auf einen stabilen Betrieb in Schulnetzen ausgerichtet und bildet die reale Implementierung des Projekts ab.
 
+Linux-Hinweis:
+
+- Fuer den Linux-spezifischen Startordner und den materialisierten Linux-Standalone siehe [Installation_Linux.md](Installation_Linux.md).
+
 Wichtige Einordnung:
 
 - Der Server ist ein lokaler Schulserver fuer Projektarbeit, lokale KI-Unterstuetzung, Material-Studio, Peer Review, Exporte, Freigaben und einen verteilten Playground.

@@ -24,3 +24,6 @@ Thumbs.db
 litert_lm_runtime/
 llama_cpp_runtime/
 .litert-lm/
+Linux/project/
+Linux/.venv/
+Linux/data/

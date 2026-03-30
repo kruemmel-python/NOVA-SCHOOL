@@ -37,6 +37,7 @@ class ServerConfig:
     def from_base_path(cls, base_path: Path) -> "ServerConfig":
         base_path = base_path.resolve(strict=False)
         payload = load_server_config_payload(base_path)
+        package_path = resolve_package_path(base_path)
 
         def env_or_payload(name: str, key: str, default: Any) -> Any:
             return os.environ.get(name) or payload.get(key) or default
@@ -53,7 +54,7 @@ class ServerConfig:
             docs_path=docs_path,
             users_workspace_path=users_workspace_path,
             groups_workspace_path=groups_workspace_path,
-            static_path=base_path / "nova_school_server" / "static",
+            static_path=package_path / "static",
             database_path=data_path / "school.db",
             host=str(env_or_payload("NOVA_SCHOOL_HOST", "host", "0.0.0.0")),
             port=int(env_or_payload("NOVA_SCHOOL_PORT", "port", 8877)),
@@ -63,6 +64,21 @@ class ServerConfig:
             tenant_id=str(env_or_payload("NOVA_SCHOOL_TENANT", "tenant_id", "nova-school")),
             school_name=str(env_or_payload("NOVA_SCHOOL_NAME", "school_name", "Nova School Server")),
         )
+
+
+def resolve_package_path(base_path: Path) -> Path:
+    base_path = Path(base_path).resolve(strict=False)
+    package_root = Path(__file__).resolve(strict=False).parent
+    candidates = [
+        base_path / "nova_school_server",
+        base_path,
+        package_root,
+    ]
+    for candidate in candidates:
+        resolved = candidate.resolve(strict=False)
+        if (resolved / "__init__.py").exists() and (resolved / "static").is_dir():
+            return resolved
+    return package_root
 
 
 def load_server_config_payload(base_path: Path) -> dict[str, Any]:

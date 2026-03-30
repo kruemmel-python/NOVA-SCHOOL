@@ -5,7 +5,11 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from nova_school_server.distribution_builder import build_distribution_archive
+from nova_school_server.distribution_builder import (
+    build_distribution_archive,
+    build_linux_project_archive,
+    materialize_distribution_directory,
+)
 
 
 class DistributionBuilderTests(unittest.TestCase):
@@ -84,6 +88,67 @@ class DistributionBuilderTests(unittest.TestCase):
             self.assertIn("Nova-School-Server-v1.2.3-linux-server-package/start_server.sh", names)
             self.assertNotIn("Nova-School-Server-v1.2.3-linux-server-package/start_server.ps1", names)
             self.assertNotIn("Nova-School-Server-v1.2.3-linux-server-package/run_tests.ps1", names)
+
+    def test_materialize_distribution_directory_skips_generated_linux_project_recursion(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "project"
+            root.mkdir()
+            (root / "pyproject.toml").write_text('[project]\nversion = "1.2.3"\n', encoding="utf-8")
+            (root / "README.md").write_text("readme", encoding="utf-8")
+            (root / "start_server.sh").write_text("start", encoding="utf-8")
+            (root / "Linux").mkdir()
+            (root / "Linux" / "README.md").write_text("linux root", encoding="utf-8")
+            generated = root / "Linux" / "project"
+            generated.mkdir(parents=True)
+            (generated / "secret.txt").write_text("generated", encoding="utf-8")
+
+            result = materialize_distribution_directory(root, generated, flavor="linux-server-package")
+
+            self.assertEqual(generated.resolve(strict=False), result.target_root)
+            self.assertTrue((generated / "README.md").exists())
+            self.assertTrue((generated / "Linux" / "README.md").exists())
+            self.assertFalse((generated / "Linux" / "project" / "secret.txt").exists())
+
+    def test_materialized_linux_project_copies_linux_lit_binary_but_not_models(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "project"
+            root.mkdir()
+            (root / "pyproject.toml").write_text('[project]\nversion = "1.2.3"\n', encoding="utf-8")
+            (root / "README.md").write_text("readme", encoding="utf-8")
+            (root / "start_server.sh").write_text("start", encoding="utf-8")
+            (root / "LIT").mkdir()
+            (root / "LIT" / "lit.linux_x86_64").write_bytes(b"ELF")
+            (root / "LIT" / "gemma-3n-E4B-it-int4.litertlm").write_bytes(b"MODEL")
+
+            target = root / "Linux" / "project"
+            result = materialize_distribution_directory(root, target, flavor="linux-server-package")
+
+            self.assertEqual(target.resolve(strict=False), result.target_root)
+            self.assertTrue((target / "LIT" / "lit.linux_x86_64").exists())
+            self.assertFalse((target / "LIT" / "gemma-3n-E4B-it-int4.litertlm").exists())
+
+    def test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "project"
+            root.mkdir()
+            (root / "pyproject.toml").write_text('[project]\nversion = "1.2.3"\n', encoding="utf-8")
+            (root / "README.md").write_text("readme", encoding="utf-8")
+            (root / "start_server.ps1").write_text("start", encoding="utf-8")
+            (root / "start_server.sh").write_text("start", encoding="utf-8")
+            (root / "LIT").mkdir()
+            (root / "LIT" / "lit.linux_x86_64").write_bytes(b"ELF")
+            (root / "LIT" / "gemma-3n-E4B-it-int4.litertlm").write_bytes(b"MODEL")
+
+            result = build_linux_project_archive(root, output_dir=root)
+
+            self.assertTrue(result.archive_path.exists())
+            with zipfile.ZipFile(result.archive_path) as archive:
+                names = set(archive.namelist())
+            self.assertIn("Nova-School-Server-v1.2.3-linux-project/PURE_LINUX_RELEASE.md", names)
+            self.assertIn("Nova-School-Server-v1.2.3-linux-project/start_server.sh", names)
+            self.assertNotIn("Nova-School-Server-v1.2.3-linux-project/start_server.ps1", names)
+            self.assertIn("Nova-School-Server-v1.2.3-linux-project/LIT/lit.linux_x86_64", names)
+            self.assertNotIn("Nova-School-Server-v1.2.3-linux-project/LIT/gemma-3n-E4B-it-int4.litertlm", names)
 
 
 if __name__ == "__main__":

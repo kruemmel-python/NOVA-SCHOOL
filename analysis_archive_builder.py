@@ -174,6 +174,8 @@ def _git_tracked_files(base_path: Path) -> list[Path]:
 def _should_skip_source_analysis_file(relative_path: Path) -> bool:
     if any(part in SKIP_DIR_NAMES for part in relative_path.parts[:-1]):
         return True
+    if relative_path.parts[:2] == ("Linux", "project"):
+        return True
     name = relative_path.name
     suffix = relative_path.suffix.lower()
     if name.startswith("_tmp_") or name.startswith("tmp_"):

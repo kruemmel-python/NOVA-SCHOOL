@@ -36,7 +36,8 @@ LLAMA_CPP_WINDOWS_ASSETS = {
     "hip-radeon": "llama-{tag}-bin-win-hip-radeon-x64.zip",
     "cpu": "llama-{tag}-bin-win-cpu-x64.zip",
 }
-LITERT_LM_WINDOWS_BINARIES = (
+LITERT_LM_BINARY_NAMES = (
+    "lit.linux_x86_64",
     "lit.windows_x86_64.exe",
     "lit.exe",
     "lit",
@@ -195,6 +196,13 @@ def _same_drive(left: Path, right: Path) -> bool:
     return bool(left.drive and right.drive and left.drive.casefold() == right.drive.casefold())
 
 
+def _first_existing_path(candidates: list[Path]) -> Path | None:
+    for candidate in candidates:
+        if candidate.exists() and candidate.is_file():
+            return candidate
+    return candidates[0] if candidates else None
+
+
 class LlamaCppService:
     provider_id = "server-llama.cpp"
     engine_id = "llama-server"
@@ -216,7 +224,6 @@ class LlamaCppService:
         package_root = Path(__file__).resolve(strict=False).parent
         candidates = [
             self.base_path / "Model",
-            self.base_path / "nova_school_server" / "Model",
             package_root / "Model",
         ]
         seen: set[str] = set()
@@ -688,6 +695,7 @@ class LlamaCppService:
     def status(self, *, enabled: bool = True) -> dict[str, Any]:
         model_path = self.resolved_model_path()
         binary_candidates = self._discover_binary_candidates()
+        binary_path = self._binary_path or _first_existing_path(binary_candidates)
         running = bool(self._process and self._process.poll() is None)
         warning = self._last_error or (
             f"GGUF-Modell ist lokal konfiguriert. Der llama.cpp-Server startet bei Bedarf "
@@ -703,7 +711,7 @@ class LlamaCppService:
             "model_label": self.resolved_model_label(),
             "server_url": self.server_url,
             "backend": self.backend,
-            "binary_path": str(self._binary_path or (binary_candidates[0] if binary_candidates else "")),
+            "binary_path": str(binary_path or ""),
             "generation_options": self.generation_options(),
             "requires_webgpu": False,
             "supports_local_file": False,
@@ -734,15 +742,12 @@ class LiteRTLmService:
         candidates = [
             self.base_path / "LIT",
             self.base_path / "Model",
-            self.base_path / "nova_school_server" / "LIT",
-            self.base_path / "nova_school_server" / "Model",
             package_root / "LIT",
             package_root / "Model",
         ]
         binary_dir = self._explicit_binary_directory()
         if binary_dir is not None:
             candidates.append(binary_dir)
-        candidates.append(Path("D:/LIT"))
         seen: set[str] = set()
         unique: list[Path] = []
         for candidate in candidates:
@@ -909,20 +914,27 @@ class LiteRTLmService:
             candidates.append(Path(explicit).expanduser().resolve(strict=False))
         candidates.extend(
             [
-                self.base_path / "LIT" / "lit.windows_x86_64.exe",
+                self.base_path / "LIT" / "lit.linux_x86_64",
+                self.base_path / "LIT" / "lit",
                 self.base_path / "LIT" / "lit.exe",
-                self.base_path / "nova_school_server" / "LIT" / "lit.windows_x86_64.exe",
-                self.base_path / "nova_school_server" / "LIT" / "lit.exe",
+                self.base_path / "LIT" / "lit.windows_x86_64.exe",
+                Path(__file__).resolve(strict=False).parent / "LIT" / "lit.linux_x86_64",
+                Path(__file__).resolve(strict=False).parent / "LIT" / "lit",
+                Path(__file__).resolve(strict=False).parent / "LIT" / "lit.exe",
+                Path(__file__).resolve(strict=False).parent / "LIT" / "lit.windows_x86_64.exe",
             ]
         )
-        for name in LITERT_LM_WINDOWS_BINARIES:
+        for name in LITERT_LM_BINARY_NAMES:
             discovered = shutil.which(name)
             if discovered:
                 candidates.append(Path(discovered).resolve(strict=False))
         candidates.extend(
             [
-                Path("D:/LIT/lit.windows_x86_64.exe"),
+                self.base_path / "lit.linux_x86_64",
+                self.base_path / "lit",
                 self.base_path / "lit.windows_x86_64.exe",
+                self.base_path / "tools" / "lit" / "lit.linux_x86_64",
+                self.base_path / "tools" / "lit" / "lit",
                 self.base_path / "tools" / "lit" / "lit.windows_x86_64.exe",
             ]
         )
@@ -944,7 +956,7 @@ class LiteRTLmService:
                 self._binary_path = candidate
                 return candidate
         raise RuntimeError(
-            "LiteRT-LM-Binary nicht gefunden. Bitte lit.windows_x86_64.exe im Ordner LIT ablegen oder litertlm_binary_path setzen."
+            "LiteRT-LM-Binary nicht gefunden. Bitte `lit.linux_x86_64`, `lit` oder `lit.windows_x86_64.exe` im Ordner `LIT` ablegen oder `litertlm_binary_path` setzen."
         )
 
     def _register_model_file(self, target: Path, source: Path) -> None:
@@ -1328,6 +1340,7 @@ class LiteRTLmService:
     def status(self, *, enabled: bool = True) -> dict[str, Any]:
         model_path = self.resolved_model_path()
         binary_candidates = self._discover_binary_candidates()
+        binary_path = self._binary_path or _first_existing_path(binary_candidates)
         warning = self._last_error or (
             "LiteRT-LM laeuft lokal pro Anfrage ueber 'lit run'. "
             "Der erste Lauf nach Modell- oder Cache-Aenderungen kann deutlich laenger dauern."
@@ -1347,7 +1360,7 @@ class LiteRTLmService:
             "model_id": self.resolved_model_id() if model_path else "",
             "server_url": self.server_url,
             "backend": self.backend,
-            "binary_path": str(self._binary_path or (binary_candidates[0] if binary_candidates else "")),
+            "binary_path": str(binary_path or ""),
             "generation_options": self.generation_options(),
             "requires_webgpu": False,
             "supports_local_file": False,

@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from nova_school_server.server import NovaSchoolRequestHandler
+from nova_school_server.server import NovaSchoolApplication, NovaSchoolRequestHandler
 
 
 class _Repo:
@@ -61,6 +61,26 @@ class RequestHandlerTlsTests(unittest.TestCase):
             root = Path(tmp)
             with self.assertRaises(PermissionError):
                 NovaSchoolRequestHandler._resolve_relative_file(root, "../secret.txt")
+
+    def test_default_litertlm_binary_path_accepts_linux_lit_binary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base_path = Path(tmp) / "Linux"
+            lit_root = base_path / "LIT"
+            lit_root.mkdir(parents=True, exist_ok=True)
+            binary = lit_root / "lit.linux_x86_64"
+            binary.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+
+            app = NovaSchoolApplication.__new__(NovaSchoolApplication)
+            app.config = type(
+                "Config",
+                (),
+                {
+                    "base_path": base_path,
+                    "static_path": base_path / "static",
+                },
+            )()
+
+            self.assertEqual(app.default_litertlm_binary_path(), str(binary.resolve(strict=False)))
 
 
 if __name__ == "__main__":

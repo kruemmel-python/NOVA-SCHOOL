@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import nova_school_server.config as config_module
 from nova_school_server.config import (
     ServerConfig,
     active_runtime_config,
@@ -61,6 +62,12 @@ class ConfigTests(unittest.TestCase):
             active = active_runtime_config(config)
             stored = stored_runtime_config(base_path, config)
             self.assertTrue(runtime_config_requires_restart(active, stored))
+
+    def test_static_path_falls_back_to_real_package_root_for_flat_repo_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            config = ServerConfig.from_base_path(Path(tmp))
+            expected = Path(config_module.__file__).resolve().parent / "static"
+            self.assertEqual(config.static_path, expected)
 
 
 if __name__ == "__main__":

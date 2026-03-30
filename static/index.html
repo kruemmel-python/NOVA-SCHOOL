@@ -431,7 +431,7 @@
                       <option value="llama.cpp">llama.cpp</option>
                     </select>
                   </label>
-                  <label><span>LiteRT-LM-Modellpfad</span><input id="setting-litertlm-model-path" type="text" placeholder="C:\\nova_school_server\\LIT\\gemma-3n-E4B-it-int4.litertlm" /></label>
+                  <label><span>LiteRT-LM-Modellpfad</span><input id="setting-litertlm-model-path" type="text" placeholder="/opt/nova-school/LIT/gemma-3n-E4B-it-int4.litertlm" /></label>
                   <label><span>LiteRT-LM-Modell-Alias</span><input id="setting-litertlm-model-alias" type="text" placeholder="z. B. Gemma 3n E4B Local" /></label>
                   <label><span>LiteRT-LM-Backend</span>
                     <select id="setting-litertlm-backend">
@@ -440,10 +440,10 @@
                     </select>
                   </label>
                   <label><span>LiteRT-LM-Port</span><input id="setting-litertlm-port" type="number" min="1025" max="65535" placeholder="9379" /></label>
-                  <label><span>Lit-Binary-Pfad</span><input id="setting-litertlm-binary-path" type="text" placeholder="C:\\nova_school_server\\LIT\\lit.windows_x86_64.exe" /></label>
-                  <label><span>LiteRT-Home/Cache-Pfad</span><input id="setting-litertlm-home-path" type="text" placeholder="C:\\nova_school_server\\LIT" /></label>
+                  <label><span>Lit-Binary-Pfad</span><input id="setting-litertlm-binary-path" type="text" placeholder="/opt/nova-school/LIT/lit.linux_x86_64" /></label>
+                  <label><span>LiteRT-Home/Cache-Pfad</span><input id="setting-litertlm-home-path" type="text" placeholder="/opt/nova-school/LIT" /></label>
                   <label><span>LiteRT-Idle-Sleep in Sekunden</span><input id="setting-litertlm-sleep-idle" type="number" min="5" max="3600" placeholder="45" /></label>
-                  <label><span>GGUF-Modellpfad</span><input id="setting-llamacpp-model-path" type="text" placeholder="H:\\nova_school_server\\Model\\dein-modell.gguf" /></label>
+                  <label><span>GGUF-Modellpfad</span><input id="setting-llamacpp-model-path" type="text" placeholder="/opt/nova-school/Model/dein-modell.gguf" /></label>
                   <label><span>Modell-Alias</span><input id="setting-llamacpp-model-alias" type="text" placeholder="z. B. Gemma 3 1B Local" /></label>
                   <label><span>llama.cpp-Backend</span>
                     <select id="setting-llamacpp-backend">
@@ -457,7 +457,7 @@
                   <label><span>Threads (0 = auto)</span><input id="setting-llamacpp-threads" type="number" min="0" max="256" placeholder="0" /></label>
                   <label><span>Idle-Sleep in Sekunden</span><input id="setting-llamacpp-sleep-idle" type="number" min="5" max="3600" placeholder="45" /></label>
                   <label><span>Interner llama.cpp-Port</span><input id="setting-llamacpp-port" type="number" min="1025" max="65535" placeholder="11435" /></label>
-                  <label><span>Optionaler llama-server-Pfad</span><input id="setting-llamacpp-server-path" type="text" placeholder="H:\\...\\llama-server.exe" /></label>
+                  <label><span>Optionaler llama-server-Pfad</span><input id="setting-llamacpp-server-path" type="text" placeholder="/usr/local/bin/llama-server" /></label>
                   <label><span>Max Tokens</span><input id="setting-ondevice-max-tokens" type="number" min="256" max="8192" placeholder="2048" /></label>
                   <label><span>Top-K</span><input id="setting-ondevice-top-k" type="number" min="1" max="100" placeholder="40" /></label>
                   <label><span>Temperatur</span><input id="setting-ondevice-temperature" type="number" min="0" max="2" step="0.1" placeholder="0.8" /></label>
@@ -482,7 +482,7 @@
               <fieldset class="settings-fieldset">
                 <legend>Zertifikate und Schulbranding</legend>
                 <div class="settings-grid">
-                  <label><span>Logo-Pfad fuer Zertifikate</span><input id="setting-certificate-logo-path" type="text" placeholder="D:\\Schule\\logo.png" /></label>
+                  <label><span>Logo-Pfad fuer Zertifikate</span><input id="setting-certificate-logo-path" type="text" placeholder="/srv/nova-school/logo.png" /></label>
                   <label><span>Name der unterschreibenden Lehrkraft oder Schule</span><input id="setting-certificate-signatory-name" type="text" placeholder="Fachschaft Informatik" /></label>
                   <label><span>Funktion</span><input id="setting-certificate-signatory-title" type="text" placeholder="Fachschaft Informatik" /></label>
                 </div>

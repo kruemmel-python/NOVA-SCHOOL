@@ -1810,7 +1810,7 @@ class CodeRunner:
         if not self._setting_bool("container_seccomp_enabled", True):
             return None
         profile_value = str(self._setting("container_seccomp_profile", "") or "").strip()
-        profile_path = Path(profile_value).resolve(strict=False) if profile_value else (self.config.base_path / "nova_school_server" / "seccomp_profiles" / "container-denylist.json")
+        profile_path = Path(profile_value).resolve(strict=False) if profile_value else (self.config.static_path.parent / "seccomp_profiles" / "container-denylist.json")
         if not profile_path.exists():
             profile_path = Path(__file__).resolve().parent / "seccomp_profiles" / "container-denylist.json"
         if not profile_path.exists():

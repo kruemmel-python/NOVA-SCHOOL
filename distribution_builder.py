@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import stat
 import shutil
 import tempfile
 import zipfile
@@ -12,6 +13,7 @@ PACKAGE_FLAVORS = {
     "distribution",
     "windows-server-package",
     "linux-server-package",
+    "linux-project",
 }
 
 SKIP_NAMES = {
@@ -37,6 +39,20 @@ SKIP_FILE_NAMES = {
 class DistributionBuildResult:
     version: str
     flavor: str
+    archive_path: Path
+    staging_root: Path
+
+
+@dataclass(slots=True)
+class DistributionMaterializeResult:
+    version: str
+    flavor: str
+    target_root: Path
+
+
+@dataclass(slots=True)
+class LinuxProjectBuildResult:
+    version: str
     archive_path: Path
     staging_root: Path
 
@@ -69,10 +85,71 @@ def build_distribution_archive(
         _copy_project_tree(base_path, staging_root)
         _create_distribution_scaffold(staging_root, version_text, flavor_text)
         _prune_for_flavor(staging_root, flavor_text)
+        _copy_optional_linux_runtime_binaries(
+            base_path,
+            staging_root,
+            flavor_text,
+            include_for_linux_server_package=False,
+        )
         if archive_path.exists():
             archive_path.unlink()
         _zip_tree(staging_root, archive_path)
     return DistributionBuildResult(version=version_text, flavor=flavor_text, archive_path=archive_path, staging_root=Path(package_name))
+
+
+def build_linux_project_archive(
+    base_path: Path,
+    output_dir: Path | None = None,
+    version: str | None = None,
+) -> LinuxProjectBuildResult:
+    result = build_distribution_archive(
+        base_path,
+        output_dir=output_dir,
+        version=version,
+        flavor="linux-project",
+    )
+    return LinuxProjectBuildResult(
+        version=result.version,
+        archive_path=result.archive_path,
+        staging_root=result.staging_root,
+    )
+
+
+def materialize_distribution_directory(
+    base_path: Path,
+    target_root: Path,
+    *,
+    version: str | None = None,
+    flavor: str = "distribution",
+) -> DistributionMaterializeResult:
+    base_path = base_path.resolve(strict=False)
+    target_root = target_root.resolve(strict=False)
+    version_text = version or detect_project_version(base_path)
+    flavor_text = _normalize_flavor(flavor)
+
+    with tempfile.TemporaryDirectory(prefix="nova-school-distribution-materialize-") as tmp:
+        staging_root = Path(tmp) / "materialized"
+        staging_root.mkdir(parents=True, exist_ok=True)
+        excluded_relative = []
+        try:
+            relative_target = target_root.relative_to(base_path)
+            excluded_relative.append(relative_target)
+        except ValueError:
+            pass
+        _copy_project_tree(base_path, staging_root, excluded_relative_paths=excluded_relative)
+        _create_distribution_scaffold(staging_root, version_text, flavor_text)
+        _prune_for_flavor(staging_root, flavor_text)
+        _copy_optional_linux_runtime_binaries(
+            base_path,
+            staging_root,
+            flavor_text,
+            include_for_linux_server_package=True,
+        )
+        if target_root.exists():
+            shutil.rmtree(target_root, ignore_errors=True)
+        target_root.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(staging_root, target_root, dirs_exist_ok=True)
+    return DistributionMaterializeResult(version=version_text, flavor=flavor_text, target_root=target_root)
 
 
 def _normalize_flavor(flavor: str) -> str:
@@ -85,6 +162,9 @@ def _normalize_flavor(flavor: str) -> str:
         "linux": "linux-server-package",
         "linux-server": "linux-server-package",
         "linux-server-package": "linux-server-package",
+        "linux-project": "linux-project",
+        "pure-linux": "linux-project",
+        "linux-standalone": "linux-project",
     }
     normalized = aliases.get(text)
     if normalized not in PACKAGE_FLAVORS:
@@ -92,40 +172,49 @@ def _normalize_flavor(flavor: str) -> str:
     return normalized
 
 
-def _copy_project_tree(source_root: Path, target_root: Path) -> None:
+def _copy_project_tree(source_root: Path, target_root: Path, *, excluded_relative_paths: Iterable[Path] | None = None) -> None:
+    excluded = [_normalize_relative_path(path) for path in (excluded_relative_paths or []) if str(path)]
     for item in source_root.iterdir():
-        if _should_skip_root_entry(item):
+        relative_path = _normalize_relative_path(item.relative_to(source_root))
+        if _is_excluded_relative_path(relative_path, excluded):
+            continue
+        if _should_skip_root_entry(item, relative_path):
             continue
         destination = target_root / item.name
         if item.is_dir():
-            _copy_directory(item, destination)
+            _copy_directory(item, destination, source_root=source_root, excluded_relative_paths=excluded)
         elif item.is_file():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(item, destination)
 
 
-def _copy_directory(source_dir: Path, target_dir: Path) -> None:
+def _copy_directory(source_dir: Path, target_dir: Path, *, source_root: Path, excluded_relative_paths: list[Path]) -> None:
     for item in source_dir.iterdir():
-        if _should_skip_entry(item):
+        relative_path = _normalize_relative_path(item.relative_to(source_root))
+        if _is_excluded_relative_path(relative_path, excluded_relative_paths):
+            continue
+        if _should_skip_entry(item, relative_path):
             continue
         destination = target_dir / item.name
         if item.is_dir():
-            _copy_directory(item, destination)
+            _copy_directory(item, destination, source_root=source_root, excluded_relative_paths=excluded_relative_paths)
         elif item.is_file():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(item, destination)
 
 
-def _should_skip_root_entry(path: Path) -> bool:
+def _should_skip_root_entry(path: Path, relative_path: Path) -> bool:
     if path.name == "data":
         return True
     if path.name == "Model":
         return True
-    return _should_skip_entry(path)
+    return _should_skip_entry(path, relative_path)
 
 
-def _should_skip_entry(path: Path) -> bool:
+def _should_skip_entry(path: Path, relative_path: Path) -> bool:
     if path.name in SKIP_NAMES:
+        return True
+    if relative_path.parts[:2] == ("Linux", "project"):
         return True
     if path.is_file():
         if path.name in SKIP_FILE_NAMES:
@@ -135,6 +224,19 @@ def _should_skip_entry(path: Path) -> bool:
         if any(path.name.endswith(marker) for marker in ("_analysis_dump.md", ".codedump.md")):
             return True
         if path.suffix.lower() in SKIP_FILE_SUFFIXES:
+            return True
+    return False
+
+
+def _normalize_relative_path(path: Path) -> Path:
+    return Path(*[part for part in path.parts if part not in {"", "."}])
+
+
+def _is_excluded_relative_path(relative_path: Path, excluded_relative_paths: list[Path]) -> bool:
+    for excluded in excluded_relative_paths:
+        if not excluded.parts:
+            continue
+        if relative_path == excluded or relative_path.parts[: len(excluded.parts)] == excluded.parts:
             return True
     return False
 
@@ -216,7 +318,7 @@ def _prune_for_flavor(staging_root: Path, flavor: str) -> None:
     if flavor == "windows-server-package":
         for relative in ("start_server.sh", "start_worker.sh", "run_tests.sh"):
             _remove_if_exists(staging_root / relative)
-    elif flavor == "linux-server-package":
+    elif flavor in {"linux-server-package", "linux-project"}:
         for relative in ("start_server.ps1", "start_worker.ps1", "run_tests.ps1"):
             _remove_if_exists(staging_root / relative)
 
@@ -278,6 +380,31 @@ Empfehlungen fuer den produktiven Betrieb:
 - Docker/Podman fuer Schuelerlaeufe aktivieren
 - optional systemd-Service fuer automatischen Start anlegen
 """
+    elif flavor == "linux-project":
+        guide_name = "PURE_LINUX_RELEASE.md"
+        title = f"# Nova School Server Pure Linux Release v{version}"
+        body = """
+
+Dieses Archiv enthaelt den Linux-bereinigten, direkt startbaren Stand fuer Ubuntu und vergleichbare Distributionen.
+
+Enthaelt zusaetzlich:
+- Linux-Startskripte als primären Startpfad
+- Linux-taugliche Pfadauflösung fuer Daten, `static/`, `Docs/` und `LIT/`
+- falls im Quellprojekt vorhanden: `LIT/lit.linux_x86_64`
+
+Empfohlene Inbetriebnahme:
+1. Archiv entpacken
+2. `python3 -m venv .venv`
+3. `. .venv/bin/activate`
+4. `python3 -m pip install -r requirements.txt`
+5. `cp server_config.json.example server_config.json`
+6. optional eine `.litertlm`-Modelldatei nach `LIT/` kopieren
+7. `./start_server.sh`
+
+Hinweise:
+- dieses Release ist fuer Linux-Systeme gedacht und ersetzt keine Windows-Installation
+- grosse Modell-Dateien bleiben weiterhin absichtlich ausserhalb des Repositories und der Standardpakete
+"""
     else:
         return
     (staging_root / guide_name).write_text(f"{title}\n{body.lstrip()}", encoding="utf-8")
@@ -319,6 +446,33 @@ Die Release-Pakete enthalten diesen Ordner absichtlich leer, damit keine mehrgig
     (staging_root / "LIT" / "README.md").write_text(notes, encoding="utf-8")
 
 
+def _copy_optional_linux_runtime_binaries(
+    source_root: Path,
+    target_root: Path,
+    flavor: str,
+    *,
+    include_for_linux_server_package: bool,
+) -> None:
+    if flavor == "linux-project":
+        pass
+    elif flavor == "linux-server-package" and include_for_linux_server_package:
+        pass
+    else:
+        return
+    binary_source = source_root / "LIT" / "lit.linux_x86_64"
+    if not binary_source.exists() or not binary_source.is_file():
+        return
+    binary_target = target_root / "LIT" / "lit.linux_x86_64"
+    binary_target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(binary_source, binary_target)
+    if hasattr(stat, "S_IXUSR"):
+        try:
+            mode = binary_target.stat().st_mode
+            binary_target.chmod(mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        except OSError:
+            pass
+
+
 def _zip_tree(root: Path, archive_path: Path) -> None:
     with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for file_path in sorted(_iter_files(root)):
@@ -342,7 +496,7 @@ def main() -> None:
         "--flavor",
         default="distribution",
         choices=sorted(PACKAGE_FLAVORS),
-        help="Pakettyp: distribution, windows-server-package oder linux-server-package",
+        help="Pakettyp: distribution, windows-server-package, linux-server-package oder linux-project",
     )
     args = parser.parse_args()
 

@@ -94,14 +94,14 @@ Recommended Linux layout:
 ```text
 /srv/nova_school_server/
   LIT/
-    lit
+    lit.linux_x86_64
     gemma-3n-E4B-it-int4.litertlm
 ```
 
 If no explicit server settings are provided, NOVA SCHOOL automatically looks for:
 
 - `LIT/*.litertlm`
-- `LIT/lit.windows_x86_64.exe`, `LIT/lit.exe`, or a native `lit` on `PATH`
+- `LIT/lit.linux_x86_64`, `LIT/lit.windows_x86_64.exe`, `LIT/lit.exe`, or a native `lit` on `PATH`
 
 External model download path:
 
@@ -169,6 +169,7 @@ With this setup the server emits `Secure` session cookies automatically when it 
 ## Documentation
 
 - [Installation Guide](Docs/Installation.md)
+- [Linux Installation Guide](Docs/Installation_Linux.md)
 - [Service Guide](Docs/Service.md)
 - [Security Guide](Docs/Secure.md)
 - [Extended Project Readme](Docs/Readme.md)
