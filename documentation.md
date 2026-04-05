@@ -1,6522 +1,15410 @@
 # Vollständige Systemdokumentation
 
-
 # 1. Strategische Architektur
-
 ## Design-Philosophie
-Zero-Dependency:
-- maximale Stabilität
-- minimale Angriffsfläche (CVE)
-- deterministisches Verhalten
+Zero-Dependency: maximale Stabilität, minimale Angriffsfläche, deterministisches Verhalten.
 
 ## Technologie-Stack
-- Python 3.12 → Orchestrierung
-- C++ / Rust → Performance & Sicherheit
-
-## Datenbank
+- Python 3.12 (Orchestrierung)
+- C++ / Rust (Performance)
 - SQLite (WAL-Modus)
-- kein externer Server notwendig
-
-## Skalierung
-- Thread-basiert
-- optimiert für lokale Hardware
-
 
 # 2. Sicherheits-Framework
-
-## Sandbox
-- Docker / Podman Isolation
-
-## Seccomp
-- deny-by-default
-
-## Resource Guards
-- PID Limits
-- Memory Caps
-- Read-only Filesystem
-
-## Netzwerk
---network none
-
-
-# 3. KI-Inferenz & Ressourcenmanagement
-
-## Lifecycle
-- Subprozess Start
-- Monitoring
-- Idle Kill
-
-## Modelle
-- GGUF
-- LiteRTLM
-
-## Ziel
-stabile Offline-Inferenz
-
-
-# 4. Operative Roadmap
-
-## Build
-Source → Container
-
-## Tests
-- Unit
-- Integration
-
-## Troubleshooting
-- Docker Rechte
-- RAM Limits
-
-## API
-Frontend ↔ Backend sauber getrennt
-
-# Code Overview
-
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\ai_service.py
-Imports:
-- __future__
-- json
-- os
-- re
-- shutil
-- socket
-- subprocess
-- threading
-- time
-- zipfile
-- pathlib
-- typing
-- urllib.error
-- urllib.parse
-- urllib.request
-- archive_utils
-- database
-
-Class LlamaCppService
-- __init__(self, repository)
-- model_roots(self)
-- model_root(self)
-- explicit_model_path(self)
-- model_label(self)
-- max_tokens(self)
-- top_k(self)
-- temperature(self)
-- random_seed(self)
-- backend(self)
-- ctx_size(self)
-- gpu_layers(self)
-- threads(self)
-- sleep_idle_seconds(self)
-- port(self)
-- server_url(self)
-- explicit_binary_path(self)
-- generation_options(self)
-- local_model_files(self)
-- resolved_model_path(self)
-- resolved_model_label(self)
-- _discover_binary_candidates(self)
-- _request_json(self, url)
-- _latest_release(self)
-- _download_binary(self)
-- _ensure_binary_path(self)
-- _desired_process_key(self)
-- _build_command(self, binary_path, model_path)
-- _poll_health(self)
-- _read_failure_details(self, fallback)
-- _stop_process_locked(self)
-- close(self)
-- _cancel_idle_timer_locked(self)
-- _schedule_idle_shutdown(self)
-- ensure_server_ready(self)
-- complete(self)
-- prepare_direct_completion(self)
-- complete_direct_completion(self)
-- status(self)
-
-Class LiteRTLmService
-- __init__(self, repository)
-- model_roots(self)
-- explicit_model_path(self)
-- model_label(self)
-- backend(self)
-- max_tokens(self)
-- top_k(self)
-- temperature(self)
-- random_seed(self)
-- sleep_idle_seconds(self)
-- port(self)
-- server_url(self)
-- explicit_binary_path(self)
-- explicit_home_path(self)
-- generation_options(self)
-- local_model_files(self)
-- resolved_model_path(self)
-- resolved_model_label(self)
-- resolved_model_id(self)
-- resolved_home_root(self)
-- lit_root(self)
-- model_registry_dir(self)
-- registry_model_path(self)
-- registry_cache_path(self)
-- _explicit_binary_directory(self)
-- _discover_binary_candidates(self)
-- _ensure_binary_path(self)
-- _register_model_file(self, target, source)
-- ensure_model_registered(self)
-- _desired_process_key(self)
-- _build_command(self, binary_path)
-- _request_json(self, url)
-- _probe_server(self)
-- _read_failure_details(self, fallback)
-- _stop_process_locked(self)
-- close(self)
-- _cancel_idle_timer_locked(self)
-- _schedule_idle_shutdown(self)
-- ensure_server_ready(self)
-- _compose_prompt(self)
-- _build_run_command(self, binary_path, model_path, prompt_file)
-- _cli_environment(self)
-- _prompt_file_path(self)
-- _extract_cli_response_text(self, raw_output)
-- _clean_cli_output(self, raw_output)
-- _extract_response_text(self, response)
-- _request_completion(self, payload)
-- complete(self)
-- prepare_direct_completion(self)
-- complete_direct_completion(self)
-- status(self)
-
-Class LocalAIService
-- __init__(self, repository)
-- __getattr__(self, name)
-- provider_id(self)
-- engine_id(self)
-- _provider_preference(self)
-- _active_service(self)
-- close(self)
-- complete(self)
-- prepare_direct_completion(self)
-- complete_direct_completion(self)
-- status(self)
-
-Function _clamp_int
-Args: ['value', 'default', 'minimum', 'maximum']
-
-Function _clamp_float
-Args: ['value', 'default', 'minimum', 'maximum']
-
-Function _sanitize_model_text
-Args: ['value']
-
-Function _normalize_prompt_text
-Args: ['text']
-
-Function _estimate_token_count
-Args: ['text']
-
-Function _trim_text_middle
-Args: ['text']
-
-Function _prepare_prompt_with_budget
-Args: ['prompt']
-
-Function _unwrap_short_reply
-Args: ['value']
-
-Function _extract_exact_short_reply_target
-Args: ['prompt']
-
-Function _normalize_model_label
-Args: ['value']
-
-Function _sanitize_model_id
-Args: ['value']
-
-Function _same_drive
-Args: ['left', 'right']
-
-Function _first_existing_path
-Args: ['candidates']
-
-Function __init__
-Args: ['self', 'repository']
-
-Function model_roots
-Args: ['self']
-
-Function model_root
-Args: ['self']
-
-Function explicit_model_path
-Args: ['self']
-
-Function model_label
-Args: ['self']
-
-Function max_tokens
-Args: ['self']
-
-Function top_k
-Args: ['self']
-
-Function temperature
-Args: ['self']
-
-Function random_seed
-Args: ['self']
-
-Function backend
-Args: ['self']
-
-Function ctx_size
-Args: ['self']
-
-Function gpu_layers
-Args: ['self']
-
-Function threads
-Args: ['self']
-
-Function sleep_idle_seconds
-Args: ['self']
-
-Function port
-Args: ['self']
-
-Function server_url
-Args: ['self']
-
-Function explicit_binary_path
-Args: ['self']
-
-Function generation_options
-Args: ['self']
-
-Function local_model_files
-Args: ['self']
-
-Function resolved_model_path
-Args: ['self']
-
-Function resolved_model_label
-Args: ['self']
-
-Function _discover_binary_candidates
-Args: ['self']
-
-Function _request_json
-Args: ['self', 'url']
-
-Function _latest_release
-Args: ['self']
-
-Function _download_binary
-Args: ['self']
-
-Function _ensure_binary_path
-Args: ['self']
-
-Function _desired_process_key
-Args: ['self']
-
-Function _build_command
-Args: ['self', 'binary_path', 'model_path']
-
-Function _poll_health
-Args: ['self']
-
-Function _read_failure_details
-Args: ['self', 'fallback']
-
-Function _stop_process_locked
-Args: ['self']
-
-Function close
-Args: ['self']
-
-Function _cancel_idle_timer_locked
-Args: ['self']
-
-Function _schedule_idle_shutdown
-Args: ['self']
-
-Function ensure_server_ready
-Args: ['self']
-
-Function complete
-Args: ['self']
-
-Function prepare_direct_completion
-Args: ['self']
-
-Function complete_direct_completion
-Args: ['self']
-
-Function status
-Args: ['self']
-
-Function __init__
-Args: ['self', 'repository']
-
-Function model_roots
-Args: ['self']
-
-Function explicit_model_path
-Args: ['self']
-
-Function model_label
-Args: ['self']
-
-Function backend
-Args: ['self']
-
-Function max_tokens
-Args: ['self']
-
-Function top_k
-Args: ['self']
-
-Function temperature
-Args: ['self']
-
-Function random_seed
-Args: ['self']
-
-Function sleep_idle_seconds
-Args: ['self']
-
-Function port
-Args: ['self']
-
-Function server_url
-Args: ['self']
-
-Function explicit_binary_path
-Args: ['self']
-
-Function explicit_home_path
-Args: ['self']
-
-Function generation_options
-Args: ['self']
-
-Function local_model_files
-Args: ['self']
-
-Function resolved_model_path
-Args: ['self']
-
-Function resolved_model_label
-Args: ['self']
-
-Function resolved_model_id
-Args: ['self']
-
-Function resolved_home_root
-Args: ['self']
-
-Function lit_root
-Args: ['self']
-
-Function model_registry_dir
-Args: ['self']
-
-Function registry_model_path
-Args: ['self']
-
-Function registry_cache_path
-Args: ['self']
-
-Function _explicit_binary_directory
-Args: ['self']
-
-Function _discover_binary_candidates
-Args: ['self']
-
-Function _ensure_binary_path
-Args: ['self']
-
-Function _register_model_file
-Args: ['self', 'target', 'source']
-
-Function ensure_model_registered
-Args: ['self']
-
-Function _desired_process_key
-Args: ['self']
-
-Function _build_command
-Args: ['self', 'binary_path']
-
-Function _request_json
-Args: ['self', 'url']
-
-Function _probe_server
-Args: ['self']
-
-Function _read_failure_details
-Args: ['self', 'fallback']
-
-Function _stop_process_locked
-Args: ['self']
-
-Function close
-Args: ['self']
-
-Function _cancel_idle_timer_locked
-Args: ['self']
-
-Function _schedule_idle_shutdown
-Args: ['self']
-
-Function ensure_server_ready
-Args: ['self']
-
-Function _compose_prompt
-Args: ['self']
-
-Function _build_run_command
-Args: ['self', 'binary_path', 'model_path', 'prompt_file']
-
-Function _cli_environment
-Args: ['self']
-
-Function _prompt_file_path
-Args: ['self']
-
-Function _extract_cli_response_text
-Args: ['self', 'raw_output']
-
-Function _clean_cli_output
-Args: ['self', 'raw_output']
-
-Function _extract_response_text
-Args: ['self', 'response']
-
-Function _request_completion
-Args: ['self', 'payload']
-
-Function complete
-Args: ['self']
-
-Function prepare_direct_completion
-Args: ['self']
-
-Function complete_direct_completion
-Args: ['self']
-
-Function status
-Args: ['self']
-
-Function __init__
-Args: ['self', 'repository']
-
-Function __getattr__
-Args: ['self', 'name']
-
-Function provider_id
-Args: ['self']
-
-Function engine_id
-Args: ['self']
-
-Function _provider_preference
-Args: ['self']
-
-Function _active_service
-Args: ['self']
-
-Function close
-Args: ['self']
-
-Function complete
-Args: ['self']
-
-Function prepare_direct_completion
-Args: ['self']
-
-Function complete_direct_completion
-Args: ['self']
-
-Function status
-Args: ['self']
-
-Function sort_key
-Args: ['path']
-
-Function shutdown
-Args: []
-
-Function sort_key
-Args: ['path']
-
-Function shutdown
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\analysis_archive_builder.py
-Imports:
-- __future__
-- argparse
-- subprocess
-- zipfile
-- dataclasses
-- pathlib
-
-Class SourceAnalysisArchiveBuildResult
-
-Function detect_project_version
-Args: ['base_path']
-
-Function build_source_analysis_archive
-Args: ['base_path']
-
-Function _iter_source_analysis_files
-Args: ['base_path']
-
-Function _git_tracked_files
-Args: ['base_path']
-
-Function _should_skip_source_analysis_file
-Args: ['relative_path']
-
-Function _is_allowed_source_file
-Args: ['relative_path']
-
-Function _is_probably_text_file
-Args: ['path']
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\archive_utils.py
-Imports:
-- __future__
-- os
-- stat
-- zipfile
-- pathlib
-
-Function extract_zip_safely
-Args: ['archive', 'destination']
-
-Function _validated_zip_member_path
-Args: ['member']
-
-Function _zip_entry_is_symlink
-Args: ['member']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\auth.py
-Imports:
-- __future__
-- base64
-- hashlib
-- hmac
-- os
-- dataclasses
-- typing
-- database
-- permissions
-
-Class SessionContext
-- username(self)
-- role(self)
-- is_teacher(self)
-- is_admin(self)
-- group_ids(self)
-- to_dict(self)
-
-Class AuthService
-- __init__(self, repository, security_plane, tenant_id, session_ttl_seconds)
-- ensure_user(self, username, password, role, display_name, permissions)
-- create_user(self, username, password, role, display_name, permissions)
-- login(self, username, password)
-- session_from_token(self, token)
-- logout(self, token_id)
-
-Function hash_password
-Args: ['password']
-
-Function verify_password
-Args: ['password', 'salt_text', 'hash_text']
-
-Function username
-Args: ['self']
-
-Function role
-Args: ['self']
-
-Function is_teacher
-Args: ['self']
-
-Function is_admin
-Args: ['self']
-
-Function group_ids
-Args: ['self']
-
-Function to_dict
-Args: ['self']
-
-Function __init__
-Args: ['self', 'repository', 'security_plane', 'tenant_id', 'session_ttl_seconds']
-
-Function ensure_user
-Args: ['self', 'username', 'password', 'role', 'display_name', 'permissions']
-
-Function create_user
-Args: ['self', 'username', 'password', 'role', 'display_name', 'permissions']
-
-Function login
-Args: ['self', 'username', 'password']
-
-Function session_from_token
-Args: ['self', 'token']
-
-Function logout
-Args: ['self', 'token_id']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\codedump_tools.py
-Imports:
-- __future__
-- dataclasses
-- pathlib
-- typing
-- zipfile
-- argparse
-
-Class DumpConfig
-
-Class DumpEntry
-
-Class DumpResult
-
-Function is_ignored
-Args: ['path', 'config']
-
-Function is_code_file
-Args: ['path', 'config']
-
-Function detect_language
-Args: ['path']
-
-Function generate_tree
-Args: ['file_paths']
-
-Function dump_zip_to_markdown
-Args: ['zip_path', 'output_md', 'config']
-
-Function dump_target_to_markdown
-Args: ['target', 'output_md', 'config']
-
-Function collect_directory_dump
-Args: ['project_root']
-
-Function collect_zip_dump
-Args: ['zip_path']
-
-Function render_dump_markdown
-Args: ['result']
-
-Function _entry_from_path
-Args: ['path', 'relative_path', 'config']
-
-Function _entry_from_zip
-Args: ['archive', 'info', 'config']
-
-Function _entry_from_bytes
-Args: ['relative_path', 'raw', 'size', 'config']
-
-Function _summarize_paths
-Args: ['paths']
-
-Function _summary_label_for_path
-Args: ['path']
-
-Function _is_dump_artifact
-Args: ['path']
-
-Function _is_directory_like_target
-Args: ['target']
-
-Function default_output_path
-Args: ['target']
-
-Function config_for_profile
-Args: ['profile']
-
-Function default_output_path_for_profile
-Args: ['target', 'profile']
-
-Function main
-Args: []
-
-Function render
-Args: ['node', 'prefix']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\code_runner.py
-Imports:
-- __future__
-- hashlib
-- os
-- re
-- shlex
-- shutil
-- subprocess
-- threading
-- time
-- textwrap
-- uuid
-- dataclasses
-- pathlib
-- typing
-- config
-- container_seccomp
-- permissions
-- workspace
-
-Class RunResult
-- to_dict(self)
-
-Class LivePreparedRun
-
-Class SchedulerLease
-
-Class RunScheduler
-- __init__(self, repository)
-- acquire(self, owner_username, role)
-- release(self, lease)
-- _can_activate(self, owner_username, role)
-- _global_limit(self)
-- _per_owner_limit(self, role)
-- _setting_int(self, key, default)
-- _priority_for_role(role)
-
-Class CodeRunner
-- __init__(self, config, tool_sandbox, workspace_manager, repository)
-- run(self, session, project, payload)
-- run_bundle(self, session, payload)
-- prepare_live_run(self, session, project, payload)
-- _resolve_language(self, project, payload)
-- _resolve_bundle_language(self, payload)
-- _prepare_source_file(self, project, payload, language, run_root)
-- _prepare_bundle_workspace(self, payload, language, run_root)
-- _prepare_execution_workspace(self, project, payload, language, project_root, run_root)
-- _resolve_project_entry_path(self, project, payload, language, runtime_root)
-- _resolve_project_entry_relative_path(self, project, payload, language)
-- _project_source_files(project_root, suffixes)
-- _java_main_class(self, source_path, project_root)
-- _copy_project_tree(self, project_root, runtime_root)
-- _safe_relative_path(path_text)
-- _prepare_html_preview(self, project, payload, project_root, run_root)
-- _resolve_html_preview_entry(self, project, payload, preview_root, source_path)
-- _detect_python_gui_frameworks(self, language, source_path, payload)
-- _read_source_text(path)
-- _python_syntax_error(self, source_path)
-- _python_requirements_file(workspace_root)
-- _python_dependency_cache_dir(self, requirements_path, backend_marker)
-- _restore_dependency_cache(target_root, cache_root)
-- _store_dependency_cache(source_root, cache_root)
-- _write_python_bootstrap(self, workspace_root)
-- _is_python_traceback_wrapper_line(line)
-- _sanitize_python_stderr(self, stderr)
-- _python_entry_env(self, env, entrypoint_path, deps_path)
-- _run_containerized(self, run_id, language, source_path, run_root, project_root, stdin_text, env, tool_session, permissions, payload)
-- _run_python(self, run_id, source_path, project_root, stdin_text, env, tool_session, permissions)
-- _run_node_like(self, run_id, language, source_path, project_root, stdin_text, env, tool_session, permissions)
-- _run_cpp(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
-- _run_java(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
-- _run_rust(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
-- _run_npm(self, run_id, project_root, payload, stdin_text, env, tool_session, permissions)
-- _ensure_python_dependencies_process(self, workspace_root, env, permissions)
-- _ensure_python_dependencies_container(self, runtime_executable, image, container_workspace, env, permissions)
-- _container_error_is_missing_image(raw_error)
-- _ensure_container_image_available(self, runtime_executable, image, cwd)
-- _ensure_python_gui_container_image(self, runtime_executable, base_image, permissions)
-- _prepare_python_gui_scripts(self, container_workspace, container_source_path)
-- _prepare_live_process(self, session_id, run_id, language, source_path, run_root, project_root, env, tool_session, permissions, payload)
-- _prepare_live_containerized(self, session_id, run_id, language, source_path, run_root, project_root, env, tool_session, permissions, payload)
-- _execute(self, run_id, language, command, cwd, stdin_text, env, tool_session, permissions)
-- _execute_container(self, run_id, language, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, tool_session, permissions)
-- _execute_container_raw(self, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, permissions)
-- _prepare_container_workspace(self, source_root, run_root)
-- _mirror_tree_securely(self, source_root, target_root, ignored_names)
-- _copy_tree_entries_securely(self, source_dir, target_dir, ignored_names)
-- _is_link_like(path)
-- _execution_env(self, project_root, web_access)
-- _containerized_env(env)
-- _container_file_size_limit_bytes(self)
-- _network_notes(self, permissions)
-- _backend_notes(self, permissions, backend, runtime, image)
-- _runner_backend(self, payload)
-- resolve_backend(self, session, payload)
-- _session_role(session)
-- _session_can_view_operational_notes(self, session)
-- _visible_notes_for_session(self, session, notes)
-- _finalize_run_result(self, session, result, lease)
-- _finalize_prepared_run(self, session, prepared, lease)
-- _container_runtime(self, payload)
-- _container_image(self, language, payload)
-- _container_base_command(self, runtime_executable, image, source_root, workspace_root, permissions, tty)
-- _container_wrapped_command(base_command, inner_command)
-- _container_path(self, project_root, target)
-- _setting(self, key, default)
-- _setting_bool(self, key, default)
-- _unsafe_process_backend_enabled(self)
-- _container_seccomp_option(self, runtime_name)
-- _scheduler_notes(lease)
-- _default_filename(language)
-- _execute_raw(self, command, cwd, stdin_text, env)
-- _container_runtime_error_message(self, runtime_executable, image, raw_error)
-- _container_runtime_health_timeout_seconds(self)
-- _container_runtime_health(self, runtime_executable, image)
-
-Class _RawResult
-
-Function to_dict
-Args: ['self']
-
-Function __init__
-Args: ['self', 'repository']
-
-Function acquire
-Args: ['self', 'owner_username', 'role']
-
-Function release
-Args: ['self', 'lease']
-
-Function _can_activate
-Args: ['self', 'owner_username', 'role']
-
-Function _global_limit
-Args: ['self']
-
-Function _per_owner_limit
-Args: ['self', 'role']
-
-Function _setting_int
-Args: ['self', 'key', 'default']
-
-Function _priority_for_role
-Args: ['role']
-
-Function __init__
-Args: ['self', 'config', 'tool_sandbox', 'workspace_manager', 'repository']
-
-Function run
-Args: ['self', 'session', 'project', 'payload']
-
-Function run_bundle
-Args: ['self', 'session', 'payload']
-
-Function prepare_live_run
-Args: ['self', 'session', 'project', 'payload']
-
-Function _resolve_language
-Args: ['self', 'project', 'payload']
-
-Function _resolve_bundle_language
-Args: ['self', 'payload']
-
-Function _prepare_source_file
-Args: ['self', 'project', 'payload', 'language', 'run_root']
-
-Function _prepare_bundle_workspace
-Args: ['self', 'payload', 'language', 'run_root']
-
-Function _prepare_execution_workspace
-Args: ['self', 'project', 'payload', 'language', 'project_root', 'run_root']
-
-Function _resolve_project_entry_path
-Args: ['self', 'project', 'payload', 'language', 'runtime_root']
-
-Function _resolve_project_entry_relative_path
-Args: ['self', 'project', 'payload', 'language']
-
-Function _project_source_files
-Args: ['project_root', 'suffixes']
-
-Function _java_main_class
-Args: ['self', 'source_path', 'project_root']
-
-Function _copy_project_tree
-Args: ['self', 'project_root', 'runtime_root']
-
-Function _safe_relative_path
-Args: ['path_text']
-
-Function _prepare_html_preview
-Args: ['self', 'project', 'payload', 'project_root', 'run_root']
-
-Function _resolve_html_preview_entry
-Args: ['self', 'project', 'payload', 'preview_root', 'source_path']
-
-Function _detect_python_gui_frameworks
-Args: ['self', 'language', 'source_path', 'payload']
-
-Function _read_source_text
-Args: ['path']
-
-Function _python_syntax_error
-Args: ['self', 'source_path']
-
-Function _python_requirements_file
-Args: ['workspace_root']
-
-Function _python_dependency_cache_dir
-Args: ['self', 'requirements_path', 'backend_marker']
-
-Function _restore_dependency_cache
-Args: ['target_root', 'cache_root']
-
-Function _store_dependency_cache
-Args: ['source_root', 'cache_root']
-
-Function _write_python_bootstrap
-Args: ['self', 'workspace_root']
-
-Function _is_python_traceback_wrapper_line
-Args: ['line']
-
-Function _sanitize_python_stderr
-Args: ['self', 'stderr']
-
-Function _python_entry_env
-Args: ['self', 'env', 'entrypoint_path', 'deps_path']
-
-Function _run_containerized
-Args: ['self', 'run_id', 'language', 'source_path', 'run_root', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions', 'payload']
-
-Function _run_python
-Args: ['self', 'run_id', 'source_path', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _run_node_like
-Args: ['self', 'run_id', 'language', 'source_path', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _run_cpp
-Args: ['self', 'run_id', 'source_path', 'run_root', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _run_java
-Args: ['self', 'run_id', 'source_path', 'run_root', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _run_rust
-Args: ['self', 'run_id', 'source_path', 'run_root', 'project_root', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _run_npm
-Args: ['self', 'run_id', 'project_root', 'payload', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _ensure_python_dependencies_process
-Args: ['self', 'workspace_root', 'env', 'permissions']
-
-Function _ensure_python_dependencies_container
-Args: ['self', 'runtime_executable', 'image', 'container_workspace', 'env', 'permissions']
-
-Function _container_error_is_missing_image
-Args: ['raw_error']
-
-Function _ensure_container_image_available
-Args: ['self', 'runtime_executable', 'image', 'cwd']
-
-Function _ensure_python_gui_container_image
-Args: ['self', 'runtime_executable', 'base_image', 'permissions']
-
-Function _prepare_python_gui_scripts
-Args: ['self', 'container_workspace', 'container_source_path']
-
-Function _prepare_live_process
-Args: ['self', 'session_id', 'run_id', 'language', 'source_path', 'run_root', 'project_root', 'env', 'tool_session', 'permissions', 'payload']
-
-Function _prepare_live_containerized
-Args: ['self', 'session_id', 'run_id', 'language', 'source_path', 'run_root', 'project_root', 'env', 'tool_session', 'permissions', 'payload']
-
-Function _execute
-Args: ['self', 'run_id', 'language', 'command', 'cwd', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _execute_container
-Args: ['self', 'run_id', 'language', 'runtime_executable', 'image', 'inner_command', 'project_root', 'container_workspace', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function _execute_container_raw
-Args: ['self', 'runtime_executable', 'image', 'inner_command', 'project_root', 'container_workspace', 'stdin_text', 'env', 'permissions']
-
-Function _prepare_container_workspace
-Args: ['self', 'source_root', 'run_root']
-
-Function _mirror_tree_securely
-Args: ['self', 'source_root', 'target_root', 'ignored_names']
-
-Function _copy_tree_entries_securely
-Args: ['self', 'source_dir', 'target_dir', 'ignored_names']
-
-Function _is_link_like
-Args: ['path']
-
-Function _execution_env
-Args: ['self', 'project_root', 'web_access']
-
-Function _containerized_env
-Args: ['env']
-
-Function _container_file_size_limit_bytes
-Args: ['self']
-
-Function _network_notes
-Args: ['self', 'permissions']
-
-Function _backend_notes
-Args: ['self', 'permissions', 'backend', 'runtime', 'image']
-
-Function _runner_backend
-Args: ['self', 'payload']
-
-Function resolve_backend
-Args: ['self', 'session', 'payload']
-
-Function _session_role
-Args: ['session']
-
-Function _session_can_view_operational_notes
-Args: ['self', 'session']
-
-Function _visible_notes_for_session
-Args: ['self', 'session', 'notes']
-
-Function _finalize_run_result
-Args: ['self', 'session', 'result', 'lease']
-
-Function _finalize_prepared_run
-Args: ['self', 'session', 'prepared', 'lease']
-
-Function _container_runtime
-Args: ['self', 'payload']
-
-Function _container_image
-Args: ['self', 'language', 'payload']
-
-Function _container_base_command
-Args: ['self', 'runtime_executable', 'image', 'source_root', 'workspace_root', 'permissions', 'tty']
-
-Function _container_wrapped_command
-Args: ['base_command', 'inner_command']
-
-Function _container_path
-Args: ['self', 'project_root', 'target']
-
-Function _setting
-Args: ['self', 'key', 'default']
-
-Function _setting_bool
-Args: ['self', 'key', 'default']
-
-Function _unsafe_process_backend_enabled
-Args: ['self']
-
-Function _container_seccomp_option
-Args: ['self', 'runtime_name']
-
-Function _scheduler_notes
-Args: ['lease']
-
-Function _default_filename
-Args: ['language']
-
-Function _execute_raw
-Args: ['self', 'command', 'cwd', 'stdin_text', 'env']
-
-Function _container_runtime_error_message
-Args: ['self', 'runtime_executable', 'image', 'raw_error']
-
-Function _container_runtime_health_timeout_seconds
-Args: ['self']
-
-Function _container_runtime_health
-Args: ['self', 'runtime_executable', 'image']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\collaboration.py
-Imports:
-- __future__
-- json
-- time
-- uuid
-- typing
-- database
-- workspace
-
-Class NotebookCollaborationService
-- __init__(self, repository, workspace_manager)
-- snapshot(self, project)
-- heartbeat(self, session, project, cursor)
-- sync(self, session, project, cells, base_revision, cursor)
-- _init_schema(self)
-- _ensure_state(self, project)
-- _store_state(self, project, revision, cells, updated_by, base_revision)
-- _snapshot_at(self, project_id, revision)
-- _active_presence(self, project_id)
-- _normalize_cell(cell, index)
-- _merge_cells(cls, base_cells, current_cells, incoming_cells)
-
-Function __init__
-Args: ['self', 'repository', 'workspace_manager']
-
-Function snapshot
-Args: ['self', 'project']
-
-Function heartbeat
-Args: ['self', 'session', 'project', 'cursor']
-
-Function sync
-Args: ['self', 'session', 'project', 'cells', 'base_revision', 'cursor']
-
-Function _init_schema
-Args: ['self']
-
-Function _ensure_state
-Args: ['self', 'project']
-
-Function _store_state
-Args: ['self', 'project', 'revision', 'cells', 'updated_by', 'base_revision']
-
-Function _snapshot_at
-Args: ['self', 'project_id', 'revision']
-
-Function _active_presence
-Args: ['self', 'project_id']
-
-Function _normalize_cell
-Args: ['cell', 'index']
-
-Function _merge_cells
-Args: ['cls', 'base_cells', 'current_cells', 'incoming_cells']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\config.py
-Imports:
-- __future__
-- json
-- os
-- dataclasses
-- pathlib
-- typing
-
-Class ServerConfig
-- from_base_path(cls, base_path)
-
-Function resolve_package_path
-Args: ['base_path']
-
-Function load_server_config_payload
-Args: ['base_path']
-
-Function save_server_config_payload
-Args: ['base_path', 'updates']
-
-Function active_runtime_config
-Args: ['config']
-
-Function stored_runtime_config
-Args: ['base_path', 'config']
-
-Function runtime_config_requires_restart
-Args: ['active', 'stored']
-
-Function from_base_path
-Args: ['cls', 'base_path']
-
-Function env_or_payload
-Args: ['name', 'key', 'default']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\container_seccomp.py
-Imports:
-- __future__
-- os
-- pathlib
-
-Function resolve_seccomp_profile_option
-Args: ['profile_path', 'runtime_name']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\curriculum.py
-Imports:
-- __future__
-- copy
-- hashlib
-- html
-- hmac
-- io
-- json
-- re
-- time
-- uuid
-- zipfile
-- typing
-- curriculum_catalog
-- curriculum_certificate_pdf
-- material_studio
-- material_studio
-- material_studio
-
-Class CurriculumService
-- __init__(self, repository)
-- _catalog_courses(self)
-- _catalog_course(self, course_id)
-- active_bundle_id(self)
-- _active_bundle_row(self)
-- active_bundle(self)
-- _active_bundle_courses(self)
-- _active_bundle_course(self, course_id)
-- _active_bundle_material_presets(self)
-- _active_bundle_mentor_rules(self)
-- _resolve_mentor_rule(self, course_id, module_id)
-- _custom_courses(self)
-- _custom_course(self, course_id)
-- _slug(value)
-- _listify(value)
-- _normalize_question(self, raw)
-- _normalize_course_definition(self, payload)
-- save_custom_course(self, session, payload)
-- validate_bundle_archive(self, archive_bytes)
-- import_bundle_archive(self, session)
-- activate_bundle(self, session, bundle_id)
-- rollback_bundle(self, session)
-- list_bundles(self)
-- _bundle_payload(self, bundle_id)
-- _bundle_row_payload(self, row)
-- _bundle_preview_payload(self, bundle)
-- _parse_bundle_archive(self, archive_bytes)
-- _decode_bundle_json(archive, member)
-- _load_bundle_section(self, archive, folder_name, normalizer)
-- _load_bundle_raw_section(self, archive, folder_name)
-- _ensure_unique_bundle_entries(items)
-- _normalize_bundle_course(self, payload)
-- _normalize_material_preset(payload)
-- _normalize_mentor_rule(payload)
-- _verify_bundle_signature(self, manifest, courses, material_presets, mentor_rules, signature)
-- _canonical_bundle_payload(manifest, courses, material_presets, mentor_rules)
-- dashboard(self, session)
-- material_studio_instruction_preset_catalog(self)
-- resolve_material_studio_instruction_preset(self, preset_key)
-- mentor_context(self, session)
-- attempt_history(self, course_id, username)
-- set_release(self, session, course_id, scope_type, scope_key, enabled, note)
-- submit_assessment(self, session, course_id, module_id, assessment_kind, answers)
-- build_certificate_pdf(self, session, course_id, school_name)
-- prepare_certificate_metadata(self, username, course_id)
-- certificate_by_id(self, certificate_id)
-- render_certificate_verification_page(self, certificate_id, school_name)
-- _ensure_schema(self)
-- _sanitize_user(user)
-- _resolve_release(self, session, course_id)
-- _query_releases(self, course_id, scope_type, scope_keys)
-- _list_releases(self)
-- _release_payload(self, release_id)
-- _release_row_payload(self, row)
-- _latest_attempts(self, username, course_id)
-- _certificate_for(self, username, course_id)
-- _course_payload(self, session, course)
-- _attempt_count(self, username, course_id, module_id, assessment_kind)
-- _resolve_module(course, module_id, assessment_kind)
-- _grade_assessment(module, answers, pass_ratio)
-- _refresh_certificate(self, username, course_id, final_grading)
-- _learner_overview(self)
-
-Function __init__
-Args: ['self', 'repository']
-
-Function _catalog_courses
-Args: ['self']
-
-Function _catalog_course
-Args: ['self', 'course_id']
-
-Function active_bundle_id
-Args: ['self']
-
-Function _active_bundle_row
-Args: ['self']
-
-Function active_bundle
-Args: ['self']
-
-Function _active_bundle_courses
-Args: ['self']
-
-Function _active_bundle_course
-Args: ['self', 'course_id']
-
-Function _active_bundle_material_presets
-Args: ['self']
-
-Function _active_bundle_mentor_rules
-Args: ['self']
-
-Function _resolve_mentor_rule
-Args: ['self', 'course_id', 'module_id']
-
-Function _custom_courses
-Args: ['self']
-
-Function _custom_course
-Args: ['self', 'course_id']
-
-Function _slug
-Args: ['value']
-
-Function _listify
-Args: ['value']
-
-Function _normalize_question
-Args: ['self', 'raw']
-
-Function _normalize_course_definition
-Args: ['self', 'payload']
-
-Function save_custom_course
-Args: ['self', 'session', 'payload']
-
-Function validate_bundle_archive
-Args: ['self', 'archive_bytes']
-
-Function import_bundle_archive
-Args: ['self', 'session']
-
-Function activate_bundle
-Args: ['self', 'session', 'bundle_id']
-
-Function rollback_bundle
-Args: ['self', 'session']
-
-Function list_bundles
-Args: ['self']
-
-Function _bundle_payload
-Args: ['self', 'bundle_id']
-
-Function _bundle_row_payload
-Args: ['self', 'row']
-
-Function _bundle_preview_payload
-Args: ['self', 'bundle']
-
-Function _parse_bundle_archive
-Args: ['self', 'archive_bytes']
-
-Function _decode_bundle_json
-Args: ['archive', 'member']
-
-Function _load_bundle_section
-Args: ['self', 'archive', 'folder_name', 'normalizer']
-
-Function _load_bundle_raw_section
-Args: ['self', 'archive', 'folder_name']
-
-Function _ensure_unique_bundle_entries
-Args: ['items']
-
-Function _normalize_bundle_course
-Args: ['self', 'payload']
-
-Function _normalize_material_preset
-Args: ['payload']
-
-Function _normalize_mentor_rule
-Args: ['payload']
-
-Function _verify_bundle_signature
-Args: ['self', 'manifest', 'courses', 'material_presets', 'mentor_rules', 'signature']
-
-Function _canonical_bundle_payload
-Args: ['manifest', 'courses', 'material_presets', 'mentor_rules']
-
-Function dashboard
-Args: ['self', 'session']
-
-Function material_studio_instruction_preset_catalog
-Args: ['self']
-
-Function resolve_material_studio_instruction_preset
-Args: ['self', 'preset_key']
-
-Function mentor_context
-Args: ['self', 'session']
-
-Function attempt_history
-Args: ['self', 'course_id', 'username']
-
-Function set_release
-Args: ['self', 'session', 'course_id', 'scope_type', 'scope_key', 'enabled', 'note']
-
-Function submit_assessment
-Args: ['self', 'session', 'course_id', 'module_id', 'assessment_kind', 'answers']
-
-Function build_certificate_pdf
-Args: ['self', 'session', 'course_id', 'school_name']
-
-Function prepare_certificate_metadata
-Args: ['self', 'username', 'course_id']
-
-Function certificate_by_id
-Args: ['self', 'certificate_id']
-
-Function render_certificate_verification_page
-Args: ['self', 'certificate_id', 'school_name']
-
-Function _ensure_schema
-Args: ['self']
-
-Function _sanitize_user
-Args: ['user']
-
-Function _resolve_release
-Args: ['self', 'session', 'course_id']
-
-Function _query_releases
-Args: ['self', 'course_id', 'scope_type', 'scope_keys']
-
-Function _list_releases
-Args: ['self']
-
-Function _release_payload
-Args: ['self', 'release_id']
-
-Function _release_row_payload
-Args: ['self', 'row']
-
-Function _latest_attempts
-Args: ['self', 'username', 'course_id']
-
-Function _certificate_for
-Args: ['self', 'username', 'course_id']
-
-Function _course_payload
-Args: ['self', 'session', 'course']
-
-Function _attempt_count
-Args: ['self', 'username', 'course_id', 'module_id', 'assessment_kind']
-
-Function _resolve_module
-Args: ['course', 'module_id', 'assessment_kind']
-
-Function _grade_assessment
-Args: ['module', 'answers', 'pass_ratio']
-
-Function _refresh_certificate
-Args: ['self', 'username', 'course_id', 'final_grading']
-
-Function _learner_overview
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\curriculum_catalog.py
-Imports:
-- __future__
-- typing
-
-Function _single
-Args: ['question_id', 'prompt', 'options', 'correct', 'explanation']
-
-Function _multi
-Args: ['question_id', 'prompt', 'options', 'correct', 'explanation']
-
-Function _text
-Args: ['question_id', 'prompt', 'accepted', 'explanation']
-
-Function list_courses
-Args: []
-
-Function get_course
-Args: ['course_id']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\curriculum_certificate_pdf.py
-Imports:
-- __future__
-- hashlib
-- math
-- unicodedata
-- zlib
-- datetime
-- pathlib
-- PIL
-
-Function _normalize_text
-Args: ['value']
-
-Function _pdf_string
-Args: ['value']
-
-Function _rgb
-Args: ['r', 'g', 'b']
-
-Function _estimate_width
-Args: ['text', 'font_size']
-
-Function _text_command
-Args: ['x', 'y', 'text']
-
-Function _centered_text_command
-Args: ['y', 'text']
-
-Function _rect_command
-Args: ['x', 'y', 'width', 'height']
-
-Function _line_command
-Args: ['x1', 'y1', 'x2', 'y2']
-
-Function _image_draw_command
-Args: ['x', 'y', 'width', 'height', 'resource_name']
-
-Function _format_date
-Args: ['timestamp']
-
-Function _hex_to_rgb
-Args: ['value', 'fallback']
-
-Function _initials
-Args: ['value']
-
-Function _wrap_text
-Args: ['text']
-
-Function _load_rgb_image
-Args: ['path']
-
-Function _build_verification_matrix
-Args: ['seed']
-
-Function build_curriculum_certificate_pdf
-Args: []
-
-Function bit
-Args: ['index']
-
-Function draw_finder
-Args: ['origin_x', 'origin_y']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\database.py
-Imports:
-- __future__
-- json
-- sqlite3
-- threading
-- time
-- uuid
-- pathlib
-- typing
-- permissions
-
-Class SchoolRepository
-- __init__(self, database_path)
-- close(self)
-- _init_schema(self)
-- _encode_json(value)
-- _decode_json(value)
-- create_user(self, username, display_name, password_hash, password_salt, role, permissions, status)
-- set_user_password(self, username, password_hash, password_salt)
-- get_user(self, username)
-- list_users(self)
-- update_user_permissions(self, username, permissions)
-- update_user_account(self, username, display_name, role, status)
-- set_user_status(self, username, status)
-- create_group(self, group_id, display_name, description, permissions)
-- get_group(self, group_id)
-- list_groups(self)
-- update_group_permissions(self, group_id, permissions)
-- add_membership(self, username, group_id)
-- remove_membership(self, username, group_id)
-- list_memberships(self)
-- list_user_groups(self, username)
-- create_project(self, owner_type, owner_key, name, slug, template, runtime, main_file, description, created_by)
-- find_project_by_owner_and_slug(self, owner_type, owner_key, slug)
-- get_project(self, project_id)
-- list_projects(self)
-- list_accessible_projects(self, username, role, group_ids)
-- update_project_main_file(self, project_id, main_file)
-- put_setting(self, key, value)
-- get_setting(self, key, default)
-- list_settings(self)
-- upsert_worker_node(self, worker_id, display_name, token_secret_name)
-- get_worker_node(self, worker_id)
-- list_worker_nodes(self)
-- create_dispatch_job(self)
-- get_dispatch_job(self, job_id)
-- list_dispatch_jobs(self)
-- list_latest_dispatch_jobs_for_project(self, project_id)
-- claim_next_dispatch_job(self, worker_id)
-- update_dispatch_job_status(self, job_id)
-- append_dispatch_job_log(self, job_id, chunk)
-- request_dispatch_job_stop(self, job_id)
-- register_worker_nonce(self, worker_id, nonce)
-- add_chat_message(self, room_key, author_username, author_display_name, message, metadata)
-- list_chat_messages(self, room_key, since, limit)
-- set_mute(self, room_key, target_username, duration_minutes, reason, created_by)
-- get_active_mute(self, room_key, target_username)
-- list_mutes(self, active_only)
-- add_audit(self, actor_username, action, target_type, target_id, payload)
-- list_audit_logs(self)
-- _row_to_user(row)
-- _row_to_group(row)
-- _row_to_project(row)
-- _row_to_worker_node(row)
-- _row_to_dispatch_job(row)
-
-Function __init__
-Args: ['self', 'database_path']
-
-Function close
-Args: ['self']
-
-Function _init_schema
-Args: ['self']
-
-Function _encode_json
-Args: ['value']
-
-Function _decode_json
-Args: ['value']
-
-Function create_user
-Args: ['self', 'username', 'display_name', 'password_hash', 'password_salt', 'role', 'permissions', 'status']
-
-Function set_user_password
-Args: ['self', 'username', 'password_hash', 'password_salt']
-
-Function get_user
-Args: ['self', 'username']
-
-Function list_users
-Args: ['self']
-
-Function update_user_permissions
-Args: ['self', 'username', 'permissions']
-
-Function update_user_account
-Args: ['self', 'username', 'display_name', 'role', 'status']
-
-Function set_user_status
-Args: ['self', 'username', 'status']
-
-Function create_group
-Args: ['self', 'group_id', 'display_name', 'description', 'permissions']
-
-Function get_group
-Args: ['self', 'group_id']
-
-Function list_groups
-Args: ['self']
-
-Function update_group_permissions
-Args: ['self', 'group_id', 'permissions']
-
-Function add_membership
-Args: ['self', 'username', 'group_id']
-
-Function remove_membership
-Args: ['self', 'username', 'group_id']
-
-Function list_memberships
-Args: ['self']
-
-Function list_user_groups
-Args: ['self', 'username']
-
-Function create_project
-Args: ['self', 'owner_type', 'owner_key', 'name', 'slug', 'template', 'runtime', 'main_file', 'description', 'created_by']
-
-Function find_project_by_owner_and_slug
-Args: ['self', 'owner_type', 'owner_key', 'slug']
-
-Function get_project
-Args: ['self', 'project_id']
-
-Function list_projects
-Args: ['self']
-
-Function list_accessible_projects
-Args: ['self', 'username', 'role', 'group_ids']
-
-Function update_project_main_file
-Args: ['self', 'project_id', 'main_file']
-
-Function put_setting
-Args: ['self', 'key', 'value']
-
-Function get_setting
-Args: ['self', 'key', 'default']
-
-Function list_settings
-Args: ['self']
-
-Function upsert_worker_node
-Args: ['self', 'worker_id', 'display_name', 'token_secret_name']
-
-Function get_worker_node
-Args: ['self', 'worker_id']
-
-Function list_worker_nodes
-Args: ['self']
-
-Function create_dispatch_job
-Args: ['self']
-
-Function get_dispatch_job
-Args: ['self', 'job_id']
-
-Function list_dispatch_jobs
-Args: ['self']
-
-Function list_latest_dispatch_jobs_for_project
-Args: ['self', 'project_id']
-
-Function claim_next_dispatch_job
-Args: ['self', 'worker_id']
-
-Function update_dispatch_job_status
-Args: ['self', 'job_id']
-
-Function append_dispatch_job_log
-Args: ['self', 'job_id', 'chunk']
-
-Function request_dispatch_job_stop
-Args: ['self', 'job_id']
-
-Function register_worker_nonce
-Args: ['self', 'worker_id', 'nonce']
-
-Function add_chat_message
-Args: ['self', 'room_key', 'author_username', 'author_display_name', 'message', 'metadata']
-
-Function list_chat_messages
-Args: ['self', 'room_key', 'since', 'limit']
-
-Function set_mute
-Args: ['self', 'room_key', 'target_username', 'duration_minutes', 'reason', 'created_by']
-
-Function get_active_mute
-Args: ['self', 'room_key', 'target_username']
-
-Function list_mutes
-Args: ['self', 'active_only']
-
-Function add_audit
-Args: ['self', 'actor_username', 'action', 'target_type', 'target_id', 'payload']
-
-Function list_audit_logs
-Args: ['self']
-
-Function _row_to_user
-Args: ['row']
-
-Function _row_to_group
-Args: ['row']
-
-Function _row_to_project
-Args: ['row']
-
-Function _row_to_worker_node
-Args: ['row']
-
-Function _row_to_dispatch_job
-Args: ['row']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\deployments.py
-Imports:
-- __future__
-- json
-- os
-- shutil
-- subprocess
-- tempfile
-- time
-- uuid
-- zipfile
-- pathlib
-- typing
-- config
-- database
-- project_files
-- workspace
-
-Class DeploymentService
-- __init__(self, repository, workspace_manager, security_plane, config)
-- list_artifacts(self, session)
-- create_share(self, session, project)
-- create_export(self, session, project)
-- resolve_share_path(self, artifact_id, relative_path)
-- resolve_download_path(self, artifact_id)
-- _prepare_bundle(self, runtime, project, source_root, bundle_root)
-- _write_runtime_guides(self, runtime, project, bundle_root)
-- _store_artifact(self)
-- _init_schema(self)
-- _artifact_row(self, artifact_id)
-- _artifact_payload(self, artifact_id)
-- _enforce_quota(self, quota_key)
-
-Function __init__
-Args: ['self', 'repository', 'workspace_manager', 'security_plane', 'config']
-
-Function list_artifacts
-Args: ['self', 'session']
-
-Function create_share
-Args: ['self', 'session', 'project']
-
-Function create_export
-Args: ['self', 'session', 'project']
-
-Function resolve_share_path
-Args: ['self', 'artifact_id', 'relative_path']
-
-Function resolve_download_path
-Args: ['self', 'artifact_id']
-
-Function _prepare_bundle
-Args: ['self', 'runtime', 'project', 'source_root', 'bundle_root']
-
-Function _write_runtime_guides
-Args: ['self', 'runtime', 'project', 'bundle_root']
-
-Function _store_artifact
-Args: ['self']
-
-Function _init_schema
-Args: ['self']
-
-Function _artifact_row
-Args: ['self', 'artifact_id']
-
-Function _artifact_payload
-Args: ['self', 'artifact_id']
-
-Function _enforce_quota
-Args: ['self', 'quota_key']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\distributed.py
-Imports:
-- __future__
-- json
-- os
-- shutil
-- socket
-- subprocess
-- time
-- dataclasses
-- pathlib
-- typing
-- code_runner
-- config
-- database
-- worker_dispatch
-- workspace
-
-Class _ManagedWorker
-
-Class DistributedPlaygroundService
-- __init__(self, repository, workspace_manager, security_plane, config, runner)
-- close(self)
-- status(self, project)
-- _status_local(self, project)
-- start(self, session, project)
-- _start_local(self, session, project)
-- stop(self, session, project)
-- _stop_local(self, session, project)
-- _status_remote(self, project)
-- _start_remote(self, session, project)
-- _stop_remote(self, session, project)
-- stop_project(self, project_id)
-- _ensure_security_assets(self, project_id, topology)
-- _load_topology(self, project)
-- _service_env(self, session, project, service_map, service, resolved_ports, worker_id)
-- _service_command(self, project, service)
-- _stop_worker(self, worker)
-- _find_free_port()
-- _resolve_ports(self, services, cluster)
-- _log_path(self, project, service_name)
-- _prepare_service_workspace(self, project, service_name)
-- _service_runtime_root(self, project, service_name)
-- _ensure_network(self, project_id)
-- _remove_network(self, project_id)
-- _resolved_backend(self, session)
-- _dispatch_mode(self)
-- _container_name(worker_id)
-- _network_name(project_id)
-- _service_language(runtime)
-- _container_path(runtime_root, target)
-- _tail_log(path, max_chars)
-- _ca_name(project_id)
-- _policy_name(project_id)
-
-Function __init__
-Args: ['self', 'repository', 'workspace_manager', 'security_plane', 'config', 'runner']
-
-Function close
-Args: ['self']
-
-Function status
-Args: ['self', 'project']
-
-Function _status_local
-Args: ['self', 'project']
-
-Function start
-Args: ['self', 'session', 'project']
-
-Function _start_local
-Args: ['self', 'session', 'project']
-
-Function stop
-Args: ['self', 'session', 'project']
-
-Function _stop_local
-Args: ['self', 'session', 'project']
-
-Function _status_remote
-Args: ['self', 'project']
-
-Function _start_remote
-Args: ['self', 'session', 'project']
-
-Function _stop_remote
-Args: ['self', 'session', 'project']
-
-Function stop_project
-Args: ['self', 'project_id']
-
-Function _ensure_security_assets
-Args: ['self', 'project_id', 'topology']
-
-Function _load_topology
-Args: ['self', 'project']
-
-Function _service_env
-Args: ['self', 'session', 'project', 'service_map', 'service', 'resolved_ports', 'worker_id']
-
-Function _service_command
-Args: ['self', 'project', 'service']
-
-Function _stop_worker
-Args: ['self', 'worker']
-
-Function _find_free_port
-Args: []
-
-Function _resolve_ports
-Args: ['self', 'services', 'cluster']
-
-Function _log_path
-Args: ['self', 'project', 'service_name']
-
-Function _prepare_service_workspace
-Args: ['self', 'project', 'service_name']
-
-Function _service_runtime_root
-Args: ['self', 'project', 'service_name']
-
-Function _ensure_network
-Args: ['self', 'project_id']
-
-Function _remove_network
-Args: ['self', 'project_id']
-
-Function _resolved_backend
-Args: ['self', 'session']
-
-Function _dispatch_mode
-Args: ['self']
-
-Function _container_name
-Args: ['worker_id']
-
-Function _network_name
-Args: ['project_id']
-
-Function _service_language
-Args: ['runtime']
-
-Function _container_path
-Args: ['runtime_root', 'target']
-
-Function _tail_log
-Args: ['path', 'max_chars']
-
-Function _ca_name
-Args: ['project_id']
-
-Function _policy_name
-Args: ['project_id']
-
-Function ignore
-Args: ['_directory', 'names']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\distribution_builder.py
-Imports:
-- __future__
-- json
-- stat
-- shutil
-- tempfile
-- zipfile
-- dataclasses
-- pathlib
-- typing
-- argparse
-
-Class DistributionBuildResult
-
-Class DistributionMaterializeResult
-
-Class LinuxProjectBuildResult
-
-Function detect_project_version
-Args: ['base_path']
-
-Function build_distribution_archive
-Args: ['base_path', 'output_dir', 'version', 'flavor']
-
-Function build_linux_project_archive
-Args: ['base_path', 'output_dir', 'version']
-
-Function materialize_distribution_directory
-Args: ['base_path', 'target_root']
-
-Function _normalize_flavor
-Args: ['flavor']
-
-Function _copy_project_tree
-Args: ['source_root', 'target_root']
-
-Function _copy_directory
-Args: ['source_dir', 'target_dir']
-
-Function _should_skip_root_entry
-Args: ['path', 'relative_path']
-
-Function _should_skip_entry
-Args: ['path', 'relative_path']
-
-Function _normalize_relative_path
-Args: ['path']
-
-Function _is_excluded_relative_path
-Args: ['relative_path', 'excluded_relative_paths']
-
-Function _create_distribution_scaffold
-Args: ['staging_root', 'version', 'flavor']
-
-Function _prune_for_flavor
-Args: ['staging_root', 'flavor']
-
-Function _write_platform_installation_guide
-Args: ['staging_root', 'flavor', 'version']
-
-Function _remove_if_exists
-Args: ['path']
-
-Function _ensure_placeholder
-Args: ['path']
-
-Function _write_lit_scaffold
-Args: ['staging_root']
-
-Function _copy_optional_linux_runtime_binaries
-Args: ['source_root', 'target_root', 'flavor']
-
-Function _zip_tree
-Args: ['root', 'archive_path']
-
-Function _iter_files
-Args: ['root']
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\docs_catalog.py
-Imports:
-- __future__
-- pathlib
-- templates
-
-Class DocumentationCatalog
-- __init__(self, docs_path)
-- ensure_seed_docs(self)
-- list_docs(self)
-- get_doc(self, slug)
-
-Function __init__
-Args: ['self', 'docs_path']
-
-Function ensure_seed_docs
-Args: ['self']
-
-Function list_docs
-Args: ['self']
-
-Function get_doc
-Args: ['self', 'slug']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\embedded_nova.py
-Imports:
-- __future__
-- json
-- secrets
-- threading
-- time
-- uuid
-- dataclasses
-- pathlib
-- typing
-
-Class EmbeddedPrincipal
-
-Class EmbeddedSecurityPlane
-- __init__(self, base_path)
-- register_tenant(self, tenant_id)
-- get_tenant(self, tenant_id)
-- issue_token(self, tenant_id, subject)
-- authenticate(self, token)
-- revoke_token(self, token_id)
-- store_secret(self, tenant_id, name, secret_value, metadata)
-- resolve_secret(self, tenant_id, name)
-- create_certificate_authority(self, name)
-- get_certificate_authority(self, name)
-- set_trust_policy(self, name)
-- get_trust_policy(self, name)
-- onboard_worker(self, worker_id, tenant_id)
-- list_worker_enrollments(self, tenant_id)
-- snapshot(self)
-- close(self)
-- _load_state(self)
-- _save_state(self)
-- _empty_state()
-- _secret_key(tenant_id, name)
-
-Class EmbeddedToolSandbox
-- __init__(self)
-- authorize(self, principal)
-- snapshot(self)
-
-Class EmbeddedNovaAIProviderRuntime
-- snapshot(self)
-
-Function _json_safe
-Args: ['value']
-
-Function __init__
-Args: ['self', 'base_path']
-
-Function register_tenant
-Args: ['self', 'tenant_id']
-
-Function get_tenant
-Args: ['self', 'tenant_id']
-
-Function issue_token
-Args: ['self', 'tenant_id', 'subject']
-
-Function authenticate
-Args: ['self', 'token']
-
-Function revoke_token
-Args: ['self', 'token_id']
-
-Function store_secret
-Args: ['self', 'tenant_id', 'name', 'secret_value', 'metadata']
-
-Function resolve_secret
-Args: ['self', 'tenant_id', 'name']
-
-Function create_certificate_authority
-Args: ['self', 'name']
-
-Function get_certificate_authority
-Args: ['self', 'name']
-
-Function set_trust_policy
-Args: ['self', 'name']
-
-Function get_trust_policy
-Args: ['self', 'name']
-
-Function onboard_worker
-Args: ['self', 'worker_id', 'tenant_id']
-
-Function list_worker_enrollments
-Args: ['self', 'tenant_id']
-
-Function snapshot
-Args: ['self']
-
-Function close
-Args: ['self']
-
-Function _load_state
-Args: ['self']
-
-Function _save_state
-Args: ['self']
-
-Function _empty_state
-Args: []
-
-Function _secret_key
-Args: ['tenant_id', 'name']
-
-Function __init__
-Args: ['self']
-
-Function authorize
-Args: ['self', 'principal']
-
-Function snapshot
-Args: ['self']
-
-Function snapshot
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\material_studio.py
-Imports:
-- __future__
-- ast
-- json
-- math
-- re
-- textwrap
-- typing
-- code_runner
-- curriculum_catalog
-- database
-
-Class TeacherMaterialStudioService
-- __init__(self, repository, runner)
-- _ai_provider_id(self)
-- _requires_visible_output(self, state, bundle, run_result)
-- _python_has_missing_main_invocation(code)
-- start_generation(self)
-- continue_generation(self, session)
-- generate(self, session)
-- run_current(self, session, payload)
-- _coerce_generation_state(self, generation_state)
-- _complete_inference_payload(self, payload)
-- _inference_step(self, state)
-- _profile_from_state(self, state)
-- _instruction_preset_from_state(self, state)
-- _normalize_instruction_preset(preset_key, profile_key, language)
-- _normalize_compare_text(value)
-- _instruction_preset_lines(self, instruction_preset)
-- _prompt_input_token_budget(self, phase)
-- _normalize_prompt_text(text)
-- _estimate_token_count(text)
-- _trim_text_middle(text)
-- _is_model_input_too_long_error(error)
-- _prepare_inference_prompt(self, prompt)
-- _generation_options_for_phase(self, phase)
-- _timeout_seconds_for_phase(self, phase)
-- _agent_summary(summary, instruction_preset)
-- _state_plan(self, state)
-- _state_bundle(self, state)
-- _state_run_result(self, state, language)
-- _issue_json_repair_step(self, state)
-- _issue_code_repair_step(self, state)
-- _issue_plan_step(self, state)
-- _consume_plan_response(self, state, raw_text, model)
-- _consume_plan_repair_response(self, state, raw_text, model)
-- _issue_author_step(self, state)
-- _consume_author_response(self, session, state, raw_text, model)
-- _consume_author_repair_response(self, session, state, raw_text, model)
-- _issue_author_code_step(self, state)
-- _consume_author_code_response(self, session, state, raw_text, model)
-- _consume_author_code_repair_response(self, session, state, raw_text, model)
-- _accept_author_code(self, session, state, code_text, model)
-- _run_working_bundle(self, session, state)
-- _issue_debugger_step(self, state)
-- _consume_debugger_response(self, session, state, raw_text, model)
-- _consume_debugger_repair_response(self, session, state, raw_text, model)
-- _issue_debugger_code_step(self, state)
-- _consume_debugger_code_response(self, session, state, raw_text, model)
-- _consume_debugger_code_repair_response(self, session, state, raw_text, model)
-- _accept_debugger_code(self, session, state, repaired_code, model)
-- _issue_pedagogy_step(self, state)
-- _consume_pedagogy_response(self, state, raw_text, model)
-- _consume_pedagogy_repair_response(self, state, raw_text, model)
-- _finalize_generation(self, state)
-- _replace_main_file(self, bundle, repaired_code, plan)
-- _fallback_pedagogy(self, payload, profile, run_result)
-- _bundle_prompt_snapshot(self, bundle)
-- _run_result_snapshot(run_result)
-- _pedagogy_payload_snapshot(self, payload)
-- _bundle_response(self, bundle, run_result, trace)
-- _json_completion(self, prompt)
-- _code_completion(self, prompt)
-- _normalize_language(language)
-- _normalize_profile(profile)
-- _normalize_plan(payload, fallback_language)
-- _normalize_bundle(self, payload, fallback_language, plan)
-- _main_file_content(files, main_file)
-- _sanitize_relative_path(path_text)
-- _stringify_text(value)
-- _clean_text(value)
-- _has_meaningful_value(value)
-- _structured_json_payload(cls, text)
-- _validate_schema_payload(cls, payload, schema_name)
-- _candidate_objects(cls, payload)
-- _lookup_path(payload, dotted_key)
-- _lookup_alias(cls, objects)
-- _looks_like_file_path(value)
-- _normalize_files_value(cls, value)
-- _canonicalize_plan_payload(cls, payload)
-- _canonicalize_bundle_payload(cls, payload)
-- _canonicalize_pedagogy_payload(cls, payload)
-- _extract_json_object(text)
-- _parse_json_candidate(candidate)
-- _json_candidates(raw)
-- _json_candidate_variants(text)
-- _strip_jsonish_comments(text)
-- _remove_trailing_commas(text)
-- _quote_bare_keys(text)
-- _scan_top_level_json_objects(text)
-- _jsonish_to_python_literal(text)
-- _extract_code_block(text)
-- _looks_like_instructional_prose(text)
-- _looks_like_source_code(cls, text)
-- _json_repair_prompt(raw_text)
-- _parse_json_response(cls, raw_text)
-- _parse_code_response(cls, raw_text)
-- _code_repair_prompt(raw_text)
-- _planner_prompt(self, prompt, language, profile)
-- _fallback_plan(self, prompt, language, profile)
-- _author_prompt(self, prompt, plan, profile)
-- _author_code_prompt(self, prompt, plan, profile)
-- _pedagogy_json_repair_prompt(self, raw_text, payload, profile, run_result)
-- _repair_prompt(self, prompt, plan, profile, bundle, run_result, next_attempt, instruction_preset)
-- _repair_code_prompt(self, prompt, plan, profile, bundle, run_result, next_attempt, instruction_preset)
-- _pedagogy_prompt(self, payload, profile, run_result, instruction_preset)
-
-Class _MainCallVisitor
-- __init__(self)
-- visit_Call(self, node)
-
-Function material_studio_profile_catalog
-Args: []
-
-Function _material_studio_preset_technical_lines
-Args: ['language']
-
-Function _material_studio_preset_modules
-Args: ['source']
-
-Function material_studio_instruction_preset_catalog
-Args: []
-
-Function resolve_material_studio_instruction_preset
-Args: ['preset_key']
-
-Function __init__
-Args: ['self', 'repository', 'runner']
-
-Function _ai_provider_id
-Args: ['self']
-
-Function _requires_visible_output
-Args: ['self', 'state', 'bundle', 'run_result']
-
-Function _python_has_missing_main_invocation
-Args: ['code']
-
-Function start_generation
-Args: ['self']
-
-Function continue_generation
-Args: ['self', 'session']
-
-Function generate
-Args: ['self', 'session']
-
-Function run_current
-Args: ['self', 'session', 'payload']
-
-Function _coerce_generation_state
-Args: ['self', 'generation_state']
-
-Function _complete_inference_payload
-Args: ['self', 'payload']
-
-Function _inference_step
-Args: ['self', 'state']
-
-Function _profile_from_state
-Args: ['self', 'state']
-
-Function _instruction_preset_from_state
-Args: ['self', 'state']
-
-Function _normalize_instruction_preset
-Args: ['preset_key', 'profile_key', 'language']
-
-Function _normalize_compare_text
-Args: ['value']
-
-Function _instruction_preset_lines
-Args: ['self', 'instruction_preset']
-
-Function _prompt_input_token_budget
-Args: ['self', 'phase']
-
-Function _normalize_prompt_text
-Args: ['text']
-
-Function _estimate_token_count
-Args: ['text']
-
-Function _trim_text_middle
-Args: ['text']
-
-Function _is_model_input_too_long_error
-Args: ['error']
-
-Function _prepare_inference_prompt
-Args: ['self', 'prompt']
-
-Function _generation_options_for_phase
-Args: ['self', 'phase']
-
-Function _timeout_seconds_for_phase
-Args: ['self', 'phase']
-
-Function _agent_summary
-Args: ['summary', 'instruction_preset']
-
-Function _state_plan
-Args: ['self', 'state']
-
-Function _state_bundle
-Args: ['self', 'state']
-
-Function _state_run_result
-Args: ['self', 'state', 'language']
-
-Function _issue_json_repair_step
-Args: ['self', 'state']
-
-Function _issue_code_repair_step
-Args: ['self', 'state']
-
-Function _issue_plan_step
-Args: ['self', 'state']
-
-Function _consume_plan_response
-Args: ['self', 'state', 'raw_text', 'model']
-
-Function _consume_plan_repair_response
-Args: ['self', 'state', 'raw_text', 'model']
-
-Function _issue_author_step
-Args: ['self', 'state']
-
-Function _consume_author_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _consume_author_repair_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _issue_author_code_step
-Args: ['self', 'state']
-
-Function _consume_author_code_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _consume_author_code_repair_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _accept_author_code
-Args: ['self', 'session', 'state', 'code_text', 'model']
-
-Function _run_working_bundle
-Args: ['self', 'session', 'state']
-
-Function _issue_debugger_step
-Args: ['self', 'state']
-
-Function _consume_debugger_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _consume_debugger_repair_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _issue_debugger_code_step
-Args: ['self', 'state']
-
-Function _consume_debugger_code_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _consume_debugger_code_repair_response
-Args: ['self', 'session', 'state', 'raw_text', 'model']
-
-Function _accept_debugger_code
-Args: ['self', 'session', 'state', 'repaired_code', 'model']
-
-Function _issue_pedagogy_step
-Args: ['self', 'state']
-
-Function _consume_pedagogy_response
-Args: ['self', 'state', 'raw_text', 'model']
-
-Function _consume_pedagogy_repair_response
-Args: ['self', 'state', 'raw_text', 'model']
-
-Function _finalize_generation
-Args: ['self', 'state']
-
-Function _replace_main_file
-Args: ['self', 'bundle', 'repaired_code', 'plan']
-
-Function _fallback_pedagogy
-Args: ['self', 'payload', 'profile', 'run_result']
-
-Function _bundle_prompt_snapshot
-Args: ['self', 'bundle']
-
-Function _run_result_snapshot
-Args: ['run_result']
-
-Function _pedagogy_payload_snapshot
-Args: ['self', 'payload']
-
-Function _bundle_response
-Args: ['self', 'bundle', 'run_result', 'trace']
-
-Function _json_completion
-Args: ['self', 'prompt']
-
-Function _code_completion
-Args: ['self', 'prompt']
-
-Function _normalize_language
-Args: ['language']
-
-Function _normalize_profile
-Args: ['profile']
-
-Function _normalize_plan
-Args: ['payload', 'fallback_language']
-
-Function _normalize_bundle
-Args: ['self', 'payload', 'fallback_language', 'plan']
-
-Function _main_file_content
-Args: ['files', 'main_file']
-
-Function _sanitize_relative_path
-Args: ['path_text']
-
-Function _stringify_text
-Args: ['value']
-
-Function _clean_text
-Args: ['value']
-
-Function _has_meaningful_value
-Args: ['value']
-
-Function _structured_json_payload
-Args: ['cls', 'text']
-
-Function _validate_schema_payload
-Args: ['cls', 'payload', 'schema_name']
-
-Function _candidate_objects
-Args: ['cls', 'payload']
-
-Function _lookup_path
-Args: ['payload', 'dotted_key']
-
-Function _lookup_alias
-Args: ['cls', 'objects']
-
-Function _looks_like_file_path
-Args: ['value']
-
-Function _normalize_files_value
-Args: ['cls', 'value']
-
-Function _canonicalize_plan_payload
-Args: ['cls', 'payload']
-
-Function _canonicalize_bundle_payload
-Args: ['cls', 'payload']
-
-Function _canonicalize_pedagogy_payload
-Args: ['cls', 'payload']
-
-Function _extract_json_object
-Args: ['text']
-
-Function _parse_json_candidate
-Args: ['candidate']
-
-Function _json_candidates
-Args: ['raw']
-
-Function _json_candidate_variants
-Args: ['text']
-
-Function _strip_jsonish_comments
-Args: ['text']
-
-Function _remove_trailing_commas
-Args: ['text']
-
-Function _quote_bare_keys
-Args: ['text']
-
-Function _scan_top_level_json_objects
-Args: ['text']
-
-Function _jsonish_to_python_literal
-Args: ['text']
-
-Function _extract_code_block
-Args: ['text']
-
-Function _looks_like_instructional_prose
-Args: ['text']
-
-Function _looks_like_source_code
-Args: ['cls', 'text']
-
-Function _json_repair_prompt
-Args: ['raw_text']
-
-Function _parse_json_response
-Args: ['cls', 'raw_text']
-
-Function _parse_code_response
-Args: ['cls', 'raw_text']
-
-Function _code_repair_prompt
-Args: ['raw_text']
-
-Function _planner_prompt
-Args: ['self', 'prompt', 'language', 'profile']
-
-Function _fallback_plan
-Args: ['self', 'prompt', 'language', 'profile']
-
-Function _author_prompt
-Args: ['self', 'prompt', 'plan', 'profile']
-
-Function _author_code_prompt
-Args: ['self', 'prompt', 'plan', 'profile']
-
-Function _pedagogy_json_repair_prompt
-Args: ['self', 'raw_text', 'payload', 'profile', 'run_result']
-
-Function _repair_prompt
-Args: ['self', 'prompt', 'plan', 'profile', 'bundle', 'run_result', 'next_attempt', 'instruction_preset']
-
-Function _repair_code_prompt
-Args: ['self', 'prompt', 'plan', 'profile', 'bundle', 'run_result', 'next_attempt', 'instruction_preset']
-
-Function _pedagogy_prompt
-Args: ['self', 'payload', 'profile', 'run_result', 'instruction_preset']
-
-Function __init__
-Args: ['self']
-
-Function visit_Call
-Args: ['self', 'node']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\mentor.py
-Imports:
-- __future__
-- typing
-- ai_service
-- database
-
-Class SocraticMentorService
-- __init__(self, repository)
-- thread(self, session, project)
-- prepare(self, session, project)
-- store_reply(self, session, project)
-- _room_key(project_id, username)
-- _compose_prompt(project, prompt, code, path_hint, run_output, history)
-
-Function __init__
-Args: ['self', 'repository']
-
-Function thread
-Args: ['self', 'session', 'project']
-
-Function prepare
-Args: ['self', 'session', 'project']
-
-Function store_reply
-Args: ['self', 'session', 'project']
-
-Function _room_key
-Args: ['project_id', 'username']
-
-Function _compose_prompt
-Args: ['project', 'prompt', 'code', 'path_hint', 'run_output', 'history']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_bootstrap.py
-Imports:
-- __future__
-- importlib.util
-- sys
-- pathlib
-
-Function bootstrap_package
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_bridge.py
-Imports:
-- __future__
-- dataclasses
-- embedded_nova
-
-Class NovaBridge
-
-Function load_nova_bridge
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_launch.py
-Imports:
-- __future__
-- nova_bootstrap
-- nova_school_server.__main__
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_product_docs.py
-Imports:
-- __future__
-- json
-- shutil
-- pathlib
-- typing
-- permissions
-
-Class NovaSchoolProductDocsBuilder
-- __init__(self, source_root, pack_root)
-- ensure_built(self)
-- is_stale(self)
-- build(self)
-- _build_index(self, documents)
-- _expand_tokens(self, content)
-- _permission_table(self)
-- _role_defaults_table(self)
-- _bool_label(value)
-- _has_sources(self)
-- _source_files(self)
-- _source_signature(self)
-- _extract_title(content, path)
-- _extract_summary(content)
-
-Function main
-Args: []
-
-Function __init__
-Args: ['self', 'source_root', 'pack_root']
-
-Function ensure_built
-Args: ['self']
-
-Function is_stale
-Args: ['self']
-
-Function build
-Args: ['self']
-
-Function _build_index
-Args: ['self', 'documents']
-
-Function _expand_tokens
-Args: ['self', 'content']
-
-Function _permission_table
-Args: ['self']
-
-Function _role_defaults_table
-Args: ['self']
-
-Function _bool_label
-Args: ['value']
-
-Function _has_sources
-Args: ['self']
-
-Function _source_files
-Args: ['self']
-
-Function _source_signature
-Args: ['self']
-
-Function _extract_title
-Args: ['content', 'path']
-
-Function _extract_summary
-Args: ['content']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_test_launch.py
-Imports:
-- __future__
-- sys
-- unittest
-- pathlib
-- nova_bootstrap
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\nova_worker_launch.py
-Imports:
-- __future__
-- nova_bootstrap
-- nova_school_server.worker_agent
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\permissions.py
-Imports:
-- __future__
-- typing
-
-Function normalize_permission_overrides
-Args: ['raw']
-
-Function resolve_permissions
-Args: ['role', 'group_overrides', 'user_overrides']
-
-Function permission_catalog
-Args: []
-
-Function allowed_tool_names
-Args: ['permissions']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\project_files.py
-Imports:
-- __future__
-- shutil
-- pathlib
-
-Function copy_project_snapshot
-Args: ['project_root', 'target_root']
-
-Function list_snapshot_files
-Args: ['snapshot_root']
-
-Function read_text_preview
-Args: ['snapshot_root', 'preferred_path', 'max_chars']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\pty_host.py
-Imports:
-- __future__
-- os
-- signal
-- subprocess
-- threading
-- time
-- pathlib
-- typing
-- ctypes
-- ctypes
-- errno
-- fcntl
-- pty
-- struct
-- termios
-- winpty
-- winpty
-
-Class PtyProcess
-- read(self, size)
-- write(self, data)
-- resize(self, cols, rows)
-- poll(self)
-- wait(self, timeout)
-- terminate(self, force)
-- close(self)
-
-Class COORD
-
-Class STARTUPINFOW
-
-Class STARTUPINFOEXW
-
-Class PROCESS_INFORMATION
-
-Class _PyWinPtyProcess
-- __init__(self, command, cwd, env, cols, rows)
-- _capture_output(self)
-- read(self, size)
-- write(self, data)
-- resize(self, cols, rows)
-- poll(self)
-- wait(self, timeout)
-- terminate(self, force)
-- close(self)
-
-Class _WindowsConPtyProcess
-- __init__(self, command, cwd, env, cols, rows)
-- read(self, size)
-- write(self, data)
-- resize(self, cols, rows)
-- poll(self)
-- wait(self, timeout)
-- terminate(self, force)
-- _capture_output(self)
-- close(self)
-
-Class _PosixPtyProcess
-- __init__(self, command, cwd, env, cols, rows)
-- read(self, size)
-- write(self, data)
-- resize(self, cols, rows)
-- poll(self)
-- wait(self, timeout)
-- terminate(self, force)
-- close(self)
-
-Function normalize_terminal_size
-Args: ['cols', 'rows']
-
-Function create_pty_process
-Args: ['command', 'cwd', 'env', 'cols', 'rows']
-
-Function read
-Args: ['self', 'size']
-
-Function write
-Args: ['self', 'data']
-
-Function resize
-Args: ['self', 'cols', 'rows']
-
-Function poll
-Args: ['self']
-
-Function wait
-Args: ['self', 'timeout']
-
-Function terminate
-Args: ['self', 'force']
-
-Function close
-Args: ['self']
-
-Function _raise_last_error
-Args: ['message']
-
-Function _raise_hresult
-Args: ['message', 'code']
-
-Function _close_handle
-Args: ['handle']
-
-Function _set_no_inherit
-Args: ['handle']
-
-Function _create_pipe
-Args: []
-
-Function _build_environment_block
-Args: ['env']
-
-Function _build_attribute_list
-Args: ['hpc']
-
-Function _normalize_windows_input
-Args: ['data']
-
-Function __init__
-Args: ['self', 'command', 'cwd', 'env', 'cols', 'rows']
-
-Function _capture_output
-Args: ['self']
-
-Function read
-Args: ['self', 'size']
-
-Function write
-Args: ['self', 'data']
-
-Function resize
-Args: ['self', 'cols', 'rows']
-
-Function poll
-Args: ['self']
-
-Function wait
-Args: ['self', 'timeout']
-
-Function terminate
-Args: ['self', 'force']
-
-Function close
-Args: ['self']
-
-Function __init__
-Args: ['self', 'command', 'cwd', 'env', 'cols', 'rows']
-
-Function read
-Args: ['self', 'size']
-
-Function write
-Args: ['self', 'data']
-
-Function resize
-Args: ['self', 'cols', 'rows']
-
-Function poll
-Args: ['self']
-
-Function wait
-Args: ['self', 'timeout']
-
-Function terminate
-Args: ['self', 'force']
-
-Function _capture_output
-Args: ['self']
-
-Function close
-Args: ['self']
-
-Function __init__
-Args: ['self', 'command', 'cwd', 'env', 'cols', 'rows']
-
-Function read
-Args: ['self', 'size']
-
-Function write
-Args: ['self', 'data']
-
-Function resize
-Args: ['self', 'cols', 'rows']
-
-Function poll
-Args: ['self']
-
-Function wait
-Args: ['self', 'timeout']
-
-Function terminate
-Args: ['self', 'force']
-
-Function close
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\realtime.py
-Imports:
-- __future__
-- base64
-- codecs
-- hashlib
-- json
-- socket
-- struct
-- subprocess
-- threading
-- time
-- uuid
-- dataclasses
-- http
-- typing
-- auth
-- code_runner
-- database
-- pty_host
-
-Class WebSocketConnection
-- __init__(self, sock)
-- send_json(self, payload)
-- send_text(self, text)
-- recv_json(self)
-- recv_text(self)
-- close(self, code, reason)
-- accept_key(key)
-- _recv_frame(self)
-- _send_frame(self, opcode, payload)
-- _recv_exact(self, size)
-
-Class RealtimeClient
-
-Class ActiveLiveRun
-
-Class LiveRunManager
-- __init__(self, runner, repository)
-- close(self)
-- stop_for_client(self, client_id)
-- start(self, client, payload)
-- send_input(self, actor, session_id, text)
-- resize(self, actor, session_id, cols, rows)
-- stop(self, actor, session_id)
-- _pump_stream(self, session_id, stream_name, stream)
-- _pump_terminal(self, session_id)
-- _watch_process(self, session_id)
-- _emit_chunk(self, session_id, stream_name, chunk)
-- _emit_exit_from_handle(self, handle, returncode, duration_ms)
-- _emit_exit(self, prepared, actor_username, returncode, duration_ms, timed_out, emitter, client_meta, terminal, notes)
-- _session(self, session_id)
-- _ensure_control(actor, handle)
-- _terminate(self, session_id)
-- _terminal_payload(payload)
-- _poll_handle(handle)
-- _wait_handle(handle)
-
-Class RealtimeService
-- __init__(self, application)
-- close(self)
-- handle_project_socket(self, connection, session, project)
-- _handle_message(self, client, message)
-- _broadcast_project(self, project_id, payload)
-- _register(self, client)
-- _unregister(self, client)
-- _require_permission(session, key)
-
-Function upgrade_websocket
-Args: ['handler']
-
-Function __init__
-Args: ['self', 'sock']
-
-Function send_json
-Args: ['self', 'payload']
-
-Function send_text
-Args: ['self', 'text']
-
-Function recv_json
-Args: ['self']
-
-Function recv_text
-Args: ['self']
-
-Function close
-Args: ['self', 'code', 'reason']
-
-Function accept_key
-Args: ['key']
-
-Function _recv_frame
-Args: ['self']
-
-Function _send_frame
-Args: ['self', 'opcode', 'payload']
-
-Function _recv_exact
-Args: ['self', 'size']
-
-Function __init__
-Args: ['self', 'runner', 'repository']
-
-Function close
-Args: ['self']
-
-Function stop_for_client
-Args: ['self', 'client_id']
-
-Function start
-Args: ['self', 'client', 'payload']
-
-Function send_input
-Args: ['self', 'actor', 'session_id', 'text']
-
-Function resize
-Args: ['self', 'actor', 'session_id', 'cols', 'rows']
-
-Function stop
-Args: ['self', 'actor', 'session_id']
-
-Function _pump_stream
-Args: ['self', 'session_id', 'stream_name', 'stream']
-
-Function _pump_terminal
-Args: ['self', 'session_id']
-
-Function _watch_process
-Args: ['self', 'session_id']
-
-Function _emit_chunk
-Args: ['self', 'session_id', 'stream_name', 'chunk']
-
-Function _emit_exit_from_handle
-Args: ['self', 'handle', 'returncode', 'duration_ms']
-
-Function _emit_exit
-Args: ['self', 'prepared', 'actor_username', 'returncode', 'duration_ms', 'timed_out', 'emitter', 'client_meta', 'terminal', 'notes']
-
-Function _session
-Args: ['self', 'session_id']
-
-Function _ensure_control
-Args: ['actor', 'handle']
-
-Function _terminate
-Args: ['self', 'session_id']
-
-Function _terminal_payload
-Args: ['payload']
-
-Function _poll_handle
-Args: ['handle']
-
-Function _wait_handle
-Args: ['handle']
-
-Function __init__
-Args: ['self', 'application']
-
-Function close
-Args: ['self']
-
-Function handle_project_socket
-Args: ['self', 'connection', 'session', 'project']
-
-Function _handle_message
-Args: ['self', 'client', 'message']
-
-Function _broadcast_project
-Args: ['self', 'project_id', 'payload']
-
-Function _register
-Args: ['self', 'client']
-
-Function _unregister
-Args: ['self', 'client']
-
-Function _require_permission
-Args: ['session', 'key']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\reference_import_cpp.py
-Imports:
-- __future__
-- argparse
-- html
-- json
-- re
-- shutil
-- sys
-- time
-- urllib.request
-- collections
-- dataclasses
-- hashlib
-- pathlib
-- typing
-- urllib.parse
-
-Class ReferenceTarget
-
-Class CppReferenceMirrorBuilder
-- __init__(self)
-- build(self)
-- _prepare_output(self)
-- _seed_urls(self)
-- _mirror_page(self, remote_url)
-- _mirror_asset(self, remote_url)
-- _fetch(self, remote_url)
-- _rewrite_html(self, html_text, current_url)
-- _rewrite_srcset(self, match, current_url, current_local_path)
-- _rewrite_css(self, css_text, current_url, current_local_path)
-- _rewrite_reference(self, raw_value)
-- classify_reference(raw_value)
-- _normalize_cpp_page_path(path)
-- local_page_path(remote_url)
-- local_asset_path(remote_url)
-- _relative_href(current_local_path, target_local_path, fragment)
-- _is_css_asset(remote_url)
-- _strip_external_noise(html_text)
-- _write_landing_page(self)
-
-Function build_argument_parser
-Args: []
-
-Function main
-Args: ['argv']
-
-Function __init__
-Args: ['self']
-
-Function build
-Args: ['self']
-
-Function _prepare_output
-Args: ['self']
-
-Function _seed_urls
-Args: ['self']
-
-Function _mirror_page
-Args: ['self', 'remote_url']
-
-Function _mirror_asset
-Args: ['self', 'remote_url']
-
-Function _fetch
-Args: ['self', 'remote_url']
-
-Function _rewrite_html
-Args: ['self', 'html_text', 'current_url']
-
-Function _rewrite_srcset
-Args: ['self', 'match', 'current_url', 'current_local_path']
-
-Function _rewrite_css
-Args: ['self', 'css_text', 'current_url', 'current_local_path']
-
-Function _rewrite_reference
-Args: ['self', 'raw_value']
-
-Function classify_reference
-Args: ['raw_value']
-
-Function _normalize_cpp_page_path
-Args: ['path']
-
-Function local_page_path
-Args: ['remote_url']
-
-Function local_asset_path
-Args: ['remote_url']
-
-Function _relative_href
-Args: ['current_local_path', 'target_local_path', 'fragment']
-
-Function _is_css_asset
-Args: ['remote_url']
-
-Function _strip_external_noise
-Args: ['html_text']
-
-Function _write_landing_page
-Args: ['self']
-
-Function replace_attr
-Args: ['match']
-
-Function replace_url
-Args: ['match']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\reference_import_web.py
-Imports:
-- __future__
-- argparse
-- html
-- json
-- re
-- shutil
-- subprocess
-- sys
-- time
-- dataclasses
-- pathlib
-- typing
-- urllib.parse
-
-Class MirrorSource
-
-Class MirrorPack
-
-Class ReferenceWebMirrorBuilder
-- __init__(self)
-- build(self)
-- finalize_existing_site(self)
-- _build_wget_command(self, source)
-- _rewrite_mirror_html(self)
-- _rewrite_attr(self, current_path, match)
-- _rewrite_srcset(self, current_path, match)
-- _rewrite_url(self, current_path, raw_value)
-- _is_absolute_or_root_relative(value)
-- resolve_local_target(self, raw_value)
-- _relative_href(current_path, target_path)
-- _write_landing_page(self)
-
-Function build_argument_parser
-Args: []
-
-Function main
-Args: ['argv']
-
-Function __init__
-Args: ['self']
-
-Function build
-Args: ['self']
-
-Function finalize_existing_site
-Args: ['self']
-
-Function _build_wget_command
-Args: ['self', 'source']
-
-Function _rewrite_mirror_html
-Args: ['self']
-
-Function _rewrite_attr
-Args: ['self', 'current_path', 'match']
-
-Function _rewrite_srcset
-Args: ['self', 'current_path', 'match']
-
-Function _rewrite_url
-Args: ['self', 'current_path', 'raw_value']
-
-Function _is_absolute_or_root_relative
-Args: ['value']
-
-Function resolve_local_target
-Args: ['self', 'raw_value']
-
-Function _relative_href
-Args: ['current_path', 'target_path']
-
-Function _write_landing_page
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\reference_library.py
-Imports:
-- __future__
-- html
-- json
-- re
-- pathlib
-- typing
-- urllib.parse
-- nova_product_docs
-- templates
-
-Class ReferenceLibraryService
-- __init__(self, library_root, docs_source_root)
-- catalog(self)
-- render_portal(self)
-- resolve_asset(self, area, relative_path)
-- documents(self, area, limit)
-- resolve_document(self, area, doc_id)
-- search(self, query)
-- _catalog_entry(self, slug)
-- _load_documents(self, slug)
-- _build_index(self, slug)
-- _builtin_document(self, slug)
-- _has_mirrored_pack(self, slug)
-- _pack_root(self, slug)
-- _site_root(self, slug)
-- _index_path(self, slug)
-- _content_root(self, slug)
-- _contains_documents(self, root)
-- _iter_doc_files(self, root)
-- _build_document_entry(self, slug, path, rel_path, content)
-- _pack_signature(self, root)
-- _default_docs_source_root(self)
-- _ensure_managed_pack(self, slug)
-- _status_for_slug(slug, installed)
-- _index_is_stale(self, slug)
-- _extract_document_data(path, content)
-- _strip_tags(value)
-- _collapse_ws(value)
-- _markdown_plain_text(value)
-- _snippet(text, terms)
-- _render_shell(self)
-- _active_document_markup(self, selected_area, active_doc)
-- _reference_url(area, doc_id, query)
-- _asset_url(area, rel_path)
-- _markdown_to_html(self, source)
-- _is_table_header(lines, index)
-- _render_table(self, lines, index)
-- _parse_table_row(row)
-- _render_plain_inline(text)
-- _render_inline(self, text)
-- _strip_duplicate_first_heading(source, title)
-- _normalize_cpp_markdown(self, rel_path, source)
-- _cpp_primary_title(self, rel_path, parts)
-- _cpp_intro_blocks(self, intro)
-- _split_cpp_section_heading(self, section)
-- _find_repeated_prefix_index(text)
-- _cleanup_cpp_block(text)
-
-Function __init__
-Args: ['self', 'library_root', 'docs_source_root']
-
-Function catalog
-Args: ['self']
-
-Function render_portal
-Args: ['self']
-
-Function resolve_asset
-Args: ['self', 'area', 'relative_path']
-
-Function documents
-Args: ['self', 'area', 'limit']
-
-Function resolve_document
-Args: ['self', 'area', 'doc_id']
-
-Function search
-Args: ['self', 'query']
-
-Function _catalog_entry
-Args: ['self', 'slug']
-
-Function _load_documents
-Args: ['self', 'slug']
-
-Function _build_index
-Args: ['self', 'slug']
-
-Function _builtin_document
-Args: ['self', 'slug']
-
-Function _has_mirrored_pack
-Args: ['self', 'slug']
-
-Function _pack_root
-Args: ['self', 'slug']
-
-Function _site_root
-Args: ['self', 'slug']
-
-Function _index_path
-Args: ['self', 'slug']
-
-Function _content_root
-Args: ['self', 'slug']
-
-Function _contains_documents
-Args: ['self', 'root']
-
-Function _iter_doc_files
-Args: ['self', 'root']
-
-Function _build_document_entry
-Args: ['self', 'slug', 'path', 'rel_path', 'content']
-
-Function _pack_signature
-Args: ['self', 'root']
-
-Function _default_docs_source_root
-Args: ['self']
-
-Function _ensure_managed_pack
-Args: ['self', 'slug']
-
-Function _status_for_slug
-Args: ['slug', 'installed']
-
-Function _index_is_stale
-Args: ['self', 'slug']
-
-Function _extract_document_data
-Args: ['path', 'content']
-
-Function _strip_tags
-Args: ['value']
-
-Function _collapse_ws
-Args: ['value']
-
-Function _markdown_plain_text
-Args: ['value']
-
-Function _snippet
-Args: ['text', 'terms']
-
-Function _render_shell
-Args: ['self']
-
-Function _active_document_markup
-Args: ['self', 'selected_area', 'active_doc']
-
-Function _reference_url
-Args: ['area', 'doc_id', 'query']
-
-Function _asset_url
-Args: ['area', 'rel_path']
-
-Function _markdown_to_html
-Args: ['self', 'source']
-
-Function _is_table_header
-Args: ['lines', 'index']
-
-Function _render_table
-Args: ['self', 'lines', 'index']
-
-Function _parse_table_row
-Args: ['row']
-
-Function _render_plain_inline
-Args: ['text']
-
-Function _render_inline
-Args: ['self', 'text']
-
-Function _strip_duplicate_first_heading
-Args: ['source', 'title']
-
-Function _normalize_cpp_markdown
-Args: ['self', 'rel_path', 'source']
-
-Function _cpp_primary_title
-Args: ['self', 'rel_path', 'parts']
-
-Function _cpp_intro_blocks
-Args: ['self', 'intro']
-
-Function _split_cpp_section_heading
-Args: ['self', 'section']
-
-Function _find_repeated_prefix_index
-Args: ['text']
-
-Function _cleanup_cpp_block
-Args: ['text']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\release_notes.py
-Imports:
-- __future__
-- re
-- subprocess
-- dataclasses
-- pathlib
-- typing
-- argparse
-
-Class ReleaseCommit
-
-Class ReleaseVersion
-
-Class ReleaseHistory
-
-Function build_release_history
-Args: ['base_path']
-
-Function list_git_tags
-Args: ['base_path']
-
-Function list_git_commits
-Args: ['base_path', 'revision_range']
-
-Function categorize_commit_subject
-Args: ['subject']
-
-Function render_changelog
-Args: ['history']
-
-Function render_release_notes
-Args: ['history', 'tag']
-
-Function write_changelog
-Args: ['base_path', 'target_path']
-
-Function write_release_notes
-Args: ['base_path', 'tag', 'target_path']
-
-Function _render_commit_groups
-Args: ['commits']
-
-Function _run_git
-Args: ['base_path', 'args']
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\reviews.py
-Imports:
-- __future__
-- hashlib
-- hmac
-- json
-- os
-- time
-- uuid
-- pathlib
-- typing
-- database
-- project_files
-- workspace
-
-Class ReviewService
-- __init__(self, repository, security_plane, workspace_manager, tenant_id, review_root)
-- dashboard(self, session)
-- submit(self, session, project)
-- submit_feedback(self, session, assignment_id, feedback)
-- _init_schema(self)
-- _select_reviewers(self, session, project)
-- _list_submissions_for(self, session)
-- _list_assignments_for(self, session)
-- _submission_row(self, submission_id)
-- _assignment_row(self, assignment_id)
-- _submission_payload(self, submission_id)
-- _assignment_payload(self, assignment_id)
-- _refresh_submission_status(self, submission_id)
-- _analytics(self)
-- _project_run_analytics(self, project_id)
-- _alias(self, prefix, seed)
-
-Function __init__
-Args: ['self', 'repository', 'security_plane', 'workspace_manager', 'tenant_id', 'review_root']
-
-Function dashboard
-Args: ['self', 'session']
-
-Function submit
-Args: ['self', 'session', 'project']
-
-Function submit_feedback
-Args: ['self', 'session', 'assignment_id', 'feedback']
-
-Function _init_schema
-Args: ['self']
-
-Function _select_reviewers
-Args: ['self', 'session', 'project']
-
-Function _list_submissions_for
-Args: ['self', 'session']
-
-Function _list_assignments_for
-Args: ['self', 'session']
-
-Function _submission_row
-Args: ['self', 'submission_id']
-
-Function _assignment_row
-Args: ['self', 'assignment_id']
-
-Function _submission_payload
-Args: ['self', 'submission_id']
-
-Function _assignment_payload
-Args: ['self', 'assignment_id']
-
-Function _refresh_submission_status
-Args: ['self', 'submission_id']
-
-Function _analytics
-Args: ['self']
-
-Function _project_run_analytics
-Args: ['self', 'project_id']
-
-Function _alias
-Args: ['self', 'prefix', 'seed']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\seed.py
-Imports:
-- __future__
-- auth
-- code_runner
-- database
-- docs_catalog
-- permissions
-- workspace
-
-Function bootstrap_application
-Args: ['repository', 'auth_service', 'docs_catalog', 'workspace_manager']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\server.py
-Imports:
-- __future__
-- atexit
-- base64
-- json
-- mimetypes
-- re
-- socket
-- shutil
-- http
-- http.cookies
-- http.server
-- pathlib
-- typing
-- urllib.parse
-- auth
-- collaboration
-- code_runner
-- config
-- curriculum
-- database
-- deployments
-- docs_catalog
-- distributed
-- ai_service
-- material_studio
-- mentor
-- nova_bridge
-- permissions
-- realtime
-- reviews
-- reference_library
-- seed
-- templates
-- user_admin
-- virtual_lecturer
-- wiki_manual
-- workspace
-
-Class NovaSchoolApplication
-- __init__(self, config)
-- close(self)
-- session_from_token(self, token)
-- accessible_projects(self, session)
-- project_payload(self, project)
-- rooms_for(self, session, projects)
-- public_settings(self, session)
-- bootstrap_payload(self, session)
-- template_catalog(self)
-- get_project_for_session(self, session, project_id)
-- can_access_project(self, session, project)
-- can_manage_project_data(self, session, project)
-- can_access_room(self, session, room_key)
-- admin_overview(self)
-- runtime_config_payload(self)
-- server_settings_overview(self)
-- model_root(self)
-- local_model_files(self)
-- default_llamacpp_model_path(self)
-- default_llamacpp_model_label(self)
-- default_litertlm_model_path(self)
-- default_litertlm_model_label(self)
-- default_litertlm_binary_path(self)
-- default_ai_provider(self)
-
-Class NovaSchoolRequestHandler
-- do_GET(self)
-- do_POST(self)
-- do_PUT(self)
-- do_DELETE(self)
-- log_message(self, format)
-- _dispatch(self, method)
-- _handle_api(self, method, path, parsed)
-- _handle_worker_api(self, method, path, segments)
-- _serve_websocket(self, path)
-- _serve_preview(self, path)
-- _serve_share(self, path)
-- _serve_download(self, path)
-- _serve_manual(self, parsed)
-- _serve_reference(self, parsed)
-- _serve_certificate_verify(self, parsed)
-- _serve_reference_asset(self, path)
-- _serve_model_asset(self, path)
-- _resolve_relative_file(root, relative_path)
-- _serve_file(self, path, content_type)
-- _current_session(self)
-- _require_session(self)
-- _require_worker(self)
-- _require_permission(session, permission_key)
-- _can_manage_server_settings(session)
-- _require_server_settings_access(self, session)
-- _certificate_verification_url(self, certificate_id)
-- _configured_public_host(self)
-- _request_scheme(self)
-- _request_host(self)
-- _request_origin(self)
-- _external_base_url(self)
-- _request_uses_tls(self)
-- _read_json_body(self)
-- _decode_uploaded_bundle(body)
-- _read_raw_body(self)
-- _send_json(self, status, payload)
-- _send_bytes(self, status, payload)
-- _send_html(self, status, content)
-- _redirect(self, location)
-- _token_from_request(self)
-- _cookie_header(self, token)
-- _clear_cookie_header(self)
-
-Class Handler
-
-Function create_application
-Args: ['config']
-
-Function run_server
-Args: ['application']
-
-Function _guess_lan_ipv4
-Args: []
-
-Function __init__
-Args: ['self', 'config']
-
-Function close
-Args: ['self']
-
-Function session_from_token
-Args: ['self', 'token']
-
-Function accessible_projects
-Args: ['self', 'session']
-
-Function project_payload
-Args: ['self', 'project']
-
-Function rooms_for
-Args: ['self', 'session', 'projects']
-
-Function public_settings
-Args: ['self', 'session']
-
-Function bootstrap_payload
-Args: ['self', 'session']
-
-Function template_catalog
-Args: ['self']
-
-Function get_project_for_session
-Args: ['self', 'session', 'project_id']
-
-Function can_access_project
-Args: ['self', 'session', 'project']
-
-Function can_manage_project_data
-Args: ['self', 'session', 'project']
-
-Function can_access_room
-Args: ['self', 'session', 'room_key']
-
-Function admin_overview
-Args: ['self']
-
-Function runtime_config_payload
-Args: ['self']
-
-Function server_settings_overview
-Args: ['self']
-
-Function model_root
-Args: ['self']
-
-Function local_model_files
-Args: ['self']
-
-Function default_llamacpp_model_path
-Args: ['self']
-
-Function default_llamacpp_model_label
-Args: ['self']
-
-Function default_litertlm_model_path
-Args: ['self']
-
-Function default_litertlm_model_label
-Args: ['self']
-
-Function default_litertlm_binary_path
-Args: ['self']
-
-Function default_ai_provider
-Args: ['self']
-
-Function do_GET
-Args: ['self']
-
-Function do_POST
-Args: ['self']
-
-Function do_PUT
-Args: ['self']
-
-Function do_DELETE
-Args: ['self']
-
-Function log_message
-Args: ['self', 'format']
-
-Function _dispatch
-Args: ['self', 'method']
-
-Function _handle_api
-Args: ['self', 'method', 'path', 'parsed']
-
-Function _handle_worker_api
-Args: ['self', 'method', 'path', 'segments']
-
-Function _serve_websocket
-Args: ['self', 'path']
-
-Function _serve_preview
-Args: ['self', 'path']
-
-Function _serve_share
-Args: ['self', 'path']
-
-Function _serve_download
-Args: ['self', 'path']
-
-Function _serve_manual
-Args: ['self', 'parsed']
-
-Function _serve_reference
-Args: ['self', 'parsed']
-
-Function _serve_certificate_verify
-Args: ['self', 'parsed']
-
-Function _serve_reference_asset
-Args: ['self', 'path']
-
-Function _serve_model_asset
-Args: ['self', 'path']
-
-Function _resolve_relative_file
-Args: ['root', 'relative_path']
-
-Function _serve_file
-Args: ['self', 'path', 'content_type']
-
-Function _current_session
-Args: ['self']
-
-Function _require_session
-Args: ['self']
-
-Function _require_worker
-Args: ['self']
-
-Function _require_permission
-Args: ['session', 'permission_key']
-
-Function _can_manage_server_settings
-Args: ['session']
-
-Function _require_server_settings_access
-Args: ['self', 'session']
-
-Function _certificate_verification_url
-Args: ['self', 'certificate_id']
-
-Function _configured_public_host
-Args: ['self']
-
-Function _request_scheme
-Args: ['self']
-
-Function _request_host
-Args: ['self']
-
-Function _request_origin
-Args: ['self']
-
-Function _external_base_url
-Args: ['self']
-
-Function _request_uses_tls
-Args: ['self']
-
-Function _read_json_body
-Args: ['self']
-
-Function _decode_uploaded_bundle
-Args: ['body']
-
-Function _read_raw_body
-Args: ['self']
-
-Function _send_json
-Args: ['self', 'status', 'payload']
-
-Function _send_bytes
-Args: ['self', 'status', 'payload']
-
-Function _send_html
-Args: ['self', 'status', 'content']
-
-Function _redirect
-Args: ['self', 'location']
-
-Function _token_from_request
-Args: ['self']
-
-Function _cookie_header
-Args: ['self', 'token']
-
-Function _clear_cookie_header
-Args: ['self']
-
-Function sort_key
-Args: ['path']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\templates.py
-Imports:
-- __future__
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\user_admin.py
-Imports:
-- __future__
-- hashlib
-- io
-- json
-- shutil
-- time
-- zipfile
-- pathlib
-- typing
-- auth
-- config
-- database
-- workspace
-
-Class UserAdministrationService
-- __init__(self, repository, workspace_manager, config)
-- sanitize_user(user)
-- sanitize_users(self, users)
-- update_user(self)
-- permission_audit_payload(self, before, after)
-- audit_entries(self, username, limit)
-- retention_policy(self)
-- export_user_data(self, username)
-- hard_delete_user(self)
-- export_project_archive(self)
-- archive_project(self)
-- hard_delete_project(self)
-- apply_retention(self)
-- _retention_days(self, key, default)
-- _artifact_fs_path(self, row)
-- _remove_path(self, path)
-- _rows_to_dicts(self, query, params)
-- _rows_to_dicts_optional(self, table_name, query, params)
-- _execute_optional(self, table_name, query, params)
-- _table_exists(self, table_name)
-- _json_row(row, json_fields)
-- _chat_export_payload(row)
-- _project_export_payload(project)
-- _group_chat_threads(self, rows)
-- _group_mentor_threads(self, rows)
-- _build_project_archive_bundle(self, project)
-
-Function __init__
-Args: ['self', 'repository', 'workspace_manager', 'config']
-
-Function sanitize_user
-Args: ['user']
-
-Function sanitize_users
-Args: ['self', 'users']
-
-Function update_user
-Args: ['self']
-
-Function permission_audit_payload
-Args: ['self', 'before', 'after']
-
-Function audit_entries
-Args: ['self', 'username', 'limit']
-
-Function retention_policy
-Args: ['self']
-
-Function export_user_data
-Args: ['self', 'username']
-
-Function hard_delete_user
-Args: ['self']
-
-Function export_project_archive
-Args: ['self']
-
-Function archive_project
-Args: ['self']
-
-Function hard_delete_project
-Args: ['self']
-
-Function apply_retention
-Args: ['self']
-
-Function _retention_days
-Args: ['self', 'key', 'default']
-
-Function _artifact_fs_path
-Args: ['self', 'row']
-
-Function _remove_path
-Args: ['self', 'path']
-
-Function _rows_to_dicts
-Args: ['self', 'query', 'params']
-
-Function _rows_to_dicts_optional
-Args: ['self', 'table_name', 'query', 'params']
-
-Function _execute_optional
-Args: ['self', 'table_name', 'query', 'params']
-
-Function _table_exists
-Args: ['self', 'table_name']
-
-Function _json_row
-Args: ['row', 'json_fields']
-
-Function _chat_export_payload
-Args: ['row']
-
-Function _project_export_payload
-Args: ['project']
-
-Function _group_chat_threads
-Args: ['self', 'rows']
-
-Function _group_mentor_threads
-Args: ['self', 'rows']
-
-Function _build_project_archive_bundle
-Args: ['self', 'project']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\virtual_lecturer.py
-Imports:
-- __future__
-- json
-- re
-- time
-- unicodedata
-- uuid
-- typing
-- ai_service
-- database
-
-Class VirtualLecturerService
-- __init__(self, repository)
-- session(self, session, project)
-- thread(self, session, project)
-- start(self, session, project)
-- prepare(self, session, project)
-- store_reply(self, session, project)
-- _session_row(self, project_id, username)
-- _session_payload(row)
-- _touch_session(self, project_id, username)
-- _resolve_course_state(self, session)
-- _session_metadata(self, course_state)
-- _practice_payload(self, course, module)
-- _opening_message(self, session, project, metadata)
-- _compose_prompt(self)
-- _direct_reply(self)
-- _python_intro_run_feedback(self)
-- _web_frontend_intro_feedback(self)
-- _fold_text(text)
-- _visible_output_lines(cls, run_output)
-- _count_print_calls(code)
-- _contains_runtime_error(cls, run_output)
-- _extract_html_tags(code)
-- _prompt_requests_state_review(cls, prompt)
-- _sanitize_reply(reply)
-- _lesson_focus(lesson_markdown)
-- _room_key(project_id, username, session_id)
-- _ensure_schema(self)
-
-Function __init__
-Args: ['self', 'repository']
-
-Function session
-Args: ['self', 'session', 'project']
-
-Function thread
-Args: ['self', 'session', 'project']
-
-Function start
-Args: ['self', 'session', 'project']
-
-Function prepare
-Args: ['self', 'session', 'project']
-
-Function store_reply
-Args: ['self', 'session', 'project']
-
-Function _session_row
-Args: ['self', 'project_id', 'username']
-
-Function _session_payload
-Args: ['row']
-
-Function _touch_session
-Args: ['self', 'project_id', 'username']
-
-Function _resolve_course_state
-Args: ['self', 'session']
-
-Function _session_metadata
-Args: ['self', 'course_state']
-
-Function _practice_payload
-Args: ['self', 'course', 'module']
-
-Function _opening_message
-Args: ['self', 'session', 'project', 'metadata']
-
-Function _compose_prompt
-Args: ['self']
-
-Function _direct_reply
-Args: ['self']
-
-Function _python_intro_run_feedback
-Args: ['self']
-
-Function _web_frontend_intro_feedback
-Args: ['self']
-
-Function _fold_text
-Args: ['text']
-
-Function _visible_output_lines
-Args: ['cls', 'run_output']
-
-Function _count_print_calls
-Args: ['code']
-
-Function _contains_runtime_error
-Args: ['cls', 'run_output']
-
-Function _extract_html_tags
-Args: ['code']
-
-Function _prompt_requests_state_review
-Args: ['cls', 'prompt']
-
-Function _sanitize_reply
-Args: ['reply']
-
-Function _lesson_focus
-Args: ['lesson_markdown']
-
-Function _room_key
-Args: ['project_id', 'username', 'session_id']
-
-Function _ensure_schema
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\wiki_manual.py
-Imports:
-- __future__
-- html
-- re
-- pathlib
-- typing
-- urllib.parse
-
-Class WikiManualService
-- __init__(self, wiki_root)
-- ensure_seed_manuals(self)
-- allowed_scopes(self, session)
-- default_scope(self, session)
-- render_page(self, session, requested_scope, requested_page)
-- documents(self, scope)
-- _resolve_scope(self, session, requested_scope)
-- _scope_folder(self, scope)
-- _document_sort_key(path)
-- _extract_title(content, path)
-- _collect_toc(self, content)
-- _markdown_to_html(self, source)
-- _is_table_header(lines, index)
-- _render_table(self, lines, index, scope)
-- _parse_table_row(row)
-- _render_inline(self, text)
-- _render_plain_inline(text)
-- _resolve_link(self, current_scope, target)
-- _anchor_id(title, seen)
-- _render_shell(self)
-
-Function __init__
-Args: ['self', 'wiki_root']
-
-Function ensure_seed_manuals
-Args: ['self']
-
-Function allowed_scopes
-Args: ['self', 'session']
-
-Function default_scope
-Args: ['self', 'session']
-
-Function render_page
-Args: ['self', 'session', 'requested_scope', 'requested_page']
-
-Function documents
-Args: ['self', 'scope']
-
-Function _resolve_scope
-Args: ['self', 'session', 'requested_scope']
-
-Function _scope_folder
-Args: ['self', 'scope']
-
-Function _document_sort_key
-Args: ['path']
-
-Function _extract_title
-Args: ['content', 'path']
-
-Function _collect_toc
-Args: ['self', 'content']
-
-Function _markdown_to_html
-Args: ['self', 'source']
-
-Function _is_table_header
-Args: ['lines', 'index']
-
-Function _render_table
-Args: ['self', 'lines', 'index', 'scope']
-
-Function _parse_table_row
-Args: ['row']
-
-Function _render_inline
-Args: ['self', 'text']
-
-Function _render_plain_inline
-Args: ['text']
-
-Function _resolve_link
-Args: ['self', 'current_scope', 'target']
-
-Function _anchor_id
-Args: ['title', 'seen']
-
-Function _render_shell
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\worker_agent.py
-Imports:
-- __future__
-- argparse
-- hashlib
-- hmac
-- json
-- os
-- queue
-- secrets
-- shutil
-- socket
-- subprocess
-- threading
-- time
-- urllib.request
-- urllib.parse
-- zipfile
-- pathlib
-- typing
-- archive_utils
-- container_seccomp
-- worker_dispatch
-
-Class WorkerAgent
-- __init__(self)
-- run_forever(self)
-- _run_job(self, job)
-- _pump_stdout(process, log_queue)
-- _drain_logs(self, job_id, log_queue, buffer)
-- _heartbeat(self)
-- _request_json(self, method, path, payload)
-- _download(self, url, target)
-- _verify_artifact_integrity(job, artifact_path)
-- _verify_job(self, job)
-- _signed_headers(self, method, path, body)
-- _build_command(self, job, runtime_root)
-- _service_url(self, payload)
-- _wrap_container_command(base_command, inner_command)
-- _mirror_tree_securely(self, source_root, target_root)
-- _copy_tree_entries_securely(self, source_dir, target_dir, ignored_names)
-- _is_link_like(path)
-- _container_seccomp_option(runtime_name)
-
-Function _container_file_size_limit_bytes
-Args: ['raw_value']
-
-Function _default_advertise_host
-Args: []
-
-Function main
-Args: []
-
-Function __init__
-Args: ['self']
-
-Function run_forever
-Args: ['self']
-
-Function _run_job
-Args: ['self', 'job']
-
-Function _pump_stdout
-Args: ['process', 'log_queue']
-
-Function _drain_logs
-Args: ['self', 'job_id', 'log_queue', 'buffer']
-
-Function _heartbeat
-Args: ['self']
-
-Function _request_json
-Args: ['self', 'method', 'path', 'payload']
-
-Function _download
-Args: ['self', 'url', 'target']
-
-Function _verify_artifact_integrity
-Args: ['job', 'artifact_path']
-
-Function _verify_job
-Args: ['self', 'job']
-
-Function _signed_headers
-Args: ['self', 'method', 'path', 'body']
-
-Function _build_command
-Args: ['self', 'job', 'runtime_root']
-
-Function _service_url
-Args: ['self', 'payload']
-
-Function _wrap_container_command
-Args: ['base_command', 'inner_command']
-
-Function _mirror_tree_securely
-Args: ['self', 'source_root', 'target_root']
-
-Function _copy_tree_entries_securely
-Args: ['self', 'source_dir', 'target_dir', 'ignored_names']
-
-Function _is_link_like
-Args: ['path']
-
-Function _container_seccomp_option
-Args: ['runtime_name']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\worker_dispatch.py
-Imports:
-- __future__
-- hashlib
-- hmac
-- json
-- secrets
-- shutil
-- socket
-- time
-- zipfile
-- pathlib
-- typing
-- config
-- database
-- workspace
-
-Class RemoteWorkerDispatchService
-- __init__(self, repository, workspace_manager, security_plane, config)
-- issue_bootstrap(self)
-- authenticate_worker(self, worker_id, token)
-- verify_worker_request(self, worker_id, token)
-- heartbeat(self, worker_id)
-- list_workers(self)
-- eligible_workers(self, runtime)
-- assign_workers(self, services)
-- create_playground_job(self)
-- claim_next_job(self, worker_id)
-- resolve_job_artifact(self, job_id)
-- append_job_log(self, worker_id, job_id, chunk)
-- update_job_status(self, worker_id, job_id)
-- request_stop(self, job_id)
-- latest_jobs_for_project(self, project_id)
-- sign_job_payload(self, worker_id, payload)
-- build_worker_signature()
-- server_base_url(self)
-- _present_worker(self, worker)
-- _is_online(self, worker)
-- _worker_loads(self)
-- _ensure_worker_enrollment(self, worker_id)
-- _worker_enrollment(self, worker_id)
-- _resolve_secret(self, secret_name)
-- _require_job_owner(self, worker_id, job_id)
-- _job_signature_payload(payload)
-- _write_artifact(self, job_id, runtime_root)
-- _artifact_sha256(self, job_id)
-- _job_root(self, job_id)
-- _secret_name(worker_id)
-- _guess_lan_ipv4()
-
-Function __init__
-Args: ['self', 'repository', 'workspace_manager', 'security_plane', 'config']
-
-Function issue_bootstrap
-Args: ['self']
-
-Function authenticate_worker
-Args: ['self', 'worker_id', 'token']
-
-Function verify_worker_request
-Args: ['self', 'worker_id', 'token']
-
-Function heartbeat
-Args: ['self', 'worker_id']
-
-Function list_workers
-Args: ['self']
-
-Function eligible_workers
-Args: ['self', 'runtime']
-
-Function assign_workers
-Args: ['self', 'services']
-
-Function create_playground_job
-Args: ['self']
-
-Function claim_next_job
-Args: ['self', 'worker_id']
-
-Function resolve_job_artifact
-Args: ['self', 'job_id']
-
-Function append_job_log
-Args: ['self', 'worker_id', 'job_id', 'chunk']
-
-Function update_job_status
-Args: ['self', 'worker_id', 'job_id']
-
-Function request_stop
-Args: ['self', 'job_id']
-
-Function latest_jobs_for_project
-Args: ['self', 'project_id']
-
-Function sign_job_payload
-Args: ['self', 'worker_id', 'payload']
-
-Function build_worker_signature
-Args: []
-
-Function server_base_url
-Args: ['self']
-
-Function _present_worker
-Args: ['self', 'worker']
-
-Function _is_online
-Args: ['self', 'worker']
-
-Function _worker_loads
-Args: ['self']
-
-Function _ensure_worker_enrollment
-Args: ['self', 'worker_id']
-
-Function _worker_enrollment
-Args: ['self', 'worker_id']
-
-Function _resolve_secret
-Args: ['self', 'secret_name']
-
-Function _require_job_owner
-Args: ['self', 'worker_id', 'job_id']
-
-Function _job_signature_payload
-Args: ['payload']
-
-Function _write_artifact
-Args: ['self', 'job_id', 'runtime_root']
-
-Function _artifact_sha256
-Args: ['self', 'job_id']
-
-Function _job_root
-Args: ['self', 'job_id']
-
-Function _secret_name
-Args: ['worker_id']
-
-Function _guess_lan_ipv4
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\workspace.py
-Imports:
-- __future__
-- json
-- re
-- shutil
-- pathlib
-- typing
-- config
-- templates
-
-Class WorkspaceManager
-- __init__(self, config)
-- ensure_profile_folder(self, owner_type, owner_key)
-- owner_root(self, owner_type, owner_key)
-- project_root(self, project)
-- materialize_project(self, project)
-- list_tree(self, project)
-- read_file(self, project, relative_path)
-- write_file(self, project, relative_path, content)
-- create_directory(self, project, relative_path)
-- delete_file(self, project, relative_path)
-- delete_entry(self, project, relative_path)
-- rename_entry(self, project, relative_path, new_relative_path)
-- load_notebook(self, project)
-- save_notebook(self, project, cells)
-- resolve_project_path(self, project, relative_path)
-- _normalize_relative_path(relative_path)
-- _path_matches_or_contains(prefix, candidate)
-- _renamed_path(candidate, old_path, new_path)
-- _notebook_path(self, project)
-- _prune_empty_parent_dirs(start, stop_root)
-- _normalize_legacy_notebook_cell(cell)
-
-Function slugify
-Args: ['value']
-
-Function __init__
-Args: ['self', 'config']
-
-Function ensure_profile_folder
-Args: ['self', 'owner_type', 'owner_key']
-
-Function owner_root
-Args: ['self', 'owner_type', 'owner_key']
-
-Function project_root
-Args: ['self', 'project']
-
-Function materialize_project
-Args: ['self', 'project']
-
-Function list_tree
-Args: ['self', 'project']
-
-Function read_file
-Args: ['self', 'project', 'relative_path']
-
-Function write_file
-Args: ['self', 'project', 'relative_path', 'content']
-
-Function create_directory
-Args: ['self', 'project', 'relative_path']
-
-Function delete_file
-Args: ['self', 'project', 'relative_path']
-
-Function delete_entry
-Args: ['self', 'project', 'relative_path']
-
-Function rename_entry
-Args: ['self', 'project', 'relative_path', 'new_relative_path']
-
-Function load_notebook
-Args: ['self', 'project']
-
-Function save_notebook
-Args: ['self', 'project', 'cells']
-
-Function resolve_project_path
-Args: ['self', 'project', 'relative_path']
-
-Function _normalize_relative_path
-Args: ['relative_path']
-
-Function _path_matches_or_contains
-Args: ['prefix', 'candidate']
-
-Function _renamed_path
-Args: ['candidate', 'old_path', 'new_path']
-
-Function _notebook_path
-Args: ['self', 'project']
-
-Function _prune_empty_parent_dirs
-Args: ['start', 'stop_root']
-
-Function _normalize_legacy_notebook_cell
-Args: ['cell']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\__init__.py
-Imports:
-- __future__
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\__main__.py
-Imports:
-- __future__
-- os
-- pathlib
-- config
-- server
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\Linux\materialize_linux_project.py
-Imports:
-- __future__
-- sys
-- pathlib
-- nova_bootstrap
-- nova_school_server.distribution_builder
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\Linux\nova_linux_launch.py
-Imports:
-- __future__
-- os
-- sys
-- pathlib
-- nova_bootstrap
-- nova_school_server.config
-- nova_school_server.server
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\Linux\nova_linux_worker_launch.py
-Imports:
-- __future__
-- sys
-- pathlib
-- nova_bootstrap
-- nova_school_server.worker_agent
-
-Function main
-Args: []
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_ai_service.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- unittest.mock
-- nova_school_server.ai_service
-- nova_school_server.database
-
-Class LlamaCppServiceTests
-- setUp(self)
-- tearDown(self)
-- test_status_prefers_local_gguf_model(self)
-- test_status_uses_explicit_model_override(self)
-- test_prepare_direct_completion_builds_server_prompt(self)
-
-Class LiteRTLmServiceTests
-- setUp(self)
-- tearDown(self)
-- test_status_prefers_local_litert_model(self)
-- test_status_auto_discovers_project_local_lit_folder(self)
-- test_status_auto_discovers_linux_lit_binary(self)
-- test_auto_provider_prefers_litert_when_binary_and_model_exist(self)
-- test_local_ai_service_proxies_max_tokens_to_active_provider(self)
-- test_prepare_direct_completion_builds_server_prompt(self)
-- test_prepare_direct_completion_trims_large_code_context(self)
-- test_complete_ignores_xnnpack_info_only_error_output(self)
-
-Class _Result
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_status_prefers_local_gguf_model
-Args: ['self']
-
-Function test_status_uses_explicit_model_override
-Args: ['self']
-
-Function test_prepare_direct_completion_builds_server_prompt
-Args: ['self']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_status_prefers_local_litert_model
-Args: ['self']
-
-Function test_status_auto_discovers_project_local_lit_folder
-Args: ['self']
-
-Function test_status_auto_discovers_linux_lit_binary
-Args: ['self']
-
-Function test_auto_provider_prefers_litert_when_binary_and_model_exist
-Args: ['self']
-
-Function test_local_ai_service_proxies_max_tokens_to_active_provider
-Args: ['self']
-
-Function test_prepare_direct_completion_builds_server_prompt
-Args: ['self']
-
-Function test_prepare_direct_completion_trims_large_code_context
-Args: ['self']
-
-Function test_complete_ignores_xnnpack_info_only_error_output
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_analysis_archive_builder.py
-Imports:
-- __future__
-- subprocess
-- tempfile
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.analysis_archive_builder
-
-Class SourceAnalysisArchiveBuilderTests
-- test_build_source_analysis_archive_keeps_text_source_and_skips_binaries(self)
-- _git(repo)
-
-Function test_build_source_analysis_archive_keeps_text_source_and_skips_binaries
-Args: ['self']
-
-Function _git
-Args: ['repo']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_archive_utils.py
-Imports:
-- __future__
-- stat
-- tempfile
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.archive_utils
-
-Class ArchiveUtilsTests
-- test_extract_zip_safely_writes_normal_files(self)
-- test_extract_zip_safely_rejects_traversal(self)
-- test_extract_zip_safely_rejects_symlink_entries(self)
-
-Function test_extract_zip_safely_writes_normal_files
-Args: ['self']
-
-Function test_extract_zip_safely_rejects_traversal
-Args: ['self']
-
-Function test_extract_zip_safely_rejects_symlink_entries
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_codedump_tools.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.codedump_tools
-
-Class CodeDumpToolsTests
-- test_directory_dump_ignores_runtime_data_and_writes_markdown(self)
-- test_zip_dump_keeps_zip_support(self)
-- test_directory_collect_marks_large_files_with_placeholder(self)
-- test_compact_profile_excludes_docs_wiki_and_tests(self)
-- test_deep_profile_includes_docs_wiki_and_tests(self)
-- test_default_output_path_uses_profile_suffix_for_non_standard_profiles(self)
-- test_existing_dump_artifacts_are_not_reincluded(self)
-
-Function test_directory_dump_ignores_runtime_data_and_writes_markdown
-Args: ['self']
-
-Function test_zip_dump_keeps_zip_support
-Args: ['self']
-
-Function test_directory_collect_marks_large_files_with_placeholder
-Args: ['self']
-
-Function test_compact_profile_excludes_docs_wiki_and_tests
-Args: ['self']
-
-Function test_deep_profile_includes_docs_wiki_and_tests
-Args: ['self']
-
-Function test_default_output_path_uses_profile_suffix_for_non_standard_profiles
-Args: ['self']
-
-Function test_existing_dump_artifacts_are_not_reincluded
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_code_runner.py
-Imports:
-- __future__
-- os
-- tempfile
-- threading
-- time
-- unittest
-- pathlib
-- unittest.mock
-- nova_school_server.code_runner
-- nova_school_server.config
-- nova_school_server.workspace
-
-Class _FakeToolSandbox
-- authorize(self)
-
-Class _FakeRepository
-- __init__(self, settings)
-- get_setting(self, key, default)
-
-Class _ObservedCodeRunner
-- __init__(self)
-- _execute(self, run_id, language, command, cwd, stdin_text, env, tool_session, permissions)
-
-Class _ContainerObservedRunner
-- __init__(self)
-- _execute_raw(self, command, cwd, stdin_text, env)
-- _execute_container(self, run_id, language, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, tool_session, permissions)
-
-Class _Session
-
-Class _TeacherSession
-
-Class CodeRunnerTests
-- test_execute_container_python_hides_bootstrap_frames_from_traceback(self)
-- test_execute_python_process_hides_bootstrap_frames_from_traceback(self)
-- test_run_bundle_executes_python_without_project_record(self)
-- test_run_bundle_returns_python_syntax_error_before_execution(self)
-- test_runner_backend_uses_valid_repository_setting(self)
-- test_runner_backend_falls_back_for_invalid_repository_setting(self)
-- test_process_backend_requires_explicit_unsafe_enablement(self)
-- test_html_preview_bypasses_process_backend_block(self)
-- test_python_project_run_uses_main_file_even_when_helper_is_open(self)
-- test_javascript_project_run_uses_main_file_even_when_helper_is_open(self)
-- test_cpp_project_run_compiles_all_project_sources(self)
-- test_java_project_run_compiles_all_sources_and_uses_main_class(self)
-- test_scheduler_serializes_same_student_user(self)
-- test_container_base_command_disables_network_without_web_access(self)
-- test_container_base_command_enables_bridge_with_web_access(self)
-- test_container_base_command_includes_configured_oci_runtime(self)
-- test_container_base_command_converts_file_size_limit_from_kb_to_bytes(self)
-- test_execution_env_requires_proxy_when_enforced(self)
-- test_containerized_env_does_not_forward_windows_host_path(self)
-- test_container_runtime_error_message_explains_missing_docker_desktop_engine(self)
-- test_container_runtime_error_message_explains_internal_server_error(self)
-- test_container_runtime_error_message_explains_timeout(self)
-- test_container_runtime_error_message_explains_linux_docker_socket_permissions(self)
-- test_container_runtime_health_fails_fast_before_run(self)
-- test_container_runtime_health_uses_generous_timeout(self)
-- test_run_bundle_auto_pulls_missing_container_image(self)
-- test_student_run_hides_operational_notes(self)
-- test_teacher_run_keeps_operational_notes(self)
-- test_student_live_run_hides_operational_notes(self)
-- test_backend_notes_omit_default_image_placeholder(self)
-- test_python_executable_does_not_receive_py_launcher_flag(self)
-- test_run_python_supports_stdin_input(self)
-- test_run_python_reports_syntax_error_before_execution(self)
-- test_prepare_live_python_reports_syntax_error_before_launch(self)
-- test_run_python_uses_bootstrap_and_dependency_env_with_requirements(self)
-- test_containerized_python_gui_returns_preview_path(self)
-- test_containerized_python_mainloop_without_direct_import_uses_gui_path(self)
-
-Function authorize
-Args: ['self']
-
-Function __init__
-Args: ['self', 'settings']
-
-Function get_setting
-Args: ['self', 'key', 'default']
-
-Function __init__
-Args: ['self']
-
-Function _execute
-Args: ['self', 'run_id', 'language', 'command', 'cwd', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function __init__
-Args: ['self']
-
-Function _execute_raw
-Args: ['self', 'command', 'cwd', 'stdin_text', 'env']
-
-Function _execute_container
-Args: ['self', 'run_id', 'language', 'runtime_executable', 'image', 'inner_command', 'project_root', 'container_workspace', 'stdin_text', 'env', 'tool_session', 'permissions']
-
-Function test_execute_container_python_hides_bootstrap_frames_from_traceback
-Args: ['self']
-
-Function test_execute_python_process_hides_bootstrap_frames_from_traceback
-Args: ['self']
-
-Function test_run_bundle_executes_python_without_project_record
-Args: ['self']
-
-Function test_run_bundle_returns_python_syntax_error_before_execution
-Args: ['self']
-
-Function test_runner_backend_uses_valid_repository_setting
-Args: ['self']
-
-Function test_runner_backend_falls_back_for_invalid_repository_setting
-Args: ['self']
-
-Function test_process_backend_requires_explicit_unsafe_enablement
-Args: ['self']
-
-Function test_html_preview_bypasses_process_backend_block
-Args: ['self']
-
-Function test_python_project_run_uses_main_file_even_when_helper_is_open
-Args: ['self']
-
-Function test_javascript_project_run_uses_main_file_even_when_helper_is_open
-Args: ['self']
-
-Function test_cpp_project_run_compiles_all_project_sources
-Args: ['self']
-
-Function test_java_project_run_compiles_all_sources_and_uses_main_class
-Args: ['self']
-
-Function test_scheduler_serializes_same_student_user
-Args: ['self']
-
-Function test_container_base_command_disables_network_without_web_access
-Args: ['self']
-
-Function test_container_base_command_enables_bridge_with_web_access
-Args: ['self']
-
-Function test_container_base_command_includes_configured_oci_runtime
-Args: ['self']
-
-Function test_container_base_command_converts_file_size_limit_from_kb_to_bytes
-Args: ['self']
-
-Function test_execution_env_requires_proxy_when_enforced
-Args: ['self']
-
-Function test_containerized_env_does_not_forward_windows_host_path
-Args: ['self']
-
-Function test_container_runtime_error_message_explains_missing_docker_desktop_engine
-Args: ['self']
-
-Function test_container_runtime_error_message_explains_internal_server_error
-Args: ['self']
-
-Function test_container_runtime_error_message_explains_timeout
-Args: ['self']
-
-Function test_container_runtime_error_message_explains_linux_docker_socket_permissions
-Args: ['self']
-
-Function test_container_runtime_health_fails_fast_before_run
-Args: ['self']
-
-Function test_container_runtime_health_uses_generous_timeout
-Args: ['self']
-
-Function test_run_bundle_auto_pulls_missing_container_image
-Args: ['self']
-
-Function test_student_run_hides_operational_notes
-Args: ['self']
-
-Function test_teacher_run_keeps_operational_notes
-Args: ['self']
-
-Function test_student_live_run_hides_operational_notes
-Args: ['self']
-
-Function test_backend_notes_omit_default_image_placeholder
-Args: ['self']
-
-Function test_python_executable_does_not_receive_py_launcher_flag
-Args: ['self']
-
-Function test_run_python_supports_stdin_input
-Args: ['self']
-
-Function test_run_python_reports_syntax_error_before_execution
-Args: ['self']
-
-Function test_prepare_live_python_reports_syntax_error_before_launch
-Args: ['self']
-
-Function test_run_python_uses_bootstrap_and_dependency_env_with_requirements
-Args: ['self']
-
-Function test_containerized_python_gui_returns_preview_path
-Args: ['self']
-
-Function test_containerized_python_mainloop_without_direct_import_uses_gui_path
-Args: ['self']
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-Function worker
-Args: []
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-Function fake_execute_raw
-Args: ['command', 'cwd', 'stdin_text', 'env']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_config.py
-Imports:
-- __future__
-- os
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.config
-- nova_school_server.config
-
-Class ConfigTests
-- test_default_host_binds_for_lan(self)
-- test_env_host_override_is_respected(self)
-- test_server_config_payload_is_saved_and_loaded(self)
-- test_stored_runtime_config_falls_back_to_active_values(self)
-- test_runtime_config_requires_restart_when_stored_values_differ(self)
-- test_static_path_falls_back_to_real_package_root_for_flat_repo_layout(self)
-
-Function test_default_host_binds_for_lan
-Args: ['self']
-
-Function test_env_host_override_is_respected
-Args: ['self']
-
-Function test_server_config_payload_is_saved_and_loaded
-Args: ['self']
-
-Function test_stored_runtime_config_falls_back_to_active_values
-Args: ['self']
-
-Function test_runtime_config_requires_restart_when_stored_values_differ
-Args: ['self']
-
-Function test_static_path_falls_back_to_real_package_root_for_flat_repo_layout
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_container_seccomp.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- unittest.mock
-- nova_school_server.container_seccomp
-
-Class ContainerSeccompTests
-- test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime(self)
-- test_resolve_seccomp_profile_option_uses_builtin_profile_for_windows_docker(self)
-
-Function test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime
-Args: ['self']
-
-Function test_resolve_seccomp_profile_option_uses_builtin_profile_for_windows_docker
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_curriculum.py
-Imports:
-- __future__
-- hashlib
-- hmac
-- io
-- json
-- tempfile
-- time
-- unittest
-- zipfile
-- pathlib
-- PIL
-- nova_school_server.curriculum
-- nova_school_server.curriculum_catalog
-- nova_school_server.database
-
-Class _Session
-- __init__(self, username)
-
-Class CurriculumServiceTests
-- setUp(self)
-- tearDown(self)
-- test_course_is_available_by_default_for_student(self)
-- test_explicit_user_disable_locks_course_for_student(self)
-- test_dashboard_exposes_multiple_courses(self)
-- test_group_release_enables_course_for_group_member(self)
-- test_module_progression_unlocks_next_module(self)
-- test_final_exam_issues_certificate_after_all_modules(self)
-- test_attempt_history_returns_all_submissions_for_teacher_view(self)
-- test_certificate_pdf_is_generated_with_school_branding(self)
-- test_course_specific_certificate_design_renders_subject_label(self)
-- test_cpp_course_can_be_completed_and_renders_subject_label(self)
-- test_java_course_can_be_completed_and_renders_subject_label(self)
-- test_verification_page_renders_certificate_details(self)
-- test_custom_course_is_persisted_and_visible_in_dashboard(self)
-- test_custom_course_uses_final_exam_threshold_and_issues_certificate(self)
-- test_bundle_import_activation_and_rollback_switch_course_definition(self)
-- test_dashboard_manager_exposes_bundle_controls_only_for_update_permission(self)
-- test_bundle_material_preset_and_mentor_rule_are_resolved_from_active_bundle(self)
-
-Function _correct_answers
-Args: ['questions']
-
-Function _custom_course_payload
-Args: []
-
-Function _bundle_archive_bytes
-Args: []
-
-Function __init__
-Args: ['self', 'username']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_course_is_available_by_default_for_student
-Args: ['self']
-
-Function test_explicit_user_disable_locks_course_for_student
-Args: ['self']
-
-Function test_dashboard_exposes_multiple_courses
-Args: ['self']
-
-Function test_group_release_enables_course_for_group_member
-Args: ['self']
-
-Function test_module_progression_unlocks_next_module
-Args: ['self']
-
-Function test_final_exam_issues_certificate_after_all_modules
-Args: ['self']
-
-Function test_attempt_history_returns_all_submissions_for_teacher_view
-Args: ['self']
-
-Function test_certificate_pdf_is_generated_with_school_branding
-Args: ['self']
-
-Function test_course_specific_certificate_design_renders_subject_label
-Args: ['self']
-
-Function test_cpp_course_can_be_completed_and_renders_subject_label
-Args: ['self']
-
-Function test_java_course_can_be_completed_and_renders_subject_label
-Args: ['self']
-
-Function test_verification_page_renders_certificate_details
-Args: ['self']
-
-Function test_custom_course_is_persisted_and_visible_in_dashboard
-Args: ['self']
-
-Function test_custom_course_uses_final_exam_threshold_and_issues_certificate
-Args: ['self']
-
-Function test_bundle_import_activation_and_rollback_switch_course_definition
-Args: ['self']
-
-Function test_dashboard_manager_exposes_bundle_controls_only_for_update_permission
-Args: ['self']
-
-Function test_bundle_material_preset_and_mentor_rule_are_resolved_from_active_bundle
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_distribution_builder.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.distribution_builder
-
-Class DistributionBuilderTests
-- test_distribution_archive_excludes_runtime_data_and_adds_scaffold(self)
-- test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide(self)
-- test_linux_server_package_excludes_windows_scripts_and_adds_linux_guide(self)
-- test_materialize_distribution_directory_skips_generated_linux_project_recursion(self)
-- test_materialized_linux_project_copies_linux_lit_binary_but_not_models(self)
-- test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide(self)
-
-Function test_distribution_archive_excludes_runtime_data_and_adds_scaffold
-Args: ['self']
-
-Function test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide
-Args: ['self']
-
-Function test_linux_server_package_excludes_windows_scripts_and_adds_linux_guide
-Args: ['self']
-
-Function test_materialize_distribution_directory_skips_generated_linux_project_recursion
-Args: ['self']
-
-Function test_materialized_linux_project_copies_linux_lit_binary_but_not_models
-Args: ['self']
-
-Function test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_docs.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.docs_catalog
-
-Class DocumentationTests
-- test_seed_docs_and_read_python_doc(self)
-
-Function test_seed_docs_and_read_python_doc
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_gold_features.py
-Imports:
-- __future__
-- json
-- tempfile
-- time
-- unittest
-- zipfile
-- pathlib
-- unittest.mock
-- nova_school_server.collaboration
-- nova_school_server.code_runner
-- nova_school_server.config
-- nova_school_server.database
-- nova_school_server.deployments
-- nova_school_server.distributed
-- nova_school_server.mentor
-- nova_school_server.reviews
-- nova_school_server.workspace
-
-Class _FakeSecurityPlane
-- __init__(self)
-- resolve_secret(self, tenant_id, name)
-- store_secret(self, tenant_id, name, secret_value, metadata)
-- get_tenant(self, tenant_id)
-- create_certificate_authority(self, name, common_name)
-- get_certificate_authority(self, name)
-- set_trust_policy(self, name)
-- get_trust_policy(self, name)
-- onboard_worker(self, worker_id, tenant_id)
-- list_worker_enrollments(self, tenant_id)
-
-Class _Session
-- __init__(self, username, role)
-- is_teacher(self)
-- group_ids(self)
-
-Class _FakeToolSandbox
-- authorize(self)
-
-Class GoldFeatureTests
-- setUp(self)
-- tearDown(self)
-- _create_user(self, username, role)
-- _create_project(self)
-- test_collaboration_merges_parallel_cell_changes(self)
-- test_mentor_persists_thread_and_teacher_can_inspect(self)
-- test_review_submission_feedback_and_deployment_artifacts_work(self)
-- test_distributed_playground_starts_and_stops_template_services(self)
-- test_distributed_playground_dispatches_remote_jobs_to_registered_workers(self)
-- test_worker_request_signature_rejects_replay(self)
-
-Function __init__
-Args: ['self']
-
-Function resolve_secret
-Args: ['self', 'tenant_id', 'name']
-
-Function store_secret
-Args: ['self', 'tenant_id', 'name', 'secret_value', 'metadata']
-
-Function get_tenant
-Args: ['self', 'tenant_id']
-
-Function create_certificate_authority
-Args: ['self', 'name', 'common_name']
-
-Function get_certificate_authority
-Args: ['self', 'name']
-
-Function set_trust_policy
-Args: ['self', 'name']
-
-Function get_trust_policy
-Args: ['self', 'name']
-
-Function onboard_worker
-Args: ['self', 'worker_id', 'tenant_id']
-
-Function list_worker_enrollments
-Args: ['self', 'tenant_id']
-
-Function __init__
-Args: ['self', 'username', 'role']
-
-Function is_teacher
-Args: ['self']
-
-Function group_ids
-Args: ['self']
-
-Function authorize
-Args: ['self']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function _create_user
-Args: ['self', 'username', 'role']
-
-Function _create_project
-Args: ['self']
-
-Function test_collaboration_merges_parallel_cell_changes
-Args: ['self']
-
-Function test_mentor_persists_thread_and_teacher_can_inspect
-Args: ['self']
-
-Function test_review_submission_feedback_and_deployment_artifacts_work
-Args: ['self']
-
-Function test_distributed_playground_starts_and_stops_template_services
-Args: ['self']
-
-Function test_distributed_playground_dispatches_remote_jobs_to_registered_workers
-Args: ['self']
-
-Function test_worker_request_signature_rejects_replay
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_material_studio.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.database
-- nova_school_server.material_studio
-
-Class _FakeRunner
-- __init__(self, results)
-- run_bundle(self, _session, payload)
-
-Class _FakeAI
-- __init__(self, responses)
-- complete(self)
-
-Class _FakeCurriculumService
-- __init__(self, preset)
-- resolve_material_studio_instruction_preset(self, preset_key)
-
-Class _TeacherSession
-
-Class MaterialStudioTests
-- setUp(self)
-- tearDown(self)
-- test_profile_catalog_contains_specialized_teacher_profiles(self)
-- test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code(self)
-- test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles(self)
-- test_curriculum_service_can_override_instruction_preset_resolution(self)
-- test_extract_json_object_merges_multiple_fenced_objects(self)
-- test_extract_json_object_accepts_jsonish_string_concatenation(self)
-- test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper(self)
-- test_extract_code_block_recovers_trailing_code_from_unclosed_fence(self)
-- test_parse_code_response_accepts_plain_python_code_without_fence(self)
-- test_parse_code_response_rejects_self_evaluation_prose(self)
-- test_parse_code_response_rejects_python_main_without_invocation(self)
-- test_generation_flow_runs_planning_authoring_and_pedagogy(self)
-- test_generation_flow_falls_back_from_invalid_author_json_to_code_block(self)
-- test_quality_pipeline_starts_with_real_plan_then_author_json(self)
-- test_generation_flow_repairs_invalid_pedagogy_json(self)
-- test_generation_flow_repairs_failed_run_via_debugger_code_fallback(self)
-- test_attempt_limit_counts_repair_rounds_after_initial_run(self)
-- test_author_prompt_requires_stdin_or_eof_safe_input(self)
-- test_litert_plan_prompt_is_trimmed_to_budget(self)
-- test_complete_inference_payload_retries_with_stricter_budget_after_litert_token_error(self)
-- test_direct_generate_uses_one_repair_round_when_attempt_limit_is_one(self)
-- test_direct_generate_uses_example_code_instruction_preset(self)
-- test_run_current_builds_bundle_from_code_only(self)
-
-Function __init__
-Args: ['self', 'results']
-
-Function run_bundle
-Args: ['self', '_session', 'payload']
-
-Function __init__
-Args: ['self', 'responses']
-
-Function complete
-Args: ['self']
-
-Function __init__
-Args: ['self', 'preset']
-
-Function resolve_material_studio_instruction_preset
-Args: ['self', 'preset_key']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_profile_catalog_contains_specialized_teacher_profiles
-Args: ['self']
-
-Function test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code
-Args: ['self']
-
-Function test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles
-Args: ['self']
-
-Function test_curriculum_service_can_override_instruction_preset_resolution
-Args: ['self']
-
-Function test_extract_json_object_merges_multiple_fenced_objects
-Args: ['self']
-
-Function test_extract_json_object_accepts_jsonish_string_concatenation
-Args: ['self']
-
-Function test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper
-Args: ['self']
-
-Function test_extract_code_block_recovers_trailing_code_from_unclosed_fence
-Args: ['self']
-
-Function test_parse_code_response_accepts_plain_python_code_without_fence
-Args: ['self']
-
-Function test_parse_code_response_rejects_self_evaluation_prose
-Args: ['self']
-
-Function test_parse_code_response_rejects_python_main_without_invocation
-Args: ['self']
-
-Function test_generation_flow_runs_planning_authoring_and_pedagogy
-Args: ['self']
-
-Function test_generation_flow_falls_back_from_invalid_author_json_to_code_block
-Args: ['self']
-
-Function test_quality_pipeline_starts_with_real_plan_then_author_json
-Args: ['self']
-
-Function test_generation_flow_repairs_invalid_pedagogy_json
-Args: ['self']
-
-Function test_generation_flow_repairs_failed_run_via_debugger_code_fallback
-Args: ['self']
-
-Function test_attempt_limit_counts_repair_rounds_after_initial_run
-Args: ['self']
-
-Function test_author_prompt_requires_stdin_or_eof_safe_input
-Args: ['self']
-
-Function test_litert_plan_prompt_is_trimmed_to_budget
-Args: ['self']
-
-Function test_complete_inference_payload_retries_with_stricter_budget_after_litert_token_error
-Args: ['self']
-
-Function test_direct_generate_uses_one_repair_round_when_attempt_limit_is_one
-Args: ['self']
-
-Function test_direct_generate_uses_example_code_instruction_preset
-Args: ['self']
-
-Function test_run_current_builds_bundle_from_code_only
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_mentor.py
-Imports:
-- __future__
-- hashlib
-- hmac
-- io
-- json
-- tempfile
-- time
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.ai_service
-- nova_school_server.curriculum
-- nova_school_server.database
-- nova_school_server.mentor
-
-Class _Session
-- __init__(self, username)
-
-Class MentorTests
-- setUp(self)
-- tearDown(self)
-- test_prepare_includes_curriculum_context_and_bundle_mentor_rules(self)
-- test_prepare_trims_large_runtime_context(self)
-
-Function _bundle_archive
-Args: ['secret']
-
-Function __init__
-Args: ['self', 'username']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_prepare_includes_curriculum_context_and_bundle_mentor_rules
-Args: ['self']
-
-Function test_prepare_trims_large_runtime_context
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_nova_bridge.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.nova_bridge
-
-Class EmbeddedNovaBridgeTests
-- test_embedded_bridge_handles_token_flow_without_external_dependency(self)
-- test_embedded_tool_sandbox_authorizes_requests(self)
-
-Function test_embedded_bridge_handles_token_flow_without_external_dependency
-Args: ['self']
-
-Function test_embedded_tool_sandbox_authorizes_requests
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_nova_product_docs.py
-Imports:
-- __future__
-- json
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.nova_product_docs
-- nova_school_server.reference_library
-
-Class NovaProductDocsTests
-- test_builder_generates_index_and_expands_permission_tokens(self)
-- test_reference_library_marks_nova_school_as_official_local(self)
-
-Function test_builder_generates_index_and_expands_permission_tokens
-Args: ['self']
-
-Function test_reference_library_marks_nova_school_as_official_local
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_permissions.py
-Imports:
-- __future__
-- unittest
-- nova_school_server.permissions
-
-Class PermissionTests
-- test_student_defaults_enable_ai_but_disable_web(self)
-- test_teacher_defaults_do_not_gain_curriculum_update(self)
-- test_user_override_wins_over_group_false(self)
-- test_admin_role_keeps_core_permissions_even_if_user_override_disables_them(self)
-
-Function test_student_defaults_enable_ai_but_disable_web
-Args: ['self']
-
-Function test_teacher_defaults_do_not_gain_curriculum_update
-Args: ['self']
-
-Function test_user_override_wins_over_group_false
-Args: ['self']
-
-Function test_admin_role_keeps_core_permissions_even_if_user_override_disables_them
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_pty_host.py
-Imports:
-- __future__
-- importlib.util
-- os
-- shutil
-- time
-- unittest
-- pathlib
-- nova_school_server.pty_host
-
-Class PtyHostTests
-- test_pty_process_handles_prompt_input_and_resize(self)
-
-Function test_pty_process_handles_prompt_input_and_resize
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_realtime.py
-Imports:
-- __future__
-- importlib.util
-- os
-- random
-- struct
-- tempfile
-- threading
-- time
-- unittest
-- pathlib
-- nova_school_server.code_runner
-- nova_school_server.config
-- nova_school_server.database
-- nova_school_server.realtime
-- nova_school_server.workspace
-
-Class _FakeToolSandbox
-- authorize(self)
-
-Class _Session
-
-Class _TeacherSession
-
-Class _RecordingConnection
-- __init__(self)
-- send_json(self, payload)
-- snapshot(self)
-
-Class _FakeSocket
-- __init__(self, chunks)
-- settimeout(self, value)
-- recv(self, size)
-- sendall(self, data)
-- shutdown(self, _how)
-- close(self)
-
-Class RealtimeTests
-- test_websocket_accept_key_matches_reference(self)
-- test_websocket_connection_is_long_lived_without_idle_timeout(self)
-- test_websocket_timeout_is_reported_as_connection_close(self)
-- test_websocket_rejects_unmasked_client_frames(self)
-- test_websocket_rejects_oversized_frames_before_payload_read(self)
-- test_websocket_rejects_reserved_bits(self)
-- test_websocket_rejects_oversized_control_frame_payloads(self)
-- test_websocket_invalid_utf8_is_reported_as_connection_error(self)
-- test_websocket_parser_fuzz_harness_only_returns_text_or_connection_error(self)
-- test_live_run_manager_streams_prompt_and_accepts_input(self)
-
-Function _build_masked_frame
-Args: []
-
-Function _chunk_bytes
-Args: ['data', 'seed']
-
-Function _random_frame
-Args: ['seed']
-
-Function authorize
-Args: ['self']
-
-Function __init__
-Args: ['self']
-
-Function send_json
-Args: ['self', 'payload']
-
-Function snapshot
-Args: ['self']
-
-Function __init__
-Args: ['self', 'chunks']
-
-Function settimeout
-Args: ['self', 'value']
-
-Function recv
-Args: ['self', 'size']
-
-Function sendall
-Args: ['self', 'data']
-
-Function shutdown
-Args: ['self', '_how']
-
-Function close
-Args: ['self']
-
-Function test_websocket_accept_key_matches_reference
-Args: ['self']
-
-Function test_websocket_connection_is_long_lived_without_idle_timeout
-Args: ['self']
-
-Function test_websocket_timeout_is_reported_as_connection_close
-Args: ['self']
-
-Function test_websocket_rejects_unmasked_client_frames
-Args: ['self']
-
-Function test_websocket_rejects_oversized_frames_before_payload_read
-Args: ['self']
-
-Function test_websocket_rejects_reserved_bits
-Args: ['self']
-
-Function test_websocket_rejects_oversized_control_frame_payloads
-Args: ['self']
-
-Function test_websocket_invalid_utf8_is_reported_as_connection_error
-Args: ['self']
-
-Function test_websocket_parser_fuzz_harness_only_returns_text_or_connection_error
-Args: ['self']
-
-Function test_live_run_manager_streams_prompt_and_accepts_input
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_reference_import_cpp.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.reference_import_cpp
-
-Class CppReferenceImportTests
-- test_cpp_page_urls_are_normalized_to_local_html_paths(self)
-- test_cpp_assets_are_classified_and_localized(self)
-- test_mediawiki_edit_links_and_form_actions_are_ignored(self)
-- test_html_rewriter_keeps_internal_links_local_and_disables_external_links(self)
-
-Function test_cpp_page_urls_are_normalized_to_local_html_paths
-Args: ['self']
-
-Function test_cpp_assets_are_classified_and_localized
-Args: ['self']
-
-Function test_mediawiki_edit_links_and_form_actions_are_ignored
-Args: ['self']
-
-Function test_html_rewriter_keeps_internal_links_local_and_disables_external_links
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_reference_import_web.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.reference_import_web
-
-Class ReferenceWebImportTests
-- test_resolve_local_target_finds_html_and_assets(self)
-- test_html_rewrite_localizes_absolute_pack_urls(self)
-- test_landing_page_links_to_mirrored_sources(self)
-
-Function test_resolve_local_target_finds_html_and_assets
-Args: ['self']
-
-Function test_html_rewrite_localizes_absolute_pack_urls
-Args: ['self']
-
-Function test_landing_page_links_to_mirrored_sources
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_reference_library.py
-Imports:
-- __future__
-- tempfile
-- time
-- unittest
-- pathlib
-- nova_school_server.reference_library
-
-Class ReferenceLibraryTests
-- test_builtin_fallback_catalog_and_search_work(self)
-- test_mirrored_pack_is_indexed_and_asset_path_is_resolved(self)
-- test_plain_text_pack_directly_in_area_root_is_used(self)
-- test_index_is_rebuilt_when_pack_changes(self)
-- test_cpp_markdown_mirror_is_sanitized_for_rendering(self)
-
-Function test_builtin_fallback_catalog_and_search_work
-Args: ['self']
-
-Function test_mirrored_pack_is_indexed_and_asset_path_is_resolved
-Args: ['self']
-
-Function test_plain_text_pack_directly_in_area_root_is_used
-Args: ['self']
-
-Function test_index_is_rebuilt_when_pack_changes
-Args: ['self']
-
-Function test_cpp_markdown_mirror_is_sanitized_for_rendering
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_release_notes.py
-Imports:
-- __future__
-- subprocess
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.release_notes
-
-Class ReleaseNotesTests
-- test_build_release_history_and_render_outputs(self)
-- _git(repo)
-
-Function test_build_release_history_and_render_outputs
-Args: ['self']
-
-Function _git
-Args: ['repo']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_seed.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.auth
-- nova_school_server.database
-- nova_school_server.docs_catalog
-- nova_school_server.embedded_nova
-- nova_school_server.seed
-- nova_school_server.workspace
-- nova_school_server.config
-
-Class SeedBootstrapTests
-- setUp(self)
-- tearDown(self)
-- test_bootstrap_resets_demo_accounts_to_role_defaults_even_when_old_overrides_exist(self)
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_bootstrap_resets_demo_accounts_to_role_defaults_even_when_old_overrides_exist
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_server.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.server
-
-Class _Repo
-- __init__(self, settings)
-- get_setting(self, key, default)
-
-Class _App
-- __init__(self, settings, port)
-
-Class RequestHandlerTlsTests
-- _handler(self, settings, headers)
-- test_cookie_header_uses_secure_when_public_host_is_https(self)
-- test_cookie_header_uses_secure_when_forwarded_proto_is_https(self)
-- test_clear_cookie_header_uses_secure_when_forwarded_proto_is_https(self)
-- test_certificate_verification_url_prefers_https_public_host(self)
-- test_certificate_verification_url_uses_forwarded_https_for_bare_public_host(self)
-- test_resolve_relative_file_rejects_traversal(self)
-- test_default_litertlm_binary_path_accepts_linux_lit_binary(self)
-
-Function __init__
-Args: ['self', 'settings']
-
-Function get_setting
-Args: ['self', 'key', 'default']
-
-Function __init__
-Args: ['self', 'settings', 'port']
-
-Function _handler
-Args: ['self', 'settings', 'headers']
-
-Function test_cookie_header_uses_secure_when_public_host_is_https
-Args: ['self']
-
-Function test_cookie_header_uses_secure_when_forwarded_proto_is_https
-Args: ['self']
-
-Function test_clear_cookie_header_uses_secure_when_forwarded_proto_is_https
-Args: ['self']
-
-Function test_certificate_verification_url_prefers_https_public_host
-Args: ['self']
-
-Function test_certificate_verification_url_uses_forwarded_https_for_bare_public_host
-Args: ['self']
-
-Function test_resolve_relative_file_rejects_traversal
-Args: ['self']
-
-Function test_default_litertlm_binary_path_accepts_linux_lit_binary
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_user_admin.py
-Imports:
-- __future__
-- tempfile
-- time
-- unittest
-- zipfile
-- pathlib
-- nova_school_server.config
-- nova_school_server.database
-- nova_school_server.user_admin
-- nova_school_server.workspace
-
-Class UserAdministrationTests
-- setUp(self)
-- tearDown(self)
-- _create_personal_project(self)
-- test_update_user_changes_status_role_and_logs_audit(self)
-- test_permission_audit_payload_only_contains_changed_keys(self)
-- test_cannot_deactivate_own_current_account(self)
-- test_export_user_data_includes_projects_groups_and_ai_threads(self)
-- test_hard_delete_user_removes_projects_files_and_histories(self)
-- test_export_project_archive_contains_manifest_and_project_files(self)
-- test_hard_delete_project_removes_workspace_and_project_chats(self)
-- test_apply_retention_deletes_old_chat_and_audits(self)
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function _create_personal_project
-Args: ['self']
-
-Function test_update_user_changes_status_role_and_logs_audit
-Args: ['self']
-
-Function test_permission_audit_payload_only_contains_changed_keys
-Args: ['self']
-
-Function test_cannot_deactivate_own_current_account
-Args: ['self']
-
-Function test_export_user_data_includes_projects_groups_and_ai_threads
-Args: ['self']
-
-Function test_hard_delete_user_removes_projects_files_and_histories
-Args: ['self']
-
-Function test_export_project_archive_contains_manifest_and_project_files
-Args: ['self']
-
-Function test_hard_delete_project_removes_workspace_and_project_chats
-Args: ['self']
-
-Function test_apply_retention_deletes_old_chat_and_audits
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_virtual_lecturer.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.curriculum
-- nova_school_server.database
-- nova_school_server.virtual_lecturer
-
-Class _Session
-- __init__(self, username)
-
-Class VirtualLecturerTests
-- setUp(self)
-- tearDown(self)
-- test_start_creates_session_and_opening_message(self)
-- test_prepare_includes_task_and_runtime_context(self)
-- test_prepare_direct_feedback_accepts_valid_extended_python_intro_run(self)
-- test_prepare_direct_feedback_accepts_web_intro_with_semantics_lists_and_extensions(self)
-- test_student_cannot_start_explicitly_disabled_course(self)
-- test_store_reply_persists_thread_entries(self)
-- test_store_reply_strips_internal_answer_instructions(self)
-
-Function __init__
-Args: ['self', 'username']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_start_creates_session_and_opening_message
-Args: ['self']
-
-Function test_prepare_includes_task_and_runtime_context
-Args: ['self']
-
-Function test_prepare_direct_feedback_accepts_valid_extended_python_intro_run
-Args: ['self']
-
-Function test_prepare_direct_feedback_accepts_web_intro_with_semantics_lists_and_extensions
-Args: ['self']
-
-Function test_student_cannot_start_explicitly_disabled_course
-Args: ['self']
-
-Function test_store_reply_persists_thread_entries
-Args: ['self']
-
-Function test_store_reply_strips_internal_answer_instructions
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_wiki_manual.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.wiki_manual
-
-Class _Session
-- __init__(self, role)
-- is_teacher(self)
-
-Class WikiManualTests
-- test_service_seeds_manuals_when_scope_folders_are_missing(self)
-- test_student_gets_student_manual_and_markdown_is_rendered(self)
-- test_teacher_can_switch_to_teacher_scope(self)
-
-Function __init__
-Args: ['self', 'role']
-
-Function is_teacher
-Args: ['self']
-
-Function test_service_seeds_manuals_when_scope_folders_are_missing
-Args: ['self']
-
-Function test_student_gets_student_manual_and_markdown_is_rendered
-Args: ['self']
-
-Function test_teacher_can_switch_to_teacher_scope
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_worker_agent.py
-Imports:
-- __future__
-- hashlib
-- tempfile
-- unittest
-- pathlib
-- unittest.mock
-- nova_school_server.worker_agent
-
-Class WorkerAgentTests
-- test_container_command_uses_materialized_workspace_without_copy_wrapper(self)
-- test_container_command_preserves_image_path_and_converts_file_limit(self)
-- test_verify_artifact_integrity_rejects_hash_mismatch(self)
-- test_verify_artifact_integrity_accepts_matching_hash(self)
-
-Function test_container_command_uses_materialized_workspace_without_copy_wrapper
-Args: ['self']
-
-Function test_container_command_preserves_image_path_and_converts_file_limit
-Args: ['self']
-
-Function test_verify_artifact_integrity_rejects_hash_mismatch
-Args: ['self']
-
-Function test_verify_artifact_integrity_accepts_matching_hash
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_worker_dispatch.py
-Imports:
-- __future__
-- hashlib
-- tempfile
-- unittest
-- pathlib
-- nova_school_server.config
-- nova_school_server.database
-- nova_school_server.worker_dispatch
-- nova_school_server.workspace
-
-Class _FakeSecurityPlane
-- __init__(self)
-- store_secret(self, tenant_id, name, secret_value, metadata)
-- resolve_secret(self, tenant_id, name)
-- onboard_worker(self)
-- list_worker_enrollments(self)
-
-Class WorkerDispatchTests
-- setUp(self)
-- tearDown(self)
-- test_claim_next_job_includes_signed_artifact_hash(self)
-
-Function __init__
-Args: ['self']
-
-Function store_secret
-Args: ['self', 'tenant_id', 'name', 'secret_value', 'metadata']
-
-Function resolve_secret
-Args: ['self', 'tenant_id', 'name']
-
-Function onboard_worker
-Args: ['self']
-
-Function list_worker_enrollments
-Args: ['self']
-
-Function setUp
-Args: ['self']
-
-Function tearDown
-Args: ['self']
-
-Function test_claim_next_job_includes_signed_artifact_hash
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\test_workspace.py
-Imports:
-- __future__
-- tempfile
-- unittest
-- pathlib
-- json
-- nova_school_server.config
-- nova_school_server.workspace
-
-Class WorkspaceTests
-- test_materialize_project_and_block_path_escape(self)
-- test_load_notebook_normalizes_legacy_starter_cells(self)
-- test_delete_file_removes_secondary_file_and_blocks_main_file(self)
-- test_directory_operations_support_create_delete_and_main_path_rename(self)
-
-Function test_materialize_project_and_block_path_escape
-Args: ['self']
-
-Function test_load_notebook_normalizes_legacy_starter_cells
-Args: ['self']
-
-Function test_delete_file_removes_secondary_file_and_blocks_main_file
-Args: ['self']
-
-Function test_directory_operations_support_create_delete_and_main_path_rename
-Args: ['self']
-
-## C:\Users\ralfk\AppData\Local\Temp\tmpz8syt5ct\Nova-School-Server-v0.1.14-linux-project\tests\__init__.py
-Imports:
-- __future__
-
-# 5. Main Request Flows
-
-User → Server → Runner → Sandbox(Container)
-
-1. User startet Aktion
-2. Server verarbeitet Request
-3. Runner/Scheduler übernimmt
-4. Container führt Code isoliert aus
-
+## Sandbox & Isolation
+- Docker / Podman Isolation, Seccomp (deny-by-default)
+- Resource Guards: PID Limits, Memory Caps, Read-only FS.
+
+# 3. KI-Inferenz
+- GGUF / LiteRTLM Fokus auf offline Stabilität.
+- Lifecycle: Subprozess Monitoring & Idle Kill.
+
+# 4. Code Overview
+
+### File: ai_service.py (python)
+**Imports:** __future__, json, os, re, shutil, socket, subprocess, threading, time, zipfile
+- **Class LlamaCppService**: __init__(), model_roots(), model_root(), explicit_model_path(), model_label(), max_tokens(), top_k(), temperature(), random_seed(), backend(), ctx_size(), gpu_layers(), threads(), sleep_idle_seconds(), port(), server_url(), explicit_binary_path(), generation_options(), local_model_files(), resolved_model_path(), resolved_model_label(), _discover_binary_candidates(), _request_json(), _latest_release(), _download_binary(), _ensure_binary_path(), _desired_process_key(), _build_command(), _poll_health(), _read_failure_details(), _stop_process_locked(), close(), _cancel_idle_timer_locked(), _schedule_idle_shutdown(), ensure_server_ready(), complete(), prepare_direct_completion(), complete_direct_completion(), status()
+- **Class LiteRTLmService**: __init__(), model_roots(), explicit_model_path(), model_label(), backend(), max_tokens(), top_k(), temperature(), random_seed(), sleep_idle_seconds(), port(), server_url(), explicit_binary_path(), explicit_home_path(), generation_options(), local_model_files(), resolved_model_path(), resolved_model_label(), resolved_model_id(), resolved_home_root(), lit_root(), model_registry_dir(), registry_model_path(), registry_cache_path(), _explicit_binary_directory(), _discover_binary_candidates(), _ensure_binary_path(), _register_model_file(), ensure_model_registered(), _desired_process_key(), _build_command(), _request_json(), _probe_server(), _read_failure_details(), _stop_process_locked(), close(), _cancel_idle_timer_locked(), _schedule_idle_shutdown(), ensure_server_ready(), _compose_prompt(), _build_run_command(), _cli_environment(), _prompt_file_path(), _extract_cli_response_text(), _clean_cli_output(), _extract_response_text(), _request_completion(), complete(), prepare_direct_completion(), complete_direct_completion(), status()
+- **Class LocalAIService**: __init__(), __getattr__(), provider_id(), engine_id(), _provider_preference(), _active_service(), close(), complete(), prepare_direct_completion(), complete_direct_completion(), status()
+- **Function _clamp_int**(value, default, minimum, maximum)
+- **Function _clamp_float**(value, default, minimum, maximum)
+- **Function _sanitize_model_text**(value)
+- **Function _normalize_prompt_text**(text)
+- **Function _estimate_token_count**(text)
+- **Function _trim_text_middle**(text)
+- **Function _prepare_prompt_with_budget**(prompt)
+- **Function _unwrap_short_reply**(value)
+- **Function _extract_exact_short_reply_target**(prompt)
+- **Function _normalize_model_label**(value)
+- **Function _sanitize_model_id**(value)
+- **Function _same_drive**(left, right)
+- **Function _first_existing_path**(candidates)
+- **Function __init__**(self, repository)
+- **Function model_roots**(self)
+- **Function model_root**(self)
+- **Function explicit_model_path**(self)
+- **Function model_label**(self)
+- **Function max_tokens**(self)
+- **Function top_k**(self)
+- **Function temperature**(self)
+- **Function random_seed**(self)
+- **Function backend**(self)
+- **Function ctx_size**(self)
+- **Function gpu_layers**(self)
+- **Function threads**(self)
+- **Function sleep_idle_seconds**(self)
+- **Function port**(self)
+- **Function server_url**(self)
+- **Function explicit_binary_path**(self)
+- **Function generation_options**(self)
+- **Function local_model_files**(self)
+- **Function resolved_model_path**(self)
+- **Function resolved_model_label**(self)
+- **Function _discover_binary_candidates**(self)
+- **Function _request_json**(self, url)
+- **Function _latest_release**(self)
+- **Function _download_binary**(self)
+- **Function _ensure_binary_path**(self)
+- **Function _desired_process_key**(self)
+- **Function _build_command**(self, binary_path, model_path)
+- **Function _poll_health**(self)
+- **Function _read_failure_details**(self, fallback)
+- **Function _stop_process_locked**(self)
+- **Function close**(self)
+- **Function _cancel_idle_timer_locked**(self)
+- **Function _schedule_idle_shutdown**(self)
+- **Function ensure_server_ready**(self)
+- **Function complete**(self)
+- **Function prepare_direct_completion**(self)
+- **Function complete_direct_completion**(self)
+- **Function status**(self)
+- **Function __init__**(self, repository)
+- **Function model_roots**(self)
+- **Function explicit_model_path**(self)
+- **Function model_label**(self)
+- **Function backend**(self)
+- **Function max_tokens**(self)
+- **Function top_k**(self)
+- **Function temperature**(self)
+- **Function random_seed**(self)
+- **Function sleep_idle_seconds**(self)
+- **Function port**(self)
+- **Function server_url**(self)
+- **Function explicit_binary_path**(self)
+- **Function explicit_home_path**(self)
+- **Function generation_options**(self)
+- **Function local_model_files**(self)
+- **Function resolved_model_path**(self)
+- **Function resolved_model_label**(self)
+- **Function resolved_model_id**(self)
+- **Function resolved_home_root**(self)
+- **Function lit_root**(self)
+- **Function model_registry_dir**(self)
+- **Function registry_model_path**(self)
+- **Function registry_cache_path**(self)
+- **Function _explicit_binary_directory**(self)
+- **Function _discover_binary_candidates**(self)
+- **Function _ensure_binary_path**(self)
+- **Function _register_model_file**(self, target, source)
+- **Function ensure_model_registered**(self)
+- **Function _desired_process_key**(self)
+- **Function _build_command**(self, binary_path)
+- **Function _request_json**(self, url)
+- **Function _probe_server**(self)
+- **Function _read_failure_details**(self, fallback)
+- **Function _stop_process_locked**(self)
+- **Function close**(self)
+- **Function _cancel_idle_timer_locked**(self)
+- **Function _schedule_idle_shutdown**(self)
+- **Function ensure_server_ready**(self)
+- **Function _compose_prompt**(self)
+- **Function _build_run_command**(self, binary_path, model_path, prompt_file)
+- **Function _cli_environment**(self)
+- **Function _prompt_file_path**(self)
+- **Function _extract_cli_response_text**(self, raw_output)
+- **Function _clean_cli_output**(self, raw_output)
+- **Function _extract_response_text**(self, response)
+- **Function _request_completion**(self, payload)
+- **Function complete**(self)
+- **Function prepare_direct_completion**(self)
+- **Function complete_direct_completion**(self)
+- **Function status**(self)
+- **Function __init__**(self, repository)
+- **Function __getattr__**(self, name)
+- **Function provider_id**(self)
+- **Function engine_id**(self)
+- **Function _provider_preference**(self)
+- **Function _active_service**(self)
+- **Function close**(self)
+- **Function complete**(self)
+- **Function prepare_direct_completion**(self)
+- **Function complete_direct_completion**(self)
+- **Function status**(self)
+- **Function sort_key**(path)
+- **Function shutdown**()
+- **Function sort_key**(path)
+- **Function shutdown**()
+### File: analysis_archive_builder.py (python)
+**Imports:** __future__, argparse, subprocess, zipfile, dataclasses, pathlib
+- **Class SourceAnalysisArchiveBuildResult**: 
+- **Function detect_project_version**(base_path)
+- **Function build_source_analysis_archive**(base_path)
+- **Function _iter_source_analysis_files**(base_path)
+- **Function _git_tracked_files**(base_path)
+- **Function _should_skip_source_analysis_file**(relative_path)
+- **Function _is_allowed_source_file**(relative_path)
+- **Function _is_probably_text_file**(path)
+- **Function main**()
+### File: archive_utils.py (python)
+**Imports:** __future__, os, stat, zipfile, pathlib
+- **Function extract_zip_safely**(archive, destination)
+- **Function _validated_zip_member_path**(member)
+- **Function _zip_entry_is_symlink**(member)
+### File: auth.py (python)
+**Imports:** __future__, base64, hashlib, hmac, os, dataclasses, typing, database, permissions
+- **Class SessionContext**: username(), role(), is_teacher(), is_admin(), group_ids(), to_dict()
+- **Class AuthService**: __init__(), ensure_user(), create_user(), login(), session_from_token(), logout()
+- **Function hash_password**(password)
+- **Function verify_password**(password, salt_text, hash_text)
+- **Function username**(self)
+- **Function role**(self)
+- **Function is_teacher**(self)
+- **Function is_admin**(self)
+- **Function group_ids**(self)
+- **Function to_dict**(self)
+- **Function __init__**(self, repository, security_plane, tenant_id, session_ttl_seconds)
+- **Function ensure_user**(self, username, password, role, display_name, permissions)
+- **Function create_user**(self, username, password, role, display_name, permissions)
+- **Function login**(self, username, password)
+- **Function session_from_token**(self, token)
+- **Function logout**(self, token_id)
+### File: codedump_tools.py (python)
+**Imports:** __future__, dataclasses, pathlib, typing, zipfile, argparse
+- **Class DumpConfig**: 
+- **Class DumpEntry**: 
+- **Class DumpResult**: 
+- **Function is_ignored**(path, config)
+- **Function is_code_file**(path, config)
+- **Function detect_language**(path)
+- **Function generate_tree**(file_paths)
+- **Function dump_zip_to_markdown**(zip_path, output_md, config)
+- **Function dump_target_to_markdown**(target, output_md, config)
+- **Function collect_directory_dump**(project_root)
+- **Function collect_zip_dump**(zip_path)
+- **Function render_dump_markdown**(result)
+- **Function _entry_from_path**(path, relative_path, config)
+- **Function _entry_from_zip**(archive, info, config)
+- **Function _entry_from_bytes**(relative_path, raw, size, config)
+- **Function _summarize_paths**(paths)
+- **Function _summary_label_for_path**(path)
+- **Function _is_dump_artifact**(path)
+- **Function _is_directory_like_target**(target)
+- **Function default_output_path**(target)
+- **Function config_for_profile**(profile)
+- **Function default_output_path_for_profile**(target, profile)
+- **Function main**()
+- **Function render**(node, prefix)
+### File: code_runner.py (python)
+**Imports:** __future__, hashlib, os, re, shlex, shutil, subprocess, threading, time, textwrap
+- **Class RunResult**: to_dict()
+- **Class LivePreparedRun**: 
+- **Class SchedulerLease**: 
+- **Class RunScheduler**: __init__(), acquire(), release(), _can_activate(), _global_limit(), _per_owner_limit(), _setting_int(), _priority_for_role()
+- **Class CodeRunner**: __init__(), run(), run_bundle(), prepare_live_run(), _resolve_language(), _resolve_bundle_language(), _prepare_source_file(), _prepare_bundle_workspace(), _prepare_execution_workspace(), _resolve_project_entry_path(), _resolve_project_entry_relative_path(), _project_source_files(), _java_main_class(), _copy_project_tree(), _safe_relative_path(), _prepare_html_preview(), _resolve_html_preview_entry(), _detect_python_gui_frameworks(), _read_source_text(), _python_syntax_error(), _python_requirements_file(), _python_dependency_cache_dir(), _restore_dependency_cache(), _store_dependency_cache(), _write_python_bootstrap(), _is_python_traceback_wrapper_line(), _sanitize_python_stderr(), _python_entry_env(), _run_containerized(), _run_python(), _run_node_like(), _run_cpp(), _run_java(), _run_rust(), _run_npm(), _ensure_python_dependencies_process(), _ensure_python_dependencies_container(), _container_error_is_missing_image(), _ensure_container_image_available(), _ensure_python_gui_container_image(), _prepare_python_gui_scripts(), _prepare_live_process(), _prepare_live_containerized(), _execute(), _execute_container(), _execute_container_raw(), _prepare_container_workspace(), _mirror_tree_securely(), _copy_tree_entries_securely(), _is_link_like(), _execution_env(), _containerized_env(), _container_file_size_limit_bytes(), _network_notes(), _backend_notes(), _runner_backend(), resolve_backend(), _session_role(), _session_can_view_operational_notes(), _visible_notes_for_session(), _finalize_run_result(), _finalize_prepared_run(), _container_runtime(), _container_image(), _container_base_command(), _container_wrapped_command(), _container_path(), _setting(), _setting_bool(), _unsafe_process_backend_enabled(), _container_seccomp_option(), _scheduler_notes(), _default_filename(), _execute_raw(), _container_runtime_error_message(), _container_runtime_health_timeout_seconds(), _container_runtime_health()
+- **Class _RawResult**: 
+- **Function to_dict**(self)
+- **Function __init__**(self, repository)
+- **Function acquire**(self, owner_username, role)
+- **Function release**(self, lease)
+- **Function _can_activate**(self, owner_username, role)
+- **Function _global_limit**(self)
+- **Function _per_owner_limit**(self, role)
+- **Function _setting_int**(self, key, default)
+- **Function _priority_for_role**(role)
+- **Function __init__**(self, config, tool_sandbox, workspace_manager, repository)
+- **Function run**(self, session, project, payload)
+- **Function run_bundle**(self, session, payload)
+- **Function prepare_live_run**(self, session, project, payload)
+- **Function _resolve_language**(self, project, payload)
+- **Function _resolve_bundle_language**(self, payload)
+- **Function _prepare_source_file**(self, project, payload, language, run_root)
+- **Function _prepare_bundle_workspace**(self, payload, language, run_root)
+- **Function _prepare_execution_workspace**(self, project, payload, language, project_root, run_root)
+- **Function _resolve_project_entry_path**(self, project, payload, language, runtime_root)
+- **Function _resolve_project_entry_relative_path**(self, project, payload, language)
+- **Function _project_source_files**(project_root, suffixes)
+- **Function _java_main_class**(self, source_path, project_root)
+- **Function _copy_project_tree**(self, project_root, runtime_root)
+- **Function _safe_relative_path**(path_text)
+- **Function _prepare_html_preview**(self, project, payload, project_root, run_root)
+- **Function _resolve_html_preview_entry**(self, project, payload, preview_root, source_path)
+- **Function _detect_python_gui_frameworks**(self, language, source_path, payload)
+- **Function _read_source_text**(path)
+- **Function _python_syntax_error**(self, source_path)
+- **Function _python_requirements_file**(workspace_root)
+- **Function _python_dependency_cache_dir**(self, requirements_path, backend_marker)
+- **Function _restore_dependency_cache**(target_root, cache_root)
+- **Function _store_dependency_cache**(source_root, cache_root)
+- **Function _write_python_bootstrap**(self, workspace_root)
+- **Function _is_python_traceback_wrapper_line**(line)
+- **Function _sanitize_python_stderr**(self, stderr)
+- **Function _python_entry_env**(self, env, entrypoint_path, deps_path)
+- **Function _run_containerized**(self, run_id, language, source_path, run_root, project_root, stdin_text, env, tool_session, permissions, payload)
+- **Function _run_python**(self, run_id, source_path, project_root, stdin_text, env, tool_session, permissions)
+- **Function _run_node_like**(self, run_id, language, source_path, project_root, stdin_text, env, tool_session, permissions)
+- **Function _run_cpp**(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
+- **Function _run_java**(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
+- **Function _run_rust**(self, run_id, source_path, run_root, project_root, stdin_text, env, tool_session, permissions)
+- **Function _run_npm**(self, run_id, project_root, payload, stdin_text, env, tool_session, permissions)
+- **Function _ensure_python_dependencies_process**(self, workspace_root, env, permissions)
+- **Function _ensure_python_dependencies_container**(self, runtime_executable, image, container_workspace, env, permissions)
+- **Function _container_error_is_missing_image**(raw_error)
+- **Function _ensure_container_image_available**(self, runtime_executable, image, cwd)
+- **Function _ensure_python_gui_container_image**(self, runtime_executable, base_image, permissions)
+- **Function _prepare_python_gui_scripts**(self, container_workspace, container_source_path)
+- **Function _prepare_live_process**(self, session_id, run_id, language, source_path, run_root, project_root, env, tool_session, permissions, payload)
+- **Function _prepare_live_containerized**(self, session_id, run_id, language, source_path, run_root, project_root, env, tool_session, permissions, payload)
+- **Function _execute**(self, run_id, language, command, cwd, stdin_text, env, tool_session, permissions)
+- **Function _execute_container**(self, run_id, language, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, tool_session, permissions)
+- **Function _execute_container_raw**(self, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, permissions)
+- **Function _prepare_container_workspace**(self, source_root, run_root)
+- **Function _mirror_tree_securely**(self, source_root, target_root, ignored_names)
+- **Function _copy_tree_entries_securely**(self, source_dir, target_dir, ignored_names)
+- **Function _is_link_like**(path)
+- **Function _execution_env**(self, project_root, web_access)
+- **Function _containerized_env**(env)
+- **Function _container_file_size_limit_bytes**(self)
+- **Function _network_notes**(self, permissions)
+- **Function _backend_notes**(self, permissions, backend, runtime, image)
+- **Function _runner_backend**(self, payload)
+- **Function resolve_backend**(self, session, payload)
+- **Function _session_role**(session)
+- **Function _session_can_view_operational_notes**(self, session)
+- **Function _visible_notes_for_session**(self, session, notes)
+- **Function _finalize_run_result**(self, session, result, lease)
+- **Function _finalize_prepared_run**(self, session, prepared, lease)
+- **Function _container_runtime**(self, payload)
+- **Function _container_image**(self, language, payload)
+- **Function _container_base_command**(self, runtime_executable, image, source_root, workspace_root, permissions, tty)
+- **Function _container_wrapped_command**(base_command, inner_command)
+- **Function _container_path**(self, project_root, target)
+- **Function _setting**(self, key, default)
+- **Function _setting_bool**(self, key, default)
+- **Function _unsafe_process_backend_enabled**(self)
+- **Function _container_seccomp_option**(self, runtime_name)
+- **Function _scheduler_notes**(lease)
+- **Function _default_filename**(language)
+- **Function _execute_raw**(self, command, cwd, stdin_text, env)
+- **Function _container_runtime_error_message**(self, runtime_executable, image, raw_error)
+- **Function _container_runtime_health_timeout_seconds**(self)
+- **Function _container_runtime_health**(self, runtime_executable, image)
+### File: collaboration.py (python)
+**Imports:** __future__, json, time, uuid, typing, database, workspace
+- **Class NotebookCollaborationService**: __init__(), snapshot(), heartbeat(), sync(), _init_schema(), _ensure_state(), _store_state(), _snapshot_at(), _active_presence(), _normalize_cell(), _merge_cells()
+- **Function __init__**(self, repository, workspace_manager)
+- **Function snapshot**(self, project)
+- **Function heartbeat**(self, session, project, cursor)
+- **Function sync**(self, session, project, cells, base_revision, cursor)
+- **Function _init_schema**(self)
+- **Function _ensure_state**(self, project)
+- **Function _store_state**(self, project, revision, cells, updated_by, base_revision)
+- **Function _snapshot_at**(self, project_id, revision)
+- **Function _active_presence**(self, project_id)
+- **Function _normalize_cell**(cell, index)
+- **Function _merge_cells**(cls, base_cells, current_cells, incoming_cells)
+### File: config.py (python)
+**Imports:** __future__, json, os, dataclasses, pathlib, typing
+- **Class ServerConfig**: from_base_path()
+- **Function resolve_package_path**(base_path)
+- **Function load_server_config_payload**(base_path)
+- **Function save_server_config_payload**(base_path, updates)
+- **Function active_runtime_config**(config)
+- **Function stored_runtime_config**(base_path, config)
+- **Function runtime_config_requires_restart**(active, stored)
+- **Function from_base_path**(cls, base_path)
+- **Function env_or_payload**(name, key, default)
+### File: container_seccomp.py (python)
+**Imports:** __future__, os, pathlib
+- **Function resolve_seccomp_profile_option**(profile_path, runtime_name)
+### File: curriculum.py (python)
+**Imports:** __future__, copy, hashlib, html, hmac, io, json, re, time, uuid
+- **Class CurriculumService**: __init__(), _catalog_courses(), _catalog_course(), active_bundle_id(), _active_bundle_row(), active_bundle(), _active_bundle_courses(), _active_bundle_course(), _active_bundle_material_presets(), _active_bundle_mentor_rules(), _resolve_mentor_rule(), _custom_courses(), _custom_course(), _slug(), _listify(), _normalize_question(), _normalize_course_definition(), save_custom_course(), validate_bundle_archive(), import_bundle_archive(), activate_bundle(), rollback_bundle(), list_bundles(), _bundle_payload(), _bundle_row_payload(), _bundle_preview_payload(), _parse_bundle_archive(), _decode_bundle_json(), _load_bundle_section(), _load_bundle_raw_section(), _ensure_unique_bundle_entries(), _normalize_bundle_course(), _normalize_material_preset(), _normalize_mentor_rule(), _verify_bundle_signature(), _canonical_bundle_payload(), dashboard(), material_studio_instruction_preset_catalog(), resolve_material_studio_instruction_preset(), mentor_context(), attempt_history(), set_release(), submit_assessment(), build_certificate_pdf(), prepare_certificate_metadata(), certificate_by_id(), render_certificate_verification_page(), _ensure_schema(), _sanitize_user(), _resolve_release(), _query_releases(), _list_releases(), _release_payload(), _release_row_payload(), _latest_attempts(), _certificate_for(), _course_payload(), _attempt_count(), _resolve_module(), _grade_assessment(), _refresh_certificate(), _learner_overview()
+- **Function __init__**(self, repository)
+- **Function _catalog_courses**(self)
+- **Function _catalog_course**(self, course_id)
+- **Function active_bundle_id**(self)
+- **Function _active_bundle_row**(self)
+- **Function active_bundle**(self)
+- **Function _active_bundle_courses**(self)
+- **Function _active_bundle_course**(self, course_id)
+- **Function _active_bundle_material_presets**(self)
+- **Function _active_bundle_mentor_rules**(self)
+- **Function _resolve_mentor_rule**(self, course_id, module_id)
+- **Function _custom_courses**(self)
+- **Function _custom_course**(self, course_id)
+- **Function _slug**(value)
+- **Function _listify**(value)
+- **Function _normalize_question**(self, raw)
+- **Function _normalize_course_definition**(self, payload)
+- **Function save_custom_course**(self, session, payload)
+- **Function validate_bundle_archive**(self, archive_bytes)
+- **Function import_bundle_archive**(self, session)
+- **Function activate_bundle**(self, session, bundle_id)
+- **Function rollback_bundle**(self, session)
+- **Function list_bundles**(self)
+- **Function _bundle_payload**(self, bundle_id)
+- **Function _bundle_row_payload**(self, row)
+- **Function _bundle_preview_payload**(self, bundle)
+- **Function _parse_bundle_archive**(self, archive_bytes)
+- **Function _decode_bundle_json**(archive, member)
+- **Function _load_bundle_section**(self, archive, folder_name, normalizer)
+- **Function _load_bundle_raw_section**(self, archive, folder_name)
+- **Function _ensure_unique_bundle_entries**(items)
+- **Function _normalize_bundle_course**(self, payload)
+- **Function _normalize_material_preset**(payload)
+- **Function _normalize_mentor_rule**(payload)
+- **Function _verify_bundle_signature**(self, manifest, courses, material_presets, mentor_rules, signature)
+- **Function _canonical_bundle_payload**(manifest, courses, material_presets, mentor_rules)
+- **Function dashboard**(self, session)
+- **Function material_studio_instruction_preset_catalog**(self)
+- **Function resolve_material_studio_instruction_preset**(self, preset_key)
+- **Function mentor_context**(self, session)
+- **Function attempt_history**(self, course_id, username)
+- **Function set_release**(self, session, course_id, scope_type, scope_key, enabled, note)
+- **Function submit_assessment**(self, session, course_id, module_id, assessment_kind, answers)
+- **Function build_certificate_pdf**(self, session, course_id, school_name)
+- **Function prepare_certificate_metadata**(self, username, course_id)
+- **Function certificate_by_id**(self, certificate_id)
+- **Function render_certificate_verification_page**(self, certificate_id, school_name)
+- **Function _ensure_schema**(self)
+- **Function _sanitize_user**(user)
+- **Function _resolve_release**(self, session, course_id)
+- **Function _query_releases**(self, course_id, scope_type, scope_keys)
+- **Function _list_releases**(self)
+- **Function _release_payload**(self, release_id)
+- **Function _release_row_payload**(self, row)
+- **Function _latest_attempts**(self, username, course_id)
+- **Function _certificate_for**(self, username, course_id)
+- **Function _course_payload**(self, session, course)
+- **Function _attempt_count**(self, username, course_id, module_id, assessment_kind)
+- **Function _resolve_module**(course, module_id, assessment_kind)
+- **Function _grade_assessment**(module, answers, pass_ratio)
+- **Function _refresh_certificate**(self, username, course_id, final_grading)
+- **Function _learner_overview**(self)
+### File: curriculum_catalog.py (python)
+**Imports:** __future__, typing
+- **Function _single**(question_id, prompt, options, correct, explanation)
+- **Function _multi**(question_id, prompt, options, correct, explanation)
+- **Function _text**(question_id, prompt, accepted, explanation)
+- **Function list_courses**()
+- **Function get_course**(course_id)
+### File: curriculum_certificate_pdf.py (python)
+**Imports:** __future__, hashlib, math, unicodedata, zlib, datetime, pathlib, PIL
+- **Function _normalize_text**(value)
+- **Function _pdf_string**(value)
+- **Function _rgb**(r, g, b)
+- **Function _estimate_width**(text, font_size)
+- **Function _text_command**(x, y, text)
+- **Function _centered_text_command**(y, text)
+- **Function _rect_command**(x, y, width, height)
+- **Function _line_command**(x1, y1, x2, y2)
+- **Function _image_draw_command**(x, y, width, height, resource_name)
+- **Function _format_date**(timestamp)
+- **Function _hex_to_rgb**(value, fallback)
+- **Function _initials**(value)
+- **Function _wrap_text**(text)
+- **Function _load_rgb_image**(path)
+- **Function _build_verification_matrix**(seed)
+- **Function build_curriculum_certificate_pdf**()
+- **Function bit**(index)
+- **Function draw_finder**(origin_x, origin_y)
+### File: database.py (python)
+**Imports:** __future__, json, sqlite3, threading, time, uuid, pathlib, typing, permissions
+- **Class SchoolRepository**: __init__(), close(), _init_schema(), _encode_json(), _decode_json(), create_user(), set_user_password(), get_user(), list_users(), update_user_permissions(), update_user_account(), set_user_status(), create_group(), get_group(), list_groups(), update_group_permissions(), add_membership(), remove_membership(), list_memberships(), list_user_groups(), create_project(), find_project_by_owner_and_slug(), get_project(), list_projects(), list_accessible_projects(), update_project_main_file(), put_setting(), get_setting(), list_settings(), upsert_worker_node(), get_worker_node(), list_worker_nodes(), create_dispatch_job(), get_dispatch_job(), list_dispatch_jobs(), list_latest_dispatch_jobs_for_project(), claim_next_dispatch_job(), update_dispatch_job_status(), append_dispatch_job_log(), request_dispatch_job_stop(), register_worker_nonce(), add_chat_message(), list_chat_messages(), set_mute(), get_active_mute(), list_mutes(), add_audit(), list_audit_logs(), _row_to_user(), _row_to_group(), _row_to_project(), _row_to_worker_node(), _row_to_dispatch_job()
+- **Function __init__**(self, database_path)
+- **Function close**(self)
+- **Function _init_schema**(self)
+- **Function _encode_json**(value)
+- **Function _decode_json**(value)
+- **Function create_user**(self, username, display_name, password_hash, password_salt, role, permissions, status)
+- **Function set_user_password**(self, username, password_hash, password_salt)
+- **Function get_user**(self, username)
+- **Function list_users**(self)
+- **Function update_user_permissions**(self, username, permissions)
+- **Function update_user_account**(self, username, display_name, role, status)
+- **Function set_user_status**(self, username, status)
+- **Function create_group**(self, group_id, display_name, description, permissions)
+- **Function get_group**(self, group_id)
+- **Function list_groups**(self)
+- **Function update_group_permissions**(self, group_id, permissions)
+- **Function add_membership**(self, username, group_id)
+- **Function remove_membership**(self, username, group_id)
+- **Function list_memberships**(self)
+- **Function list_user_groups**(self, username)
+- **Function create_project**(self, owner_type, owner_key, name, slug, template, runtime, main_file, description, created_by)
+- **Function find_project_by_owner_and_slug**(self, owner_type, owner_key, slug)
+- **Function get_project**(self, project_id)
+- **Function list_projects**(self)
+- **Function list_accessible_projects**(self, username, role, group_ids)
+- **Function update_project_main_file**(self, project_id, main_file)
+- **Function put_setting**(self, key, value)
+- **Function get_setting**(self, key, default)
+- **Function list_settings**(self)
+- **Function upsert_worker_node**(self, worker_id, display_name, token_secret_name)
+- **Function get_worker_node**(self, worker_id)
+- **Function list_worker_nodes**(self)
+- **Function create_dispatch_job**(self)
+- **Function get_dispatch_job**(self, job_id)
+- **Function list_dispatch_jobs**(self)
+- **Function list_latest_dispatch_jobs_for_project**(self, project_id)
+- **Function claim_next_dispatch_job**(self, worker_id)
+- **Function update_dispatch_job_status**(self, job_id)
+- **Function append_dispatch_job_log**(self, job_id, chunk)
+- **Function request_dispatch_job_stop**(self, job_id)
+- **Function register_worker_nonce**(self, worker_id, nonce)
+- **Function add_chat_message**(self, room_key, author_username, author_display_name, message, metadata)
+- **Function list_chat_messages**(self, room_key, since, limit)
+- **Function set_mute**(self, room_key, target_username, duration_minutes, reason, created_by)
+- **Function get_active_mute**(self, room_key, target_username)
+- **Function list_mutes**(self, active_only)
+- **Function add_audit**(self, actor_username, action, target_type, target_id, payload)
+- **Function list_audit_logs**(self)
+- **Function _row_to_user**(row)
+- **Function _row_to_group**(row)
+- **Function _row_to_project**(row)
+- **Function _row_to_worker_node**(row)
+- **Function _row_to_dispatch_job**(row)
+### File: deployments.py (python)
+**Imports:** __future__, json, os, shutil, subprocess, tempfile, time, uuid, zipfile, pathlib
+- **Class DeploymentService**: __init__(), list_artifacts(), create_share(), create_export(), resolve_share_path(), resolve_download_path(), _prepare_bundle(), _write_runtime_guides(), _store_artifact(), _init_schema(), _artifact_row(), _artifact_payload(), _enforce_quota()
+- **Function __init__**(self, repository, workspace_manager, security_plane, config)
+- **Function list_artifacts**(self, session)
+- **Function create_share**(self, session, project)
+- **Function create_export**(self, session, project)
+- **Function resolve_share_path**(self, artifact_id, relative_path)
+- **Function resolve_download_path**(self, artifact_id)
+- **Function _prepare_bundle**(self, runtime, project, source_root, bundle_root)
+- **Function _write_runtime_guides**(self, runtime, project, bundle_root)
+- **Function _store_artifact**(self)
+- **Function _init_schema**(self)
+- **Function _artifact_row**(self, artifact_id)
+- **Function _artifact_payload**(self, artifact_id)
+- **Function _enforce_quota**(self, quota_key)
+### File: distributed.py (python)
+**Imports:** __future__, json, os, shutil, socket, subprocess, time, dataclasses, pathlib, typing
+- **Class _ManagedWorker**: 
+- **Class DistributedPlaygroundService**: __init__(), close(), status(), _status_local(), start(), _start_local(), stop(), _stop_local(), _status_remote(), _start_remote(), _stop_remote(), stop_project(), _ensure_security_assets(), _load_topology(), _service_env(), _service_command(), _stop_worker(), _find_free_port(), _resolve_ports(), _log_path(), _prepare_service_workspace(), _service_runtime_root(), _ensure_network(), _remove_network(), _resolved_backend(), _dispatch_mode(), _container_name(), _network_name(), _service_language(), _container_path(), _tail_log(), _ca_name(), _policy_name()
+- **Function __init__**(self, repository, workspace_manager, security_plane, config, runner)
+- **Function close**(self)
+- **Function status**(self, project)
+- **Function _status_local**(self, project)
+- **Function start**(self, session, project)
+- **Function _start_local**(self, session, project)
+- **Function stop**(self, session, project)
+- **Function _stop_local**(self, session, project)
+- **Function _status_remote**(self, project)
+- **Function _start_remote**(self, session, project)
+- **Function _stop_remote**(self, session, project)
+- **Function stop_project**(self, project_id)
+- **Function _ensure_security_assets**(self, project_id, topology)
+- **Function _load_topology**(self, project)
+- **Function _service_env**(self, session, project, service_map, service, resolved_ports, worker_id)
+- **Function _service_command**(self, project, service)
+- **Function _stop_worker**(self, worker)
+- **Function _find_free_port**()
+- **Function _resolve_ports**(self, services, cluster)
+- **Function _log_path**(self, project, service_name)
+- **Function _prepare_service_workspace**(self, project, service_name)
+- **Function _service_runtime_root**(self, project, service_name)
+- **Function _ensure_network**(self, project_id)
+- **Function _remove_network**(self, project_id)
+- **Function _resolved_backend**(self, session)
+- **Function _dispatch_mode**(self)
+- **Function _container_name**(worker_id)
+- **Function _network_name**(project_id)
+- **Function _service_language**(runtime)
+- **Function _container_path**(runtime_root, target)
+- **Function _tail_log**(path, max_chars)
+- **Function _ca_name**(project_id)
+- **Function _policy_name**(project_id)
+- **Function ignore**(_directory, names)
+### File: distribution_builder.py (python)
+**Imports:** __future__, json, stat, shutil, tempfile, zipfile, dataclasses, pathlib, typing, argparse
+- **Class DistributionBuildResult**: 
+- **Class DistributionMaterializeResult**: 
+- **Class LinuxProjectBuildResult**: 
+- **Function detect_project_version**(base_path)
+- **Function build_distribution_archive**(base_path, output_dir, version, flavor)
+- **Function build_linux_project_archive**(base_path, output_dir, version)
+- **Function materialize_distribution_directory**(base_path, target_root)
+- **Function _normalize_flavor**(flavor)
+- **Function _copy_project_tree**(source_root, target_root)
+- **Function _copy_directory**(source_dir, target_dir)
+- **Function _should_skip_root_entry**(path, relative_path)
+- **Function _should_skip_entry**(path, relative_path)
+- **Function _normalize_relative_path**(path)
+- **Function _is_excluded_relative_path**(relative_path, excluded_relative_paths)
+- **Function _create_distribution_scaffold**(staging_root, version, flavor)
+- **Function _prune_for_flavor**(staging_root, flavor)
+- **Function _write_platform_installation_guide**(staging_root, flavor, version)
+- **Function _remove_if_exists**(path)
+- **Function _ensure_placeholder**(path)
+- **Function _write_lit_scaffold**(staging_root)
+- **Function _copy_optional_linux_runtime_binaries**(source_root, target_root, flavor)
+- **Function _zip_tree**(root, archive_path)
+- **Function _iter_files**(root)
+- **Function main**()
+### File: docs_catalog.py (python)
+**Imports:** __future__, pathlib, templates
+- **Class DocumentationCatalog**: __init__(), ensure_seed_docs(), list_docs(), get_doc()
+- **Function __init__**(self, docs_path)
+- **Function ensure_seed_docs**(self)
+- **Function list_docs**(self)
+- **Function get_doc**(self, slug)
+### File: embedded_nova.py (python)
+**Imports:** __future__, json, secrets, threading, time, uuid, dataclasses, pathlib, typing
+- **Class EmbeddedPrincipal**: 
+- **Class EmbeddedSecurityPlane**: __init__(), register_tenant(), get_tenant(), issue_token(), authenticate(), revoke_token(), store_secret(), resolve_secret(), create_certificate_authority(), get_certificate_authority(), set_trust_policy(), get_trust_policy(), onboard_worker(), list_worker_enrollments(), snapshot(), close(), _load_state(), _save_state(), _empty_state(), _secret_key()
+- **Class EmbeddedToolSandbox**: __init__(), authorize(), snapshot()
+- **Class EmbeddedNovaAIProviderRuntime**: snapshot()
+- **Function _json_safe**(value)
+- **Function __init__**(self, base_path)
+- **Function register_tenant**(self, tenant_id)
+- **Function get_tenant**(self, tenant_id)
+- **Function issue_token**(self, tenant_id, subject)
+- **Function authenticate**(self, token)
+- **Function revoke_token**(self, token_id)
+- **Function store_secret**(self, tenant_id, name, secret_value, metadata)
+- **Function resolve_secret**(self, tenant_id, name)
+- **Function create_certificate_authority**(self, name)
+- **Function get_certificate_authority**(self, name)
+- **Function set_trust_policy**(self, name)
+- **Function get_trust_policy**(self, name)
+- **Function onboard_worker**(self, worker_id, tenant_id)
+- **Function list_worker_enrollments**(self, tenant_id)
+- **Function snapshot**(self)
+- **Function close**(self)
+- **Function _load_state**(self)
+- **Function _save_state**(self)
+- **Function _empty_state**()
+- **Function _secret_key**(tenant_id, name)
+- **Function __init__**(self)
+- **Function authorize**(self, principal)
+- **Function snapshot**(self)
+- **Function snapshot**(self)
+### File: material_studio.py (python)
+**Imports:** __future__, ast, json, math, re, textwrap, typing, code_runner, curriculum_catalog, database
+- **Class TeacherMaterialStudioService**: __init__(), _ai_provider_id(), _requires_visible_output(), _python_has_missing_main_invocation(), start_generation(), continue_generation(), generate(), run_current(), _coerce_generation_state(), _complete_inference_payload(), _inference_step(), _profile_from_state(), _instruction_preset_from_state(), _normalize_instruction_preset(), _normalize_compare_text(), _instruction_preset_lines(), _prompt_input_token_budget(), _normalize_prompt_text(), _estimate_token_count(), _trim_text_middle(), _is_model_input_too_long_error(), _prepare_inference_prompt(), _generation_options_for_phase(), _timeout_seconds_for_phase(), _agent_summary(), _state_plan(), _state_bundle(), _state_run_result(), _issue_json_repair_step(), _issue_code_repair_step(), _issue_plan_step(), _consume_plan_response(), _consume_plan_repair_response(), _issue_author_step(), _consume_author_response(), _consume_author_repair_response(), _issue_author_code_step(), _consume_author_code_response(), _consume_author_code_repair_response(), _accept_author_code(), _run_working_bundle(), _issue_debugger_step(), _consume_debugger_response(), _consume_debugger_repair_response(), _issue_debugger_code_step(), _consume_debugger_code_response(), _consume_debugger_code_repair_response(), _accept_debugger_code(), _issue_pedagogy_step(), _consume_pedagogy_response(), _consume_pedagogy_repair_response(), _finalize_generation(), _replace_main_file(), _fallback_pedagogy(), _bundle_prompt_snapshot(), _run_result_snapshot(), _pedagogy_payload_snapshot(), _bundle_response(), _json_completion(), _code_completion(), _normalize_language(), _normalize_profile(), _normalize_plan(), _normalize_bundle(), _main_file_content(), _sanitize_relative_path(), _stringify_text(), _clean_text(), _has_meaningful_value(), _structured_json_payload(), _validate_schema_payload(), _candidate_objects(), _lookup_path(), _lookup_alias(), _looks_like_file_path(), _normalize_files_value(), _canonicalize_plan_payload(), _canonicalize_bundle_payload(), _canonicalize_pedagogy_payload(), _extract_json_object(), _parse_json_candidate(), _json_candidates(), _json_candidate_variants(), _strip_jsonish_comments(), _remove_trailing_commas(), _quote_bare_keys(), _scan_top_level_json_objects(), _jsonish_to_python_literal(), _extract_code_block(), _looks_like_instructional_prose(), _looks_like_source_code(), _json_repair_prompt(), _parse_json_response(), _parse_code_response(), _code_repair_prompt(), _planner_prompt(), _fallback_plan(), _author_prompt(), _author_code_prompt(), _pedagogy_json_repair_prompt(), _repair_prompt(), _repair_code_prompt(), _pedagogy_prompt()
+- **Class _MainCallVisitor**: __init__(), visit_Call()
+- **Function material_studio_profile_catalog**()
+- **Function _material_studio_preset_technical_lines**(language)
+- **Function _material_studio_preset_modules**(source)
+- **Function material_studio_instruction_preset_catalog**()
+- **Function resolve_material_studio_instruction_preset**(preset_key)
+- **Function __init__**(self, repository, runner)
+- **Function _ai_provider_id**(self)
+- **Function _requires_visible_output**(self, state, bundle, run_result)
+- **Function _python_has_missing_main_invocation**(code)
+- **Function start_generation**(self)
+- **Function continue_generation**(self, session)
+- **Function generate**(self, session)
+- **Function run_current**(self, session, payload)
+- **Function _coerce_generation_state**(self, generation_state)
+- **Function _complete_inference_payload**(self, payload)
+- **Function _inference_step**(self, state)
+- **Function _profile_from_state**(self, state)
+- **Function _instruction_preset_from_state**(self, state)
+- **Function _normalize_instruction_preset**(preset_key, profile_key, language)
+- **Function _normalize_compare_text**(value)
+- **Function _instruction_preset_lines**(self, instruction_preset)
+- **Function _prompt_input_token_budget**(self, phase)
+- **Function _normalize_prompt_text**(text)
+- **Function _estimate_token_count**(text)
+- **Function _trim_text_middle**(text)
+- **Function _is_model_input_too_long_error**(error)
+- **Function _prepare_inference_prompt**(self, prompt)
+- **Function _generation_options_for_phase**(self, phase)
+- **Function _timeout_seconds_for_phase**(self, phase)
+- **Function _agent_summary**(summary, instruction_preset)
+- **Function _state_plan**(self, state)
+- **Function _state_bundle**(self, state)
+- **Function _state_run_result**(self, state, language)
+- **Function _issue_json_repair_step**(self, state)
+- **Function _issue_code_repair_step**(self, state)
+- **Function _issue_plan_step**(self, state)
+- **Function _consume_plan_response**(self, state, raw_text, model)
+- **Function _consume_plan_repair_response**(self, state, raw_text, model)
+- **Function _issue_author_step**(self, state)
+- **Function _consume_author_response**(self, session, state, raw_text, model)
+- **Function _consume_author_repair_response**(self, session, state, raw_text, model)
+- **Function _issue_author_code_step**(self, state)
+- **Function _consume_author_code_response**(self, session, state, raw_text, model)
+- **Function _consume_author_code_repair_response**(self, session, state, raw_text, model)
+- **Function _accept_author_code**(self, session, state, code_text, model)
+- **Function _run_working_bundle**(self, session, state)
+- **Function _issue_debugger_step**(self, state)
+- **Function _consume_debugger_response**(self, session, state, raw_text, model)
+- **Function _consume_debugger_repair_response**(self, session, state, raw_text, model)
+- **Function _issue_debugger_code_step**(self, state)
+- **Function _consume_debugger_code_response**(self, session, state, raw_text, model)
+- **Function _consume_debugger_code_repair_response**(self, session, state, raw_text, model)
+- **Function _accept_debugger_code**(self, session, state, repaired_code, model)
+- **Function _issue_pedagogy_step**(self, state)
+- **Function _consume_pedagogy_response**(self, state, raw_text, model)
+- **Function _consume_pedagogy_repair_response**(self, state, raw_text, model)
+- **Function _finalize_generation**(self, state)
+- **Function _replace_main_file**(self, bundle, repaired_code, plan)
+- **Function _fallback_pedagogy**(self, payload, profile, run_result)
+- **Function _bundle_prompt_snapshot**(self, bundle)
+- **Function _run_result_snapshot**(run_result)
+- **Function _pedagogy_payload_snapshot**(self, payload)
+- **Function _bundle_response**(self, bundle, run_result, trace)
+- **Function _json_completion**(self, prompt)
+- **Function _code_completion**(self, prompt)
+- **Function _normalize_language**(language)
+- **Function _normalize_profile**(profile)
+- **Function _normalize_plan**(payload, fallback_language)
+- **Function _normalize_bundle**(self, payload, fallback_language, plan)
+- **Function _main_file_content**(files, main_file)
+- **Function _sanitize_relative_path**(path_text)
+- **Function _stringify_text**(value)
+- **Function _clean_text**(value)
+- **Function _has_meaningful_value**(value)
+- **Function _structured_json_payload**(cls, text)
+- **Function _validate_schema_payload**(cls, payload, schema_name)
+- **Function _candidate_objects**(cls, payload)
+- **Function _lookup_path**(payload, dotted_key)
+- **Function _lookup_alias**(cls, objects)
+- **Function _looks_like_file_path**(value)
+- **Function _normalize_files_value**(cls, value)
+- **Function _canonicalize_plan_payload**(cls, payload)
+- **Function _canonicalize_bundle_payload**(cls, payload)
+- **Function _canonicalize_pedagogy_payload**(cls, payload)
+- **Function _extract_json_object**(text)
+- **Function _parse_json_candidate**(candidate)
+- **Function _json_candidates**(raw)
+- **Function _json_candidate_variants**(text)
+- **Function _strip_jsonish_comments**(text)
+- **Function _remove_trailing_commas**(text)
+- **Function _quote_bare_keys**(text)
+- **Function _scan_top_level_json_objects**(text)
+- **Function _jsonish_to_python_literal**(text)
+- **Function _extract_code_block**(text)
+- **Function _looks_like_instructional_prose**(text)
+- **Function _looks_like_source_code**(cls, text)
+- **Function _json_repair_prompt**(raw_text)
+- **Function _parse_json_response**(cls, raw_text)
+- **Function _parse_code_response**(cls, raw_text)
+- **Function _code_repair_prompt**(raw_text)
+- **Function _planner_prompt**(self, prompt, language, profile)
+- **Function _fallback_plan**(self, prompt, language, profile)
+- **Function _author_prompt**(self, prompt, plan, profile)
+- **Function _author_code_prompt**(self, prompt, plan, profile)
+- **Function _pedagogy_json_repair_prompt**(self, raw_text, payload, profile, run_result)
+- **Function _repair_prompt**(self, prompt, plan, profile, bundle, run_result, next_attempt, instruction_preset)
+- **Function _repair_code_prompt**(self, prompt, plan, profile, bundle, run_result, next_attempt, instruction_preset)
+- **Function _pedagogy_prompt**(self, payload, profile, run_result, instruction_preset)
+- **Function __init__**(self)
+- **Function visit_Call**(self, node)
+### File: mentor.py (python)
+**Imports:** __future__, typing, ai_service, database
+- **Class SocraticMentorService**: __init__(), thread(), prepare(), store_reply(), _room_key(), _compose_prompt()
+- **Function __init__**(self, repository)
+- **Function thread**(self, session, project)
+- **Function prepare**(self, session, project)
+- **Function store_reply**(self, session, project)
+- **Function _room_key**(project_id, username)
+- **Function _compose_prompt**(project, prompt, code, path_hint, run_output, history)
+### File: nova_bootstrap.py (python)
+**Imports:** __future__, importlib.util, sys, pathlib
+- **Function bootstrap_package**()
+### File: nova_bridge.py (python)
+**Imports:** __future__, dataclasses, embedded_nova
+- **Class NovaBridge**: 
+- **Function load_nova_bridge**()
+### File: nova_launch.py (python)
+**Imports:** __future__, nova_bootstrap, nova_school_server.__main__
+- **Function main**()
+### File: nova_product_docs.py (python)
+**Imports:** __future__, json, shutil, pathlib, typing, permissions
+- **Class NovaSchoolProductDocsBuilder**: __init__(), ensure_built(), is_stale(), build(), _build_index(), _expand_tokens(), _permission_table(), _role_defaults_table(), _bool_label(), _has_sources(), _source_files(), _source_signature(), _extract_title(), _extract_summary()
+- **Function main**()
+- **Function __init__**(self, source_root, pack_root)
+- **Function ensure_built**(self)
+- **Function is_stale**(self)
+- **Function build**(self)
+- **Function _build_index**(self, documents)
+- **Function _expand_tokens**(self, content)
+- **Function _permission_table**(self)
+- **Function _role_defaults_table**(self)
+- **Function _bool_label**(value)
+- **Function _has_sources**(self)
+- **Function _source_files**(self)
+- **Function _source_signature**(self)
+- **Function _extract_title**(content, path)
+- **Function _extract_summary**(content)
+### File: nova_test_launch.py (python)
+**Imports:** __future__, sys, unittest, pathlib, nova_bootstrap
+- **Function main**()
+### File: nova_worker_launch.py (python)
+**Imports:** __future__, nova_bootstrap, nova_school_server.worker_agent
+- **Function main**()
+### File: permissions.py (python)
+**Imports:** __future__, typing
+- **Function normalize_permission_overrides**(raw)
+- **Function resolve_permissions**(role, group_overrides, user_overrides)
+- **Function permission_catalog**()
+- **Function allowed_tool_names**(permissions)
+### File: project_files.py (python)
+**Imports:** __future__, shutil, pathlib
+- **Function copy_project_snapshot**(project_root, target_root)
+- **Function list_snapshot_files**(snapshot_root)
+- **Function read_text_preview**(snapshot_root, preferred_path, max_chars)
+### File: pty_host.py (python)
+**Imports:** __future__, os, signal, subprocess, threading, time, pathlib, typing, ctypes, ctypes
+- **Class PtyProcess**: read(), write(), resize(), poll(), wait(), terminate(), close()
+- **Class COORD**: 
+- **Class STARTUPINFOW**: 
+- **Class STARTUPINFOEXW**: 
+- **Class PROCESS_INFORMATION**: 
+- **Class _PyWinPtyProcess**: __init__(), _capture_output(), read(), write(), resize(), poll(), wait(), terminate(), close()
+- **Class _WindowsConPtyProcess**: __init__(), read(), write(), resize(), poll(), wait(), terminate(), _capture_output(), close()
+- **Class _PosixPtyProcess**: __init__(), read(), write(), resize(), poll(), wait(), terminate(), close()
+- **Function normalize_terminal_size**(cols, rows)
+- **Function create_pty_process**(command, cwd, env, cols, rows)
+- **Function read**(self, size)
+- **Function write**(self, data)
+- **Function resize**(self, cols, rows)
+- **Function poll**(self)
+- **Function wait**(self, timeout)
+- **Function terminate**(self, force)
+- **Function close**(self)
+- **Function _raise_last_error**(message)
+- **Function _raise_hresult**(message, code)
+- **Function _close_handle**(handle)
+- **Function _set_no_inherit**(handle)
+- **Function _create_pipe**()
+- **Function _build_environment_block**(env)
+- **Function _build_attribute_list**(hpc)
+- **Function _normalize_windows_input**(data)
+- **Function __init__**(self, command, cwd, env, cols, rows)
+- **Function _capture_output**(self)
+- **Function read**(self, size)
+- **Function write**(self, data)
+- **Function resize**(self, cols, rows)
+- **Function poll**(self)
+- **Function wait**(self, timeout)
+- **Function terminate**(self, force)
+- **Function close**(self)
+- **Function __init__**(self, command, cwd, env, cols, rows)
+- **Function read**(self, size)
+- **Function write**(self, data)
+- **Function resize**(self, cols, rows)
+- **Function poll**(self)
+- **Function wait**(self, timeout)
+- **Function terminate**(self, force)
+- **Function _capture_output**(self)
+- **Function close**(self)
+- **Function __init__**(self, command, cwd, env, cols, rows)
+- **Function read**(self, size)
+- **Function write**(self, data)
+- **Function resize**(self, cols, rows)
+- **Function poll**(self)
+- **Function wait**(self, timeout)
+- **Function terminate**(self, force)
+- **Function close**(self)
+### File: realtime.py (python)
+**Imports:** __future__, base64, codecs, hashlib, json, socket, struct, subprocess, threading, time
+- **Class WebSocketConnection**: __init__(), send_json(), send_text(), recv_json(), recv_text(), close(), accept_key(), _recv_frame(), _send_frame(), _recv_exact()
+- **Class RealtimeClient**: 
+- **Class ActiveLiveRun**: 
+- **Class LiveRunManager**: __init__(), close(), stop_for_client(), start(), send_input(), resize(), stop(), _pump_stream(), _pump_terminal(), _watch_process(), _emit_chunk(), _emit_exit_from_handle(), _emit_exit(), _session(), _ensure_control(), _terminate(), _terminal_payload(), _poll_handle(), _wait_handle()
+- **Class RealtimeService**: __init__(), close(), handle_project_socket(), _handle_message(), _broadcast_project(), _register(), _unregister(), _require_permission()
+- **Function upgrade_websocket**(handler)
+- **Function __init__**(self, sock)
+- **Function send_json**(self, payload)
+- **Function send_text**(self, text)
+- **Function recv_json**(self)
+- **Function recv_text**(self)
+- **Function close**(self, code, reason)
+- **Function accept_key**(key)
+- **Function _recv_frame**(self)
+- **Function _send_frame**(self, opcode, payload)
+- **Function _recv_exact**(self, size)
+- **Function __init__**(self, runner, repository)
+- **Function close**(self)
+- **Function stop_for_client**(self, client_id)
+- **Function start**(self, client, payload)
+- **Function send_input**(self, actor, session_id, text)
+- **Function resize**(self, actor, session_id, cols, rows)
+- **Function stop**(self, actor, session_id)
+- **Function _pump_stream**(self, session_id, stream_name, stream)
+- **Function _pump_terminal**(self, session_id)
+- **Function _watch_process**(self, session_id)
+- **Function _emit_chunk**(self, session_id, stream_name, chunk)
+- **Function _emit_exit_from_handle**(self, handle, returncode, duration_ms)
+- **Function _emit_exit**(self, prepared, actor_username, returncode, duration_ms, timed_out, emitter, client_meta, terminal, notes)
+- **Function _session**(self, session_id)
+- **Function _ensure_control**(actor, handle)
+- **Function _terminate**(self, session_id)
+- **Function _terminal_payload**(payload)
+- **Function _poll_handle**(handle)
+- **Function _wait_handle**(handle)
+- **Function __init__**(self, application)
+- **Function close**(self)
+- **Function handle_project_socket**(self, connection, session, project)
+- **Function _handle_message**(self, client, message)
+- **Function _broadcast_project**(self, project_id, payload)
+- **Function _register**(self, client)
+- **Function _unregister**(self, client)
+- **Function _require_permission**(session, key)
+### File: reference_import_cpp.py (python)
+**Imports:** __future__, argparse, html, json, re, shutil, sys, time, urllib.request, collections
+- **Class ReferenceTarget**: 
+- **Class CppReferenceMirrorBuilder**: __init__(), build(), _prepare_output(), _seed_urls(), _mirror_page(), _mirror_asset(), _fetch(), _rewrite_html(), _rewrite_srcset(), _rewrite_css(), _rewrite_reference(), classify_reference(), _normalize_cpp_page_path(), local_page_path(), local_asset_path(), _relative_href(), _is_css_asset(), _strip_external_noise(), _write_landing_page()
+- **Function build_argument_parser**()
+- **Function main**(argv)
+- **Function __init__**(self)
+- **Function build**(self)
+- **Function _prepare_output**(self)
+- **Function _seed_urls**(self)
+- **Function _mirror_page**(self, remote_url)
+- **Function _mirror_asset**(self, remote_url)
+- **Function _fetch**(self, remote_url)
+- **Function _rewrite_html**(self, html_text, current_url)
+- **Function _rewrite_srcset**(self, match, current_url, current_local_path)
+- **Function _rewrite_css**(self, css_text, current_url, current_local_path)
+- **Function _rewrite_reference**(self, raw_value)
+- **Function classify_reference**(raw_value)
+- **Function _normalize_cpp_page_path**(path)
+- **Function local_page_path**(remote_url)
+- **Function local_asset_path**(remote_url)
+- **Function _relative_href**(current_local_path, target_local_path, fragment)
+- **Function _is_css_asset**(remote_url)
+- **Function _strip_external_noise**(html_text)
+- **Function _write_landing_page**(self)
+- **Function replace_attr**(match)
+- **Function replace_url**(match)
+### File: reference_import_web.py (python)
+**Imports:** __future__, argparse, html, json, re, shutil, subprocess, sys, time, dataclasses
+- **Class MirrorSource**: 
+- **Class MirrorPack**: 
+- **Class ReferenceWebMirrorBuilder**: __init__(), build(), finalize_existing_site(), _build_wget_command(), _rewrite_mirror_html(), _rewrite_attr(), _rewrite_srcset(), _rewrite_url(), _is_absolute_or_root_relative(), resolve_local_target(), _relative_href(), _write_landing_page()
+- **Function build_argument_parser**()
+- **Function main**(argv)
+- **Function __init__**(self)
+- **Function build**(self)
+- **Function finalize_existing_site**(self)
+- **Function _build_wget_command**(self, source)
+- **Function _rewrite_mirror_html**(self)
+- **Function _rewrite_attr**(self, current_path, match)
+- **Function _rewrite_srcset**(self, current_path, match)
+- **Function _rewrite_url**(self, current_path, raw_value)
+- **Function _is_absolute_or_root_relative**(value)
+- **Function resolve_local_target**(self, raw_value)
+- **Function _relative_href**(current_path, target_path)
+- **Function _write_landing_page**(self)
+### File: reference_library.py (python)
+**Imports:** __future__, html, json, re, pathlib, typing, urllib.parse, nova_product_docs, templates
+- **Class ReferenceLibraryService**: __init__(), catalog(), render_portal(), resolve_asset(), documents(), resolve_document(), search(), _catalog_entry(), _load_documents(), _build_index(), _builtin_document(), _has_mirrored_pack(), _pack_root(), _site_root(), _index_path(), _content_root(), _contains_documents(), _iter_doc_files(), _build_document_entry(), _pack_signature(), _default_docs_source_root(), _ensure_managed_pack(), _status_for_slug(), _index_is_stale(), _extract_document_data(), _strip_tags(), _collapse_ws(), _markdown_plain_text(), _snippet(), _render_shell(), _active_document_markup(), _reference_url(), _asset_url(), _markdown_to_html(), _is_table_header(), _render_table(), _parse_table_row(), _render_plain_inline(), _render_inline(), _strip_duplicate_first_heading(), _normalize_cpp_markdown(), _cpp_primary_title(), _cpp_intro_blocks(), _split_cpp_section_heading(), _find_repeated_prefix_index(), _cleanup_cpp_block()
+- **Function __init__**(self, library_root, docs_source_root)
+- **Function catalog**(self)
+- **Function render_portal**(self)
+- **Function resolve_asset**(self, area, relative_path)
+- **Function documents**(self, area, limit)
+- **Function resolve_document**(self, area, doc_id)
+- **Function search**(self, query)
+- **Function _catalog_entry**(self, slug)
+- **Function _load_documents**(self, slug)
+- **Function _build_index**(self, slug)
+- **Function _builtin_document**(self, slug)
+- **Function _has_mirrored_pack**(self, slug)
+- **Function _pack_root**(self, slug)
+- **Function _site_root**(self, slug)
+- **Function _index_path**(self, slug)
+- **Function _content_root**(self, slug)
+- **Function _contains_documents**(self, root)
+- **Function _iter_doc_files**(self, root)
+- **Function _build_document_entry**(self, slug, path, rel_path, content)
+- **Function _pack_signature**(self, root)
+- **Function _default_docs_source_root**(self)
+- **Function _ensure_managed_pack**(self, slug)
+- **Function _status_for_slug**(slug, installed)
+- **Function _index_is_stale**(self, slug)
+- **Function _extract_document_data**(path, content)
+- **Function _strip_tags**(value)
+- **Function _collapse_ws**(value)
+- **Function _markdown_plain_text**(value)
+- **Function _snippet**(text, terms)
+- **Function _render_shell**(self)
+- **Function _active_document_markup**(self, selected_area, active_doc)
+- **Function _reference_url**(area, doc_id, query)
+- **Function _asset_url**(area, rel_path)
+- **Function _markdown_to_html**(self, source)
+- **Function _is_table_header**(lines, index)
+- **Function _render_table**(self, lines, index)
+- **Function _parse_table_row**(row)
+- **Function _render_plain_inline**(text)
+- **Function _render_inline**(self, text)
+- **Function _strip_duplicate_first_heading**(source, title)
+- **Function _normalize_cpp_markdown**(self, rel_path, source)
+- **Function _cpp_primary_title**(self, rel_path, parts)
+- **Function _cpp_intro_blocks**(self, intro)
+- **Function _split_cpp_section_heading**(self, section)
+- **Function _find_repeated_prefix_index**(text)
+- **Function _cleanup_cpp_block**(text)
+### File: release_notes.py (python)
+**Imports:** __future__, re, subprocess, dataclasses, pathlib, typing, argparse
+- **Class ReleaseCommit**: 
+- **Class ReleaseVersion**: 
+- **Class ReleaseHistory**: 
+- **Function build_release_history**(base_path)
+- **Function list_git_tags**(base_path)
+- **Function list_git_commits**(base_path, revision_range)
+- **Function categorize_commit_subject**(subject)
+- **Function render_changelog**(history)
+- **Function render_release_notes**(history, tag)
+- **Function write_changelog**(base_path, target_path)
+- **Function write_release_notes**(base_path, tag, target_path)
+- **Function _render_commit_groups**(commits)
+- **Function _run_git**(base_path, args)
+- **Function main**()
+### File: reviews.py (python)
+**Imports:** __future__, hashlib, hmac, json, os, time, uuid, pathlib, typing, database
+- **Class ReviewService**: __init__(), dashboard(), submit(), submit_feedback(), _init_schema(), _select_reviewers(), _list_submissions_for(), _list_assignments_for(), _submission_row(), _assignment_row(), _submission_payload(), _assignment_payload(), _refresh_submission_status(), _analytics(), _project_run_analytics(), _alias()
+- **Function __init__**(self, repository, security_plane, workspace_manager, tenant_id, review_root)
+- **Function dashboard**(self, session)
+- **Function submit**(self, session, project)
+- **Function submit_feedback**(self, session, assignment_id, feedback)
+- **Function _init_schema**(self)
+- **Function _select_reviewers**(self, session, project)
+- **Function _list_submissions_for**(self, session)
+- **Function _list_assignments_for**(self, session)
+- **Function _submission_row**(self, submission_id)
+- **Function _assignment_row**(self, assignment_id)
+- **Function _submission_payload**(self, submission_id)
+- **Function _assignment_payload**(self, assignment_id)
+- **Function _refresh_submission_status**(self, submission_id)
+- **Function _analytics**(self)
+- **Function _project_run_analytics**(self, project_id)
+- **Function _alias**(self, prefix, seed)
+### File: seed.py (python)
+**Imports:** __future__, auth, code_runner, database, docs_catalog, permissions, workspace
+- **Function bootstrap_application**(repository, auth_service, docs_catalog, workspace_manager)
+### File: server.py (python)
+**Imports:** __future__, atexit, base64, json, mimetypes, re, socket, shutil, http, http.cookies
+- **Class NovaSchoolApplication**: __init__(), close(), session_from_token(), accessible_projects(), project_payload(), rooms_for(), public_settings(), bootstrap_payload(), template_catalog(), get_project_for_session(), can_access_project(), can_manage_project_data(), can_access_room(), admin_overview(), runtime_config_payload(), server_settings_overview(), model_root(), local_model_files(), default_llamacpp_model_path(), default_llamacpp_model_label(), default_litertlm_model_path(), default_litertlm_model_label(), default_litertlm_binary_path(), default_ai_provider()
+- **Class NovaSchoolRequestHandler**: do_GET(), do_POST(), do_PUT(), do_DELETE(), log_message(), _dispatch(), _handle_api(), _handle_worker_api(), _serve_websocket(), _serve_preview(), _serve_share(), _serve_download(), _serve_manual(), _serve_reference(), _serve_certificate_verify(), _serve_reference_asset(), _serve_model_asset(), _resolve_relative_file(), _serve_file(), _current_session(), _require_session(), _require_worker(), _require_permission(), _can_manage_server_settings(), _require_server_settings_access(), _certificate_verification_url(), _configured_public_host(), _request_scheme(), _request_host(), _request_origin(), _external_base_url(), _request_uses_tls(), _read_json_body(), _decode_uploaded_bundle(), _read_raw_body(), _send_json(), _send_bytes(), _send_html(), _redirect(), _token_from_request(), _cookie_header(), _clear_cookie_header()
+- **Class Handler**: 
+- **Function create_application**(config)
+- **Function run_server**(application)
+- **Function _guess_lan_ipv4**()
+- **Function __init__**(self, config)
+- **Function close**(self)
+- **Function session_from_token**(self, token)
+- **Function accessible_projects**(self, session)
+- **Function project_payload**(self, project)
+- **Function rooms_for**(self, session, projects)
+- **Function public_settings**(self, session)
+- **Function bootstrap_payload**(self, session)
+- **Function template_catalog**(self)
+- **Function get_project_for_session**(self, session, project_id)
+- **Function can_access_project**(self, session, project)
+- **Function can_manage_project_data**(self, session, project)
+- **Function can_access_room**(self, session, room_key)
+- **Function admin_overview**(self)
+- **Function runtime_config_payload**(self)
+- **Function server_settings_overview**(self)
+- **Function model_root**(self)
+- **Function local_model_files**(self)
+- **Function default_llamacpp_model_path**(self)
+- **Function default_llamacpp_model_label**(self)
+- **Function default_litertlm_model_path**(self)
+- **Function default_litertlm_model_label**(self)
+- **Function default_litertlm_binary_path**(self)
+- **Function default_ai_provider**(self)
+- **Function do_GET**(self)
+- **Function do_POST**(self)
+- **Function do_PUT**(self)
+- **Function do_DELETE**(self)
+- **Function log_message**(self, format)
+- **Function _dispatch**(self, method)
+- **Function _handle_api**(self, method, path, parsed)
+- **Function _handle_worker_api**(self, method, path, segments)
+- **Function _serve_websocket**(self, path)
+- **Function _serve_preview**(self, path)
+- **Function _serve_share**(self, path)
+- **Function _serve_download**(self, path)
+- **Function _serve_manual**(self, parsed)
+- **Function _serve_reference**(self, parsed)
+- **Function _serve_certificate_verify**(self, parsed)
+- **Function _serve_reference_asset**(self, path)
+- **Function _serve_model_asset**(self, path)
+- **Function _resolve_relative_file**(root, relative_path)
+- **Function _serve_file**(self, path, content_type)
+- **Function _current_session**(self)
+- **Function _require_session**(self)
+- **Function _require_worker**(self)
+- **Function _require_permission**(session, permission_key)
+- **Function _can_manage_server_settings**(session)
+- **Function _require_server_settings_access**(self, session)
+- **Function _certificate_verification_url**(self, certificate_id)
+- **Function _configured_public_host**(self)
+- **Function _request_scheme**(self)
+- **Function _request_host**(self)
+- **Function _request_origin**(self)
+- **Function _external_base_url**(self)
+- **Function _request_uses_tls**(self)
+- **Function _read_json_body**(self)
+- **Function _decode_uploaded_bundle**(body)
+- **Function _read_raw_body**(self)
+- **Function _send_json**(self, status, payload)
+- **Function _send_bytes**(self, status, payload)
+- **Function _send_html**(self, status, content)
+- **Function _redirect**(self, location)
+- **Function _token_from_request**(self)
+- **Function _cookie_header**(self, token)
+- **Function _clear_cookie_header**(self)
+- **Function sort_key**(path)
+### File: templates.py (python)
+**Imports:** __future__
+### File: user_admin.py (python)
+**Imports:** __future__, hashlib, io, json, shutil, time, zipfile, pathlib, typing, auth
+- **Class UserAdministrationService**: __init__(), sanitize_user(), sanitize_users(), update_user(), permission_audit_payload(), audit_entries(), retention_policy(), export_user_data(), hard_delete_user(), export_project_archive(), archive_project(), hard_delete_project(), apply_retention(), _retention_days(), _artifact_fs_path(), _remove_path(), _rows_to_dicts(), _rows_to_dicts_optional(), _execute_optional(), _table_exists(), _json_row(), _chat_export_payload(), _project_export_payload(), _group_chat_threads(), _group_mentor_threads(), _build_project_archive_bundle()
+- **Function __init__**(self, repository, workspace_manager, config)
+- **Function sanitize_user**(user)
+- **Function sanitize_users**(self, users)
+- **Function update_user**(self)
+- **Function permission_audit_payload**(self, before, after)
+- **Function audit_entries**(self, username, limit)
+- **Function retention_policy**(self)
+- **Function export_user_data**(self, username)
+- **Function hard_delete_user**(self)
+- **Function export_project_archive**(self)
+- **Function archive_project**(self)
+- **Function hard_delete_project**(self)
+- **Function apply_retention**(self)
+- **Function _retention_days**(self, key, default)
+- **Function _artifact_fs_path**(self, row)
+- **Function _remove_path**(self, path)
+- **Function _rows_to_dicts**(self, query, params)
+- **Function _rows_to_dicts_optional**(self, table_name, query, params)
+- **Function _execute_optional**(self, table_name, query, params)
+- **Function _table_exists**(self, table_name)
+- **Function _json_row**(row, json_fields)
+- **Function _chat_export_payload**(row)
+- **Function _project_export_payload**(project)
+- **Function _group_chat_threads**(self, rows)
+- **Function _group_mentor_threads**(self, rows)
+- **Function _build_project_archive_bundle**(self, project)
+### File: virtual_lecturer.py (python)
+**Imports:** __future__, json, re, time, unicodedata, uuid, typing, ai_service, database
+- **Class VirtualLecturerService**: __init__(), session(), thread(), start(), prepare(), store_reply(), _session_row(), _session_payload(), _touch_session(), _resolve_course_state(), _session_metadata(), _practice_payload(), _opening_message(), _compose_prompt(), _direct_reply(), _python_intro_run_feedback(), _web_frontend_intro_feedback(), _fold_text(), _visible_output_lines(), _count_print_calls(), _contains_runtime_error(), _extract_html_tags(), _prompt_requests_state_review(), _sanitize_reply(), _lesson_focus(), _room_key(), _ensure_schema()
+- **Function __init__**(self, repository)
+- **Function session**(self, session, project)
+- **Function thread**(self, session, project)
+- **Function start**(self, session, project)
+- **Function prepare**(self, session, project)
+- **Function store_reply**(self, session, project)
+- **Function _session_row**(self, project_id, username)
+- **Function _session_payload**(row)
+- **Function _touch_session**(self, project_id, username)
+- **Function _resolve_course_state**(self, session)
+- **Function _session_metadata**(self, course_state)
+- **Function _practice_payload**(self, course, module)
+- **Function _opening_message**(self, session, project, metadata)
+- **Function _compose_prompt**(self)
+- **Function _direct_reply**(self)
+- **Function _python_intro_run_feedback**(self)
+- **Function _web_frontend_intro_feedback**(self)
+- **Function _fold_text**(text)
+- **Function _visible_output_lines**(cls, run_output)
+- **Function _count_print_calls**(code)
+- **Function _contains_runtime_error**(cls, run_output)
+- **Function _extract_html_tags**(code)
+- **Function _prompt_requests_state_review**(cls, prompt)
+- **Function _sanitize_reply**(reply)
+- **Function _lesson_focus**(lesson_markdown)
+- **Function _room_key**(project_id, username, session_id)
+- **Function _ensure_schema**(self)
+### File: wiki_manual.py (python)
+**Imports:** __future__, html, re, pathlib, typing, urllib.parse
+- **Class WikiManualService**: __init__(), ensure_seed_manuals(), allowed_scopes(), default_scope(), render_page(), documents(), _resolve_scope(), _scope_folder(), _document_sort_key(), _extract_title(), _collect_toc(), _markdown_to_html(), _is_table_header(), _render_table(), _parse_table_row(), _render_inline(), _render_plain_inline(), _resolve_link(), _anchor_id(), _render_shell()
+- **Function __init__**(self, wiki_root)
+- **Function ensure_seed_manuals**(self)
+- **Function allowed_scopes**(self, session)
+- **Function default_scope**(self, session)
+- **Function render_page**(self, session, requested_scope, requested_page)
+- **Function documents**(self, scope)
+- **Function _resolve_scope**(self, session, requested_scope)
+- **Function _scope_folder**(self, scope)
+- **Function _document_sort_key**(path)
+- **Function _extract_title**(content, path)
+- **Function _collect_toc**(self, content)
+- **Function _markdown_to_html**(self, source)
+- **Function _is_table_header**(lines, index)
+- **Function _render_table**(self, lines, index, scope)
+- **Function _parse_table_row**(row)
+- **Function _render_inline**(self, text)
+- **Function _render_plain_inline**(text)
+- **Function _resolve_link**(self, current_scope, target)
+- **Function _anchor_id**(title, seen)
+- **Function _render_shell**(self)
+### File: worker_agent.py (python)
+**Imports:** __future__, argparse, hashlib, hmac, json, os, queue, secrets, shutil, socket
+- **Class WorkerAgent**: __init__(), run_forever(), _run_job(), _pump_stdout(), _drain_logs(), _heartbeat(), _request_json(), _download(), _verify_artifact_integrity(), _verify_job(), _signed_headers(), _build_command(), _service_url(), _wrap_container_command(), _mirror_tree_securely(), _copy_tree_entries_securely(), _is_link_like(), _container_seccomp_option()
+- **Function _container_file_size_limit_bytes**(raw_value)
+- **Function _default_advertise_host**()
+- **Function main**()
+- **Function __init__**(self)
+- **Function run_forever**(self)
+- **Function _run_job**(self, job)
+- **Function _pump_stdout**(process, log_queue)
+- **Function _drain_logs**(self, job_id, log_queue, buffer)
+- **Function _heartbeat**(self)
+- **Function _request_json**(self, method, path, payload)
+- **Function _download**(self, url, target)
+- **Function _verify_artifact_integrity**(job, artifact_path)
+- **Function _verify_job**(self, job)
+- **Function _signed_headers**(self, method, path, body)
+- **Function _build_command**(self, job, runtime_root)
+- **Function _service_url**(self, payload)
+- **Function _wrap_container_command**(base_command, inner_command)
+- **Function _mirror_tree_securely**(self, source_root, target_root)
+- **Function _copy_tree_entries_securely**(self, source_dir, target_dir, ignored_names)
+- **Function _is_link_like**(path)
+- **Function _container_seccomp_option**(runtime_name)
+### File: worker_dispatch.py (python)
+**Imports:** __future__, hashlib, hmac, json, secrets, shutil, socket, time, zipfile, pathlib
+- **Class RemoteWorkerDispatchService**: __init__(), issue_bootstrap(), authenticate_worker(), verify_worker_request(), heartbeat(), list_workers(), eligible_workers(), assign_workers(), create_playground_job(), claim_next_job(), resolve_job_artifact(), append_job_log(), update_job_status(), request_stop(), latest_jobs_for_project(), sign_job_payload(), build_worker_signature(), server_base_url(), _present_worker(), _is_online(), _worker_loads(), _ensure_worker_enrollment(), _worker_enrollment(), _resolve_secret(), _require_job_owner(), _job_signature_payload(), _write_artifact(), _artifact_sha256(), _job_root(), _secret_name(), _guess_lan_ipv4()
+- **Function __init__**(self, repository, workspace_manager, security_plane, config)
+- **Function issue_bootstrap**(self)
+- **Function authenticate_worker**(self, worker_id, token)
+- **Function verify_worker_request**(self, worker_id, token)
+- **Function heartbeat**(self, worker_id)
+- **Function list_workers**(self)
+- **Function eligible_workers**(self, runtime)
+- **Function assign_workers**(self, services)
+- **Function create_playground_job**(self)
+- **Function claim_next_job**(self, worker_id)
+- **Function resolve_job_artifact**(self, job_id)
+- **Function append_job_log**(self, worker_id, job_id, chunk)
+- **Function update_job_status**(self, worker_id, job_id)
+- **Function request_stop**(self, job_id)
+- **Function latest_jobs_for_project**(self, project_id)
+- **Function sign_job_payload**(self, worker_id, payload)
+- **Function build_worker_signature**()
+- **Function server_base_url**(self)
+- **Function _present_worker**(self, worker)
+- **Function _is_online**(self, worker)
+- **Function _worker_loads**(self)
+- **Function _ensure_worker_enrollment**(self, worker_id)
+- **Function _worker_enrollment**(self, worker_id)
+- **Function _resolve_secret**(self, secret_name)
+- **Function _require_job_owner**(self, worker_id, job_id)
+- **Function _job_signature_payload**(payload)
+- **Function _write_artifact**(self, job_id, runtime_root)
+- **Function _artifact_sha256**(self, job_id)
+- **Function _job_root**(self, job_id)
+- **Function _secret_name**(worker_id)
+- **Function _guess_lan_ipv4**()
+### File: workspace.py (python)
+**Imports:** __future__, json, re, shutil, pathlib, typing, config, templates
+- **Class WorkspaceManager**: __init__(), ensure_profile_folder(), owner_root(), project_root(), materialize_project(), list_tree(), read_file(), write_file(), create_directory(), delete_file(), delete_entry(), rename_entry(), load_notebook(), save_notebook(), resolve_project_path(), _normalize_relative_path(), _path_matches_or_contains(), _renamed_path(), _notebook_path(), _prune_empty_parent_dirs(), _normalize_legacy_notebook_cell()
+- **Function slugify**(value)
+- **Function __init__**(self, config)
+- **Function ensure_profile_folder**(self, owner_type, owner_key)
+- **Function owner_root**(self, owner_type, owner_key)
+- **Function project_root**(self, project)
+- **Function materialize_project**(self, project)
+- **Function list_tree**(self, project)
+- **Function read_file**(self, project, relative_path)
+- **Function write_file**(self, project, relative_path, content)
+- **Function create_directory**(self, project, relative_path)
+- **Function delete_file**(self, project, relative_path)
+- **Function delete_entry**(self, project, relative_path)
+- **Function rename_entry**(self, project, relative_path, new_relative_path)
+- **Function load_notebook**(self, project)
+- **Function save_notebook**(self, project, cells)
+- **Function resolve_project_path**(self, project, relative_path)
+- **Function _normalize_relative_path**(relative_path)
+- **Function _path_matches_or_contains**(prefix, candidate)
+- **Function _renamed_path**(candidate, old_path, new_path)
+- **Function _notebook_path**(self, project)
+- **Function _prune_empty_parent_dirs**(start, stop_root)
+- **Function _normalize_legacy_notebook_cell**(cell)
+### File: __init__.py (python)
+**Imports:** __future__
+### File: __main__.py (python)
+**Imports:** __future__, os, pathlib, config, server
+- **Function main**()
+### File: materialize_linux_project.py (python)
+**Imports:** __future__, sys, pathlib, nova_bootstrap, nova_school_server.distribution_builder
+- **Function main**()
+### File: nova_linux_launch.py (python)
+**Imports:** __future__, os, sys, pathlib, nova_bootstrap, nova_school_server.config, nova_school_server.server
+- **Function main**()
+### File: nova_linux_worker_launch.py (python)
+**Imports:** __future__, sys, pathlib, nova_bootstrap, nova_school_server.worker_agent
+- **Function main**()
+### File: test_ai_service.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, unittest.mock, nova_school_server.ai_service, nova_school_server.database
+- **Class LlamaCppServiceTests**: setUp(), tearDown(), test_status_prefers_local_gguf_model(), test_status_uses_explicit_model_override(), test_prepare_direct_completion_builds_server_prompt()
+- **Class LiteRTLmServiceTests**: setUp(), tearDown(), test_status_prefers_local_litert_model(), test_status_auto_discovers_project_local_lit_folder(), test_status_auto_discovers_linux_lit_binary(), test_auto_provider_prefers_litert_when_binary_and_model_exist(), test_local_ai_service_proxies_max_tokens_to_active_provider(), test_prepare_direct_completion_builds_server_prompt(), test_prepare_direct_completion_trims_large_code_context(), test_complete_ignores_xnnpack_info_only_error_output()
+- **Class _Result**: 
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_status_prefers_local_gguf_model**(self)
+- **Function test_status_uses_explicit_model_override**(self)
+- **Function test_prepare_direct_completion_builds_server_prompt**(self)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_status_prefers_local_litert_model**(self)
+- **Function test_status_auto_discovers_project_local_lit_folder**(self)
+- **Function test_status_auto_discovers_linux_lit_binary**(self)
+- **Function test_auto_provider_prefers_litert_when_binary_and_model_exist**(self)
+- **Function test_local_ai_service_proxies_max_tokens_to_active_provider**(self)
+- **Function test_prepare_direct_completion_builds_server_prompt**(self)
+- **Function test_prepare_direct_completion_trims_large_code_context**(self)
+- **Function test_complete_ignores_xnnpack_info_only_error_output**(self)
+### File: test_analysis_archive_builder.py (python)
+**Imports:** __future__, subprocess, tempfile, unittest, zipfile, pathlib, nova_school_server.analysis_archive_builder
+- **Class SourceAnalysisArchiveBuilderTests**: test_build_source_analysis_archive_keeps_text_source_and_skips_binaries(), _git()
+- **Function test_build_source_analysis_archive_keeps_text_source_and_skips_binaries**(self)
+- **Function _git**(repo)
+### File: test_archive_utils.py (python)
+**Imports:** __future__, stat, tempfile, unittest, zipfile, pathlib, nova_school_server.archive_utils
+- **Class ArchiveUtilsTests**: test_extract_zip_safely_writes_normal_files(), test_extract_zip_safely_rejects_traversal(), test_extract_zip_safely_rejects_symlink_entries()
+- **Function test_extract_zip_safely_writes_normal_files**(self)
+- **Function test_extract_zip_safely_rejects_traversal**(self)
+- **Function test_extract_zip_safely_rejects_symlink_entries**(self)
+### File: test_codedump_tools.py (python)
+**Imports:** __future__, tempfile, unittest, zipfile, pathlib, nova_school_server.codedump_tools
+- **Class CodeDumpToolsTests**: test_directory_dump_ignores_runtime_data_and_writes_markdown(), test_zip_dump_keeps_zip_support(), test_directory_collect_marks_large_files_with_placeholder(), test_compact_profile_excludes_docs_wiki_and_tests(), test_deep_profile_includes_docs_wiki_and_tests(), test_default_output_path_uses_profile_suffix_for_non_standard_profiles(), test_existing_dump_artifacts_are_not_reincluded()
+- **Function test_directory_dump_ignores_runtime_data_and_writes_markdown**(self)
+- **Function test_zip_dump_keeps_zip_support**(self)
+- **Function test_directory_collect_marks_large_files_with_placeholder**(self)
+- **Function test_compact_profile_excludes_docs_wiki_and_tests**(self)
+- **Function test_deep_profile_includes_docs_wiki_and_tests**(self)
+- **Function test_default_output_path_uses_profile_suffix_for_non_standard_profiles**(self)
+- **Function test_existing_dump_artifacts_are_not_reincluded**(self)
+### File: test_code_runner.py (python)
+**Imports:** __future__, os, tempfile, threading, time, unittest, pathlib, unittest.mock, nova_school_server.code_runner, nova_school_server.config
+- **Class _FakeToolSandbox**: authorize()
+- **Class _FakeRepository**: __init__(), get_setting()
+- **Class _ObservedCodeRunner**: __init__(), _execute()
+- **Class _ContainerObservedRunner**: __init__(), _execute_raw(), _execute_container()
+- **Class _Session**: 
+- **Class _TeacherSession**: 
+- **Class CodeRunnerTests**: test_execute_container_python_hides_bootstrap_frames_from_traceback(), test_execute_python_process_hides_bootstrap_frames_from_traceback(), test_run_bundle_executes_python_without_project_record(), test_run_bundle_returns_python_syntax_error_before_execution(), test_runner_backend_uses_valid_repository_setting(), test_runner_backend_falls_back_for_invalid_repository_setting(), test_process_backend_requires_explicit_unsafe_enablement(), test_html_preview_bypasses_process_backend_block(), test_python_project_run_uses_main_file_even_when_helper_is_open(), test_javascript_project_run_uses_main_file_even_when_helper_is_open(), test_cpp_project_run_compiles_all_project_sources(), test_java_project_run_compiles_all_sources_and_uses_main_class(), test_scheduler_serializes_same_student_user(), test_container_base_command_disables_network_without_web_access(), test_container_base_command_enables_bridge_with_web_access(), test_container_base_command_includes_configured_oci_runtime(), test_container_base_command_converts_file_size_limit_from_kb_to_bytes(), test_execution_env_requires_proxy_when_enforced(), test_containerized_env_does_not_forward_windows_host_path(), test_container_runtime_error_message_explains_missing_docker_desktop_engine(), test_container_runtime_error_message_explains_internal_server_error(), test_container_runtime_error_message_explains_timeout(), test_container_runtime_error_message_explains_linux_docker_socket_permissions(), test_container_runtime_health_fails_fast_before_run(), test_container_runtime_health_uses_generous_timeout(), test_run_bundle_auto_pulls_missing_container_image(), test_student_run_hides_operational_notes(), test_teacher_run_keeps_operational_notes(), test_student_live_run_hides_operational_notes(), test_backend_notes_omit_default_image_placeholder(), test_python_executable_does_not_receive_py_launcher_flag(), test_run_python_supports_stdin_input(), test_run_python_reports_syntax_error_before_execution(), test_prepare_live_python_reports_syntax_error_before_launch(), test_run_python_uses_bootstrap_and_dependency_env_with_requirements(), test_containerized_python_gui_returns_preview_path(), test_containerized_python_mainloop_without_direct_import_uses_gui_path()
+- **Function authorize**(self)
+- **Function __init__**(self, settings)
+- **Function get_setting**(self, key, default)
+- **Function __init__**(self)
+- **Function _execute**(self, run_id, language, command, cwd, stdin_text, env, tool_session, permissions)
+- **Function __init__**(self)
+- **Function _execute_raw**(self, command, cwd, stdin_text, env)
+- **Function _execute_container**(self, run_id, language, runtime_executable, image, inner_command, project_root, container_workspace, stdin_text, env, tool_session, permissions)
+- **Function test_execute_container_python_hides_bootstrap_frames_from_traceback**(self)
+- **Function test_execute_python_process_hides_bootstrap_frames_from_traceback**(self)
+- **Function test_run_bundle_executes_python_without_project_record**(self)
+- **Function test_run_bundle_returns_python_syntax_error_before_execution**(self)
+- **Function test_runner_backend_uses_valid_repository_setting**(self)
+- **Function test_runner_backend_falls_back_for_invalid_repository_setting**(self)
+- **Function test_process_backend_requires_explicit_unsafe_enablement**(self)
+- **Function test_html_preview_bypasses_process_backend_block**(self)
+- **Function test_python_project_run_uses_main_file_even_when_helper_is_open**(self)
+- **Function test_javascript_project_run_uses_main_file_even_when_helper_is_open**(self)
+- **Function test_cpp_project_run_compiles_all_project_sources**(self)
+- **Function test_java_project_run_compiles_all_sources_and_uses_main_class**(self)
+- **Function test_scheduler_serializes_same_student_user**(self)
+- **Function test_container_base_command_disables_network_without_web_access**(self)
+- **Function test_container_base_command_enables_bridge_with_web_access**(self)
+- **Function test_container_base_command_includes_configured_oci_runtime**(self)
+- **Function test_container_base_command_converts_file_size_limit_from_kb_to_bytes**(self)
+- **Function test_execution_env_requires_proxy_when_enforced**(self)
+- **Function test_containerized_env_does_not_forward_windows_host_path**(self)
+- **Function test_container_runtime_error_message_explains_missing_docker_desktop_engine**(self)
+- **Function test_container_runtime_error_message_explains_internal_server_error**(self)
+- **Function test_container_runtime_error_message_explains_timeout**(self)
+- **Function test_container_runtime_error_message_explains_linux_docker_socket_permissions**(self)
+- **Function test_container_runtime_health_fails_fast_before_run**(self)
+- **Function test_container_runtime_health_uses_generous_timeout**(self)
+- **Function test_run_bundle_auto_pulls_missing_container_image**(self)
+- **Function test_student_run_hides_operational_notes**(self)
+- **Function test_teacher_run_keeps_operational_notes**(self)
+- **Function test_student_live_run_hides_operational_notes**(self)
+- **Function test_backend_notes_omit_default_image_placeholder**(self)
+- **Function test_python_executable_does_not_receive_py_launcher_flag**(self)
+- **Function test_run_python_supports_stdin_input**(self)
+- **Function test_run_python_reports_syntax_error_before_execution**(self)
+- **Function test_prepare_live_python_reports_syntax_error_before_launch**(self)
+- **Function test_run_python_uses_bootstrap_and_dependency_env_with_requirements**(self)
+- **Function test_containerized_python_gui_returns_preview_path**(self)
+- **Function test_containerized_python_mainloop_without_direct_import_uses_gui_path**(self)
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+- **Function worker**()
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+- **Function fake_execute_raw**(command, cwd, stdin_text, env)
+### File: test_config.py (python)
+**Imports:** __future__, os, tempfile, unittest, pathlib, nova_school_server.config, nova_school_server.config
+- **Class ConfigTests**: test_default_host_binds_for_lan(), test_env_host_override_is_respected(), test_server_config_payload_is_saved_and_loaded(), test_stored_runtime_config_falls_back_to_active_values(), test_runtime_config_requires_restart_when_stored_values_differ(), test_static_path_falls_back_to_real_package_root_for_flat_repo_layout()
+- **Function test_default_host_binds_for_lan**(self)
+- **Function test_env_host_override_is_respected**(self)
+- **Function test_server_config_payload_is_saved_and_loaded**(self)
+- **Function test_stored_runtime_config_falls_back_to_active_values**(self)
+- **Function test_runtime_config_requires_restart_when_stored_values_differ**(self)
+- **Function test_static_path_falls_back_to_real_package_root_for_flat_repo_layout**(self)
+### File: test_container_seccomp.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, unittest.mock, nova_school_server.container_seccomp
+- **Class ContainerSeccompTests**: test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime(), test_resolve_seccomp_profile_option_uses_builtin_profile_for_windows_docker()
+- **Function test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime**(self)
+- **Function test_resolve_seccomp_profile_option_uses_builtin_profile_for_windows_docker**(self)
+### File: test_curriculum.py (python)
+**Imports:** __future__, hashlib, hmac, io, json, tempfile, time, unittest, zipfile, pathlib
+- **Class _Session**: __init__()
+- **Class CurriculumServiceTests**: setUp(), tearDown(), test_course_is_available_by_default_for_student(), test_explicit_user_disable_locks_course_for_student(), test_dashboard_exposes_multiple_courses(), test_group_release_enables_course_for_group_member(), test_module_progression_unlocks_next_module(), test_final_exam_issues_certificate_after_all_modules(), test_attempt_history_returns_all_submissions_for_teacher_view(), test_certificate_pdf_is_generated_with_school_branding(), test_course_specific_certificate_design_renders_subject_label(), test_cpp_course_can_be_completed_and_renders_subject_label(), test_java_course_can_be_completed_and_renders_subject_label(), test_verification_page_renders_certificate_details(), test_custom_course_is_persisted_and_visible_in_dashboard(), test_custom_course_uses_final_exam_threshold_and_issues_certificate(), test_bundle_import_activation_and_rollback_switch_course_definition(), test_dashboard_manager_exposes_bundle_controls_only_for_update_permission(), test_bundle_material_preset_and_mentor_rule_are_resolved_from_active_bundle()
+- **Function _correct_answers**(questions)
+- **Function _custom_course_payload**()
+- **Function _bundle_archive_bytes**()
+- **Function __init__**(self, username)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_course_is_available_by_default_for_student**(self)
+- **Function test_explicit_user_disable_locks_course_for_student**(self)
+- **Function test_dashboard_exposes_multiple_courses**(self)
+- **Function test_group_release_enables_course_for_group_member**(self)
+- **Function test_module_progression_unlocks_next_module**(self)
+- **Function test_final_exam_issues_certificate_after_all_modules**(self)
+- **Function test_attempt_history_returns_all_submissions_for_teacher_view**(self)
+- **Function test_certificate_pdf_is_generated_with_school_branding**(self)
+- **Function test_course_specific_certificate_design_renders_subject_label**(self)
+- **Function test_cpp_course_can_be_completed_and_renders_subject_label**(self)
+- **Function test_java_course_can_be_completed_and_renders_subject_label**(self)
+- **Function test_verification_page_renders_certificate_details**(self)
+- **Function test_custom_course_is_persisted_and_visible_in_dashboard**(self)
+- **Function test_custom_course_uses_final_exam_threshold_and_issues_certificate**(self)
+- **Function test_bundle_import_activation_and_rollback_switch_course_definition**(self)
+- **Function test_dashboard_manager_exposes_bundle_controls_only_for_update_permission**(self)
+- **Function test_bundle_material_preset_and_mentor_rule_are_resolved_from_active_bundle**(self)
+### File: test_distribution_builder.py (python)
+**Imports:** __future__, tempfile, unittest, zipfile, pathlib, nova_school_server.distribution_builder
+- **Class DistributionBuilderTests**: test_distribution_archive_excludes_runtime_data_and_adds_scaffold(), test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide(), test_linux_server_package_excludes_windows_scripts_and_adds_linux_guide(), test_materialize_distribution_directory_skips_generated_linux_project_recursion(), test_materialized_linux_project_copies_linux_lit_binary_but_not_models(), test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide()
+- **Function test_distribution_archive_excludes_runtime_data_and_adds_scaffold**(self)
+- **Function test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide**(self)
+- **Function test_linux_server_package_excludes_windows_scripts_and_adds_linux_guide**(self)
+- **Function test_materialize_distribution_directory_skips_generated_linux_project_recursion**(self)
+- **Function test_materialized_linux_project_copies_linux_lit_binary_but_not_models**(self)
+- **Function test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide**(self)
+### File: test_docs.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.docs_catalog
+- **Class DocumentationTests**: test_seed_docs_and_read_python_doc()
+- **Function test_seed_docs_and_read_python_doc**(self)
+### File: test_gold_features.py (python)
+**Imports:** __future__, json, tempfile, time, unittest, zipfile, pathlib, unittest.mock, nova_school_server.collaboration, nova_school_server.code_runner
+- **Class _FakeSecurityPlane**: __init__(), resolve_secret(), store_secret(), get_tenant(), create_certificate_authority(), get_certificate_authority(), set_trust_policy(), get_trust_policy(), onboard_worker(), list_worker_enrollments()
+- **Class _Session**: __init__(), is_teacher(), group_ids()
+- **Class _FakeToolSandbox**: authorize()
+- **Class GoldFeatureTests**: setUp(), tearDown(), _create_user(), _create_project(), test_collaboration_merges_parallel_cell_changes(), test_mentor_persists_thread_and_teacher_can_inspect(), test_review_submission_feedback_and_deployment_artifacts_work(), test_distributed_playground_starts_and_stops_template_services(), test_distributed_playground_dispatches_remote_jobs_to_registered_workers(), test_worker_request_signature_rejects_replay()
+- **Function __init__**(self)
+- **Function resolve_secret**(self, tenant_id, name)
+- **Function store_secret**(self, tenant_id, name, secret_value, metadata)
+- **Function get_tenant**(self, tenant_id)
+- **Function create_certificate_authority**(self, name, common_name)
+- **Function get_certificate_authority**(self, name)
+- **Function set_trust_policy**(self, name)
+- **Function get_trust_policy**(self, name)
+- **Function onboard_worker**(self, worker_id, tenant_id)
+- **Function list_worker_enrollments**(self, tenant_id)
+- **Function __init__**(self, username, role)
+- **Function is_teacher**(self)
+- **Function group_ids**(self)
+- **Function authorize**(self)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function _create_user**(self, username, role)
+- **Function _create_project**(self)
+- **Function test_collaboration_merges_parallel_cell_changes**(self)
+- **Function test_mentor_persists_thread_and_teacher_can_inspect**(self)
+- **Function test_review_submission_feedback_and_deployment_artifacts_work**(self)
+- **Function test_distributed_playground_starts_and_stops_template_services**(self)
+- **Function test_distributed_playground_dispatches_remote_jobs_to_registered_workers**(self)
+- **Function test_worker_request_signature_rejects_replay**(self)
+### File: test_material_studio.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.database, nova_school_server.material_studio
+- **Class _FakeRunner**: __init__(), run_bundle()
+- **Class _FakeAI**: __init__(), complete()
+- **Class _FakeCurriculumService**: __init__(), resolve_material_studio_instruction_preset()
+- **Class _TeacherSession**: 
+- **Class MaterialStudioTests**: setUp(), tearDown(), test_profile_catalog_contains_specialized_teacher_profiles(), test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code(), test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles(), test_curriculum_service_can_override_instruction_preset_resolution(), test_extract_json_object_merges_multiple_fenced_objects(), test_extract_json_object_accepts_jsonish_string_concatenation(), test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper(), test_extract_code_block_recovers_trailing_code_from_unclosed_fence(), test_parse_code_response_accepts_plain_python_code_without_fence(), test_parse_code_response_rejects_self_evaluation_prose(), test_parse_code_response_rejects_python_main_without_invocation(), test_generation_flow_runs_planning_authoring_and_pedagogy(), test_generation_flow_falls_back_from_invalid_author_json_to_code_block(), test_quality_pipeline_starts_with_real_plan_then_author_json(), test_generation_flow_repairs_invalid_pedagogy_json(), test_generation_flow_repairs_failed_run_via_debugger_code_fallback(), test_attempt_limit_counts_repair_rounds_after_initial_run(), test_author_prompt_requires_stdin_or_eof_safe_input(), test_litert_plan_prompt_is_trimmed_to_budget(), test_complete_inference_payload_retries_with_stricter_budget_after_litert_token_error(), test_direct_generate_uses_one_repair_round_when_attempt_limit_is_one(), test_direct_generate_uses_example_code_instruction_preset(), test_run_current_builds_bundle_from_code_only()
+- **Function __init__**(self, results)
+- **Function run_bundle**(self, _session, payload)
+- **Function __init__**(self, responses)
+- **Function complete**(self)
+- **Function __init__**(self, preset)
+- **Function resolve_material_studio_instruction_preset**(self, preset_key)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_profile_catalog_contains_specialized_teacher_profiles**(self)
+- **Function test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code**(self)
+- **Function test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles**(self)
+- **Function test_curriculum_service_can_override_instruction_preset_resolution**(self)
+- **Function test_extract_json_object_merges_multiple_fenced_objects**(self)
+- **Function test_extract_json_object_accepts_jsonish_string_concatenation**(self)
+- **Function test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper**(self)
+- **Function test_extract_code_block_recovers_trailing_code_from_unclosed_fence**(self)
+- **Function test_parse_code_response_accepts_plain_python_code_without_fence**(self)
+- **Function test_parse_code_response_rejects_self_evaluation_prose**(self)
+- **Function test_parse_code_response_rejects_python_main_without_invocation**(self)
+- **Function test_generation_flow_runs_planning_authoring_and_pedagogy**(self)
+- **Function test_generation_flow_falls_back_from_invalid_author_json_to_code_block**(self)
+- **Function test_quality_pipeline_starts_with_real_plan_then_author_json**(self)
+- **Function test_generation_flow_repairs_invalid_pedagogy_json**(self)
+- **Function test_generation_flow_repairs_failed_run_via_debugger_code_fallback**(self)
+- **Function test_attempt_limit_counts_repair_rounds_after_initial_run**(self)
+- **Function test_author_prompt_requires_stdin_or_eof_safe_input**(self)
+- **Function test_litert_plan_prompt_is_trimmed_to_budget**(self)
+- **Function test_complete_inference_payload_retries_with_stricter_budget_after_litert_token_error**(self)
+- **Function test_direct_generate_uses_one_repair_round_when_attempt_limit_is_one**(self)
+- **Function test_direct_generate_uses_example_code_instruction_preset**(self)
+- **Function test_run_current_builds_bundle_from_code_only**(self)
+### File: test_mentor.py (python)
+**Imports:** __future__, hashlib, hmac, io, json, tempfile, time, unittest, zipfile, pathlib
+- **Class _Session**: __init__()
+- **Class MentorTests**: setUp(), tearDown(), test_prepare_includes_curriculum_context_and_bundle_mentor_rules(), test_prepare_trims_large_runtime_context()
+- **Function _bundle_archive**(secret)
+- **Function __init__**(self, username)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_prepare_includes_curriculum_context_and_bundle_mentor_rules**(self)
+- **Function test_prepare_trims_large_runtime_context**(self)
+### File: test_nova_bridge.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.nova_bridge
+- **Class EmbeddedNovaBridgeTests**: test_embedded_bridge_handles_token_flow_without_external_dependency(), test_embedded_tool_sandbox_authorizes_requests()
+- **Function test_embedded_bridge_handles_token_flow_without_external_dependency**(self)
+- **Function test_embedded_tool_sandbox_authorizes_requests**(self)
+### File: test_nova_product_docs.py (python)
+**Imports:** __future__, json, tempfile, unittest, pathlib, nova_school_server.nova_product_docs, nova_school_server.reference_library
+- **Class NovaProductDocsTests**: test_builder_generates_index_and_expands_permission_tokens(), test_reference_library_marks_nova_school_as_official_local()
+- **Function test_builder_generates_index_and_expands_permission_tokens**(self)
+- **Function test_reference_library_marks_nova_school_as_official_local**(self)
+### File: test_permissions.py (python)
+**Imports:** __future__, unittest, nova_school_server.permissions
+- **Class PermissionTests**: test_student_defaults_enable_ai_but_disable_web(), test_teacher_defaults_do_not_gain_curriculum_update(), test_user_override_wins_over_group_false(), test_admin_role_keeps_core_permissions_even_if_user_override_disables_them()
+- **Function test_student_defaults_enable_ai_but_disable_web**(self)
+- **Function test_teacher_defaults_do_not_gain_curriculum_update**(self)
+- **Function test_user_override_wins_over_group_false**(self)
+- **Function test_admin_role_keeps_core_permissions_even_if_user_override_disables_them**(self)
+### File: test_pty_host.py (python)
+**Imports:** __future__, importlib.util, os, shutil, time, unittest, pathlib, nova_school_server.pty_host
+- **Class PtyHostTests**: test_pty_process_handles_prompt_input_and_resize()
+- **Function test_pty_process_handles_prompt_input_and_resize**(self)
+### File: test_realtime.py (python)
+**Imports:** __future__, importlib.util, os, random, struct, tempfile, threading, time, unittest, pathlib
+- **Class _FakeToolSandbox**: authorize()
+- **Class _Session**: 
+- **Class _TeacherSession**: 
+- **Class _RecordingConnection**: __init__(), send_json(), snapshot()
+- **Class _FakeSocket**: __init__(), settimeout(), recv(), sendall(), shutdown(), close()
+- **Class RealtimeTests**: test_websocket_accept_key_matches_reference(), test_websocket_connection_is_long_lived_without_idle_timeout(), test_websocket_timeout_is_reported_as_connection_close(), test_websocket_rejects_unmasked_client_frames(), test_websocket_rejects_oversized_frames_before_payload_read(), test_websocket_rejects_reserved_bits(), test_websocket_rejects_oversized_control_frame_payloads(), test_websocket_invalid_utf8_is_reported_as_connection_error(), test_websocket_parser_fuzz_harness_only_returns_text_or_connection_error(), test_live_run_manager_streams_prompt_and_accepts_input()
+- **Function _build_masked_frame**()
+- **Function _chunk_bytes**(data, seed)
+- **Function _random_frame**(seed)
+- **Function authorize**(self)
+- **Function __init__**(self)
+- **Function send_json**(self, payload)
+- **Function snapshot**(self)
+- **Function __init__**(self, chunks)
+- **Function settimeout**(self, value)
+- **Function recv**(self, size)
+- **Function sendall**(self, data)
+- **Function shutdown**(self, _how)
+- **Function close**(self)
+- **Function test_websocket_accept_key_matches_reference**(self)
+- **Function test_websocket_connection_is_long_lived_without_idle_timeout**(self)
+- **Function test_websocket_timeout_is_reported_as_connection_close**(self)
+- **Function test_websocket_rejects_unmasked_client_frames**(self)
+- **Function test_websocket_rejects_oversized_frames_before_payload_read**(self)
+- **Function test_websocket_rejects_reserved_bits**(self)
+- **Function test_websocket_rejects_oversized_control_frame_payloads**(self)
+- **Function test_websocket_invalid_utf8_is_reported_as_connection_error**(self)
+- **Function test_websocket_parser_fuzz_harness_only_returns_text_or_connection_error**(self)
+- **Function test_live_run_manager_streams_prompt_and_accepts_input**(self)
+### File: test_reference_import_cpp.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.reference_import_cpp
+- **Class CppReferenceImportTests**: test_cpp_page_urls_are_normalized_to_local_html_paths(), test_cpp_assets_are_classified_and_localized(), test_mediawiki_edit_links_and_form_actions_are_ignored(), test_html_rewriter_keeps_internal_links_local_and_disables_external_links()
+- **Function test_cpp_page_urls_are_normalized_to_local_html_paths**(self)
+- **Function test_cpp_assets_are_classified_and_localized**(self)
+- **Function test_mediawiki_edit_links_and_form_actions_are_ignored**(self)
+- **Function test_html_rewriter_keeps_internal_links_local_and_disables_external_links**(self)
+### File: test_reference_import_web.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.reference_import_web
+- **Class ReferenceWebImportTests**: test_resolve_local_target_finds_html_and_assets(), test_html_rewrite_localizes_absolute_pack_urls(), test_landing_page_links_to_mirrored_sources()
+- **Function test_resolve_local_target_finds_html_and_assets**(self)
+- **Function test_html_rewrite_localizes_absolute_pack_urls**(self)
+- **Function test_landing_page_links_to_mirrored_sources**(self)
+### File: test_reference_library.py (python)
+**Imports:** __future__, tempfile, time, unittest, pathlib, nova_school_server.reference_library
+- **Class ReferenceLibraryTests**: test_builtin_fallback_catalog_and_search_work(), test_mirrored_pack_is_indexed_and_asset_path_is_resolved(), test_plain_text_pack_directly_in_area_root_is_used(), test_index_is_rebuilt_when_pack_changes(), test_cpp_markdown_mirror_is_sanitized_for_rendering()
+- **Function test_builtin_fallback_catalog_and_search_work**(self)
+- **Function test_mirrored_pack_is_indexed_and_asset_path_is_resolved**(self)
+- **Function test_plain_text_pack_directly_in_area_root_is_used**(self)
+- **Function test_index_is_rebuilt_when_pack_changes**(self)
+- **Function test_cpp_markdown_mirror_is_sanitized_for_rendering**(self)
+### File: test_release_notes.py (python)
+**Imports:** __future__, subprocess, tempfile, unittest, pathlib, nova_school_server.release_notes
+- **Class ReleaseNotesTests**: test_build_release_history_and_render_outputs(), _git()
+- **Function test_build_release_history_and_render_outputs**(self)
+- **Function _git**(repo)
+### File: test_seed.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.auth, nova_school_server.database, nova_school_server.docs_catalog, nova_school_server.embedded_nova, nova_school_server.seed, nova_school_server.workspace
+- **Class SeedBootstrapTests**: setUp(), tearDown(), test_bootstrap_resets_demo_accounts_to_role_defaults_even_when_old_overrides_exist()
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_bootstrap_resets_demo_accounts_to_role_defaults_even_when_old_overrides_exist**(self)
+### File: test_server.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.server
+- **Class _Repo**: __init__(), get_setting()
+- **Class _App**: __init__()
+- **Class RequestHandlerTlsTests**: _handler(), test_cookie_header_uses_secure_when_public_host_is_https(), test_cookie_header_uses_secure_when_forwarded_proto_is_https(), test_clear_cookie_header_uses_secure_when_forwarded_proto_is_https(), test_certificate_verification_url_prefers_https_public_host(), test_certificate_verification_url_uses_forwarded_https_for_bare_public_host(), test_resolve_relative_file_rejects_traversal(), test_default_litertlm_binary_path_accepts_linux_lit_binary()
+- **Function __init__**(self, settings)
+- **Function get_setting**(self, key, default)
+- **Function __init__**(self, settings, port)
+- **Function _handler**(self, settings, headers)
+- **Function test_cookie_header_uses_secure_when_public_host_is_https**(self)
+- **Function test_cookie_header_uses_secure_when_forwarded_proto_is_https**(self)
+- **Function test_clear_cookie_header_uses_secure_when_forwarded_proto_is_https**(self)
+- **Function test_certificate_verification_url_prefers_https_public_host**(self)
+- **Function test_certificate_verification_url_uses_forwarded_https_for_bare_public_host**(self)
+- **Function test_resolve_relative_file_rejects_traversal**(self)
+- **Function test_default_litertlm_binary_path_accepts_linux_lit_binary**(self)
+### File: test_user_admin.py (python)
+**Imports:** __future__, tempfile, time, unittest, zipfile, pathlib, nova_school_server.config, nova_school_server.database, nova_school_server.user_admin, nova_school_server.workspace
+- **Class UserAdministrationTests**: setUp(), tearDown(), _create_personal_project(), test_update_user_changes_status_role_and_logs_audit(), test_permission_audit_payload_only_contains_changed_keys(), test_cannot_deactivate_own_current_account(), test_export_user_data_includes_projects_groups_and_ai_threads(), test_hard_delete_user_removes_projects_files_and_histories(), test_export_project_archive_contains_manifest_and_project_files(), test_hard_delete_project_removes_workspace_and_project_chats(), test_apply_retention_deletes_old_chat_and_audits()
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function _create_personal_project**(self)
+- **Function test_update_user_changes_status_role_and_logs_audit**(self)
+- **Function test_permission_audit_payload_only_contains_changed_keys**(self)
+- **Function test_cannot_deactivate_own_current_account**(self)
+- **Function test_export_user_data_includes_projects_groups_and_ai_threads**(self)
+- **Function test_hard_delete_user_removes_projects_files_and_histories**(self)
+- **Function test_export_project_archive_contains_manifest_and_project_files**(self)
+- **Function test_hard_delete_project_removes_workspace_and_project_chats**(self)
+- **Function test_apply_retention_deletes_old_chat_and_audits**(self)
+### File: test_virtual_lecturer.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.curriculum, nova_school_server.database, nova_school_server.virtual_lecturer
+- **Class _Session**: __init__()
+- **Class VirtualLecturerTests**: setUp(), tearDown(), test_start_creates_session_and_opening_message(), test_prepare_includes_task_and_runtime_context(), test_prepare_direct_feedback_accepts_valid_extended_python_intro_run(), test_prepare_direct_feedback_accepts_web_intro_with_semantics_lists_and_extensions(), test_student_cannot_start_explicitly_disabled_course(), test_store_reply_persists_thread_entries(), test_store_reply_strips_internal_answer_instructions()
+- **Function __init__**(self, username)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_start_creates_session_and_opening_message**(self)
+- **Function test_prepare_includes_task_and_runtime_context**(self)
+- **Function test_prepare_direct_feedback_accepts_valid_extended_python_intro_run**(self)
+- **Function test_prepare_direct_feedback_accepts_web_intro_with_semantics_lists_and_extensions**(self)
+- **Function test_student_cannot_start_explicitly_disabled_course**(self)
+- **Function test_store_reply_persists_thread_entries**(self)
+- **Function test_store_reply_strips_internal_answer_instructions**(self)
+### File: test_wiki_manual.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, nova_school_server.wiki_manual
+- **Class _Session**: __init__(), is_teacher()
+- **Class WikiManualTests**: test_service_seeds_manuals_when_scope_folders_are_missing(), test_student_gets_student_manual_and_markdown_is_rendered(), test_teacher_can_switch_to_teacher_scope()
+- **Function __init__**(self, role)
+- **Function is_teacher**(self)
+- **Function test_service_seeds_manuals_when_scope_folders_are_missing**(self)
+- **Function test_student_gets_student_manual_and_markdown_is_rendered**(self)
+- **Function test_teacher_can_switch_to_teacher_scope**(self)
+### File: test_worker_agent.py (python)
+**Imports:** __future__, hashlib, tempfile, unittest, pathlib, unittest.mock, nova_school_server.worker_agent
+- **Class WorkerAgentTests**: test_container_command_uses_materialized_workspace_without_copy_wrapper(), test_container_command_preserves_image_path_and_converts_file_limit(), test_verify_artifact_integrity_rejects_hash_mismatch(), test_verify_artifact_integrity_accepts_matching_hash()
+- **Function test_container_command_uses_materialized_workspace_without_copy_wrapper**(self)
+- **Function test_container_command_preserves_image_path_and_converts_file_limit**(self)
+- **Function test_verify_artifact_integrity_rejects_hash_mismatch**(self)
+- **Function test_verify_artifact_integrity_accepts_matching_hash**(self)
+### File: test_worker_dispatch.py (python)
+**Imports:** __future__, hashlib, tempfile, unittest, pathlib, nova_school_server.config, nova_school_server.database, nova_school_server.worker_dispatch, nova_school_server.workspace
+- **Class _FakeSecurityPlane**: __init__(), store_secret(), resolve_secret(), onboard_worker(), list_worker_enrollments()
+- **Class WorkerDispatchTests**: setUp(), tearDown(), test_claim_next_job_includes_signed_artifact_hash()
+- **Function __init__**(self)
+- **Function store_secret**(self, tenant_id, name, secret_value, metadata)
+- **Function resolve_secret**(self, tenant_id, name)
+- **Function onboard_worker**(self)
+- **Function list_worker_enrollments**(self)
+- **Function setUp**(self)
+- **Function tearDown**(self)
+- **Function test_claim_next_job_includes_signed_artifact_hash**(self)
+### File: test_workspace.py (python)
+**Imports:** __future__, tempfile, unittest, pathlib, json, nova_school_server.config, nova_school_server.workspace
+- **Class WorkspaceTests**: test_materialize_project_and_block_path_escape(), test_load_notebook_normalizes_legacy_starter_cells(), test_delete_file_removes_secondary_file_and_blocks_main_file(), test_directory_operations_support_create_delete_and_main_path_rename()
+- **Function test_materialize_project_and_block_path_escape**(self)
+- **Function test_load_notebook_normalizes_legacy_starter_cells**(self)
+- **Function test_delete_file_removes_secondary_file_and_blocks_main_file**(self)
+- **Function test_directory_operations_support_create_delete_and_main_path_rename**(self)
+### File: __init__.py (python)
+**Imports:** __future__
+# 5. Main Request Flows (Reconstructed)
+
+## Flow Start: _build_run_command
+- _build_run_command
+  - str
+## Flow Start: LiteRTLmService._build_run_command
+- LiteRTLmService._build_run_command
+  - str
+## Flow Start: main
+- main
+  - bootstrap_package
+    - exists
+    - FileNotFoundError
+    - spec_from_file_location
+    - str
+    - RuntimeError
+    - module_from_spec
+    - exec_module
+  - worker_main
+## Flow Start: run
+- run
+  - uuid4
+  - _resolve_language
+    - lower
+    - strip
+    - str
+    - get
+    - Path
+  - _runner_backend
+    - _setting
+      - get_setting
+  - resolve_backend
+    - _unsafe_process_backend_enabled
+      - _setting_bool
+        - isinstance
+    - PermissionError
+    - bool
+    - getattr
+  - authorize
+  - allowed_tool_names
+    - tuple
+    - sorted
+    - items
+  - project_root
+    - owner_root
+      - slugify
+        - sub
+      - ValueError
+  - mkdir
+  - _prepare_html_preview
+    - _prepare_execution_workspace
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _safe_relative_path
+        - is_absolute
+      - _default_filename
+      - write_text
+      - exists
+      - FileNotFoundError
+      - as_posix
+    - _resolve_html_preview_entry
+      - append
+      - set
+      - add
+  - RunResult
+  - _backend_notes
+    - _container_runtime
+    - startswith
+    - extend
+    - _network_notes
+  - _finalize_run_result
+    - list
+    - _scheduler_notes
+    - _visible_notes_for_session
+      - _session_can_view_operational_notes
+        - _session_role
+    - to_dict
+  - _resolve_project_entry_path
+    - _resolve_project_entry_relative_path
+  - _python_syntax_error
+    - _read_source_text
+      - read_text
+    - compile
+    - rstrip
+    - max
+    - int
+    - join
+  - _execution_env
+    - dict
+  - acquire
+    - _priority_for_role
+    - perf_counter
+    - next
+    - enumerate
+    - min
+    - _can_activate
+      - _global_limit
+        - _setting_int
+      - _per_owner_limit
+    - SchedulerLease
+    - float
+    - wait
+  - _run_containerized
+    - which
+    - _container_image
+    - _container_runtime_health
+      - time
+      - _execute_raw
+        - _RawResult
+      - _container_runtime_health_timeout_seconds
+      - _container_runtime_error_message
+    - _prepare_container_workspace
+      - _mirror_tree_securely
+        - rmtree
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - RuntimeError
+    - _ensure_container_image_available
+      - _container_error_is_missing_image
+    - _detect_python_gui_frameworks
+      - search
+        - findall
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - _builtin_document
+        - count
+        - _snippet
+          - _collapse_ws
+          - find
+        - sort
+    - _ensure_python_dependencies_container
+      - _python_requirements_file
+        - any
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - copytree
+      - _containerized_env
+      - _container_wrapped_command
+      - _container_base_command
+        - _container_file_size_limit_bytes
+        - resolve
+        - _container_seccomp_option
+          - resolve_seccomp_profile_option
+      - _store_dependency_cache
+    - _write_python_bootstrap
+      - dedent
+    - _python_entry_env
+      - pop
+    - _container_path
+    - _ensure_python_gui_container_image
+    - _prepare_python_gui_scripts
+      - quote
+      - chmod
+    - _execute_container
+      - write_bytes
+    - _project_source_files
+      - rglob
+    - _execute_container_raw
+    - _java_main_class
+      - group
+    - split
+  - _run_python
+    - _ensure_python_dependencies_process
+    - _execute
+  - _run_node_like
+  - _run_cpp
+  - _run_java
+  - _run_rust
+  - _run_npm
+  - release
+    - notify_all
+## Flow Start: run_bundle
+- run_bundle
+  - append
+  - dict
+  - AssertionError
+  - pop
+## Flow Start: prepare_live_run
+- prepare_live_run
+  - uuid4
+  - _resolve_language
+    - lower
+    - strip
+    - str
+    - get
+    - Path
+  - _runner_backend
+    - _setting
+      - get_setting
+  - resolve_backend
+    - _unsafe_process_backend_enabled
+      - _setting_bool
+        - isinstance
+    - PermissionError
+    - bool
+    - getattr
+  - authorize
+  - allowed_tool_names
+    - tuple
+    - sorted
+    - items
+  - project_root
+    - owner_root
+      - slugify
+        - sub
+      - ValueError
+  - mkdir
+  - _backend_notes
+    - _container_runtime
+    - append
+    - startswith
+    - extend
+    - _network_notes
+  - _prepare_html_preview
+    - _prepare_execution_workspace
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _safe_relative_path
+        - is_absolute
+      - _default_filename
+      - write_text
+      - exists
+      - FileNotFoundError
+      - as_posix
+    - _resolve_html_preview_entry
+      - set
+      - add
+  - _execution_env
+    - dict
+  - LivePreparedRun
+  - _finalize_prepared_run
+    - list
+    - _scheduler_notes
+    - _visible_notes_for_session
+      - _session_can_view_operational_notes
+        - _session_role
+  - _resolve_project_entry_path
+    - _resolve_project_entry_relative_path
+  - _python_syntax_error
+    - _read_source_text
+      - read_text
+    - compile
+    - rstrip
+    - max
+    - int
+    - join
+  - acquire
+    - _priority_for_role
+    - perf_counter
+    - next
+    - enumerate
+    - min
+    - _can_activate
+      - _global_limit
+        - _setting_int
+      - _per_owner_limit
+    - SchedulerLease
+    - float
+    - wait
+  - _prepare_live_containerized
+    - which
+    - _container_image
+    - _container_runtime_health
+      - time
+      - _execute_raw
+        - _RawResult
+      - _container_runtime_health_timeout_seconds
+      - _container_runtime_error_message
+    - _prepare_container_workspace
+      - _mirror_tree_securely
+        - rmtree
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - RuntimeError
+    - _containerized_env
+    - _container_base_command
+      - _container_file_size_limit_bytes
+      - resolve
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+    - _ensure_container_image_available
+      - _container_error_is_missing_image
+    - _detect_python_gui_frameworks
+      - search
+        - findall
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - _builtin_document
+        - count
+        - _snippet
+          - _collapse_ws
+          - find
+        - sort
+    - _ensure_python_dependencies_container
+      - _python_requirements_file
+        - any
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - copytree
+      - _container_wrapped_command
+      - _store_dependency_cache
+    - _ensure_python_gui_container_image
+      - dedent
+    - _python_entry_env
+      - pop
+    - _container_path
+    - _write_python_bootstrap
+    - _prepare_python_gui_scripts
+      - quote
+      - chmod
+    - _project_source_files
+      - rglob
+    - _execute_container_raw
+    - _java_main_class
+      - group
+    - split
+  - _prepare_live_process
+    - _ensure_python_dependencies_process
+  - release
+    - notify_all
+## Flow Start: _java_main_class
+- _java_main_class
+  - _read_source_text
+    - read_text
+  - search
+    - findall
+    - lower
+    - list
+    - _load_documents
+      - _ensure_managed_pack
+        - ensure_built
+          - _has_sources
+          - exists
+          - is_stale
+          - build
+      - _has_mirrored_pack
+        - _content_root
+          - _site_root
+          - _contains_documents
+          - _pack_root
+      - _index_path
+      - _index_is_stale
+        - loads
+        - get
+        - _pack_signature
+          - _iter_doc_files
+          - max
+          - stat
+          - sum
+          - len
+      - _build_index
+        - write_text
+        - dumps
+        - as_posix
+        - relative_to
+        - append
+        - _build_document_entry
+          - _normalize_cpp_markdown
+          - _extract_document_data
+          - _status_for_slug
+      - _builtin_document
+        - str
+        - _markdown_plain_text
+          - sub
+          - _collapse_ws
+    - count
+    - _snippet
+      - find
+      - min
+    - sort
+    - int
+  - group
+## Flow Start: _run_containerized
+- _run_containerized
+  - _container_runtime
+    - lower
+    - strip
+    - str
+    - get
+    - _setting
+      - get_setting
+  - which
+  - _container_image
+  - _container_runtime_health
+    - Path
+    - time
+    - _execute_raw
+      - append
+      - list
+      - join
+      - mkdir
+      - write_text
+      - _RawResult
+    - dict
+    - _container_runtime_health_timeout_seconds
+      - max
+      - min
+      - int
+    - _container_runtime_error_message
+  - RunResult
+  - _backend_notes
+    - startswith
+    - extend
+    - _network_notes
+      - _setting_bool
+        - isinstance
+  - _prepare_container_workspace
+    - _mirror_tree_securely
+      - exists
+      - rmtree
+      - _copy_tree_entries_securely
+        - scandir
+        - _is_link_like
+          - is_symlink
+          - getattr
+          - callable
+          - bool
+          - is_junction
+        - RuntimeError
+        - is_dir
+        - is_file
+        - copy2
+  - relative_to
+  - _ensure_container_image_available
+    - _container_error_is_missing_image
+  - _detect_python_gui_frameworks
+    - _read_source_text
+      - read_text
+    - search
+      - findall
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - loads
+          - _pack_signature
+        - _build_index
+          - dumps
+          - _iter_doc_files
+          - as_posix
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - len
+      - sort
+  - _ensure_python_dependencies_container
+    - _python_requirements_file
+      - any
+      - splitlines
+    - _python_dependency_cache_dir
+      - sha256
+      - update
+      - encode
+      - read_bytes
+      - hexdigest
+    - _restore_dependency_cache
+      - copytree
+    - _containerized_env
+      - items
+    - _container_wrapped_command
+    - _container_base_command
+      - _container_file_size_limit_bytes
+      - resolve
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+    - _store_dependency_cache
+  - _write_python_bootstrap
+    - dedent
+  - _python_entry_env
+    - pop
+  - _container_path
+  - _ensure_python_gui_container_image
+    - replace
+  - _prepare_python_gui_scripts
+    - quote
+    - chmod
+  - _execute_container
+    - write_bytes
+  - _project_source_files
+    - sorted
+    - rglob
+  - _execute_container_raw
+  - _java_main_class
+    - group
+  - ValueError
+  - split
+  - PermissionError
+## Flow Start: _run_python
+- _run_python
+  - _ensure_python_dependencies_process
+    - _python_requirements_file
+      - exists
+      - is_file
+      - read_text
+      - any
+      - strip
+      - startswith
+      - splitlines
+    - _python_dependency_cache_dir
+      - sha256
+      - update
+      - encode
+      - read_bytes
+      - hexdigest
+    - _restore_dependency_cache
+      - rmtree
+      - copytree
+    - get
+    - mkdir
+    - which
+    - str
+    - lower
+    - Path
+    - _execute_raw
+      - append
+      - list
+      - join
+      - write_text
+      - _RawResult
+    - max
+    - _store_dependency_cache
+  - RunResult
+  - _backend_notes
+    - _container_runtime
+      - _setting
+        - get_setting
+    - extend
+    - _network_notes
+      - _setting_bool
+        - isinstance
+  - RuntimeError
+  - _write_python_bootstrap
+    - dedent
+  - _python_entry_env
+    - dict
+    - pop
+  - _execute
+## Flow Start: _run_node_like
+- _run_node_like
+  - which
+  - RuntimeError
+  - _execute
+    - dict
+    - RunResult
+  - str
+## Flow Start: _run_cpp
+- _run_cpp
+  - which
+  - RuntimeError
+  - mkdir
+  - _project_source_files
+    - sorted
+    - rglob
+    - is_file
+    - lower
+    - any
+    - relative_to
+    - as_posix
+  - str
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - RunResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+  - _execute
+    - dict
+## Flow Start: _run_java
+- _run_java
+  - which
+  - RuntimeError
+  - mkdir
+  - _project_source_files
+    - sorted
+    - rglob
+    - is_file
+    - lower
+    - any
+    - relative_to
+    - as_posix
+  - str
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - RunResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+  - _execute
+    - dict
+  - _java_main_class
+    - _read_source_text
+      - read_text
+    - search
+      - findall
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - exists
+          - loads
+          - _pack_signature
+        - _build_index
+          - dumps
+          - _iter_doc_files
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - max
+        - min
+        - len
+      - sort
+      - int
+    - group
+## Flow Start: _run_rust
+- _run_rust
+  - which
+  - exists
+  - _execute
+    - dict
+    - RunResult
+  - str
+  - RuntimeError
+  - mkdir
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+      - lower
+## Flow Start: _run_npm
+- _run_npm
+  - strip
+  - str
+  - get
+  - ValueError
+  - split
+  - lower
+  - PermissionError
+  - which
+  - RuntimeError
+  - _execute
+    - dict
+    - RunResult
+## Flow Start: _runner_backend
+- _runner_backend
+  - lower
+  - strip
+  - str
+  - get
+  - _setting
+    - get_setting
+## Flow Start: _finalize_run_result
+- _finalize_run_result
+  - list
+  - extend
+  - _scheduler_notes
+    - append
+  - _visible_notes_for_session
+    - _session_can_view_operational_notes
+      - _session_role
+        - str
+        - getattr
+      - bool
+  - to_dict
+## Flow Start: _finalize_prepared_run
+- _finalize_prepared_run
+  - list
+  - extend
+  - _scheduler_notes
+    - append
+  - _visible_notes_for_session
+    - _session_can_view_operational_notes
+      - _session_role
+        - str
+        - getattr
+      - bool
+## Flow Start: _container_runtime
+- _container_runtime
+  - lower
+  - strip
+  - str
+  - get
+  - _setting
+    - get_setting
+## Flow Start: _container_runtime_error_message
+- _container_runtime_error_message
+  - Path
+  - str
+  - strip
+  - lower
+## Flow Start: _container_runtime_health_timeout_seconds
+- _container_runtime_health_timeout_seconds
+  - max
+  - min
+  - int
+## Flow Start: _container_runtime_health
+- _container_runtime_health
+  - lower
+  - str
+  - Path
+  - time
+  - get
+  - _execute_raw
+    - append
+    - list
+    - join
+    - mkdir
+    - write_text
+    - _RawResult
+  - dict
+  - _container_runtime_health_timeout_seconds
+    - max
+    - min
+    - int
+  - _container_runtime_error_message
+    - strip
+## Flow Start: CodeRunner.run
+- CodeRunner.run
+  - uuid4
+  - _resolve_language
+    - lower
+    - strip
+    - str
+    - get
+    - Path
+  - _runner_backend
+    - _setting
+      - get_setting
+  - resolve_backend
+    - _unsafe_process_backend_enabled
+      - _setting_bool
+        - isinstance
+    - PermissionError
+    - bool
+    - getattr
+  - authorize
+  - allowed_tool_names
+    - tuple
+    - sorted
+    - items
+  - project_root
+    - owner_root
+      - slugify
+        - sub
+      - ValueError
+  - mkdir
+  - _prepare_html_preview
+    - _prepare_execution_workspace
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _safe_relative_path
+        - is_absolute
+      - _default_filename
+      - write_text
+      - exists
+      - FileNotFoundError
+      - as_posix
+    - _resolve_html_preview_entry
+      - append
+      - set
+      - add
+  - RunResult
+  - _backend_notes
+    - _container_runtime
+    - startswith
+    - extend
+    - _network_notes
+  - _finalize_run_result
+    - list
+    - _scheduler_notes
+    - _visible_notes_for_session
+      - _session_can_view_operational_notes
+        - _session_role
+    - to_dict
+  - _resolve_project_entry_path
+    - _resolve_project_entry_relative_path
+  - _python_syntax_error
+    - _read_source_text
+      - read_text
+    - compile
+    - rstrip
+    - max
+    - int
+    - join
+  - _execution_env
+    - dict
+  - acquire
+    - _priority_for_role
+    - perf_counter
+    - next
+    - enumerate
+    - min
+    - _can_activate
+      - _global_limit
+        - _setting_int
+      - _per_owner_limit
+    - SchedulerLease
+    - float
+    - wait
+  - _run_containerized
+    - which
+    - _container_image
+    - _container_runtime_health
+      - time
+      - _execute_raw
+        - _RawResult
+      - _container_runtime_health_timeout_seconds
+      - _container_runtime_error_message
+    - _prepare_container_workspace
+      - _mirror_tree_securely
+        - rmtree
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - RuntimeError
+    - _ensure_container_image_available
+      - _container_error_is_missing_image
+    - _detect_python_gui_frameworks
+      - search
+        - findall
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - _builtin_document
+        - count
+        - _snippet
+          - _collapse_ws
+          - find
+        - sort
+    - _ensure_python_dependencies_container
+      - _python_requirements_file
+        - any
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - copytree
+      - _containerized_env
+      - _container_wrapped_command
+      - _container_base_command
+        - _container_file_size_limit_bytes
+        - resolve
+        - _container_seccomp_option
+          - resolve_seccomp_profile_option
+      - _store_dependency_cache
+    - _write_python_bootstrap
+      - dedent
+    - _python_entry_env
+      - pop
+    - _container_path
+    - _ensure_python_gui_container_image
+    - _prepare_python_gui_scripts
+      - quote
+      - chmod
+    - _execute_container
+      - write_bytes
+    - _project_source_files
+      - rglob
+    - _execute_container_raw
+    - _java_main_class
+      - group
+    - split
+  - _run_python
+    - _ensure_python_dependencies_process
+    - _execute
+  - _run_node_like
+  - _run_cpp
+  - _run_java
+  - _run_rust
+  - _run_npm
+  - release
+    - notify_all
+## Flow Start: CodeRunner.run_bundle
+- CodeRunner.run_bundle
+  - uuid4
+  - _resolve_bundle_language
+    - lower
+    - strip
+    - str
+    - get
+    - Path
+  - _runner_backend
+    - _setting
+      - get_setting
+  - resolve_backend
+    - _unsafe_process_backend_enabled
+      - _setting_bool
+        - isinstance
+    - PermissionError
+    - bool
+    - getattr
+  - authorize
+  - allowed_tool_names
+    - tuple
+    - sorted
+    - items
+  - sub
+  - _prepare_bundle_workspace
+    - mkdir
+    - _safe_relative_path
+      - replace
+      - is_absolute
+    - _default_filename
+    - as_posix
+    - write_text
+    - exists
+    - FileNotFoundError
+  - _python_syntax_error
+    - _read_source_text
+      - read_text
+    - compile
+    - rstrip
+    - max
+    - int
+    - append
+    - join
+  - relative_to
+  - RunResult
+  - _backend_notes
+    - _container_runtime
+    - startswith
+    - extend
+    - _network_notes
+  - _finalize_run_result
+    - list
+    - _scheduler_notes
+    - _visible_notes_for_session
+      - _session_can_view_operational_notes
+        - _session_role
+    - to_dict
+  - _execution_env
+    - dict
+  - acquire
+    - _priority_for_role
+    - perf_counter
+    - next
+    - enumerate
+    - len
+    - min
+    - _can_activate
+      - _global_limit
+        - _setting_int
+      - _per_owner_limit
+    - SchedulerLease
+    - float
+    - wait
+  - _run_containerized
+    - which
+    - _container_image
+    - _container_runtime_health
+      - time
+      - _execute_raw
+        - _RawResult
+      - _container_runtime_health_timeout_seconds
+      - _container_runtime_error_message
+    - _prepare_container_workspace
+      - _mirror_tree_securely
+        - rmtree
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - RuntimeError
+          - is_dir
+          - is_file
+          - copy2
+    - _ensure_container_image_available
+      - _container_error_is_missing_image
+    - _detect_python_gui_frameworks
+      - search
+        - findall
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - _builtin_document
+        - count
+        - _snippet
+          - _collapse_ws
+          - find
+        - sort
+    - _ensure_python_dependencies_container
+      - _python_requirements_file
+        - any
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - copytree
+      - _containerized_env
+      - _container_wrapped_command
+      - _container_base_command
+        - _container_file_size_limit_bytes
+        - resolve
+        - _container_seccomp_option
+          - resolve_seccomp_profile_option
+      - _store_dependency_cache
+    - _write_python_bootstrap
+      - dedent
+    - _python_entry_env
+      - pop
+    - _container_path
+    - _ensure_python_gui_container_image
+    - _prepare_python_gui_scripts
+      - quote
+      - chmod
+    - _execute_container
+      - write_bytes
+    - _project_source_files
+      - rglob
+    - _execute_container_raw
+    - _java_main_class
+      - group
+    - ValueError
+    - split
+  - _run_python
+    - _ensure_python_dependencies_process
+    - _execute
+  - _run_node_like
+  - _run_cpp
+  - _run_java
+  - _run_rust
+  - _run_npm
+  - release
+    - notify_all
+## Flow Start: CodeRunner.prepare_live_run
+- CodeRunner.prepare_live_run
+  - uuid4
+  - _resolve_language
+    - lower
+    - strip
+    - str
+    - get
+    - Path
+  - _runner_backend
+    - _setting
+      - get_setting
+  - resolve_backend
+    - _unsafe_process_backend_enabled
+      - _setting_bool
+        - isinstance
+    - PermissionError
+    - bool
+    - getattr
+  - authorize
+  - allowed_tool_names
+    - tuple
+    - sorted
+    - items
+  - project_root
+    - owner_root
+      - slugify
+        - sub
+      - ValueError
+  - mkdir
+  - _backend_notes
+    - _container_runtime
+    - append
+    - startswith
+    - extend
+    - _network_notes
+  - _prepare_html_preview
+    - _prepare_execution_workspace
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _safe_relative_path
+        - is_absolute
+      - _default_filename
+      - write_text
+      - exists
+      - FileNotFoundError
+      - as_posix
+    - _resolve_html_preview_entry
+      - set
+      - add
+  - _execution_env
+    - dict
+  - LivePreparedRun
+  - _finalize_prepared_run
+    - list
+    - _scheduler_notes
+    - _visible_notes_for_session
+      - _session_can_view_operational_notes
+        - _session_role
+  - _resolve_project_entry_path
+    - _resolve_project_entry_relative_path
+  - _python_syntax_error
+    - _read_source_text
+      - read_text
+    - compile
+    - rstrip
+    - max
+    - int
+    - join
+  - acquire
+    - _priority_for_role
+    - perf_counter
+    - next
+    - enumerate
+    - min
+    - _can_activate
+      - _global_limit
+        - _setting_int
+      - _per_owner_limit
+    - SchedulerLease
+    - float
+    - wait
+  - _prepare_live_containerized
+    - which
+    - _container_image
+    - _container_runtime_health
+      - time
+      - _execute_raw
+        - _RawResult
+      - _container_runtime_health_timeout_seconds
+      - _container_runtime_error_message
+    - _prepare_container_workspace
+      - _mirror_tree_securely
+        - rmtree
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - RuntimeError
+    - _containerized_env
+    - _container_base_command
+      - _container_file_size_limit_bytes
+      - resolve
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+    - _ensure_container_image_available
+      - _container_error_is_missing_image
+    - _detect_python_gui_frameworks
+      - search
+        - findall
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - _builtin_document
+        - count
+        - _snippet
+          - _collapse_ws
+          - find
+        - sort
+    - _ensure_python_dependencies_container
+      - _python_requirements_file
+        - any
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - copytree
+      - _container_wrapped_command
+      - _store_dependency_cache
+    - _ensure_python_gui_container_image
+      - dedent
+    - _python_entry_env
+      - pop
+    - _container_path
+    - _write_python_bootstrap
+    - _prepare_python_gui_scripts
+      - quote
+      - chmod
+    - _project_source_files
+      - rglob
+    - _execute_container_raw
+    - _java_main_class
+      - group
+    - split
+  - _prepare_live_process
+    - _ensure_python_dependencies_process
+  - release
+    - notify_all
+## Flow Start: CodeRunner._java_main_class
+- CodeRunner._java_main_class
+  - _read_source_text
+    - read_text
+  - search
+    - findall
+    - lower
+    - list
+    - _load_documents
+      - _ensure_managed_pack
+        - ensure_built
+          - _has_sources
+          - exists
+          - is_stale
+          - build
+      - _has_mirrored_pack
+        - _content_root
+          - _site_root
+          - _contains_documents
+          - _pack_root
+      - _index_path
+      - _index_is_stale
+        - loads
+        - get
+        - _pack_signature
+          - _iter_doc_files
+          - max
+          - stat
+          - sum
+          - len
+      - _build_index
+        - write_text
+        - dumps
+        - as_posix
+        - relative_to
+        - append
+        - _build_document_entry
+          - _normalize_cpp_markdown
+          - _extract_document_data
+          - _status_for_slug
+      - _builtin_document
+        - str
+        - _markdown_plain_text
+          - sub
+          - _collapse_ws
+    - count
+    - _snippet
+      - find
+      - min
+    - sort
+    - int
+  - group
+## Flow Start: CodeRunner._run_containerized
+- CodeRunner._run_containerized
+  - _container_runtime
+    - lower
+    - strip
+    - str
+    - get
+    - _setting
+      - get_setting
+  - which
+  - _container_image
+  - _container_runtime_health
+    - Path
+    - time
+    - _execute_raw
+      - append
+      - list
+      - join
+      - mkdir
+      - write_text
+      - _RawResult
+    - dict
+    - _container_runtime_health_timeout_seconds
+      - max
+      - min
+      - int
+    - _container_runtime_error_message
+  - RunResult
+  - _backend_notes
+    - startswith
+    - extend
+    - _network_notes
+      - _setting_bool
+        - isinstance
+  - _prepare_container_workspace
+    - _mirror_tree_securely
+      - exists
+      - rmtree
+      - _copy_tree_entries_securely
+        - scandir
+        - _is_link_like
+          - is_symlink
+          - getattr
+          - callable
+          - bool
+          - is_junction
+        - RuntimeError
+        - is_dir
+        - is_file
+        - copy2
+  - relative_to
+  - _ensure_container_image_available
+    - _container_error_is_missing_image
+  - _detect_python_gui_frameworks
+    - _read_source_text
+      - read_text
+    - search
+      - findall
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - loads
+          - _pack_signature
+        - _build_index
+          - dumps
+          - _iter_doc_files
+          - as_posix
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - len
+      - sort
+  - _ensure_python_dependencies_container
+    - _python_requirements_file
+      - any
+      - splitlines
+    - _python_dependency_cache_dir
+      - sha256
+      - update
+      - encode
+      - read_bytes
+      - hexdigest
+    - _restore_dependency_cache
+      - copytree
+    - _containerized_env
+      - items
+    - _container_wrapped_command
+    - _container_base_command
+      - _container_file_size_limit_bytes
+      - resolve
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+    - _store_dependency_cache
+  - _write_python_bootstrap
+    - dedent
+  - _python_entry_env
+    - pop
+  - _container_path
+  - _ensure_python_gui_container_image
+    - replace
+  - _prepare_python_gui_scripts
+    - quote
+    - chmod
+  - _execute_container
+    - write_bytes
+  - _project_source_files
+    - sorted
+    - rglob
+  - _execute_container_raw
+  - _java_main_class
+    - group
+  - ValueError
+  - split
+  - PermissionError
+## Flow Start: CodeRunner._run_python
+- CodeRunner._run_python
+  - _ensure_python_dependencies_process
+    - _python_requirements_file
+      - exists
+      - is_file
+      - read_text
+      - any
+      - strip
+      - startswith
+      - splitlines
+    - _python_dependency_cache_dir
+      - sha256
+      - update
+      - encode
+      - read_bytes
+      - hexdigest
+    - _restore_dependency_cache
+      - rmtree
+      - copytree
+    - get
+    - mkdir
+    - which
+    - str
+    - lower
+    - Path
+    - _execute_raw
+      - append
+      - list
+      - join
+      - write_text
+      - _RawResult
+    - max
+    - _store_dependency_cache
+  - RunResult
+  - _backend_notes
+    - _container_runtime
+      - _setting
+        - get_setting
+    - extend
+    - _network_notes
+      - _setting_bool
+        - isinstance
+  - RuntimeError
+  - _write_python_bootstrap
+    - dedent
+  - _python_entry_env
+    - dict
+    - pop
+  - _execute
+## Flow Start: CodeRunner._run_node_like
+- CodeRunner._run_node_like
+  - which
+  - RuntimeError
+  - _execute
+    - dict
+    - RunResult
+  - str
+## Flow Start: CodeRunner._run_cpp
+- CodeRunner._run_cpp
+  - which
+  - RuntimeError
+  - mkdir
+  - _project_source_files
+    - sorted
+    - rglob
+    - is_file
+    - lower
+    - any
+    - relative_to
+    - as_posix
+  - str
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - RunResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+  - _execute
+    - dict
+## Flow Start: CodeRunner._run_java
+- CodeRunner._run_java
+  - which
+  - RuntimeError
+  - mkdir
+  - _project_source_files
+    - sorted
+    - rglob
+    - is_file
+    - lower
+    - any
+    - relative_to
+    - as_posix
+  - str
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - RunResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+  - _execute
+    - dict
+  - _java_main_class
+    - _read_source_text
+      - read_text
+    - search
+      - findall
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - exists
+          - loads
+          - _pack_signature
+        - _build_index
+          - dumps
+          - _iter_doc_files
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - max
+        - min
+        - len
+      - sort
+      - int
+    - group
+## Flow Start: CodeRunner._run_rust
+- CodeRunner._run_rust
+  - which
+  - exists
+  - _execute
+    - dict
+    - RunResult
+  - str
+  - RuntimeError
+  - mkdir
+  - _execute_raw
+    - append
+    - list
+    - join
+    - Path
+    - write_text
+    - _RawResult
+  - _network_notes
+    - get
+    - strip
+    - _setting
+      - get_setting
+    - _setting_bool
+      - isinstance
+      - lower
+## Flow Start: CodeRunner._run_npm
+- CodeRunner._run_npm
+  - strip
+  - str
+  - get
+  - ValueError
+  - split
+  - lower
+  - PermissionError
+  - which
+  - RuntimeError
+  - _execute
+    - dict
+    - RunResult
+## Flow Start: CodeRunner._runner_backend
+- CodeRunner._runner_backend
+  - lower
+  - strip
+  - str
+  - get
+  - _setting
+    - get_setting
+## Flow Start: CodeRunner._finalize_run_result
+- CodeRunner._finalize_run_result
+  - list
+  - extend
+  - _scheduler_notes
+    - append
+  - _visible_notes_for_session
+    - _session_can_view_operational_notes
+      - _session_role
+        - str
+        - getattr
+      - bool
+  - to_dict
+## Flow Start: CodeRunner._finalize_prepared_run
+- CodeRunner._finalize_prepared_run
+  - list
+  - extend
+  - _scheduler_notes
+    - append
+  - _visible_notes_for_session
+    - _session_can_view_operational_notes
+      - _session_role
+        - str
+        - getattr
+      - bool
+## Flow Start: CodeRunner._container_runtime
+- CodeRunner._container_runtime
+  - lower
+  - strip
+  - str
+  - get
+  - _setting
+    - get_setting
+## Flow Start: CodeRunner._container_runtime_error_message
+- CodeRunner._container_runtime_error_message
+  - Path
+  - str
+  - strip
+  - lower
+## Flow Start: CodeRunner._container_runtime_health_timeout_seconds
+- CodeRunner._container_runtime_health_timeout_seconds
+  - max
+  - min
+  - int
+## Flow Start: CodeRunner._container_runtime_health
+- CodeRunner._container_runtime_health
+  - lower
+  - str
+  - Path
+  - time
+  - get
+  - _execute_raw
+    - append
+    - list
+    - join
+    - mkdir
+    - write_text
+    - _RawResult
+  - dict
+  - _container_runtime_health_timeout_seconds
+    - max
+    - min
+    - int
+  - _container_runtime_error_message
+    - strip
+## Flow Start: active_runtime_config
+- active_runtime_config
+  - str
+  - int
+## Flow Start: stored_runtime_config
+- stored_runtime_config
+  - load_server_config_payload
+    - resolve
+    - Path
+    - exists
+    - loads
+    - read_text
+    - isinstance
+  - active_runtime_config
+    - str
+    - int
+  - get
+## Flow Start: runtime_config_requires_restart
+- runtime_config_requires_restart
+  - str
+  - get
+## Flow Start: update_project_main_file
+- update_project_main_file
+  - execute
+  - time
+  - get_project
+    - fetchone
+    - _row_to_project
+## Flow Start: SchoolRepository.update_project_main_file
+- SchoolRepository.update_project_main_file
+  - execute
+  - time
+  - get_project
+    - fetchone
+    - _row_to_project
+## Flow Start: _write_runtime_guides
+- _write_runtime_guides
+  - Path
+  - str
+  - write_text
+  - join
+  - get
+## Flow Start: DeploymentService._write_runtime_guides
+- DeploymentService._write_runtime_guides
+  - Path
+  - str
+  - write_text
+  - join
+  - get
+## Flow Start: _service_runtime_root
+- _service_runtime_root
+  - project_root
+    - owner_root
+      - slugify
+        - lower
+        - strip
+        - sub
+      - ValueError
+    - str
+## Flow Start: DistributedPlaygroundService._service_runtime_root
+- DistributedPlaygroundService._service_runtime_root
+  - project_root
+    - owner_root
+      - slugify
+        - lower
+        - strip
+        - sub
+      - ValueError
+    - str
+## Flow Start: _prune_for_flavor
+- _prune_for_flavor
+  - _remove_if_exists
+    - exists
+    - unlink
+## Flow Start: _copy_optional_linux_runtime_binaries
+- _copy_optional_linux_runtime_binaries
+  - exists
+  - is_file
+  - mkdir
+  - copy2
+  - hasattr
+  - stat
+  - chmod
+## Flow Start: _python_has_missing_main_invocation
+- _python_has_missing_main_invocation
+  - strip
+  - str
+  - parse
+  - any
+  - isinstance
+  - generic_visit
+  - _MainCallVisitor
+  - visit
+## Flow Start: run_current
+- run_current
+  - _normalize_language
+    - lower
+    - strip
+    - str
+  - get
+  - _normalize_profile
+    - dict
+  - _normalize_bundle
+    - isinstance
+    - _stringify_text
+      - join
+      - dumps
+    - items
+    - append
+    - any
+    - insert
+    - set
+    - _sanitize_relative_path
+      - replace
+      - ValueError
+      - split
+    - add
+    - _clean_text
+  - run_bundle
+    - AssertionError
+    - pop
+  - _bundle_response
+    - _main_file_content
+    - len
+## Flow Start: _state_run_result
+- _state_run_result
+  - get
+  - isinstance
+  - dict
+## Flow Start: _run_working_bundle
+- _run_working_bundle
+  - _state_bundle
+    - get
+    - isinstance
+    - ValueError
+    - dict
+  - run_bundle
+    - append
+    - AssertionError
+    - pop
+  - int
+  - _requires_visible_output
+    - lower
+    - strip
+    - str
+    - _normalize_language
+  - _issue_pedagogy_step
+    - _profile_from_state
+      - _normalize_profile
+    - _state_run_result
+    - _instruction_preset_from_state
+      - resolve_material_studio_instruction_preset
+      - _normalize_instruction_preset
+    - _main_file_content
+    - _inference_step
+      - _prepare_inference_prompt
+        - _normalize_prompt_text
+          - replace
+          - sub
+        - _prompt_input_token_budget
+          - _ai_provider_id
+        - _estimate_token_count
+          - len
+          - findall
+          - ceil
+          - max
+        - min
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+      - list
+      - _generation_options_for_phase
+        - endswith
+      - _timeout_seconds_for_phase
+    - _pedagogy_prompt
+      - _pedagogy_payload_snapshot
+      - dumps
+      - _run_result_snapshot
+      - dedent
+      - extend
+      - _instruction_preset_lines
+        - _normalize_compare_text
+          - casefold
+      - join
+  - _issue_debugger_step
+    - _state_plan
+    - _repair_prompt
+      - _bundle_prompt_snapshot
+## Flow Start: _replace_main_file
+- _replace_main_file
+  - str
+  - get
+  - append
+  - dict
+  - insert
+  - _normalize_bundle
+    - _normalize_language
+      - lower
+      - strip
+    - isinstance
+    - _stringify_text
+      - join
+      - dumps
+    - items
+    - any
+    - set
+    - _sanitize_relative_path
+      - replace
+      - ValueError
+      - split
+    - add
+    - _clean_text
+## Flow Start: _run_result_snapshot
+- _run_result_snapshot
+  - get
+  - str
+## Flow Start: _main_file_content
+- _main_file_content
+  - str
+  - get
+## Flow Start: TeacherMaterialStudioService._python_has_missing_main_invocation
+- TeacherMaterialStudioService._python_has_missing_main_invocation
+  - strip
+  - str
+  - parse
+  - any
+  - isinstance
+  - generic_visit
+  - _MainCallVisitor
+  - visit
+## Flow Start: TeacherMaterialStudioService.run_current
+- TeacherMaterialStudioService.run_current
+  - _normalize_language
+    - lower
+    - strip
+    - str
+  - get
+  - _normalize_profile
+    - dict
+  - _normalize_bundle
+    - isinstance
+    - _stringify_text
+      - join
+      - dumps
+    - items
+    - append
+    - any
+    - insert
+    - set
+    - _sanitize_relative_path
+      - replace
+      - ValueError
+      - split
+    - add
+    - _clean_text
+  - run_bundle
+    - AssertionError
+    - pop
+  - _bundle_response
+    - _main_file_content
+    - len
+## Flow Start: TeacherMaterialStudioService._state_run_result
+- TeacherMaterialStudioService._state_run_result
+  - get
+  - isinstance
+  - dict
+## Flow Start: TeacherMaterialStudioService._run_working_bundle
+- TeacherMaterialStudioService._run_working_bundle
+  - _state_bundle
+    - get
+    - isinstance
+    - ValueError
+    - dict
+  - run_bundle
+    - append
+    - AssertionError
+    - pop
+  - int
+  - _requires_visible_output
+    - lower
+    - strip
+    - str
+    - _normalize_language
+  - _issue_pedagogy_step
+    - _profile_from_state
+      - _normalize_profile
+    - _state_run_result
+    - _instruction_preset_from_state
+      - resolve_material_studio_instruction_preset
+      - _normalize_instruction_preset
+    - _main_file_content
+    - _inference_step
+      - _prepare_inference_prompt
+        - _normalize_prompt_text
+          - replace
+          - sub
+        - _prompt_input_token_budget
+          - _ai_provider_id
+        - _estimate_token_count
+          - len
+          - findall
+          - ceil
+          - max
+        - min
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+      - list
+      - _generation_options_for_phase
+        - endswith
+      - _timeout_seconds_for_phase
+    - _pedagogy_prompt
+      - _pedagogy_payload_snapshot
+      - dumps
+      - _run_result_snapshot
+      - dedent
+      - extend
+      - _instruction_preset_lines
+        - _normalize_compare_text
+          - casefold
+      - join
+  - _issue_debugger_step
+    - _state_plan
+    - _repair_prompt
+      - _bundle_prompt_snapshot
+## Flow Start: TeacherMaterialStudioService._replace_main_file
+- TeacherMaterialStudioService._replace_main_file
+  - str
+  - get
+  - append
+  - dict
+  - insert
+  - _normalize_bundle
+    - _normalize_language
+      - lower
+      - strip
+    - isinstance
+    - _stringify_text
+      - join
+      - dumps
+    - items
+    - any
+    - set
+    - _sanitize_relative_path
+      - replace
+      - ValueError
+      - split
+    - add
+    - _clean_text
+## Flow Start: TeacherMaterialStudioService._run_result_snapshot
+- TeacherMaterialStudioService._run_result_snapshot
+  - get
+  - str
+## Flow Start: TeacherMaterialStudioService._main_file_content
+- TeacherMaterialStudioService._main_file_content
+  - str
+  - get
+## Flow Start: _close_handle
+- _close_handle
+  - getattr
+  - CloseHandle
+## Flow Start: _emit_exit_from_handle
+- _emit_exit_from_handle
+  - emit
+  - add_audit
+    - execute
+    - uuid4
+    - _encode_json
+      - dumps
+    - time
+  - release
+    - max
+    - get
+    - pop
+    - notify_all
+## Flow Start: _poll_handle
+- _poll_handle
+  - poll
+## Flow Start: _wait_handle
+- _wait_handle
+  - wait
+    - int
+## Flow Start: handle_project_socket
+- handle_project_socket
+  - RealtimeClient
+  - uuid4
+  - _register
+    - setdefault
+    - str
+  - send_json
+    - append
+    - dict
+  - get
+  - snapshot
+    - list
+  - recv_json
+    - recv_text
+      - _recv_frame
+        - _recv_exact
+          - bytearray
+          - len
+          - recv
+          - ConnectionError
+          - extend
+          - bytes
+        - bool
+        - unpack
+        - enumerate
+      - decode
+      - close
+      - _send_frame
+        - is_set
+        - pack
+        - sendall
+    - loads
+  - _handle_message
+    - lower
+    - strip
+    - time
+    - _require_permission
+      - PermissionError
+    - heartbeat
+      - get_worker_node
+        - fetchone
+        - execute
+        - _row_to_worker_node
+      - FileNotFoundError
+      - upsert_worker_node
+        - _encode_json
+          - dumps
+        - sorted
+        - float
+      - list_dispatch_jobs
+        - join
+        - fetchall
+        - tuple
+        - _row_to_dispatch_job
+      - _present_worker
+        - _is_online
+        - _worker_enrollment
+          - hasattr
+          - list_worker_enrollments
+          - next
+    - isinstance
+    - _broadcast_project
+      - values
+      - _unregister
+        - pop
+    - sync
+      - _ensure_state
+        - int
+        - load_notebook
+          - _notebook_path
+          - exists
+          - read_text
+          - _normalize_legacy_notebook_cell
+          - write_text
+        - _store_state
+      - _snapshot_at
+      - _normalize_cell
+      - _merge_cells
+        - set
+      - save_notebook
+        - mkdir
+    - start
+      - _resolve_course_state
+        - RuntimeError
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - ValueError
+        - getattr
+        - _practice_payload
+      - _session_metadata
+        - _lesson_focus
+          - sub
+          - rsplit
+      - _room_key
+      - _opening_message
+      - add_chat_message
+      - session
+        - _session_row
+        - _session_payload
+      - thread
+        - list_chat_messages
+          - max
+          - min
+          - _decode_json
+    - send_input
+      - _session
+      - _ensure_control
+      - poll
+      - write
+      - encode
+      - flush
+    - resize
+      - normalize_terminal_size
+      - update
+    - stop
+      - _terminate
+        - terminate
+          - killpg
+          - perf_counter
+          - sleep
+        - wait
+        - kill
+  - stop_for_client
+    - items
+## Flow Start: _handle_message
+- _handle_message
+  - lower
+  - strip
+  - str
+  - get
+  - send_json
+    - append
+    - dict
+  - time
+  - _require_permission
+    - PermissionError
+  - heartbeat
+    - get_worker_node
+      - fetchone
+      - execute
+      - _row_to_worker_node
+        - loads
+    - FileNotFoundError
+    - upsert_worker_node
+      - _encode_json
+        - dumps
+      - sorted
+      - float
+    - list
+    - list_dispatch_jobs
+      - join
+      - extend
+      - fetchall
+      - tuple
+      - _row_to_dispatch_job
+        - bool
+    - _present_worker
+      - _is_online
+      - _worker_enrollment
+        - hasattr
+        - list_worker_enrollments
+        - next
+  - isinstance
+  - _broadcast_project
+    - values
+    - _unregister
+      - pop
+  - sync
+    - _ensure_state
+      - int
+      - load_notebook
+        - _notebook_path
+          - project_root
+        - exists
+        - read_text
+        - _normalize_legacy_notebook_cell
+        - write_text
+      - _store_state
+        - len
+        - uuid4
+    - _snapshot_at
+    - _normalize_cell
+    - enumerate
+    - _merge_cells
+      - set
+    - save_notebook
+      - mkdir
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - ValueError
+      - getattr
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+    - _room_key
+    - _opening_message
+    - add_chat_message
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - max
+        - min
+        - _decode_json
+  - send_input
+    - _session
+    - _ensure_control
+    - poll
+    - write
+    - encode
+    - flush
+  - resize
+    - normalize_terminal_size
+    - update
+  - stop
+    - _terminate
+      - terminate
+        - killpg
+        - perf_counter
+        - sleep
+      - wait
+      - kill
+## Flow Start: LiveRunManager._emit_exit_from_handle
+- LiveRunManager._emit_exit_from_handle
+  - emit
+  - add_audit
+    - execute
+    - uuid4
+    - _encode_json
+      - dumps
+    - time
+  - release
+    - max
+    - get
+    - pop
+    - notify_all
+## Flow Start: LiveRunManager._poll_handle
+- LiveRunManager._poll_handle
+  - poll
+## Flow Start: LiveRunManager._wait_handle
+- LiveRunManager._wait_handle
+  - wait
+    - int
+## Flow Start: RealtimeService.handle_project_socket
+- RealtimeService.handle_project_socket
+  - RealtimeClient
+  - uuid4
+  - _register
+    - setdefault
+    - str
+  - send_json
+    - append
+    - dict
+  - get
+  - snapshot
+    - list
+  - recv_json
+    - recv_text
+      - _recv_frame
+        - _recv_exact
+          - bytearray
+          - len
+          - recv
+          - ConnectionError
+          - extend
+          - bytes
+        - bool
+        - unpack
+        - enumerate
+      - decode
+      - close
+      - _send_frame
+        - is_set
+        - pack
+        - sendall
+    - loads
+  - _handle_message
+    - lower
+    - strip
+    - time
+    - _require_permission
+      - PermissionError
+    - heartbeat
+      - get_worker_node
+        - fetchone
+        - execute
+        - _row_to_worker_node
+      - FileNotFoundError
+      - upsert_worker_node
+        - _encode_json
+          - dumps
+        - sorted
+        - float
+      - list_dispatch_jobs
+        - join
+        - fetchall
+        - tuple
+        - _row_to_dispatch_job
+      - _present_worker
+        - _is_online
+        - _worker_enrollment
+          - hasattr
+          - list_worker_enrollments
+          - next
+    - isinstance
+    - _broadcast_project
+      - values
+      - _unregister
+        - pop
+    - sync
+      - _ensure_state
+        - int
+        - load_notebook
+          - _notebook_path
+          - exists
+          - read_text
+          - _normalize_legacy_notebook_cell
+          - write_text
+        - _store_state
+      - _snapshot_at
+      - _normalize_cell
+      - _merge_cells
+        - set
+      - save_notebook
+        - mkdir
+    - start
+      - _resolve_course_state
+        - RuntimeError
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - ValueError
+        - getattr
+        - _practice_payload
+      - _session_metadata
+        - _lesson_focus
+          - sub
+          - rsplit
+      - _room_key
+      - _opening_message
+      - add_chat_message
+      - session
+        - _session_row
+        - _session_payload
+      - thread
+        - list_chat_messages
+          - max
+          - min
+          - _decode_json
+    - send_input
+      - _session
+      - _ensure_control
+      - poll
+      - write
+      - encode
+      - flush
+    - resize
+      - normalize_terminal_size
+      - update
+    - stop
+      - _terminate
+        - terminate
+          - killpg
+          - perf_counter
+          - sleep
+        - wait
+        - kill
+  - stop_for_client
+    - items
+## Flow Start: RealtimeService._handle_message
+- RealtimeService._handle_message
+  - lower
+  - strip
+  - str
+  - get
+  - send_json
+    - append
+    - dict
+  - time
+  - _require_permission
+    - PermissionError
+  - heartbeat
+    - get_worker_node
+      - fetchone
+      - execute
+      - _row_to_worker_node
+        - loads
+    - FileNotFoundError
+    - upsert_worker_node
+      - _encode_json
+        - dumps
+      - sorted
+      - float
+    - list
+    - list_dispatch_jobs
+      - join
+      - extend
+      - fetchall
+      - tuple
+      - _row_to_dispatch_job
+        - bool
+    - _present_worker
+      - _is_online
+      - _worker_enrollment
+        - hasattr
+        - list_worker_enrollments
+        - next
+  - isinstance
+  - _broadcast_project
+    - values
+    - _unregister
+      - pop
+  - sync
+    - _ensure_state
+      - int
+      - load_notebook
+        - _notebook_path
+          - project_root
+        - exists
+        - read_text
+        - _normalize_legacy_notebook_cell
+        - write_text
+      - _store_state
+        - len
+        - uuid4
+    - _snapshot_at
+    - _normalize_cell
+    - enumerate
+    - _merge_cells
+      - set
+    - save_notebook
+      - mkdir
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - ValueError
+      - getattr
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+    - _room_key
+    - _opening_message
+    - add_chat_message
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - max
+        - min
+        - _decode_json
+  - send_input
+    - _session
+    - _ensure_control
+    - poll
+    - write
+    - encode
+    - flush
+  - resize
+    - normalize_terminal_size
+    - update
+  - stop
+    - _terminate
+      - terminate
+        - killpg
+        - perf_counter
+        - sleep
+      - wait
+      - kill
+## Flow Start: _run_git
+- _run_git
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+      - str
+      - get
+      - Path
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+          - isinstance
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - is_dir
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - exists
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+        - read_text
+      - compile
+      - rstrip
+      - max
+      - int
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - resolve
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+## Flow Start: _project_run_analytics
+- _project_run_analytics
+  - fetchall
+  - execute
+  - len
+  - enumerate
+  - loads
+  - int
+  - get
+## Flow Start: ReviewService._project_run_analytics
+- ReviewService._project_run_analytics
+  - fetchall
+  - execute
+  - len
+  - enumerate
+  - loads
+  - int
+  - get
+## Flow Start: run_server
+- run_server
+  - ThreadingHTTPServer
+  - join
+  - print
+  - _guess_lan_ipv4
+    - socket
+    - connect
+    - getsockname
+    - startswith
+  - serve_forever
+  - server_close
+  - close
+## Flow Start: runtime_config_payload
+- runtime_config_payload
+  - active_runtime_config
+    - str
+    - int
+  - stored_runtime_config
+    - load_server_config_payload
+      - resolve
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - get
+  - _guess_lan_ipv4
+    - socket
+    - connect
+    - getsockname
+    - startswith
+  - runtime_config_requires_restart
+## Flow Start: do_POST
+- do_POST
+  - _dispatch
+    - urlparse
+    - setattr
+    - startswith
+    - _serve_websocket
+      - _require_session
+        - _current_session
+          - _token_from_request
+          - session_from_token
+        - PermissionError
+      - split
+      - len
+      - get_project_for_session
+        - get_project
+          - fetchone
+          - execute
+          - _row_to_project
+        - FileNotFoundError
+        - can_access_project
+          - get
+      - upgrade_websocket
+        - lower
+        - strip
+        - str
+        - ValueError
+        - send_response
+        - send_header
+        - accept_key
+          - digest
+          - sha1
+          - encode
+          - decode
+          - b64encode
+        - end_headers
+        - WebSocketConnection
+      - handle_project_socket
+        - RealtimeClient
+        - uuid4
+        - _register
+          - setdefault
+        - send_json
+          - append
+          - dict
+        - snapshot
+          - list
+        - recv_json
+          - recv_text
+          - loads
+        - _handle_message
+          - time
+          - _require_permission
+          - heartbeat
+          - isinstance
+          - _broadcast_project
+          - sync
+          - int
+          - start
+          - send_input
+          - resize
+          - stop
+        - stop_for_client
+          - items
+          - _terminate
+        - _unregister
+          - pop
+        - close
+    - _serve_file
+      - exists
+      - is_file
+      - guess_type
+      - stat
+      - open
+      - read
+        - max
+      - write
+    - removeprefix
+    - _serve_model_asset
+      - unquote
+      - join
+      - _resolve_relative_file
+        - replace
+        - any
+        - joinpath
+        - resolve
+        - relative_to
+      - model_root
+        - Path
+        - set
+        - add
+        - is_dir
+    - _serve_share
+      - resolve_share_path
+        - _artifact_row
+        - is_relative_to
+    - _serve_download
+      - resolve_download_path
+    - _serve_preview
+      - resolve_project_path
+        - project_root
+          - owner_root
+          - slugify
+    - _serve_reference
+      - _redirect
+      - parse_qs
+      - render_portal
+        - next
+        - iter
+        - catalog
+          - _catalog_entry
+        - documents
+          - _scope_folder
+          - sorted
+          - glob
+          - read_text
+          - _extract_title
+        - resolve_document
+          - _load_documents
+          - casefold
+        - search
+          - findall
+          - count
+          - _snippet
+          - sort
+        - _render_shell
+          - escape
+          - getattr
+          - quote
+      - _send_html
+    - _serve_certificate_verify
+      - get_setting
+      - render_certificate_verification_page
+        - certificate_by_id
+          - get_user
+          - _catalog_course
+        - strftime
+        - localtime
+        - float
+    - _serve_reference_asset
+      - resolve_asset
+        - _ensure_managed_pack
+          - ensure_built
+        - _content_root
+          - _site_root
+          - _contains_documents
+          - _pack_root
+    - _serve_manual
+      - render_page
+        - _resolve_scope
+          - allowed_scopes
+          - default_scope
+        - _collect_toc
+          - splitlines
+          - match
+          - group
+          - _anchor_id
+        - _markdown_to_html
+          - chr
+          - _is_table_header
+          - _render_table
+          - _render_inline
+          - sub
+    - _handle_api
+      - _send_json
+        - dumps
+      - bool
+      - to_dict
+      - _read_json_body
+        - _read_raw_body
+      - login
+        - verify_password
+          - urlsafe_b64decode
+          - pbkdf2_hmac
+          - compare_digest
+        - issue_token
+          - register_tenant
+          - token_urlsafe
+          - _json_safe
+          - _save_state
+      - add_audit
+        - _encode_json
+      - bootstrap_payload
+        - accessible_projects
+          - project_payload
+          - list_accessible_projects
+        - status
+          - _dispatch_mode
+          - _status_local
+          - _status_remote
+        - list_docs
+        - rooms_for
+          - list_groups
+        - permission_catalog
+        - public_settings
+          - default_ai_provider
+          - default_llamacpp_model_label
+          - default_litertlm_model_label
+          - default_llamacpp_model_path
+          - default_litertlm_model_path
+          - default_litertlm_binary_path
+        - template_catalog
+        - material_studio_profile_catalog
+        - material_studio_instruction_preset_catalog
+          - _material_studio_preset_modules
+          - title
+          - _material_studio_preset_technical_lines
+      - _cookie_header
+        - _request_uses_tls
+          - _configured_public_host
+          - _request_scheme
+      - logout
+        - revoke_token
+          - values
+      - _clear_cookie_header
+      - _handle_worker_api
+        - _require_worker
+          - verify_worker_request
+        - claim_next_job
+          - claim_next_dispatch_job
+          - server_base_url
+          - _artifact_sha256
+          - sign_job_payload
+        - resolve_job_artifact
+          - _job_root
+        - append_job_log
+          - _require_job_owner
+          - append_dispatch_job_log
+        - update_job_status
+          - update_dispatch_job_status
+      - get_doc
+      - can_access_room
+      - get_active_mute
+      - list_chat_messages
+        - min
+        - fetchall
+        - tuple
+        - _decode_json
+      - add_chat_message
+      - find_project_by_owner_and_slug
+      - create_project
+      - materialize_project
+        - mkdir
+        - write_text
+      - can_manage_project_data
+      - hard_delete_project
+        - _rows_to_dicts_optional
+          - _table_exists
+          - _rows_to_dicts
+        - _artifact_fs_path
+        - _execute_optional
+        - _remove_path
+          - is_absolute
+          - rmtree
+          - unlink
+      - list_tree
+        - rglob
+        - as_posix
+      - create_directory
+        - _normalize_relative_path
+      - export_project_archive
+        - _build_project_archive_bundle
+          - RuntimeError
+          - _project_export_payload
+          - BytesIO
+          - ZipFile
+          - writestr
+          - getvalue
+      - _send_bytes
+      - archive_project
+        - write_bytes
+      - read_file
+      - write_file
+      - delete_file
+        - _prune_empty_parent_dirs
+          - rmdir
+      - delete_entry
+        - _path_matches_or_contains
+      - rename_entry
+        - rename
+        - _renamed_path
+      - update_project_main_file
+      - load_notebook
+        - _notebook_path
+        - _normalize_legacy_notebook_cell
+      - save_notebook
+      - run
+        - _resolve_language
+        - _runner_backend
+          - _setting
+        - resolve_backend
+          - _unsafe_process_backend_enabled
+        - authorize
+        - allowed_tool_names
+        - _prepare_html_preview
+          - _prepare_execution_workspace
+          - _resolve_html_preview_entry
+        - RunResult
+        - _backend_notes
+          - _container_runtime
+          - extend
+          - _network_notes
+        - _finalize_run_result
+          - _scheduler_notes
+          - _visible_notes_for_session
+        - _resolve_project_entry_path
+          - _resolve_project_entry_relative_path
+        - _python_syntax_error
+          - _read_source_text
+          - compile
+          - rstrip
+        - _execution_env
+          - _setting_bool
+        - acquire
+          - _priority_for_role
+          - perf_counter
+          - enumerate
+          - _can_activate
+          - SchedulerLease
+          - wait
+        - _session_role
+        - _run_containerized
+          - which
+          - _container_image
+          - _container_runtime_health
+          - _prepare_container_workspace
+          - _ensure_container_image_available
+          - _detect_python_gui_frameworks
+          - _ensure_python_dependencies_container
+          - _write_python_bootstrap
+          - _python_entry_env
+          - _containerized_env
+          - _container_path
+          - _ensure_python_gui_container_image
+          - _prepare_python_gui_scripts
+          - _execute_container
+          - _project_source_files
+          - _execute_container_raw
+          - _java_main_class
+        - _run_python
+          - _ensure_python_dependencies_process
+          - _execute
+        - _run_node_like
+        - _run_cpp
+          - _execute_raw
+        - _run_java
+        - _run_rust
+        - _run_npm
+        - release
+          - notify_all
+      - thread
+        - session
+          - _session_row
+          - _session_payload
+      - prepare
+        - upper
+        - _compose_prompt
+          - _prepare_prompt_with_budget
+        - _direct_reply
+          - _prompt_requests_state_review
+          - _python_intro_run_feedback
+          - _web_frontend_intro_feedback
+      - complete
+        - AssertionError
+      - store_reply
+        - _sanitize_reply
+        - _touch_session
+      - submit
+        - copy_project_snapshot
+          - copy2
+        - _select_reviewers
+          - list_users
+          - list_memberships
+        - _alias
+          - resolve_secret
+          - store_secret
+          - hexdigest
+          - new
+        - _submission_payload
+          - _submission_row
+          - read_text_preview
+          - list_snapshot_files
+          - _project_run_analytics
+      - create_share
+        - _enforce_quota
+          - get_tenant
+        - _store_artifact
+        - _artifact_payload
+      - create_export
+        - TemporaryDirectory
+        - _prepare_bundle
+          - _write_runtime_guides
+          - iterdir
+      - complete_direct_completion
+        - _active_service
+          - _provider_preference
+          - resolved_model_path
+          - _discover_binary_candidates
+      - start_generation
+        - _normalize_language
+        - _normalize_profile
+        - _issue_plan_step
+          - _profile_from_state
+          - _instruction_preset_from_state
+          - _inference_step
+          - _planner_prompt
+      - continue_generation
+        - _coerce_generation_state
+        - _consume_plan_response
+          - _normalize_plan
+          - _parse_json_response
+          - _issue_json_repair_step
+          - _agent_summary
+          - _issue_author_step
+        - _consume_plan_repair_response
+          - _fallback_plan
+        - _consume_author_response
+          - _state_plan
+          - _normalize_bundle
+          - _run_working_bundle
+        - _consume_author_repair_response
+          - _issue_author_code_step
+        - _consume_author_code_response
+          - _parse_code_response
+          - _issue_code_repair_step
+          - _accept_author_code
+        - _consume_author_code_repair_response
+        - _consume_debugger_response
+          - _state_bundle
+        - _consume_debugger_repair_response
+          - _issue_debugger_code_step
+        - _consume_debugger_code_response
+          - _accept_debugger_code
+        - _consume_debugger_code_repair_response
+        - _consume_pedagogy_response
+          - _finalize_generation
+        - _consume_pedagogy_repair_response
+          - _fallback_pedagogy
+          - _main_file_content
+          - _state_run_result
+      - run_current
+        - run_bundle
+        - _bundle_response
+      - admin_overview
+        - list_settings
+        - sanitize_users
+          - sanitize_user
+        - list_projects
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - type
+        - list_artifacts
+        - runtime_config_payload
+          - active_runtime_config
+          - stored_runtime_config
+          - _guess_lan_ipv4
+          - runtime_config_requires_restart
+        - list_workers
+          - _worker_loads
+          - list_worker_nodes
+          - _present_worker
+        - list_dispatch_jobs
+          - _row_to_dispatch_job
+      - _require_server_settings_access
+        - _can_manage_server_settings
+      - server_settings_overview
+      - attempt_history
+        - list_user_groups
+          - _row_to_group
+        - _course_payload
+          - _resolve_release
+          - _latest_attempts
+          - _certificate_for
+          - _attempt_count
+        - _sanitize_user
+      - save_custom_course
+        - _normalize_course_definition
+          - _slug
+          - _custom_course
+          - _normalize_question
+          - _listify
+      - prepare_certificate_metadata
+      - _certificate_verification_url
+        - _external_base_url
+          - _request_origin
+      - build_certificate_pdf
+        - build_curriculum_certificate_pdf
+          - _hex_to_rgb
+          - isclose
+          - round
+          - _format_date
+          - _normalize_text
+          - _load_rgb_image
+          - _build_verification_matrix
+          - _rect_command
+          - _line_command
+          - _centered_text_command
+          - _text_command
+          - _image_draw_command
+          - _initials
+          - _wrap_text
+          - bytes
+          - bytearray
+      - submit_assessment
+        - _resolve_module
+        - _grade_assessment
+        - _refresh_certificate
+          - all
+      - set_release
+        - _release_payload
+          - _release_row_payload
+      - list_bundles
+        - _bundle_row_payload
+          - active_bundle_id
+      - _decode_uploaded_bundle
+        - b64decode
+      - validate_bundle_archive
+        - _parse_bundle_archive
+          - namelist
+          - _decode_bundle_json
+          - _load_bundle_raw_section
+          - _verify_bundle_signature
+          - _normalize_bundle_course
+          - _normalize_material_preset
+          - _normalize_mentor_rule
+          - _ensure_unique_bundle_entries
+          - sha256
+        - _bundle_preview_payload
+      - import_bundle_archive
+        - _bundle_payload
+      - activate_bundle
+      - rollback_bundle
+      - issue_bootstrap
+        - _secret_name
+        - hasattr
+        - _ensure_worker_enrollment
+          - _worker_enrollment
+          - onboard_worker
+        - upsert_worker_node
+          - get_worker_node
+      - submit_feedback
+        - _assignment_row
+        - _refresh_submission_status
+        - _assignment_payload
+      - audit_entries
+        - list_audit_logs
+      - export_user_data
+        - retention_policy
+          - _retention_days
+        - _chat_export_payload
+          - _json_row
+        - _group_chat_threads
+        - _group_mentor_threads
+        - sum
+      - create_user
+        - normalize_permission_overrides
+      - ensure_profile_folder
+      - update_user
+        - update_user_account
+        - hash_password
+          - urandom
+          - urlsafe_b64encode
+        - set_user_password
+      - hard_delete_user
+        - format
+      - create_group
+        - get_group
+      - remove_membership
+      - add_membership
+      - update_user_permissions
+      - permission_audit_payload
+      - update_group_permissions
+      - set_mute
+      - put_setting
+      - save_server_config_payload
+        - load_server_config_payload
+        - update
+      - apply_retention
+## Flow Start: _handle_api
+- _handle_api
+  - split
+  - _current_session
+    - _token_from_request
+      - get
+      - SimpleCookie
+      - load
+      - startswith
+      - strip
+      - len
+    - session_from_token
+  - _send_json
+    - encode
+    - dumps
+    - send_response
+    - int
+    - send_header
+    - str
+    - end_headers
+    - write
+  - bool
+  - to_dict
+  - _read_json_body
+    - _read_raw_body
+      - getattr
+      - read
+        - max
+    - dict
+    - loads
+    - decode
+  - login
+    - get_user
+      - fetchone
+      - execute
+      - _row_to_user
+    - PermissionError
+    - verify_password
+      - urlsafe_b64decode
+      - pbkdf2_hmac
+      - compare_digest
+    - issue_token
+      - register_tenant
+        - _save_state
+          - with_suffix
+          - write_text
+          - replace
+      - token_urlsafe
+      - uuid4
+      - sorted
+      - _json_safe
+        - isinstance
+        - items
+      - time
+  - add_audit
+    - _encode_json
+  - bootstrap_payload
+    - accessible_projects
+      - project_payload
+        - project_root
+          - owner_root
+          - slugify
+      - list_accessible_projects
+        - list_projects
+          - fetchall
+          - _row_to_project
+        - join
+        - extend
+        - tuple
+    - status
+      - _dispatch_mode
+        - lower
+        - get_setting
+      - _status_local
+        - _load_topology
+          - exists
+          - FileNotFoundError
+          - read_text
+          - enumerate
+          - list
+          - ValueError
+          - append
+        - _ensure_security_assets
+          - get_certificate_authority
+          - _ca_name
+          - create_certificate_authority
+          - get_trust_policy
+          - _policy_name
+          - set_trust_policy
+        - list_worker_enrollments
+        - poll
+        - _resolved_backend
+          - resolve_backend
+        - _tail_log
+        - _log_path
+        - list_workers
+          - _worker_loads
+          - list_worker_nodes
+          - _present_worker
+      - _status_remote
+        - latest_jobs_for_project
+          - list_latest_dispatch_jobs_for_project
+    - list_docs
+    - rooms_for
+      - list_groups
+        - _row_to_group
+    - permission_catalog
+    - public_settings
+      - default_ai_provider
+        - default_litertlm_model_path
+          - local_model_files
+        - default_litertlm_binary_path
+          - which
+          - insert
+          - Path
+          - is_file
+          - resolve
+        - default_llamacpp_model_path
+      - default_llamacpp_model_label
+      - default_litertlm_model_label
+    - template_catalog
+    - material_studio_profile_catalog
+    - material_studio_instruction_preset_catalog
+      - _material_studio_preset_modules
+        - get_course
+      - title
+      - _material_studio_preset_technical_lines
+  - _cookie_header
+    - _request_uses_tls
+      - _configured_public_host
+      - _request_scheme
+        - partition
+  - _require_session
+  - logout
+    - revoke_token
+      - values
+  - _clear_cookie_header
+  - _handle_worker_api
+    - _require_worker
+      - verify_worker_request
+        - authenticate_worker
+          - get_worker_node
+          - _resolve_secret
+        - abs
+        - build_worker_signature
+          - hexdigest
+          - sha256
+          - upper
+          - new
+        - register_worker_nonce
+      - urlparse
+    - heartbeat
+      - upsert_worker_node
+        - float
+      - list_dispatch_jobs
+        - _row_to_dispatch_job
+    - claim_next_job
+      - claim_next_dispatch_job
+        - get_dispatch_job
+      - server_base_url
+        - _guess_lan_ipv4
+          - socket
+          - connect
+          - getsockname
+      - _artifact_sha256
+        - resolve_job_artifact
+          - _job_root
+        - open
+        - update
+      - sign_job_payload
+        - _job_signature_payload
+    - _serve_file
+      - guess_type
+      - stat
+    - append_job_log
+      - _require_job_owner
+      - append_dispatch_job_log
+        - update_dispatch_job_status
+    - update_job_status
+  - _require_permission
+  - get_doc
+  - parse_qs
+  - can_access_room
+    - get_project
+    - can_access_project
+  - get_active_mute
+  - list_chat_messages
+    - min
+    - _decode_json
+  - add_chat_message
+  - find_project_by_owner_and_slug
+  - create_project
+  - materialize_project
+    - mkdir
+  - get_project_for_session
+  - can_manage_project_data
+  - hard_delete_project
+    - _rows_to_dicts_optional
+      - _table_exists
+      - _rows_to_dicts
+    - _artifact_fs_path
+    - _execute_optional
+    - _remove_path
+      - is_absolute
+      - any
+      - is_relative_to
+      - is_dir
+      - rmtree
+      - unlink
+  - list_tree
+    - rglob
+    - as_posix
+    - relative_to
+  - create_directory
+    - _normalize_relative_path
+    - resolve_project_path
+  - export_project_archive
+    - _build_project_archive_bundle
+      - RuntimeError
+      - strftime
+      - localtime
+      - _project_export_payload
+      - BytesIO
+      - ZipFile
+      - writestr
+      - getvalue
+  - _send_bytes
+  - archive_project
+    - write_bytes
+  - read_file
+  - write_file
+  - delete_file
+    - _prune_empty_parent_dirs
+      - rmdir
+  - delete_entry
+    - _path_matches_or_contains
+  - rename_entry
+    - rename
+    - _renamed_path
+  - update_project_main_file
+  - load_notebook
+    - _notebook_path
+    - _normalize_legacy_notebook_cell
+  - save_notebook
+  - snapshot
+  - sync
+    - _ensure_state
+      - _store_state
+    - _snapshot_at
+    - _normalize_cell
+    - _merge_cells
+      - set
+      - pop
+  - run
+    - _resolve_language
+    - _runner_backend
+      - _setting
+    - authorize
+    - allowed_tool_names
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - iterdir
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - copy2
+        - _safe_relative_path
+        - _default_filename
+      - _resolve_html_preview_entry
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - _network_notes
+        - _setting_bool
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - wait
+    - _run_containerized
+      - _container_image
+      - _container_runtime_health
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - splitlines
+        - _python_dependency_cache_dir
+          - read_bytes
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+      - _project_source_files
+      - _execute_container_raw
+      - _java_main_class
+        - group
+    - _run_python
+      - _ensure_python_dependencies_process
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - thread
+    - session
+      - _session_row
+      - _session_payload
+  - prepare
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - sub
+        - _estimate_token_count
+          - ceil
+        - _trim_text_middle
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+      - _python_intro_run_feedback
+        - _visible_output_lines
+        - _count_print_calls
+        - _contains_runtime_error
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - finditer
+        - fullmatch
+  - complete
+    - AssertionError
+  - store_reply
+    - _sanitize_reply
+    - _touch_session
+  - start
+    - _resolve_course_state
+      - dashboard
+        - _list_submissions_for
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - rsplit
+    - _room_key
+    - _opening_message
+  - stop
+    - _session
+    - _ensure_control
+    - _terminate
+      - terminate
+        - killpg
+        - sleep
+      - kill
+  - submit
+    - copy_project_snapshot
+    - _select_reviewers
+      - list_users
+      - list_memberships
+    - _alias
+      - resolve_secret
+      - store_secret
+  - create_share
+    - _enforce_quota
+      - get_tenant
+    - _store_artifact
+    - _artifact_payload
+      - _artifact_row
+  - create_export
+    - TemporaryDirectory
+    - _prepare_bundle
+      - _write_runtime_guides
+  - complete_direct_completion
+    - _active_service
+      - _provider_preference
+      - resolved_model_path
+        - expanduser
+      - _discover_binary_candidates
+  - start_generation
+    - _normalize_language
+    - _normalize_profile
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _prompt_input_token_budget
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - _instruction_preset_lines
+          - _normalize_compare_text
+  - continue_generation
+    - _coerce_generation_state
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - _sanitize_relative_path
+    - _consume_author_response
+      - _normalize_bundle
+      - _run_working_bundle
+        - run_bundle
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+  - run_current
+  - admin_overview
+    - list_settings
+    - sanitize_users
+      - sanitize_user
+    - type
+    - list_artifacts
+    - runtime_config_payload
+      - active_runtime_config
+      - stored_runtime_config
+        - load_server_config_payload
+      - runtime_config_requires_restart
+  - _require_server_settings_access
+    - _can_manage_server_settings
+  - server_settings_overview
+  - attempt_history
+    - _catalog_course
+      - _custom_course
+      - _active_bundle_course
+        - active_bundle_id
+      - deepcopy
+    - list_user_groups
+    - _course_payload
+      - _resolve_release
+        - _query_releases
+      - _latest_attempts
+      - _certificate_for
+      - _attempt_count
+    - _sanitize_user
+  - save_custom_course
+    - _normalize_course_definition
+      - _slug
+      - _normalize_question
+        - _listify
+  - prepare_certificate_metadata
+  - _certificate_verification_url
+    - _external_base_url
+      - _request_origin
+        - _request_host
+  - build_certificate_pdf
+    - build_curriculum_certificate_pdf
+      - _hex_to_rgb
+      - isclose
+      - round
+      - _format_date
+        - fromtimestamp
+      - _normalize_text
+      - _load_rgb_image
+        - exif_transpose
+        - convert
+        - alpha_composite
+        - resize
+          - normalize_terminal_size
+        - tobytes
+        - compress
+      - _build_verification_matrix
+        - digest
+        - range
+        - putpixel
+        - draw_finder
+        - bit
+      - _rect_command
+        - _rgb
+      - _line_command
+      - _centered_text_command
+        - _estimate_width
+        - _text_command
+          - _pdf_string
+      - _image_draw_command
+      - _initials
+      - _wrap_text
+      - bytes
+      - bytearray
+  - submit_assessment
+    - _resolve_module
+    - _grade_assessment
+    - _refresh_certificate
+      - all
+  - set_release
+    - _release_payload
+      - _release_row_payload
+  - list_bundles
+    - _bundle_row_payload
+  - _decode_uploaded_bundle
+    - b64decode
+  - validate_bundle_archive
+    - _parse_bundle_archive
+      - namelist
+      - _decode_bundle_json
+      - _load_bundle_raw_section
+      - _verify_bundle_signature
+        - _canonical_bundle_payload
+      - _normalize_bundle_course
+      - _normalize_material_preset
+      - _normalize_mentor_rule
+      - _ensure_unique_bundle_entries
+    - _bundle_preview_payload
+  - import_bundle_archive
+    - _bundle_payload
+  - activate_bundle
+  - rollback_bundle
+  - issue_bootstrap
+    - _secret_name
+    - hasattr
+    - _ensure_worker_enrollment
+      - _worker_enrollment
+      - onboard_worker
+  - submit_feedback
+    - _assignment_row
+    - _refresh_submission_status
+  - unquote
+  - audit_entries
+    - list_audit_logs
+  - export_user_data
+    - retention_policy
+      - _retention_days
+    - _chat_export_payload
+      - _json_row
+        - removesuffix
+    - _group_chat_threads
+      - setdefault
+    - _group_mentor_threads
+    - sum
+  - create_user
+    - normalize_permission_overrides
+  - ensure_profile_folder
+  - update_user
+    - update_user_account
+    - hash_password
+      - urandom
+      - urlsafe_b64encode
+    - set_user_password
+  - hard_delete_user
+    - format
+  - create_group
+    - get_group
+  - remove_membership
+  - add_membership
+  - update_user_permissions
+  - permission_audit_payload
+  - update_group_permissions
+  - set_mute
+  - put_setting
+  - save_server_config_payload
+  - apply_retention
+## Flow Start: _handle_worker_api
+- _handle_worker_api
+  - _require_worker
+    - strip
+    - str
+    - get
+    - _token_from_request
+      - SimpleCookie
+      - load
+      - startswith
+      - len
+    - PermissionError
+    - verify_worker_request
+      - authenticate_worker
+        - get_worker_node
+          - fetchone
+          - execute
+          - _row_to_worker_node
+        - _resolve_secret
+          - hasattr
+          - resolve_secret
+        - compare_digest
+      - int
+      - abs
+      - time
+      - build_worker_signature
+        - hexdigest
+        - sha256
+        - encode
+        - join
+        - upper
+        - new
+      - register_worker_nonce
+        - max
+    - urlparse
+    - _read_raw_body
+      - getattr
+      - read
+  - _read_json_body
+    - dict
+    - loads
+    - decode
+  - heartbeat
+    - FileNotFoundError
+    - upsert_worker_node
+      - _encode_json
+        - dumps
+      - sorted
+      - float
+    - list
+    - list_dispatch_jobs
+      - append
+      - extend
+      - fetchall
+      - tuple
+      - _row_to_dispatch_job
+        - bool
+    - _present_worker
+      - _is_online
+      - _worker_enrollment
+        - list_worker_enrollments
+        - next
+  - _send_json
+    - send_response
+    - send_header
+    - end_headers
+    - write
+  - claim_next_job
+    - claim_next_dispatch_job
+      - get_dispatch_job
+    - server_base_url
+      - get_setting
+      - _guess_lan_ipv4
+        - socket
+        - connect
+        - getsockname
+    - _artifact_sha256
+      - resolve_job_artifact
+        - _job_root
+        - exists
+      - open
+      - update
+    - sign_job_payload
+      - _job_signature_payload
+  - ValueError
+  - _serve_file
+    - is_file
+    - guess_type
+    - stat
+  - append_job_log
+    - _require_job_owner
+    - append_dispatch_job_log
+      - update_dispatch_job_status
+  - update_job_status
+## Flow Start: NovaSchoolApplication.runtime_config_payload
+- NovaSchoolApplication.runtime_config_payload
+  - active_runtime_config
+    - str
+    - int
+  - stored_runtime_config
+    - load_server_config_payload
+      - resolve
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - get
+  - _guess_lan_ipv4
+    - socket
+    - connect
+    - getsockname
+    - startswith
+  - runtime_config_requires_restart
+## Flow Start: NovaSchoolRequestHandler.do_POST
+- NovaSchoolRequestHandler.do_POST
+  - _dispatch
+    - urlparse
+    - setattr
+    - startswith
+    - _serve_websocket
+      - _require_session
+        - _current_session
+          - _token_from_request
+          - session_from_token
+        - PermissionError
+      - split
+      - len
+      - get_project_for_session
+        - get_project
+          - fetchone
+          - execute
+          - _row_to_project
+        - FileNotFoundError
+        - can_access_project
+          - get
+      - upgrade_websocket
+        - lower
+        - strip
+        - str
+        - ValueError
+        - send_response
+        - send_header
+        - accept_key
+          - digest
+          - sha1
+          - encode
+          - decode
+          - b64encode
+        - end_headers
+        - WebSocketConnection
+      - handle_project_socket
+        - RealtimeClient
+        - uuid4
+        - _register
+          - setdefault
+        - send_json
+          - append
+          - dict
+        - snapshot
+          - list
+        - recv_json
+          - recv_text
+          - loads
+        - _handle_message
+          - time
+          - _require_permission
+          - heartbeat
+          - isinstance
+          - _broadcast_project
+          - sync
+          - int
+          - start
+          - send_input
+          - resize
+          - stop
+        - stop_for_client
+          - items
+          - _terminate
+        - _unregister
+          - pop
+        - close
+    - _serve_file
+      - exists
+      - is_file
+      - guess_type
+      - stat
+      - open
+      - read
+        - max
+      - write
+    - removeprefix
+    - _serve_model_asset
+      - unquote
+      - join
+      - _resolve_relative_file
+        - replace
+        - any
+        - joinpath
+        - resolve
+        - relative_to
+      - model_root
+        - Path
+        - set
+        - add
+        - is_dir
+    - _serve_share
+      - resolve_share_path
+        - _artifact_row
+        - is_relative_to
+    - _serve_download
+      - resolve_download_path
+    - _serve_preview
+      - resolve_project_path
+        - project_root
+          - owner_root
+          - slugify
+    - _serve_reference
+      - _redirect
+      - parse_qs
+      - render_portal
+        - next
+        - iter
+        - catalog
+          - _catalog_entry
+        - documents
+          - _scope_folder
+          - sorted
+          - glob
+          - read_text
+          - _extract_title
+        - resolve_document
+          - _load_documents
+          - casefold
+        - search
+          - findall
+          - count
+          - _snippet
+          - sort
+        - _render_shell
+          - escape
+          - getattr
+          - quote
+      - _send_html
+    - _serve_certificate_verify
+      - get_setting
+      - render_certificate_verification_page
+        - certificate_by_id
+          - get_user
+          - _catalog_course
+        - strftime
+        - localtime
+        - float
+    - _serve_reference_asset
+      - resolve_asset
+        - _ensure_managed_pack
+          - ensure_built
+        - _content_root
+          - _site_root
+          - _contains_documents
+          - _pack_root
+    - _serve_manual
+      - render_page
+        - _resolve_scope
+          - allowed_scopes
+          - default_scope
+        - _collect_toc
+          - splitlines
+          - match
+          - group
+          - _anchor_id
+        - _markdown_to_html
+          - chr
+          - _is_table_header
+          - _render_table
+          - _render_inline
+          - sub
+    - _handle_api
+      - _send_json
+        - dumps
+      - bool
+      - to_dict
+      - _read_json_body
+        - _read_raw_body
+      - login
+        - verify_password
+          - urlsafe_b64decode
+          - pbkdf2_hmac
+          - compare_digest
+        - issue_token
+          - register_tenant
+          - token_urlsafe
+          - _json_safe
+          - _save_state
+      - add_audit
+        - _encode_json
+      - bootstrap_payload
+        - accessible_projects
+          - project_payload
+          - list_accessible_projects
+        - status
+          - _dispatch_mode
+          - _status_local
+          - _status_remote
+        - list_docs
+        - rooms_for
+          - list_groups
+        - permission_catalog
+        - public_settings
+          - default_ai_provider
+          - default_llamacpp_model_label
+          - default_litertlm_model_label
+          - default_llamacpp_model_path
+          - default_litertlm_model_path
+          - default_litertlm_binary_path
+        - template_catalog
+        - material_studio_profile_catalog
+        - material_studio_instruction_preset_catalog
+          - _material_studio_preset_modules
+          - title
+          - _material_studio_preset_technical_lines
+      - _cookie_header
+        - _request_uses_tls
+          - _configured_public_host
+          - _request_scheme
+      - logout
+        - revoke_token
+          - values
+      - _clear_cookie_header
+      - _handle_worker_api
+        - _require_worker
+          - verify_worker_request
+        - claim_next_job
+          - claim_next_dispatch_job
+          - server_base_url
+          - _artifact_sha256
+          - sign_job_payload
+        - resolve_job_artifact
+          - _job_root
+        - append_job_log
+          - _require_job_owner
+          - append_dispatch_job_log
+        - update_job_status
+          - update_dispatch_job_status
+      - get_doc
+      - can_access_room
+      - get_active_mute
+      - list_chat_messages
+        - min
+        - fetchall
+        - tuple
+        - _decode_json
+      - add_chat_message
+      - find_project_by_owner_and_slug
+      - create_project
+      - materialize_project
+        - mkdir
+        - write_text
+      - can_manage_project_data
+      - hard_delete_project
+        - _rows_to_dicts_optional
+          - _table_exists
+          - _rows_to_dicts
+        - _artifact_fs_path
+        - _execute_optional
+        - _remove_path
+          - is_absolute
+          - rmtree
+          - unlink
+      - list_tree
+        - rglob
+        - as_posix
+      - create_directory
+        - _normalize_relative_path
+      - export_project_archive
+        - _build_project_archive_bundle
+          - RuntimeError
+          - _project_export_payload
+          - BytesIO
+          - ZipFile
+          - writestr
+          - getvalue
+      - _send_bytes
+      - archive_project
+        - write_bytes
+      - read_file
+      - write_file
+      - delete_file
+        - _prune_empty_parent_dirs
+          - rmdir
+      - delete_entry
+        - _path_matches_or_contains
+      - rename_entry
+        - rename
+        - _renamed_path
+      - update_project_main_file
+      - load_notebook
+        - _notebook_path
+        - _normalize_legacy_notebook_cell
+      - save_notebook
+      - run
+        - _resolve_language
+        - _runner_backend
+          - _setting
+        - resolve_backend
+          - _unsafe_process_backend_enabled
+        - authorize
+        - allowed_tool_names
+        - _prepare_html_preview
+          - _prepare_execution_workspace
+          - _resolve_html_preview_entry
+        - RunResult
+        - _backend_notes
+          - _container_runtime
+          - extend
+          - _network_notes
+        - _finalize_run_result
+          - _scheduler_notes
+          - _visible_notes_for_session
+        - _resolve_project_entry_path
+          - _resolve_project_entry_relative_path
+        - _python_syntax_error
+          - _read_source_text
+          - compile
+          - rstrip
+        - _execution_env
+          - _setting_bool
+        - acquire
+          - _priority_for_role
+          - perf_counter
+          - enumerate
+          - _can_activate
+          - SchedulerLease
+          - wait
+        - _session_role
+        - _run_containerized
+          - which
+          - _container_image
+          - _container_runtime_health
+          - _prepare_container_workspace
+          - _ensure_container_image_available
+          - _detect_python_gui_frameworks
+          - _ensure_python_dependencies_container
+          - _write_python_bootstrap
+          - _python_entry_env
+          - _containerized_env
+          - _container_path
+          - _ensure_python_gui_container_image
+          - _prepare_python_gui_scripts
+          - _execute_container
+          - _project_source_files
+          - _execute_container_raw
+          - _java_main_class
+        - _run_python
+          - _ensure_python_dependencies_process
+          - _execute
+        - _run_node_like
+        - _run_cpp
+          - _execute_raw
+        - _run_java
+        - _run_rust
+        - _run_npm
+        - release
+          - notify_all
+      - thread
+        - session
+          - _session_row
+          - _session_payload
+      - prepare
+        - upper
+        - _compose_prompt
+          - _prepare_prompt_with_budget
+        - _direct_reply
+          - _prompt_requests_state_review
+          - _python_intro_run_feedback
+          - _web_frontend_intro_feedback
+      - complete
+        - AssertionError
+      - store_reply
+        - _sanitize_reply
+        - _touch_session
+      - submit
+        - copy_project_snapshot
+          - copy2
+        - _select_reviewers
+          - list_users
+          - list_memberships
+        - _alias
+          - resolve_secret
+          - store_secret
+          - hexdigest
+          - new
+        - _submission_payload
+          - _submission_row
+          - read_text_preview
+          - list_snapshot_files
+          - _project_run_analytics
+      - create_share
+        - _enforce_quota
+          - get_tenant
+        - _store_artifact
+        - _artifact_payload
+      - create_export
+        - TemporaryDirectory
+        - _prepare_bundle
+          - _write_runtime_guides
+          - iterdir
+      - complete_direct_completion
+        - _active_service
+          - _provider_preference
+          - resolved_model_path
+          - _discover_binary_candidates
+      - start_generation
+        - _normalize_language
+        - _normalize_profile
+        - _issue_plan_step
+          - _profile_from_state
+          - _instruction_preset_from_state
+          - _inference_step
+          - _planner_prompt
+      - continue_generation
+        - _coerce_generation_state
+        - _consume_plan_response
+          - _normalize_plan
+          - _parse_json_response
+          - _issue_json_repair_step
+          - _agent_summary
+          - _issue_author_step
+        - _consume_plan_repair_response
+          - _fallback_plan
+        - _consume_author_response
+          - _state_plan
+          - _normalize_bundle
+          - _run_working_bundle
+        - _consume_author_repair_response
+          - _issue_author_code_step
+        - _consume_author_code_response
+          - _parse_code_response
+          - _issue_code_repair_step
+          - _accept_author_code
+        - _consume_author_code_repair_response
+        - _consume_debugger_response
+          - _state_bundle
+        - _consume_debugger_repair_response
+          - _issue_debugger_code_step
+        - _consume_debugger_code_response
+          - _accept_debugger_code
+        - _consume_debugger_code_repair_response
+        - _consume_pedagogy_response
+          - _finalize_generation
+        - _consume_pedagogy_repair_response
+          - _fallback_pedagogy
+          - _main_file_content
+          - _state_run_result
+      - run_current
+        - run_bundle
+        - _bundle_response
+      - admin_overview
+        - list_settings
+        - sanitize_users
+          - sanitize_user
+        - list_projects
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - type
+        - list_artifacts
+        - runtime_config_payload
+          - active_runtime_config
+          - stored_runtime_config
+          - _guess_lan_ipv4
+          - runtime_config_requires_restart
+        - list_workers
+          - _worker_loads
+          - list_worker_nodes
+          - _present_worker
+        - list_dispatch_jobs
+          - _row_to_dispatch_job
+      - _require_server_settings_access
+        - _can_manage_server_settings
+      - server_settings_overview
+      - attempt_history
+        - list_user_groups
+          - _row_to_group
+        - _course_payload
+          - _resolve_release
+          - _latest_attempts
+          - _certificate_for
+          - _attempt_count
+        - _sanitize_user
+      - save_custom_course
+        - _normalize_course_definition
+          - _slug
+          - _custom_course
+          - _normalize_question
+          - _listify
+      - prepare_certificate_metadata
+      - _certificate_verification_url
+        - _external_base_url
+          - _request_origin
+      - build_certificate_pdf
+        - build_curriculum_certificate_pdf
+          - _hex_to_rgb
+          - isclose
+          - round
+          - _format_date
+          - _normalize_text
+          - _load_rgb_image
+          - _build_verification_matrix
+          - _rect_command
+          - _line_command
+          - _centered_text_command
+          - _text_command
+          - _image_draw_command
+          - _initials
+          - _wrap_text
+          - bytes
+          - bytearray
+      - submit_assessment
+        - _resolve_module
+        - _grade_assessment
+        - _refresh_certificate
+          - all
+      - set_release
+        - _release_payload
+          - _release_row_payload
+      - list_bundles
+        - _bundle_row_payload
+          - active_bundle_id
+      - _decode_uploaded_bundle
+        - b64decode
+      - validate_bundle_archive
+        - _parse_bundle_archive
+          - namelist
+          - _decode_bundle_json
+          - _load_bundle_raw_section
+          - _verify_bundle_signature
+          - _normalize_bundle_course
+          - _normalize_material_preset
+          - _normalize_mentor_rule
+          - _ensure_unique_bundle_entries
+          - sha256
+        - _bundle_preview_payload
+      - import_bundle_archive
+        - _bundle_payload
+      - activate_bundle
+      - rollback_bundle
+      - issue_bootstrap
+        - _secret_name
+        - hasattr
+        - _ensure_worker_enrollment
+          - _worker_enrollment
+          - onboard_worker
+        - upsert_worker_node
+          - get_worker_node
+      - submit_feedback
+        - _assignment_row
+        - _refresh_submission_status
+        - _assignment_payload
+      - audit_entries
+        - list_audit_logs
+      - export_user_data
+        - retention_policy
+          - _retention_days
+        - _chat_export_payload
+          - _json_row
+        - _group_chat_threads
+        - _group_mentor_threads
+        - sum
+      - create_user
+        - normalize_permission_overrides
+      - ensure_profile_folder
+      - update_user
+        - update_user_account
+        - hash_password
+          - urandom
+          - urlsafe_b64encode
+        - set_user_password
+      - hard_delete_user
+        - format
+      - create_group
+        - get_group
+      - remove_membership
+      - add_membership
+      - update_user_permissions
+      - permission_audit_payload
+      - update_group_permissions
+      - set_mute
+      - put_setting
+      - save_server_config_payload
+        - load_server_config_payload
+        - update
+      - apply_retention
+## Flow Start: NovaSchoolRequestHandler._handle_api
+- NovaSchoolRequestHandler._handle_api
+  - split
+  - _current_session
+    - _token_from_request
+      - get
+      - SimpleCookie
+      - load
+      - startswith
+      - strip
+      - len
+    - session_from_token
+  - _send_json
+    - encode
+    - dumps
+    - send_response
+    - int
+    - send_header
+    - str
+    - end_headers
+    - write
+  - bool
+  - to_dict
+  - _read_json_body
+    - _read_raw_body
+      - getattr
+      - read
+        - max
+    - dict
+    - loads
+    - decode
+  - login
+    - get_user
+      - fetchone
+      - execute
+      - _row_to_user
+    - PermissionError
+    - verify_password
+      - urlsafe_b64decode
+      - pbkdf2_hmac
+      - compare_digest
+    - issue_token
+      - register_tenant
+        - _save_state
+          - with_suffix
+          - write_text
+          - replace
+      - token_urlsafe
+      - uuid4
+      - sorted
+      - _json_safe
+        - isinstance
+        - items
+      - time
+  - add_audit
+    - _encode_json
+  - bootstrap_payload
+    - accessible_projects
+      - project_payload
+        - project_root
+          - owner_root
+          - slugify
+      - list_accessible_projects
+        - list_projects
+          - fetchall
+          - _row_to_project
+        - join
+        - extend
+        - tuple
+    - status
+      - _dispatch_mode
+        - lower
+        - get_setting
+      - _status_local
+        - _load_topology
+          - exists
+          - FileNotFoundError
+          - read_text
+          - enumerate
+          - list
+          - ValueError
+          - append
+        - _ensure_security_assets
+          - get_certificate_authority
+          - _ca_name
+          - create_certificate_authority
+          - get_trust_policy
+          - _policy_name
+          - set_trust_policy
+        - list_worker_enrollments
+        - poll
+        - _resolved_backend
+          - resolve_backend
+        - _tail_log
+        - _log_path
+        - list_workers
+          - _worker_loads
+          - list_worker_nodes
+          - _present_worker
+      - _status_remote
+        - latest_jobs_for_project
+          - list_latest_dispatch_jobs_for_project
+    - list_docs
+    - rooms_for
+      - list_groups
+        - _row_to_group
+    - permission_catalog
+    - public_settings
+      - default_ai_provider
+        - default_litertlm_model_path
+          - local_model_files
+        - default_litertlm_binary_path
+          - which
+          - insert
+          - Path
+          - is_file
+          - resolve
+        - default_llamacpp_model_path
+      - default_llamacpp_model_label
+      - default_litertlm_model_label
+    - template_catalog
+    - material_studio_profile_catalog
+    - material_studio_instruction_preset_catalog
+      - _material_studio_preset_modules
+        - get_course
+      - title
+      - _material_studio_preset_technical_lines
+  - _cookie_header
+    - _request_uses_tls
+      - _configured_public_host
+      - _request_scheme
+        - partition
+  - _require_session
+  - logout
+    - revoke_token
+      - values
+  - _clear_cookie_header
+  - _handle_worker_api
+    - _require_worker
+      - verify_worker_request
+        - authenticate_worker
+          - get_worker_node
+          - _resolve_secret
+        - abs
+        - build_worker_signature
+          - hexdigest
+          - sha256
+          - upper
+          - new
+        - register_worker_nonce
+      - urlparse
+    - heartbeat
+      - upsert_worker_node
+        - float
+      - list_dispatch_jobs
+        - _row_to_dispatch_job
+    - claim_next_job
+      - claim_next_dispatch_job
+        - get_dispatch_job
+      - server_base_url
+        - _guess_lan_ipv4
+          - socket
+          - connect
+          - getsockname
+      - _artifact_sha256
+        - resolve_job_artifact
+          - _job_root
+        - open
+        - update
+      - sign_job_payload
+        - _job_signature_payload
+    - _serve_file
+      - guess_type
+      - stat
+    - append_job_log
+      - _require_job_owner
+      - append_dispatch_job_log
+        - update_dispatch_job_status
+    - update_job_status
+  - _require_permission
+  - get_doc
+  - parse_qs
+  - can_access_room
+    - get_project
+    - can_access_project
+  - get_active_mute
+  - list_chat_messages
+    - min
+    - _decode_json
+  - add_chat_message
+  - find_project_by_owner_and_slug
+  - create_project
+  - materialize_project
+    - mkdir
+  - get_project_for_session
+  - can_manage_project_data
+  - hard_delete_project
+    - _rows_to_dicts_optional
+      - _table_exists
+      - _rows_to_dicts
+    - _artifact_fs_path
+    - _execute_optional
+    - _remove_path
+      - is_absolute
+      - any
+      - is_relative_to
+      - is_dir
+      - rmtree
+      - unlink
+  - list_tree
+    - rglob
+    - as_posix
+    - relative_to
+  - create_directory
+    - _normalize_relative_path
+    - resolve_project_path
+  - export_project_archive
+    - _build_project_archive_bundle
+      - RuntimeError
+      - strftime
+      - localtime
+      - _project_export_payload
+      - BytesIO
+      - ZipFile
+      - writestr
+      - getvalue
+  - _send_bytes
+  - archive_project
+    - write_bytes
+  - read_file
+  - write_file
+  - delete_file
+    - _prune_empty_parent_dirs
+      - rmdir
+  - delete_entry
+    - _path_matches_or_contains
+  - rename_entry
+    - rename
+    - _renamed_path
+  - update_project_main_file
+  - load_notebook
+    - _notebook_path
+    - _normalize_legacy_notebook_cell
+  - save_notebook
+  - snapshot
+  - sync
+    - _ensure_state
+      - _store_state
+    - _snapshot_at
+    - _normalize_cell
+    - _merge_cells
+      - set
+      - pop
+  - run
+    - _resolve_language
+    - _runner_backend
+      - _setting
+    - authorize
+    - allowed_tool_names
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - iterdir
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - copy2
+        - _safe_relative_path
+        - _default_filename
+      - _resolve_html_preview_entry
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - _network_notes
+        - _setting_bool
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - wait
+    - _run_containerized
+      - _container_image
+      - _container_runtime_health
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - splitlines
+        - _python_dependency_cache_dir
+          - read_bytes
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+      - _project_source_files
+      - _execute_container_raw
+      - _java_main_class
+        - group
+    - _run_python
+      - _ensure_python_dependencies_process
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - thread
+    - session
+      - _session_row
+      - _session_payload
+  - prepare
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - sub
+        - _estimate_token_count
+          - ceil
+        - _trim_text_middle
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+      - _python_intro_run_feedback
+        - _visible_output_lines
+        - _count_print_calls
+        - _contains_runtime_error
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - finditer
+        - fullmatch
+  - complete
+    - AssertionError
+  - store_reply
+    - _sanitize_reply
+    - _touch_session
+  - start
+    - _resolve_course_state
+      - dashboard
+        - _list_submissions_for
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - rsplit
+    - _room_key
+    - _opening_message
+  - stop
+    - _session
+    - _ensure_control
+    - _terminate
+      - terminate
+        - killpg
+        - sleep
+      - kill
+  - submit
+    - copy_project_snapshot
+    - _select_reviewers
+      - list_users
+      - list_memberships
+    - _alias
+      - resolve_secret
+      - store_secret
+  - create_share
+    - _enforce_quota
+      - get_tenant
+    - _store_artifact
+    - _artifact_payload
+      - _artifact_row
+  - create_export
+    - TemporaryDirectory
+    - _prepare_bundle
+      - _write_runtime_guides
+  - complete_direct_completion
+    - _active_service
+      - _provider_preference
+      - resolved_model_path
+        - expanduser
+      - _discover_binary_candidates
+  - start_generation
+    - _normalize_language
+    - _normalize_profile
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _prompt_input_token_budget
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - _instruction_preset_lines
+          - _normalize_compare_text
+  - continue_generation
+    - _coerce_generation_state
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - _sanitize_relative_path
+    - _consume_author_response
+      - _normalize_bundle
+      - _run_working_bundle
+        - run_bundle
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+  - run_current
+  - admin_overview
+    - list_settings
+    - sanitize_users
+      - sanitize_user
+    - type
+    - list_artifacts
+    - runtime_config_payload
+      - active_runtime_config
+      - stored_runtime_config
+        - load_server_config_payload
+      - runtime_config_requires_restart
+  - _require_server_settings_access
+    - _can_manage_server_settings
+  - server_settings_overview
+  - attempt_history
+    - _catalog_course
+      - _custom_course
+      - _active_bundle_course
+        - active_bundle_id
+      - deepcopy
+    - list_user_groups
+    - _course_payload
+      - _resolve_release
+        - _query_releases
+      - _latest_attempts
+      - _certificate_for
+      - _attempt_count
+    - _sanitize_user
+  - save_custom_course
+    - _normalize_course_definition
+      - _slug
+      - _normalize_question
+        - _listify
+  - prepare_certificate_metadata
+  - _certificate_verification_url
+    - _external_base_url
+      - _request_origin
+        - _request_host
+  - build_certificate_pdf
+    - build_curriculum_certificate_pdf
+      - _hex_to_rgb
+      - isclose
+      - round
+      - _format_date
+        - fromtimestamp
+      - _normalize_text
+      - _load_rgb_image
+        - exif_transpose
+        - convert
+        - alpha_composite
+        - resize
+          - normalize_terminal_size
+        - tobytes
+        - compress
+      - _build_verification_matrix
+        - digest
+        - range
+        - putpixel
+        - draw_finder
+        - bit
+      - _rect_command
+        - _rgb
+      - _line_command
+      - _centered_text_command
+        - _estimate_width
+        - _text_command
+          - _pdf_string
+      - _image_draw_command
+      - _initials
+      - _wrap_text
+      - bytes
+      - bytearray
+  - submit_assessment
+    - _resolve_module
+    - _grade_assessment
+    - _refresh_certificate
+      - all
+  - set_release
+    - _release_payload
+      - _release_row_payload
+  - list_bundles
+    - _bundle_row_payload
+  - _decode_uploaded_bundle
+    - b64decode
+  - validate_bundle_archive
+    - _parse_bundle_archive
+      - namelist
+      - _decode_bundle_json
+      - _load_bundle_raw_section
+      - _verify_bundle_signature
+        - _canonical_bundle_payload
+      - _normalize_bundle_course
+      - _normalize_material_preset
+      - _normalize_mentor_rule
+      - _ensure_unique_bundle_entries
+    - _bundle_preview_payload
+  - import_bundle_archive
+    - _bundle_payload
+  - activate_bundle
+  - rollback_bundle
+  - issue_bootstrap
+    - _secret_name
+    - hasattr
+    - _ensure_worker_enrollment
+      - _worker_enrollment
+      - onboard_worker
+  - submit_feedback
+    - _assignment_row
+    - _refresh_submission_status
+  - unquote
+  - audit_entries
+    - list_audit_logs
+  - export_user_data
+    - retention_policy
+      - _retention_days
+    - _chat_export_payload
+      - _json_row
+        - removesuffix
+    - _group_chat_threads
+      - setdefault
+    - _group_mentor_threads
+    - sum
+  - create_user
+    - normalize_permission_overrides
+  - ensure_profile_folder
+  - update_user
+    - update_user_account
+    - hash_password
+      - urandom
+      - urlsafe_b64encode
+    - set_user_password
+  - hard_delete_user
+    - format
+  - create_group
+    - get_group
+  - remove_membership
+  - add_membership
+  - update_user_permissions
+  - permission_audit_payload
+  - update_group_permissions
+  - set_mute
+  - put_setting
+  - save_server_config_payload
+  - apply_retention
+## Flow Start: NovaSchoolRequestHandler._handle_worker_api
+- NovaSchoolRequestHandler._handle_worker_api
+  - _require_worker
+    - strip
+    - str
+    - get
+    - _token_from_request
+      - SimpleCookie
+      - load
+      - startswith
+      - len
+    - PermissionError
+    - verify_worker_request
+      - authenticate_worker
+        - get_worker_node
+          - fetchone
+          - execute
+          - _row_to_worker_node
+        - _resolve_secret
+          - hasattr
+          - resolve_secret
+        - compare_digest
+      - int
+      - abs
+      - time
+      - build_worker_signature
+        - hexdigest
+        - sha256
+        - encode
+        - join
+        - upper
+        - new
+      - register_worker_nonce
+        - max
+    - urlparse
+    - _read_raw_body
+      - getattr
+      - read
+  - _read_json_body
+    - dict
+    - loads
+    - decode
+  - heartbeat
+    - FileNotFoundError
+    - upsert_worker_node
+      - _encode_json
+        - dumps
+      - sorted
+      - float
+    - list
+    - list_dispatch_jobs
+      - append
+      - extend
+      - fetchall
+      - tuple
+      - _row_to_dispatch_job
+        - bool
+    - _present_worker
+      - _is_online
+      - _worker_enrollment
+        - list_worker_enrollments
+        - next
+  - _send_json
+    - send_response
+    - send_header
+    - end_headers
+    - write
+  - claim_next_job
+    - claim_next_dispatch_job
+      - get_dispatch_job
+    - server_base_url
+      - get_setting
+      - _guess_lan_ipv4
+        - socket
+        - connect
+        - getsockname
+    - _artifact_sha256
+      - resolve_job_artifact
+        - _job_root
+        - exists
+      - open
+      - update
+    - sign_job_payload
+      - _job_signature_payload
+  - ValueError
+  - _serve_file
+    - is_file
+    - guess_type
+    - stat
+  - append_job_log
+    - _require_job_owner
+    - append_dispatch_job_log
+      - update_dispatch_job_status
+  - update_job_status
+## Flow Start: _python_intro_run_feedback
+- _python_intro_run_feedback
+  - _visible_output_lines
+    - splitlines
+    - str
+    - strip
+    - _fold_text
+      - normalize
+      - lower
+      - decode
+      - encode
+    - startswith
+    - append
+  - _count_print_calls
+    - search
+      - findall
+      - list
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - exists
+          - loads
+          - read_text
+          - get
+          - _pack_signature
+        - _build_index
+          - write_text
+          - dumps
+          - _iter_doc_files
+          - as_posix
+          - relative_to
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - max
+        - min
+        - len
+      - sort
+      - int
+  - any
+  - _contains_runtime_error
+  - join
+  - enumerate
+  - extend
+## Flow Start: _contains_runtime_error
+- _contains_runtime_error
+  - _fold_text
+    - normalize
+    - str
+    - lower
+    - decode
+    - encode
+  - any
+## Flow Start: VirtualLecturerService._python_intro_run_feedback
+- VirtualLecturerService._python_intro_run_feedback
+  - _visible_output_lines
+    - splitlines
+    - str
+    - strip
+    - _fold_text
+      - normalize
+      - lower
+      - decode
+      - encode
+    - startswith
+    - append
+  - _count_print_calls
+    - search
+      - findall
+      - list
+      - _load_documents
+        - _ensure_managed_pack
+          - ensure_built
+        - _has_mirrored_pack
+          - _content_root
+        - _index_path
+        - _index_is_stale
+          - exists
+          - loads
+          - read_text
+          - get
+          - _pack_signature
+        - _build_index
+          - write_text
+          - dumps
+          - _iter_doc_files
+          - as_posix
+          - relative_to
+          - _build_document_entry
+        - _builtin_document
+          - _markdown_plain_text
+      - count
+      - _snippet
+        - _collapse_ws
+          - sub
+        - find
+        - max
+        - min
+        - len
+      - sort
+      - int
+  - any
+  - _contains_runtime_error
+  - join
+  - enumerate
+  - extend
+## Flow Start: VirtualLecturerService._contains_runtime_error
+- VirtualLecturerService._contains_runtime_error
+  - _fold_text
+    - normalize
+    - str
+    - lower
+    - decode
+    - encode
+  - any
+## Flow Start: run_forever
+- run_forever
+  - _heartbeat
+    - _request_json
+      - encode
+      - dumps
+      - _signed_headers
+        - str
+        - int
+        - time
+        - token_hex
+        - build_worker_signature
+          - hexdigest
+          - sha256
+          - join
+          - upper
+          - new
+      - Request
+      - urlopen
+      - loads
+      - decode
+      - read
+        - max
+  - get
+  - sleep
+  - isinstance
+  - _run_job
+    - _verify_job
+      - RuntimeError
+      - _job_signature_payload
+      - compare_digest
+    - dict
+    - exists
+    - rmtree
+    - mkdir
+    - _download
+      - urlsplit
+      - write_bytes
+    - _verify_artifact_integrity
+      - lower
+      - strip
+      - open
+      - update
+    - ZipFile
+    - extract_zip_safely
+      - resolve
+      - infolist
+      - _validated_zip_member_path
+        - replace
+        - PermissionError
+        - startswith
+        - endswith
+        - split
+        - any
+        - _zip_entry_is_symlink
+          - S_ISLNK
+        - Path
+      - relative_to
+      - is_dir
+      - write
+    - items
+    - _build_command
+      - which
+      - _mirror_tree_securely
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - is_file
+          - copy2
+      - _container_file_size_limit_bytes
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+      - extend
+      - append
+      - _wrap_container_command
+      - as_posix
+      - ValueError
+      - run
+        - uuid4
+        - _resolve_language
+        - _runner_backend
+          - _setting
+        - resolve_backend
+          - _unsafe_process_backend_enabled
+          - bool
+          - getattr
+        - authorize
+        - allowed_tool_names
+          - tuple
+          - sorted
+        - project_root
+          - owner_root
+          - slugify
+        - _prepare_html_preview
+          - _prepare_execution_workspace
+          - _resolve_html_preview_entry
+          - FileNotFoundError
+        - RunResult
+        - _backend_notes
+          - _container_runtime
+          - _network_notes
+        - _finalize_run_result
+          - list
+          - _scheduler_notes
+          - _visible_notes_for_session
+          - to_dict
+        - _resolve_project_entry_path
+          - _resolve_project_entry_relative_path
+        - _python_syntax_error
+          - _read_source_text
+          - compile
+          - rstrip
+        - _execution_env
+          - _setting_bool
+        - acquire
+          - _priority_for_role
+          - perf_counter
+          - next
+          - enumerate
+          - len
+          - min
+          - _can_activate
+          - SchedulerLease
+          - float
+          - wait
+        - _session_role
+        - _run_containerized
+          - _container_image
+          - _container_runtime_health
+          - _prepare_container_workspace
+          - _ensure_container_image_available
+          - _detect_python_gui_frameworks
+          - _ensure_python_dependencies_container
+          - _write_python_bootstrap
+          - _python_entry_env
+          - _containerized_env
+          - _container_path
+          - _ensure_python_gui_container_image
+          - _prepare_python_gui_scripts
+          - _execute_container
+          - _project_source_files
+          - _execute_container_raw
+          - _java_main_class
+        - _run_python
+          - _ensure_python_dependencies_process
+          - _execute
+        - _run_node_like
+        - _run_cpp
+          - _execute_raw
+        - _run_java
+        - _run_rust
+        - _run_npm
+        - release
+          - pop
+          - notify_all
+    - _service_url
+    - Queue
+    - Popen
+    - Thread
+    - start
+      - _resolve_course_state
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - _practice_payload
+      - _session_metadata
+        - _lesson_focus
+          - sub
+          - rsplit
+      - _room_key
+      - execute
+      - _opening_message
+      - add_chat_message
+        - _encode_json
+      - session
+        - _session_row
+          - fetchone
+        - _session_payload
+      - thread
+        - list_chat_messages
+          - fetchall
+          - _decode_json
+    - poll
+    - _drain_logs
+      - get_nowait
+      - clear
+    - terminate
+      - killpg
+    - kill
+## Flow Start: _run_job
+- _run_job
+  - str
+  - _verify_job
+    - get
+    - RuntimeError
+    - hexdigest
+    - new
+    - encode
+    - dumps
+    - _job_signature_payload
+    - compare_digest
+  - dict
+  - exists
+  - rmtree
+  - mkdir
+  - _download
+    - urlsplit
+    - Request
+    - _signed_headers
+      - int
+      - time
+      - token_hex
+      - build_worker_signature
+        - sha256
+        - join
+        - upper
+    - urlopen
+    - write_bytes
+    - read
+      - max
+  - _verify_artifact_integrity
+    - lower
+    - strip
+    - open
+    - update
+  - ZipFile
+  - extract_zip_safely
+    - resolve
+    - infolist
+    - _validated_zip_member_path
+      - replace
+      - PermissionError
+      - startswith
+      - endswith
+      - split
+      - any
+      - _zip_entry_is_symlink
+        - S_ISLNK
+      - Path
+    - relative_to
+    - is_dir
+    - write
+  - items
+  - _build_command
+    - which
+    - _mirror_tree_securely
+      - _copy_tree_entries_securely
+        - scandir
+        - _is_link_like
+          - is_symlink
+          - getattr
+          - callable
+          - bool
+          - is_junction
+        - is_file
+        - copy2
+    - _container_file_size_limit_bytes
+    - _container_seccomp_option
+      - resolve_seccomp_profile_option
+    - extend
+    - append
+    - _wrap_container_command
+    - as_posix
+    - ValueError
+    - run
+      - uuid4
+      - _resolve_language
+      - _runner_backend
+        - _setting
+          - get_setting
+      - resolve_backend
+        - _unsafe_process_backend_enabled
+          - _setting_bool
+      - authorize
+      - allowed_tool_names
+        - tuple
+        - sorted
+      - project_root
+        - owner_root
+          - slugify
+      - _prepare_html_preview
+        - _prepare_execution_workspace
+          - _copy_project_tree
+          - _safe_relative_path
+          - _default_filename
+          - write_text
+          - FileNotFoundError
+        - _resolve_html_preview_entry
+          - set
+          - add
+      - RunResult
+      - _backend_notes
+        - _container_runtime
+        - _network_notes
+      - _finalize_run_result
+        - list
+        - _scheduler_notes
+        - _visible_notes_for_session
+          - _session_can_view_operational_notes
+        - to_dict
+      - _resolve_project_entry_path
+        - _resolve_project_entry_relative_path
+      - _python_syntax_error
+        - _read_source_text
+          - read_text
+        - compile
+        - rstrip
+      - _execution_env
+      - acquire
+        - _priority_for_role
+        - perf_counter
+        - next
+        - enumerate
+        - len
+        - min
+        - _can_activate
+          - _global_limit
+          - _per_owner_limit
+        - SchedulerLease
+        - float
+        - wait
+      - _session_role
+      - _run_containerized
+        - _container_image
+        - _container_runtime_health
+          - _execute_raw
+          - _container_runtime_health_timeout_seconds
+          - _container_runtime_error_message
+        - _prepare_container_workspace
+        - _ensure_container_image_available
+          - _container_error_is_missing_image
+        - _detect_python_gui_frameworks
+          - search
+        - _ensure_python_dependencies_container
+          - _python_requirements_file
+          - _python_dependency_cache_dir
+          - _restore_dependency_cache
+          - _containerized_env
+          - _container_wrapped_command
+          - _container_base_command
+          - _store_dependency_cache
+        - _write_python_bootstrap
+          - dedent
+        - _python_entry_env
+          - pop
+        - _container_path
+        - _ensure_python_gui_container_image
+        - _prepare_python_gui_scripts
+          - quote
+          - chmod
+        - _execute_container
+        - _project_source_files
+          - rglob
+        - _execute_container_raw
+        - _java_main_class
+          - group
+      - _run_python
+        - _ensure_python_dependencies_process
+        - _execute
+      - _run_node_like
+      - _run_cpp
+      - _run_java
+      - _run_rust
+      - _run_npm
+      - release
+        - notify_all
+  - _service_url
+  - Queue
+  - Popen
+  - Thread
+  - start
+    - _resolve_course_state
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - execute
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+    - _room_key
+    - _opening_message
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+        - fetchone
+      - _session_payload
+        - loads
+    - thread
+      - list_chat_messages
+        - _decode_json
+  - _request_json
+    - decode
+  - poll
+  - _drain_logs
+    - get_nowait
+    - clear
+  - _heartbeat
+  - terminate
+    - killpg
+    - sleep
+  - kill
+## Flow Start: WorkerAgent.run_forever
+- WorkerAgent.run_forever
+  - _heartbeat
+    - _request_json
+      - encode
+      - dumps
+      - _signed_headers
+        - str
+        - int
+        - time
+        - token_hex
+        - build_worker_signature
+          - hexdigest
+          - sha256
+          - join
+          - upper
+          - new
+      - Request
+      - urlopen
+      - loads
+      - decode
+      - read
+        - max
+  - get
+  - sleep
+  - isinstance
+  - _run_job
+    - _verify_job
+      - RuntimeError
+      - _job_signature_payload
+      - compare_digest
+    - dict
+    - exists
+    - rmtree
+    - mkdir
+    - _download
+      - urlsplit
+      - write_bytes
+    - _verify_artifact_integrity
+      - lower
+      - strip
+      - open
+      - update
+    - ZipFile
+    - extract_zip_safely
+      - resolve
+      - infolist
+      - _validated_zip_member_path
+        - replace
+        - PermissionError
+        - startswith
+        - endswith
+        - split
+        - any
+        - _zip_entry_is_symlink
+          - S_ISLNK
+        - Path
+      - relative_to
+      - is_dir
+      - write
+    - items
+    - _build_command
+      - which
+      - _mirror_tree_securely
+        - _copy_tree_entries_securely
+          - scandir
+          - _is_link_like
+          - is_file
+          - copy2
+      - _container_file_size_limit_bytes
+      - _container_seccomp_option
+        - resolve_seccomp_profile_option
+      - extend
+      - append
+      - _wrap_container_command
+      - as_posix
+      - ValueError
+      - run
+        - uuid4
+        - _resolve_language
+        - _runner_backend
+          - _setting
+        - resolve_backend
+          - _unsafe_process_backend_enabled
+          - bool
+          - getattr
+        - authorize
+        - allowed_tool_names
+          - tuple
+          - sorted
+        - project_root
+          - owner_root
+          - slugify
+        - _prepare_html_preview
+          - _prepare_execution_workspace
+          - _resolve_html_preview_entry
+          - FileNotFoundError
+        - RunResult
+        - _backend_notes
+          - _container_runtime
+          - _network_notes
+        - _finalize_run_result
+          - list
+          - _scheduler_notes
+          - _visible_notes_for_session
+          - to_dict
+        - _resolve_project_entry_path
+          - _resolve_project_entry_relative_path
+        - _python_syntax_error
+          - _read_source_text
+          - compile
+          - rstrip
+        - _execution_env
+          - _setting_bool
+        - acquire
+          - _priority_for_role
+          - perf_counter
+          - next
+          - enumerate
+          - len
+          - min
+          - _can_activate
+          - SchedulerLease
+          - float
+          - wait
+        - _session_role
+        - _run_containerized
+          - _container_image
+          - _container_runtime_health
+          - _prepare_container_workspace
+          - _ensure_container_image_available
+          - _detect_python_gui_frameworks
+          - _ensure_python_dependencies_container
+          - _write_python_bootstrap
+          - _python_entry_env
+          - _containerized_env
+          - _container_path
+          - _ensure_python_gui_container_image
+          - _prepare_python_gui_scripts
+          - _execute_container
+          - _project_source_files
+          - _execute_container_raw
+          - _java_main_class
+        - _run_python
+          - _ensure_python_dependencies_process
+          - _execute
+        - _run_node_like
+        - _run_cpp
+          - _execute_raw
+        - _run_java
+        - _run_rust
+        - _run_npm
+        - release
+          - pop
+          - notify_all
+    - _service_url
+    - Queue
+    - Popen
+    - Thread
+    - start
+      - _resolve_course_state
+        - dashboard
+          - _list_submissions_for
+          - _list_assignments_for
+          - _analytics
+        - _practice_payload
+      - _session_metadata
+        - _lesson_focus
+          - sub
+          - rsplit
+      - _room_key
+      - execute
+      - _opening_message
+      - add_chat_message
+        - _encode_json
+      - session
+        - _session_row
+          - fetchone
+        - _session_payload
+      - thread
+        - list_chat_messages
+          - fetchall
+          - _decode_json
+    - poll
+    - _drain_logs
+      - get_nowait
+      - clear
+    - terminate
+      - killpg
+    - kill
+## Flow Start: WorkerAgent._run_job
+- WorkerAgent._run_job
+  - str
+  - _verify_job
+    - get
+    - RuntimeError
+    - hexdigest
+    - new
+    - encode
+    - dumps
+    - _job_signature_payload
+    - compare_digest
+  - dict
+  - exists
+  - rmtree
+  - mkdir
+  - _download
+    - urlsplit
+    - Request
+    - _signed_headers
+      - int
+      - time
+      - token_hex
+      - build_worker_signature
+        - sha256
+        - join
+        - upper
+    - urlopen
+    - write_bytes
+    - read
+      - max
+  - _verify_artifact_integrity
+    - lower
+    - strip
+    - open
+    - update
+  - ZipFile
+  - extract_zip_safely
+    - resolve
+    - infolist
+    - _validated_zip_member_path
+      - replace
+      - PermissionError
+      - startswith
+      - endswith
+      - split
+      - any
+      - _zip_entry_is_symlink
+        - S_ISLNK
+      - Path
+    - relative_to
+    - is_dir
+    - write
+  - items
+  - _build_command
+    - which
+    - _mirror_tree_securely
+      - _copy_tree_entries_securely
+        - scandir
+        - _is_link_like
+          - is_symlink
+          - getattr
+          - callable
+          - bool
+          - is_junction
+        - is_file
+        - copy2
+    - _container_file_size_limit_bytes
+    - _container_seccomp_option
+      - resolve_seccomp_profile_option
+    - extend
+    - append
+    - _wrap_container_command
+    - as_posix
+    - ValueError
+    - run
+      - uuid4
+      - _resolve_language
+      - _runner_backend
+        - _setting
+          - get_setting
+      - resolve_backend
+        - _unsafe_process_backend_enabled
+          - _setting_bool
+      - authorize
+      - allowed_tool_names
+        - tuple
+        - sorted
+      - project_root
+        - owner_root
+          - slugify
+      - _prepare_html_preview
+        - _prepare_execution_workspace
+          - _copy_project_tree
+          - _safe_relative_path
+          - _default_filename
+          - write_text
+          - FileNotFoundError
+        - _resolve_html_preview_entry
+          - set
+          - add
+      - RunResult
+      - _backend_notes
+        - _container_runtime
+        - _network_notes
+      - _finalize_run_result
+        - list
+        - _scheduler_notes
+        - _visible_notes_for_session
+          - _session_can_view_operational_notes
+        - to_dict
+      - _resolve_project_entry_path
+        - _resolve_project_entry_relative_path
+      - _python_syntax_error
+        - _read_source_text
+          - read_text
+        - compile
+        - rstrip
+      - _execution_env
+      - acquire
+        - _priority_for_role
+        - perf_counter
+        - next
+        - enumerate
+        - len
+        - min
+        - _can_activate
+          - _global_limit
+          - _per_owner_limit
+        - SchedulerLease
+        - float
+        - wait
+      - _session_role
+      - _run_containerized
+        - _container_image
+        - _container_runtime_health
+          - _execute_raw
+          - _container_runtime_health_timeout_seconds
+          - _container_runtime_error_message
+        - _prepare_container_workspace
+        - _ensure_container_image_available
+          - _container_error_is_missing_image
+        - _detect_python_gui_frameworks
+          - search
+        - _ensure_python_dependencies_container
+          - _python_requirements_file
+          - _python_dependency_cache_dir
+          - _restore_dependency_cache
+          - _containerized_env
+          - _container_wrapped_command
+          - _container_base_command
+          - _store_dependency_cache
+        - _write_python_bootstrap
+          - dedent
+        - _python_entry_env
+          - pop
+        - _container_path
+        - _ensure_python_gui_container_image
+        - _prepare_python_gui_scripts
+          - quote
+          - chmod
+        - _execute_container
+        - _project_source_files
+          - rglob
+        - _execute_container_raw
+        - _java_main_class
+          - group
+      - _run_python
+        - _ensure_python_dependencies_process
+        - _execute
+      - _run_node_like
+      - _run_cpp
+      - _run_java
+      - _run_rust
+      - _run_npm
+      - release
+        - notify_all
+  - _service_url
+  - Queue
+  - Popen
+  - Thread
+  - start
+    - _resolve_course_state
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - execute
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+    - _room_key
+    - _opening_message
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+        - fetchone
+      - _session_payload
+        - loads
+    - thread
+      - list_chat_messages
+        - _decode_json
+  - _request_json
+    - decode
+  - poll
+  - _drain_logs
+    - get_nowait
+    - clear
+  - _heartbeat
+  - terminate
+    - killpg
+    - sleep
+  - kill
+## Flow Start: _prune_empty_parent_dirs
+- _prune_empty_parent_dirs
+  - resolve
+  - is_relative_to
+  - rmdir
+## Flow Start: WorkspaceManager._prune_empty_parent_dirs
+- WorkspaceManager._prune_empty_parent_dirs
+  - resolve
+  - is_relative_to
+  - rmdir
+## Flow Start: test_directory_dump_ignores_runtime_data_and_writes_markdown
+- test_directory_dump_ignores_runtime_data_and_writes_markdown
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - dump_target_to_markdown
+    - is_dir
+    - collect_directory_dump
+      - resolve
+      - as_posix
+      - relative_to
+      - sorted
+      - rglob
+      - casefold
+      - is_file
+      - append
+      - is_ignored
+        - strip
+        - replace
+        - _is_dump_artifact
+          - startswith
+          - endswith
+        - any
+      - is_code_file
+        - lower
+      - _entry_from_path
+        - stat
+        - DumpEntry
+        - detect_language
+          - get
+        - read_bytes
+        - _entry_from_bytes
+          - decode
+      - DumpResult
+      - str
+    - collect_zip_dump
+      - ZipFile
+      - infolist
+      - _entry_from_zip
+        - open
+        - read
+          - max
+    - FileNotFoundError
+    - render_dump_markdown
+      - len
+      - extend
+      - _summarize_paths
+        - _summary_label_for_path
+        - items
+      - generate_tree
+        - setdefault
+        - enumerate
+        - render
+        - join
+      - rstrip
+  - read_text
+  - assertIn
+  - assertNotIn
+## Flow Start: CodeDumpToolsTests.test_directory_dump_ignores_runtime_data_and_writes_markdown
+- CodeDumpToolsTests.test_directory_dump_ignores_runtime_data_and_writes_markdown
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - dump_target_to_markdown
+    - is_dir
+    - collect_directory_dump
+      - resolve
+      - as_posix
+      - relative_to
+      - sorted
+      - rglob
+      - casefold
+      - is_file
+      - append
+      - is_ignored
+        - strip
+        - replace
+        - _is_dump_artifact
+          - startswith
+          - endswith
+        - any
+      - is_code_file
+        - lower
+      - _entry_from_path
+        - stat
+        - DumpEntry
+        - detect_language
+          - get
+        - read_bytes
+        - _entry_from_bytes
+          - decode
+      - DumpResult
+      - str
+    - collect_zip_dump
+      - ZipFile
+      - infolist
+      - _entry_from_zip
+        - open
+        - read
+          - max
+    - FileNotFoundError
+    - render_dump_markdown
+      - len
+      - extend
+      - _summarize_paths
+        - _summary_label_for_path
+        - items
+      - generate_tree
+        - setdefault
+        - enumerate
+        - render
+        - join
+      - rstrip
+  - read_text
+  - assertIn
+  - assertNotIn
+## Flow Start: test_run_bundle_executes_python_without_project_record
+- test_run_bundle_executes_python_without_project_record
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run_bundle
+    - append
+    - dict
+    - AssertionError
+    - pop
+  - _TeacherSession
+  - assertEqual
+  - assertIsNotNone
+  - assertIn
+## Flow Start: test_run_bundle_returns_python_syntax_error_before_execution
+- test_run_bundle_returns_python_syntax_error_before_execution
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run_bundle
+    - append
+    - dict
+    - AssertionError
+    - pop
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+## Flow Start: test_runner_backend_uses_valid_repository_setting
+- test_runner_backend_uses_valid_repository_setting
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - assertEqual
+  - _runner_backend
+    - lower
+    - strip
+    - _setting
+      - get_setting
+## Flow Start: test_runner_backend_falls_back_for_invalid_repository_setting
+- test_runner_backend_falls_back_for_invalid_repository_setting
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - assertEqual
+  - _runner_backend
+    - lower
+    - strip
+    - _setting
+      - get_setting
+## Flow Start: test_python_project_run_uses_main_file_even_when_helper_is_open
+- test_python_project_run_uses_main_file_even_when_helper_is_open
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - patch
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertFalse
+## Flow Start: test_javascript_project_run_uses_main_file_even_when_helper_is_open
+- test_javascript_project_run_uses_main_file_even_when_helper_is_open
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - patch
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertFalse
+## Flow Start: test_cpp_project_run_compiles_all_project_sources
+- test_cpp_project_run_compiles_all_project_sources
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - append
+  - _RawResult
+  - patch
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+## Flow Start: test_java_project_run_compiles_all_sources_and_uses_main_class
+- test_java_project_run_compiles_all_sources_and_uses_main_class
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - project_root
+    - owner_root
+      - slugify
+        - lower
+        - strip
+        - sub
+      - ValueError
+  - mkdir
+  - write_text
+  - append
+  - list
+  - _RawResult
+  - patch
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+## Flow Start: test_container_base_command_includes_configured_oci_runtime
+- test_container_base_command_includes_configured_oci_runtime
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_base_command
+    - _setting
+      - get_setting
+    - _container_file_size_limit_bytes
+      - strip
+      - max
+    - append
+    - extend
+    - list
+    - items
+    - dict
+    - _container_seccomp_option
+      - resolve_seccomp_profile_option
+        - startswith
+    - lower
+  - assertIn
+## Flow Start: test_container_runtime_error_message_explains_missing_docker_desktop_engine
+- test_container_runtime_error_message_explains_missing_docker_desktop_engine
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: test_container_runtime_error_message_explains_internal_server_error
+- test_container_runtime_error_message_explains_internal_server_error
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: test_container_runtime_error_message_explains_timeout
+- test_container_runtime_error_message_explains_timeout
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: test_container_runtime_error_message_explains_linux_docker_socket_permissions
+- test_container_runtime_error_message_explains_linux_docker_socket_permissions
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: test_container_runtime_health_fails_fast_before_run
+- test_container_runtime_health_fails_fast_before_run
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - len
+  - _RawResult
+  - list
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - assertEqual
+  - assertIn
+## Flow Start: test_container_runtime_health_uses_generous_timeout
+- test_container_runtime_health_uses_generous_timeout
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - list
+  - _RawResult
+  - object
+  - _container_runtime_health
+    - lower
+    - time
+    - _execute_raw
+      - append
+      - join
+      - mkdir
+      - write_text
+    - dict
+    - _container_runtime_health_timeout_seconds
+      - max
+      - min
+    - _container_runtime_error_message
+      - strip
+  - assertTrue
+  - assertEqual
+## Flow Start: test_run_bundle_auto_pulls_missing_container_image
+- test_run_bundle_auto_pulls_missing_container_image
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - append
+  - list
+  - len
+  - _RawResult
+  - object
+  - run_bundle
+    - dict
+    - AssertionError
+    - pop
+  - assertEqual
+  - assertTrue
+  - any
+## Flow Start: test_student_run_hides_operational_notes
+- test_student_run_hides_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _Session
+  - assertEqual
+## Flow Start: test_teacher_run_keeps_operational_notes
+- test_teacher_run_keeps_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: test_student_live_run_hides_operational_notes
+- test_student_live_run_hides_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - prepare_live_run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _backend_notes
+      - _container_runtime
+      - append
+      - startswith
+      - extend
+      - _network_notes
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - _execution_env
+      - dict
+    - LivePreparedRun
+    - _finalize_prepared_run
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _prepare_live_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _containerized_env
+      - _container_base_command
+        - _container_file_size_limit_bytes
+        - _container_seccomp_option
+          - resolve_seccomp_profile_option
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _container_wrapped_command
+        - _store_dependency_cache
+      - _ensure_python_gui_container_image
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _write_python_bootstrap
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _prepare_live_process
+      - _ensure_python_dependencies_process
+      - RuntimeError
+    - release
+      - notify_all
+  - _Session
+  - assertIsNone
+  - assertEqual
+## Flow Start: test_run_python_supports_stdin_input
+- test_run_python_supports_stdin_input
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+## Flow Start: test_run_python_reports_syntax_error_before_execution
+- test_run_python_reports_syntax_error_before_execution
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+  - assertIsNone
+## Flow Start: test_run_python_uses_bootstrap_and_dependency_env_with_requirements
+- test_run_python_uses_bootstrap_and_dependency_env_with_requirements
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - write_text
+  - mkdir
+  - _RawResult
+  - list
+  - patch
+  - object
+  - _run_python
+    - _ensure_python_dependencies_process
+      - _python_requirements_file
+        - is_file
+        - any
+        - strip
+        - startswith
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - rmtree
+        - copytree
+      - which
+      - lower
+      - _execute_raw
+        - append
+        - join
+      - max
+      - _store_dependency_cache
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+        - _setting
+          - get_setting
+      - extend
+      - _network_notes
+        - _setting_bool
+    - RuntimeError
+    - _write_python_bootstrap
+      - dedent
+    - _python_entry_env
+      - dict
+      - pop
+    - _execute
+  - assertIsNotNone
+  - assertTrue
+  - endswith
+  - assertEqual
+## Flow Start: test_containerized_python_mainloop_without_direct_import_uses_gui_path
+- test_containerized_python_mainloop_without_direct_import_uses_gui_path
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertIsNotNone
+  - assertIn
+## Flow Start: CodeRunnerTests.test_run_bundle_executes_python_without_project_record
+- CodeRunnerTests.test_run_bundle_executes_python_without_project_record
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run_bundle
+    - append
+    - dict
+    - AssertionError
+    - pop
+  - _TeacherSession
+  - assertEqual
+  - assertIsNotNone
+  - assertIn
+## Flow Start: CodeRunnerTests.test_run_bundle_returns_python_syntax_error_before_execution
+- CodeRunnerTests.test_run_bundle_returns_python_syntax_error_before_execution
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run_bundle
+    - append
+    - dict
+    - AssertionError
+    - pop
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+## Flow Start: CodeRunnerTests.test_runner_backend_uses_valid_repository_setting
+- CodeRunnerTests.test_runner_backend_uses_valid_repository_setting
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - assertEqual
+  - _runner_backend
+    - lower
+    - strip
+    - _setting
+      - get_setting
+## Flow Start: CodeRunnerTests.test_runner_backend_falls_back_for_invalid_repository_setting
+- CodeRunnerTests.test_runner_backend_falls_back_for_invalid_repository_setting
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - assertEqual
+  - _runner_backend
+    - lower
+    - strip
+    - _setting
+      - get_setting
+## Flow Start: CodeRunnerTests.test_python_project_run_uses_main_file_even_when_helper_is_open
+- CodeRunnerTests.test_python_project_run_uses_main_file_even_when_helper_is_open
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - patch
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertFalse
+## Flow Start: CodeRunnerTests.test_javascript_project_run_uses_main_file_even_when_helper_is_open
+- CodeRunnerTests.test_javascript_project_run_uses_main_file_even_when_helper_is_open
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - patch
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertFalse
+## Flow Start: CodeRunnerTests.test_cpp_project_run_compiles_all_project_sources
+- CodeRunnerTests.test_cpp_project_run_compiles_all_project_sources
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - append
+  - _RawResult
+  - patch
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+## Flow Start: CodeRunnerTests.test_java_project_run_compiles_all_sources_and_uses_main_class
+- CodeRunnerTests.test_java_project_run_compiles_all_sources_and_uses_main_class
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - _FakeRepository
+  - project_root
+    - owner_root
+      - slugify
+        - lower
+        - strip
+        - sub
+      - ValueError
+  - mkdir
+  - write_text
+  - append
+  - list
+  - _RawResult
+  - patch
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - type
+  - assertEqual
+  - assertTrue
+  - endswith
+## Flow Start: CodeRunnerTests.test_container_base_command_includes_configured_oci_runtime
+- CodeRunnerTests.test_container_base_command_includes_configured_oci_runtime
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_base_command
+    - _setting
+      - get_setting
+    - _container_file_size_limit_bytes
+      - strip
+      - max
+    - append
+    - extend
+    - list
+    - items
+    - dict
+    - _container_seccomp_option
+      - resolve_seccomp_profile_option
+        - startswith
+    - lower
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_error_message_explains_missing_docker_desktop_engine
+- CodeRunnerTests.test_container_runtime_error_message_explains_missing_docker_desktop_engine
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_error_message_explains_internal_server_error
+- CodeRunnerTests.test_container_runtime_error_message_explains_internal_server_error
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_error_message_explains_timeout
+- CodeRunnerTests.test_container_runtime_error_message_explains_timeout
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_error_message_explains_linux_docker_socket_permissions
+- CodeRunnerTests.test_container_runtime_error_message_explains_linux_docker_socket_permissions
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - _container_runtime_error_message
+    - strip
+    - lower
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_health_fails_fast_before_run
+- CodeRunnerTests.test_container_runtime_health_fails_fast_before_run
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - len
+  - _RawResult
+  - list
+  - object
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - assertEqual
+  - assertIn
+## Flow Start: CodeRunnerTests.test_container_runtime_health_uses_generous_timeout
+- CodeRunnerTests.test_container_runtime_health_uses_generous_timeout
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - list
+  - _RawResult
+  - object
+  - _container_runtime_health
+    - lower
+    - time
+    - _execute_raw
+      - append
+      - join
+      - mkdir
+      - write_text
+    - dict
+    - _container_runtime_health_timeout_seconds
+      - max
+      - min
+    - _container_runtime_error_message
+      - strip
+  - assertTrue
+  - assertEqual
+## Flow Start: CodeRunnerTests.test_run_bundle_auto_pulls_missing_container_image
+- CodeRunnerTests.test_run_bundle_auto_pulls_missing_container_image
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - append
+  - list
+  - len
+  - _RawResult
+  - object
+  - run_bundle
+    - dict
+    - AssertionError
+    - pop
+  - assertEqual
+  - assertTrue
+  - any
+## Flow Start: CodeRunnerTests.test_student_run_hides_operational_notes
+- CodeRunnerTests.test_student_run_hides_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _Session
+  - assertEqual
+## Flow Start: CodeRunnerTests.test_teacher_run_keeps_operational_notes
+- CodeRunnerTests.test_teacher_run_keeps_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: CodeRunnerTests.test_student_live_run_hides_operational_notes
+- CodeRunnerTests.test_student_live_run_hides_operational_notes
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - prepare_live_run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _backend_notes
+      - _container_runtime
+      - append
+      - startswith
+      - extend
+      - _network_notes
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - set
+        - add
+    - _execution_env
+      - dict
+    - LivePreparedRun
+    - _finalize_prepared_run
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _prepare_live_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _containerized_env
+      - _container_base_command
+        - _container_file_size_limit_bytes
+        - _container_seccomp_option
+          - resolve_seccomp_profile_option
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _container_wrapped_command
+        - _store_dependency_cache
+      - _ensure_python_gui_container_image
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _write_python_bootstrap
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _prepare_live_process
+      - _ensure_python_dependencies_process
+      - RuntimeError
+    - release
+      - notify_all
+  - _Session
+  - assertIsNone
+  - assertEqual
+## Flow Start: CodeRunnerTests.test_run_python_supports_stdin_input
+- CodeRunnerTests.test_run_python_supports_stdin_input
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - CodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+## Flow Start: CodeRunnerTests.test_run_python_reports_syntax_error_before_execution
+- CodeRunnerTests.test_run_python_reports_syntax_error_before_execution
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - _TeacherSession
+  - assertEqual
+  - assertIn
+  - assertIsNone
+## Flow Start: CodeRunnerTests.test_run_python_uses_bootstrap_and_dependency_env_with_requirements
+- CodeRunnerTests.test_run_python_uses_bootstrap_and_dependency_env_with_requirements
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ObservedCodeRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - write_text
+  - mkdir
+  - _RawResult
+  - list
+  - patch
+  - object
+  - _run_python
+    - _ensure_python_dependencies_process
+      - _python_requirements_file
+        - is_file
+        - any
+        - strip
+        - startswith
+        - splitlines
+      - _python_dependency_cache_dir
+        - sha256
+        - update
+        - encode
+        - read_bytes
+        - hexdigest
+      - _restore_dependency_cache
+        - rmtree
+        - copytree
+      - which
+      - lower
+      - _execute_raw
+        - append
+        - join
+      - max
+      - _store_dependency_cache
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+        - _setting
+          - get_setting
+      - extend
+      - _network_notes
+        - _setting_bool
+    - RuntimeError
+    - _write_python_bootstrap
+      - dedent
+    - _python_entry_env
+      - dict
+      - pop
+    - _execute
+  - assertIsNotNone
+  - assertTrue
+  - endswith
+  - assertEqual
+## Flow Start: CodeRunnerTests.test_containerized_python_mainloop_without_direct_import_uses_gui_path
+- CodeRunnerTests.test_containerized_python_mainloop_without_direct_import_uses_gui_path
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - _ContainerObservedRunner
+  - _FakeToolSandbox
+  - WorkspaceManager
+  - _FakeRepository
+  - type
+  - run
+    - uuid4
+    - _resolve_language
+      - lower
+      - strip
+    - _runner_backend
+      - _setting
+        - get_setting
+    - resolve_backend
+      - _unsafe_process_backend_enabled
+        - _setting_bool
+      - PermissionError
+      - bool
+      - getattr
+    - authorize
+    - allowed_tool_names
+      - tuple
+      - sorted
+      - items
+    - project_root
+      - owner_root
+        - slugify
+          - sub
+        - ValueError
+    - mkdir
+    - _prepare_html_preview
+      - _prepare_execution_workspace
+        - _copy_project_tree
+          - _normalize_relative_path
+          - iterdir
+          - relative_to
+          - _is_excluded_relative_path
+          - _should_skip_root_entry
+          - _copy_directory
+          - is_file
+          - copy2
+        - _safe_relative_path
+          - replace
+          - is_absolute
+        - _default_filename
+        - write_text
+        - FileNotFoundError
+        - as_posix
+      - _resolve_html_preview_entry
+        - append
+        - set
+        - add
+    - RunResult
+    - _backend_notes
+      - _container_runtime
+      - startswith
+      - extend
+      - _network_notes
+    - _finalize_run_result
+      - list
+      - _scheduler_notes
+      - _visible_notes_for_session
+        - _session_can_view_operational_notes
+          - _session_role
+      - to_dict
+    - _resolve_project_entry_path
+      - _resolve_project_entry_relative_path
+    - _python_syntax_error
+      - _read_source_text
+      - compile
+      - rstrip
+      - max
+      - join
+    - _execution_env
+      - dict
+    - acquire
+      - _priority_for_role
+      - perf_counter
+      - next
+      - enumerate
+      - len
+      - min
+      - _can_activate
+        - _global_limit
+          - _setting_int
+        - _per_owner_limit
+      - SchedulerLease
+      - float
+      - wait
+    - _run_containerized
+      - which
+      - _container_image
+      - _container_runtime_health
+        - time
+        - _execute_raw
+          - _RawResult
+        - _container_runtime_health_timeout_seconds
+        - _container_runtime_error_message
+      - _prepare_container_workspace
+        - _mirror_tree_securely
+          - rmtree
+          - _copy_tree_entries_securely
+      - _ensure_container_image_available
+        - _container_error_is_missing_image
+      - _detect_python_gui_frameworks
+        - search
+          - findall
+          - _load_documents
+          - count
+          - _snippet
+          - sort
+      - _ensure_python_dependencies_container
+        - _python_requirements_file
+          - any
+          - splitlines
+        - _python_dependency_cache_dir
+          - sha256
+          - update
+          - encode
+          - read_bytes
+          - hexdigest
+        - _restore_dependency_cache
+          - copytree
+        - _containerized_env
+        - _container_wrapped_command
+        - _container_base_command
+          - _container_file_size_limit_bytes
+          - _container_seccomp_option
+        - _store_dependency_cache
+      - _write_python_bootstrap
+        - dedent
+      - _python_entry_env
+        - pop
+      - _container_path
+      - _ensure_python_gui_container_image
+      - _prepare_python_gui_scripts
+        - quote
+        - chmod
+      - _execute_container
+        - write_bytes
+      - _project_source_files
+        - rglob
+      - _execute_container_raw
+      - _java_main_class
+        - group
+      - split
+    - _run_python
+      - _ensure_python_dependencies_process
+      - RuntimeError
+      - _execute
+    - _run_node_like
+    - _run_cpp
+    - _run_java
+    - _run_rust
+    - _run_npm
+    - release
+      - notify_all
+  - assertEqual
+  - assertTrue
+  - endswith
+  - assertIsNotNone
+  - assertIn
+## Flow Start: test_stored_runtime_config_falls_back_to_active_values
+- test_stored_runtime_config_falls_back_to_active_values
+  - TemporaryDirectory
+  - Path
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - stored_runtime_config
+    - active_runtime_config
+  - assertEqual
+  - assertFalse
+  - runtime_config_requires_restart
+## Flow Start: test_runtime_config_requires_restart_when_stored_values_differ
+- test_runtime_config_requires_restart_when_stored_values_differ
+  - TemporaryDirectory
+  - Path
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - save_server_config_payload
+    - update
+    - write_text
+    - dumps
+  - active_runtime_config
+  - stored_runtime_config
+  - assertTrue
+  - runtime_config_requires_restart
+## Flow Start: ConfigTests.test_stored_runtime_config_falls_back_to_active_values
+- ConfigTests.test_stored_runtime_config_falls_back_to_active_values
+  - TemporaryDirectory
+  - Path
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - stored_runtime_config
+    - active_runtime_config
+  - assertEqual
+  - assertFalse
+  - runtime_config_requires_restart
+## Flow Start: ConfigTests.test_runtime_config_requires_restart_when_stored_values_differ
+- ConfigTests.test_runtime_config_requires_restart_when_stored_values_differ
+  - TemporaryDirectory
+  - Path
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - save_server_config_payload
+    - update
+    - write_text
+    - dumps
+  - active_runtime_config
+  - stored_runtime_config
+  - assertTrue
+  - runtime_config_requires_restart
+## Flow Start: test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime
+- test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime
+  - TemporaryDirectory
+  - Path
+  - write_text
+  - resolve_seccomp_profile_option
+    - exists
+    - startswith
+    - resolve
+  - assertEqual
+## Flow Start: ContainerSeccompTests.test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime
+- ContainerSeccompTests.test_resolve_seccomp_profile_option_returns_native_path_for_non_docker_runtime
+  - TemporaryDirectory
+  - Path
+  - write_text
+  - resolve_seccomp_profile_option
+    - exists
+    - startswith
+    - resolve
+  - assertEqual
+## Flow Start: test_distribution_archive_excludes_runtime_data_and_adds_scaffold
+- test_distribution_archive_excludes_runtime_data_and_adds_scaffold
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - build_distribution_archive
+    - resolve
+    - detect_project_version
+      - read_text
+      - splitlines
+      - strip
+      - startswith
+      - split
+    - _normalize_flavor
+      - lower
+      - str
+      - get
+      - ValueError
+    - _copy_project_tree
+      - _normalize_relative_path
+        - replace
+      - iterdir
+      - relative_to
+      - _is_excluded_relative_path
+        - len
+      - _should_skip_root_entry
+        - _should_skip_entry
+          - is_file
+          - any
+          - endswith
+      - is_dir
+      - _copy_directory
+        - copy2
+    - _create_distribution_scaffold
+      - _ensure_placeholder
+        - exists
+      - dumps
+      - _write_lit_scaffold
+      - _write_platform_installation_guide
+        - lstrip
+    - _prune_for_flavor
+      - _remove_if_exists
+        - unlink
+    - _copy_optional_linux_runtime_binaries
+      - hasattr
+      - stat
+      - chmod
+    - _zip_tree
+      - ZipFile
+      - sorted
+      - _iter_files
+        - rglob
+      - write
+    - DistributionBuildResult
+  - assertTrue
+  - set
+  - namelist
+  - assertIn
+  - assertNotIn
+## Flow Start: test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide
+- test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - write_bytes
+  - build_linux_project_archive
+    - build_distribution_archive
+      - resolve
+      - detect_project_version
+        - read_text
+        - splitlines
+        - strip
+        - startswith
+        - split
+      - _normalize_flavor
+        - lower
+        - str
+        - get
+        - ValueError
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _create_distribution_scaffold
+        - _ensure_placeholder
+          - exists
+        - dumps
+        - _write_lit_scaffold
+        - _write_platform_installation_guide
+          - lstrip
+      - _prune_for_flavor
+        - _remove_if_exists
+          - unlink
+      - _copy_optional_linux_runtime_binaries
+        - hasattr
+        - stat
+        - chmod
+      - _zip_tree
+        - ZipFile
+        - sorted
+        - _iter_files
+          - rglob
+        - write
+      - DistributionBuildResult
+    - LinuxProjectBuildResult
+  - assertTrue
+  - set
+  - namelist
+  - assertIn
+  - assertNotIn
+## Flow Start: DistributionBuilderTests.test_distribution_archive_excludes_runtime_data_and_adds_scaffold
+- DistributionBuilderTests.test_distribution_archive_excludes_runtime_data_and_adds_scaffold
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - build_distribution_archive
+    - resolve
+    - detect_project_version
+      - read_text
+      - splitlines
+      - strip
+      - startswith
+      - split
+    - _normalize_flavor
+      - lower
+      - str
+      - get
+      - ValueError
+    - _copy_project_tree
+      - _normalize_relative_path
+        - replace
+      - iterdir
+      - relative_to
+      - _is_excluded_relative_path
+        - len
+      - _should_skip_root_entry
+        - _should_skip_entry
+          - is_file
+          - any
+          - endswith
+      - is_dir
+      - _copy_directory
+        - copy2
+    - _create_distribution_scaffold
+      - _ensure_placeholder
+        - exists
+      - dumps
+      - _write_lit_scaffold
+      - _write_platform_installation_guide
+        - lstrip
+    - _prune_for_flavor
+      - _remove_if_exists
+        - unlink
+    - _copy_optional_linux_runtime_binaries
+      - hasattr
+      - stat
+      - chmod
+    - _zip_tree
+      - ZipFile
+      - sorted
+      - _iter_files
+        - rglob
+      - write
+    - DistributionBuildResult
+  - assertTrue
+  - set
+  - namelist
+  - assertIn
+  - assertNotIn
+## Flow Start: DistributionBuilderTests.test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide
+- DistributionBuilderTests.test_linux_project_archive_includes_linux_runtime_binary_and_pure_linux_guide
+  - TemporaryDirectory
+  - Path
+  - mkdir
+  - write_text
+  - write_bytes
+  - build_linux_project_archive
+    - build_distribution_archive
+      - resolve
+      - detect_project_version
+        - read_text
+        - splitlines
+        - strip
+        - startswith
+        - split
+      - _normalize_flavor
+        - lower
+        - str
+        - get
+        - ValueError
+      - _copy_project_tree
+        - _normalize_relative_path
+          - replace
+        - iterdir
+        - relative_to
+        - _is_excluded_relative_path
+          - len
+        - _should_skip_root_entry
+          - _should_skip_entry
+        - is_dir
+        - _copy_directory
+          - is_file
+          - copy2
+      - _create_distribution_scaffold
+        - _ensure_placeholder
+          - exists
+        - dumps
+        - _write_lit_scaffold
+        - _write_platform_installation_guide
+          - lstrip
+      - _prune_for_flavor
+        - _remove_if_exists
+          - unlink
+      - _copy_optional_linux_runtime_binaries
+        - hasattr
+        - stat
+        - chmod
+      - _zip_tree
+        - ZipFile
+        - sorted
+        - _iter_files
+          - rglob
+        - write
+      - DistributionBuildResult
+    - LinuxProjectBuildResult
+  - assertTrue
+  - set
+  - namelist
+  - assertIn
+  - assertNotIn
+## Flow Start: test_parse_code_response_rejects_python_main_without_invocation
+- test_parse_code_response_rejects_python_main_without_invocation
+  - assertRaises
+  - _parse_code_response
+    - _extract_code_block
+      - strip
+      - str
+      - search
+        - findall
+        - lower
+        - list
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - read_text
+          - get
+          - _builtin_document
+        - count
+        - append
+        - _snippet
+          - _collapse_ws
+          - find
+          - max
+          - min
+          - len
+        - sort
+        - int
+      - start
+        - _resolve_course_state
+          - RuntimeError
+          - dashboard
+          - ValueError
+          - next
+          - FileNotFoundError
+          - bool
+          - getattr
+          - PermissionError
+          - dict
+          - _practice_payload
+        - _session_metadata
+          - _lesson_focus
+        - time
+        - uuid4
+        - _room_key
+        - execute
+        - dumps
+        - _opening_message
+          - join
+        - add_chat_message
+          - _encode_json
+        - session
+          - _session_row
+          - _session_payload
+        - thread
+          - list_chat_messages
+      - compile
+      - finditer
+      - group
+      - end
+    - _normalize_language
+    - _looks_like_source_code
+      - _looks_like_instructional_prose
+        - splitlines
+        - sum
+        - startswith
+        - endswith
+      - parse
+    - _python_has_missing_main_invocation
+      - any
+      - isinstance
+      - generic_visit
+      - _MainCallVisitor
+      - visit
+## Flow Start: test_generation_flow_runs_planning_authoring_and_pedagogy
+- test_generation_flow_runs_planning_authoring_and_pedagogy
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - assertEqual
+  - assertTrue
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+## Flow Start: test_generation_flow_repairs_failed_run_via_debugger_code_fallback
+- test_generation_flow_repairs_failed_run_via_debugger_code_fallback
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: test_attempt_limit_counts_repair_rounds_after_initial_run
+- test_attempt_limit_counts_repair_rounds_after_initial_run
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: test_run_current_builds_bundle_from_code_only
+- test_run_current_builds_bundle_from_code_only
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - run_current
+    - _normalize_language
+      - lower
+      - strip
+      - str
+    - get
+    - _normalize_profile
+      - dict
+    - _normalize_bundle
+      - isinstance
+      - _stringify_text
+        - join
+        - dumps
+      - items
+      - append
+      - any
+      - insert
+      - set
+      - _sanitize_relative_path
+        - replace
+        - ValueError
+        - split
+      - add
+      - _clean_text
+    - run_bundle
+      - AssertionError
+      - pop
+    - _bundle_response
+      - _main_file_content
+      - len
+  - _TeacherSession
+  - assertTrue
+  - assertEqual
+## Flow Start: _FakeRunner.run_bundle
+- _FakeRunner.run_bundle
+  - append
+  - dict
+  - AssertionError
+  - pop
+## Flow Start: MaterialStudioTests.test_parse_code_response_rejects_python_main_without_invocation
+- MaterialStudioTests.test_parse_code_response_rejects_python_main_without_invocation
+  - assertRaises
+  - _parse_code_response
+    - _extract_code_block
+      - strip
+      - str
+      - search
+        - findall
+        - lower
+        - list
+        - _load_documents
+          - _ensure_managed_pack
+          - _has_mirrored_pack
+          - _index_path
+          - _index_is_stale
+          - _build_index
+          - loads
+          - read_text
+          - get
+          - _builtin_document
+        - count
+        - append
+        - _snippet
+          - _collapse_ws
+          - find
+          - max
+          - min
+          - len
+        - sort
+        - int
+      - start
+        - _resolve_course_state
+          - RuntimeError
+          - dashboard
+          - ValueError
+          - next
+          - FileNotFoundError
+          - bool
+          - getattr
+          - PermissionError
+          - dict
+          - _practice_payload
+        - _session_metadata
+          - _lesson_focus
+        - time
+        - uuid4
+        - _room_key
+        - execute
+        - dumps
+        - _opening_message
+          - join
+        - add_chat_message
+          - _encode_json
+        - session
+          - _session_row
+          - _session_payload
+        - thread
+          - list_chat_messages
+      - compile
+      - finditer
+      - group
+      - end
+    - _normalize_language
+    - _looks_like_source_code
+      - _looks_like_instructional_prose
+        - splitlines
+        - sum
+        - startswith
+        - endswith
+      - parse
+    - _python_has_missing_main_invocation
+      - any
+      - isinstance
+      - generic_visit
+      - _MainCallVisitor
+      - visit
+## Flow Start: MaterialStudioTests.test_generation_flow_runs_planning_authoring_and_pedagogy
+- MaterialStudioTests.test_generation_flow_runs_planning_authoring_and_pedagogy
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - assertEqual
+  - assertTrue
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+## Flow Start: MaterialStudioTests.test_generation_flow_repairs_failed_run_via_debugger_code_fallback
+- MaterialStudioTests.test_generation_flow_repairs_failed_run_via_debugger_code_fallback
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: MaterialStudioTests.test_attempt_limit_counts_repair_rounds_after_initial_run
+- MaterialStudioTests.test_attempt_limit_counts_repair_rounds_after_initial_run
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - start_generation
+    - strip
+    - str
+    - ValueError
+    - _normalize_language
+      - lower
+    - _normalize_profile
+      - dict
+      - get
+    - max
+    - min
+    - int
+    - _issue_plan_step
+      - _profile_from_state
+      - _instruction_preset_from_state
+        - resolve_material_studio_instruction_preset
+          - append
+        - _normalize_instruction_preset
+      - _inference_step
+        - _prepare_inference_prompt
+          - _normalize_prompt_text
+          - _prompt_input_token_budget
+          - _estimate_token_count
+          - len
+          - _trim_text_middle
+        - list
+        - _generation_options_for_phase
+          - endswith
+        - _timeout_seconds_for_phase
+      - _planner_prompt
+        - extend
+        - _instruction_preset_lines
+          - _normalize_compare_text
+        - join
+  - continue_generation
+    - _coerce_generation_state
+      - isinstance
+      - bool
+    - _consume_plan_response
+      - _normalize_plan
+        - _clean_text
+          - _stringify_text
+      - _parse_json_response
+        - _structured_json_payload
+          - _extract_json_object
+          - _validate_schema_payload
+      - _issue_json_repair_step
+        - _json_repair_prompt
+        - _state_bundle
+        - _state_run_result
+        - _pedagogy_json_repair_prompt
+          - dumps
+          - _pedagogy_payload_snapshot
+          - _run_result_snapshot
+        - _main_file_content
+      - _agent_summary
+      - _issue_author_step
+        - _state_plan
+        - _author_prompt
+          - dedent
+    - _consume_plan_repair_response
+      - _fallback_plan
+        - sub
+        - _sanitize_relative_path
+          - replace
+          - split
+          - any
+    - _consume_author_response
+      - _normalize_bundle
+        - items
+        - insert
+        - set
+        - add
+      - _run_working_bundle
+        - run_bundle
+          - AssertionError
+          - pop
+        - _requires_visible_output
+        - _issue_pedagogy_step
+          - _pedagogy_prompt
+        - _issue_debugger_step
+          - _repair_prompt
+    - _consume_author_repair_response
+      - _issue_author_code_step
+        - _author_code_prompt
+    - _consume_author_code_response
+      - _parse_code_response
+        - _extract_code_block
+          - search
+          - start
+          - compile
+          - finditer
+          - group
+          - sort
+          - end
+        - _looks_like_source_code
+          - _looks_like_instructional_prose
+          - parse
+        - _python_has_missing_main_invocation
+          - generic_visit
+          - _MainCallVisitor
+          - visit
+      - _issue_code_repair_step
+        - _code_repair_prompt
+      - _accept_author_code
+    - _consume_author_code_repair_response
+    - _consume_debugger_response
+    - _consume_debugger_repair_response
+      - _issue_debugger_code_step
+        - _repair_code_prompt
+    - _consume_debugger_code_response
+      - _accept_debugger_code
+        - _replace_main_file
+    - _consume_debugger_code_repair_response
+    - _consume_pedagogy_response
+      - _finalize_generation
+        - _bundle_response
+    - _consume_pedagogy_repair_response
+      - _fallback_pedagogy
+        - title
+        - splitlines
+  - _TeacherSession
+  - assertEqual
+  - assertTrue
+## Flow Start: MaterialStudioTests.test_run_current_builds_bundle_from_code_only
+- MaterialStudioTests.test_run_current_builds_bundle_from_code_only
+  - _FakeRunner
+  - TeacherMaterialStudioService
+  - run_current
+    - _normalize_language
+      - lower
+      - strip
+      - str
+    - get
+    - _normalize_profile
+      - dict
+    - _normalize_bundle
+      - isinstance
+      - _stringify_text
+        - join
+        - dumps
+      - items
+      - append
+      - any
+      - insert
+      - set
+      - _sanitize_relative_path
+        - replace
+        - ValueError
+        - split
+      - add
+      - _clean_text
+    - run_bundle
+      - AssertionError
+      - pop
+    - _bundle_response
+      - _main_file_content
+      - len
+  - _TeacherSession
+  - assertTrue
+  - assertEqual
+## Flow Start: test_prepare_trims_large_runtime_context
+- test_prepare_trims_large_runtime_context
+  - prepare
+    - session
+      - getattr
+      - PermissionError
+      - _session_row
+        - fetchone
+        - execute
+        - dict
+      - str
+      - _session_payload
+        - loads
+        - get
+    - FileNotFoundError
+    - strip
+    - ValueError
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - fetchall
+        - tuple
+        - _decode_json
+    - join
+    - upper
+    - _compose_prompt
+      - list
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+          - sub
+        - int
+        - _estimate_token_count
+          - len
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+        - bool
+  - range
+  - assertIn
+  - assertLess
+## Flow Start: MentorTests.test_prepare_trims_large_runtime_context
+- MentorTests.test_prepare_trims_large_runtime_context
+  - prepare
+    - session
+      - getattr
+      - PermissionError
+      - _session_row
+        - fetchone
+        - execute
+        - dict
+      - str
+      - _session_payload
+        - loads
+        - get
+    - FileNotFoundError
+    - strip
+    - ValueError
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - fetchall
+        - tuple
+        - _decode_json
+    - join
+    - upper
+    - _compose_prompt
+      - list
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+          - sub
+        - int
+        - _estimate_token_count
+          - len
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+        - bool
+  - range
+  - assertIn
+  - assertLess
+## Flow Start: test_embedded_bridge_handles_token_flow_without_external_dependency
+- test_embedded_bridge_handles_token_flow_without_external_dependency
+  - TemporaryDirectory
+  - load_nova_bridge
+    - NovaBridge
+  - assertEqual
+  - SecurityPlane
+  - Path
+  - register_tenant
+    - get
+    - _save_state
+      - with_suffix
+      - write_text
+      - dumps
+      - replace
+    - dict
+  - issue_token
+    - token_urlsafe
+    - uuid4
+    - str
+    - sorted
+    - _json_safe
+      - isinstance
+      - items
+    - time
+    - max
+    - int
+  - authenticate
+    - bool
+    - float
+    - EmbeddedPrincipal
+    - list
+  - assertIsNotNone
+  - snapshot
+## Flow Start: EmbeddedNovaBridgeTests.test_embedded_bridge_handles_token_flow_without_external_dependency
+- EmbeddedNovaBridgeTests.test_embedded_bridge_handles_token_flow_without_external_dependency
+  - TemporaryDirectory
+  - load_nova_bridge
+    - NovaBridge
+  - assertEqual
+  - SecurityPlane
+  - Path
+  - register_tenant
+    - get
+    - _save_state
+      - with_suffix
+      - write_text
+      - dumps
+      - replace
+    - dict
+  - issue_token
+    - token_urlsafe
+    - uuid4
+    - str
+    - sorted
+    - _json_safe
+      - isinstance
+      - items
+    - time
+    - max
+    - int
+  - authenticate
+    - bool
+    - float
+    - EmbeddedPrincipal
+    - list
+  - assertIsNotNone
+  - snapshot
+## Flow Start: test_pty_process_handles_prompt_input_and_resize
+- test_pty_process_handles_prompt_input_and_resize
+  - find_spec
+  - skipTest
+  - which
+  - lower
+  - Path
+  - dict
+  - create_pty_process
+    - normalize_terminal_size
+      - max
+      - min
+      - int
+    - _PyWinPtyProcess
+    - _WindowsConPtyProcess
+    - _PosixPtyProcess
+  - cwd
+  - time
+  - decode
+  - read
+  - sleep
+  - assertIn
+  - resize
+    - _session
+      - get
+      - FileNotFoundError
+    - _ensure_control
+      - PermissionError
+    - update
+  - write
+  - poll
+  - assertEqual
+  - wait
+  - terminate
+    - killpg
+    - perf_counter
+  - close
+## Flow Start: PtyHostTests.test_pty_process_handles_prompt_input_and_resize
+- PtyHostTests.test_pty_process_handles_prompt_input_and_resize
+  - find_spec
+  - skipTest
+  - which
+  - lower
+  - Path
+  - dict
+  - create_pty_process
+    - normalize_terminal_size
+      - max
+      - min
+      - int
+    - _PyWinPtyProcess
+    - _WindowsConPtyProcess
+    - _PosixPtyProcess
+  - cwd
+  - time
+  - decode
+  - read
+  - sleep
+  - assertIn
+  - resize
+    - _session
+      - get
+      - FileNotFoundError
+    - _ensure_control
+      - PermissionError
+    - update
+  - write
+  - poll
+  - assertEqual
+  - wait
+  - terminate
+    - killpg
+    - perf_counter
+  - close
+## Flow Start: test_live_run_manager_streams_prompt_and_accepts_input
+- test_live_run_manager_streams_prompt_and_accepts_input
+  - find_spec
+  - skipTest
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - SchoolRepository
+  - put_setting
+    - execute
+    - _encode_json
+      - dumps
+    - time
+  - WorkspaceManager
+  - CodeRunner
+  - _FakeToolSandbox
+  - LiveRunManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+  - _RecordingConnection
+  - RealtimeClient
+  - _TeacherSession
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - next
+      - FileNotFoundError
+      - bool
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - rsplit
+    - uuid4
+    - _room_key
+    - _opening_message
+      - join
+    - add_chat_message
+    - session
+      - _session_row
+        - fetchone
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - snapshot
+  - sleep
+  - assertTrue
+  - resize
+    - _session
+    - _ensure_control
+    - normalize_terminal_size
+    - update
+  - send_input
+    - poll
+    - write
+    - encode
+    - flush
+  - any
+  - assertIn
+  - assertEqual
+  - close
+## Flow Start: RealtimeTests.test_live_run_manager_streams_prompt_and_accepts_input
+- RealtimeTests.test_live_run_manager_streams_prompt_and_accepts_input
+  - find_spec
+  - skipTest
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - SchoolRepository
+  - put_setting
+    - execute
+    - _encode_json
+      - dumps
+    - time
+  - WorkspaceManager
+  - CodeRunner
+  - _FakeToolSandbox
+  - LiveRunManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+  - _RecordingConnection
+  - RealtimeClient
+  - _TeacherSession
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - next
+      - FileNotFoundError
+      - bool
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - rsplit
+    - uuid4
+    - _room_key
+    - _opening_message
+      - join
+    - add_chat_message
+    - session
+      - _session_row
+        - fetchone
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - snapshot
+  - sleep
+  - assertTrue
+  - resize
+    - _session
+    - _ensure_control
+    - normalize_terminal_size
+    - update
+  - send_input
+    - poll
+    - write
+    - encode
+    - flush
+  - any
+  - assertIn
+  - assertEqual
+  - close
+## Flow Start: _handler
+- _handler
+  - __new__
+  - _App
+## Flow Start: RequestHandlerTlsTests._handler
+- RequestHandlerTlsTests._handler
+  - __new__
+  - _App
+## Flow Start: test_prepare_includes_task_and_runtime_context
+- test_prepare_includes_task_and_runtime_context
+  - set_release
+    - _catalog_course
+      - _custom_course
+        - fetchone
+        - execute
+        - loads
+      - _active_bundle_course
+        - active_bundle_id
+          - strip
+          - str
+          - get_setting
+      - get_course
+        - get
+        - dict
+      - deepcopy
+    - FileNotFoundError
+    - ValueError
+    - time
+    - _release_payload
+      - _release_row_payload
+        - bool
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - list
+      - next
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+      - int
+    - uuid4
+    - _room_key
+    - dumps
+    - _opening_message
+      - join
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - prepare
+    - upper
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+        - _estimate_token_count
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+  - assertIn
+  - assertEqual
+## Flow Start: test_prepare_direct_feedback_accepts_valid_extended_python_intro_run
+- test_prepare_direct_feedback_accepts_valid_extended_python_intro_run
+  - set_release
+    - _catalog_course
+      - _custom_course
+        - fetchone
+        - execute
+        - loads
+      - _active_bundle_course
+        - active_bundle_id
+          - strip
+          - str
+          - get_setting
+      - get_course
+        - get
+        - dict
+      - deepcopy
+    - FileNotFoundError
+    - ValueError
+    - time
+    - _release_payload
+      - _release_row_payload
+        - bool
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - list
+      - next
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+      - int
+    - uuid4
+    - _room_key
+    - dumps
+    - _opening_message
+      - join
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - prepare
+    - upper
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+        - _estimate_token_count
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+  - assertEqual
+  - assertIn
+  - assertNotIn
+## Flow Start: VirtualLecturerTests.test_prepare_includes_task_and_runtime_context
+- VirtualLecturerTests.test_prepare_includes_task_and_runtime_context
+  - set_release
+    - _catalog_course
+      - _custom_course
+        - fetchone
+        - execute
+        - loads
+      - _active_bundle_course
+        - active_bundle_id
+          - strip
+          - str
+          - get_setting
+      - get_course
+        - get
+        - dict
+      - deepcopy
+    - FileNotFoundError
+    - ValueError
+    - time
+    - _release_payload
+      - _release_row_payload
+        - bool
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - list
+      - next
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+      - int
+    - uuid4
+    - _room_key
+    - dumps
+    - _opening_message
+      - join
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - prepare
+    - upper
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+        - _estimate_token_count
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+  - assertIn
+  - assertEqual
+## Flow Start: VirtualLecturerTests.test_prepare_direct_feedback_accepts_valid_extended_python_intro_run
+- VirtualLecturerTests.test_prepare_direct_feedback_accepts_valid_extended_python_intro_run
+  - set_release
+    - _catalog_course
+      - _custom_course
+        - fetchone
+        - execute
+        - loads
+      - _active_bundle_course
+        - active_bundle_id
+          - strip
+          - str
+          - get_setting
+      - get_course
+        - get
+        - dict
+      - deepcopy
+    - FileNotFoundError
+    - ValueError
+    - time
+    - _release_payload
+      - _release_row_payload
+        - bool
+  - start
+    - _resolve_course_state
+      - RuntimeError
+      - dashboard
+        - _list_submissions_for
+          - fetchall
+          - _submission_payload
+        - _list_assignments_for
+          - _assignment_payload
+        - _analytics
+      - list
+      - next
+      - getattr
+      - PermissionError
+      - len
+      - _practice_payload
+    - _session_metadata
+      - _lesson_focus
+        - sub
+        - rsplit
+      - int
+    - uuid4
+    - _room_key
+    - dumps
+    - _opening_message
+      - join
+    - add_chat_message
+      - _encode_json
+    - session
+      - _session_row
+      - _session_payload
+    - thread
+      - list_chat_messages
+        - append
+        - max
+        - min
+        - tuple
+        - _decode_json
+  - prepare
+    - upper
+    - _compose_prompt
+      - _prepare_prompt_with_budget
+        - _normalize_prompt_text
+          - replace
+        - _estimate_token_count
+          - findall
+          - ceil
+        - _trim_text_middle
+          - rstrip
+          - lstrip
+    - _direct_reply
+      - _prompt_requests_state_review
+        - _fold_text
+          - normalize
+          - lower
+          - decode
+          - encode
+        - any
+      - _python_intro_run_feedback
+        - _visible_output_lines
+          - splitlines
+          - startswith
+        - _count_print_calls
+          - search
+        - _contains_runtime_error
+        - enumerate
+        - extend
+      - _web_frontend_intro_feedback
+        - _extract_html_tags
+          - group
+          - finditer
+        - sorted
+        - fullmatch
+  - assertEqual
+  - assertIn
+  - assertNotIn
+## Flow Start: test_delete_file_removes_secondary_file_and_blocks_main_file
+- test_delete_file_removes_secondary_file_and_blocks_main_file
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - delete_file
+    - replace
+    - resolve_project_path
+      - is_relative_to
+    - is_file
+    - FileNotFoundError
+    - unlink
+    - _prune_empty_parent_dirs
+      - rmdir
+  - assertEqual
+  - assertFalse
+  - assertRaises
+## Flow Start: test_directory_operations_support_create_delete_and_main_path_rename
+- test_directory_operations_support_create_delete_and_main_path_rename
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - create_directory
+    - _normalize_relative_path
+      - replace
+    - resolve_project_path
+      - is_relative_to
+  - assertEqual
+  - assertTrue
+  - delete_entry
+    - _path_matches_or_contains
+      - bool
+      - startswith
+    - FileNotFoundError
+    - rmtree
+    - _prune_empty_parent_dirs
+      - rmdir
+    - unlink
+  - assertFalse
+  - assertRaises
+  - rename_entry
+    - rename
+    - _renamed_path
+      - len
+## Flow Start: WorkspaceTests.test_delete_file_removes_secondary_file_and_blocks_main_file
+- WorkspaceTests.test_delete_file_removes_secondary_file_and_blocks_main_file
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - delete_file
+    - replace
+    - resolve_project_path
+      - is_relative_to
+    - is_file
+    - FileNotFoundError
+    - unlink
+    - _prune_empty_parent_dirs
+      - rmdir
+  - assertEqual
+  - assertFalse
+  - assertRaises
+## Flow Start: WorkspaceTests.test_directory_operations_support_create_delete_and_main_path_rename
+- WorkspaceTests.test_directory_operations_support_create_delete_and_main_path_rename
+  - TemporaryDirectory
+  - from_base_path
+    - resolve
+    - load_server_config_payload
+      - Path
+      - exists
+      - loads
+      - read_text
+      - isinstance
+    - resolve_package_path
+      - is_dir
+    - get
+    - cls
+    - str
+    - env_or_payload
+    - int
+  - WorkspaceManager
+  - materialize_project
+    - project_root
+      - owner_root
+        - slugify
+          - lower
+          - strip
+          - sub
+        - ValueError
+    - mkdir
+    - items
+    - dict
+    - write_text
+    - list
+    - dumps
+  - create_directory
+    - _normalize_relative_path
+      - replace
+    - resolve_project_path
+      - is_relative_to
+  - assertEqual
+  - assertTrue
+  - delete_entry
+    - _path_matches_or_contains
+      - bool
+      - startswith
+    - FileNotFoundError
+    - rmtree
+    - _prune_empty_parent_dirs
+      - rmdir
+    - unlink
+  - assertFalse
+  - assertRaises
+  - rename_entry
+    - rename
+    - _renamed_path
+      - len
 
 # 6. Architectural Deep Dives
+## Deep Dive: Security
+Keine Seccomp-Konfiguration gefunden.
 
-
-## Deep Dive A: Sandbox Lifecycle
-
-1. Request
-2. Container Start
-3. Code Execution
-4. Output Capture
-5. Container Destroy
-
-→ Keine Persistenz
-
-
-## Deep Dive B: AI Budgeting
-
-Token-Schätzung:
-1 Token ≈ 4 Zeichen
-
-Strategie:
-- Anfang behalten
-- Ende behalten
-- Mitte kürzen
-
-→ stabil + deterministisch
-
-
-## Deep Dive C: Security Hardening
-
-Blockierte Syscalls:
-- ptrace → Prozesskontrolle
-- mount → Filesystem Zugriff
-- clone → Namespace Escape
-
-Prinzip:
-Default Deny
-
-
-## Deep Dive D: Zero Dependency Build
-
-### Ziel
-Keine externen Abhängigkeiten:
-- keine pip installs
-- keine system packages
-- keine instabilen Drittanbieter-Libraries
-
-### Build Pipeline
-
-1. Source Code
-2. statische Analyse
-3. Packaging Script (distribution_builder.py)
-4. Erstellung:
-   - Linux Binary
-   - Container Image
-
-### PDF-Generierung
-
-Zertifikate werden nicht über externe Libraries erzeugt.
-
-Stattdessen:
-- direkte Konstruktion von PDF 1.4 Byte-Streams
-- manuelle Definition von:
-  - Header
-  - Objekten
-  - Cross-Reference Table
-  - Trailer
-
-Warum?
-
-- keine Abhängigkeit von PDF-Libraries
-- keine Breaking Changes durch Updates
-- vollständige Kontrolle über Output
-
-### Vorteil
-
-- reproduzierbare Builds
-- vollständig offline-fähig
-- immun gegen Supply-Chain-Probleme
-- langfristige Stabilität über Jahre hinweg
-
-
-## Deep Dive E: Curriculum System
-
-course_id Struktur:
-
-- metadata.json
-- tasks/
-- languages/
-
-Ein Konzept → mehrere Sprachen
+## Deep Dive: Zero Dependency Build
+- **PDF-Generierung**: Direkte Konstruktion von PDF 1.4 Byte-Streams ohne externe Libraries.
+- **Vorteil**: Immun gegen Supply-Chain-Angriffe und Breaking Changes.
