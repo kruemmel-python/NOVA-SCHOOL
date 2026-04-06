@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_worker_agent.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_worker_agent.py`</h1>
+          <p>Source: test_worker_agent.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <p>Gerne, hier ist ein Entwurf für eine technische Dokumentation basierend auf dem bereitgestellten Code-Ausschnitt. Da es sich um einen Test- oder Setup-Teil handelt, wird die Dokumentation den Zweck der Datei und der darin enthaltenen Komponenten beschreiben. ---</p>
+<h1 id="technische-dokumentation-test-worker-agent-py">Technische Dokumentation: <code>test_worker_agent.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Struktur und den Zweck der Python-Datei <code>test_worker_agent.py</code>. Diese Datei dient primär der <strong>Unit-Testing</strong>-Abdeckung der Klasse <code>WorkerAgent</code> aus dem Modul <code>nova_school_server.worker_agent</code>. Sie verwendet das <code>unittest</code>-Framework sowie <code>unittest.mock</code> zur Simulation von Abhängigkeiten und zur Validierung der Funktionalität des Agenten.</p>
+<h2 id="2-voraussetzungen">2. Voraussetzungen</h2>
+<p>Um diese Tests auszuführen, sind folgende Abhängigkeiten erforderlich:</p>
+<ul>
+<li>Python 3.x</li>
+<li>Die Bibliothek <code>nova_school_server</code> (insbesondere das Modul <code>worker_agent</code>) muss installiert sein.</li>
+</ul>
+<h2 id="3-code-analyse">3. Code-Analyse</h2>
+<h3 id="3-1-importe">3.1 Importe</h3>
+<p>Die Datei importiert notwendige Bibliotheken und Klassen:</p>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hints in älteren Python-Versionen.</li>
+<li>**<code>import hashlib</code>**: Wird wahrscheinlich für die Hashing-Operationen oder die Integritätsprüfung von Daten verwendet.</li>
+<li>**<code>import tempfile</code>**: Wird verwendet, um temporäre Dateien für Tests zu erstellen und zu verwalten.</li>
+<li>**<code>import unittest</code>**: Das Kernmodul für die Durchführung der Testfälle.</li>
+<li>**<code>from pathlib import Path</code>**: Bietet eine objektorientierte Methode zur Arbeit mit Dateipfaden.</li>
+<li>**<code>from unittest.mock import patch</code>**: Wird verwendet, um externe Abhängigkeiten (z.B. Datenbankzugriffe, Netzwerkaufrufe) zu simulieren (Mocking).</li>
+<li>**<code>from nova_school_server.worker_agent import WorkerAgent</code>**: Importiert die zu testende Klasse.</li>
+</ul>
+<h3 id="3-2-hauptinhalt-code-ausschnitt">3.2 Hauptinhalt (Code-Ausschnitt)</h3>
+<p>Der bereitgestellte Code-Ausschnitt definiert eine Testklasse (impliziert durch die Struktur, die mit <code>class &lt;|end|&gt;</code> beginnt), die spezifische Szenarien für die <code>WorkerAgent</code> abdeckt. <strong>Funktionale Komponenten (Impliziert):</strong></p>
+<ol>
+<li><strong>Test-Setup:</strong> Die Verwendung von <code>tempfile</code> deutet darauf hin, dass die Tests temporäre Dateien oder Verzeichnisse erstellen, um eine isolierte Testumgebung zu gewährleisten.</li>
+<li><strong>Mocking:</strong> Die Verwendung von <code>@patch</code> (oder ähnlichen Mocking-Techniken) zeigt, dass die Tests darauf abzielen, die Interaktion des <code>WorkerAgent</code> mit externen Ressourcen (z.B. API-Endpunkte, Datenbanken) zu kontrollieren, anstatt echte Operationen durchzuführen.</li>
+<li><strong>Testfälle:</strong> Die Struktur impliziert, dass verschiedene Methoden oder Zustände des <code>WorkerAgent</code> getestet werden, möglicherweise unter Verwendung von <code>unittest.TestCase</code>-Methoden (z.B. <code>test_method_name</code>).</li>
+</ol>
+<h2 id="4-nutzung-und-anwendung">4. Nutzung und Anwendung</h2>
+<p>Diese Datei ist primär für das <strong>Qualitäts-Assuring</strong> der <code>WorkerAgent</code>-Logik zuständig. Sie stellt sicher, dass:</p>
+<ul>
+<li>Die Agenten korrekt auf eingehende Aufgaben reagieren.</li>
+<li>Die Verarbeitung von Daten (z.B. durch Hashing) fehlerfrei erfolgt.</li>
+<li>Die Abhängigkeiten des Agenten korrekt simuliert werden.</li>
+</ul>
+<h2 id="5-fazit">5. Fazit</h2>
+<p><code>test_worker_agent.py</code> ist ein essenzielles Werkzeug für die Wartung und das Vertrauen in die Stabilität des <code>WorkerAgent</code>. Die Kombination aus Standard-Testing-Frameworks und Mocking-Techniken stellt sicher, dass die Agenten-Logik robust gegenüber externen Änderungen ist. --- <strong>Hinweis:</strong> Um eine vollständige Dokumentation zu erstellen, müssten die restlichen Teile der Datei (die Testmethoden und die spezifischen Testfälle) analysiert werden.</p>
+<h2 id="technische-dokumentation-workeragent-tests">Technische Dokumentation: WorkerAgent Tests</h2>
+<p>Diese Dokumentation beschreibt die Testfälle der Klasse <code>WorkerAgentTests</code> aus der Datei <code>test_worker_agent.py</code>. Diese Tests dienen dazu, die korrekte Generierung von Befehlen durch den <code>WorkerAgent</code> für verschiedene Szenarien (Container-Befehle, Dateigrößenbeschränkungen, Integritätsprüfung von Artefakten) zu validieren. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Klasse <code>WorkerAgentTests</code> verwendet das <code>unittest</code>-Framework, um die Funktionalität des <code>WorkerAgent</code>-Klassens zu testen. Die Tests konzentrieren sich auf folgende Hauptbereiche:</p>
+<ol>
+<li><strong>Container-Befehlsgenerierung:</strong> Überprüfung, wie der Agent Befehle für Container-Workloads erstellt, insbesondere im Hinblick auf die Verwendung von Materialized Workspaces und die korrekte Handhabung von Container-spezifischen Parametern.</li>
+<li><strong>Parameterkonservierung und Konvertierung:</strong> Überprüfung, dass wichtige Pfade und Dateigrößenlimits korrekt im generierten Befehl beibehalten oder in die erforderliche Formatierung umgewandelt werden.</li>
+<li><strong>Artefaktintegritätsprüfung:</strong> Validierung der Methoden zur Überprüfung der Integrität von Artefakten basierend auf SHA256-Hashes.</li>
+</ol>
+<h3 id="2-testf-lle-im-detail">2. Testfälle im Detail</h3>
+<h4 id="2-1-test-container-command-uses-materialized-workspace-without-copy-wrapper">2.1. <code>test_container_command_uses_materialized_workspace_without_copy_wrapper</code></h4>
+<p><strong>Ziel:</strong> Verifizieren, dass der <code>_build_command</code>-Methode bei der Erstellung eines Container-Befehls, der einen Materialized Workspace verwendet, keine unnötigen Kopieroperationen (<code>cp -a</code>) durchführt und die korrekten Container-spezifischen Komponenten (z.B. <code>runsc</code>) verwendet. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Verzeichnis (<code>work_root</code>) wird erstellt.</li>
+<li>Ein Python-Skript (<code>main.py</code>) wird in diesem Workspace platziert.</li>
+<li>Ein <code>WorkerAgent</code> wird mit spezifischen Konfigurationen initialisiert, die auf einen Container-Backend (<code>&quot;container&quot;</code>) und einen Docker-Container (<code>&quot;docker&quot;</code>) abzielen.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+<li>Der generierte Befehl (<code>command</code>) muss den Parameter <code>--runtime</code> enthalten.</li>
+<li>Der generierte Befehl muss den Parameter <code>runsc</code> enthalten.</li>
+<li>Der generierte Befehl darf den Pfad <code>/workspace-src</code> nicht enthalten.</li>
+<li>Der generierte Befehl darf den Befehl <code>cp -a</code> nicht enthalten.</li>
+<li>Es muss bestätigt werden, dass das Zielverzeichnis für den Container-Workspace (<code>runtime_root.parent / &quot;container-workspace&quot; / &quot;main.py&quot;</code>) existiert.</li>
+</ul>
+<h4 id="2-2-test-container-command-preserves-image-path-and-converts-file-limit">2.2. <code>test_container_command_preserves_image_path_and_converts_file_limit</code></h4>
+<p><strong>Ziel:</strong> Testet die korrekte Verarbeitung von Rust-Projekten innerhalb eines Containers, insbesondere die Beibehaltung des Image-Pfads und die korrekte Konvertierung von Dateigrößenlimits in die Befehlsargumente. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Verzeichnis wird erstellt, das eine Rust-Projektstruktur (<code>Cargo.toml</code>, <code>src/main.rs</code>) enthält.</li>
+<li>Der <code>WorkerAgent</code> wird mit Konfigurationen für eine Rust-Runtime und spezifischen Container-Parametern initialisiert, einschließlich <code>container_file_size_limit_kb</code>.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+<li>Der generierte Befehl muss den Parameter <code>fsize=67108864:67108864</code> enthalten (was die Konvertierung des Limits in Bytes darstellt).</li>
+<li>Der generierte Befehl darf den Pfad <code>PATH=/usr/local</code> nicht enthalten.</li>
+<li>Der generierte Befehl darf den spezifischen Windows-Pfad <code>PATH=C:\\Windows\\System32;C:\\Rust</code> nicht enthalten (was auf eine korrekte Abstraktion hindeutet).</li>
+</ul>
+<h4 id="2-3-test-verify-artifact-integrity-rejects-hash-mismatch">2.3. <code>test_verify_artifact_integrity_rejects_hash_mismatch</code></h4>
+<p><strong>Ziel:</strong> Validiert, dass die Methode <code>_verify_artifact_integrity</code> korrekt funktioniert, indem sie einen Hash-Mismatch ablehnt. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Artefakt (<code>payload.zip</code>) wird erstellt.</li>
+<li>Das Artefakt wird mit einem falschen SHA256-Hash (<code>&quot;0&quot; * 64</code>) versehen.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+<li>Es wird erwartet, dass die Methode eine <code>RuntimeError</code> wirft, wenn der bereitgestellte Hash mit dem tatsächlichen Hash des Artefakts nicht übereinstimmt.</li>
+</ul>
+<h4 id="2-4-test-verify-artifact-integrity-accepts-matching-hash">2.4. <code>test_verify_artifact_integrity_accepts_matching_hash</code></h4>
+<p><strong>Ziel:</strong> Validiert, dass die Methode <code>_verify_artifact_integrity</code> korrekt funktioniert, wenn der bereitgestellte Hash mit dem tatsächlichen Hash des Artefakts übereinstimmt. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Artefakt (<code>payload.zip</code>) wird erstellt.</li>
+<li>Der tatsächliche SHA256-Hash des Artefakts wird berechnet.</li>
+<li>Die Methode wird mit dem korrekten Hash aufgerufen.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+<li>Es wird erwartet, dass die Überprüfung erfolgreich ist (kein Fehler wird geworfen), da der Hash übereinstimmt.</li>
+</ul>
+<h3 id="3-zusammenfassung-und-implikationen">3. Zusammenfassung und Implikationen</h3>
+<p>Diese Testsuite stellt sicher, dass der <code>WorkerAgent</code> folgende kritische Aspekte korrekt implementiert:</p>
+<ol>
+<li><strong>Konformität mit Container-Spezifikationen:</strong> Der Agent generiert Befehle, die die Anforderungen des Container-Backends (z.B. <code>runsc</code>) erfüllen.</li>
+<li><strong>Robustheit bei Pfad- und Limit-Handling:</strong> Der Agent kann komplexe Pfade und spezifische Konfigurationsparameter (wie Dateigrößenlimits) korrekt in die ausführbaren Befehle übersetzen, ohne unerwünschte Systemoperationen (wie unnötige Kopierbefehle) einzuführen.</li>
+<li><strong>Sicherheit und Zuverlässigkeit:</strong> Die Integritätsprüfung von Artefakten ist funktional und zuverlässig, indem sie Hash-Vergleiche korrekt durchführt.</li>
+<p>Diese Tests sind entscheidend für die Verlässlichkeit des Agenten bei der Orchestrierung von Workloads in Container-Umgebungen.</p>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-voraussetzungen">2. Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse">3. Code-Analyse</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-importe">3.1 Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-hauptinhalt-code-ausschnitt">3.2 Hauptinhalt (Code-Ausschnitt)</a></li>
+<li class="wiki-toc-link"><a href="#4-nutzung-und-anwendung">4. Nutzung und Anwendung</a></li>
+<li class="wiki-toc-link"><a href="#5-fazit">5. Fazit</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-workeragent-tests">Technische Dokumentation: WorkerAgent Tests</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-testf-lle-im-detail">2. Testfälle im Detail</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-zusammenfassung-und-implikationen">3. Zusammenfassung und Implikationen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_worker_agent.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

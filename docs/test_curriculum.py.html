@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_curriculum.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_curriculum.py`</h1>
+          <p>Source: test_curriculum.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-curriculum-py">Technische Dokumentation: <code>test_curriculum.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei, <code>test_curriculum.py</code>, scheint eine Sammlung von Testfunktionen und Klassen zu enthalten, die wahrscheinlich die Funktionalität eines Systems zur Verwaltung und Prüfung von Lehrplänen (Curricula) testen. Sie importiert Komponenten aus verschiedenen Modulen des <code>nova_school_server</code>-Frameworks, einschließlich Dienste, Katalogen und Datenbank-Repositories.</p>
+<h2 id="2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</h2>
+<p>Die Datei importiert die folgenden Module und Klassen:</p>
+<ul>
+<li>**<code>__future__</code>**: Für zukünftige Python-Syntax-Funktionen.</li>
+<li>**<code>hashlib</code>, <code>hmac</code>, <code>io</code>, <code>json</code>, <code>tempfile</code>, <code>time</code>, <code>unittest</code>, <code>zipfile</code>, <code>pathlib.Path</code>**: Standardmodulmodule für kryptografische Hashing, I/O-Operationen, temporäre Dateien, Zeitmessung, Unit-Testing und Dateiverwaltung.</li>
+<li>**<code>PIL.Image</code>**: Für die Verarbeitung von Bildern (wahrscheinlich zur Darstellung von Kursmaterialien oder Aufgaben).</li>
+<li>**<code>nova_school_server.curriculum.CurriculumService</code>**: Wahrscheinlich die Hauptklasse für die Geschäftslogik bezüglich des Lehrplans.</li>
+<li>**<code>nova_school_server.curriculum_catalog.get_course</code>, <code>list_courses</code>**: Funktionen zur Abfrage und Auflistung von Kursinformationen.</li>
+<li>**<code>nova_school_server.database.SchoolRepository</code>**: Eine Klasse zur Abstraktion der Datenbankoperationen.</li>
+</ul>
+<h2 id="3-klassen-und-funktionen">3. Klassen und Funktionen</h2>
+<h3 id="3-1-klasse-class-session">3.1. Klasse <code>class _Session</code></h3>
+<p>Diese Klasse dient zur Speicherung von Kontextinformationen für eine Benutzer- oder Testsession. <strong>Attribute:</strong></p>
+<ul>
+<li><code>username: str</code>: Der Benutzername der Session.</li>
+<li><code>is_teacher: bool = False</code>: Flag, ob der Benutzer ein Lehrer ist (Standardwert: <code>False</code>).</li>
+<li><code>permissions: dict | None = None</code>: Ein Dictionary mit den Berechtigungen des Benutzers (Standardwert: leeres Dictionary <code>{}</code>).</li>
+<li><code>group_ids: list[str] | None = None</code>: Eine Liste von Gruppen-IDs, zu denen der Benutzer gehört (Standardwert: leere Liste <code>[]</code>).</li>
+<p>**Konstruktor (<code>__init__</code>)**: Initialisiert die Session mit den bereitgestellten Benutzerdaten und Werten für die optionalen Attribute.</p>
+</ul>
+<h3 id="3-2-funktion-correct-answers-questions-list-dict-dict-str-object">3.2. Funktion <code>_correct_answers(questions: list[dict]) -&gt; dict[str, object]</code></h3>
+<p>Diese interne Hilfsfunktion ist dafür verantwortlich, die korrekten Antworten basierend auf der Struktur von Fragen zu extrahieren. <strong>Parameter:</strong></p>
+<ul>
+<li><code>questions: list[dict]</code>: Eine Liste von Fragen, wobei jede Frage ein Dictionary ist, das mindestens einen Schlüssel <code>type</code> enthält.</li>
+<p><strong>Logik:</strong> Iteriert über die Liste der Fragen und ordnet die korrekte Antwort (<code>correct</code> oder <code>accepted</code>) dem Frage-ID zu, basierend auf dem <code>type</code> des Frage-Typs:</p>
+<li>**<code>&quot;single&quot;</code>**: Die korrekte Antwort wird als einzelner Wert gespeichert.</li>
+<li>**<code>&quot;multi&quot;</code>**: Die korrekte Antwort wird als Liste von Werten gespeichert.</li>
+<li>**<code>&quot;text&quot;</code>**: Die akzeptierte Antwort wird als einzelner Wert gespeichert.</li>
+<p><strong>Rückgabe:</strong> Ein Dictionary, das die Frage-ID als Schlüssel und die korrekte Antwort (als Wert) als Wert enthält.</p>
+</ul>
+<h2 id="4-zweck-und-implikationen">4. Zweck und Implikationen</h2>
+<p>Basierend auf den Importen und der Struktur der Funktionen lässt sich ableiten, dass <code>test_curriculum.py</code> primär folgende Aufgaben erfüllt:</p>
+<ol>
+<li><strong>Test-Setup/Helper-Funktionen:</strong> Die Hilfsfunktionen (<code>_correct_answers</code>) deuten darauf hin, dass die Tests oder die Hauptlogik die korrekten Lösungen für Fragen verarbeiten müssen.</li>
+<li><strong>Datenabfrage:</strong> Die Importe von <code>get_course</code> und <code>list_courses</code> zeigen, dass die Tests oder die Hauptlogik Kursdaten aus dem Katalog abfragen.</li>
+<li><strong>Datenpersistenz:</strong> Die Verwendung von <code>SchoolRepository</code> impliziert, dass die Tests oder die Anwendung die Fähigkeit besitzt, Daten in die Datenbank zu schreiben oder zu lesen.</li>
+<li><strong>Sicherheit/Authentifizierung:</strong> Die <code>_Session</code>-Klasse deutet darauf hin, dass die Tests oder die Anwendung Benutzerkontexte (Login, Rollen wie Lehrer) verwalten müssen.</li>
+<li><strong>Dateiverarbeitung:</strong> Die Importe von <code>zipfile</code> und <code>tempfile</code> deuten darauf hin, dass Tests möglicherweise Dateien (z.B. Kursmaterialien) temporär erstellen, komprimieren oder verwalten müssen.</li>
+</ol>
+<h2 id="5-zusammenfassung-der-struktur">5. Zusammenfassung der Struktur</h2>
+<p>Die Datei ist modular aufgebaut und trennt die Datenverarbeitung (Antwortkorrektur), die Kontextverwaltung (Session) und die Schnittstellen zu den Kernsystemkomponenten (CurriculumService, Repository, Catalog) voneinander. Sie dient als Basis für die Validierung der Funktionalität des Lehrplansystems.</p>
+<h1 id="technische-dokumentation-python-curriculum-payload-generator">Technische Dokumentation: Python Curriculum Payload Generator</h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Dieses Dokument beschreibt die Funktion <code>_custom_course_payload</code> aus der Datei <code>test_curriculum.py</code>. Diese Funktion dient dazu, ein strukturiertes JSON-ähnliches Datenobjekt (Payload) für einen benutzerdefinierten Kurs zu generieren. Das generierte Payload enthält detaillierte Informationen über den Kursinhalt, Zielgruppe, Bewertungsparameter und spezifische Module sowie eine abschließende Prüfung.</p>
+<h2 id="2-funktion">2. Funktion</h2>
+<p><strong>Funktion:</strong> <code>_custom_course_payload() -&gt; dict</code> <strong>Beschreibung:</strong> Diese interne Funktion konstruiert und gibt ein komplettes Dictionary zurück, das alle notwendigen Metadaten und Inhalte für einen spezifischen Python-Kurs enthält. <strong>Parameter:</strong> Keine <strong>Rückgabe:</strong> Ein Python-Dictionary (<code>dict</code>), das die Kursstruktur darstellt.</p>
+<h2 id="3-struktur-des-generierten-payloads">3. Struktur des generierten Payloads</h2>
+<p>Das zurückgegebene Dictionary folgt einer hierarchischen Struktur, die in Hauptkomponenten unterteilt ist:</p>
+<h3 id="3-1-kurs-metadaten-top-level">3.1. Kurs-Metadaten (Top-Level)</h3>
+<p>Diese Schlüssel definieren die grundlegenden Informationen zum Kurs:</p>
+<ul>
+<li><code>course_id</code>: eindeutige Kennung des Kurses (<code>&quot;python-werkstatt-eigenkurs&quot;</code>).</li>
+<li><code>title</code>: Der Haupttitel des Kurses (<code>&quot;Python Werkstatt&quot;</code>).</li>
+<li><code>subtitle</code>: Eine ergänzende Beschreibung (<code>&quot;Eigener schulischer Aufbaukurs&quot;</code>).</li>
+<li><code>subject_area</code>: Das Fachgebiet (<code>&quot;Python Projekte&quot;</code>).</li>
+<li><code>summary</code>: Eine kurze Zusammenfassung des Kurses (<code>&quot;Lehrkraft-eigener Modullehrplan fuer Projektarbeit.&quot;</code>).</li>
+<li><code>audience</code>: Die Zielgruppe (<code>&quot;Klasse 9/10&quot;</code>).</li>
+<li><code>estimated_hours</code>: Geschätzte Dauer in Stunden (<code>4</code>).</li>
+<li><code>certificate_title</code>: Der Titel des zu erstellenden Zertifikats (<code>&quot;Nova School Zertifikat Python Werkstatt&quot;</code>).</li>
+<li><code>pass_ratio</code>: Erfolgsquote für die Module (<code>0.6</code>).</li>
+<li><code>final_pass_ratio</code>: Erfolgsquote für die Abschlussprüfung (<code>1.0</code>).</li>
+<li><code>certificate_theme</code>: Ein verschachteltes Dictionary, das die visuellen/thematischen Einstellungen für das Zertifikat definiert.</li>
+<li>**<code>certificate_theme</code> Struktur:**</li>
+<li><code>label</code>: Der Hauptname des Themas (<code>&quot;Python Werkstatt&quot;</code>).</li>
+<li><code>accent</code>: Primäre Akzentfarbe (Hex-Code: <code>#126d67</code>).</li>
+<li><code>accent_dark</code>: Dunklere Akzentfarbe (Hex-Code: <code>#0a4d49</code>).</li>
+<li><code>warm</code>: Eine warme Farbe (Hex-Code: <code>#8f412f</code>).</li>
+<li><code>paper</code>: Die Hintergrundfarbe für das Zertifikatspapier (Hex-Code: <code>#fbf3e5</code>).</li>
+</ul>
+<h3 id="3-2-module-modules">3.2. Module (<code>modules</code>)</h3>
+<p>Ein Array von Objekten, das die einzelnen Lernmodule des Kurses definiert. <strong>Struktur eines Module-Objekts:</strong></p>
+<ul>
+<li><code>module_id</code>: Eindeutige ID des Moduls (<code>&quot;m01_funktionen&quot;</code>).</li>
+<li><code>title</code>: Titel des Moduls (<code>&quot;Funktionen in Projekten&quot;</code>).</li>
+<li><code>estimated_minutes</code>: Geschätzte Dauer des Moduls in Minuten (<code>35</code>).</li>
+<li><code>objectives</code>: Ein Array von spezifischen Lernzielen für das Modul (z.B. <code>[&quot;Funktionen planen&quot;, &quot;Parameter einsetzen&quot;]</code>).</li>
+<li><code>lesson_markdown</code>: Der Inhalt des Moduls im Markdown-Format, der die Lehrmaterialien enthält.</li>
+<li><code>quiz_pass_ratio</code>: Erfolgsquote für die Module-Quiz (<code>0.5</code>).</li>
+<li><code>questions</code>: Ein Array von Quizfragen innerhalb dieses Moduls.</li>
+<p>**Struktur einer Frage (<code>question</code>):**</p>
+<li><code>id</code>: Eindeutige Frage-ID (z.B. <code>&quot;f1&quot;</code>).</li>
+<li><code>type</code>: Art der Frage (<code>&quot;single&quot;</code> für Multiple Choice, <code>&quot;text&quot;</code> für Freitext).</li>
+<li><code>prompt</code>: Die eigentliche Frage.</li>
+<li><code>options</code> (Nur bei <code>type=&quot;single&quot;</code>): Array von Optionen, wobei jede Option ein <code>id</code>, ein <code>label</code> und eine <code>correct</code>-Liste enthält.</li>
+<li><code>correct</code>: Eine Liste von Option-IDs, die die korrekte Antwort darstellen.</li>
+<li><code>points</code>: Die Punktzahl für diese Frage (<code>1</code>).</li>
+<li><code>explanation</code>: Eine detaillierte Erklärung zur korrekten Antwort.</li>
+<li><code>placeholder</code> (Nur bei <code>type=&quot;text&quot;</code>): Ein Platzhaltertext für die Benutzerantwort.</li>
+</ul>
+<h3 id="3-3-abschlusspr-fung-final-assessment">3.3. Abschlussprüfung (<code>final_assessment</code>)</h3>
+<p>Ein Objekt, das die Details der abschließenden Prüfung speichert. <strong>Struktur der Abschlussprüfung:</strong></p>
+<ul>
+<li><code>assessment_id</code>: Eindeutige ID der Prüfung (<code>&quot;python-werkstatt-final&quot;</code>).</li>
+<li><code>title</code>: Titel der Abschlussprüfung (<code>&quot;Abschlusspruefung Python Werkstatt&quot;</code>).</li>
+<li><code>instructions</code>: Allgemeine Anweisungen für die Prüfung.</li>
+<li><code>questions</code>: Ein Array von Fragen für die Abschlussprüfung. (Die Struktur der Fragen ist identisch mit der Struktur der Fragen innerhalb eines Moduls, wobei die <code>type</code> und die <code>prompt</code> spezifisch für die finale Prüfung sind).</li>
+</ul>
+<h2 id="4-anwendungsf-lle">4. Anwendungsfälle</h2>
+<p>Dieses Payload ist primär für Systeme gedacht, die:</p>
+<ol>
+<li><strong>Lernmanagement-Plattformen (LMS):</strong> Zur Erstellung von Kursstrukturen und Inhalten.</li>
+<li><strong>Zertifikatsgeneratoren:</strong> Zur Definition der Inhalte, die auf Zertifikate übertragen werden sollen.</li>
+<li><strong>Content-Management-Systeme (CMS):</strong> Zur Speicherung von Kursmetadaten und Lernmaterialien.</li>
+</ol>
+<h2 id="5-technische-hinweise">5. Technische Hinweise</h2>
+<ul>
+<li><strong>Datenformat:</strong> Das generierte Objekt ist ein Python-Dictionary, das strukturell JSON-kompatibel ist.</li>
+<li><strong>Datenintegrität:</strong> Die Struktur stellt sicher, dass alle notwendigen Komponenten (Metadaten, Module, finale Prüfung) vorhanden sind, um einen vollständigen Kurs zu definieren.</li>
+<li><strong>Flexibilität:</strong> Die Verwendung von <code>type</code>-Feldern (z.B. <code>single</code>, <code>text</code>) ermöglicht eine flexible Definition verschiedener Fragenformate innerhalb des Payloads.</li>
+</ul>
+<p>Gerne, um eine technische Dokumentation für die Funktion <code>def</code> in der Datei <code>test_curriculum.py</code> erstellen zu können, benötige ich den <strong>vollständigen Code</strong> der Funktion, die Sie meinen. Der von Ihnen bereitgestellte Codeausschnitt ist:</p>
+<pre><code class="language-python">def &lt;|end|&gt;</code></pre>
+<p>Dieser Code ist <strong>unvollständig</strong>. <strong>Bitte stellen Sie mir den vollständigen Code der Funktion zur Verfügung</strong>, damit ich eine präzise und nützliche technische Dokumentation erstellen kann. --- <strong>Sobald Sie den Code bereitstellen, werde ich eine Dokumentation erstellen, die typischerweise folgende Elemente enthält:</strong></p>
+<ol>
+<li><strong>Funktionsname und Beschreibung:</strong> Was macht die Funktion?</li>
+<li><strong>Parameter (Arguments):</strong></li>
+</ol>
+<ul>
+<li>Name des Parameters.</li>
+<li>Typ (z.B. <code>str</code>, <code>int</code>, <code>list</code>).</li>
+<li>Beschreibung, was der Parameter erwartet.</li>
+<li>Optionalität (ob er optional ist).</li>
+<li>Standardwert (falls vorhanden).</li>
+</ul>
+<ol>
+<li><strong>Rückgabewert (Return Value):</strong></li>
+</ol>
+<ul>
+<li>Was gibt die Funktion zurück?</li>
+<li>Welcher Typ hat der Rückgabewert?</li>
+<li>Beschreibung des zurückgegebenen Werts.</li>
+</ul>
+<ol>
+<li><strong>Anwendungsbeispiele (Usage Examples):</strong> Wie wird die Funktion in der Praxis verwendet?</li>
+<li><strong>Hinweise/Einschränkungen (Notes/Limitations):</strong> Wichtige Informationen zu Randfällen, Performance oder Abhängigkeiten.</li>
+<p><strong>Beispiel, wie die Dokumentation aussehen könnte (wenn Sie mir den Code geben):</strong></p>
+</ol>
+<pre><code class="language-markdown">## Funktion: [Name der Funktion]
+**Beschreibung:**
+[Hier eine detaillierte Erklärung, was diese Funktion genau tut und welchen Zweck sie im Gesamtprogramm erfüllt.]
+**Parameter:**
+*   `parameter_name_1` (Typ: [Typ]) - [Beschreibung, was dieser Parameter repräsentiert und welche Rolle er spielt.]
+*   `optional_param` (Typ: [Typ], Optional) - [Beschreibung, falls vorhanden.]
+**Rückgabewert:**
+*   [Typ des Rückgabewerts] - [Beschreibung, was der Wert bedeutet.]
+**Beispiel:**</code></pre>
+<h1 id="beispielaufruf">Beispielaufruf</h1>
+<p>result = function_name(argument1, argument2) print(result)</p>
+<pre><code>**Hinweise:**
+*   [Wichtige Hinweise zur Fehlerbehandlung oder Performance.]</code></pre>
+<p><strong>Ich warte auf Ihren vollständigen Code!</strong></p>
+<h1 id="technische-dokumentation-bundle-archive-bytes-funktion">Technische Dokumentation: <code>_bundle_archive_bytes</code> Funktion</h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Die Funktion <code>_bundle_archive_bytes</code> ist eine interne Funktion, die ein strukturiertes Datenpaket (ein Archiv in ZIP-Format) basierend auf bereitgestellten Parametern erstellt. Dieses Paket dient wahrscheinlich dazu, einen vollständigen Lernmodul oder einen Kursbaustein für eine bestimmte Python-Lernsequenz zu verpacken, inklusive Metadaten, Kursinhalten, Materialvorlagen und Mentor-Regeln. Die Funktion generiert einen ZIP-Archiv-Bytes-Stream, der die folgenden Komponenten enthält:</p>
+<ol>
+<li><code>manifest.json</code>: Metadaten über das gesamte Bundle.</li>
+<li><code>signature.json</code>: Eine kryptografische Signatur des Manifests.</li>
+<li><code>courses/python-grundlagen.json</code>: Die detaillierten Kursdaten.</li>
+<li><code>material_presets/python-example.json</code>: Die Materialvorlage für ein spezifisches Beispiel.</li>
+<li><code>mentor_rules/python-einstieg.json</code>: Die Anweisungen für den Mentor/Lehrer.</li>
+</ol>
+<h2 id="2-funktion">2. Funktion</h2>
+<pre><code class="language-python">def _bundle_archive_bytes(*, secret: str, version: str = &quot;2026.03&quot;, module_title: str = &quot;Einfuhrung in Python und Programmieren&quot;) -&gt; bytes:
+# ... (Implementierung)</code></pre>
+<h3 id="2-1-parameter">2.1. Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Pflicht?</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>secret</code></td>
+<td><code>str</code></td>
+<td>Ja</td>
+<td>Ein geheimes Schlüsselwort (Secret Key) zur kryptografischen Signaturung.</td>
+<td>Nicht angegeben</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>str</code></td>
+<td>Nein</td>
+<td>Die Versionsnummer des Bundles. Wird verwendet, um den <code>bundle_id</code> zu generieren.</td>
+<td><code>&quot;2026.03&quot;</code></td>
+</tr>
+<tr>
+<td><code>module_title</code></td>
+<td><code>str</code></td>
+<td>Nein</td>
+<td>Der Titel des spezifischen Moduls, das verpackt wird.</td>
+<td><code>&quot;Einfuhrung in Python und Programmieren&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="2-2-r-ckgabe">2.2. Rückgabe</h3>
+<ul>
+<li><strong>Typ:</strong> <code>bytes</code></li>
+<li><strong>Beschreibung:</strong> Der vollständige Inhalt des erstellten ZIP-Archivs im Bytes-Format.</li>
+</ul>
+<h2 id="3-funktionsweise-und-logik">3. Funktionsweise und Logik</h2>
+<p>Die Funktion folgt einem mehrstufigen Prozess:</p>
+<h3 id="3-1-generierung-der-identifikatoren-und-datenstrukturen">3.1. Generierung der Identifikatoren und Datenstrukturen</h3>
+<ol>
+<li>**<code>bundle_id</code> Generierung:**</li>
+<p>Ein eindeutiger ID für das Bundle wird erstellt, basierend auf der <code>version</code> (z.B. <code>support-python-2026-03</code>).</p>
+<li>**<code>course_payload</code> (Kursdaten):**</li>
+<p>Ein komplexes Dictionary, das alle Informationen zum Kurs enthält, einschließlich:</p>
+</ol>
+<ul>
+<li>Allgemeine Kursdetails (<code>course_id</code>, <code>title</code>, <code>audience</code>, <code>estimated_hours</code>).</li>
+<li>Zertifikatsparameter (<code>certificate_title</code>, <code>pass_ratio</code>).</li>
+<li>**<code>modules</code>:** Eine Liste von Lernmodulen. Das erste und einzige definierte Modul (<code>p01_einstieg</code>) enthält spezifische Details wie Lernziele, Zeitangaben, Quiz-Informationen und Fragen.</li>
+<li>**<code>final_assessment</code>:** Details zur Abschlussprüfung.</li>
+</ul>
+<ol>
+<li>**<code>material_preset</code> (Materialvorlage):**</li>
+<p>Ein Dictionary, das eine Vorlage für Code-Beispiele bereitstellt, das spezifisch für das erste Modul (<code>p01_einstieg</code>) konfiguriert ist.</p>
+<li>**<code>mentor_rule</code> (Mentor-Regeln):**</li>
+<p>Ein Dictionary, das Anweisungen für den Lernbegleiter enthält, wie er mit den Lernenden interagieren soll (z.B. welche Fragen gestellt werden sollen, welche Themen vermieden werden).</p>
+<li>**<code>manifest</code> (Manifest):**</li>
+<p>Ein Dictionary, das die grundlegenden Informationen über das generierte Archiv enthält (ID, Schema-Version, Version, Ersteller, Erstellungsdatum).</p>
+</ol>
+<h3 id="3-2-erstellung-des-kanonischen-json-strings">3.2. Erstellung des Kanonischen JSON-Strings</h3>
+<p>Das gesamte generierte Datenpaket (Manifest, Courses, Presets, Rules) wird in einen JSON-String serialisiert.</p>
+<ul>
+<li><strong>Formatierung:</strong> <code>json.dumps</code> wird verwendet, um das JSON zu erstellen.</li>
+<li><strong>Sortierung:</strong> <code>sort_keys=True</code> stellt sicher, dass die Schlüssel im JSON-String alphabetisch sortiert sind, was für konsistente Archivierung wichtig ist.</li>
+<li><strong>Zeichenkodierung:</strong> <code>ensure_ascii=False</code> stellt sicher, dass nicht-ASCII-Zeichen (wie Akzente in deutschen Titeln) korrekt dargestellt werden.</li>
+<li><strong>Trennung:</strong> <code>separators=(&quot;,&quot;, &quot;:&quot;)</code> entfernt unnötige Leerzeichen zwischen Schlüssel-Wert-Paaren, was die Dateigröße optimiert.</li>
+</ul>
+<h3 id="3-3-erstellung-der-signatur">3.3. Erstellung der Signatur</h3>
+<ol>
+<li><strong>Kanonischer String:</strong> Der generierte JSON-String wird in Bytes umgewandelt und für die kryptografische Operation vorbereitet.</li>
+<li><strong>SHA-256-Hash:</strong> Der kanonische String wird mittels <code>hashlib.sha256</code> hasht.</li>
+<li><strong>HMAC-Signatur:</strong> Eine Hash-Minisum-Authentifizierung (HMAC) wird durchgeführt:</li>
+</ol>
+<ul>
+<li><strong>Algorithmus:</strong> <code>hmac-sha256</code>.</li>
+<li><strong>Schlüssel:</strong> Der bereitgestellte <code>secret</code>.</li>
+<li><strong>Daten:</strong> Der kanonische JSON-String.</li>
+<li><strong>Ergebnis:</strong> Die <code>canonical_sha256</code> (für Verifizierung) und die <code>signature</code> (für Authentifizierung) werden generiert.</li>
+</ul>
+<h3 id="3-4-archivierung-zip-format">3.4. Archivierung (ZIP-Format)</h3>
+<ol>
+<li><strong>Buffer-Setup:</strong> Ein <code>io.BytesIO</code>-Objekt wird erstellt, um den gesamten Archivinhalt im Speicher zu sammeln.</li>
+<li><strong>ZIP-Erstellung:</strong> Ein <code>zipfile.ZipFile</code> wird mit dem <code>BytesIO</code>-Buffer geöffnet.</li>
+<li><strong>Inhaltsschreibvorgang:</strong> Die folgenden fünf Dateien werden in das Archiv geschrieben:</li>
+</ol>
+<ul>
+<li><code>manifest.json</code></li>
+<li><code>signature.json</code></li>
+<li><code>courses/python-grundlagen.json</code></li>
+<li><code>material_presets/python-example.json</code></li>
+<li><code>mentor_rules/python-einstieg.json</code></li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong> Die gesamten Bytes des erstellten ZIP-Archivs (<code>buffer.getvalue()</code>) werden zurückgegeben.</li>
+</ol>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Funktion setzt folgende Standard-Bibliotheken voraus:</p>
+<ul>
+<li><code>json</code>: Für die Serialisierung und Deserialisierung von JSON-Daten.</li>
+<li><code>time</code>: Für die Erstellung des Zeitstempels.</li>
+<li><code>hashlib</code>: Für die Berechnung der SHA-256-Hashes.</li>
+<li><code>hmac</code>: Für die Berechnung der HMAC-Signatur.</li>
+<li><code>io</code>: Für die Verwendung von <code>BytesIO</code> als in-memory-Stream.</li>
+<li><code>zipfile</code>: Für die Erstellung des ZIP-Archivs.</li>
+</ul>
+<h2 id="5-verwendung-und-anwendungsfall">5. Verwendung und Anwendungsfall</h2>
+<p>Diese Funktion wird verwendet, um komplexe, mehrteilige Lernpakete (z.B. für einen Kursbaustein) in ein standardisiertes, sicheres und verifizierbares Archiv zu verpacken. <strong>Anwendungsfall:</strong> Ein System, das Lernmaterialien dynamisch generiert und diese dann als vollständige, signierte Pakete an Benutzer oder Lernplattformen bereitstellt.</p>
+<h2 id="6-sicherheitshinweise">6. Sicherheitshinweise</h2>
+<ul>
+<li><strong>Vertraulichkeit:</strong> Der <code>secret</code>-Parameter ist kritisch. Er muss streng vertraulich behandelt werden, da er direkt zur kryptografischen Signatur des gesamten Pakets verwendet wird.</li>
+<li><strong>Authentizität:</strong> Die <code>signature.json</code> ermöglicht es dem Empfänger, die Integrität und die Herkunft des Pakets zu überprüfen, indem er die Daten mit dem <code>secret</code> neu signiert und den Hash vergleicht.</li>
+<li><strong>Datenintegrität:</strong> Die Verwendung von JSON-Serialisierung mit sortierten Schlüsseln stellt sicher, dass die Struktur der Daten konsistent ist, was die Verifizierung erleichtert.</li>
+</ul>
+<p>Gerne, hier ist ein Entwurf für eine technische Dokumentation, basierend auf dem bereitgestellten Code-Ausschnitt (<code>test_curriculum.py</code>, Teil 5/6). Da der Code selbst nur die Definition einer Klasse enthält (<code>class &lt;|end|&gt;</code>), gehe ich davon aus, dass dies ein Teil eines größeren Tests oder einer Struktur ist. Die Dokumentation wird daher allgemein gehalten und fokussiert sich auf die Struktur und die wahrscheinliche Funktion. ---</p>
+<h1 id="technische-dokumentation-test-curriculum-py">Technische Dokumentation: <code>test_curriculum.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Teamname] <strong>Beschreibung:</strong> Diese Datei dient als Test- oder Struktur-Definition für einen Curriculum-Test. Sie definiert eine Klasse, die wahrscheinlich die Logik oder die Struktur eines Lern- oder Test-Curriculums repräsentiert.</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>test_curriculum.py</code> implementiert eine Klasse, die als zentrales Element zur Verwaltung, Durchführung oder Validierung eines Lern- oder Test-Curriculums dient. Der aktuelle Ausschnitt definiert die Basisstruktur dieser Klasse.</p>
+<h2 id="2-code-analyse">2. Code-Analyse</h2>
+<h3 id="2-1-code-ausschnitt">2.1. Code-Ausschnitt</h3>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<h3 id="2-2-klasse-end">2.2. Klasse: <code>&lt;|end|&gt;</code></h3>
+<p><strong>Beschreibung:</strong> Dies ist die Definition der Hauptklasse, die das Curriculum-System abbildet. Die genaue Funktionalität wird durch die Implementierung der Methoden und Attribute innerhalb dieser Klasse definiert. <strong>Zweck:</strong> Die Klasse <code>&lt;|end|&gt;</code> ist verantwortlich für:</p>
+<ol>
+<li><strong>Speicherung:</strong> Die Struktur des Curriculums (Themen, Lektionen, Prüfungen).</li>
+<li><strong>Verarbeitung:</strong> Die Logik zur Durchlaufung oder Durchführung des Curriculums.</li>
+<li><strong>Validierung:</strong> Sicherstellen, dass das Curriculum korrekt aufgebaut ist oder dass die Ergebnisse der Tests validiert werden.</li>
+<p><strong>Attribute (Erwartet):</strong> <em>(Diese Sektion müsste durch die vollständige Klasse ergänzt werden. Basierend auf dem Namen könnten folgende Attribute erwartet werden:)</em></p>
+</ol>
+<ul>
+<li><code>curriculum_data</code>: Ein Dictionary oder eine Liste, die die gesamte Struktur des Curriculums enthält.</li>
+<li><code>version</code>: Die aktuelle Version des Curriculums.</li>
+<li><code>status</code>: Der aktuelle Status des Curriculums (z.B. &#x27;draft&#x27;, &#x27;active&#x27;, &#x27;archived&#x27;).</li>
+<p><strong>Methoden (Erwartet):</strong> <em>(Diese Sektion müsste durch die vollständige Klasse ergänzt werden. Mögliche Methoden könnten sein:)</em></p>
+<li><code>__init__(self, data)</code>: Initialisiert die Klasse mit den Anfangsdaten des Curriculums.</li>
+<li><code>load_curriculum(filepath)</code>: Lädt die Curriculum-Struktur aus einer Datei.</li>
+<li><code>run_tests(topic)</code>: Führt die Tests für ein spezifisches Thema durch.</li>
+<li><code>generate_report(student_id)</code>: Erstellt einen Bericht für einen bestimmten Benutzer.</li>
+</ul>
+<h2 id="3-nutzung-und-integration">3. Nutzung und Integration</h2>
+<p><strong>Anwendungsfälle:</strong></p>
+<ul>
+<li><strong>Test-Frameworks:</strong> Wird verwendet, um die Struktur von Lernpfaden zu definieren.</li>
+<li><strong>Datenverarbeitung:</strong> Dient als Schnittstelle zwischen Rohdaten (Themen) und der eigentlichen Testlogik.</li>
+<li><strong>Automatisierung:</strong> Ermöglicht die automatisierte Erstellung von Lernpfaden und deren Bewertung.</li>
+<p><strong>Abhängigkeiten:</strong></p>
+<li>[Hier Abhängigkeiten wie <code>pandas</code>, <code>json</code>, oder andere Bibliotheken angeben, falls vorhanden.]</li>
+</ul>
+<h2 id="4-erweiterungen-und-zuk-nftige-pl-ne">4. Erweiterungen und zukünftige Pläne</h2>
+<ul>
+<li><strong>Implementierung der Methoden:</strong> Die spezifischen Implementierungen für die Methoden (insbesondere <code>run_tests</code> und <code>generate_report</code>) müssen in der vollständigen Klasse definiert werden.</li>
+<li><strong>Fehlerbehandlung:</strong> Hinzufügen robuster Fehlerbehandlung für I/O-Operationen (Dateiladung) und logische Fehler (ungültige Themen).</li>
+<li><strong>Serialisierung:</strong> Implementierung von Methoden zur Speicherung und Wiederherstellung des Curriculums (z.B. JSON/YAML).</li>
+<p>--- <strong>Hinweis:</strong> Diese Dokumentation basiert auf dem minimalen Code-Ausschnitt. Für eine vollständige und präzise Dokumentation müssten die restlichen Teile der Klasse (<code>&lt;|end|&gt;</code>) und die vollständige Implementierung der Methoden hinzugefügt werden.</p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 5845 &gt;= 4096</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-klassen-und-funktionen">3. Klassen und Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-class-session">3.1. Klasse `class _Session`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-funktion-correct-answers-questions-list-dict-dict-str-object">3.2. Funktion `_correct_answers(questions: list[dict]) -&gt; dict[str, object]`</a></li>
+<li class="wiki-toc-link"><a href="#4-zweck-und-implikationen">4. Zweck und Implikationen</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-struktur">5. Zusammenfassung der Struktur</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link"><a href="#3-struktur-des-generierten-payloads">3. Struktur des generierten Payloads</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-kurs-metadaten-top-level">3.1. Kurs-Metadaten (Top-Level)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-module-modules">3.2. Module (`modules`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-abschlusspr-fung-final-assessment">3.3. Abschlussprüfung (`final_assessment`)</a></li>
+<li class="wiki-toc-link"><a href="#4-anwendungsf-lle">4. Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#5-technische-hinweise">5. Technische Hinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-parameter">2.1. Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-r-ckgabe">2.2. Rückgabe</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsweise-und-logik">3. Funktionsweise und Logik</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-generierung-der-identifikatoren-und-datenstrukturen">3.1. Generierung der Identifikatoren und Datenstrukturen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-erstellung-des-kanonischen-json-strings">3.2. Erstellung des Kanonischen JSON-Strings</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-erstellung-der-signatur">3.3. Erstellung der Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-archivierung-zip-format">3.4. Archivierung (ZIP-Format)</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung-und-anwendungsfall">5. Verwendung und Anwendungsfall</a></li>
+<li class="wiki-toc-link"><a href="#6-sicherheitshinweise">6. Sicherheitshinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-code-analyse">2. Code-Analyse</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-code-ausschnitt">2.1. Code-Ausschnitt</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-klasse-end">2.2. Klasse: `&lt;|end|&gt;`</a></li>
+<li class="wiki-toc-link"><a href="#3-nutzung-und-integration">3. Nutzung und Integration</a></li>
+<li class="wiki-toc-link"><a href="#4-erweiterungen-und-zuk-nftige-pl-ne">4. Erweiterungen und zukünftige Pläne</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_curriculum.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

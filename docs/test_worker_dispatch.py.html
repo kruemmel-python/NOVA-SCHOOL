@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_worker_dispatch.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_worker_dispatch.py`</h1>
+          <p>Source: test_worker_dispatch.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-worker-dispatch-py">Technische Dokumentation: <code>test_worker_dispatch.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>test_worker_dispatch.py</code>) dient als Testdatei für die Funktionalität des <code>RemoteWorkerDispatchService</code> (wahrscheinlich im Kontext eines <code>nova_school_server</code>-Systems). Sie implementiert eine Testklasse, die eine gefälschte Sicherheitsebene (<code>_FakeSecurityPlane</code>) verwendet, um die Interaktion und die Logik des Worker-Dispatching-Prozesses zu validieren.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei enthält folgende Hauptkomponenten:</p>
+<ol>
+<li><strong>Importe:</strong> Importe aus verschiedenen Modulen des <code>nova_school_server</code>-Frameworks.</li>
+<li>**<code>_FakeSecurityPlane</code> Klasse:** Eine Mock- oder Fake-Implementierung einer Sicherheitsebene, die zur Simulation von Secret-Management-Operationen verwendet wird.</li>
+<li><strong>Test-Setup (Impliziert):</strong> Obwohl die eigentlichen Testmethoden nicht vollständig im bereitgestellten Codeausschnitt sichtbar sind, deutet die Struktur auf eine Unit-Test-Umgebung hin.</li>
+</ol>
+<h2 id="3-detaillierte-analyse-der-klassen">3. Detaillierte Analyse der Klassen</h2>
+<h3 id="3-1-klasse-fakesecurityplane">3.1. Klasse <code>_FakeSecurityPlane</code></h3>
+<p>Diese Klasse simuliert die Schnittstelle zu einem externen oder komplexen Sicherheitsdienst. Sie dient dazu, die Abhängigkeiten des <code>RemoteWorkerDispatchService</code> zu isolieren und zu testen, ohne reale Sicherheitsdatenbanken oder externe Dienste zu verwenden. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.secrets</code>: Ein Dictionary, das Schlüsselpaare aus der Form <code>(tenant_id, name)</code> speichert und den zugehörigen Secret-Payload (<code>dict[str, object]</code>) hält.</li>
+<p><strong>Methoden:</strong></p>
+</ul>
+<table><thead><tr>
+<th>Methode</th>
+<th>Beschreibung</th>
+<th>Parameter</th>
+<th>Rückgabe</th>
+</tr></thead><tbody>
+<tr>
+<td><code>__init__(self)</code></td>
+<td>Initialisiert die interne Speicherung der Secrets.</td>
+<td>Keine</td>
+<td>Keine</td>
+</tr>
+<tr>
+<td><code>store_secret(self, tenant_id: str, name: str, secret_value: str, metadata=None)</code></td>
+<td>Speichert ein geheimes Schlüssel-Wert-Paar.</td>
+<td><code>tenant_id</code> (str), <code>name</code> (str), <code>secret_value</code> (str), <code>metadata</code> (optional dict)</td>
+<td>Der gespeicherte Secret-Payload (<code>dict[str, object]</code>)</td>
+</tr>
+<tr>
+<td><code>resolve_secret(self, tenant_id: str, name: str)</code></td>
+<td>Gibt einen gespeicherten Secret basierend auf Tenant-ID und Name zurück.</td>
+<td><code>tenant_id</code> (str), <code>name</code> (str)</td>
+<td>Das entsprechende Secret-Payload oder <code>None</code>, falls nicht gefunden.</td>
+</tr>
+<tr>
+<td><code>onboard_worker(self, *_args, **_kwargs)</code></td>
+<td>Simuliert den Prozess der Onboarding eines Workers.</td>
+<td>Variabel</td>
+<td>Ein leeres Dictionary (<code>dict[str, object]</code>)</td>
+</tr>
+<tr>
+<td><code>list_worker_enrollments(self, *_args, **_kwargs)</code></td>
+<td>Simuliert die Auflistung aller angemeldeten Workers.</td>
+<td>Variabel</td>
+<td>Eine leere Liste (<code>list[dict[str, object]]</code>)</td>
+</tr>
+</tbody></table>
+<p><strong>Spezifische Hinweise:</strong></p>
+<ul>
+<li>Die Verwendung von <code>tuple[str, str]</code> als Schlüssel in <code>self.secrets</code> deutet darauf hin, dass die Kombination aus Tenant und Name die eindeutige Identifikation des Secrets ist.</li>
+<li>Die Rückgabe von <code>dict[str, object] | None</code> in <code>resolve_secret</code> zeigt die Verwendung von Python 3.10+ Union-Typen für die optionalen Rückgabewerte.</li>
+</ul>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Klasse <code>_FakeSecurityPlane</code> ist direkt von den Importen aus:</p>
+<ul>
+<li><code>nova_school_server.config.ServerConfig</code></li>
+<li><code>nova_school_server.database.SchoolRepository</code></li>
+<li><code>nova_school_server.worker_dispatch.RemoteWorkerDispatchService</code></li>
+<li><code>nova_school_server.workspace.WorkspaceManager</code></li>
+<p>(Hinweis: Obwohl diese Importe vorhanden sind, werden sie in der gezeigten Klasse selbst nicht direkt verwendet, was darauf hindeutet, dass diese Klasse primär als <strong>Test-Mock</strong> für eine spezifische Abhängigkeit dient.)</p>
+</ul>
+<h2 id="5-verwendung-im-kontext-impliziert">5. Verwendung im Kontext (Impliziert)</h2>
+<p>Die Hauptfunktion dieser Datei ist die <strong>Unit-Testung</strong> des <code>RemoteWorkerDispatchService</code>. Durch die Verwendung von <code>_FakeSecurityPlane</code> kann der Entwickler:</p>
+<ol>
+<li><strong>Isolation:</strong> Die Logik des Dispatching-Services testen, indem er die Abhängigkeit zur tatsächlichen Datenbank oder zum echten Sicherheitsdienst durch die Fake-Klasse ersetzt.</li>
+<li><strong>Kontrollierte Daten:</strong> Spezifische Szenarien für das Abrufen, Speichern oder Onboarden von Secrets simulieren, um Fehlerbehandlungen und korrekte Datenflüsse zu überprüfen.</li>
+</ol>
+<h2 id="6-zusammenfassung">6. Zusammenfassung</h2>
+<p><code>test_worker_dispatch.py</code> stellt eine <strong>Mock-Implementierung</strong> für die Sicherheitsverwaltung bereit, um die Testbarkeit des <code>RemoteWorkerDispatchService</code> zu gewährleisten. Die Klasse <code>_FakeSecurityPlane</code> bietet eine kontrollierte Umgebung, um die Interaktion mit Secrets und Worker-Enrollments zu validieren.</p>
+<h1 id="technische-dokumentation-test-worker-dispatch-py">Technische Dokumentation: <code>test_worker_dispatch.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests, die die Funktionalität der Klasse <code>RemoteWorkerDispatchService</code> (oder einer ähnlichen Service-Schicht) im Zusammenhang mit der Zuweisung von Aufgaben an Worker-Prozesse (Worker Dispatch) validieren. Die Tests konzentrieren sich insbesondere darauf, sicherzustellen, dass beim Beanspruchen des nächsten Jobs (Claiming the next job) der zugeordnete Artefakt (Artifact) korrekt signiert und die Hash-Referenz konsistent ist.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei implementiert eine Testklasse, die von der <code>unittest</code>-Bibliothek verwendet wird.</p>
+<h3 id="2-1-klasse-workerdispatchtests">2.1. Klasse: <code>WorkerDispatchTests</code></h3>
+<p>Diese Klasse kapselt die Testlogik und stellt sicher, dass die notwendigen Abhängigkeiten (Repository, WorkspaceManager, SecurityPlane, ServerConfig) für die Testumgebung korrekt initialisiert werden.</p>
+<h4 id="2-1-1-setup-self-none">2.1.1. <code>setUp(self) -&gt; None</code></h4>
+<p>Die <code>setUp</code>-Methode wird vor jeder Testaufgabe ausgeführt, um einen sauberen und isolierten Testzustand zu gewährleisten. <strong>Ablauf:</strong></p>
+<ol>
+<li><strong>Temporäre Umgebung erstellen:</strong> Ein temporäres Verzeichnis (<code>self.tmp</code>) wird erstellt, um die notwendigen Dateien und Pfade für die Testumgebung zu isolieren.</li>
+<li><strong>Konfiguration laden:</strong> Die <code>ServerConfig</code> wird aus dem temporären Pfad (<code>self.base_path</code>) geladen.</li>
+<li><strong>Repository initialisieren:</strong> Der <code>SchoolRepository</code> wird mit dem Datenbankpfad aus der Konfiguration instanziiert.</li>
+<li><strong>Workspace Manager initialisieren:</strong> Der <code>WorkspaceManager</code> wird mit der Konfiguration instanziiert.</li>
+<li><strong>Sicherheitsplane initialisieren:</strong> Die <code>_FakeSecurityPlane</code> wird verwendet, um die Sicherheitsmechanismen zu simulieren.</li>
+<li><strong>Service initialisieren:</strong> Der zentrale Testgegenstand, <code>RemoteWorkerDispatchService</code>, wird mit allen initialisierten Abhängigkeiten injiziert.</li>
+</ol>
+<h4 id="2-1-2-teardown-self-none">2.1.2. <code>tearDown(self) -&gt; None</code></h4>
+<p>Die <code>tearDown</code>-Methode wird nach Abschluss jedes Tests ausgeführt, um Ressourcen freizugeben. <strong>Ablauf:</strong></p>
+<ol>
+<li><strong>Repository schließen:</strong> Die Verbindung oder Instanz des <code>SchoolRepository</code> wird geschlossen.</li>
+<li><strong>Temporäre Umgebung aufräumen:</strong> Das temporäre Verzeichnis (<code>self.tmp</code>) wird bereinigt (<code>self.tmp.cleanup()</code>).</li>
+</ol>
+<h3 id="2-2-testfall-test-claim-next-job-includes-signed-artifact-hash">2.2. Testfall: <code>test_claim_next_job_includes_signed_artifact_hash</code></h3>
+<p>Dieser spezifische Test validiert den kritischen Pfad der Job-Zuweisung und Artefakt-Authentifizierung. <strong>Ziel:</strong> Sicherstellen, dass die Methode <code>claim_next_job</code> einen gültigen und korrekt signierten Artefakt zurückgibt, dessen SHA-256-Hash mit dem im Job-Payload definierten Hash übereinstimmt. <strong>Schritte im Test:</strong></p>
+<ol>
+<li><strong>Service-Initialisierung:</strong> Die Methode <code>issue_bootstrap</code> wird aufgerufen, um eine Basis für die Worker-ID zu etablieren.</li>
+<li><strong>Test-Runtime-Setup:</strong></li>
+</ol>
+<ul>
+<li>Ein temporäres Verzeichnis (<code>runtime_root</code>) wird erstellt.</li>
+<li>Eine Dummy-Datei (<code>main.py</code>) wird in diesem Verzeichnis erstellt, um einen Test-Code zu simulieren.</li>
+</ul>
+<ol>
+<li><strong>Job-Erstellung:</strong> Ein <code>playground_job</code> wird erstellt, der die folgenden Parameter enthält:</li>
+</ol>
+<ul>
+<li><code>worker_id</code>: &quot;worker-1&quot;</li>
+<li><code>project</code>, <code>service</code>, <code>backend</code> etc.</li>
+<li><code>payload={&quot;entrypoint&quot;: &quot;main.py&quot;}</code> (Definiert, welche Datei ausgeführt werden soll).</li>
+<li><code>runtime_root</code>: Der Pfad zur erstellten Testumgebung.</li>
+</ul>
+<ol>
+<li><strong>Job-Beanspruchung (Claiming):</strong> Die Methode <code>claim_next_job(&quot;worker-1&quot;)</code> wird aufgerufen, um den Job für den Worker zu beanspruchen.</li>
+<li><strong>Validierung:</strong></li>
+</ol>
+<ul>
+<li><strong>Existenzprüfung:</strong> Es wird sichergestellt, dass ein <code>claimed</code> Objekt zurückgegeben wird (<code>assertIsNotNone(claimed)</code>).</li>
+<li><strong>Hash-Prüfung (Artefakt):</strong> Das zurückgegebene Artefakt wird abgerufen, und sein berechneter SHA-256-Hash wird mit dem im <code>claimed</code>-Objekt gespeicherten Hash (<code>claimed[&quot;artifact_sha256&quot;]</code>) verglichen.</li>
+<li><strong>Konsistenzprüfung (Signature):</strong> Der berechnete Hash des Artefakts wird mit dem Hash, der innerhalb der Service-Logik (<code>self.service._job_signature_payload(claimed)[&quot;artifact_sha256&quot;]</code>) generiert wird, verglichen. Dies bestätigt, dass die Signatur des Artefakts korrekt erstellt wurde.</li>
+</ul>
+<h2 id="3-technisches-fazit">3. Technisches Fazit</h2>
+<p>Die Testsuite ist <strong>gut strukturiert</strong> und folgt den Best Practices für Unit-Testing:</p>
+<ul>
+<li><strong>Isolation:</strong> Durch die Verwendung von <code>setUp</code> und <code>tearDown</code> wird sichergestellt, dass Tests unabhängig voneinander laufen.</li>
+<li><strong>Abhängigkeitsmanagement:</strong> Abhängigkeiten (Repository, Config, Service) werden sauber in die Testumgebung injiziert.</li>
+<li><strong>Fokus:</strong> Der Test konzentriert sich auf eine komplexe Geschäftslogik (Artefakt-Signatur und Hash-Validierung), was die Robustheit des Worker Dispatching-Mechanismus bestätigt.</li>
+<li><strong>Klarheit:</strong> Die Assertions sind spezifisch und prüfen sowohl die Existenz als auch die korrekte mathematische Konsistenz der Hash-Werte.</li>
+<p><strong>Empfehlung:</strong> Die Tests sind sehr spezifisch und helfen dabei, die Sicherheit und Integrität der Artefakt-Handhabung im Worker Dispatching-Prozess zu verifizieren.</p>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link"><a href="#3-detaillierte-analyse-der-klassen">3. Detaillierte Analyse der Klassen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-fakesecurityplane">3.1. Klasse `_FakeSecurityPlane`</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung-im-kontext-impliziert">5. Verwendung im Kontext (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#6-zusammenfassung">6. Zusammenfassung</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klasse-workerdispatchtests">2.1. Klasse: `WorkerDispatchTests`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-testfall-test-claim-next-job-includes-signed-artifact-hash">2.2. Testfall: `test_claim_next_job_includes_signed_artifact_hash`</a></li>
+<li class="wiki-toc-link"><a href="#3-technisches-fazit">3. Technisches Fazit</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_worker_dispatch.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

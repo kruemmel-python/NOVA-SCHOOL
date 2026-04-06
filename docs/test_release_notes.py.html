@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_release_notes.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_release_notes.py`</h1>
+          <p>Source: test_release_notes.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-release-notes-py">Technische Dokumentation: <code>test_release_notes.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei, <code>test_release_notes.py</code>, dient zur Unit-Testung der Funktionen, die für die Erstellung, Darstellung und Verwaltung von Versionshinweisen (Release Notes) im Kontext eines <code>nova_school_server</code>-Systems verantwortlich sind. Die Tests konzentrieren sich auf die korrekte Implementierung der Funktionen aus <code>nova_school_server.release_notes</code>, insbesondere <code>build_release_history</code>, <code>render_changelog</code> und <code>render_release_notes</code>.</p>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<p>Die Datei importiert folgende Module und Funktionen:</p>
+<ul>
+<li>**<code>subprocess</code>**: Wird wahrscheinlich für die Ausführung externer Befehle oder Prozesse verwendet (z.B. bei der Erstellung von Release Notes).</li>
+<li>**<code>tempfile</code>**: Wird verwendet, um temporäre Dateien zu erstellen, die für die Testumgebung benötigt werden.</li>
+<li>**<code>unittest</code>**: Das Framework zur Durchführung der Unit-Tests.</li>
+<li>**<code>pathlib.Path</code>**: Für die objektorientierte Handhabung von Dateipfaden.</li>
+<li>**<code>nova_school_server.release_notes</code>**: Enthält die Kernfunktionen, die getestet werden sollen:</li>
+<li><code>build_release_history</code>: Erstellt die Historie der Releases.</li>
+<li><code>render_changelog</code>: Formatiert die Changelog-Daten.</li>
+<li><code>render_release_notes</code>: Generiert die endgültigen Release Notes.</li>
+</ul>
+<h2 id="3-struktur-und-inhalt">3. Struktur und Inhalt</h2>
+<p>Die Datei definiert eine Klasse (oder eine Reihe von Testfunktionen, abhängig von der vollständigen Struktur, die hier nur teilweise sichtbar ist) zur Durchführung der Tests. <strong>Code-Analyse (Teil 1/2):</strong></p>
+<pre><code class="language-python">from __future__ import annotations
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+from nova_school_server.release_notes import build_release_history, render_changelog, render_release_notes
+class &lt;|end|&gt;</code></pre>
+<p><strong>Funktionale Beschreibung:</strong></p>
+<ol>
+<li><strong>Importe:</strong> Alle notwendigen Bibliotheken für das Testen (Unit-Testing, Dateisystem-Manipulation, Prozesssteuerung) und die spezifischen Logik aus dem Zielmodul werden importiert.</li>
+<li><strong>Klasse/Funktion:</strong> Die Klasse (oder die Test-Funktionen, die folgen) wird hier definiert. Da der Code mit <code>class &lt;|end|&gt;</code> endet, impliziert dies, dass die eigentliche Testlogik (Methoden wie <code>test_...</code>) folgt.</li>
+</ol>
+<h2 id="4-teststrategie-impliziert">4. Teststrategie (Impliziert)</h2>
+<p>Basierend auf den importierten Funktionen lässt sich ableiten, dass die Tests folgende Szenarien abdecken sollen:</p>
+<ul>
+<li>**<code>build_release_history</code> Tests:** Überprüfung, ob die Historie korrekt aufgebaut wird, basierend auf gegebenen Eingabedaten.</li>
+<li>**<code>render_changelog</code> Tests:** Überprüfung der Formatierung und Struktur der Zwischenergebnisse (Changelog).</li>
+<li>**<code>render_release_notes</code> Tests:** Überprüfung der finalen Ausgabe der Release Notes unter verschiedenen Bedingungen (z.B. unterschiedliche Eingabedaten, Formatierung).</li>
+<li><strong>Integrationstests (Potenziell):</strong> Da <code>subprocess</code> und <code>tempfile</code> importiert sind, könnten Tests auch die Interaktion mit externen Systemen oder temporären Dateien simulieren.</li>
+</ul>
+<h2 id="5-nutzung-und-wartung">5. Nutzung und Wartung</h2>
+<ul>
+<li><strong>Nutzung:</strong> Diese Datei wird primär von Entwicklern verwendet, um sicherzustellen, dass Änderungen an der Logik der Release Notes-Generierung die Funktionalität nicht beeinträchtigen.</li>
+<li><strong>Wartung:</strong> Bei Änderungen an der Logik von <code>build_release_history</code>, <code>render_changelog</code> oder <code>render_release_notes</code> müssen die entsprechenden Testfälle in dieser Datei aktualisiert werden, um die Regression zu verhindern.</li>
+<p>--- <strong>Hinweis:</strong> Die vollständige Dokumentation der Tests (d.h. die eigentlichen Testmethoden wie <code>def test_...</code>) fehlt in der bereitgestellten Code-Ausschnitt. Diese Dokumentation basiert auf der Analyse der Importe und der Struktur der Datei.</p>
+</ul>
+<h1 id="technische-dokumentation-releasenotestests">Technische Dokumentation: <code>ReleaseNotesTests</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält eine Testklasse <code>ReleaseNotesTests</code>, die die Funktionalität der Funktionen zur Erstellung von Versionshistorien (<code>build_release_history</code>), zur Generierung von Changelogs (<code>render_changelog</code>) und zur Erstellung von Release Notes (<code>render_release_notes</code>) validiert. Die Tests simulieren einen Git-Workflow, um sicherzustellen, dass die generierten Dokumente korrekt und im erwarteten Format sind.</p>
+<h2 id="datei-analyse-test-release-notes-py">Datei-Analyse: <code>test_release_notes.py</code></h2>
+<h3 id="klasse-releasenotestests">Klasse: <code>ReleaseNotesTests</code></h3>
+<p>Diese Klasse erbt von <code>unittest.TestCase</code> und enthält spezifische Testmethoden zur Überprüfung der Release-Notizen-Generierungslogik.</p>
+<h3 id="testmethode-test-build-release-history-and-render-outputs">Testmethode: <code>test_build_release_history_and_render_outputs</code></h3>
+<p>Diese Methode ist der Haupttest und simuliert den gesamten Prozess von der Initialisierung eines Git-Repositorys bis zur Generierung der finalen Release Notes.</p>
+<h4 id="1-setup-simulation-des-git-workflows">1. Setup (Simulation des Git-Workflows)</h4>
+<p>Der Test führt folgende Schritte in einem temporären Verzeichnis (<code>tempfile.TemporaryDirectory</code>) durch:</p>
+<ol>
+<li><strong>Repository-Initialisierung:</strong> Ein temporäres Verzeichnis wird erstellt und als Git-Repository initialisiert (<code>self._git(repo, &quot;init&quot;)</code>).</li>
+<li><strong>Konfiguration:</strong> Benutzerinformationen (<code>user.name</code>, <code>user.email</code>) werden konfiguriert.</li>
+<li><strong>Erste Commit (Release Tagging):</strong></li>
+</ol>
+<ul>
+<li>Eine Datei <code>README.md</code> wird erstellt und hinzugefügt.</li>
+<li>Ein Commit mit der Nachricht <code>&quot;Release Nova School Server v0.1.0&quot;</code> wird erstellt.</li>
+<li>Ein Tag <code>v0.1.0</code> wird gesetzt.</li>
+</ul>
+<ol>
+<li><strong>Zweite Datei (Unreleased):</strong></li>
+</ol>
+<ul>
+<li>Eine Datei <code>builder.txt</code> wird erstellt und hinzugefügt.</li>
+<li>Ein weiterer Commit wird erstellt (<code>&quot;Add clean distribution release builder&quot;</code>).</li>
+</ul>
+<ol>
+<li><strong>Dritte Datei (Fix):</strong></li>
+</ol>
+<ul>
+<li>Eine Datei <code>fix.txt</code> wird erstellt und hinzugefügt.</li>
+<li>Ein weiterer Commit wird erstellt (<code>&quot;Fix LM Studio base URL normalization&quot;</code>).</li>
+</ul>
+<h4 id="2-validierung-der-versionshistorie-history">2. Validierung der Versionshistorie (<code>history</code>)</h4>
+<p>Nachdem alle Git-Operationen abgeschlossen sind, wird die Funktion <code>build_release_history(repo)</code> aufgerufen. Die folgenden Assertions prüfen die korrekte Struktur der zurückgegebenen <code>history</code>-Struktur:</p>
+<ul>
+<li><strong>Releases:</strong> Es wird erwartet, dass genau <strong>eine</strong> veröffentlichte Version (<code>len(history.releases) == 1</code>) vorhanden ist, mit dem Tag <code>&quot;v0.1.0&quot;</code>.</li>
+<li><strong>Unreleased:</strong> Es wird erwartet, dass <strong>zwei</strong> unreleasede Einträge vorhanden sind (<code>len(history.unreleased) == 2</code>).</li>
+<li><strong>Kategorien:</strong> Die Kategorien der unreleaseden Einträge (<code>[&quot;Added&quot;, &quot;Fixed&quot;]</code>) müssen korrekt sein.</li>
+</ul>
+<h4 id="3-validierung-des-changelogs-changelog">3. Validierung des Changelogs (<code>changelog</code>)</h4>
+<p>Die Funktion <code>render_changelog(history)</code> wird aufgerufen, um den generierten Changelog zu prüfen:</p>
+<ul>
+<li><strong>Header-Prüfung:</strong> Es wird sichergestellt, dass die erwarteten Überschriften vorhanden sind:</li>
+<li><code># Changelog</code></li>
+<li><code>## Unreleased</code></li>
+<li><code>### Added</code></li>
+<li><code>### Fixed</code></li>
+<li><strong>Version-Prüfung:</strong> Es wird bestätigt, dass die Version <code>v0.1.0</code> korrekt im Abschnitt <code>## v0.1.0 - </code> erwähnt wird.</li>
+<li><strong>Release-Prüfung:</strong> Es wird bestätigt, dass die spezifische Release-Nachricht <code>&quot;Release Nova School Server v0.1.0&quot;</code> im Changelog enthalten ist.</li>
+</ul>
+<h4 id="4-validierung-der-release-notes-release-notes">4. Validierung der Release Notes (<code>release_notes</code>)</h4>
+<p>Die Funktion <code>render_release_notes(history, &quot;v0.1.0&quot;)</code> wird aufgerufen, um die finalen Release Notes zu prüfen:</p>
+<ul>
+<li><strong>Header-Prüfung:</strong> Es wird bestätigt, dass die erwarteten Überschriften (<code># Release v0.1.0</code>) und die Hauptüberschrift (<code>Release Nova School Server v0.1.0</code>) vorhanden sind.</li>
+</ul>
+<h3 id="hilfsmethode-git-repo-args">Hilfsmethode: <code>_git(repo, *args)</code></h3>
+<p>Diese statische Methode dient als Abstraktionsschicht für die Ausführung von Git-Befehlen.</p>
+<ul>
+<li><strong>Funktion:</strong> Sie führt einen Git-Befehl (<code>git &lt;command&gt; &lt;args&gt;</code>) im angegebenen Arbeitsverzeichnis (<code>cwd=repo</code>) aus.</li>
+<li><strong>Fehlerbehandlung:</strong> Sie prüft den Rückgabecode (<code>result.returncode</code>). Wenn der Befehl fehlschlägt (Code $\neq 0$), wirft sie eine <code>AssertionError</code>, die die Fehlermeldung aus <code>stderr</code> oder <code>stdout</code> enthält.</li>
+</ul>
+<h2 id="zusammenfassung-der-abdeckung">Zusammenfassung der Abdeckung</h2>
+<p>Die Testsuite stellt sicher, dass die gesamte Pipeline – von der Git-Simulation über die Verarbeitung der Historie bis hin zur Formatierung der Dokumente (Changelog und Release Notes) – konsistent und korrekt funktioniert, insbesondere im Umgang mit verschiedenen Commit-Typen (Add, Commit, Tag) und der korrekten Strukturierung der Versionierungsinformationen.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-struktur-und-inhalt">3. Struktur und Inhalt</a></li>
+<li class="wiki-toc-link"><a href="#4-teststrategie-impliziert">4. Teststrategie (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#5-nutzung-und-wartung">5. Nutzung und Wartung</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#datei-analyse-test-release-notes-py">Datei-Analyse: `test_release_notes.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#klasse-releasenotestests">Klasse: `ReleaseNotesTests`</a></li>
+<li class="wiki-toc-link level-3"><a href="#testmethode-test-build-release-history-and-render-outputs">Testmethode: `test_build_release_history_and_render_outputs`</a></li>
+<li class="wiki-toc-link level-3"><a href="#hilfsmethode-git-repo-args">Hilfsmethode: `_git(repo, *args)`</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-abdeckung">Zusammenfassung der Abdeckung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_release_notes.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>
