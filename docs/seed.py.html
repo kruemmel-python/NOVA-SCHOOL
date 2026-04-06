@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `seed.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `seed.py`</h1>
+          <p>Source: seed.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-seed-py">Technische Dokumentation: <code>seed.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>seed.py</code> dient dazu, initialisierende Daten, Konfigurationen und möglicherweise Testdaten für eine Anwendung zu bereitstellen. Sie importiert Komponenten aus verschiedenen Modulen (z.B. Authentifizierung, Datenbank, Dokumentationskatalog, Berechtigungen und Workspace-Management) und definiert spezifische Konfigurationswerte oder Berechtigungssets.</p>
+<h2 id="2-struktur-und-importe">2. Struktur und Importe</h2>
+<p>Die Datei importiert Abhängigkeiten aus verschiedenen internen Modulen:</p>
+<ul>
+<li>**<code>from .auth import AuthService</code>**: Importiert die Klasse <code>AuthService</code>, die wahrscheinlich für Authentifizierungsfunktionen zuständig ist.</li>
+<li>**<code>from .code_runner import DEFAULT_CONTAINER_IMAGES</code>**: Importiert eine Konstante oder eine Liste von Standard-Container-Bildern für Code-Runner.</li>
+<li>**<code>from .database import SchoolRepository</code>**: Importiert die Klasse <code>SchoolRepository</code>, die für die Interaktion mit der Datenbank (speziell für Informationen zu Schulen) verantwortlich ist.</li>
+<li>**<code>from .docs_catalog import DocumentationCatalog</code>**: Importiert die Klasse <code>DocumentationCatalog</code>, die wahrscheinlich die Struktur oder den Katalog der verfügbaren Dokumentationen verwaltet.</li>
+<li>**<code>from .permissions import ROLE_DEFAULTS</code>**: Importiert eine Konfiguration oder einen Satz von Standardberechtigungen basierend auf Rollen.</li>
+<li>**<code>from .workspace import WorkspaceManager, slugify</code>**: Importiert die Klassen <code>WorkspaceManager</code> zur Verwaltung von Arbeitsbereichen und die Funktion <code>slugify</code> zur URL-freundlichen Umbenennung von Strings.</li>
+</ul>
+<h2 id="3-konstanten-und-konfigurationen">3. Konstanten und Konfigurationen</h2>
+<h3 id="3-1-demo-group-permissions">3.1. <code>DEMO_GROUP_PERMISSIONS</code></h3>
+<p>Diese globale Variable definiert ein spezifisches Set von Berechtigungen, das für eine &quot;Demo-Gruppe&quot; zugewiesen ist.</p>
+<pre><code class="language-python">DEMO_GROUP_PERMISSIONS = {
+&quot;workspace.group&quot;: True,
+&quot;chat.use&quot;: True,
+&quot;docs.read&quot;: True,
+}</code></pre>
+<p><strong>Beschreibung:</strong> Dieses Dictionary speichert die Berechtigungen für eine bestimmte Gruppe (vermutlich eine Test- oder Demo-Gruppe). Es zeigt an, dass diese Gruppe Zugriff auf die Gruppenverwaltung, die Nutzung von Chats und das Lesen von Dokumenten besitzt.</p>
+<h2 id="4-funktionen">4. Funktionen</h2>
+<p>Die Datei enthält derzeit keine explizit definierten Funktionen, außer der Importstruktur und der Definition der Konfiguration. <em>(Hinweis: Der Code-Block endet hier, was darauf hindeutet, dass die eigentlichen Initialisierungs- oder Seed-Funktionen in den folgenden Teilen der Datei folgen würden.)</em></p>
+<h2 id="5-zusammenfassung-der-verantwortlichkeiten">5. Zusammenfassung der Verantwortlichkeiten</h2>
+<p><code>seed.py</code> fungiert als zentraler Einstiegspunkt für die Initialisierung von Systemkomponenten und die Festlegung von Standardkonfigurationen für Tests, Demonstrationen oder die Bereitstellung von Startdaten. <strong>Schlüsselkomponenten:</strong></p>
+<ul>
+<li>Importmanagement für alle Kernmodule.</li>
+<li>Definition von spezifischen Berechtigungssets (<code>DEMO_GROUP_PERMISSIONS</code>).</li>
+</ul>
+<h2 id="6-anmerkungen-und-verbesserungsvorschl-ge">6. Anmerkungen und Verbesserungsvorschläge</h2>
+<ol>
+<li><strong>Funktionsdefinition:</strong> Die Datei scheint derzeit nur Importe und eine Konfiguration zu enthalten. Es wird erwartet, dass hier die eigentlichen <code>seed</code>-Funktionen (z.B. <code>seed_database()</code>, <code>seed_users()</code>, etc.) definiert werden, die die Datenbank und andere Dienste initialisieren.</li>
+<li><strong>Dokumentation der Importe:</strong> Für größere Projekte wäre es hilfreich, eine kurze Erklärung zu liefern, <em>warum</em> diese spezifischen Module importiert werden (z.B. &quot;Importiert <code>SchoolRepository</code> zur Initialisierung der Schuldatenbank&quot;).</li>
+<li><strong>Typ-Hinweise:</strong> Da es sich um eine Python-Datei handelt, sollten die definierten Strukturen (wie <code>DEMO_GROUP_PERMISSIONS</code>) durch Docstrings oder Type Hinting weiter spezifiziert werden, falls sie komplexer werden.</li>
+</ol>
+<h1 id="technische-dokumentation-bootstrap-application-funktion">Technische Dokumentation: <code>bootstrap_application</code> Funktion</h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Die Funktion <code>bootstrap_application</code> dient dazu, die notwendigen Initialisierungen und Konfigurationen für die Nova School Server-Umgebung vorzunehmen. Sie stellt sicher, dass die notwendigen Dokumentationen gesät werden, Systemparameter konfiguriert werden, Benutzer und Gruppen erstellt werden, sowie die ersten Demo-Projekte im Repository initialisiert werden.</p>
+<h2 id="2-funktion">2. Funktion</h2>
+<pre><code class="language-python">def bootstrap_application(repository: SchoolRepository, auth_service: AuthService, docs_catalog: DocumentationCatalog, workspace_manager: WorkspaceManager) -&gt; dict[str, object]:
+# ... (Implementierung)</code></pre>
+<p><strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Name</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>repository</code></td>
+<td><code>SchoolRepository</code></td>
+<td>Schnittstelle zum Repository, um Einstellungen zu setzen, Projekte zu erstellen und Benutzer/Gruppen zu verwalten.</td>
+</tr>
+<tr>
+<td><code>auth_service</code></td>
+<td><code>AuthService</code></td>
+<td>Schnittstelle zur Authentifizierung, um Benutzer zu erstellen und zu verwalten.</td>
+</tr>
+<tr>
+<td><code>docs_catalog</code></td>
+<td><code>DocumentationCatalog</code></td>
+<td>Schnittstelle zur Verwaltung von Dokumentationen, um sicherzustellen, dass Seed-Dokumentationen vorhanden sind.</td>
+</tr>
+<tr>
+<td><code>workspace_manager</code></td>
+<td><code>WorkspaceManager</code></td>
+<td>Schnittstelle zur Verwaltung von Arbeitsbereichen und Projekten (z.B. Materialisierung von Projekten).</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>dict[str, object]</code></td>
+<td>Ein Dictionary, das die Ergebnisse der Initialisierung enthält, typischerweise: <code>seed_users</code>, <code>seed_group</code> und <code>role_defaults</code>.</td>
+</tr>
+</tbody></table>
+<h2 id="3-funktionsbeschreibung-schritt-f-r-schritt">3. Funktionsbeschreibung (Schritt-für-Schritt)</h2>
+<p>Die Funktion führt die folgenden Hauptschritte durch:</p>
+<h3 id="3-1-dokumentationsinitialisierung">3.1. Dokumentationsinitialisierung</h3>
+<ol>
+<li><strong>Dokumentationen sicherstellen:</strong> Ruft <code>docs_catalog.ensure_seed_docs()</code> auf, um sicherzustellen, dass alle notwendigen Seed-Dokumentationen vorhanden sind.</li>
+</ol>
+<h3 id="3-2-systemkonfiguration-repository-settings">3.2. Systemkonfiguration (Repository Settings)</h3>
+<p>Die Funktion setzt eine Vielzahl von Konfigurationsparametern im <code>repository</code> über <code>repository.put_setting()</code>. Diese Einstellungen betreffen verschiedene Komponenten wie:</p>
+<ul>
+<li><strong>Server- und Proxy-Konfiguration:</strong> <code>school_name</code>, <code>server_public_host</code>, <code>web_proxy_url</code>, <code>web_proxy_no_proxy</code>, <code>web_proxy_required</code>.</li>
+<li><strong>LLaMA-Modell-Konfiguration:</strong> Pfade, Aliasse, Backend (<code>vulkan</code>), Kontextgröße (<code>llamacpp_ctx_size</code>), GPU-Layer (<code>llamacpp_gpu_layers</code>), Threads, Schlafzeiten und Port (<code>llamacpp_port</code>).</li>
+<li><strong>LITERLM-Modell-Konfiguration:</strong> Pfade, Aliasse, Backend (<code>cpu</code>), Schlafzeiten und Port (<code>litertlm_port</code>).</li>
+<li><strong>On-Device-Konfiguration:</strong> Maximale Tokens, Top-K-Werte, Temperatur und Zufallsseed.</li>
+<li><strong>Container-Konfiguration:</strong> Backend (<code>container</code>), Runtime (<code>docker</code>), Speicher-/CPU-Limits, PID-Limits, Dateigrößenlimits, Seccomp-Einstellungen und Bild-Definitionen für verschiedene Sprachen (Python, Node, C++, Java, Rust).</li>
+<li><strong>Scheduler-Konfiguration:</strong> Maximale gleichzeitige Konkurrenzwerte für globale, studentische und Lehrer-Rollen.</li>
+</ul>
+<h3 id="3-3-benutzer-und-gruppenmanagement">3.3. Benutzer- und Gruppenmanagement</h3>
+<ol>
+<li><strong>Benutzererstellung:</strong> Erstellt drei spezifische Benutzerkonten:</li>
+</ol>
+<ul>
+<li><code>admin</code>: Mit Passwort <code>NovaSchool!admin</code> (Rolle: Server Admin).</li>
+<li><code>teacher</code>: Mit Passwort <code>NovaSchool!teacher</code> (Rolle: Lehrkraft).</li>
+<li><code>student</code>: Mit Passwort <code>NovaSchool!student</code> (Rolle: Schueler Demo).</li>
+</ul>
+<ol>
+<li><strong>Gruppenerstellung:</strong> Erstellt eine Gruppe namens <code>&quot;class-1a&quot;</code> mit der Beschreibung &quot;Demo-Klasse fuer den Nova School Server&quot; und spezifischen Berechtigungen (<code>DEMO_GROUP_PERMISSIONS</code>).</li>
+<li><strong>Benutzerzuweisung:</strong> Fügt den Benutzer <code>&quot;student&quot;</code> zur Gruppe <code>&quot;class-1a&quot;</code> hinzu.</li>
+<li><strong>Workspace-Ordner:</strong> Erstellt Profile-Ordner für jeden Seed-Benutzer (<code>user</code> und <code>group</code>).</li>
+</ol>
+<h3 id="3-4-projektinitialisierung-demo-projekte">3.4. Projektinitialisierung (Demo-Projekte)</h3>
+<p>Die Funktion prüft, ob bestimmte Demo-Projekte bereits existieren, und erstellt sie bei Bedarf:</p>
+<ol>
+<li><strong>Projekt &quot;Python Labor&quot;:</strong></li>
+</ol>
+<ul>
+<li><strong>Bedingung:</strong> Prüft, ob ein Projekt mit Owner <code>user</code>, Key <code>student</code> und Slug <code>python-labor</code> existiert.</li>
+<li><strong>Aktion:</strong> Erstellt das Projekt (<code>Python Labor</code>) mit Template <code>python</code>, Runtime <code>python</code> und <code>main.py</code>. Materialisiert das Projekt.</li>
+</ul>
+<ol>
+<li><strong>Projekt &quot;Web Labor&quot;:</strong></li>
+</ol>
+<ul>
+<li><strong>Bedingung:</strong> Prüft, ob ein Projekt mit Owner <code>group</code>, Key <code>class-1a</code> und Slug <code>web-labor</code> existiert.</li>
+<li><strong>Aktion:</strong> Erstellt das Projekt (<code>Web Labor</code>) mit Template <code>frontend-lab</code>, Runtime <code>html</code> und <code>index.html</code>. Materialisiert das Projekt.</li>
+</ul>
+<ol>
+<li><strong>Projekt &quot;Distributed Playground&quot;:</strong></li>
+</ol>
+<ul>
+<li><strong>Bedingung:</strong> Prüft, ob ein Projekt mit Owner <code>user</code>, Key <code>teacher</code> und Slug <code>distributed-playground</code> existiert.</li>
+<li><strong>Aktion:</strong> Erstellt das Projekt (<code>Distributed Playground</code>) mit Template <code>distributed-system</code>, Runtime <code>python</code> und <code>services/coordinator.py</code>. Materialisiert das Projekt.</li>
+</ul>
+<h3 id="3-5-r-ckgabewert">3.5. Rückgabewert</h3>
+<p>Die Funktion gibt ein strukturiertes Dictionary zurück, das die initialisierten Daten enthält:</p>
+<ul>
+<li>**<code>seed_users</code>**: Eine Liste der erstellten Benutzer mit ihren Benutzernamen und Passwörtern.</li>
+<li>**<code>seed_group</code>**: Der Name der erstellten Gruppe (<code>class-1a</code>).</li>
+<li>**<code>role_defaults</code>**: Ein Dictionary, das Standard-Rollenkonfigurationen für <code>student</code>, <code>teacher</code> und <code>admin</code> bereitstellt.</li>
+</ul>
+<h2 id="4-abh-ngigkeiten-und-schl-sselkonstanten">4. Abhängigkeiten und Schlüsselkonstanten</h2>
+<p>Die Funktion hängt von folgenden externen Abhängigkeiten und Konstanten ab (die in der bereitgestellten Code-Sektion nicht definiert sind, aber impliziert werden):</p>
+<ul>
+<li>**<code>SchoolRepository</code>**: Muss Methoden wie <code>put_setting</code>, <code>get_setting</code>, <code>create_project</code>, <code>find_project_by_owner_and_slug</code>, <code>create_group</code>, <code>add_membership</code> bereitstellen.</li>
+<li>**<code>AuthService</code>**: Muss die Methode <code>ensure_user</code> bereitstellen.</li>
+<li>**<code>DocumentationCatalog</code>**: Muss die Methode <code>ensure_seed_docs</code> bereitstellen.</li>
+<li>**<code>WorkspaceManager</code>**: Muss die Methoden <code>ensure_profile_folder</code> und <code>materialize_project</code> bereitstellen.</li>
+<li><strong>Konstanten:</strong></li>
+<li><code>DEFAULT_CONTAINER_IMAGES</code>: Ein Dictionary, das die Standard-Container-Images für verschiedene Sprachen definiert.</li>
+<li><code>ROLE_DEFAULTS</code>: Ein Dictionary, das die Standard-Rollenkonfigurationen für</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-importe">2. Struktur und Importe</a></li>
+<li class="wiki-toc-link"><a href="#3-konstanten-und-konfigurationen">3. Konstanten und Konfigurationen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-demo-group-permissions">3.1. `DEMO_GROUP_PERMISSIONS`</a></li>
+<li class="wiki-toc-link"><a href="#4-funktionen">4. Funktionen</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-verantwortlichkeiten">5. Zusammenfassung der Verantwortlichkeiten</a></li>
+<li class="wiki-toc-link"><a href="#6-anmerkungen-und-verbesserungsvorschl-ge">6. Anmerkungen und Verbesserungsvorschläge</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsbeschreibung-schritt-f-r-schritt">3. Funktionsbeschreibung (Schritt-für-Schritt)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-dokumentationsinitialisierung">3.1. Dokumentationsinitialisierung</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-systemkonfiguration-repository-settings">3.2. Systemkonfiguration (Repository Settings)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-benutzer-und-gruppenmanagement">3.3. Benutzer- und Gruppenmanagement</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-projektinitialisierung-demo-projekte">3.4. Projektinitialisierung (Demo-Projekte)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-5-r-ckgabewert">3.5. Rückgabewert</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten-und-schl-sselkonstanten">4. Abhängigkeiten und Schlüsselkonstanten</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "seed.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

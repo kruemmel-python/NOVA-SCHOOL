@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `reviews.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `reviews.py`</h1>
+          <p>Source: reviews.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <p>Gerne, hier ist ein Entwurf für eine technische Dokumentation der Datei <code>reviews.py</code>, basierend auf dem bereitgestellten Code-Ausschnitt. Da der Code nur den Import und die Klassendefinition beginnt, wird die Dokumentation die <strong>Erwartungen</strong> an die Klasse und die verwendeten Bibliotheken beschreiben. ---</p>
+<h1 id="technische-dokumentation-reviews-py">Technische Dokumentation: <code>reviews.py</code></h1>
+<p><strong>Version:</strong> 1.0 (Entwurf) <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team] <strong>Zweck:</strong> Diese Datei dient als zentraler Punkt für die Verarbeitung, Speicherung und Verwaltung von Nutzerbewertungen (Reviews) innerhalb des Systems. Sie orchestriert wahrscheinlich die Interaktion mit Datenbanken, Dateisystemoperationen und Workspace-Managern.</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>reviews.py</code> importiert notwendige Komponenten aus verschiedenen Modulen (<code>database</code>, <code>project_files</code>, <code>workspace</code>) und definiert eine Hauptklasse (die im bereitgestellten Ausschnitt beginnt). Die Implementierung deutet auf eine komplexe Anwendung hin, die Datenintegrität (durch Hashing/HMAC) und Dateiverwaltung (Snapshot-Management) beinhaltet.</p>
+<h2 id="2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</h2>
+<p>Die Datei ist stark auf externe Ressourcen und interne Komponenten angewiesen:</p>
+<table><thead><tr>
+<th>Modul/Funktion</th>
+<th>Beschreibung</th>
+<th>Zweck im Kontext</th>
+</tr></thead><tbody>
+<tr>
+<td><code>hashlib</code>, <code>hmac</code>, <code>json</code>, <code>os</code>, <code>time</code>, <code>uuid</code></td>
+<td>Standard-Python-Bibliotheken für kryptografische Hashing-Operationen, Datenserialisierung, Dateisystemzugriff, Zeitstempel und eindeutige Identifikatoren.</td>
+<td>Sicherstellung der Datenintegrität und eindeutiger Identifizierung von Reviews/Datenblöcken.</td>
+</tr>
+<tr>
+<td><code>pathlib.Path</code></td>
+<td>Objektorientierte Methode zur Verwaltung von Dateipfaden.</td>
+<td>Sichere und plattformunabhängige Dateiverwaltung.</td>
+</tr>
+<tr>
+<td><code>.database.SchoolRepository</code></td>
+<td>Eine Repository-Klasse, die für die Speicherung und Abfrage von Schul- oder Review-Daten zuständig ist.</td>
+<td>Datenpersistenz.</td>
+</tr>
+<tr>
+<td><code>.project_files.copy_project_snapshot</code>, <code>list_snapshot_files</code>, <code>read_text_preview</code></td>
+<td>Funktionen zur Verwaltung von Projekt-Snapshots und zur Voransicht von Textinhalten.</td>
+<td>Verwaltung von Versionskontrolle oder temporären Projektzuständen.</td>
+</tr>
+<tr>
+<td><code>.workspace.WorkspaceManager</code></td>
+<td>Eine Klasse zur Verwaltung der Arbeitsumgebung oder des Benutzer-Workspaces.</td>
+<td>Kontextmanagement für die Reviews.</td>
+</tr>
+</tbody></table>
+<h2 id="3-struktur-und-komponenten">3. Struktur und Komponenten</h2>
+<h3 id="3-1-klassendefinition-startpunkt">3.1. Klassendefinition (Startpunkt)</h3>
+<p>Der bereitgestellte Code beginnt mit der Definition einer Klasse:</p>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<p><strong>Erwartete Struktur der Klasse:</strong> Die Klasse, die hier definiert wird, wird wahrscheinlich die Hauptlogik für die folgenden Operationen enthalten:</p>
+<ol>
+<li><strong>Review-Erstellung/Speicherung:</strong> Verarbeitung eingehender Reviews, Hashing der Daten, Speicherung in der Datenbank (<code>SchoolRepository</code>).</li>
+<li><strong>Snapshot-Management:</strong> Interaktion mit <code>project_files</code> zur Erstellung, Auflistung und Lesen von Projekt-Snapshots.</li>
+<li><strong>Workspace-Interaktion:</strong> Nutzung des <code>WorkspaceManager</code> zur Kontextualisierung der Reviews.</li>
+<li><strong>Datenintegrität:</strong> Implementierung von Mechanismen (vermutlich mit <code>hmac</code> oder <code>hashlib</code>) zur Sicherstellung, dass Reviews oder Datenblöcke nicht manipuliert wurden.</li>
+</ol>
+<h3 id="3-2-schl-sselkonzepte-basierend-auf-imports">3.2. Schlüsselkonzepte (Basierend auf Imports)</h3>
+<ul>
+<li><strong>Datenintegrität:</strong> Die Verwendung von <code>hashlib</code> und <code>hmac</code> deutet darauf hin, dass sensible Daten (Reviews, Metadaten) kryptografisch gesichert werden, um Manipulationen zu verhindern.</li>
+<li><strong>Eindeutigkeit:</strong> <code>uuid</code> wird verwendet, um eindeutige Identifikatoren für Objekte (Reviews, Dateien, Snapshots) zu generieren.</li>
+<li><strong>Dateiverwaltung:</strong> Die Abhängigkeit von <code>pathlib</code> und den Funktionen in <code>project_files</code> zeigt, dass die Verarbeitung von Dateien und deren Zuständen (Snapshots) ein zentraler Bestandteil der Logik ist.</li>
+</ul>
+<h2 id="4-anwendungsf-lle-hypothetisch">4. Anwendungsfälle (Hypothetisch)</h2>
+<p>Basierend auf den Importen könnte diese Klasse folgende Hauptfunktionen erfüllen:</p>
+<ol>
+<li><strong>Review-Ingestion:</strong> Empfang neuer Reviews, Validierung, Hashing und Speicherung in der Datenbank.</li>
+<li><strong>Snapshot-Generation:</strong> Triggerung der Erstellung eines Projekt-Snapshots, wenn bestimmte Bedingungen erfüllt sind.</li>
+<li><strong>Data Retrieval:</strong> Abrufen von Reviews basierend auf IDs oder Kontexten, wobei die Integrität der Daten überprüft wird.</li>
+<li><strong>Workspace-Sync:</strong> Sicherstellen, dass die Daten des aktuellen <code>WorkspaceManager</code>-Kontextes korrekt mit den persistenten Daten synchronisiert werden.</li>
+</ol>
+<h2 id="5-sicherheitshinweise">5. Sicherheitshinweise</h2>
+<p>Da kryptografische Funktionen (<code>hmac</code>, <code>hashlib</code>) verwendet werden, ist die Implementierung der Hashing- und Authentifizierungsmechanismen kritisch. Es wird empfohlen, die spezifischen Algorithmen (z.B. SHA-256, HMAC-SHA256) und die Schlüsselverwaltung im Detail zu dokumentieren. --- <strong>Nächste Schritte für die Implementierung:</strong></p>
+<ol>
+<li><strong>Klassenkörper vervollständigen:</strong> Die eigentliche Logik der Klasse <code>&lt;|end|&gt;</code> muss implementiert werden, um die oben genannten Importe sinnvoll zu nutzen.</li>
+<li><strong>API-Definition:</strong> Eine detaillierte Schnittstellendefinition (z.B. mittels Sphinx oder Docstrings) für die Methoden der Klasse erstellen.</li>
+<li><strong>Fehlerbehandlung:</strong> Definieren, wie Fehler bei Datenbankzugriff oder Dateiverarbeitung behandelt werden.</li>
+</ol>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 4121 &gt;= 4096</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-struktur-und-komponenten">3. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klassendefinition-startpunkt">3.1. Klassendefinition (Startpunkt)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-schl-sselkonzepte-basierend-auf-imports">3.2. Schlüsselkonzepte (Basierend auf Imports)</a></li>
+<li class="wiki-toc-link"><a href="#4-anwendungsf-lle-hypothetisch">4. Anwendungsfälle (Hypothetisch)</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheitshinweise">5. Sicherheitshinweise</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "reviews.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

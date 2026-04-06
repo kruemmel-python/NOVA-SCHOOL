@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `ai_service.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link active" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `ai_service.py`</h1>
+          <p>Source: ai_service.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h2 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h2>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team] <strong>Beschreibung:</strong> Dieses Modul dient als zentraler Dienst für die Interaktion mit einem lokalen Code-Assistenten, der auf Basis eines großen Sprachmodells (LLM) arbeitet. Es beinhaltet Funktionen für die Verarbeitung von Benutzeranfragen, das Management von Kontext, die Kommunikation mit externen Ressourcen (wie LLM-Runtimes) und die Interaktion mit einer Datenbank. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p><code>ai_service.py</code> ist das Herzstück der Anwendung, das die Logik für die Generierung von Antworten durch einen lokalen Code-Helfer verwaltet. Es implementiert die Schnittstelle zwischen der Benutzeranfrage und dem LLM-Prozess, einschließlich der Anwendung von Sicherheitsrichtlinien, Kontextmanagement und der Verwaltung von externen Abhängigkeiten.</p>
+<h3 id="2-importe">2. Importe</h3>
+<p>Das Modul importiert verschiedene Bibliotheken und interne Module, um die notwendigen Funktionen für I/O, Datenverarbeitung, Netzwerkkommunikation und Datenbankzugriff bereitzustellen. <strong>Wichtige Importe:</strong></p>
+<ul>
+<li><strong>Standardbibliothek:</strong> <code>json</code>, <code>os</code>, <code>re</code>, <code>shutil</code>, <code>socket</code>, <code>subprocess</code>, <code>threading</code>, <code>time</code>, <code>zipfile</code>, <code>pathlib.Path</code> (für Dateimanagement).</li>
+<li><strong>Netzwerk/HTTP:</strong> <code>urllib.error.HTTPError</code>, <code>urllib.error.URLError</code>, <code>urllib.parse.urljoin</code>, <code>urllib.request.Request</code>, <code>urllib.request.urlopen</code> (für externe API-Aufrufe).</li>
+<li><strong>Interne Module:</strong></li>
+<li><code>.archive_utils</code>: Enthält Funktionen zur sicheren Extraktion von ZIP-Dateien (<code>extract_zip_safely</code>).</li>
+<li><code>.database</code>: Enthält die Klasse <code>SchoolRepository</code> für die Datenbankinteraktion.</li>
+</ul>
+<h3 id="3-konstanten-und-globale-einstellungen">3. Konstanten und Globale Einstellungen</h3>
+<p>Das Modul definiert zahlreiche Konstanten, die für die Prompt-Engineering, die Modell-Identifikation und die Sicherheitsmechanismen entscheidend sind.</p>
+<table><thead><tr>
+<th>Konstante</th>
+<th>Beschreibung</th>
+<th>Wert/Typ</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DIRECT_ASSISTANT_SYSTEM_PROMPT</code></td>
+<td>Der System-Prompt, der dem LLM die Rolle des lokalen Codehilfers definiert.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>DIRECT_INPUT_TOKEN_BUDGET</code></td>
+<td>Das maximale Token-Budget für die Eingabeanfragen.</td>
+<td>Integer (1800)</td>
+</tr>
+<tr>
+<td><code>PROMPT_TRUNCATION_MARKER</code></td>
+<td>Marker, der verwendet wird, um den Kontext bei zu langer Eingabe zu kürzen.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>LLAMA_CPP_RELEASE_API</code></td>
+<td>URL zur neuesten Release-Seite von <code>llama.cpp</code> für die Modell-Download-Verwaltung.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>LLAMA_CPP_RUNTIME_DIRNAME</code></td>
+<td>Der Standardpfad für die Installation des <code>llama.cpp</code>-Runtime-Binaries.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>LITERT_LM_RUNTIME_DIRNAME</code></td>
+<td>Der Standardpfad für die Installation des <code>litert_lm</code>-Runtime-Binaries.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>LLAMA_CPP_WINDOWS_ASSETS</code></td>
+<td>Dictionary, das spezifische ZIP-Dateinamen für Windows-Plattformen (Vulkan, Radeon, CPU) definiert.</td>
+<td>Dictionary</td>
+</tr>
+<tr>
+<td><code>LITERT_LM_BINARY_NAMES</code></td>
+<td>Tupel mit den Namen der ausführbaren Dateien für die <code>litert_lm</code>-Umgebung.</td>
+<td>Tuple</td>
+</tr>
+<tr>
+<td><code>THINK_BLOCK_PATTERN</code></td>
+<td>Regex zum Erkennen von <code>&lt;think&gt;...&lt;/think&gt;</code> Blöcken im LLM-Output.</td>
+<td>Compiled Regex</td>
+</tr>
+<tr>
+<td><code>THINK_TAG_PATTERN</code></td>
+<td>Regex zum Erkennen von <code>&lt;/think&gt;</code> Tags.</td>
+<td>Compiled Regex</td>
+</tr>
+<tr>
+<td><code>MODEL_ID_SANITIZE_PATTERN</code></td>
+<td>Regex zur Bereinigung von Modell-IDs, um unerwünschte Zeichen zu entfernen.</td>
+<td>Compiled Regex</td>
+</tr>
+<tr>
+<td><code>SHORT_REPLY_PATTERNS</code></td>
+<td>Tupel von Regex-Mustern, die spezifische Anfragen nach sehr kurzen Antworten (z.B. &quot;antworte nur mit...&quot;) erkennen.</td>
+<td>Tuple von Compiled Regex</td>
+</tr>
+<tr>
+<td><code>LITERT_INPUT_TOKEN_LIMIT_PATTERN</code></td>
+<td>Regex zur Erkennung von Fehlermeldungen bezüglich zu langer Input-Token-IDs.</td>
+<td>Compiled Regex</td>
+</tr>
+</tbody></table>
+<h3 id="4-schl-sselfunktionen-implizit-struktur">4. Schlüsselfunktionen (Implizit/Struktur)</h3>
+<p>Obwohl der Codeausschnitt nur die Importe und Konstanten zeigt, impliziert die Struktur die folgenden Hauptfunktionen:</p>
+<ol>
+<li><strong>Prompt-Verarbeitung:</strong> Nimmt die Benutzeranfrage entgegen und kombiniert sie mit dem System-Prompt und dem aktuellen Kontext.</li>
+<li><strong>Kontextmanagement:</strong> Implementiert Logik zur Verwaltung des Kontexts, einschließlich der Anwendung des <code>PROMPT_TRUNCATION_MARKER</code>, wenn das Token-Budget überschritten wird.</li>
+<li><strong>LLM-Interaktion:</strong> Verantwortlich für die Kommunikation mit dem lokalen LLM-Runtime (z.B. über <code>subprocess</code> oder eine eigene API-Wrapper-Logik, die durch die im Code nicht sichtbaren Importe impliziert wird).</li>
+<li><strong>Sicherheitsfilterung:</strong> Nutzt Regex (<code>THINK_BLOCK_PATTERN</code>, <code>SHORT_REPLY_PATTERNS</code>) zur Analyse der LLM-Antworten, um sicherzustellen, dass die Ausgabe den Richtlinien entspricht (z.B. das Ignorieren von &quot;Think&quot;-Blöcken oder die Einhaltung von Kurzantwortanforderungen).</li>
+<li><strong>Ressourcenmanagement:</strong> Nutzt <code>shutil</code> und <code>zipfile</code> (über <code>archive_utils</code>) für das Management von Modell- oder Datenarchiven.</li>
+<li><strong>Datenbankzugriff:</strong> Nutzt <code>SchoolRepository</code> aus dem <code>.database</code>-Modul für die Abfrage oder Speicherung von Schuldaten.</li>
+</ol>
+<h3 id="5-technische-details-und-best-practices">5. Technische Details und Best Practices</h3>
+<ul>
+<li><strong>Asynchrone Verarbeitung:</strong> Die Verwendung von <code>threading</code> deutet darauf hin, dass zeitintensive Operationen (wie das Laden von Modellen oder das Warten auf externe API-Antworten) in separaten Threads ausgeführt werden, um die Hauptanwendung nicht zu blockieren.</li>
+<li><strong>Robustheit:</strong> Die Verwendung von <code>urllib.error</code> zeigt eine explizite Fehlerbehandlung für Netzwerkprobleme.</li>
+<li><strong>Regex-Optimierung:</strong> Die Kompilierung von Regex-Mustern (<code>re.compile</code>) vor der Nutzung in der Schleife ist eine gängige Best Practice zur Leistungssteigerung.</li>
+<li><strong>Modell-Identifikation:</strong> Die spezifischen Pfadnamen und Asset-Namen (<code>LLAMA_CPP_WINDOWS_ASSETS</code>, <code>LITERT_LM_BINARY_NAMES</code>) zeigen eine tiefgehende Kenntnis der Plattformspezifität (Windows vs. Linux) und der benötigten Abhängigkeiten für die lokalen Runtimes.</li>
+</ul>
+<h3 id="6-abh-ngigkeiten">6. Abhängigkeiten</h3>
+<ul>
+<li><strong>Externe Bibliotheken:</strong> <code>urllib</code> (Standard), <code>re</code>, <code>json</code>, <code>os</code>, <code>shutil</code>, <code>subprocess</code>, <code>threading</code>, <code>time</code>, <code>zipfile</code>, <code>pathlib</code>.</li>
+<li><strong>Interne Abhängigkeiten:</strong> <code>.archive_utils</code>, <code>.database</code> (spezifische Implementierungen sind nicht im sichtbaren Code enthalten).</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>ai_service.py</code> ist ein komplexes Backend-Modul, das die Schnittstelle zwischen Benutzeranfrage und einem lokal gehosteten, konfigurierbaren LLM-System managt, wobei ein starker Fokus auf Sicherheit, Kontextsteuerung und die Verwaltung von lokalen Laufzeitumgebungen liegt.</p>
+</ul>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<h2 id="berblick">Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Hilfsfunktionen (<code>_clamp_int</code>, <code>_clamp_float</code>, <code>_sanitize_model_text</code>, <code>_normalize_prompt_text</code>, <code>_estimate_token_count</code>), die spezifische Textverarbeitung, numerische Wertebereinigung und Token-Schätzungen für einen KI-Service durchführen. Diese Funktionen dienen dazu, Eingabedaten (insbesondere Textprompts) zu validieren, zu bereinigen und für die Verarbeitung an das zugrunde liegende Modell vorzubereiten.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-clamp-int-value-any-default-int-minimum-int-maximum-int-int">1. <code>_clamp_int(value: Any, default: int, minimum: int, maximum: int) -&gt; int</code></h3>
+<p><strong>Zweck:</strong> Klampet einen gegebenen Wert (der als numerisch interpretiert werden soll) innerhalb eines definierten Minimums und Maximums ein. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: Any</code>: Der zu clampende Wert (kann eine Zahl, einen String oder ein anderes Objekt sein).</li>
+<li><code>default: int</code>: Der Wert, der verwendet wird, falls die Konvertierung fehlschlägt.</li>
+<li><code>minimum: int</code>: Der untere Grenzwert.</li>
+<li><code>maximum: int</code>: Der obere Grenzwert.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>int</code>: Der clampierte Wert.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Versucht, <code>value</code> zuerst als <code>float</code> konvertiert und dann als <code>int</code> interpretiert zu werden (<code>int(float(value))</code>).</li>
+<li>Falls die Konvertierung fehlschlägt (z.B. wenn <code>value</code> kein gültiger numerischer Wert ist), wird der <code>default</code>-Wert verwendet.</li>
+<li>Der resultierende Wert wird dann zwischen <code>minimum</code> und <code>maximum</code> begrenzt (<code>max(minimum, min(parsed, maximum))</code>).</li>
+</ol>
+<h3 id="2-clamp-float-value-any-default-float-minimum-float-maximum-float-float">2. <code>_clamp_float(value: Any, default: float, minimum: float, maximum: float) -&gt; float</code></h3>
+<p><strong>Zweck:</strong> Klampet einen gegebenen Wert (der als numerisch interpretiert werden soll) innerhalb eines definierten Minimums und Maximums ein. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: Any</code>: Der zu clampende Wert.</li>
+<li><code>default: float</code>: Der Wert, der verwendet wird, falls die Konvertierung fehschlägt.</li>
+<li><code>minimum: float</code>: Der untere Grenzwert.</li>
+<li><code>maximum: float</code>: Der obere Grenzwert.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>float</code>: Der clampierte Wert.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Versucht, <code>value</code> zuerst als <code>float</code> konvertiert zu werden (<code>float(value)</code>).</li>
+<li>Falls die Konvertierung fehlschlägt, wird der <code>default</code>-Wert verwendet.</li>
+<li>Der resultierende Wert wird dann zwischen <code>minimum</code> und <code>maximum</code> begrenzt.</li>
+</ol>
+<h3 id="3-sanitize-model-text-value-any-str">3. <code>_sanitize_model_text(value: Any) -&gt; str</code></h3>
+<p><strong>Zweck:</strong> Bereinigt den Eingabetext für das Modell, indem spezifische Formatierungen und unnötige Zeichen entfernt werden. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: Any</code>: Der ursprüngliche Eingabewert (typischerweise ein String).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der bereinigte Text.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Konvertiert den Wert in einen String und ersetzt Windows-Zeilenumbrüche (<code>\r\n</code>) durch Unix-Zeilenumbrüche (<code>\n</code>) und einzelne Zeilenumbrüche (<code>\r</code>) durch <code>\n</code>.</li>
+<li>Entfernt alle Zeichen, die Teil des <code>THINK_BLOCK_PATTERN</code> sind.</li>
+<li>Entfernt alle Zeichen, die Teil des <code>THINK_TAG_PATTERN</code> sind.</li>
+<li>Ersetzt drei oder mehr aufeinanderfolgende Zeilenumbrüche (<code>\n{3,}</code>) durch zwei Zeilenumbrüche (<code>\n\n</code>).</li>
+<li>Entfernt unnötige Leerzeichen am Anfang und Ende (<code>.strip()</code>).</li>
+</ol>
+<h3 id="4-normalize-prompt-text-text-str-str">4. <code>_normalize_prompt_text(text: str) -&gt; str</code></h3>
+<p><strong>Zweck:</strong> Normalisiert den Text des Prompts für eine konsistente Verarbeitung. <strong>Parameter:</strong></p>
+<ul>
+<li><code>text: str</code>: Der Eingabetext.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der normalisierte Text.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Konvertiert den Text in einen String und ersetzt Windows-Zeilenumbrüche (<code>\r\n</code>) durch <code>\n</code> und einzelne Zeilenumbrüche (<code>\r</code>) durch <code>\n</code>.</li>
+<li>Entfernt alle Leerzeichen oder Tabstabs, die direkt vor einem Zeilenumbruch stehen (<code>[ \t]+\n</code> wird durch <code>\n</code> ersetzt).</li>
+<li>Ersetzt drei oder mehr aufeinanderfolgende Zeilenumbrüche (<code>\n{3,}</code>) durch zwei Zeilenumbrüche (<code>\n\n</code>).</li>
+<li>Entfernt unnötige Leerzeichen am Anfang und Ende (<code>.strip()</code>).</li>
+</ol>
+<h3 id="5-estimate-token-count-text-str-int">5. <code>_estimate_token_count(text: str) -&gt; int</code></h3>
+<p><strong>Zweck:</strong> Schätzt die ungefähre Token-Anzahl eines Textes, basierend auf zwei Methoden: Zeichenanzahl und Wortanzahl. <strong>Parameter:</strong></p>
+<ul>
+<li><code>text: str</code>: Der Text, dessen Token-Anzahl geschätzt werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>int</code>: Die geschätzte Token-Anzahl.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Ruft <code>_normalize_prompt_text(text)</code> auf, um den Text zu bereinigen.</li>
+<li>Wenn der normalisierte Text leer ist, gibt die Funktion <code>0</code> zurück.</li>
+<li>**Zeichenbasierte Schätzung (<code>char_based</code>):**</li>
+</ol>
+<ul>
+<li>Der Text wird zu einem einzigen Wort zusammengefasst (alle Leerzeichen werden durch einen einzigen Leerzeichen ersetzt).</li>
+<li>Die Anzahl der Zeichen wird berechnet.</li>
+<li>Die Schätzung basiert auf der Formel: <code>max(1, int((len(compact) / 2.8) + 0.999))</code>.</li>
+</ul>
+<ol>
+<li>**Wortbasierte Schätzung (<code>word_based</code>):**</li>
+</ol>
+<ul>
+<li>Die Anzahl der Wörter wird berechnet (<code>word_count</code>).</li>
+<li>Die Schätzung basiert auf der Formel: <code>max(1, int((word_count * 1.45) + 0.999))</code>.</li>
+</ul>
+<ol>
+<li>Die Funktion gibt den maximalen Wert zwischen <code>char_based</code> und <code>word_based</code> zurück, wobei sichergestellt wird, dass mindestens <code>1</code> zurückgegeben wird.</li>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li>**<code>re</code> (Standardmodul):** Wird für RegEx-Operationen (String-Manipulation, Mustererkennung) verwendet.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<p>Diese Funktionen sind primär für die <strong>Preprocessing-Phase</strong> von Prompts gedacht:</p>
+<ol>
+<li><strong>Validierung/Bereinigung:</strong> <code>_clamp_int</code>/<code>_clamp_float</code> zur Sicherstellung, dass numerische Parameter innerhalb akzeptabler Grenzen liegen.</li>
+<li><strong>Formatierung:</strong> <code>_sanitize_model_text</code> und <code>_normalize_prompt_text</code> stellen sicher, dass der Text das Format erfüllt, das das KI-Modell erwartet (z.B. korrekte Zeilenumbrüche, Entfernung von Metadaten).</li>
+<li><strong>Metrik:</strong> <code>_estimate_token_count</code> liefert eine wichtige Metrik zur Ressourcenplanung und zur Steuerung der Modell-Inferenz.</li>
+</ol>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<h2 id="funktion-trim-text-middle-text-str-max-chars-int-str">Funktion: <code>_trim_text_middle(text: str, *, max_chars: int) -&gt; str</code></h2>
+<p>Diese interne Funktion dient dazu, einen eingehenden Text (<code>text</code>) auf eine maximale Länge (<code>max_chars</code>) zu kürzen, wobei sichergestellt wird, dass die Kürzung sinnvoll erfolgt, insbesondere durch die Einbindung eines spezifischen Markiers (Marker).</p>
+<h3 id="beschreibung">Beschreibung</h3>
+<p>Die Funktion normalisiert den eingegebenen Text und prüft, ob die Länge des normalisierten Textes die festgelegte maximale Zeichenanzahl überschreitet. Wenn eine Kürzung erforderlich ist, wird eine komplexe Strategie angewendet, die versucht, den Text durch das Hinzufügen eines spezifischen Markiers (<code>PROMPT_TRUNCATION_MARKER</code>) in der Mitte zu beibehalten, um eine sinnvolle Abkürzung zu ermöglichen.</p>
+<h3 id="parameter">Parameter</h3>
+<table><thead><tr>
+<th>Name</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>text</code></td>
+<td><code>str</code></td>
+<td>Der ursprüngliche Text, der gekürzt werden soll.</td>
+</tr>
+<tr>
+<td><code>max_chars</code></td>
+<td><code>int</code></td>
+<td>Die maximale gewünschte Länge des resultierenden Textes.</td>
+</tr>
+</tbody></table>
+<h3 id="r-ckgabe">Rückgabe</h3>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>str</code></td>
+<td>Der gekürzte und normalisierte Text.</td>
+</tr>
+</tbody></table>
+<h3 id="intern-verwendete-konstanten-variablen">Intern verwendete Konstanten/Variablen</h3>
+<ul>
+<li><code>_normalize_prompt_text(text)</code>: Eine interne Funktion, die den eingegebenen Text bereinigt oder standardisiert.</li>
+<li><code>PROMPT_TRUNCATION_MARKER</code>: Eine definierte Zeichenkette, die als Marker für die Textkürzung verwendet wird.</li>
+</ul>
+<h3 id="logik-und-verhalten">Logik und Verhalten</h3>
+<ol>
+<li><strong>Normalisierung:</strong> Der eingegebene <code>text</code> wird zuerst über <code>_normalize_prompt_text()</code> normalisiert.</li>
+<li><strong>Längenprüfung (Keine Kürzung nötig):</strong> Wenn die Länge des normalisierten Textes kleiner oder gleich <code>max_chars</code> ist, wird der normalisierte Text direkt zurückgegeben.</li>
+<li><strong>Kürzungsszenario (Marker vorhanden):</strong> Wenn die Länge überschritten wird, wird die Logik zur Platzierung des Markers aktiviert:</li>
+</ol>
+<ul>
+<li>**Fall 1: Sehr kurze <code>max_chars</code>:** Wenn <code>max_chars</code> sehr klein ist (kleiner als die Länge des Markers plus 96 Zeichen), wird der Text einfach auf <code>max_chars</code> Zeichen gekürzt und die abschließende Leerzeichen (<code>.rstrip()</code>) entfernt.</li>
+<li><strong>Fall 2: Mittlere Kürzung:</strong></li>
+<li>Es wird eine <code>head_chars</code> (Anfangsteil) und eine <code>tail_chars</code> (Ende) berechnet, basierend auf <code>max_chars</code> und der Länge des Markers.</li>
+<li><strong>Sicherheitskorrektur für den Tail:</strong> Wenn die berechnete <code>tail_chars</code> kleiner als 80 ist, wird sie auf 80 gesetzt. Gleichzeitig wird <code>head_chars</code> neu berechnet, um sicherzustellen, dass die Gesamtlänge (inklusive Marker) nahe an <code>max_chars</code> bleibt.</li>
+<li><strong>Ergebnis-Konstruktion:</strong> Der zurückgegebene Text besteht aus drei Teilen:</li>
+</ul>
+<ol>
+<li>Der Anfangsteil (<code>normalized[:head_chars]</code>), gefolgt von dem <code>marker</code>.</li>
+<li>Der Endsteil (<code>normalized[-tail_chars:]</code>), gefolgt von der Entfernung von führenden Leerzeichen (<code>.lstrip()</code>).</li>
+</ol>
+<ul>
+<li>Schließlich wird der gesamte resultierende String <code>.strip()</code> auf Leerzeichen reduziert.</li>
+</ul>
+<h3 id="verwendung">Verwendung</h3>
+<p>Diese Funktion wird intern verwendet, um sicherzustellen, dass Prompts oder Texte, die an ein Modell gesendet werden, eine maximale Zeichenbegrenzung erreichen, ohne den Inhalt unnötig zu beschädigen, indem sie einen spezifischen Marker in die Mitte einfügt. --- <strong>Hinweis:</strong> Die genaue Implementierung der Berechnung von <code>head_chars</code> und <code>tail_chars</code> ist komplex und hängt stark von der Definition von <code>PROMPT_TRUNCATION_MARKER</code> und den impliziten Anforderungen an die Textstruktur ab.</p>
+<h2 id="technische-dokumentation-funktion-prepare-prompt-with-budget">Technische Dokumentation: Funktion <code>_prepare_prompt_with_budget</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>_prepare_prompt_with_budget</code> dient dazu, einen eingegebenen Text-Prompt auf eine bestimmte Token- oder Zeichenbegrenzung (Budget) anzupassen, indem sie ihn trimmt, falls er die verfügbare Kapazität überschreitet. Sie berücksichtigt dabei das System-Prompt, reservierte Tokens und die geschätzte Token-Zählung des Prompts.</p>
+<h3 id="2-signatur">2. Signatur</h3>
+<pre><code class="language-python">def _prepare_prompt_with_budget(
+prompt: str,
+*,
+system_prompt: str,
+input_budget: int,
+reserved_tokens: int,
+) -&gt; tuple[str, int, bool]:</code></pre>
+<h3 id="3-beschreibung">3. Beschreibung</h3>
+<p>Diese interne Funktion nimmt einen Roh-Prompt, einen System-Prompt, ein maximales Token-Budget und eine Anzahl reservierter Tokens entgegen. Sie führt eine Reihe von Überprüfungen und Trimmvorgängen durch, um sicherzustellen, dass der resultierende Prompt die verfügbare Kapazität nicht überschreitet.</p>
+<h3 id="4-parameter">4. Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>Der ursprüngliche Text-Prompt, der optimiert werden soll.</td>
+</tr>
+<tr>
+<td><code>system_prompt</code></td>
+<td><code>str</code></td>
+<td>Der System-Prompt, dessen Token-Kosten für die Budgetberechnung berücksichtigt werden.</td>
+</tr>
+<tr>
+<td><code>input_budget</code></td>
+<td><code>int</code></td>
+<td>Das Gesamtbudget an verfügbaren Tokens (oder einer ähnlichen Metrik).</td>
+</tr>
+<tr>
+<td><code>reserved_tokens</code></td>
+<td><code>int</code></td>
+<td>Die Anzahl der Tokens, die für andere Zwecke reserviert sind und vom Budget abgezogen werden müssen.</td>
+</tr>
+</tbody></table>
+<h3 id="5-r-ckgabe-return-value">5. Rückgabe (Return Value)</h3>
+<p>Die Funktion gibt ein Tupel zurück, bestehend aus:</p>
+<ol>
+<li>**<code>str</code>**: Der finalisierte, auf das Budget zugeschnittene Prompt.</li>
+<li>**<code>int</code>**: Die geschätzte Token-Zählung des finalisierten Prompts.</li>
+<li>**<code>bool</code>**: Ein boolescher Wert, der angibt, ob der resultierende Prompt vom ursprünglichen Prompt abgewickelt wurde (<code>True</code>, wenn der Prompt verändert wurde, <code>False</code> andernfalls).</li>
+</ol>
+<h3 id="6-funktionsweise-logikfluss">6. Funktionsweise (Logikfluss)</h3>
+<ol>
+<li><strong>Normalisierung:</strong> Der eingegebene <code>prompt</code> wird über die interne Funktion <code>_normalize_prompt_text</code> in eine normalisierte Form umgewandelt.</li>
+<li><strong>Leere Prüfung:</strong> Wenn die normalisierte Prompt leer ist, werden leere Werte für Prompt, Token-Zählung und <code>False</code> zurückgegeben.</li>
+<li><strong>Verfügbare Tokens Berechnung:</strong></li>
+</ol>
+<ul>
+<li>Die verfügbaren Tokens werden berechnet, indem das <code>input_budget</code> von den geschätzten Kosten des <code>system_prompt</code> und den <code>reserved_tokens</code> abgezogen wird.</li>
+<li>Der Wert wird auf einen Mindestwert von 256 erhöht (<code>max(256, ...)</code>).</li>
+</ul>
+<ol>
+<li><strong>Erste Überprüfung (Kein Trimming nötig):</strong></li>
+</ol>
+<ul>
+<li>Die geschätzte Token-Zählung des normalisierten Prompts wird berechnet.</li>
+<li>Wenn die geschätzten Tokens kleiner oder gleich den verfügbaren Tokens sind, wird der normalisierte Prompt direkt zurückgegeben.</li>
+</ul>
+<ol>
+<li><strong>Trimming-Strategie (Wenn Budget überschritten):</strong></li>
+</ol>
+<ul>
+<li><strong>Maximale Zeichenbegrenzung:</strong> Die maximale Zeichenanzahl (<code>max_chars</code>) wird auf den kleineren Wert zwischen der tatsächlichen Länge des normalisierten Prompts und einer Berechnung basierend auf dem verfügbaren Budget (<code>int(available_tokens * 2.35)</code>) sowie einem absoluten Minimum von 720 Zeichen begrenzt.</li>
+<li><strong>Erstes Trimming:</strong> Der Prompt wird mit <code>_trim_text_middle</code> auf die berechnete <code>max_chars</code> reduziert.</li>
+<li><strong>Iterativer Anpassung:</strong> Solange die geschätzte Token-Zählung des <em>trimmten</em> Prompts die verfügbaren Tokens überschreitet <strong>UND</strong> die maximale Zeichenanzahl noch über 720 hinausgeht:</li>
+<li>Die <code>max_chars</code> wird auf 82% des aktuellen Wertes reduziert (mit einem Mindestwert von 720).</li>
+<li>Der Prompt wird erneut mit <code>_trim_text_middle</code> auf die neue <code>max_chars</code> reduziert.</li>
+<li><strong>Endgültige Rückgabe:</strong> Das Ergebnis besteht aus dem finalen <code>trimmed_prompt</code>, seiner neuen Token-Zählung und einem booleschen Wert, der anzeigt, ob eine Modifikation vorgenommen wurde.</li>
+</ul>
+<h3 id="7-abh-ngigkeiten">7. Abhängigkeiten</h3>
+<p>Die Funktion hängt von folgenden internen Funktionen ab (die in dieser Dokumentation nicht detailliert beschrieben werden):</p>
+<ul>
+<li><code>_normalize_prompt_text(prompt: str) -&gt; str</code>: Normalisiert den eingegebenen Text.</li>
+<li><code>_estimate_token_count(text: str) -&gt; int</code>: Schätzt die Token-Anzahl eines Textes.</li>
+<li><code>_trim_text_middle(text: str, max_chars: int) -&gt; str</code>: Trimmt den Text, um die Zeichenanzahl zu begrenzen.</li>
+</ul>
+<h3 id="8-anwendungsf-lle">8. Anwendungsfälle</h3>
+<p>Diese Funktion ist entscheidend für die <strong>Prompt-Optimierung</strong> in Systemen, die auf LLMs basieren, um sicherzustellen, dass die Eingabe innerhalb der durch die Anwendung definierte Ressourcenbeschränkung (Token-Budget) bleibt. Sie wird verwendet, um:</p>
+<ul>
+<li><strong>Token-Sparsamkeit:</strong> Lange Prompts zu kürzen, ohne die Kerninformation zu verlieren.</li>
+<li><strong>Ressourcenmanagement:</strong> Die Nutzung von API-Limits oder Speicherbeschränkungen zu gewährleisten.</li>
+<li><strong>Konsistente Eingabe:</strong> Sicherzustellen, dass alle Prompts eine vergleichbare Länge oder Token-Dichte aufweisen.</li>
+</ul>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält verschiedene interne Funktionen, die für die Verarbeitung und Normalisierung von Eingabedaten (insbesondere kurzen Antworten und Modell-Labels) in einem KI-Service-Kontext verwendet werden. Die Funktionen dienen der Bereinigung, Formatierung und Extraktion spezifischer Informationen aus den eingegebenen Strings.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-unwrap-short-reply-value-str-str">1. <code>_unwrap_short_reply(value: str) -&gt; str</code></h3>
+<p>Diese Funktion dient dazu, eine eingegebene Zeichenkette (<code>value</code>) zu parsen und zu bereinigen, um eine saubere, finale Antwort zu erhalten. Sie führt mehrere spezifische Formatierungsregeln durch: <strong>Beschreibung:</strong> Die Funktion nimmt einen String entgegen, sanitisiert ihn, entfernt spezifische Formatierungszeichen (wie <code>**</code>, <code>__</code>, <code>*</code>, <code>_</code>, `<code> </code> `<code>) und entfernt eventuell ein abschließendes Satzzeichen (</code>.<code>, </code>!<code>, </code>?`), wenn die Anzahl der Leerzeichen begrenzt ist. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: str</code>: Der eingehende String, der verarbeitet werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der bereinigte und normalisierte String.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Erste Reinigung:</strong> Der String wird sanitisiert (<code>_sanitize_model_text</code>), auf Zeilenumbrüche aufgeteilt, und die erste Zeile wird entfernt und Leerzeichen am Anfang/Ende entfernt.</li>
+<li><strong>Doppel-Stern-Entfernung:</strong> Wenn der Text mit <code>**</code> oder <code>__</code> beginnt und mit <code>**</code> oder <code>__</code> endet und länger als 4 Zeichen ist, werden diese äußeren Zeichen entfernt.</li>
+<li><strong>Stern- oder Unterstrich-Entfernung:</strong> Wenn der Text mit <code>*</code>, <code>_</code> oder `<code> </code> `` beginnt und mit demselben Zeichen endet und länger als 2 Zeichen ist, werden die äußeren Zeichen entfernt.</li>
+<li><strong>Satzzeichen-Entfernung:</strong> Wenn der Text existiert, das letzte Zeichen ein Satzzeichen (<code>.</code>, <code>!</code>, <code>?</code>) ist und die Anzahl der Leerzeichen maximal 4 beträgt, wird dieses letzte Zeichen entfernt und Leerzeichen am Ende entfernt.</li>
+<li><strong>Finale Reinigung:</strong> Der gesamte String wird abschließend mit <code>.strip()</code> bereinigt.</li>
+<p>---</p>
+</ol>
+<h3 id="2-extract-exact-short-reply-target-prompt-str-str">2. <code>_extract_exact_short_reply_target(prompt: str) -&gt; str</code></h3>
+<p>Diese Funktion sucht nach einem spezifischen &quot;Ziel&quot; (Target) innerhalb eines Prompts basierend auf einer definierten Liste von Mustern (<code>SHORT_REPLY_PATTERNS</code>). <strong>Beschreibung:</strong> Sie durchsucht den eingegebenen <code>prompt</code> nach Mustern, die ein <code>target</code>-Feld enthalten. Sie führt zusätzliche Formatierungsregeln auf das extrahierte Target an, insbesondere die Entfernung von äußeren Anführungszeichen, und entfernt abschließende Satzzeichen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>prompt: str</code>: Der eingegebene Prompt, der nach dem Ziel gesucht wird.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der extrahierte und normalisierte Target-String, oder ein leerer String (<code>&quot;&quot;</code>), falls kein Match gefunden wird oder das Target leer ist.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Initialisierung:</strong> Der Prompt wird als String behandelt und leerer Prompt wird ignoriert.</li>
+<li><strong>Muster-Suche:</strong> Iteriert über die globale Konstante <code>SHORT_REPLY_PATTERNS</code>.</li>
+<li><strong>Match-Verarbeitung:</strong> Wenn ein Muster übereinstimmt, wird das <code>target</code>-Feld extrahiert.</li>
+<li><strong>Target-Bereinigung (Anführungszeichen):</strong> Wenn das Target mit <code>&quot;</code> oder <code>&#x27;</code> oder `<code> </code> `` beginnt und mit demselben Zeichen endet, werden diese äußeren Zeichen entfernt.</li>
+<li><strong>Whitespace-Normalisierung:</strong> Alle Leerzeichen im Target werden durch einen einzelnen Leerzeichen ersetzt (<code>re.sub(r&quot;\s+&quot;, &quot; &quot;, target)</code>).</li>
+<li><strong>Satzzeichen-Entfernung:</strong> Wenn das Target existiert, das letzte Zeichen ein Satzzeichen ist und die Leerzeichenanzahl maximal 4 beträgt, wird dieses letzte Zeichen entfernt.</li>
+<li><strong>Ergebnis:</strong> Das erste gültige Target wird zurückgegeben.</li>
+<p>---</p>
+</ol>
+<h3 id="3-normalize-model-label-value-any-fallback-str-str">3. <code>_normalize_model_label(value: Any, *, fallback: str = &quot;&quot;) -&gt; str</code></h3>
+<p>Diese Funktion ist dafür verantwortlich, eine beliebige Eingabe (<code>value</code>) in einen standardisierten Modell-Label umzuwandeln. <strong>Beschreibung:</strong> Sie konvertiert die Eingabe in einen String, entfernt Backslashes (<code>\</code>) durch Schrägstriche (<code>/</code>), extrahiert den Teil nach dem letzten Schrägstrich und prüft, ob die Endung <code>.gguf</code> vorliegt, um den Dateinamen (Stem) zu extrahieren. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: Any</code>: Die Eingabe, die normalisiert werden soll (kann Any sein).</li>
+<li><code>fallback: str = &quot;&quot;</code>: Ein optionaler String, der verwendet wird, falls die ursprüngliche <code>value</code> leer ist.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der normalisierte Modell-Label-String.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>String-Konvertierung:</strong> Die Eingabe wird zu einem String konvertiert und Leerzeichen am Anfang/Ende entfernt.</li>
+<li><strong>Fallback-Prüfung:</strong> Wenn die Konvertierung leer ist, wird der <code>fallback</code>-String verwendet.</li>
+<li><strong>Backslash-Ersetzung:</strong> Alle Backslashes (<code>\</code>) werden durch Schrägstriche (<code>/</code>) ersetzt.</li>
+<li><strong>Path-Extraktion:</strong> Der String wird nach dem letzten Schrägstrich (<code>/</code>) aufgeteilt, und der letzte Teil wird extrahiert und bereinigt.</li>
+<li>**<code>.gguf</code>-Erkennung:** Wenn der extrahierte Teil mit <code>.gguf</code> endet, wird der Dateiname (Stem) über die <code>Path</code>-Klasse extrahiert und zurückgegeben.</li>
+<li><strong>Standard-Rückgabe:</strong> Andernfalls wird der bereinigte Teil zurückgegeben.</li>
+</ol>
+<h2 id="abh-ngigkeiten-und-konstanten">Abhängigkeiten und Konstanten</h2>
+<ul>
+<li>**<code>SHORT_REPLY_PATTERNS</code>**: Eine globale Liste von Mustern (nicht definiert in diesem Ausschnitt), die für die Extraktion von Short Replies verwendet werden.</li>
+<li>**<code>Path</code>**: Eine Klasse (wahrscheinlich aus dem <code>pathlib</code>-Modul), die zur Manipulation von Dateipfaden verwendet wird.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<table><thead><tr>
+<th>Funktion</th>
+<th>Zweck</th>
+<th>Eingabe</th>
+<th>Ausgabe</th>
+</tr></thead><tbody>
+<tr>
+<td><code>_unwrap_short_reply</code></td>
+<td>Bereinigung und Formatierung von kurzen Antworten.</td>
+<td><code>str</code></td>
+<td>Bereinigter <code>str</code></td>
+</tr>
+<tr>
+<td><code>_extract_exact_short_reply_target</code></td>
+<td>Extraktion eines spezifischen Ziels aus einem Prompt.</td>
+<td><code>str</code> (Prompt)</td>
+<td>Extrahiertes <code>str</code> (Target)</td>
+</tr>
+<tr>
+<td><code>_normalize_model_label</code></td>
+<td>Konvertierung einer beliebigen Eingabe in ein standardisiertes Modell-Label.</td>
+<td><code>Any</code>, <code>str</code> (optional)</td>
+<td>Normalisierter <code>str</code></td>
+</tr>
+</tbody></table>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei (<code>ai_service.py</code>) enthält eine Reihe von Helper-Funktionen und einer Klasse (die im bereitgestellten Ausschnitt nur teilweise definiert ist), die wahrscheinlich für die Verwaltung, Validierung und Bereinigung von Modell-IDs sowie Pfad-Vergleichen innerhalb eines KI-Dienstes verwendet werden.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="sanitize-model-id-value-any-fallback-str-local-model-str"><code>_sanitize_model_id(value: Any, *, fallback: str = &quot;local-model&quot;) -&gt; str</code></h3>
+<p>Diese Funktion dient dazu, eine eingegebene Modell-ID zu bereinigen und in ein konsistentes Format umzuwandeln. <strong>Zweck:</strong> Die Funktion nimmt einen beliebigen Eingabewert (<code>value</code>), normalisiert ihn, entfernt bestimmte Zeichen und stellt sicher, dass ein gültiger String zurückgegeben wird. Falls die Bereinigung fehlschlägt, wird ein Standardwert verwendet. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: Any</code>: Der Eingabewert, der bereinigt werden soll (z.B. ein String, eine Zahl oder ein Objekt).</li>
+<li><code>fallback: str = &quot;local-model&quot;</code>: Ein Standardwert, der verwendet wird, falls die Bereinigung des Eingabewerts zu leerem oder ungültigem Ergebnis führt.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Die bereinigte und normalisierte Modell-ID.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Normalisierung und Kleinbuchstaben:</strong> Der Eingabewert wird zuerst über <code>_normalize_model_label</code> normalisiert und in Kleinbuchstaben umgewandelt.</li>
+<li><strong>Substitutions:</strong> Alle Unterstrichzeichen (<code>_</code>) werden durch Bindestriche (<code>-</code>) ersetzt.</li>
+<li><strong>Muster-Substitution:</strong> Das globale Muster <code>MODEL_ID_SANITIZE_PATTERN</code> wird durch Bindestriche ersetzt.</li>
+<li><strong>Trimmen:</strong> Leerzeichen am Anfang und Ende werden entfernt.</li>
+<li><strong>Fallback-Prüfung:</strong> Wenn das Ergebnis leer ist (<code>text or fallback</code>), wird der <code>fallback</code>-Wert zurückgegeben.</li>
+<p><strong>Abhängigkeiten:</strong></p>
+</ol>
+<ul>
+<li><code>_normalize_model_label(value, fallback=fallback)</code>: Eine externe Funktion zur Normalisierung des Modell-Labels.</li>
+<li><code>MODEL_ID_SANITIZE_PATTERN</code>: Eine globale Konstante oder Variable, die das Muster für die Substitution enthält.</li>
+<p>---</p>
+</ul>
+<h3 id="same-drive-left-path-right-path-bool"><code>_same_drive(left: Path, right: Path) -&gt; bool</code></h3>
+<p>Diese Funktion vergleicht die Laufwerksbuchstaben (Drive Letters) von zwei <code>Path</code>-Objekten, um festzustellen, ob sie auf demselben Laufwerk liegen. <strong>Zweck:</strong> Bestimmt, ob zwei Pfade auf demselben Laufwerk (z.B. <code>C:</code> oder <code>/</code>) liegen, unter Berücksichtigung der Groß-/Kleinschreibung. <strong>Parameter:</strong></p>
+<ul>
+<li><code>left: Path</code>: Der erste Pfad.</li>
+<li><code>right: Path</code>: Der zweite Pfad.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn beide Pfade auf demselben Laufwerk liegen; <code>False</code> andernfalls.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Prüft, ob sowohl <code>left</code> als auch <code>right</code> einen <code>drive</code>-Attribut besitzen.</li>
+<li>Vergleicht die Laufwerksbuchstaben von <code>left.drive</code> und <code>right.drive</code> nach ihrer Case-Fold-Darstellung (unabhängig von der Groß-/Kleinschreibung).</li>
+<p>---</p>
+</ol>
+<h3 id="first-existing-path-candidates-list-path-path-none"><code>_first_existing_path(candidates: list[Path]) -&gt; Path | None</code></h3>
+<p>Diese Funktion sucht in einer Liste von Pfaden nach dem ersten Pfad, der existiert und eine Datei ist. <strong>Zweck:</strong> Wählt den ersten existierenden Dateipfad aus einer gegebenen Liste aus. Falls keine existierende Datei gefunden wird, wird der erste Pfad der Liste als Standardwert zurückgegeben. <strong>Parameter:</strong></p>
+<ul>
+<li><code>candidates: list[Path]</code>: Eine Liste von <code>Path</code>-Objekten, die durchsucht werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path | None</code>: Der Pfad zur ersten existierenden Datei, oder <code>None</code>, falls keine Datei in der Liste existiert. Falls die Liste leer ist, wird der erste Element der Liste zurückgegeben.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Iteriert durch die <code>candidates</code>-Liste.</li>
+<li>Für jeden <code>candidate</code>: Prüft, ob <code>candidate.exists()</code> wahr ist <strong>und</strong> ob <code>candidate.is_file()</code> wahr ist.</li>
+<li>Wenn eine solche Datei gefunden wird, wird dieser Pfad sofort zurückgegeben.</li>
+<li>Wenn die Schleife ohne Erfolg endet (keine existierende Datei gefunden), wird der erste Eintrag der <code>candidates</code>-Liste zurückgegeben (falls die Liste nicht leer ist).</li>
+<li>Wenn die <code>candidates</code>-Liste leer ist, wird <code>None</code> zurückgegeben.</li>
+<p>---</p>
+</ol>
+<h3 id="klasse-teilweise-definiert">Klasse (Teilweise definiert)</h3>
+<p>Die Klasse, die mit <code>&lt;|end|&gt;</code> markiert ist, ist im bereitgestellten Codeausschnitt nicht vollständig definiert. Sie scheint die Hauptlogik des KI-Dienstes zu repräsentieren, da die oben genannten Helper-Funktionen darauf hindeuten, dass diese Klasse für die Modellverwaltung und Pfad-Logik zuständig ist. <strong>Anmerkung:</strong> Um eine vollständige Dokumentation der Klasse erstellen zu können, sind die Definitionen der Methoden und Attribute dieser Klasse erforderlich.</p>
+<h2 id="abh-ngigkeiten-und-voraussetzungen">Abhängigkeiten und Voraussetzungen</h2>
+<ul>
+<li>**<code>Path</code>:** Die Verwendung von <code>Path</code>-Objekten deutet stark auf die Verwendung des Python-Moduls <code>pathlib</code> hin.</li>
+<li><strong>Globale Konstanten:</strong> Die Funktion <code>_sanitize_model_id</code> hängt von externen Variablen (<code>MODEL_ID_SANITIZE_PATTERN</code>) und externen Funktionen (<code>_normalize_model_label</code>) ab.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<ul>
+<li><strong>Modell-ID-Verwaltung:</strong> Wird verwendet, um unsaubere oder formatierte Modell-IDs in ein standardisiertes Format umzuwandeln, um konsistente Referenzen zu gewährleisten.</li>
+<li><strong>Pfad-Validierung:</strong> Wird verwendet, um zu prüfen, ob zwei Pfade auf demselben physischen Laufwerk liegen, was für die Zugriffskontrolle oder die Datenquelle wichtig ist.</li>
+<li><strong>Ressourcen-Erkennung:</strong> Wird verwendet, um schnell den ersten verfügbaren oder existierenden Pfad in einer Liste von Kandidaten zu identifizieren.</li>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 6425 &gt;= 4096</p>
+<p>Gerne, hier ist ein Entwurf für eine technische Dokumentation, basierend auf dem bereitgestellten Code-Ausschnitt (<code>ai_service.py</code>, Teil 8/11). Da Sie nur den <strong>Code-Ausschnitt</strong> (<code>class &lt;|end|&gt;</code>) und nicht den vollständigen Kontext oder den eigentlichen Code sehen, werde ich eine <strong>strukturierte, allgemeine Dokumentationsvorlage</strong> erstellen, die Sie mit den spezifischen Details aus <code>ai_service.py</code> füllen können. ---</p>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<p><strong>Version:</strong> 1.0 (oder aktuelle Version) <strong>Datum der letzten Änderung:</strong> [Datum einfügen] <strong>Autor:</strong> [Ihr Name/Team] <strong>Zweck:</strong> Diese Dokumentation beschreibt die Architektur, die Funktionsweise und die API-Schnittstellen der Klasse <code>[Name der Klasse, z.B. AIService]</code> in der Datei <code>ai_service.py</code>. ---</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>ai_service.py</code> definiert die zentrale Schnittstelle für die Verwaltung und Ausführung von KI-Diensten. Die Klasse <code>[Name der Klasse]</code> dient als Hauptmodul, um [kurze Beschreibung der Hauptfunktion, z.B. Anfragen an verschiedene ML-Modelle zu routen, Daten zu verarbeiten oder spezifische KI-Funktionen auszuführen].</p>
+<h2 id="2-klasse-name-der-klasse">2. Klasse: <code>[Name der Klasse]</code></h2>
+<h3 id="2-1-beschreibung">2.1. Beschreibung</h3>
+<p>Die Klasse <code>[Name der Klasse]</code> ist verantwortlich für [detaillierte Beschreibung der Hauptaufgabe der Klasse]. Sie orchestriert die Kommunikation mit externen Diensten (z.B. APIs, Datenbanken, lokalen Modellen) und stellt eine konsistente Schnittstelle für die Anwendungsebene bereit.</p>
+<h3 id="2-2-konstruktor-init">2.2. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert die notwendigen Ressourcen und Konfigurationen für die Instanz. <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht?</th>
+</tr></thead><tbody>
+<tr>
+<td><code>[Parameter_Name_1]</code></td>
+<td>[Typ, z.B. str, dict]</td>
+<td>[Beschreibung, z.B. API-Schlüssel oder Konfigurationspfad.]</td>
+<td>[Ja/Nein]</td>
+</tr>
+<tr>
+<td><code>[Parameter_Name_2]</code></td>
+<td>[Typ]</td>
+<td>[Beschreibung, z.B. Timeout-Wert für Anfragen.]</td>
+<td>[Ja/Nein]</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<ul>
+<li><code>self</code>: Die Instanz der Klasse.</li>
+</ul>
+<h3 id="2-3-methoden">2.3. Methoden</h3>
+<h4 id="methode-1-name-der-methode-1">Methode 1: <code>[Name_der_Methode_1]</code></h4>
+<p><strong>Beschreibung:</strong> Diese Methode führt die primäre Funktion [Beschreibung der Funktion, z.B. das Generieren einer Textantwort] durch. Sie nimmt [Eingabeparameter] entgegen und gibt [Ausgabeparameter] zurück. <strong>Signature:</strong></p>
+<pre><code class="language-python">def [Name_der_Methode_1]([param1], [param2], ...):
+# [Kurze Erklärung des internen Ablaufs]
+# ...
+return [Typ der Rückgabe]</code></pre>
+<p><strong>Details und Logik:</strong></p>
+<ul>
+<li><strong>Input Validation:</strong> [Beschreiben Sie, welche Validierungen auf die Eingaben angewendet werden.]</li>
+<li><strong>Externe Abhängigkeiten:</strong> [Welche externen Dienste oder Bibliotheken werden in dieser Methode aufgerufen?]</li>
+<li><strong>Fehlerbehandlung:</strong> [Wie werden Fehler (z.B. Timeout, API-Fehler) behandelt? Wird eine <code>try...except</code>-Blöcke verwendet?]</li>
+<p><strong>Beispiel (Optional):</strong></p>
+</ul>
+<pre><code class="language-python"># Beispiel für die Nutzung
+result = self.method_name(prompt=&quot;Hallo Welt&quot;)
+print(result)</code></pre>
+<h4 id="methode-2-name-der-methode-2">Methode 2: <code>[Name_der_Methode_2]</code></h4>
+<p><strong>Beschreibung:</strong> [Beschreibung der zweiten Funktion, z.B. die Synchronisation von Zuständen oder das Laden eines Modells.] <strong>Signature:</strong></p>
+<pre><code class="language-python">def [Name_der_Methode_2]([param1], [param2], ...):
+# ...</code></pre>
+<p><strong>Rückgabe:</strong></p>
+<ul>
+<li>[Typ der Rückgabe]</li>
+</ul>
+<h3 id="2-4-attribute-optional">2.4. Attribute (Optional)</h3>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>self.config</code></td>
+<td>[Typ]</td>
+<td>Speichert die initialisierten Konfigurationsparameter.</td>
+</tr>
+<tr>
+<td><code>self._cache</code></td>
+<td>[Typ]</td>
+<td>[Beschreibung, z.B. Cache für kürzlich verwendete Prompts.]</td>
+</tr>
+</tbody></table>
+<h2 id="3-abh-ngigkeiten-und-voraussetzungen">3. Abhängigkeiten und Voraussetzungen</h2>
+<h3 id="3-1-erforderliche-bibliotheken-dependencies">3.1. Erforderliche Bibliotheken (Dependencies)</h3>
+<p>Um diese Klasse korrekt zu verwenden, sind folgende Bibliotheken installiert sein:</p>
+<ul>
+<li><strong>Python Standard Library:</strong> [N/A oder spezifische Module]</li>
+<li><strong>Externe Bibliotheken:</strong></li>
+<li><code>[Bibliothek_A]</code> (Version: [X.Y.Z]) – Für [Zweck]</li>
+<li><code>[Bibliothek_B]</code> (Version: [X.Y.Z]) – Für [Zweck]</li>
+</ul>
+<h3 id="3-2-voraussetzungen">3.2. Voraussetzungen</h3>
+<ol>
+<li><strong>API-Schlüssel:</strong> Es wird ein gültiger API-Schlüssel für [Dienstname] benötigt.</li>
+<li><strong>Netzwerkverbindung:</strong> Eine stabile Internetverbindung ist erforderlich, um externe Dienste zu erreichen.</li>
+<li><strong>Umgebungsvariablen:</strong> [Falls zutreffend, welche Umgebungsvariablen müssen gesetzt sein?]</li>
+</ol>
+<h2 id="4-fehlerbehandlung-error-handling">4. Fehlerbehandlung (Error Handling)</h2>
+<p>Die Klasse implementiert eine robuste Fehlerbehandlung, um Ausfällen bei externen Diensten zu minimieren.</p>
+<ul>
+<li>**Fehlerklasse 1 (z.B. <code>TimeoutError</code>):** Wird durch [spezifische Logik] abgefangen und führt zu einer Wiederholungsversuch-Strategie.</li>
+<li>**Fehlerklasse 2 (z.B. <code>AuthenticationError</code>):** Wird durch [spezifische Logik] abgefangen und gibt einen spezifischen Fehlercode zurück.</li>
+<li><strong>Generische Fehler:</strong> Alle nicht spezifisch behandelten Python-Fehler werden über einen zentralen <code>try...except Exception as e:</code> Block abgefängt und protokolliert.</li>
+<p>---</p>
+</ul>
+<h3 id="n-chste-schritte-f-r-sie"><strong>Nächste Schritte für Sie:</strong></h3>
+<p>Bitte ersetzen Sie die Platzhalter in eckigen Klammern (<code>[...]</code>) durch die tatsächlichen Details aus Ihrem Code (<code>ai_service.py</code>), insbesondere:</p>
+<ol>
+<li><strong>Klasse und Methode:</strong> Welche Klasse und welche Methoden sind in Teil 8/11 definiert?</li>
+<li><strong>Parameter und Rückgaben:</strong> Welche Daten fließen in und kommen aus den Methoden?</li>
+<li><strong>Logik:</strong> Wie kommuniziert die Klasse mit den externen Diensten?</li>
+<li><strong>Fehlerbehandlung:</strong> Wie wird mit Fehlern umgegangen?</li>
+</ol>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 8246 &gt;= 4096</p>
+<p>Gerne, hier ist ein Entwurf für eine technische Dokumentation, basierend auf der Annahme, dass <code>ai_service.py</code> eine Python-Klasse namens <code>ai_service</code> definiert, die wahrscheinlich eine Art von KI- oder Dienstleistungsschnittstelle bereitstellt. Da Sie nur den Anfang des Codes (<code>class &lt;|end|&gt;</code>) bereitgestellt haben, werde ich eine <strong>strukturierte, allgemeine Dokumentationsvorlage</strong> erstellen, die Sie mit den tatsächlichen Details des Codes füllen können. ---</p>
+<h1 id="technische-dokumentation-ai-service-py">Technische Dokumentation: <code>ai_service.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team]</p>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Dieses Dokument beschreibt die Struktur, Funktionalität und die Verwendung der Python-Klasse <code>ai_service</code>, die in der Datei <code>ai_service.py</code> implementiert ist. Diese Klasse dient als zentraler Schnittpunkt für die Interaktion mit verschiedenen KI- oder Dienstleistungsservices. Sie abstrahiert die komplexen Implementierungen der zugrundeliegenden Modelle und API-Aufrufe.</p>
+<h2 id="2-architektur-und-design">2. Architektur und Design</h2>
+<h3 id="2-1-klassen-bersicht">2.1. Klassenübersicht</h3>
+<table><thead><tr>
+<th>Klasse</th>
+<th>Beschreibung</th>
+<th>Hauptzweck</th>
+</tr></thead><tbody>
+<tr>
+<td><code>ai_service</code></td>
+<td>Die Hauptklasse, die die gesamte Logik für die KI-Dienstleistungen kapselt.</td>
+<td>Bereitstellung einer konsistenten API für KI-Aufrufe.</td>
+</tr>
+<tr>
+<td><em>(Weitere Klassen, falls vorhanden)</em></td>
+<td>[Beschreibung]</td>
+<td>[Zweck]</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-design-prinzipien">2.2. Design-Prinzipien</h3>
+<ul>
+<li><strong>Abstraktion:</strong> Die Klasse trennt die Anwendungsschicht von den spezifischen Implementierungen der KI-Modelle (z.B. OpenAI, Hugging Face, interne Modelle).</li>
+<li><strong>Modularität:</strong> Jede spezifische Funktion oder Dienstleistung sollte idealerweise in eine separate Methode oder einen Unterklassensatz ausgelagert werden.</li>
+<li><strong>Konfiguration:</strong> Sensible Schlüssel (API-Keys, Modellnamen) sollten über Konfigurationsparameter oder Umgebungsvariablen initialisiert werden.</li>
+</ul>
+<h2 id="3-klasse-ai-service">3. Klasse: <code>ai_service</code></h2>
+<h3 id="3-1-definition">3.1. Definition</h3>
+<pre><code class="language-python">class ai_service:
+# ... (Hier folgt der vollständige Code)</code></pre>
+<h3 id="3-2-konstruktor-init">3.2. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert die notwendigen Ressourcen, Konfigurationen und Verbindungen, bevor die Klasse verwendet wird. <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht</th>
+</tr></thead><tbody>
+<tr>
+<td><code>api_key</code></td>
+<td><code>str</code></td>
+<td>Der API-Schlüssel für den zugrundeliegenden Dienst (z.B. OpenAI Key).</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td><code>model_name</code></td>
+<td><code>str</code></td>
+<td>Der Name des zu verwendenden KI-Modells (z.B. &quot;gpt-4o&quot;, &quot;llama-2&quot;).</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td><code>timeout_seconds</code></td>
+<td><code>int</code></td>
+<td>Die maximale Zeit, die der Service für eine Anfrage warten darf, in Sekunden.</td>
+<td>Nein (Standardwert: 30)</td>
+</tr>
+<tr>
+<td><code>default_config</code></td>
+<td><code>dict</code></td>
+<td>Eine Optionale Dictionary, um Standardeinstellungen für Anfragen festzulegen.</td>
+<td>Nein</td>
+</tr>
+</tbody></table>
+<p><strong>Werte:</strong></p>
+<ul>
+<li><strong>Return Value:</strong> <code>None</code> (Wird die Instanz zurückgeben).</li>
+</ul>
+<h3 id="3-3-methoden">3.3. Methoden</h3>
+<h4 id="3-3-1-generate-text-prompt-str-temperature-float-0-7-str">3.3.1. <code>generate_text(prompt: str, temperature: float = 0.7) -&gt; str</code></h4>
+<p><strong>Beschreibung:</strong> Sendet einen Text-Prompt an das zugrundeliegende KI-Modell und empfängt die generierte Textantwort. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>prompt</code>** (<code>str</code>): Der Eingabetext oder die Anweisung, die das Modell verarbeiten soll.</li>
+<li>**<code>temperature</code>** (<code>float</code>, optional): Steuert die Kreativität und Zufälligkeit der Ausgabe (Wert zwischen 0.0 und 2.0). Standardwert: 0.7.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>str</code>**: Die generierte Textantwort des KI-Modells.</li>
+<p><strong>Fehlerbehandlung:</strong></p>
+<li>**<code>ValueError</code>**: Wird ausgelöst, wenn <code>prompt</code> leer ist.</li>
+<li>**<code>APIError</code> (Custom Exception)**: Wird bei Netzwerkfehlern oder ungültigen API-Antworten geworfen.</li>
+</ul>
+<h4 id="3-3-2-analyze-sentiment-text-str-dict">3.3.2. <code>analyze_sentiment(text: str) -&gt; dict</code></h4>
+<p><strong>Beschreibung:</strong> Analysiert den bereitgestellten Text auf seine emotionale oder thematische Stimmung. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>text</code>** (<code>str</code>): Der Text, der analysiert werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>dict</code>**: Ein Dictionary, das die Analyseergebnisse enthält (z.B. <code>{&#x27;sentiment&#x27;: &#x27;positive&#x27;, &#x27;score&#x27;: 0.92, &#x27;keywords&#x27;: [...]}</code>).</li>
+<p><strong>Fehlerbehandlung:</strong></p>
+<li>**<code>TypeError</code>**: Wird ausgelöst, wenn <code>text</code> nicht ein String ist.</li>
+</ul>
+<h4 id="3-3-3-config-model-model-id-str-config-dict-bool">3.3.3. <code>config_model(model_id: str, config: dict) -&gt; bool</code></h4>
+<p><strong>Beschreibung:</strong> Konfiguriert die internen Einstellungen der Klasse für einen bestimmten Modelltyp. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>model_id</code>** (<code>str</code>): Der spezifische ID des Modells, das konfiguriert werden soll.</li>
+<li>**<code>config</code>** (<code>dict</code>, optional): Spezifische Parameter für die Modellkonfiguration (z.B. <code>max_tokens</code>, <code>system_prompt</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>bool</code>**: <code>True</code>, wenn die Konfiguration erfolgreich angewendet wurde; <code>False</code> bei Fehlern (z.B. ungültige <code>model_id</code>).</li>
+</ul>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Klasse <code>ai_service</code> hängt von folgenden externen Bibliotheken ab:</p>
+<ul>
+<li>**<code>requests</code>**: Für die Durchführung von HTTP-Anfragen an externe API-Endpunkte.</li>
+<li>**<code>pydantic</code> (optional)**: Für die Validierung von Eingabedaten (falls verwendet).</li>
+<li>**[Weitere spezifische Bibliotheken, z.B. <code>openai</code>, <code>transformers</code>]**: Abhängig von der tatsächlichen Implementierung der Modellinteraktion.</li>
+</ul>
+<h2 id="5-verwendung-usage-examples">5. Verwendung (Usage Examples)</h2>
+<h3 id="5-1-beispiel-1-textgenerierung">5.1. Beispiel 1: Textgenerierung</h3>
+<pre><code class="language-python">from ai_service import ai_service
+# 1. Initialisierung
+try:
+service = ai_service(
+api_key=&quot;YOUR_SECRET_API_KEY&quot;,
+model_name=&quot;gpt-4o&quot;,
+timeout_seconds=60
+)
+# 2. Nutzung der Textgenerierungsfunktion
+prompt = &quot;Erstelle eine kurze Erklärung zur Quantenphysik für einen Laien.&quot;
+response = service.generate_text(prompt, temperature=0.8)
+print(&quot;--- Generierte Antwort ---&quot;)
+print(response)
+except Exception as e:
+print(f&quot;Ein Fehler ist aufgetreten: {e}&quot;)</code></pre>
+<h3 id="5-2-beispiel-2-sentiment-analyse">5.2. Beispiel 2: Sentiment-Analyse</h3>
+<pre><code class="language-python">from ai_service import ai_service
+# Initialisierung (wie oben)
+service = ai_service(api_key=&quot;...&quot;, model_name=&quot;sentiment-analyzer&quot;)
+text_to_analyze = &quot;Ich bin absolut begeistert von der neuen Funktion, sie ist unglaublich intuitiv und hat meine Arbeit enorm erleichtert.&quot;
+# Analyse durchführen
+analysis_result = service.analyze_sentiment(text_to_analyze)
+print(&quot;\n--- Analyseergebnis ---&quot;)
+print(analysis_result)</code></pre>
+<h2 id="6-fehlerbehandlung-error-handling">6. Fehlerbehandlung (Error Handling)</h2>
+<p>Die Klasse implementiert eine mehrstufige Fehlerbehandlung:</p>
+<ol>
+<li><strong>Input Validation:</strong> Überprüfung der Eingabeparameter (z.B. leere Prompts).</li>
+<li><strong>API/Network Errors:</strong> Abfangen von HTTP-Fehlern oder Timeout-Situationen und das Auswerfen einer benutzerdefinierten <code>APIError</code>.</li>
+<li><strong>Configuration Errors:</strong> Abfangen von Fehlern bei der Initialisierung oder Konfiguration.</li>
+<p><strong>Empfehlung für den Nutzer:</strong> Führen Sie immer <code>try...except</code> Blöcke um die Aufrufe der <code>ai_service</code>-Klasse, um robuste Anwendungen zu gewährleisten. --- <strong>Nächste Schritte:</strong> Bitte fügen Sie den eigentlichen Code von <code>ai_service.py</code> ein, damit ich diese Dokumentation präzisieren und die spezifischen Methoden und Abhängigkeiten exakt abbilden kann.</p>
+</ol>
+<h1 id="technische-dokumentation-localaiservice-klasse">Technische Dokumentation: <code>LocalAIService</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>LocalAIService</code> dient als zentraler Einstiegspunkt für die Verwaltung und Auswahl zwischen verschiedenen lokalen KI-Engines (insbesondere <code>LlamaCppService</code> und <code>LiteRTLmService</code>) für Aufgaben wie das Generieren von Inhalten oder das Beantworten von Anfragen. Sie abstrahiert die Komplexität der Auswahl des aktiven Dienstes und bietet eine flexible Schnittstelle für die Interaktion mit den zugrunde liegenden KI-Modellen.</p>
+<h2 id="2-klasse-localaiservice">2. Klasse: <code>LocalAIService</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert die Abhängigkeiten und konfiguriert die Pfade für die lokalen Modelle. <strong>Signature:</strong></p>
+<pre><code class="language-python">def __init__(self, repository: SchoolRepository, *, base_path: Path, data_path: Path) -&gt; None:
+# ...</code></pre>
+<p><strong>Parameter:</strong></p>
+<ul>
+<li><code>repository: SchoolRepository</code>: Eine Instanz der <code>SchoolRepository</code>-Klasse, die für die Abfrage von Konfigurationen (z.B. <code>ai_provider</code>) zuständig ist.</li>
+<li><code>base_path: Path</code>: Der Basisordner für die Modelle.</li>
+<li><code>data_path: Path</code>: Der Ordner für Daten, die für die Modelle benötigt werden.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfad-Resolution:</strong> <code>base_path</code> und <code>data_path</code> werden in absoluten Pfaden aufgelöst (<code>resolve(strict=False)</code>).</li>
+<li><strong>Service-Initialisierung:</strong></li>
+</ol>
+<ul>
+<li><code>self.llama = LlamaCppService(...)</code>: Initialisiert den Llama-basierten Dienst.</li>
+<li><code>self.litert = LiteRTLmService(...)</code>: Initialisiert den LiteRTLm-basierten Dienst.</li>
+</ul>
+<h3 id="2-2-methoden-und-eigenschaften">2.2. Methoden und Eigenschaften</h3>
+<h4 id="2-2-1-zugriff-ber-getattr-dynamic-attribute-access">2.2.1. Zugriff über <code>__getattr__</code> (Dynamic Attribute Access)</h4>
+<p>Diese Methode ermöglicht den dynamischen Zugriff auf Methoden und Eigenschaften der aktiven Unterklasse (entweder <code>self.llama</code> oder <code>self.litert</code>). <strong>Funktionsweise:</strong> Wenn ein Attribut nicht direkt existiert, wird <code>__getattr__</code> aufgerufen. Es wird der <code>_active_service()</code>-Status ermittelt, und das gesuchte Attribut wird von diesem aktiven Dienst abgerufen. <strong>Sicherheit:</strong></p>
+<ul>
+<li>Attribute, die mit <code>__</code> beginnen (z.B. <code>__init__</code>), werden als <code>AttributeError</code> geworfen.</li>
+<li>Fehlende Attribute werden mit einer spezifischen Fehlermeldung versehen, die angibt, welche Klasse das Problem verursacht hat.</li>
+</ul>
+<h4 id="2-2-2-eigenschaften-properties">2.2.2. Eigenschaften (Properties)</h4>
+<p>**<code>provider_id</code> (Property)**</p>
+<ul>
+<li><strong>Beschreibung:</strong> Gibt die eindeutige ID des aktuell aktiven KI-Anbieters zurück.</li>
+<li><strong>Implementierung:</strong> Ruft <code>provider_id()</code> des aktiven Dienstes ab.</li>
+<p>**<code>engine_id</code> (Property)**</p>
+<li><strong>Beschreibung:</strong> Gibt die eindeutige ID des aktuell aktiven KI-Engines zurück.</li>
+<li><strong>Implementierung:</strong> Ruft <code>engine_id()</code> des aktiven Dienstes ab.</li>
+</ul>
+<h4 id="2-2-3-logik-zur-auswahl-des-aktiven-dienstes-active-service">2.2.3. Logik zur Auswahl des aktiven Dienstes (<code>_active_service</code>)</h4>
+<p>Diese private Methode ist das Herzstück der Dienstauswahl und priorisiert die Dienste basierend auf Konfiguration und Verfügbarkeit. <strong>Logikpriorität:</strong></p>
+<ol>
+<li><strong>Provider-Präferenz (Konfiguration):</strong></li>
+</ol>
+<ul>
+<li>Sie prüft die Konfiguration aus dem Repository (<code>repository.get_setting(&quot;ai_provider&quot;, &quot;auto&quot;)</code>).</li>
+<li>Basierend auf dem Wert wird eine Alias-Zuordnung verwendet (z.B. <code>&quot;litert&quot;</code> wird zu <code>&quot;litert-lm&quot;</code>).</li>
+<li>Wenn die Präferenz <code>&quot;litert-lm&quot;</code> ist, wird <code>self.litert</code> zurückgegeben.</li>
+<li>Wenn die Präferenz <code>&quot;llama.cpp&quot;</code> ist, wird <code>self.llama</code> zurückgegeben.</li>
+</ul>
+<ol>
+<li><strong>LiteRTLm Verfügbarkeitsprüfung:</strong></li>
+</ol>
+<ul>
+<li>Wenn die Präferenz nicht explizit <code>litert-lm</code> oder <code>llama.cpp</code> ist, wird geprüft, ob <code>self.litert.resolved_model_path()</code> einen Wert zurückgibt <strong>UND</strong> ob alle Kandidatenpfade, die <code>self.litert._discover_binary_candidates()</code> liefert, existieren.</li>
+<li>Wenn diese Bedingung erfüllt ist, wird <code>self.litert</code> zurückgegeben.</li>
+</ul>
+<ol>
+<li><strong>Fallback:</strong></li>
+</ol>
+<ul>
+<li>Im Falle aller anderen Fälle wird <code>self.llama</code> zurückgegeben.</li>
+</ul>
+<h4 id="2-2-4-methoden-zur-interaktion">2.2.4. Methoden zur Interaktion</h4>
+<p>**<code>close(self) -&gt; None</code>**</p>
+<ul>
+<li><strong>Funktion:</strong> Schließt alle zugrunde liegenden Ressourcen der Dienste, um Speicher zu befreien.</li>
+<li><strong>Aktion:</strong> Ruft <code>close()</code> auf <code>self.litert</code> und <code>self.llama</code>.</li>
+<p>**<code>complete(**kwargs: Any) -&gt; tuple[str, str]</code>**</p>
+<li><strong>Funktion:</strong> Führt eine allgemeine Abschlussoperation durch.</li>
+<li><strong>Aktion:</strong> Ruft die <code>complete()</code> Methode des aktiven Dienstes auf.</li>
+<p>**<code>prepare_direct_completion(self, *, prompt: str, code: str, path_hint: str) -&gt; dict[str, str]</code>**</p>
+<li><strong>Funktion:</strong> Bereitet eine direkte Abschlussanfrage vor.</li>
+<li><strong>Aktion:</strong> Ruft <code>prepare_direct_completion()</code> des aktiven Dienstes auf.</li>
+<p>**<code>complete_direct_completion(self, *, prompt: str, code: str, path_hint: str) -&gt; dict[str, Any]</code>**</p>
+<li><strong>Funktion:</strong> Führt eine direkte Abschlussanfrage durch.</li>
+<li><strong>Aktion:</strong> Ruft <code>complete_direct_completion()</code> des aktiven Dienstes auf.</li>
+<p>**<code>status(self, *, enabled: bool = True) -&gt; dict[str, Any]</code>**</p>
+<li><strong>Funktion:</strong> Gibt den aktuellen Status der aktiven Dienste zurück.</li>
+<li><strong>Aktion:</strong></li>
+</ul>
+<ol>
+<li>Ruft den Status des aktiven Dienstes (<code>_active_service()</code>) ab.</li>
+<li>Fügt die aktuell gewählte <code>provider_preference</code> hinzu.</li>
+<li>Erstellt eine Liste von verfügbaren Anbietern (<code>available_providers</code>), die den Status von <code>litert</code> und <code>llama</code> (insbesondere <code>resolved_model_path()</code> und die Liste der gefundenen Binärpfade) abbildet.</li>
+</ol>
+<h2 id="3-zusammenfassung-der-verantwortlichkeiten">3. Zusammenfassung der Verantwortlichkeiten</h2>
+<table><thead><tr>
+<th>Komponente</th>
+<th>Verantwortlichkeit</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Konstruktor</strong></td>
+<td>Initialisierung von Abhängigkeiten und Pfad-Validierung.</td>
+</tr>
+<tr>
+<td>**<code>_provider_preference</code>**</td>
+<td>Parsen und Normalisierung der Konfigurationswerte für die Dienstauswahl.</td>
+</tr>
+<tr>
+<td>**<code>_active_service</code>**</td>
+<td>Entscheidungslogik zur dynamischen Auswahl des aktuell besten Dienstes basierend auf Präferenzen und Verfügbarkeit.</td>
+</tr>
+<tr>
+<td>**<code>__getattr__</code>**</td>
+<td>Bereitstellung einer benutzerfreundlichen, dynamischen Schnittstelle zu den Funktionen der aktiven Dienste.</td>
+</tr>
+<tr>
+<td>**<code>close()</code>**</td>
+<td>Ressourcenmanagement (Shutdown).</td>
+</tr>
+<tr>
+<td>**<code>status()</code>**</td>
+<td>Status-Reporting und detaillierte Übersicht über die Konfiguration und Verfügbarkeit der Modelle.</td>
+</tr>
+</tbody></table>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-ai-service-py">Technische Dokumentation: `ai_service.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-importe">2. Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-konstanten-und-globale-einstellungen">3. Konstanten und Globale Einstellungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-schl-sselfunktionen-implizit-struktur">4. Schlüsselfunktionen (Implizit/Struktur)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-technische-details-und-best-practices">5. Technische Details und Best Practices</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-abh-ngigkeiten">6. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#berblick">Überblick</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-clamp-int-value-any-default-int-minimum-int-maximum-int-int">1. `_clamp_int(value: Any, default: int, minimum: int, maximum: int) -&gt; int`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-clamp-float-value-any-default-float-minimum-float-maximum-float-float">2. `_clamp_float(value: Any, default: float, minimum: float, maximum: float) -&gt; float`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-sanitize-model-text-value-any-str">3. `_sanitize_model_text(value: Any) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-normalize-prompt-text-text-str-str">4. `_normalize_prompt_text(text: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-estimate-token-count-text-str-int">5. `_estimate_token_count(text: str) -&gt; int`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#funktion-trim-text-middle-text-str-max-chars-int-str">Funktion: `_trim_text_middle(text: str, *, max_chars: int) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#beschreibung">Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#parameter">Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#r-ckgabe">Rückgabe</a></li>
+<li class="wiki-toc-link level-3"><a href="#intern-verwendete-konstanten-variablen">Intern verwendete Konstanten/Variablen</a></li>
+<li class="wiki-toc-link level-3"><a href="#logik-und-verhalten">Logik und Verhalten</a></li>
+<li class="wiki-toc-link level-3"><a href="#verwendung">Verwendung</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-funktion-prepare-prompt-with-budget">Technische Dokumentation: Funktion `_prepare_prompt_with_budget`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-signatur">2. Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-beschreibung">3. Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-parameter">4. Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-r-ckgabe-return-value">5. Rückgabe (Return Value)</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-funktionsweise-logikfluss">6. Funktionsweise (Logikfluss)</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-abh-ngigkeiten">7. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#8-anwendungsf-lle">8. Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-unwrap-short-reply-value-str-str">1. `_unwrap_short_reply(value: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-extract-exact-short-reply-target-prompt-str-str">2. `_extract_exact_short_reply_target(prompt: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-normalize-model-label-value-any-fallback-str-str">3. `_normalize_model_label(value: Any, *, fallback: str = &quot;&quot;) -&gt; str`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-konstanten">Abhängigkeiten und Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#sanitize-model-id-value-any-fallback-str-local-model-str">`_sanitize_model_id(value: Any, *, fallback: str = &quot;local-model&quot;) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#same-drive-left-path-right-path-bool">`_same_drive(left: Path, right: Path) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#first-existing-path-candidates-list-path-path-none">`_first_existing_path(candidates: list[Path]) -&gt; Path | None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#klasse-teilweise-definiert">Klasse (Teilweise definiert)</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-voraussetzungen">Abhängigkeiten und Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-name-der-klasse">2. Klasse: `[Name der Klasse]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-beschreibung">2.1. Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-konstruktor-init">2.2. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-methoden">2.3. Methoden</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-attribute-optional">2.4. Attribute (Optional)</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-voraussetzungen">3. Abhängigkeiten und Voraussetzungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-erforderliche-bibliotheken-dependencies">3.1. Erforderliche Bibliotheken (Dependencies)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-voraussetzungen">3.2. Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#4-fehlerbehandlung-error-handling">4. Fehlerbehandlung (Error Handling)</a></li>
+<li class="wiki-toc-link level-3"><a href="#n-chste-schritte-f-r-sie">**Nächste Schritte für Sie:**</a></li>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-architektur-und-design">2. Architektur und Design</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klassen-bersicht">2.1. Klassenübersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-design-prinzipien">2.2. Design-Prinzipien</a></li>
+<li class="wiki-toc-link"><a href="#3-klasse-ai-service">3. Klasse: `ai_service`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-definition">3.1. Definition</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-konstruktor-init">3.2. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-methoden">3.3. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung-usage-examples">5. Verwendung (Usage Examples)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-1-beispiel-1-textgenerierung">5.1. Beispiel 1: Textgenerierung</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-2-beispiel-2-sentiment-analyse">5.2. Beispiel 2: Sentiment-Analyse</a></li>
+<li class="wiki-toc-link"><a href="#6-fehlerbehandlung-error-handling">6. Fehlerbehandlung (Error Handling)</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-localaiservice">2. Klasse: `LocalAIService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden-und-eigenschaften">2.2. Methoden und Eigenschaften</a></li>
+<li class="wiki-toc-link"><a href="#3-zusammenfassung-der-verantwortlichkeiten">3. Zusammenfassung der Verantwortlichkeiten</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "ai_service.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

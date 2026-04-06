@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Angenommen, es existiert eine Klasse, die die Konfiguration parst | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Angenommen, es existiert eine Klasse, die die Konfiguration parst</h1>
+          <p>Source: config.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h2 id="technische-dokumentation-config-py">Technische Dokumentation: <code>config.py</code></h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei <code>config.py</code> dient als zentrale Konfigurationsdatei für die Anwendung. Sie definiert Konstanten für Schlüssel, die in Konfigurationsdateien (wahrscheinlich JSON-Dateien) verwendet werden, und definiert eine Dataclass-Struktur, die zur Strukturierung der Konfigurationen ermöglicht.</p>
+<h3 id="2-abh-ngigkeiten">2. Abhängigkeiten</h3>
+<ul>
+<li><code>json</code>: Für die Verarbeitung von JSON-Konfigurationsdaten.</li>
+<li><code>os</code>: Für den Zugriff auf das Betriebssystem (möglicherweise zur Pfadverwaltung oder Umgebungsvariablen).</li>
+<li><code>dataclasses</code>: Zur Erstellung von Datenstrukturen (speziell für die Konfigurationsstruktur).</li>
+<li><code>pathlib.Path</code>: Für die objektorientierte Handhabung von Dateipfaden.</li>
+<li><code>typing</code>: Für Typisierung (z.B. <code>Any</code>).</li>
+</ul>
+<h3 id="3-konstanten-und-definitionen">3. Konstanten und Definitionen</h3>
+<h4 id="3-1-runtime-file-config-keys">3.1. <code>RUNTIME_FILE_CONFIG_KEYS</code></h4>
+<p>Dies ist eine Tupel von Strings, die die Schlüssel definieren, die in einer Konfigurationsdatei (wahrscheinlich einer JSON-Datei) für die Laufzeitkonfiguration (<code>RUNTIME_FILE_CONFIG</code>) erwartet werden. <strong>Zweck:</strong> Dient als zentrale Referenz für die erwarteten Konfigurationsparameter. <strong>Definition:</strong></p>
+<pre><code class="language-python">RUNTIME_FILE_CONFIG_KEYS = (
+&quot;host&quot;,
+&quot;port&quot;,
+&quot;session_ttl_seconds&quot;,
+&quot;run_timeout_seconds&quot;,
+&quot;live_run_timeout_seconds&quot;,
+&quot;tenant_id&quot;,
+)</code></pre>
+<p><strong>Erklärte Schlüssel:</strong></p>
+<table><thead><tr>
+<th>Schlüssel</th>
+<th>Beschreibung</th>
+<th>Typ (Impliziert)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>host</code></td>
+<td>Der Hostname oder die IP-Adresse des Servers.</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td>Der Netzwerkport, auf dem der Dienst laust.</td>
+<td>Integer/String</td>
+</tr>
+<tr>
+<td><code>session_ttl_seconds</code></td>
+<td>Die Zeitdauer (in Sekunden), bevor eine Sitzung abgelaufen ist.</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td><code>run_timeout_seconds</code></td>
+<td>Die maximale Zeit (in Sekunden), die ein Hauptlaufprozess aufhalten darf.</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td><code>live_run_timeout_seconds</code></td>
+<td>Die maximale Zeit (in Sekunden), die ein Live-Laufprozess aufhalten darf.</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td><code>tenant_id</code></td>
+<td>Die eindeutige Kennung des Tenants oder der Untermiete.</td>
+<td>String/Integer</td>
+</tr>
+</tbody></table>
+<h4 id="3-2-dataclass-konfigurationsstruktur">3.2. Dataclass: Konfigurationsstruktur</h4>
+<p>Die Datei definiert eine <code>dataclass</code>, die als Struktur für die Konfigurationen dient. <strong>Definition:</strong></p>
+<pre><code class="language-python">@dataclass(slots=True)class &lt;|end|&gt;</code></pre>
+<p><strong>Details:</strong></p>
+<ul>
+<li>**<code>@dataclass</code>**: Dekoriert die Klasse, um automatisch Methoden wie <code>__init__</code>, <code>__repr__</code> und andere Dataclass-Funktionen zu generieren.</li>
+<li>**<code>slots=True</code>**: Eine Optimierung, die die Anzahl der Attribute reduziert und den Speicherverbrauch senkt, indem es verhindert, dass für jede Instanz eine neue <code>__dict__</code> erstellt wird. Dies ist nützlich für Konfigurationsobjekte, die viele Instanzen erzeugen könnten.</li>
+<p><strong>Hinweis:</strong> Die tatsächliche Definition der Dataclass (die Attribute, die sie enthält) fehlt im bereitgestellten Code-Snippet. Es wird angenommen, dass diese Klasse die Daten aus der Konfigurationsdatei parst und strukturiert.</p>
+</ul>
+<h3 id="4-verwendung-und-api-design-impliziert">4. Verwendung und API-Design (Impliziert)</h3>
+<p>Basierend auf der Struktur lässt sich ableiten, dass die Anwendung folgende Schritte durchführt:</p>
+<ol>
+<li><strong>Konfigurationsladen:</strong> Eine JSON-Datei wird geladen.</li>
+<li><strong>Validierung/Mapping:</strong> Die Schlüssel aus <code>RUNTIME_FILE_CONFIG_KEYS</code> werden verwendet, um die entsprechenden Werte aus der JSON-Datei zu extrahieren.</li>
+<li><strong>Objektinitialisierung:</strong> Die extrahierten Werte werden verwendet, um eine Instanz der definierten Dataclass zu erstellen.</li>
+<p><strong>Beispielhafte Nutzung (Hypothetisch):</strong></p>
+</ol>
+<pre><code class="language-python"># Angenommen, es existiert eine Klasse, die die Konfiguration parst
+def load_config(json_data: dict) -&gt; YourConfigClass:
+# Hier würde die Logik die keys aus RUNTIME_FILE_CONFIG_KEYS verwenden,
+# um die Daten zu extrahieren und in die Dataclass zu mappen.
+config_instance = YourConfigClass(
+host=json_data.get(&quot;host&quot;),
+port=json_data.get(&quot;port&quot;),
+# ... weitere Attribute
+)
+return config_instance
+# Beispiel für die Nutzung
+# config = load_config(json.load(open(&quot;config.json&quot;)))
+# print(config.host)</code></pre>
+<h3 id="5-zusammenfassung-und-wartungshinweise">5. Zusammenfassung und Wartungshinweise</h3>
+<ul>
+<li><strong>Struktur:</strong> Die Verwendung von <code>dataclasses</code> sorgt für eine klare, wartbare Struktur der Konfiguration.</li>
+<li><strong>Konstanten:</strong> Die explizite Definition von <code>RUNTIME_FILE_CONFIG_KEYS</code> macht die Abhängigkeiten der Konfiguration transparent.</li>
+<li><strong>Wartung:</strong> Sollten neue Laufzeitkonfigurationsparameter hinzugefügt werden, muss sowohl die Liste <code>RUNTIME_FILE_CONFIG_KEYS</code> als auch die Definition der Dataclass entsprechend aktualisiert werden.</li>
+<p>--- <strong>Status:</strong> Dokumentation erstellt. <strong>Version:</strong> 1.0 <strong>Datum:</strong> [Aktuelles Datum]</p>
+</ul>
+<h1 id="technische-dokumentation-serverconfig-klasse">Technische Dokumentation: <code>ServerConfig</code> Klasse</h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Die Klasse <code>ServerConfig</code> dient dazu, die Konfiguration für einen Server-Prozess zu definieren und zu verwalten. Sie hält alle notwendigen Pfade, Netzwerkparameter und spezifischen Einstellungen für die Anwendung bereit.</p>
+<h2 id="2-klasse-serverconfig">2. Klasse: <code>ServerConfig</code></h2>
+<p>Die Klasse <code>ServerConfig</code> ist eine Klasse, die die Struktur und die initialen Werte für die Serverkonfiguration abbildet.</p>
+<h3 id="2-1-attribute">2.1. Attribute</h3>
+<p>Die Klasse definiert die folgenden Attribute:</p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td><code>Path</code></td>
+<td>Der absolute Pfad zur Basis des Konfigurationsverzeichnisses.</td>
+<td>Nicht initialisiert (muss über <code>from_base_path</code> gesetzt werden)</td>
+</tr>
+<tr>
+<td><code>data_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Verzeichnis für Daten.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>docs_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Verzeichnis für Dokumentation.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>users_workspace_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Workspace für Benutzer.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>groups_workspace_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Workspace für Gruppen.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>static_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Verzeichnis für statische Dateien.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>database_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zur Datenbankdatei.</td>
+<td>Nicht initialisiert</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td><code>str</code></td>
+<td>Der Netzwerk-Host, auf dem der Server lauscht.</td>
+<td><code>&quot;0.0.0.0&quot;</code></td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td><code>int</code></td>
+<td>Der Netzwerk-Port, auf dem der Server lauscht.</td>
+<td><code>8877</code></td>
+</tr>
+<tr>
+<td><code>session_ttl_seconds</code></td>
+<td><code>int</code></td>
+<td>Die Lebensdauer der Sitzung in Sekunden (Time-To-Live).</td>
+<td><code>43200</code></td>
+</tr>
+<tr>
+<td><code>run_timeout_seconds</code></td>
+<td><code>int</code></td>
+<td>Die Zeit, die der Server für eine normale Ausführung hat, bevor er beendet wird.</td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>live_run_timeout_seconds</code></td>
+<td><code>int</code></td>
+<td>Die Zeit, die der Server für eine Live-Ausführung hat, bevor er beendet wird.</td>
+<td><code>300</code></td>
+</tr>
+<tr>
+<td><code>tenant_id</code></td>
+<td><code>str</code></td>
+<td>Der eindeutige Identifier des Tenants.</td>
+<td><code>&quot;nova-school&quot;</code></td>
+</tr>
+<tr>
+<td><code>school_name</code></td>
+<td><code>str</code></td>
+<td>Der Name der Schule/des Servers.</td>
+<td><code>&quot;Nova School Server&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="from-base-path-cls-base-path-path-serverconfig"><code>from_base_path(cls, base_path: Path) -&gt; &quot;ServerConfig&quot;</code></h4>
+<p>Dies ist eine <strong>Class Method</strong>, die die primäre Methode zur Initialisierung der <code>ServerConfig</code> ist. Sie liest die Konfiguration basierend auf einem bereitgestellten Basis-Pfad und kombiniert diese mit Umgebungsvariablen oder einem Konfigurations-Payload. <strong>Funktionsweise:</strong></p>
+<ol>
+<li><strong>Pfad-Resolution:</strong> Der eingegebene <code>base_path</code> wird aufgelöst (<code>resolve(strict=False)</code>).</li>
+<li><strong>Payload-Laden:</strong> Es wird eine Funktion <code>load_server_config_payload(base_path)</code> aufgerufen, um spezifische Konfigurationsdaten zu laden.</li>
+<li><strong>Paket-Pfad-Resolution:</strong> Es wird der Pfad zum Paket (<code>resolve_package_path(base_path)</code>) berechnet.</li>
+<li>**Konfigurations-Resolver (<code>env_or_payload</code>):** Eine interne Helper-Funktion wird definiert, um den Wert für ein gegebenes Schlüssel-Wert-Paar zu bestimmen:</li>
+</ol>
+<ul>
+<li>Zuerst wird der Wert aus den <strong>Umgebungsvariablen</strong> (z.B. <code>NOVA_SCHOOL_HOST</code>) abgerufen.</li>
+<li>Falls nicht vorhanden, wird der Wert aus dem <strong>Konfigurations-Payload</strong> (<code>payload.get(key)</code>) abgerufen.</li>
+<li>Als letzter Fall wird der <strong>Standardwert</strong> (<code>default</code>) verwendet.</li>
+</ul>
+<ol>
+<li><strong>Pfad-Berechnung:</strong> Die verschiedenen Pfade werden relativ zum <code>base_path</code> konstruiert:</li>
+</ol>
+<ul>
+<li><code>data_path</code> = <code>base_path / &quot;data&quot;</code></li>
+<li><code>docs_path</code> = <code>data_path / &quot;docs&quot;</code></li>
+<li><code>workspaces_path</code> = <code>data_path / &quot;workspaces&quot;</code></li>
+<li><code>users_workspace_path</code> = <code>workspaces_path / &quot;users&quot;</code></li>
+<li><code>groups_workspace_path</code> = <code>workspaces_path / &quot;groups&quot;</code></li>
+<li><code>static_path</code> = <code>package_path / &quot;static&quot;</code></li>
+<li><code>database_path</code> = <code>data_path / &quot;school.db&quot;</code></li>
+</ul>
+<ol>
+<li><strong>Instanziierung:</strong> Die Klasse wird mit den berechneten Werten und den durch die Resolveren ermittelten Werten für die Standardwerte initialisiert.</li>
+</ol>
+<h3 id="3-abh-ngigkeiten">3. Abhängigkeiten</h3>
+<ul>
+<li><code>Path</code> (von <code>pathlib</code>): Für die Verwaltung von Dateipfaden.</li>
+<li><code>os</code>: Für den Zugriff auf Umgebungsvariablen (<code>os.environ.get</code>).</li>
+<li>Externe Funktionen (nicht im Code sichtbar, aber impliziert):</li>
+<li><code>load_server_config_payload(base_path)</code></li>
+<li><code>resolve_package_path(base_path)</code></li>
+</ul>
+<h2 id="4-verwendung-usage">4. Verwendung (Usage)</h2>
+<p>Die Konfiguration wird typischerweise durch Aufruf der Klasse <code>ServerConfig</code> über die Klasse-Methode <code>from_base_path</code> erstellt:</p>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, load_server_config_payload und resolve_package_path sind definiert
+# Beispiel: Initialisierung
+config = ServerConfig.from_base_path(Path(&quot;/home/user/server_root&quot;))
+# Zugriff auf Konfigurationswerte
+print(f&quot;Server Host: {config.host}&quot;)
+print(f&quot;Datenpfad: {config.data_path}&quot;)
+print(f&quot;Datenbankpfad: {config.database_path}&quot;)
+print(f&quot;Session TTL: {config.session_ttl_seconds} Sekunden&quot;)</code></pre>
+<h2 id="5-design-berlegungen">5. Design-Überlegungen</h2>
+<ul>
+<li><strong>Konfigurationsflexibilität:</strong> Die Klasse kombiniert statische Standardwerte mit der Möglichkeit, diese durch Umgebungsvariablen oder externe Payloads überschreiben zu lassen. Dies ermöglicht eine flexible Konfiguration über verschiedene Deployment-Umgebungen hinweg.</li>
+<li><strong>Pfadmanagement:</strong> Die Verwendung von <code>pathlib.Path</code> stellt sicher, dass alle Pfade plattformunabhängig und korrekt behandelt werden.</li>
+<li><strong>Separation von Logik:</strong> Die Logik zur Abfrage von Konfigurationswerten (<code>env_or_payload</code>) ist sauber von der eigentlichen Pfadkonstruktion getrennt.</li>
+<li><strong>Klassen-Methode:</strong> Die Verwendung einer <code>@classmethod</code> für die Initialisierung ist üblich, wenn die Konfiguration stark von externen Faktoren (wie einem Startpfad) abhängt.</li>
+</ul>
+<h1 id="technische-dokumentation-konfiguration-und-pfadverwaltung">Technische Dokumentation: Konfiguration und Pfadverwaltung</h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Dokumentation beschreibt die Funktionen, die für die Verwaltung von Pfaden, das Laden und Speichern von Serverkonfigurationsdaten verantwortlich sind, wie sie in der Datei <code>config.py</code> implementiert sind.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-resolve-package-path-base-path-path-path">1. <code>resolve_package_path(base_path: Path) -&gt; Path</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion dient dazu, einen spezifischen Pfad innerhalb einer gegebenen Basis-URL zu einem eindeutigen, gültigen Pfad zu auflösen, der die Struktur eines Pakets (insbesondere die Existenz von <code>__init__.py</code> und einem <code>static</code>-Verzeichnis) widerspiegelt. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Ausgangspunkt des Pfadverarbeitungs-Prozesses.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Der auflösende, gültige Pfad.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Basis-Pfad auflösen:</strong> Der eingegebene <code>base_path</code> wird aufgelöst (<code>.resolve(strict=False)</code>).</li>
+<li><strong>Kandidatenliste:</strong> Es werden drei Hauptkandidaten für den korrekten Pfad geprüft:</li>
+</ol>
+<ul>
+<li><code>base_path / &quot;nova_school_server&quot;</code></li>
+<li><code>base_path</code></li>
+<li><code>package_root</code> (Der Verzeichnisbaum des aktuellen Skripts, <code>__file__</code>, inklusive des Elternverzeichnisses).</li>
+</ul>
+<ol>
+<li><strong>Validierung:</strong> Für jeden Kandidaten wird geprüft, ob die Bedingung erfüllt ist:</li>
+</ol>
+<ul>
+<li>Das Verzeichnis <code>resolved / &quot;__init__.py&quot;</code> existiert.</li>
+<li>Das Verzeichnis <code>resolved / &quot;static&quot;</code> existiert.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong> Wenn die Bedingung für einen Kandidaten erfüllt ist, wird dieser aufgelöste Pfad zurückgegeben.</li>
+<li><strong>Standardfall:</strong> Falls keine der spezifischen Kandidaten die Bedingung erfüllt, wird der <code>package_root</code> als Standardwert zurückgegeben.</li>
+<p><strong>Anwendungsfall:</strong> Nützlich, um dynamisch den korrekten Pfad zu einem Server- oder Paket-Root zu bestimmen, basierend auf verschiedenen möglichen Konfigurationsstrukturen. ---</p>
+</ol>
+<h3 id="2-load-server-config-payload-base-path-path-dict-str-any">2. <code>load_server_config_payload(base_path: Path) -&gt; dict[str, Any]</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion lädt die Konfigurationsdaten aus einer JSON-Datei, die im angegebenen <code>base_path</code> gesucht wird. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Verzeichnisbaum, in dem die <code>server_config.json</code> Datei gesucht werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, Any]</code>: Ein Dictionary, das die geladenen Konfigurationsdaten enthält. Wird leer (<code>{}</code>) zurückgegeben, wenn die Datei nicht existiert oder eine Fehlermeldung beim Parsen auftritt.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfadkonstruktion:</strong> Der vollständige Pfad zu <code>server_config.json</code> wird konstruiert und aufgelöst.</li>
+<li><strong>Existenzprüfung:</strong> Es wird geprüft, ob die Datei existiert. Falls nicht, wird ein leeres Dictionary zurückgegeben.</li>
+<li><strong>JSON-Parsing:</strong> Die Datei wird in UTF-8-Kodierung gelesen und versucht, sie mit <code>json.loads()</code> zu parsen.</li>
+<li><strong>Fehlerbehandlung:</strong> Bei jeglichen <code>Exception</code> (z.B. Syntaxfehler im JSON) wird die Funktion sicher mit einem leeren Dictionary zurückgegeben.</li>
+<li><strong>Typ-Check:</strong> Falls das Parsen erfolgreich ist, wird sichergestellt, dass das Ergebnis ein Dictionary ist, andernfalls wird ein leeres Dictionary zurückgegeben.</li>
+<p><strong>Anwendungsfall:</strong> Zur dynamischen Lesezugriff auf die Serverkonfiguration. ---</p>
+</ol>
+<h3 id="3-save-server-config-payload-base-path-path-updates-dict-str-any-dict-str-any">3. <code>save_server_config_payload(base_path: Path, updates: dict[str, Any]) -&gt; dict[str, Any]</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion lädt die aktuelle Konfiguration, kombiniert sie mit den bereitgestellten Updates und speichert das resultierende JSON-Dokument zurück in der Konfigurationsdatei. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Verzeichnisbaum, in dem die <code>server_config.json</code> Datei gespeichert werden soll.</li>
+<li><code>updates: dict[str, Any]</code>: Ein Dictionary mit den Schlüssel-Wert-Paaren, die in die bestehende Konfiguration hinzugefügt oder überschrieben werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, Any]</code>: Das aktualisierte Konfigurations-Dictionary, das erfolgreich gespeichert wurde.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Basis-Pfad auflösen:</strong> Der <code>base_path</code> wird aufgelöst.</li>
+<li><strong>Laden:</strong> Die aktuelle Konfiguration wird über <code>load_server_config_payload</code> geladen.</li>
+<li><strong>Aktualisierung:</strong> Die geladene Konfiguration wird mit den <code>updates</code> mithilfe der <code>.update()</code>-Methode kombiniert.</li>
+<li><strong>Speichern:</strong></li>
+</ol>
+<ul>
+<li>Der aktualisierte Payload wird in eine JSON-String-Repräsentation umgewandelt (<code>json.dumps</code>) mit <code>ensure_ascii=False</code> und <code>indent=2</code> für eine lesbare Formatierung.</li>
+<li>Der String wird in die Datei <code>server_config.json</code> im angegebenen <code>base_path</code> geschrieben.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong> Das finale, aktualisierte Konfigurations-Dictionary wird zurückgegeben.</li>
+<p><strong>Anwendungsfall:</strong> Zur persistenten Speicherung und Aktualisierung der Serverkonfiguration.</p>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li>**<code>pathlib.Path</code>**: Für die Manipulation von Dateipfaden.</li>
+<li>**<code>json</code>**: Für das Serialisieren und Deserialisieren von JSON-Daten.</li>
+<li>**<code>Any</code>**: Typ-Hint für die flexible Struktur der Konfigurationsdaten.</li>
+</ul>
+<h1 id="technische-dokumentation-konfiguration-der-laufzeitumgebung">Technische Dokumentation: Konfiguration der Laufzeitumgebung</h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Dokumentation beschreibt die Funktionen, die zur Verwaltung und Abgleich der Konfigurationen für die aktive und gespeicherte Laufzeitumgebung verwendet werden. Die Funktionen in <code>config.py</code> dienen dazu, die Konfigurationen aus dem <code>ServerConfig</code>-Objekt zu extrahieren, sie aus einer gespeicherten Datei zu laden und zu prüfen, ob ein Neustart der Laufzeitumgebung erforderlich ist.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-active-runtime-config-config-serverconfig-dict-str-any">1. <code>active_runtime_config(config: ServerConfig) -&gt; dict[str, Any]</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion extrahiert die aktuellen, aktiven Laufzeitkonfigurationsparameter aus einem <code>ServerConfig</code>-Objekt und formatiert sie in ein Dictionary. <strong>Parameter:</strong></p>
+<ul>
+<li><code>config</code>: Ein Objekt vom Typ <code>ServerConfig</code>, das die aktuelle Konfiguration enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>Ein Dictionary (<code>dict[str, Any]</code>), das die aktiven Laufzeitkonfigurationswerte enthält.</li>
+<p><strong>Details:</strong> Die Werte aus <code>config.host</code>, <code>config.port</code>, <code>config.session_ttl_seconds</code>, <code>config.run_timeout_seconds</code>, <code>config.live_run_timeout_seconds</code> und <code>config.tenant_id</code> werden extrahiert und in die entsprechenden Typen (String für Host/TenantID, Integer für Zeitwerte) konvertiert. <strong>Beispiel (Konzeptuell):</strong></p>
+</ul>
+<pre><code class="language-python"># Wenn config.host = &quot;127.0.0.1&quot; und config.port = 8080
+# Rückgabe:
+# {
+#     &quot;host&quot;: &quot;127.0.0.1&quot;,
+#     &quot;port&quot;: 8080,
+#     &quot;session_ttl_seconds&quot;: &lt;Wert aus config.session_ttl_seconds&gt;,
+#     # ... weitere Werte
+# }</code></pre>
+<p>---</p>
+<h3 id="2-def-stored-runtime-config-base-path-path-config-serverconfig-dict-str-any">2. <code>def stored_runtime_config(base_path: Path, config: ServerConfig) -&gt; dict[str, Any]</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion lädt die gespeicherte Laufzeitkonfiguration aus einer angegebenen Datei (<code>base_path</code>) und kombiniert sie mit den aktiven Konfigurationen, um eine konsolidierte Konfiguration zurückzugeben. Sie verwendet die aktiven Konfigurationen als Fallback, falls Werte in der gespeicherten Datei fehlen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path</code>: Ein <code>Path</code>-Objekt, das den Pfad zur Datei enthält, aus der die gespeicherte Konfiguration geladen werden soll.</li>
+<li><code>config</code>: Ein Objekt vom Typ <code>ServerConfig</code>, das die aktuelle Konfiguration enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>Ein Dictionary (<code>dict[str, Any]</code>), das die konsolidierte Laufzeitkonfiguration enthält.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Payload Laden:</strong> Zuerst wird die Konfigurationspayload aus der Datei mittels <code>load_server_config_payload(base_path)</code> geladen.</li>
+<li><strong>Aktive Konfiguration:</strong> Die aktiven Konfigurationen werden über <code>active_runtime_config(config)</code> ermittelt.</li>
+<li><strong>Konsolidierung:</strong> Die Werte aus dem <code>payload</code> werden verwendet, um die Werte aus der aktiven Konfiguration zu überschreiben, falls im Payload spezifische Werte vorhanden sind.</li>
+</ol>
+<ul>
+<li><strong>Priorisierung:</strong> Die Werte aus dem <code>payload</code> werden verwendet, sofern sie existieren. Andernfalls werden die Werte aus der aktiven Konfiguration (<code>active</code>) verwendet.</li>
+<li><strong>Typkonvertierung:</strong> Die Werte aus dem Payload werden entsprechend konvertiert (z.B. <code>port</code> zu <code>int</code>).</li>
+<p><strong>Beispiel (Konzeptuell):</strong></p>
+</ul>
+<pre><code class="language-python"># Wenn payload.get(&quot;port&quot;) existiert, wird dieser Wert verwendet, ansonsten wird active[&quot;port&quot;] verwendet.
+# Rückgabe:
+# {
+#     &quot;host&quot;: &quot;Wert aus payload oder active[&quot;host&quot;]&quot;,
+#     &quot;port&quot;: &lt;int-Wert aus payload oder active[&quot;port&quot;]&gt;,
+#     # ... weitere Werte
+# }</code></pre>
+<p>---</p>
+<h3 id="3-def-runtime-config-requires-restart-active-dict-str-any-stored-dict-str-any-bool">3. <code>def runtime_config_requires_restart(active: dict[str, Any], stored: dict[str, Any]) -&gt; bool</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion prüft, ob die aktive Laufzeitkonfiguration signifikant von der gespeicherten Konfiguration abweicht. Wenn Unterschiede in den definierten Konfigurationsparametern festgestellt werden, wird als <code>True</code> zurückgegeben, was auf einen Neustart der Laufzeitumgebung hindeutet. <strong>Parameter:</strong></p>
+<ul>
+<li><code>active</code>: Das Dictionary mit den aktuellen, aktiven Laufzeitkonfigurationen (aus <code>active_runtime_config</code>).</li>
+<li><code>stored</code>: Das Dictionary mit den gespeicherten Laufzeitkonfigurationen (aus <code>stored_runtime_config</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>True</code>, wenn die Konfigurationen nicht identisch sind (eine Änderung erforderlich).</li>
+<li><code>False</code>, wenn die Konfigurationen identisch sind.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Iterierung:</strong> Die Funktion durchläuft alle Schlüssel (<code>key</code>) in der globalen Konstante <code>RUNTIME_FILE_CONFIG_KEYS</code>.</li>
+<li><strong>Vergleich:</strong> Für jeden Schlüssel wird geprüft, ob der String-Wert der aktiven Konfiguration (<code>str(active.get(key))</code>) mit dem String-Wert der gespeicherten Konfiguration (<code>str(stored.get(key))</code>) übereinstimmt.</li>
+<li><strong>Fehlererkennung:</strong> Sobald ein Schlüssel gefunden wird, für den die Werte nicht identisch sind, wird sofort <code>True</code> zurückgegeben.</li>
+<li><strong>Erfolg:</strong> Wenn alle Schlüssel erfolgreich verglichen wurden und keine Diskrepanzen gefunden wurden, wird <code>False</code> zurückgegeben.</li>
+<p><strong>Wichtige Abhängigkeiten:</strong></p>
+</ol>
+<ul>
+<li><code>RUNTIME_FILE_CONFIG_KEYS</code>: Eine globale Konstante, die die Liste aller Konfigurationsschlüssel definiert, die verglichen werden sollen.</li>
+</ul>
+<h2 id="zusammenfassung-der-datenfl-sse">Zusammenfassung der Datenflüsse</h2>
+<table><thead><tr>
+<th>Funktion</th>
+<th>Eingabe(n)</th>
+<th>Hauptzweck</th>
+<th>Ausgabe</th>
+</tr></thead><tbody>
+<tr>
+<td><code>active_runtime_config</code></td>
+<td><code>ServerConfig</code></td>
+<td>Aktive Konfiguration extrahieren.</td>
+<td>Aktive Konfigurations-Dict</td>
+</tr>
+<tr>
+<td><code>stored_runtime_config</code></td>
+<td><code>Path</code>, <code>ServerConfig</code></td>
+<td>Speicherten Payload laden und mit aktiven Konfigurationen fusionieren.</td>
+<td>Konsolidierte Konfigurations-Dict</td>
+</tr>
+<tr>
+<td><code>runtime_config_requires_restart</code></td>
+<td>Aktive &amp; gespeicherte Dicts</td>
+<td>Abgleich der Konfigurationen zur Feststellung eines Neustarts.</td>
+<td>Boolean (<code>True</code>/<code>False</code>)</td>
+</tr>
+</tbody></table>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-config-py">Technische Dokumentation: `config.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-konstanten-und-definitionen">3. Konstanten und Definitionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-verwendung-und-api-design-impliziert">4. Verwendung und API-Design (Impliziert)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-zusammenfassung-und-wartungshinweise">5. Zusammenfassung und Wartungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-serverconfig">2. Klasse: `ServerConfig`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-attribute">2.1. Attribute</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-verwendung-usage">4. Verwendung (Usage)</a></li>
+<li class="wiki-toc-link"><a href="#5-design-berlegungen">5. Design-Überlegungen</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-resolve-package-path-base-path-path-path">1. `resolve_package_path(base_path: Path) -&gt; Path`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-load-server-config-payload-base-path-path-dict-str-any">2. `load_server_config_payload(base_path: Path) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-save-server-config-payload-base-path-path-updates-dict-str-any-dict-str-any">3. `save_server_config_payload(base_path: Path, updates: dict[str, Any]) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-active-runtime-config-config-serverconfig-dict-str-any">1. `active_runtime_config(config: ServerConfig) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-def-stored-runtime-config-base-path-path-config-serverconfig-dict-str-any">2. `def stored_runtime_config(base_path: Path, config: ServerConfig) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-def-runtime-config-requires-restart-active-dict-str-any-stored-dict-str-any-bool">3. `def runtime_config_requires_restart(active: dict[str, Any], stored: dict[str, Any]) -&gt; bool`</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-datenfl-sse">Zusammenfassung der Datenflüsse</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "config.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

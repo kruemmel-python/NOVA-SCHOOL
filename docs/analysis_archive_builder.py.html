@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `analysis_archive_builder.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `analysis_archive_builder.py`</h1>
+          <p>Source: analysis_archive_builder.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-analysis-archive-builder-py">Technische Dokumentation: <code>analysis_archive_builder.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Python-Datei <code>analysis_archive_builder.py</code> dient dazu, einen Archivierungs- und Build-Prozess für eine Analyse zu automatisieren. Sie ermöglicht es, bestimmte Dateien und Verzeichnisse zu identifizieren, zu filtern und diese in ein ZIP-Archiv zu komprimieren. Das Skript verwendet Argumenten-Parsing (<code>argparse</code>) für die Konfiguration und definiert spezifische Regeln für die Auswahl von Dateien und Verzeichnissen, die entweder ausgeschlossen oder erlaubt sind.</p>
+<h2 id="2-funktionen-und-klassen">2. Funktionen und Klassen</h2>
+<h3 id="2-1-globale-konfiguration-constants">2.1. Globale Konfiguration (Constants)</h3>
+<p>Das Skript definiert mehrere globale Konstanten, die die Regeln für die Archivierung festlegen:</p>
+<ul>
+<li>**<code>SKIP_DIR_NAMES</code>**: Eine Menge von Verzeichnissnamen, die ignoriert werden sollen (z.B. <code>.git</code>, <code>venv</code>, <code>node_modules</code>, <code>dist</code>, <code>Model</code>).</li>
+<li>**<code>SKIP_FILE_SUFFIXES</code>**: Eine Menge von Dateiendungen, die ignoriert werden sollen (z.B. <code>.pyc</code>, <code>.dll</code>, <code>.png</code>, <code>.exe</code>).</li>
+<li>**<code>ALLOWED_SUFFIXES</code>**: Eine Menge von Dateiendungen, die für die Archivierung in Betracht gezogen werden sollen (z.B. <code>.py</code>, <code>.js</code>, <code>.json</code>, <code>.xml</code>).</li>
+<li>**<code>ALLOWED_FILE_NAMES</code>**: Eine Menge von spezifischen Dateinamen, die explizit in das Archiv aufgenommen werden sollen (z.B. <code>.gitignore</code>, <code>Dockerfile</code>, <code>requirements.txt</code>).</li>
+</ul>
+<h3 id="2-2-dataclass-sourceanalysisarchivebuildresult">2.2. Dataclass: <code>SourceAnalysisArchiveBuildResult</code></h3>
+<p>Diese <code>dataclass</code> wird verwendet, um das Ergebnis des Archivierungs- und Build-Prozesses strukturiert zu speichern.</p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>version</code></td>
+<td><code>str</code></td>
+<td>Die Version des generierten Archivs.</td>
+</tr>
+<tr>
+<td><code>archive_path</code></td>
+<td><code>Path</code></td>
+<td>Der vollständige Pfad zum erstellten ZIP-Archiv.</td>
+</tr>
+<tr>
+<td><code>file_count</code></td>
+<td><code>int</code></td>
+<td>Die Gesamtzahl der Dateien, die im Archiv enthalten sind.</td>
+</tr>
+</tbody></table>
+<h2 id="3-hauptlogik-impliziert">3. Hauptlogik (Impliziert)</h2>
+<p>Obwohl der bereitgestellte Code nur die Definitionen und die Dataclass enthält, impliziert die Struktur folgende Hauptfunktionen (basierend auf den Importen und Konstanten):</p>
+<ol>
+<li><strong>Argumenten-Parsing</strong>: Verwendung von <code>argparse</code>, um von der Kommandozeile wichtige Parameter (z.B. Quellverzeichnis, Zielpfad) zu erhalten.</li>
+<li><strong>Verzeichnis-Traversal</strong>: Durchlaufen des angegebenen Quellverzeichnisses.</li>
+<li><strong>Filterung</strong>:</li>
+</ol>
+<ul>
+<li><strong>Ausschluss</strong>: Überprüfung, ob ein Verzeichnis in <code>SKIP_DIR_NAMES</code> enthalten ist.</li>
+<li><strong>Ausschluss</strong>: Überprüfung, ob eine Datei eine Endung aus <code>SKIP_FILE_SUFFIXES</code> hat.</li>
+<li><strong>Einschluss</strong>: Überprüfung, ob eine Datei eine Endung aus <code>ALLOWED_SUFFIXES</code> hat oder ob sie einen Namen aus <code>ALLOWED_FILE_NAMES</code> hat.</li>
+</ul>
+<ol>
+<li><strong>Archivierung</strong>: Sammlung der gefilterten Dateien und Erstellung eines ZIP-Archivs an dem vom Benutzer definierten Zielpfad.</li>
+<li><strong>Ergebnis-Rückgabe</strong>: Rückgabe eines Objekts vom Typ <code>SourceAnalysisArchiveBuildResult</code>.</li>
+</ol>
+<h2 id="4-konstanten-details">4. Konstanten-Details</h2>
+<h3 id="4-1-skip-dir-names">4.1. <code>SKIP_DIR_NAMES</code></h3>
+<p>Diese Liste dient der schnellen Identifizierung und Ignorierung von Standard-Projektstrukturen, temporären Dateien und Umgebungsvariablen, um unnötige oder irrelevante Inhalte aus dem Archiv zu entfernen.</p>
+<h3 id="4-2-skip-file-suffixes">4.2. <code>SKIP_FILE_SUFFIXES</code></h3>
+<p>Diese Liste filtert Dateien, die typischerweise nicht für die Analyse oder das finale Deployment relevant sind (z.B. Bytecode-Dateien, Cache-Dateien, ausführbare Binärdateien).</p>
+<h3 id="4-3-allowed-suffixes">4.3. <code>ALLOWED_SUFFIXES</code></h3>
+<p>Diese Liste definiert die primären Programmier- und Konfigurationsdateiendungen, die für die Analyse relevant sind.</p>
+<h3 id="4-4-allowed-file-names">4.4. <code>ALLOWED_FILE_NAMES</code></h3>
+<p>Diese Liste stellt sicher, dass wichtige Metadaten- oder Build-Dateien (wie <code>Dockerfile</code>, <code>requirements.txt</code>) explizit erfasst werden, unabhängig von ihrer Endung.</p>
+<h2 id="5-nutzungshinweise">5. Nutzungshinweise</h2>
+<p>Dieses Skript ist für den automatisierten Aufbau von Analyse-Backups oder Deployment-Paketen konzipiert. <strong>Annahme:</strong> Das Skript muss mit einem Quellverzeichnis und einem Zielpfad gestartet werden, die über die Kommandozeile über <code>argparse</code> definiert werden. <strong>Erwartete Ausgabe:</strong> Bei erfolgreicher Ausführung wird ein Objekt vom Typ <code>SourceAnalysisArchiveBuildResult</code> zurückgegeben, das den Pfad zum erstellten Archiv und die Anzahl der enthaltenen Dateien enthält. --- <em>Ende der Dokumentation</em></p>
+<h1 id="technische-dokumentation-analysis-archive-builder-py">Technische Dokumentation: <code>analysis_archive_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Funktionen zur Erstellung von Analyse-Archiven für ein Projekt namens &quot;NovaSchoolAnalyzer&quot;. Die Hauptfunktionen umfassen die automatische Versionserkennung des Projekts und die Kompression der Analyse-Dateien in ein ZIP-Archiv.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-detect-project-version-base-path-path-str">1. <code>detect_project_version(base_path: Path) -&gt; str</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion scannt die <code>pyproject.toml</code>-Datei im angegebenen Pfad, um die Versionsnummer des Projekts zu extrahieren. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Pfad zum Projektverzeichnis, in dem die <code>pyproject.toml</code> liegt.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Die extrahierte Versionsnummer (z.B. <code>&quot;1.2.3&quot;</code>). Wenn die Datei nicht gefunden wird oder keine Versionszeile mit dem Präfix <code>&quot;version = &quot;</code> gefunden wird, wird standardmäßig <code>&quot;0.1.0&quot;</code> zurückgegeben.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li>Sie konstruiert den vollständigen Pfad zu <code>pyproject.toml</code>.</li>
+<li>Prüft, ob die Datei existiert. Falls nicht, gibt sie <code>&quot;0.1.0&quot;</code> zurück.</li>
+<li>Liest den Inhalt der Datei.</li>
+<li>Iteriert über alle Zeilen und sucht nach einer Zeile, die mit <code>&quot;version = &quot;</code> beginnt.</li>
+<li>Extrahiert den Wert nach dem Gleichheitszeichen (<code>=</code>) und entfernt eventuelle umgebenden Anführungszeichen (<code>&quot;</code> oder <code>&#x27;</code>).</li>
+<p>---</p>
+</ol>
+<h3 id="2-build-source-analysis-archive">2. `build_source_analysis_archive(</h3>
+<p>base_path: Path, *, output_dir: Path | None = None, version: str | None = None, ) -&gt; SourceAnalysisArchiveBuildResult<code> **Beschreibung:** Diese Hauptfunktion erstellt ein ZIP-Archiv aller relevanten Quellanalyse-Dateien aus dem </code>base_path<code> und speichert es im angegebenen oder standardmäßig im </code>dist<code>-Verzeichnis des Basisverzeichnisses. Sie verwendet entweder eine übergeordnete </code>version` oder erkennt die Version automatisch. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Pfad zum Verzeichnis, das die Analyse-Dateien enthält.</li>
+<li><code>output_dir: Path | None = None</code>: Optionaler Zielpfad für das Archiv. Wenn <code>None</code> angegeben wird, wird das Verzeichnis <code>base_path/dist</code> verwendet.</li>
+<li><code>version: str | None = None</code>: Optionaler Versionsstring. Wenn dieser angegeben wird, wird er verwendet; andernfalls wird die Version automatisch erkannt.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>SourceAnalysisArchiveBuildResult</code>: Ein Objekt, das Informationen über das erstellte Archiv enthält.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfad-Resolution:</strong> Der <code>base_path</code> wird aufgelöst (<code>resolve(strict=False)</code>). Das <code>output_dir</code> wird entweder explizit gesetzt oder als <code>base_path/dist</code> definiert und wird erstellt (<code>mkdir(parents=True, exist_ok=True)</code>).</li>
+<li><strong>Versionsbestimmung:</strong> Die Versionsnummer wird entweder aus dem optionalen <code>version</code>-Parameter übernommen oder durch die Funktion <code>detect_project_version(base_path)</code> ermittelt.</li>
+<li><strong>Archivnamen:</strong> Der Name des Archivs wird als <code>NovaSchoolAnalyzer-v&lt;version_text&gt;.zip</code> formatiert.</li>
+<li><strong>Bereinigung:</strong> Falls das Archiv bereits existiert, wird es gelöscht (<code>unlink()</code>), bevor es neu erstellt wird.</li>
+<li><strong>Archiv-Erstellung:</strong></li>
+</ol>
+<ul>
+<li>Es wird ein <code>zipfile.ZipFile</code> mit Komprimierung (<code>ZIP_DEFLATED</code>) und Kompressionslevel 9 geöffnet.</li>
+<li>Die Funktion <code>_iter_source_analysis_files(base_path)</code> wird aufgerufen, um eine Liste der relativen Pfade der zu inkludierenden Dateien zu erhalten.</li>
+<li>Jede Datei wird aus <code>base_path</code> relativ zum Archivpfad geschrieben und unter dem Präfix <code>root_prefix</code> gespeichert.</li>
+<li>Die Anzahl der inkludierten Dateien wird erfasst.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong> Ein <code>SourceAnalysisArchiveBuildResult</code> wird zurückgegeben, das die verwendete Versionsnummer, den Pfad zum Archiv und die Anzahl der Dateien enthält.</li>
+<p>---</p>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>pathlib.Path</code> (aus dem <code>pathlib</code>-Modul)</li>
+<li><code>zipfile</code> (aus dem <code>zipfile</code>-Modul)</li>
+<li><code>SourceAnalysisArchiveBuildResult</code> (Muss in einem anderen Teil der Datei definiert sein)</li>
+<li><code>_iter_source_analysis_files</code> (Eine externe, nicht gezeigte Funktion, die die zu archivierenden Dateien liefert)</li>
+</ul>
+<h2 id="verwendung-beispiel">Verwendung (Beispiel)</h2>
+<p>Um das Archiv zu erstellen, könnte man es wie folgt aufrufen:</p>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, SourceAnalysisArchiveBuildResult und _iter_source_analysis_files sind definiert
+# 1. Definieren des Basisverzeichnisses
+project_root = Path(&quot;./my_analysis_project&quot;)
+# 2. Erstellen des Archivs (Version wird automatisch erkannt)
+result = build_source_analysis_archive(
+base_path=project_root,
+output_dir=Path(&quot;./dist_archives&quot;)
+)
+print(f&quot;Archiv erstellt: {result.archive_path}&quot;)
+print(f&quot;Dateien im Archiv: {result.file_count}&quot;)</code></pre>
+<p><strong>Alternative (Explizite Version):</strong></p>
+<pre><code class="language-python">result_v1 = build_source_analysis_archive(
+base_path=project_root,
+version=&quot;2.0.0&quot;
+)</code></pre>
+<h1 id="technische-dokumentation-analysis-archive-builder-py">Technische Dokumentation: <code>analysis_archive_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Funktionen zur Iteration und Filterung von Dateien, die als Kandidaten für eine Analyse-Archivierung dienen sollen. Insbesondere die Funktion <code>_iter_source_analysis_files</code> ist dafür verantwortlich, eine Liste von relativen Pfaden zu generieren, die bestimmte Kriterien erfüllen, bevor sie für die weitere Verarbeitung verwendet werden.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="iter-source-analysis-files-base-path-path-list-path"><code>_iter_source_analysis_files(base_path: Path) -&gt; list[Path]</code></h3>
+<p>Diese Funktion durchläuft alle Dateien, die von Git verfolgt werden, im angegebenen <code>base_path</code>, und filtert sie basierend auf einer Reihe von Kriterien, um eine sortierte Liste von relevanten Quelldateien zurückzugeben. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der absolute Pfad zum Verzeichnis, in dem die Git-Repository-Operationen durchgeführt werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[Path]</code>: Eine sortierte Liste von <code>Path</code>-Objekten, die die relativen Pfade der qualifizierten Quelldateien enthalten.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li>Initialisiert eine leere Liste <code>files</code>.</li>
+<li>Ruft die interne Funktion <code>_git_tracked_files(base_path)</code> auf, um alle Dateien zu erhalten, die von Git verfolgt werden.</li>
+<li>Iteriert über die zurückgegebenen relativen Pfade:</li>
+</ol>
+<ul>
+<li>Konstruiert den vollständigen Pfad (<code>candidate</code>) zu der Datei im <code>base_path</code>.</li>
+<li><strong>Filter 1 (Existenz):</strong> Prüft, ob der konstruierte Pfad tatsächlich eine Datei ist (<code>candidate.is_file()</code>). Wenn nicht, wird die Datei übersprungen.</li>
+<li><strong>Filter 2 (Ignorieren):</strong> Ruft <code>_should_skip_source_analysis_file(relative_path)</code> auf. Wenn diese Funktion <code>True</code> zurückgibt, wird die Datei übersprungen.</li>
+<li><strong>Filter 3 (Erlaubnis):</strong> Ruft <code>_is_allowed_source_file(relative_path)</code> auf. Wenn diese Funktion <code>False</code> zurückgibt, wird die Datei übersprungen.</li>
+<li><strong>Filter 4 (Typ):</strong> Ruft <code>_is_probably_text_file(candidate)</code> auf. Wenn diese Funktion <code>False</code> zurückgibt (d.h., es ist wahrscheinlich keine Textdatei), wird die Datei übersprungen.</li>
+<li>Wenn alle Prüfungen erfolgreich sind, wird der relative Pfad zur Liste <code>files</code> hinzugefügt.</li>
+</ul>
+<ol>
+<li>Gibt die final sortierte Liste der relativen Pfade zurück.</li>
+</ol>
+<h3 id="git-tracked-files-base-path-path-list-path"><code>_git_tracked_files(base_path: Path) -&gt; list[Path]</code></h3>
+<p>Diese interne Funktion verwendet das <code>git ls-files</code>-Kommando, um eine Liste aller Dateien zurückzugeben, die vom Git-Repository im angegebenen Verzeichnis verfolgt werden. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der absolute Pfad zum Git-Repository-Verzeichnis.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[Path]</code>: Eine Liste von <code>Path</code>-Objekten, die die relativen Pfade der Git-verfolgten Dateien enthalten.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li>Führt das Shell-Kommando <code>git ls-files</code> im angegebenen Verzeichnis (<code>cwd=base_path</code>) aus.</li>
+<li>Erwartet einen erfolgreichen Ausführungscode (<code>result.returncode == 0</code>).</li>
+<li><strong>Fehlerbehandlung:</strong> Wenn der Ausführungscode nicht 0 ist, wird eine <code>RuntimeError</code> mit einer zusammenfassenden Fehlermeldung (aus <code>stderr</code> oder <code>stdout</code>) geworfen.</li>
+<li><strong>Ergebnisverarbeitung:</strong> Wenn der Befehl erfolgreich ist, werden die Ausgabe (<code>stdout</code>) in Zeilen aufgeteilt und jede Zeile wird zu einem <code>Path</code>-Objekt konvertiert, wobei Leerzeichen entfernt werden.</li>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>pathlib.Path</code>: Für die Handhabung von Dateipfaden.</li>
+<li><code>subprocess</code>: Für die Ausführung externer Befehle (<code>git</code>).</li>
+</ul>
+<h2 id="anmerkungen">Anmerkungen</h2>
+<ul>
+<li>Die Logik der Filterung in <code>_iter_source_analysis_files</code> ist sequenziell und basiert auf der Annahme, dass die Kriterien von oben nach unten angewendet werden (jede vorherige Prüfung führt zum Überspringen der Datei, falls sie fehlschlägt).</li>
+<li>Die spezifischen Implementierungen der Helper-Funktionen (<code>_should_skip_source_analysis_file</code>, <code>_is_allowed_source_file</code>, <code>_is_probably_text_file</code>) sind in dieser Dokumentation nicht detailliert beschrieben, da sie externe Logik enthalten.</li>
+</ul>
+<h1 id="technische-dokumentation-analysis-archive-builder-py">Technische Dokumentation: <code>analysis_archive_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält eine Reihe von internen Funktionen, die zur <strong>Filterung und Bewertung von Dateien</strong> dienen, die für einen Analyse-Archiv-Builder in Verwendung sind. Die Funktionen bestimmen, ob eine Datei übersprungen werden soll (<code>_should_skip_source_analysis_file</code>), ob sie als Quelle für die Analyse betrachtet werden soll (<code>_is_allowed_source_file</code>), und ob sie wahrscheinlich Textdaten enthält (<code>_is_probably_text_file</code>).</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-should-skip-source-analysis-file-relative-path-path-bool">1. <code>_should_skip_source_analysis_file(relative_path: Path) -&gt; bool</code></h3>
+<p>Diese Funktion entscheidet, ob eine spezifische Datei, basierend auf ihrem Pfad und Namen, übersprungen werden soll. <strong>Beschreibung:</strong> Überprüft verschiedene Kriterien, um festzustellen, ob eine Datei als Quelle für die Analyse ignoriert werden sollte. <strong>Parameter:</strong></p>
+<ul>
+<li><code>relative_path: Path</code>: Der relative Pfad zur Datei, die bewertet werden soll.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn die Datei übersprungen werden soll; <code>False</code>, andernfalls nicht.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Verzeichnisprüfung:</strong> Prüft, ob Teile des Pfades (außer dem letzten Teil) in der Liste <code>SKIP_DIR_NAMES</code> enthalten sind.</li>
+<li><strong>Spezialpfadprüfung:</strong> Prüft, ob der Pfad exakt <code>&quot;Linux/project&quot;</code> ist.</li>
+<li><strong>Temporäre Dateien:</strong> Prüft, ob der Dateiname mit <code>_tmp_</code> oder <code>tmp_</code> beginnt.</li>
+<li><strong>Dump-Dateien:</strong> Prüft, ob der Dateiname mit <code>_analysis_dump.md</code> oder <code>.codedump.md</code> endet.</li>
+<li><strong>Dateiendung:</strong> Prüft, ob die Dateiendung (<code>suffix</code>) in der Liste <code>SKIP_FILE_SUFFIXES</code> enthalten ist.</li>
+<li><strong>Dokumentenprüfung:</strong> Prüft, ob der Pfad mit <code>&quot;Docs&quot;</code> beginnt und die Endung <code>.html</code> hat.</li>
+<p>---</p>
+</ol>
+<h3 id="2-is-allowed-source-file-relative-path-path-bool">2. <code>_is_allowed_source_file(relative_path: Path) -&gt; bool</code></h3>
+<p>Diese Funktion bestimmt, ob eine Datei als gültige Quelle für die Analyse betrachtet werden darf. <strong>Beschreibung:</strong> Prüft, ob der Dateiname oder die Dateiendung der Datei in den definierten Listen der erlaubten Namen oder Endungen enthalten ist. <strong>Parameter:</strong></p>
+<ul>
+<li><code>relative_path: Path</code>: Der relative Pfad zur Datei, die bewertet werden soll.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn die Datei erlaubt ist; <code>False</code>, andernfalls nicht.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Name-Prüfung:</strong> Prüft, ob der Dateiname (<code>relative_path.name</code>) in der Liste <code>ALLOWED_FILE_NAMES</code> enthalten ist.</li>
+<li><strong>Endung-Prüfung:</strong> Prüft, ob die Dateiendung (in Kleinbuchstaben) in der Liste <code>ALLOWED_SUFFIXES</code> enthalten ist.</li>
+<p>---</p>
+</ol>
+<h3 id="3-is-probably-text-file-path-path-bool">3. <code>_is_probably_text_file(path: Path) -&gt; bool</code></h3>
+<p>Diese Funktion bewertet, ob eine Datei wahrscheinlich Textinhalt enthält, indem sie einen kleinen Teil der Datei liest und die Kodierung prüft. <strong>Beschreibung:</strong> Leset die ersten 8192 Bytes der Datei und versucht, diese als UTF-8 zu dekodieren. Sie prüft auf Null-Byte-Zeichen (<code>\x00</code>) und versucht bei Fehlern eine Dekodierung mit <code>utf-8-sig</code>. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: Path</code>: Der Pfad zur Datei, die analysiert werden soll.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn die Datei als Text betrachtet wird; <code>False</code>, andernfalls nicht.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Bytes-Lesung:</strong> Liest die ersten 8192 Bytes der Datei (<code>path.read_bytes()[:8192]</code>).</li>
+<li><strong>Null-Byte-Prüfung:</strong> Wenn ein Null-Byte (<code>b&quot;\x00&quot;</code>) im Lesevorgang gefunden wird, wird die Funktion sofort auf <code>False</code> gesetzt.</li>
+<li><strong>UTF-8 Dekodierung:</strong> Versucht, die Bytes als UTF-8 zu dekodieren.</li>
+<li><strong>Fallback-Dekodierung:</strong> Falls die UTF-8-Dekodierung fehlschlägt (<code>UnicodeDecodeError</code>), versucht sie, die Bytes als UTF-8 mit Signatur (<code>utf-8-sig</code>) zu dekodieren.</li>
+<li><strong>Fehlversuch:</strong> Wenn beide Dekodierungsversuche fehlschlagen, wird die Funktion auf <code>False</code> gesetzt.</li>
+<li><strong>Erfolg:</strong> Wird die Dekodierung erfolgreich abgeschlossen, wird <code>True</code> zurückgegeben.</li>
+</ol>
+<h2 id="abh-ngigkeiten-und-konstanten-impliziert">Abhängigkeiten und Konstanten (Impliziert)</h2>
+<p>Die Funktionalität dieser Funktionen hängt von externen globalen Variablen ab, die in der Datei definiert sein müssen:</p>
+<ul>
+<li>**<code>SKIP_DIR_NAMES</code>**: Eine Liste von Pfadkomponenten, die bei einem Pfad-Match zu Überspringen führen.</li>
+<li>**<code>SKIP_FILE_SUFFIXES</code>**: Eine Liste von Dateiendungen, die bei einem Dateiendungs-Match zu Überspringen führen.</li>
+<li>**<code>ALLOWED_FILE_NAMES</code>**: Eine Liste von Dateinamen, die als Quelle erlaubt sind.</li>
+<li>**<code>ALLOWED_SUFFIXES</code>**: Eine Liste von Dateiendungen, die als Quelle erlaubt sind.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<p>Diese Funktionen dienen als <strong>Gatekeeper</strong> im Analyse-Archiv-Builder:</p>
+<ol>
+<li><strong>Filterung (Skip):</strong> <code>_should_skip_source_analysis_file</code> entscheidet, welche Dateien überhaupt in den Analyseprozess aufgenommen werden.</li>
+<li><strong>Validierung (Allow):</strong> <code>_is_allowed_source_file</code> stellt sicher, dass die identifizierten Quellen den definierten Spezifikationen entsprechen.</li>
+<li><strong>Typ-Prüfung (Content Check):</strong> <code>_is_probably_text_file</code> hilft, Dateien zu identifizieren, die textbasierte Analyse durchlaufen sollten, indem sie die Datenintegrität (insbesondere die Anwesenheit von Null-Bytes) prüft.</li>
+</ol>
+<h1 id="technische-dokumentation-analysis-archive-builder-py">Technische Dokumentation: <code>analysis_archive_builder.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Python-Skriptdatei <code>analysis_archive_builder.py</code> dient dazu, ein <strong>Quellcode-basiertes ZIP-Archiv</strong> für die Analyse von KI-Projekten zu erstellen. Das Skript wird über die Kommandozeile (CLI) ausgeführt, um einen bestimmten Projektordner zu verarbeiten und das resultierende Archiv an einen definierten Speicherort zu speichern.</p>
+<h2 id="2-funktionsweise">2. Funktionsweise</h2>
+<p>Die Hauptfunktion des Skripts ist die Orchestrierung des Archivierprozesses, indem es Argumente von der Kommandozeile entgegennimmt und die Kernlogik zur Erstellung des Archivs aufruft.</p>
+<h3 id="2-1-hauptfunktion-main">2.1. Hauptfunktion (<code>main()</code>)</h3>
+<p>Die <code>main</code>-Funktion ist der zentrale Einstiegspunkt des Skripts und übernimmt folgende Schritte:</p>
+<ol>
+<li><strong>Argumenten-Parsing:</strong> Sie initialisiert ein <code>argparse.ArgumentParser</code>, um die notwendigen Kommandozeilenargumente zu definieren.</li>
+<li><strong>Argument-Erfassung:</strong> Sie parst die übergebenen Argumente (z.B. den Basispfad, den Ausgabedirektor und eine Versionsnummer).</li>
+<li><strong>Pfad-Resolutions:</strong> Sie konvertiert die übergebenen Pfade in <code>Path</code>-Objekte und stellt sicher, dass der <code>base_path</code> absolut aufgelöst wird (<code>resolve(strict=False)</code>).</li>
+<li><strong>Ausgabepfad-Konfiguration:</strong> Sie konstruiert den vollständigen Ausgabepfad (<code>output_dir</code>). Wenn der übergebene <code>output-dir</code> nicht absolut ist, wird er relativ zum <code>base_path</code> konstruiert.</li>
+<li><strong>Archiv-Erstellung:</strong> Sie ruft die Kernfunktion <code>build_source_analysis_archive</code> auf, um das eigentliche Archiv zu erstellen.</li>
+<li><strong>Ergebnis-Ausgabe:</strong> Sie gibt den Pfad zum erstellten Archiv aus.</li>
+</ol>
+<h3 id="2-2-abh-ngigkeiten">2.2. Abhängigkeiten</h3>
+<ul>
+<li>**<code>pathlib.Path</code>:** Für die Manipulation und Auflösung von Dateipfaden.</li>
+<li>**<code>argparse</code>:** Für die Definition und Verarbeitung von Kommandozeilenargumenten.</li>
+<li>**<code>build_source_analysis_archive(...)</code>:** Eine externe Funktion (nicht im bereitgestellten Code sichtbar), die die eigentliche Logik zur Erstellung des ZIP-Archivs implementiert.</li>
+</ul>
+<h2 id="3-kommandozeilenargumente">3. Kommandozeilenargumente</h2>
+<p>Das Skript akzeptiert folgende Argumente:</p>
+<table><thead><tr>
+<th>Argument</th>
+<th>Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+<th>Pflicht</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td>String</td>
+<td><code>.</code></td>
+<td>Der Wurzelpfad des Projekts, aus dem die Analyse durchgeführt werden soll.</td>
+<td>Nein (Standard: <code>.</code>)</td>
+</tr>
+<tr>
+<td><code>--output-dir</code></td>
+<td>String</td>
+<td><code>dist</code></td>
+<td>Der Name des Verzeichnisses, in dem das resultierende ZIP-Archiv gespeichert werden soll.</td>
+<td>Nein (Standard: <code>dist</code>)</td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>String</td>
+<td><code>&quot;&quot;</code></td>
+<td>Eine optionale Versionsnummer, die in den Archivmetadaten aufgenommen werden soll.</td>
+<td>Nein</td>
+</tr>
+</tbody></table>
+<h2 id="4-code-analyse-auszug">4. Code-Analyse (Auszug)</h2>
+<pre><code class="language-python">def main() -&gt; None:
+parser = argparse.ArgumentParser(description=&quot;Build a source-only ZIP archive for AI analysis.&quot;)
+parser.add_argument(&quot;base_path&quot;, nargs=&quot;?&quot;, default=&quot;.&quot;, help=&quot;Projektwurzel&quot;)
+parser.add_argument(&quot;--output-dir&quot;, default=&quot;dist&quot;, help=&quot;Ausgabeordner fuer das ZIP-Archiv&quot;)
+parser.add_argument(&quot;--version&quot;, default=&quot;&quot;, help=&quot;Optionale Versionsueberschreibung&quot;)
+args = parser.parse_args()
+base_path = Path(args.base_path).resolve(strict=False)
+output_dir = Path(args.output_dir)
+if not output_dir.is_absolute():
+output_dir = base_path / output_dir
+result = build_source_analysis_archive(base_path, output_dir=output_dir, version=args.version or None)
+print(result.archive_path)
+if __name__ == &quot;__main__&quot;:
+main()</code></pre>
+<h3 id="4-1-pfad-handling">4.1. Pfad-Handling</h3>
+<ul>
+<li>**<code>base_path = Path(args.base_path).resolve(strict=False)</code>:** Der bereitgestellte Basispfad wird in ein <code>Path</code>-Objekt umgewandelt und aufgelöst. <code>strict=False</code> erlaubt es, wenn der Pfad nicht existiert, trotzdem weiterzuarbeiten (obwohl die nachfolgende Logik davon abhängt, ob die Dateien tatsächlich existieren).</li>
+<li>**<code>output_dir = Path(args.output_dir)</code>:** Der gewünschte Ausgabedirektor wird initialisiert.</li>
+<li>**<code>if not output_dir.is_absolute(): output_dir = base_path / output_dir</code>:** Dies ist eine wichtige Logik. Wenn der Benutzer einen relativen Pfad für <code>--output-dir</code> angibt (z.B. <code>logs/</code>), wird dieser Pfad relativ zum <code>base_path</code> konstruiert, um eine konsistente Archivstruktur zu gewährleisten.</li>
+</ul>
+<h3 id="4-2-kernlogik">4.2. Kernlogik</h3>
+<ul>
+<li>**<code>result = build_source_analysis_archive(...)</code>:** Hier wird die eigentliche Verarbeitung des Quellcodes und die Erstellung des ZIP-Archivs durch die externe Funktion ausgelöst.</li>
+<li>**<code>print(result.archive_path)</code>:** Das Skript gibt den finalen Pfad zum erstellten Archiv an die Standardausgabe aus.</li>
+</ul>
+<h2 id="5-verwendung-beispiel">5. Verwendung (Beispiel)</h2>
+<p>Um das Skript auszuführen, wird es mit dem Basisordner als erstes Argument aufgerufen:</p>
+<pre><code class="language-bash">python analysis_archive_builder.py /pfad/zu/meinem/projekt</code></pre>
+<p><strong>Beispiel mit Optionen:</strong> Um das Archiv in einem separaten Ordner namens <code>analysis_output</code> zu speichern und eine Version hinzuzufügen:</p>
+<pre><code class="language-bash">python analysis_archive_builder.py /pfad/zu/meinem/projekt --output-dir analysis_output --version v1.2.3</code></pre>
+<p><strong>Erwartete Ausgabe (Beispiel):</strong></p>
+<pre><code>/pfad/zu/meinem/projekt/dist/analysis_project_v1.2.3.zip</code></pre>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen-und-klassen">2. Funktionen und Klassen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-globale-konfiguration-constants">2.1. Globale Konfiguration (Constants)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-dataclass-sourceanalysisarchivebuildresult">2.2. Dataclass: `SourceAnalysisArchiveBuildResult`</a></li>
+<li class="wiki-toc-link"><a href="#3-hauptlogik-impliziert">3. Hauptlogik (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#4-konstanten-details">4. Konstanten-Details</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-skip-dir-names">4.1. `SKIP_DIR_NAMES`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-skip-file-suffixes">4.2. `SKIP_FILE_SUFFIXES`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-3-allowed-suffixes">4.3. `ALLOWED_SUFFIXES`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-4-allowed-file-names">4.4. `ALLOWED_FILE_NAMES`</a></li>
+<li class="wiki-toc-link"><a href="#5-nutzungshinweise">5. Nutzungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-detect-project-version-base-path-path-str">1. `detect_project_version(base_path: Path) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-build-source-analysis-archive">2. `build_source_analysis_archive(</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#verwendung-beispiel">Verwendung (Beispiel)</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#iter-source-analysis-files-base-path-path-list-path">`_iter_source_analysis_files(base_path: Path) -&gt; list[Path]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#git-tracked-files-base-path-path-list-path">`_git_tracked_files(base_path: Path) -&gt; list[Path]`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#anmerkungen">Anmerkungen</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-should-skip-source-analysis-file-relative-path-path-bool">1. `_should_skip_source_analysis_file(relative_path: Path) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-is-allowed-source-file-relative-path-path-bool">2. `_is_allowed_source_file(relative_path: Path) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-is-probably-text-file-path-path-bool">3. `_is_probably_text_file(path: Path) -&gt; bool`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-konstanten-impliziert">Abhängigkeiten und Konstanten (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionsweise">2. Funktionsweise</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-hauptfunktion-main">2.1. Hauptfunktion (`main()`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-abh-ngigkeiten">2.2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-kommandozeilenargumente">3. Kommandozeilenargumente</a></li>
+<li class="wiki-toc-link"><a href="#4-code-analyse-auszug">4. Code-Analyse (Auszug)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-pfad-handling">4.1. Pfad-Handling</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-kernlogik">4.2. Kernlogik</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung-beispiel">5. Verwendung (Beispiel)</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "analysis_archive_builder.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

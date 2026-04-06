@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `curriculum_certificate_pdf.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `curriculum_certificate_pdf.py`</h1>
+          <p>Source: curriculum_certificate_pdf.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-curriculum-certificate-pdf-py">Technische Dokumentation: <code>curriculum_certificate_pdf.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>curriculum_certificate_pdf.py</code> enthält eine Reihe von Funktionen, die primär für die <strong>Textvorverarbeitung</strong> und die <strong>Erstellung von Datenstrukturen</strong> konzipiert sind, die wahrscheinlich für die Generierung eines PDF-Dokuments (erkennbar an den Konstanten <code>PAGE_WIDTH</code> und <code>PAGE_HEIGHT</code>) verwendet werden. Die Hauptaufgaben der Funktionen umfassen:</p>
+<ol>
+<li><strong>Textnormalisierung</strong>: Bereinigung und Standardisierung von Zeichen in Textdaten.</li>
+<li><strong>PDF-String-Generierung</strong>: Konvertierung von normalisiertem Text in ein Format, das für die PDF-Erstellung geeignet ist.</li>
+<li><strong>RGB-Konvertierung</strong>: Umwandlung von RGB-Werten in ASCII-Strings.</li>
+<li><strong>Breitenabschätzung</strong>: Schätzung der benötigten Breite für Text basierend auf Textinhalt und Schriftgröße.</li>
+</ol>
+<h2 id="2-konstanten">2. Konstanten</h2>
+<table><thead><tr>
+<th>Konstante</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>PAGE_WIDTH</code></td>
+<td><code>float</code></td>
+<td>Die definierte Breite einer Seite (595.0 Einheiten).</td>
+</tr>
+<tr>
+<td><code>PAGE_HEIGHT</code></td>
+<td><code>float</code></td>
+<td>Die definierte Höhe einer Seite (842.0 Einheiten).</td>
+</tr>
+</tbody></table>
+<h2 id="3-funktionen">3. Funktionen</h2>
+<h3 id="3-1-normalize-text-value-str-str">3.1. <code>_normalize_text(value: str) -&gt; str</code></h3>
+<p><strong>Zweck:</strong> Normalisiert einen eingehenden Textstring, um ihn für die spätere Verarbeitung (wahrscheinlich für die PDF-Generierung) zu bereiten. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: str</code>: Der zu normalisierende Textstring (kann <code>None</code> sein).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der normalisierte Textstring.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Basisbereinigung:</strong> Entfernt Zeilenumbrüche (<code>\n</code>), Zeilenumbrüche (<code>\r</code>) und Leerzeichen, und entfernt führende/endende Leerzeichen.</li>
+<li><strong>Zeichenersatz:</strong> Ersetzt spezifische Satzzeichen und Formatierungen durch Standardzeichen:</li>
+</ol>
+<ul>
+<li><code>–</code> (En-Dash) $\rightarrow$ <code>-</code></li>
+<li><code>—</code> (Em-Dash) $\rightarrow$ <code>-</code></li>
+<li><code>•</code> (Bullet Point) $\rightarrow$ <code>-</code></li>
+<li><code>…</code> (Ellipsis) $\rightarrow$ <code>...</code></li>
+<li><code>„</code>, <code>“</code>, <code>”</code> $\rightarrow$ <code>&quot;</code> (Doppelte Anführungszeichen)</li>
+<li><code>’</code>, <code>‚</code> $\rightarrow$ <code>&#x27;</code> (Apostroph/Einfaches Anführungszeichen)</li>
+<li><code>&quot;</code> $\rightarrow$ <code>&quot;</code> (Beibehaltung)</li>
+</ul>
+<ol>
+<li><strong>Kodierung/Dekodierung:</strong> Versucht, den Text in <code>cp1252</code> zu kodieren. Falls eine <code>UnicodeEncodeError</code> auftritt (was bei komplexen Unicode-Zeichen passieren kann), wird eine NFKD-Normalisierung durchgeführt, die Zeichen ignoriert, die nicht in <code>cp1252</code> kodiert werden können, und das Ergebnis wird als <code>?</code> ersetzt.</li>
+</ol>
+<h3 id="3-2-pdf-string-value-str-bytes">3.2. <code>_pdf_string(value: str) -&gt; bytes</code></h3>
+<p><strong>Zweck:</strong> Konvertiert einen normalisierten Textstring in ein Byte-Array, das für die PDF-Erstellung formatiert ist. <strong>Parameter:</strong></p>
+<ul>
+<li><code>value: str</code>: Der normalisierte Textstring.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bytes</code>: Das im Format <code>(encoded_text)</code> eingeschlossene Byte-Array.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Kodierung:</strong> Der Text wird zuerst in <code>cp1252</code> kodiert, wobei Fehler durch <code>replace</code> behandelt werden.</li>
+<li><strong>Escape-Sequenzen:</strong> Spezielle Zeichen werden für die PDF-Syntax angepasst:</li>
+</ol>
+<ul>
+<li><code>\</code> wird zu <code>\\</code></li>
+<li><code>(</code> wird zu <code>\\(</code></li>
+<li><code>)</code> wird zu <code>\\)</code></li>
+</ul>
+<ol>
+<li><strong>Formatierung:</strong> Der resultierende kodierte Text wird durch <code>(</code> und <code>)</code> umschlossen, um ihn als Teil eines PDF-String-Elements zu kennzeichnen.</li>
+</ol>
+<h3 id="3-3-rgb-r-float-g-float-b-float-bytes">3.3. <code>_rgb(r: float, g: float, b: float) -&gt; bytes</code></h3>
+<p><strong>Zweck:</strong> Konvertiert drei Floats (Rot, Grün, Blau) in einen ASCII-String. <strong>Parameter:</strong></p>
+<ul>
+<li><code>r: float</code>: Rotwert (0.0 bis 1.0).</li>
+<li><code>g: float</code>: Grünwert (0.0 bis 1.0).</li>
+<li><code>b: float</code>: Blauwert (0.0 bis 1.0).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bytes</code>: Der ASCII-String der RGB-Werte, formatiert als <code>&quot;R G B&quot;</code>.</li>
+<p><strong>Details:</strong></p>
+<li>Die Werte werden auf drei Dezimalstellen gerundet (<code>f&quot;{r:.3f} {g:.3f} {b:.3f}&quot;</code>) und anschließend in ASCII-Bytes umgewandelt.</li>
+</ul>
+<h3 id="3-4-estimate-width-text-str-font-size-float-float">3.4. <code>_estimate_width(text: str, font_size: float) -&gt; float</code></h3>
+<p><strong>Zweck:</strong> Schätzt die horizontale Breite, die ein bestimmter Textblock bei einer gegebenen Schriftgröße einnehmen würde. <strong>Parameter:</strong></p>
+<ul>
+<li><code>text: str</code>: Der Text, dessen Breite geschätzt werden soll.</li>
+<li><code>font_size: float</code>: Die Größe der Schriftart (in Punkten oder ähnlicher Einheit).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>float</code>: Die geschätzte Breite in Einheiten.</li>
+<p><strong>Details:</strong></p>
+<li>Die Schätzung basiert auf der Formel: <code>Länge(normalisierter Text) * Schriftgröße * 0.53</code>. (Der Faktor 0.53 ist eine spezifische Kalibrierung für die verwendete Schriftart/Layout-Engine).</li>
+</ul>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Datei ist abhängig von:</p>
+<ul>
+<li>**<code>hashlib</code>**: Für Hash-Operationen (nicht direkt in den gezeigten Funktionen verwendet, aber importiert).</li>
+<li>**<code>math</code>**: Für mathematische Funktionen (nicht direkt in den gezeigten Funktionen verwendet, aber importiert).</li>
+<li>**<code>unicodedata</code>**: Für Unicode-Normalisierung.</li>
+<li>**<code>zlib</code>**: Für Datenkompression (nicht direkt in den gezeigten Funktionen verwendet, aber importiert).</li>
+<li>**<code>datetime</code>**: Für Zeitstempel (nicht direkt in den gezeigten Funktionen verwendet, aber importiert).</li>
+<li>**<code>pathlib.Path</code>**: Für Dateisystemoperationen (nicht direkt in den gezeigten Funktionen verwendet, aber importiert).</li>
+<li>**<code>PIL (Pillow)</code>**: Wird optional importiert, um Bild-Operationen (<code>Image</code>, <code>ImageOps</code>) zu nutzen.</li>
+</ul>
+<h2 id="5-nutzungsszenarien-impliziert">5. Nutzungsszenarien (Impliziert)</h2>
+<p>Diese Funktionen deuten stark darauf hin, dass das Skript zur <strong>Automatisierung der Erstellung von Zertifikaten oder Dokumenten</strong> dient, bei denen:</p>
+<ol>
+<li>Textdaten (z.B. Namen, Titel) bereinigt werden müssen.</li>
+<li>Der Text in ein spezifisches Format (PDF-String) umgewandelt werden muss.</li>
+<li>Grafische Elemente (wie Farben) in ein strukturiertes Format für das Dokument (RGB-Bytes) übersetzt werden müssen.</li>
+<li>Layout- oder Platzierungsentscheidungen (Breitenabschätzung) getroffen werden müssen.</li>
+</ol>
+<h1 id="technische-dokumentation-python-funktionen-f-r-pdf-textkommandos">Technische Dokumentation: Python-Funktionen für PDF-Textkommandos</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Funktionen <code>_text_command</code> und <code>_centered_text_command</code> aus der Datei <code>curriculum_certificate_pdf.py</code>. Diese Funktionen sind dafür konzipiert, die notwendigen Befehle (in der PostScript/PDF-Syntax) zu generieren, um Text in einem PDF-Dokument zu platzieren. Sie dienen als Bausteine für die Erstellung von Textelementen in einem PDF-Generator.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="2-1-text-command">2.1. <code>_text_command</code></h3>
+<p>Diese interne Funktion generiert den grundlegenden Befehl für die Platzierung von Text auf einer bestimmten Position im PDF-Dokument. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _text_command(
+x: float,
+y: float,
+text: str,
+*,
+font: str = &quot;F2&quot;,
+size: float = 12,
+color: tuple[float, float, float] = (0.10, 0.13, 0.15),
+) -&gt; bytes:
+&quot;&quot;&quot;
+Generiert den PDF-Textkommandobefehl für die Platzierung von Text.
+Args:
+x (float): Die horizontale Position (x-Koordinate) für den Text.
+y (float): Die vertikale Position (y-Koordinate) für den Text.
+text (str): Der Textinhalt, der platziert werden soll.
+font (str, optional): Die verwendete Schriftart (z.B. &quot;F2&quot;). Standardwert: &quot;F2&quot;.
+size (float, optional): Die Schriftgröße (in Punkten). Standardwert: 12.0.
+color (tuple[float, float, float], optional): Die Farbe des Textes in RGB-Format (R, G, B).
+Standardwert: (0.10, 0.13, 0.15) (dunkelgrau).
+Returns:
+bytes: Die serialisierte PDF-Befehlskette als Bytes-String.
+&quot;&quot;&quot;
+return (
+b&quot;BT &quot;
++ _rgb(*color)
++ b&quot; rg /&quot;
++ font.encode(&quot;ascii&quot;)
++ b&quot; &quot;
++ f&quot;{size:.2f}&quot;.encode(&quot;ascii&quot;)
++ b&quot; Tf 1 0 0 1 &quot;
++ f&quot;{x:.2f} {y:.2f}&quot;.encode(&quot;ascii&quot;)
++ b&quot; Tm &quot;
++ _pdf_string(text)  # Nimmt den Text und konvertiert ihn in PDF-String
++ b&quot; Tj ET\n&quot;
+)
+**Beschreibung der Komponente:**
+Der generierte Befehl folgt der typischen Struktur von PostScript/PDF-Befehlen:
+1. **`BT`**: Begin Text.
+2. **`rg /`**: Setze die Farbe auf die definierte RGB-Farbe.
+3. **`font &lt;font_name&gt;`**: Definiert die Schriftart.
+4. **` &lt;size&gt; `**: Definiert die Schriftgröße.
+5. **`Tf 1 0 0 1 `**: Setze den Transformator auf den Textmodus.
+6. **`&lt;x&gt; &lt;y&gt;`**: Definiert die Startposition des Textes.
+7. **`Tm &lt;text&gt;`**: Definiert den Textinhalt.
+8. **`Tj ET\n`**: Zeichne den Text und beende den Textmodus.
+### 2.2. `_centered_text_command`
+Diese Funktion nutzt `_text_command`, um Text automatisch horizontal zentriert auf einer bestimmten vertikalen Position zu platzieren.
+**Signature:**</code></pre>
+<p>def _centered_text_command( y: float, text: str, *, font: str = &quot;F2&quot;, size: float = 12, color: tuple[float, float, float] = (0.10, 0.13, 0.15), ) -&gt; bytes: &quot;&quot;&quot; Generiert den PDF-Textkommandobefehl für Text, der horizontal zentriert ist. Args: y (float): Die vertikale Position (y-Koordinate) für den Text. text (str): Der Textinhalt, der platziert werden soll. font (str, optional): Die verwendete Schriftart. Standardwert: &quot;F2&quot;. size (float, optional): Die Schriftgröße. Standardwert: 12.0. color (tuple[float, float, float], optional): Die Farbe des Textes. Standardwert: (0.10, 0.13, 0.15). Returns: bytes: Der serialisierte PDF-Befehlskette als Bytes-String. &quot;&quot;&quot; width = _estimate_width(text, size)</p>
+<h1 id="berechnet-die-horizontale-position-um-den-text-zentriert-zu-platzieren">Berechnet die horizontale Position, um den Text zentriert zu platzieren.</h1>
+<h1 id="die-position-wird-auf-48-0-wahrscheinlich-ein-seitenrand-begrenzt">Die Position wird auf 48.0 (wahrscheinlich ein Seitenrand) begrenzt.</h1>
+<p>x = max(48.0, (PAGE_WIDTH - width) / 2.0) return _text_command(x, y, text, font=font, size=size, color=color)</p>
+<pre><code>**Beschreibung der Logik:**
+1. **Breitenabschätzung:** Ruft die interne Funktion `_estimate_width(text, size)` auf, um die ungefähre Breite des Textes bei der angegebenen Schriftgröße zu bestimmen.
+2. **Positionierung:** Berechnet die horizontale Startposition `x` durch die Formel: `(PAGE_WIDTH - width) / 2.0`. Dies stellt sicher, dass der Text exakt in der Mitte der verfügbaren Seitenbreite (`PAGE_WIDTH`) platziert wird.
+3. **Randbegrenzung:** Die berechnete Position `x` wird mit `max(48.0, ...)` verglichen. Dies stellt sicher, dass die Textposition niemals kleiner als 48.0 ist (wahrscheinlich ein fester Seitenrand).
+4. **Textgenerierung:** Ruft `_text_command` auf, um den finalen Befehl zu erstellen.
+## 3. Abhängigkeiten und Vorannahmen
+* **`_rgb(*color)`:** Eine interne Funktion, die eine RGB-Tupel-Farbe in die entsprechende PDF-Farbcodes (z.B. `BT` und `rg`) umwandelt.
+* **`_pdf_string(text)`:** Eine interne Funktion, die den eingegebenen Text in die korrekte PDF-Syntax umwandelt (wahrscheinlich die notwendigen Escape-Sequenzen und Zeichenkodierungen hinzufügt).
+* **`_estimate_width(text, size)`:** Eine interne Funktion, die die Breite des Textes basierend auf Inhalt und Schriftgröße schätzt.
+* **`PAGE_WIDTH`:** Eine globale oder zugängliche Konstante, die die Gesamtbreite der PDF-Seite darstellt.
+## 4. Verwendung
+Diese Funktionen sollten in einem Kontext verwendet werden, in dem die Ausgabe als `bytes` (oder ein String, der Bytes darstellt) für die Weitergabe an eine PDF-Generierungsbibliothek (wie z.B. `reportlab` oder eine ähnliche Low-Level-API) benötigt wird.
+**Beispiel (Konzeptuell):**</code></pre>
+<h1 id="angenommen-page-width-ist-definiert">Angenommen, PAGE_WIDTH ist definiert</h1>
+<h1 id="text-der-zentriert-werden-soll">Text, der zentriert werden soll</h1>
+<p>certificate_text = &quot;Zertifikat für die erfolgreiche Teilnahme am Kurs&quot;</p>
+<h1 id="generiere-den-zentrierten-befehl">Generiere den zentrierten Befehl</h1>
+<p>centered_command = _centered_text_command( y=50.0, text=certificate_text, font=&quot;F2&quot;, size=14.0 )</p>
+<h1 id="centered-command-enth-lt-nun-die-bytes-f-r-den-pdf-befehl">centered_command enthält nun die Bytes für den PDF-Befehl</h1>
+<h1 id="print-centered-command">print(centered_command)</h1>
+<pre><code>
+# Technische Dokumentation: Python-Code-Analyse
+## Datei: `curriculum_certificate_pdf.py` (Teil 3/7)
+Diese Dokumentation beschreibt die Funktionen, die in dem bereitgestellten Python-Code definiert sind. Der Code scheint Teil einer Bibliothek oder eines Moduls zu sein, das wahrscheinlich Befehle für die Erstellung oder Manipulation von PDF-Dateien (möglicherweise basierend auf einem spezifischen Befehlsformat wie PostScript oder einem ähnlichen Format) generiert.
+---
+## 1. Funktion: `_rect_command`
+**Zweck:** Generiert einen Befehl für das Zeichnen eines Rechtecks (`rect`) in einem bestimmten Koordinatensystem.
+**Parameter:**
+| Parameter | Typ | Beschreibung |
+| :--- | :--- | :--- |
+| `x` | `float` | Der x-Koordinate der oberen linken Ecke. |
+| `y` | `float` | Die y-Koordinate der oberen linken Ecke. |
+| `width` | `float` | Die Breite des Rechtecks. |
+| `height` | `float` | Die Höhe des Rechtecks. |
+| `fill` | `tuple[float, float, float] | None` | Optionaler RGB-Füllwert (R, G, B) für das Rechteck. Wenn `None`, wird ein Standardverhalten angewendet. |
+| `stroke` | `tuple[float, float, float] | None` | Optionaler RGB-Füllwert (R, G, B) für die Kontur (Stroke). Wenn `None`, wird keine Kontur definiert. |
+| `line_width` | `float` | Die Dicke der Linie, falls ein `stroke` definiert ist (Standardwert: 1.0). |
+**Rückgabe:**
+* `bytes`: Eine Byte-Sequenz, die den generierten Befehl im Format des Zielsystems enthält.
+**Logik:**
+1. **Initialisierung:** Der Befehl beginnt mit `b&quot;q &quot;`.
+2. **Füllung (`fill`):** Wenn `fill` angegeben ist, wird der RGB-Wert als `_rgb(*fill)` gefolgt von `b&quot; rg &quot;` hinzugefügt.
+3. **Kontur (`stroke`):** Wenn `stroke` angegeben ist, wird der RGB-Wert als `_rgb(*stroke)` gefolgt von `b&quot; RG &quot;`, gefolgt von der Formatierung der `line_width` (`f&quot;{line_width:.2f}&quot;.encode(&quot;ascii&quot;) + b&quot; w &quot;`).
+4. **Position und Dimension:** Die Koordinaten und Abmessungen werden als `f&quot;{x:.2f} {y:.2f} {width:.2f} {height:.2f} re &quot;.encode(&quot;ascii&quot;)` hinzugefügt.
+5. **Stil-Befehl:** Basierend auf den Werten von `fill` und `stroke` wird ein Stilbefehl hinzugefügt:
+* Wenn beide vorhanden sind: `b&quot;B &quot;`
+* Wenn nur `fill` vorhanden ist: `b&quot;f &quot;`
+* Wenn weder vorhanden sind: `b&quot;S &quot;`
+6. **Ende:** Der Befehl endet mit `b&quot;Q\n&quot;`.
+7. **Zusammenführung:** Alle Teile werden zu einer einzigen `bytes`-Sequenz zusammengefügt.
+---
+## 2. Funktion: `_line_command`
+**Zweck:** Generiert einen Befehl für das Zeichnen einer Linie (`line`) zwischen zwei Punkten.
+**Parameter:**
+| Parameter | Typ | Beschreibung |
+| :--- | :--- | :--- |
+| `x1` | `float` | X-Koordinate des Startpunkts. |
+| `y1` | `float` | Y-Koordinate des Startpunkts. |
+| `x2` | `float` | X-Koordinate des Endpunkts. |
+| `y2` | `float` | Y-Koordinate des Endpunkts. |
+| `color` | `tuple[float, float, float] | None` | Optionaler RGB-Farbwert für die Linie (Standardwert: `(0.10, 0.13, 0.15)`). |
+| `line_width` | `float` | Die Dicke der Linie (Standardwert: 1.0). |
+**Rückgabe:**
+* `bytes`: Eine Byte-Sequenz, die den generierten Befehl enthält.
+**Logik:**
+Der Befehl folgt dem Format: `q [Startfarbe] RG [Linienstärke] w [x1] [y1] m [x2] [y2] l S Q\n`.
+---
+## 3. Funktion: `_image_draw_command`
+**Zweck:** Generiert einen Befehl zum Zeichnen eines Bildes (`image_draw`).
+**Parameter:**
+| Parameter | Typ | Beschreibung |
+| :--- | :--- | :--- |
+| `x` | `float` | X-Koordinate des Startpunkts. |
+| `y` | `float` | Y-Koordinate des Startpunkts. |
+| `width` | `float` | Breite des zu zeichnenden Bildes. |
+| `height` | `float` | Höhe des zu zeichnenden Bildes. |
+| `resource_name` | `str` | Der Name der zu ladenden Ressource (z.B. Bilddatei). |
+**Rückgabe:**
+* `bytes`: Eine Byte-Sequenz, die den generierten Befehl enthält.
+**Logik:**
+Der Befehl folgt dem Format: `q [Breite] 0 0 [Höhe] [x] [y] cm /{resource_name} Do Q\n`.
+---
+## 4. Funktion: `_format_date`
+**Zweck:** Konvertiert einen Unix-Timestamp in ein benutzerfreundliches Datum im Format TT.MM.JJJJ.
+**Parameter:**
+| Parameter | Typ | Beschreibung |
+| :--- | :--- | :--- |
+| `timestamp` | `float` | Ein Unix-Timestamp (in Sekunden). Kann `0.0` als Standardwert verwenden. |
+**Rückgabe:**
+* `str`: Das formatierte Datum (z.B. &quot;01.01.2024&quot;).
+**Logik:**
+1. Sie verwendet `datetime.fromtimestamp()` um den Timestamp in ein `datetime`-Objekt umzuwandeln.
+2. Sie formatiert das `datetime`-Objekt mithilfe von `.strftime(&quot;%d.%m.%Y&quot;)`.
+3. Sie behandelt einen `timestamp` von `0.0` als einen Standardwert.
+---
+## Zusammenfassung und Kontext
+Der Code dient primär der **Serialisierung von grafischen Befehlen** (wahrscheinlich für eine PDF- oder ähnliche Formatierungssprache) in eine binäre Byte-Sequenz. Die Funktionen sind modular aufgebaut und behandeln spezifische geometrische Operationen (Rechtecke, Linien, Bilder) sowie eine Hilfsfunktion zur Datumsformatierung. Die Verwendung von `bytes` und `ascii`-Encoding deutet stark darauf hin, dass diese Funktion für die Kommunikation mit einem externen Rendering-Engine oder einem spezifischen Format-Parser konzipiert ist.
+
+# Technische Dokumentation: Python-Skript `curriculum_certificate_pdf.py`
+## Überblick
+Dieses Dokument beschreibt die Funktionen des Python-Skripts `curriculum_certificate_pdf.py`, das spezifische Textverarbeitungs- und Formatierungsoperationen für Dokumente (wahrscheinlich Zertifikate oder PDF-Generierung) durchführt. Die bereitgestellten Funktionen dienen der Konvertierung von Hex-Codes zu RGB-Werten, der Erstellung von Initialen und der Textumformatierung (Textwrapping).
+## Funktionen
+### 1. `_hex_to_rgb(value: str, fallback: tuple[float, float, float]) -&gt; tuple[float, float, float]`
+**Beschreibung:**
+Diese interne Funktion konvertiert einen Hexadezimal-String (z.B. `#RRGGBB`) in ein RGB-Tupel von Floats (Werte zwischen 0.0 und 1.0).
+**Parameter:**
+* `value: str`: Der zu konvertierende Hex-String (kann optional leer sein).
+* `fallback: tuple[float, float, float]`: Der Wert, der zurückgegeben wird, falls die Konvertierung fehlschlägt (z.B. bei falscher Länge oder ungültigem Hex-Format).
+**Rückgabe:**
+* `tuple[float, float, float]`: Ein Tupel, das die RGB-Werte darstellt.
+**Logik:**
+1. **Textbereinigung:** Der eingegebene `value` wird zu einem String umgewandelt, entfernt Leerzeichen und führende `#`-Symbole werden entfernt.
+2. **Längenprüfung:** Es wird geprüft, ob die bereinigte Zeichenkette exakt 6 Zeichen lang ist.
+3. **Konvertierung:** Wenn die Länge korrekt ist, werden die drei Hex-Zweier-Strings (R, G, B) extrahiert. Jede Ziffer wird in eine Dezimalzahl umgewandelt, geteilt durch 255.0, um den Wert in den Bereich $[0.0, 1.0]$ zu bringen.
+4. **Fehlerbehandlung:** Bei `ValueError` (z.B. wenn die Zeichen nicht gültige Hex-Zahlen sind) wird der `fallback`-Wert zurückgegeben.
+**Typ-Hinweis:**
+* `type: ignore[return-value]`: Dies deutet darauf hin, dass die Typ-Checker möglicherweise die Rückgabe des `tuple(...)` nicht vollständig verstanden haben, obwohl die erwartete Struktur ein Tupel von Floats ist.
+---
+### 2. `_initials(value: str) -&gt; str`
+**Beschreibung:**
+Diese Funktion extrahiert und kombiniert die ersten drei Buchstaben des Namens oder der Bezeichnung eines Strings, um eine Initialen-Kürzel zu erstellen.
+**Parameter:**
+* `value: str`: Der Eingabetext, dessen Initialen extrahiert werden sollen.
+**Rückgabe:**
+* `str`: Eine dreibuchtere Initialen-Kürzel (z.B. &quot;NS&quot;).
+**Logik:**
+1. **Textnormalisierung:** Der Eingabetext wird über `_normalize_text(value)` bereinigt (impliziert, dass diese Funktion Leerzeichen entfernt und Großbuchstaben konvertiert).
+2. **Worttrennung:** Der normalisierte Text wird nach Leerzeichen in eine Liste von Wörtern aufgeteilt, wobei nur nicht-leere Teile beibehalten werden.
+3. **Filterung:** Nur die ersten drei Wörter werden berücksichtigt (`parts[:3]`).
+4. **Initialen-Erstellung:** Für jedes der ersten drei Wörter wird der erste Buchstabe in Großbuchstaben umgewandelt.
+5. **Kombination:** Die ersten drei Initialen werden zu einem einzigen String zusammengefügt.
+**Spezialfall:**
+* Wenn nach der Filterung keine Wörter übrig sind (`if not parts:`), wird der Standardwert `&quot;NS&quot;` zurückgegeben.
+---
+### 3. `_wrap_text(text: str, *, max_chars: int) -&gt; list[str]`
+**Beschreibung:**
+Diese Funktion führt eine Zeilenumbruch-Logik (Textwrapping) auf einen gegebenen Text durch, um sicherzustellen, dass keine einzelne Zeile mehr als eine festgelegte maximale Zeichenanzahl (`max_chars`) überschreitet.
+**Parameter:**
+* `text: str`: Der gesamte Text, der umformatiert werden soll.
+* `max_chars: int`: Die maximale Zeichenanzahl pro Zeile.
+**Rückgabe:**
+* `list[str]`: Eine Liste von Strings, wobei jeder String eine Zeile des umformatierten Textes darstellt.
+**Logik:**
+1. **Textnormalisierung &amp; Aufteilung:** Der Eingabetext wird über `_normalize_text(text)` bereinigt und in eine Liste von Wörtern aufgeteilt.
+2. **Leerer Text-Fall:** Wenn keine Wörter vorhanden sind, wird eine leere Liste zurückgegeben.
+3. **Iterative Zusammenführung:**
+* Der erste Wort wird als `current` gesetzt.
+* Für jedes weitere Wort wird eine `candidate` (die Kombination aus `current` und dem neuen `word`) erstellt.
+* **Prüfung:** Wenn die Länge der `candidate` unter oder gleich `max_chars` ist, wird `current` aktualisiert.
+* **Zeilenumbruch:** Andernfalls wird die aktuelle `current`-Zeile zur Ergebnisliste hinzugefügt, und das neue `word` wird als neue `current`-Zeile gesetzt.
+4. **Abschluss:** Die letzte `current`-Zeile wird am Ende der Liste hinzugefügt.
+---
+## Abhängigkeiten und Annahmen
+* **`_normalize_text(value: str) -&gt; str`**: Diese Funktion wird in den anderen Funktionen verwendet, um den Eingabetext zu bereinigen (wahrscheinlich Entfernen von Leerzeichen, Normalisierung von Groß-/Kleinschreibung). Die genaue Implementierung dieser Funktion ist in diesem Codeausschnitt nicht enthalten.
+* **Typ-Hints:** Die Verwendung von Python-Typ-Hints (`tuple[float, float, float]`, `list[str]`) deutet auf eine moderne Python-Implementierung hin.
+## Zusammenfassung der Nutzungsszenarien
+| Funktion | Zweck | Beispiel-Eingabe | Erwartete Ausgabe |
+| :--- | :--- | :--- | :--- |
+| `_hex_to_rgb` | Farbkodierung | `&quot;FF00AA&quot;` | `(1.0, 0.0, 0.625)` (oder Fallback) |
+| `_initials` | Kürzelgenerierung | `&quot;John Doe&quot;` | `&quot;JD&quot;` |
+| `_wrap_text` | Textformatierung | `&quot;Dies ist ein sehr langer Satz, der über die Zeilenumbrüche gehen muss.&quot;`, `max_chars=20` | `[&#x27;Dies ist ein sehr&#x27;, &#x27;langer Satz, der über&#x27;, &#x27;die Zeilenumbrüche gehen muss.&#x27;]` |
+
+# Technische Dokumentation: Python-Funktion `_load_rgb_image`
+## 1. Übersicht
+Die Funktion `_load_rgb_image` ist eine interne Hilfsfunktion, die eine Bilddatei (vermutlich ein PDF- oder Bildformat) lädt, sie vorverarbeitet (Konvertierung, Rotation, Skalierung) und in ein komprimiertes Byte-Format umwandelt, das für den weiteren Verarbeitungsprozess optimiert ist.
+## 2. Funktion</code></pre>
+<p>def _load_rgb_image(path: str, *, max_width: int, max_height: int) -&gt; dict[str, object] | None:</p>
+<h1 id="code">... (Code)</h1>
+<pre><code>### 2.1. Beschreibung
+Diese Funktion nimmt einen Dateipfad (`path`) und optional maximale Dimensionen (`max_width`, `max_height`) entgegen. Sie versucht, das Bild zu öffnen, es auf ein RGB-Format zu konvertieren, optional zu drehen und es auf eine bestimmte Größe zu skalieren, bevor es in ein komprimiertes Byte-Format umgewandelt wird.
+### 2.2. Parameter
+| Parameter | Typ | Pflicht | Beschreibung |
+| :--- | :--- | :--- | :--- |
+| `path` | `str` | Ja | Der vollständige Pfad zur Bilddatei, die geladen werden soll. |
+| `max_width` | `int` | Nein | Die maximale Breite, auf die das Bild skaliert werden soll. |
+| `max_height` | `int` | Nein | Die maximale Höhe, auf die das Bild skaliert werden soll. |
+### 2.3. Rückgabe
+| Typ | Beschreibung |
+| :--- | :--- |
+| `dict[str, object]` | Ein Dictionary, das die Metadaten und das komprimierte Bild enthält, falls der Ladevorgang erfolgreich war. Enthält die Schlüssel: `&quot;width&quot;` (Breite), `&quot;height&quot;` (Höhe) und `&quot;stream&quot;` (komprimierter Byte-Stream). |
+| `None` | Wird zurückgegeben, wenn das Bild nicht geladen werden konnte (z.B. Datei nicht existiert, Fehler beim Öffnen, oder `Image` oder `ImageOps` sind nicht definiert). |
+## 3. Funktionsweise und Logik
+Die Funktion folgt folgenden Schritten:
+1. **Initialitätsprüfung:**
+* Prüft, ob die globale Variable `Image` definiert ist und ob der `path` gültig ist. Wenn nicht, gibt sie `None` zurück.
+2. **Dateiprüfung:**
+* Erstellt ein `Path`-Objekt aus dem `path` und prüft, ob die Datei existiert und als Datei erreichbar ist. Wenn nicht, gibt sie `None` zurück.
+3. **Bildöffnung und Vorverarbeitung (Try-Block):**
+* **Bildöffnung:** Öffnet die Datei mithilfe von `Image.open(target)`.
+* **Rotation (Optional):** Wenn `ImageOps` definiert ist, wird die `exif_transpose`-Operation angewendet, um die Bildorientierung zu korrigieren.
+* **Moduskonvertierung (RGB/L):**
+* Wenn der Modus des Bildes nicht `&quot;RGB&quot;` oder `&quot;L&quot;` ist, wird es in `&quot;RGBA&quot;` konvertiert.
+* Bei `&quot;RGBA&quot;` wird ein weißer Hintergrund (`(255, 255, 255, 255)`) erstellt und das Bild mittels `Image.alpha_composite` darübergelegt, bevor es in `&quot;RGB&quot;` konvertiert wird.
+* Wenn der Modus `&quot;L&quot;` (Graustufen) ist, wird er in `&quot;RGB&quot;` konvertiert.
+4. **Skalierung:**
+* **Skalierungsfaktor Berechnung:** Berechnet den Skalierungsfaktor (`scale`) als den kleinsten Wert aus:
+* `max_width / image.width`
+* `max_height / image.height`
+* `1.0` (maximale Skalierung)
+* **Größenanpassung:** Wenn der `scale` kleiner als $1.0$ ist, wird das Bild neu skaliert. Die neue Größe wird berechnet, wobei `max(1, ...)` sicherstellt, dass die Dimensionen mindestens 1 sind. Die Skalierung erfolgt mit dem `Image.LANCZOS`-Resampling-Algorithmus für hohe Qualität.
+5. **Byte-Konvertierung und Rückgabe:**
+* Das verarbeitete Bild wird in ein rohes Byte-Array (`raw`) konvertiert (`image.tobytes()`).
+* Das Byte-Array wird mit `zlib.compress()` komprimiert.
+* Ein Dictionary mit den folgenden Schlüssel wird zurückgegeben:
+* `&quot;width&quot;`: Die Breite des finalen Bildes.
+* `&quot;height&quot;`: Die Höhe des finalen Bildes.
+* `&quot;stream&quot;`: Der komprimierte Byte-Stream.
+6. **Fehlerbehandlung:**
+* Der gesamte Ladevorgang ist in einen `try...except Exception` Block eingeschlossen. Im Falle eines Fehlers (z.B. fehlerhaftes Bildformat, I/O-Fehler), wird `None` zurückgegeben.
+## 4. Abhängigkeiten
+Die Funktion setzt die folgenden Bibliotheken voraus:
+* **`PIL` (Pillow):** Für die Bildmanipulation (`Image`, `ImageOps`, `Image.open`, `Image.convert`, `Image.alpha_composite`, `Image.resize`).
+* **`pathlib`:** Für die Dateipfad-Manipulation (`Path`).
+* **`zlib`:** Für die Kompression des Bilddatens (Byte-Konvertierung).
+## 5. Anwendungsfälle
+Diese Funktion ist ideal für Szenarien, in denen:
+* **Bildoptimierung:** Bilder in eine standardisierte, komprimierte Byte-Form konvertiert werden müssen.
+* **Datenübertragung:** Bilddaten effizient über Netzwerke oder in Datenbanken übertragen werden sollen.
+* **Vorverarbeitung:** Bilder vor weiteren Algorithmen (z.B. KI-Modellen) in eine feste Größe und ein optimiertes Format gebracht werden müssen.
+* **Robustes Dateimanagement:** Fehlerbehandlung bei nicht existierenden oder fehlerhaften Dateien erforderlich ist.
+
+# Technische Dokumentation: Funktion `_build_verification_matrix`
+## 1. Übersicht
+Die Funktion `_build_verification_matrix` ist verantwortlich für die Generierung einer visuellen Verifizierungsmatrix basierend auf einem gegebenen `seed` (String). Sie erstellt ein Bild, das durch die Hash-Werte des Seeds generierte Bitmuster darstellt, und reduziert dieses Bild anschließend auf eine bestimmte Größe und komprimiert es.
+## 2. Funktion</code></pre>
+<p>def _build_verification_matrix(seed: str) -&gt; dict[str, object] | None:</p>
+<h1 id="code-folgt">... (Code folgt)</h1>
+<pre><code>**Zweck:** Erzeugt eine verifizierbare Matrix, die durch die Verarbeitung des Seeds generierte Daten visualisiert.
+**Parameter:**
+*   `seed: str`: Der Eingabestring, der zur Generierung des Hash-Wertes und der Bitmuster verwendet wird.
+**Rückgabe:**
+*   `dict[str, object] | None`: Ein Dictionary, das die Metadaten der generierten Matrix enthält, oder `None`, falls das notwendige Bildobjekt (`Image`) nicht verfügbar ist.
+*   **Wenn erfolgreich:** Enthält `width` (Breite), `height` (Höhe) und `stream` (komprimierte Daten des Bildes).
+*   **Wenn fehlschlägt:** Gibt `None` zurück.
+## 3. Funktionsweise (Schritt-für-Schritt-Analyse)
+Die Funktion folgt folgenden Hauptschritten:
+### 3.1. Initialisierung und Hash-Generierung
+1.  **Prüfung auf `Image`:** Es wird geprüft, ob die globale Variable `Image` definiert ist. Falls nicht, wird `None` zurückgegeben.
+2.  **Bildinitialisierung:** Ein neues RGB-Bild (`image`) wird mit der Größe $29 \times 29$ Pixeln und weißer Farbe `(255, 255, 255)` erstellt.
+3.  **Hash-Berechnung:** Der `seed` wird mittels SHA-256 in ein Byte-Array umgewandelt (`digest`).
+### 3.2. Bit-Extraktionsfunktion (`bit`)
+Eine interne Funktion `bit(index: int)` wird definiert, um einen einzelnen Bit aus dem Hash-Digest zu extrahieren.
+*   **Logik:** Sie wählt den Byte aus dem `digest` basierend auf dem Index modulo der Länge des Digests und extrahiert das entsprechende Bit aus diesem Byte.
+### 3.3. Muster-Markierung (`draw_finder`)
+Die Funktion `draw_finder(origin_x, origin_y)` wird verwendet, um bestimmte Bereiche des Bildes zu markieren (wahrscheinlich als &quot;Finder&quot;- oder Referenzpunkte).
+*   **Markierung:** Innerhalb eines $7 \times 7$ Bereichs um die angegebenen Koordinaten (`origin_x`, `origin_y`) werden Pixel gesetzt:
+*   Wenn der Pixel an einer Kante ist (`x` oder `y` ist 0 oder 6) **oder** innerhalb des inneren Bereichs ($2 \le x \le 4$ und $2 \le y \le 4$), wird er schwarz `(0, 0, 0)` gesetzt.
+*   Andernfalls wird er weiß `(255, 255, 255)` beibehalten.
+*   **Ausführung:** Diese Funktion wird an drei spezifischen Positionen aufgerufen: `(1, 1)`, `(size - 8, 1)` und `(1, size - 8)`.
+### 3.4. Schutzbereich Definition (`protected`)
+1.  **Bereichsdefinition:** Ein `set` namens `protected` wird initialisiert.
+2.  **Markierung des Schutzbereichs:** Es werden die Koordinaten aller Pixel im $16 \times 16$ Bereich um die drei definierten Startpunkte (`(1, 1)`, `(size - 8, 1)`, `(1, size - 8)`) gesammelt und in den `protected`-Set aufgenommen. Dies definiert die Bereiche, die nicht verarbeitet werden sollen.
+### 3.5. Matrix-Generierung (Pixel-Setzung)
+1.  **Zähler:** Eine Zählvariable `cursor` wird auf 0 gesetzt.
+2.  **Iterative Pixel-Setzung:** Das gesamte $29 \times 29$ Bild wird durch alle Pixel $(x, y)$ iteriert.
+*   **Prüfung:** Wenn die Koordinate $(x, y)$ im `protected`-Set enthalten ist, wird das Pixel übersprungen (`continue`).
+*   **Bit-Bestimmung:** Für alle anderen Pixel wird die Farbe basierend auf dem aktuellen Wert von `cursor` festgelegt:
+*   Wenn `bit(cursor)` gleich 1 ist, wird das Pixel schwarz `(0, 0, 0)` gesetzt.
+*   Wenn `bit(cursor)` gleich 0 ist, wird das Pixel weiß `(255, 255, 255)` gesetzt.
+*   **Zähler-Update:** `cursor` wird inkrementiert.
+### 3.6. Reduktion und Rückgabe
+1.  **Resizing:** Das generierte $29 \times 29$ Bild wird mithilfe der Methode `Image.NEAREST` auf eine Größe von $116 \times 116$ reduziert.
+2.  **Komprimierung:** Das resultierende Bild wird in Bytes umgewandelt (`image.tobytes()`) und mit `zlib` komprimiert (`zlib.compress`) und in die Variable `stream` geschrieben.
+3.  **Rückgabe:** Das Funktionsergebnis wird als Dictionary zurückgegeben, das die Dimensionen und den komprimierten Stream enthält.
+## 4. Abhängigkeiten
+*   `PIL.Image` (oder eine ähnliche Bildverarbeitungsbibliothek): Für Bilderstellung, Pixelmanipulation und Resizing.
+*   `hashlib`: Für die SHA-256-Hashing-Funktion.
+*   `zlib`: Für die Komprimierung der Bilddaten.
+## 5. Sicherheit und Performance
+*   **Sicherheit:** Die Funktion scheint primär eine interne Verifizierungslogik zu implementieren. Die Sicherheit hängt stark von der korrekten Implementierung der Hash- und Bit-Extraktionslogik ab.
+*   **Performance:** Die Hauptlast liegt in der Iteration über alle $29 \times 29$ Pixeln und der Hash-Berechnung. Die Resizing-Operation ist ein signifikanter Schritt, der die finale Größe bestimmt. Die Komprimierung ist eine I/O-intensive Operation.
+## 6. Anmerkungen und Verbesserungsvorschläge
+1.  **Global State:** Die Abhängigkeit von der globalen Variable `Image` sollte in einem Klassenkontext oder durch explizite Argumente (z.B. `image: Image.Image`) ersetzt werden, um die Testbarkeit und Wartbarkeit zu erhöhen.
+2.  **Klarheit der Logik:** Die Logik zur Definition des `protected`-Bereichs ist komplex. Eine zusätzliche Kommentierung oder eine separate Hilfsfunktion zur Definition der Schutzzonen könnte die Lesbarkeit verbessern.
+3.  **Fehlerbehandlung:** Die Funktion gibt `None` zurück, wenn `Image` fehlt. Es wäre ratsam, spezifischere Fehlerbehandlung für mögliche Fehler während der Hashing- oder Komprimierungsphase hinzuzufügen.
+
+## Technische Dokumentation: Funktion `build_curriculum_certificate_pdf`
+### 1. Übersicht
+Die Funktion `build_curriculum_certificate_pdf` ist eine zentrale Funktion in einem Python-Modul, das darauf ausgelegt ist, ein PDF-Dokument eines **Zertifikats für einen Kursabschluss** dynamisch zu generieren. Sie nimmt eine Vielzahl von Parametern entgegen, um alle notwendigen Inhalte (Text, Farben, Layout, Bilder) zu definieren und das finale PDF-Bytes-Format zu erstellen.
+Die Funktion nutzt eine interne Bibliothek (impliziert durch die Funktionsaufrufe wie `_rect_command`, `_centered_text_command`, etc.), um die PDF-Struktur und den Inhalt basierend auf den bereitgestellten Daten zu konstruieren.
+### 2. Funktion
+**Name:** `build_curriculum_certificate_pdf`
+**Zweck:** Generiert die Rohdaten (Bytes) eines PDF-Dokuments, das ein offizielles Zertifikat für einen Kursabschluss darstellt.
+**Signatur:**</code></pre>
+<p>def build_curriculum_certificate_pdf( *, school_name: str, student_name: str, course_title: str, certificate_title: str, subject_label: str = &quot;&quot;, theme: dict[str, object] | None = None, score: float, max_score: float, issued_at: float, certificate_id: str, verification_url: str = &quot;&quot;, signatory_name: str = &quot;&quot;, signatory_title: str = &quot;&quot;, logo_path: str = &quot;&quot;, ) -&gt; bytes:</p>
+<h1 id="implementierung">... (Implementierung)</h1>
+<pre><code>### 3. Parameter
+| Parameter | Typ | Beschreibung | Pflicht? |
+| :--- | :--- | :--- | :--- |
+| `school_name` | `str` | Der Name der Schule, die das Zertifikat ausstellt. | Ja |
+| `student_name` | `str` | Der vollständige Name des Abschlusskandidaten. | Ja |
+| `course_title` | `str` | Der Titel des abgeschlossenen Kurses. | Ja |
+| `certificate_title` | `str` | Der Haupttitel des Zertifikats. | Ja |
+| `subject_label` | `str` | Eine Bezeichnung für den Fachbereich (falls vorhanden). | Nein |
+| `theme` | `dict[str, object] | None` | Ein optionales Dictionary mit thematischen Einstellungen (z.B. `accent`, `paper`, `logo`). | Nein |
+| `score` | `float` | Die erzielte Punktzahl. | Ja |
+| `max_score` | `float` | Die maximale Punktzahl. | Ja |
+| `issued_at` | `float` | Der Zeitpunkt der Ausstellung (vermutlich Unix-Zeitstempel). | Ja |
+| `certificate_id` | `str` | Eine eindeutige Identifikationsnummer für das Zertifikat. | Ja |
+| `verification_url` | `str` | Eine URL zur digitalen Verifizierung des Zertifikats. | Nein |
+| `signatory_name` | `str` | Der Name der verantwortlichen Person/Stelle. | Nein |
+| `signatory_title` | `str` | Der Titel der verantwortlichen Person/Stelle. | Nein |
+| `logo_path` | `str`</code></pre>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-konstanten">2. Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionen">3. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-normalize-text-value-str-str">3.1. `_normalize_text(value: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-pdf-string-value-str-bytes">3.2. `_pdf_string(value: str) -&gt; bytes`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-rgb-r-float-g-float-b-float-bytes">3.3. `_rgb(r: float, g: float, b: float) -&gt; bytes`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-estimate-width-text-str-font-size-float-float">3.4. `_estimate_width(text: str, font_size: float) -&gt; float`</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-nutzungsszenarien-impliziert">5. Nutzungsszenarien (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-text-command">2.1. `_text_command`</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "curriculum_certificate_pdf.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

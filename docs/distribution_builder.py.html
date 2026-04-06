@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `distribution_builder.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `distribution_builder.py`</h1>
+          <p>Source: distribution_builder.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>distribution_builder.py</code> dient als zentrales Skript zur Erstellung von Distributionen basierend auf einem gegebenen Projektverzeichnis. Es definiert die Logik für die Auswahl des Build-Flavors, das Skripten von Abhängigkeiten, das Kompaktieren von Dateien und das Erstellen von Archivdateien für verschiedene Zielsysteme (z.B. Windows Server, Linux). Das Skript verwendet Dataclasses zur strukturierten Speicherung von Build-Ergebnissen und definiert Konfigurationskonstanten für Flavors und zu überspannende Dateien/Ordner.</p>
+<h2 id="2-konfiguration-und-konstanten">2. Konfiguration und Konstanten</h2>
+<p>Das Skript definiert mehrere globale Konstanten, die die Build-Strategie steuern:</p>
+<h3 id="2-1-package-flavors">2.1. <code>PACKAGE_FLAVORS</code></h3>
+<p>Definiert die unterstützten Build-Flavors, die das Skript verarbeiten kann:</p>
+<ul>
+<li><code>&quot;distribution&quot;</code></li>
+<li><code>&quot;windows-server-package&quot;</code></li>
+<li><code>&quot;linux-server-package&quot;</code></li>
+<li><code>&quot;linux-project&quot;</code></li>
+</ul>
+<h3 id="2-2-skip-names">2.2. <code>SKIP_NAMES</code></h3>
+<p>Eine Menge von Dateinamen oder Ordnernamen, die während des Build-Prozesses ignoriert werden sollen, um unnötige Dateien oder Abhängigkeiten zu vermeiden:</p>
+<ul>
+<li><code>.git</code></li>
+<li><code>.github</code></li>
+<li><code>.pytest_cache</code></li>
+<li><code>__pycache__</code></li>
+<li><code>.nova</code></li>
+<li><code>LIT</code></li>
+<li><code>node_modules</code></li>
+<li><code>dist</code></li>
+<li><code>build</code></li>
+</ul>
+<h3 id="2-3-skip-file-suffixes">2.3. <code>SKIP_FILE_SUFFIXES</code></h3>
+<p>Eine Menge von Dateiendungen, die als temporär oder nicht relevant für die Distribution betrachtet werden:</p>
+<ul>
+<li><code>.pyc</code></li>
+<li><code>.pyo</code></li>
+<li><code>.pyd</code></li>
+<li><code>.db</code></li>
+<li><code>.shm</code></li>
+<li><code>.wal</code></li>
+<li><code>.zip</code></li>
+<li><code>.litertlm</code></li>
+<li><code>.gguf</code></li>
+<li><code>.task</code></li>
+</ul>
+<h3 id="2-4-skip-file-names">2.4. <code>SKIP_FILE_NAMES</code></h3>
+<p>Eine Menge spezifischer Dateien, die explizit ignoriert werden sollen:</p>
+<ul>
+<li><code>analysis_dump.md</code></li>
+<li><code>Projektcode_analysis_dump.md</code></li>
+<li><code>info.png</code></li>
+</ul>
+<h2 id="3-datenstrukturen-dataclasses">3. Datenstrukturen (Dataclasses)</h2>
+<p>Das Skript verwendet drei <code>dataclass</code>-Definitionen zur strukturierten Rückgabe von Build-Ergebnissen:</p>
+<h3 id="3-1-distributionbuildresult">3.1. <code>DistributionBuildResult</code></h3>
+<p>Speichert die Ergebnisse eines vollständigen Distribution-Builds:</p>
+<ul>
+<li><code>version</code> (str): Die Version des gebildeten Artefakts.</li>
+<li><code>flavor</code> (str): Der verwendete Build-Flavor.</li>
+<li><code>archive_path</code> (Path): Der Pfad zur finalen Archivdatei.</li>
+<li><code>staging_root</code> (Path): Der Pfad zum temporären Staging-Verzeichnis.</li>
+</ul>
+<h3 id="3-2-distributionmaterializeresult">3.2. <code>DistributionMaterializeResult</code></h3>
+<p>Speichert die Ergebnisse, wenn Materialien (z.B. spezifische Komponenten) in ein Zielverzeichnis materialisiert werden:</p>
+<ul>
+<li><code>version</code> (str): Die Version.</li>
+<li><code>flavor</code> (str): Der verwendete Build-Flavor.</li>
+<li><code>target_root</code> (Path): Das Zielverzeichnis für die Materialisierung.</li>
+</ul>
+<h3 id="3-3-linuxprojectbuildresult">3.3. <code>LinuxProjectBuildResult</code></h3>
+<p>Speichert die Ergebnisse eines spezifischen Builds für Linux-Projekte:</p>
+<ul>
+<li><code>version</code> (str): Die Version.</li>
+<li><code>archive_path</code> (Path): Der Pfad zur Archivdatei.</li>
+<li><code>staging_root</code> (Path): Der Pfad zum temporären Staging-Verzeichnis.</li>
+</ul>
+<h2 id="4-funktionen">4. Funktionen</h2>
+<h3 id="4-1-detect-project-version-base-path-path-str">4.1. <code>detect_project_version(base_path: Path) -&gt; str</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion liest die <code>pyproject.toml</code> Datei im angegebenen <code>base_path</code> und versucht, die Versionsnummer zu extrahieren. <strong>Logik:</strong></p>
+<ol>
+<li>Sie liest den gesamten Inhalt der <code>pyproject.toml</code> als Text.</li>
+<li>Sie durchläuft jede Zeile und prüft, ob diese mit <code>&quot;version = &quot;</code> beginnt.</li>
+<li>Wenn eine solche Zeile gefunden wird, wird der Wert nach dem Gleichheitszeichen (<code>=</code>) extrahiert und zurückgegeben.</li>
+<li>Falls keine Versionszeile gefunden wird, wird standardmäßig <code>&quot;0.1.0&quot;</code> zurückgegeben.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>base_path: Path</code>: Der Pfad zum Verzeichnis, das die <code>pyproject.toml</code> enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Die extrahierte Versionsnummer.</li>
+</ul>
+<h2 id="5-zusammenfassung-der-struktur">5. Zusammenfassung der Struktur</h2>
+<p>Das Skript ist modular aufgebaut. Die Konfiguration ist klar getrennt, die Ergebnisse sind durch spezifische Dataclasses definiert, und die Logik für die Versionserkennung ist isoliert. Die Hauptfunktion (die im bereitgestellten Ausschnitt nicht vollständig sichtbar ist) wird wahrscheinlich diese Komponenten nutzen, um den Build-Prozess für einen gewählten Flavor zu orchestrieren.</p>
+<h2 id="technische-dokumentation-build-distribution-archive-funktion">Technische Dokumentation: <code>build_distribution_archive</code> Funktion</h2>
+<h3 id="bersicht">Übersicht</h3>
+<p>Die Funktion <code>build_distribution_archive</code> ist eine zentrale Methode zur Erstellung einer vollständigen Installations- oder Distributions-Archivdatei (ZIP-Datei) für ein Projekt. Sie übernimmt den gesamten Prozess, von der Kopie des Quellverzeichnisses bis hin zur finalen Komprimierung, wobei spezifische Anpassungen basierend auf der gewählten <code>flavor</code> (z.B. &quot;distribution&quot;) vorgenommen werden.</p>
+<h3 id="funktionssignatur">Funktionssignatur</h3>
+<pre><code class="language-python">def build_distribution_archive(
+base_path: Path,
+output_dir: Path | None = None,
+version: str | None = None,
+flavor: str = &quot;distribution&quot;,
+) -&gt; DistributionBuildResult:</code></pre>
+<h3 id="parameter">Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td><code>Path</code></td>
+<td>Der absolute oder rel relative Pfad zum Quellverzeichnis des Projekts, das verpackt werden soll.</td>
+<td>Erforderlich</td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td>`Path</td>
+<td>None`</td>
+<td>Der Pfad, an dem die finale ZIP-Datei gespeichert werden soll. Wenn <code>None</code> angegeben wird, wird das Quellverzeichnis (<code>base_path</code>) als Basis für den Output-Pfad verwendet.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>`str</td>
+<td>None`</td>
+<td>Eine spezifische Versionsnummer, die in den Namen des Archivs enthalten sein soll. Wenn <code>None</code> ist, wird automatisch die Projektversion über <code>detect_project_version(base_path)</code> ermittelt.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>flavor</code></td>
+<td><code>str</code></td>
+<td>Definiert den Typ oder die Zielumgebung der Distribution (z.B. &quot;distribution&quot;). Wird zur Namensgenerierung und zur Anpassung der Struktur verwendet.</td>
+<td><code>&quot;distribution&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="r-ckgabewert">Rückgabewert</h3>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DistributionBuildResult</code></td>
+<td>Ein Objekt, das die Ergebnisse des Build-Prozesses zusammenfasst. Enthält:</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Die finale Versionsnummer, die im Archiv verwendet wurde.</td>
+</tr>
+<tr>
+<td><code>flavor</code></td>
+<td>Der normalisierte Flavor-Name, der verwendet wurde.</td>
+</tr>
+<tr>
+<td><code>archive_path</code></td>
+<td>Der vollständige Pfad zur erstellten ZIP-Datei.</td>
+</tr>
+<tr>
+<td><code>staging_root</code></td>
+<td>Der Pfad zum temporären Verzeichnis, in dem die Distribution vor der Komprimierung aufgebaut wurde.</td>
+</tr>
+</tbody></table>
+<h3 id="funktionsweise-workflow">Funktionsweise (Workflow)</h3>
+<p>Die Funktion folgt einem mehrstufigen Prozess, der innerhalb eines temporären Verzeichnisses abläuft:</p>
+<ol>
+<li><strong>Pfad-Normalisierung und Namensgenerierung:</strong></li>
+</ol>
+<ul>
+<li><code>base_path</code> wird auf einen absoluten Pfad normalisiert.</li>
+<li>Die Versionsnummer wird entweder explizit über <code>version</code> oder automatisch über <code>detect_project_version(base_path)</code> bestimmt.</li>
+<li><code>output_dir</code> wird auf einen absoluten Pfad normalisiert.</li>
+<li>Der <code>flavor</code> wird durch <code>_normalize_flavor(flavor)</code> bereinigt.</li>
+<li>Der finale <code>package_name</code> wird generiert im Format: <code>Nova-School-Server-v[version_text]-[flavor_text]</code>.</li>
+<li>Der Zielpfad für die ZIP-Datei (<code>archive_path</code>) wird definiert.</li>
+</ul>
+<ol>
+<li><strong>Temporäre Arbeitsumgebung (Staging):</strong></li>
+</ol>
+<ul>
+<li>Ein temporäres Verzeichnis wird mit dem Präfix <code>nova-school-distribution-</code> erstellt (<code>tempfile.TemporaryDirectory</code>).</li>
+<li>Innerhalb dieses Verzeichnisses wird das <code>staging_root</code> (basierend auf dem <code>package_name</code>) erstellt.</li>
+</ul>
+<ol>
+<li><strong>Projektstruktur-Kopie:</strong></li>
+</ol>
+<ul>
+<li>Der gesamte Quellbaum (<code>base_path</code>) wird in das temporäre Staging-Verzeichnis kopiert (<code>_copy_project_tree</code>).</li>
+</ul>
+<ol>
+<li><strong>Distribution-Scaffolding:</strong></li>
+</ol>
+<ul>
+<li>Eine spezifische Struktur für die Distribution wird in das Staging-Verzeichnis erstellt (<code>_create_distribution_scaffold</code>), die auf der Version und dem Flavor basiert.</li>
+</ul>
+<ol>
+<li><strong>Flavor-spezifische Bereinigung:</strong></li>
+</ol>
+<ul>
+<li>Elemente, die für den gewählten Flavor nicht benötigt werden, werden aus dem Staging-Verzeichnis entfernt (<code>_prune_for_flavor</code>).</li>
+</ul>
+<ol>
+<li><strong>Binärkopie:</strong></li>
+</ol>
+<ul>
+<li>Optional vorhandene Linux-Runtime-Binärdateien werden basierend auf dem Flavor kopiert (<code>_copy_optional_linux_runtime_binaries</code>).</li>
+</ul>
+<ol>
+<li><strong>Archivierung:</strong></li>
+</ol>
+<ul>
+<li>Falls die Ziel-ZIP-Datei bereits existiert, wird sie gelöscht.</li>
+<li>Der gesamte Inhalt des <code>staging_root</code> wird in die finale ZIP-Datei komprimiert (<code>_zip_tree</code>).</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion gibt ein <code>DistributionBuildResult</code> zurück, das alle wichtigen Pfade und Metadaten enthält.</li>
+</ul>
+<h3 id="abh-ngigkeiten-impliziert">Abhängigkeiten (Impliziert)</h3>
+<ul>
+<li><code>pathlib.Path</code>: Für die Verwaltung von Dateipfaden.</li>
+<li><code>tempfile</code>: Für die Erstellung temporärer Verzeichnisse.</li>
+<li><code>_copy_project_tree(...)</code>: Eine interne Funktion zur Kopie des Quellverzeichnisses.</li>
+<li><code>_create_distribution_scaffold(...)</code>: Eine interne Funktion zur Erstellung der Distributionenstruktur.</li>
+<li><code>_prune_for_flavor(...)</code>: Eine interne Funktion zur Entfernung unnötiger Dateien.</li>
+<li><code>_copy_optional_linux_runtime_binaries(...)</code>: Eine interne Funktion zur Kopie von Systembinären.</li>
+<li><code>_zip_tree(...)</code>: Eine interne Funktion zur Komprimierung des Verzeichnisses.</li>
+<li><code>detect_project_version(...)</code>: Eine externe Funktion zur Versionserkennung.</li>
+<li><code>_normalize_flavor(...)</code>: Eine externe Funktion zur Normalisierung des Flavor-Namens.</li>
+<li><code>DistributionBuildResult</code>: Eine definierte Datenstruktur für die Rückgabe.</li>
+</ul>
+<h3 id="anwendungsf-lle">Anwendungsfälle</h3>
+<p>Diese Funktion ist ideal für den automatisierten Build-Prozess von Distributionen, bei denen:</p>
+<ol>
+<li><strong>Versionskontrolle</strong> zentralisiert werden muss.</li>
+<li><strong>Flavor-spezifische Anpassungen</strong> (z.B. Entfernen von Desktop-Komponenten oder Hinzufügen von Server-Binärs) erforderlich sind.</li>
+<li><strong>Ein konsistentes Archivformat</strong> für die Bereitstellung benötigt wird.</li>
+</ol>
+<h2 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h2>
+<h3 id="funktion-build-linux-project-archive">Funktion: <code>build_linux_project_archive</code></h3>
+<p>Diese Funktion dient dazu, den Prozess des Erstellens eines Archivs für ein Linux-Projekt zu initiieren und die Ergebnisse zu strukturieren. Sie ruft die Kernfunktion <code>build_distribution_archive</code> auf und fasst das Ergebnis in eine spezifische <code>LinuxProjectBuildResult</code>-Klasse zusammen. ---</p>
+<h3 id="signaturen">Signaturen</h3>
+<pre><code class="language-python">def build_linux_project_archive(
+base_path: Path,
+output_dir: Path | None = None,
+version: str | None = None,
+) -&gt; LinuxProjectBuildResult:</code></pre>
+<h3 id="beschreibung">Beschreibung</h3>
+<p>Diese Funktion orchestriert die Erstellung eines Distributionsarchivs für ein Linux-Projekt. Sie übernimmt die Bereitstellung der notwendigen Parameter an die zugrunde liegende Funktion <code>build_distribution_archive</code> und transformiert das zurückgegebene Ergebnis in ein Objekt vom Typ <code>LinuxProjectBuildResult</code>.</p>
+<h3 id="parameter">Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Basisverzeichnis des Linux-Projekts, aus dem das Archiv erstellt werden soll.</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td>`Path</td>
+<td>None`</td>
+<td>Optionaler Pfad, in dem das finale Archiv gespeichert werden soll. Wenn <code>None</code> angegeben wird, wird der Standardpfad für die Ausgabe verwendet.</td>
+<td>Nein</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>`str</td>
+<td>None`</td>
+<td>Optionaler Versionsstring, der in das generierte Archiv integriert werden soll.</td>
+<td>Nein</td>
+</tr>
+</tbody></table>
+<h3 id="r-ckgabe-return-value">Rückgabe (Return Value)</h3>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>LinuxProjectBuildResult</code></td>
+<td>Ein Objekt, das die Schlüsselinformationen des erfolgreichen Build-Prozesses enthält:</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Die generierte Versionsnummer des Builds.</td>
+</tr>
+<tr>
+<td><code>archive_path</code></td>
+<td>Der vollständige Pfad zum erstellten Archiv.</td>
+</tr>
+<tr>
+<td><code>staging_root</code></td>
+<td>Der Pfad zum Staging-Verzeichnis, das für den Build verwendet wurde.</td>
+</tr>
+</tbody></table>
+<h3 id="abh-ngigkeiten">Abhängigkeiten</h3>
+<ul>
+<li><code>build_distribution_archive(...)</code>: Eine interne oder externe Funktion, die den eigentlichen Build-Prozess durchführt.</li>
+<li><code>Path</code>: Ein Objekt aus dem <code>pathlib</code>-Modul, das für Pfadmanipulation verwendet wird.</li>
+<li><code>LinuxProjectBuildResult</code>: Eine definierte Klasse, die die strukturierten Ergebnisse des Builds hält.</li>
+</ul>
+<h3 id="workflow">Workflow</h3>
+<ol>
+<li>Die Funktion ruft <code>build_distribution_archive</code> auf, wobei <code>base_path</code>, <code>output_dir</code>, <code>version</code> und der feste Flavor <code>&quot;linux-project&quot;</code> als Argumente übergeben werden.</li>
+<li>Das Ergebnis der <code>build_distribution_archive</code>-Funktion wird entgegennimmt.</li>
+<li>Die zurückgegebene <code>LinuxProjectBuildResult</code>-Instanz wird neu konstruiert, wobei die Attribute <code>version</code>, <code>archive_path</code> und <code>staging_root</code> aus dem Ergebnis der Kernfunktion extrahiert werden.</li>
+<li>Das konstruierte <code>LinuxProjectBuildResult</code> wird zurückgegeben.</li>
+<p>---</p>
+</ol>
+<h3 id="beispielanwendung-konzeptuell">Beispielanwendung (Konzeptuell)</h3>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, die notwendigen Klassen und Funktionen sind importiert
+# from .core import build_distribution_archive, LinuxProjectBuildResult
+# Beispielpfade
+project_root = Path(&quot;/home/user/my_linux_project&quot;)
+output_location = Path(&quot;/tmp/builds&quot;)
+build_version = &quot;1.2.3-beta&quot;
+# Aufruf der Funktion
+try:
+build_result = build_linux_project_archive(
+base_path=project_root,
+output_dir=output_location,
+version=build_version
+)
+print(f&quot;Build erfolgreich abgeschlossen.&quot;)
+print(f&quot;Versionsnummer: {build_result.version}&quot;)
+print(f&quot;Archiv gespeichert unter: {build_result.archive_path}&quot;)
+except Exception as e:
+print(f&quot;Fehler beim Bauen des Archivs: {e}&quot;)</code></pre>
+<h2 id="technische-dokumentation-materialize-distribution-directory">Technische Dokumentation: <code>materialize_distribution_directory</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>materialize_distribution_directory</code> ist verantwortlich für die Erstellung einer vollständigen, versionierten und flavor-spezifischen Distribution-Struktur an einem Zielort. Sie kopiert den Projektbaum, erstellt eine Distribution-Skelettstruktur und fügt optional Betriebssystem-spezifische Laufzeitbinärbestände hinzu, bevor sie das Zielverzeichnis ersetzt.</p>
+<h3 id="2-funktion">2. Funktion</h3>
+<p><strong>Name:</strong> <code>materialize_distribution_directory</code> <strong>Beschreibung:</strong> Materialisiert die Projektstruktur in ein definiertes Zielverzeichnis, basierend auf dem Quellprojekt, einer optionalen Version und einer Flavor-Konfiguration. <strong>Signature:</strong></p>
+<pre><code class="language-python">def materialize_distribution_directory(
+base_path: Path,
+target_root: Path,
+*,
+version: str | None = None,
+flavor: str = &quot;distribution&quot;,
+) -&gt; DistributionMaterializeResult:</code></pre>
+<p><strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Wertsatz</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Quellprojekt (Root-Verzeichnis des Projekts).</td>
+<td>Erforderlich</td>
+</tr>
+<tr>
+<td><code>target_root</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad, an dem die fertige Distribution erstellt werden soll.</td>
+<td>Erforderlich</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>`str</td>
+<td>None`</td>
+<td>Eine spezifische Version, die für die Distribution verwendet werden soll. Wenn <code>None</code>, wird die Version automatisch aus dem Projekt (<code>detect_project_version</code>) abgeleitet.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>flavor</code></td>
+<td><code>str</code></td>
+<td>Die gewünschte Flavor-Konfiguration für die Distribution (z.B. <code>&quot;distribution&quot;</code>).</td>
+<td><code>&quot;distribution&quot;</code></td>
+</tr>
+</tbody></table>
+<p><strong>Werte:</strong></p>
+<ul>
+<li><strong>Rückgabe:</strong> <code>DistributionMaterializeResult</code> – Ein Objekt, das die erstellten Version, Flavor und den Zielpfad zurückgibt.</li>
+</ul>
+<h3 id="3-funktionsweise-und-logik">3. Funktionsweise und Logik</h3>
+<p>Die Funktion folgt einem mehrstufigen Prozess, der in einem temporären Verzeichnis abläuft, um die Integrität des Quellprojekts zu gewährleisten.</p>
+<ol>
+<li><strong>Pfadauflösung und Normalisierung:</strong></li>
+</ol>
+<ul>
+<li><code>base_path</code> und <code>target_root</code> werden aufgelöst (<code>resolve(strict=False)</code>), um relative Pfade zu absoluten Pfaden umzuwandeln.</li>
+<li>Die <code>version</code> wird entweder explizit übergeben oder durch die Funktion <code>detect_project_version(base_path)</code> bestimmt.</li>
+<li>Die <code>flavor</code> wird durch <code>_normalize_flavor(flavor)</code> bereinigt.</li>
+</ul>
+<ol>
+<li><strong>Temporäre Arbeitsumgebung:</strong></li>
+</ol>
+<ul>
+<li>Ein temporäres Verzeichnis wird erstellt (<code>tempfile.TemporaryDirectory</code>), um die Materialisierung sicher zu isolieren.</li>
+<li>Innerhalb dieses Verzeichnisses wird das <code>staging_root</code> für die Materialisierung definiert.</li>
+</ul>
+<ol>
+<li><strong>Projektkopierung:</strong></li>
+</ol>
+<ul>
+<li><strong>Ausschluss von Pfaden:</strong> Es wird geprüft, ob das <code>target_root</code> relativ zum <code>base_path</code> liegt. Falls ja, wird dieser relative Pfad in eine Liste von <code>excluded_relative</code> Pfaden aufgenommen, um ihn beim Kopieren auszuschließen.</li>
+<li><strong>Kopieren des Projektbaums:</strong> Die Funktion <code>_copy_project_tree</code> kopiert den gesamten Projektbaum von <code>base_path</code> in das temporäre <code>staging_root</code>, wobei die identifizierten relativen Pfade ausgeschlossen werden.</li>
+</ul>
+<ol>
+<li><strong>Distribution-Skelett-Erstellung:</strong></li>
+</ol>
+<ul>
+<li><strong>Skelett-Erstellung:</strong> <code>_create_distribution_scaffold</code> erstellt die notwendige Grundstruktur für die Distribution basierend auf der Version und dem Flavor.</li>
+<li><strong>Flavor-Pruning:</strong> <code>_prune_for_flavor</code> entfernt oder modifiziert Teile des Skeletts, die für das spezifische Flavor nicht relevant sind.</li>
+</ul>
+<ol>
+<li><strong>Optionaler Code-Kopierer:</strong></li>
+</ol>
+<ul>
+<li><strong>Laufzeitbinärbestände:</strong> <code>_copy_optional_linux_runtime_binaries</code> kopiert optional spezifische Binärdateien für Linux-Server-Pakete, basierend auf dem <code>flavor_text</code>.</li>
+</ul>
+<ol>
+<li><strong>Ziel-Deployment:</strong></li>
+</ol>
+<ul>
+<li><strong>Ziel-Bereinigung:</strong> Falls das <code>target_root</code> bereits existiert, wird es entfernt (<code>shutil.rmtree(target_root, ignore_errors=True)</code>).</li>
+<li><strong>Ziel-Erstellung:</strong> Das Verzeichnis-Elternverzeichnis des <code>target_root</code> wird erstellt.</li>
+<li><strong>Endkopierer:</strong> <code>shutil.copytree(staging_root, target_root, dirs_exist_ok=True)</code> kopiert den gesamten vorbereiteten <code>staging_root</code> in das finale <code>target_root</code>.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion gibt ein <code>DistributionMaterializeResult</code> zurück, das die erfolgreich verwendeten Version, Flavor und den finalen Zielpfad enthält.</li>
+</ul>
+<h3 id="4-abh-ngigkeiten">4. Abhängigkeiten</h3>
+<ul>
+<li><code>pathlib.Path</code></li>
+<li><code>tempfile</code></li>
+<li><code>shutil</code></li>
+<li>(Implizit: <code>detect_project_version</code>, <code>_normalize_flavor</code>, <code>_copy_project_tree</code>, <code>_create_distribution_scaffold</code>, <code>_prune_for_flavor</code>, <code>_copy_optional_linux_runtime_binaries</code>)</li>
+</ul>
+<h3 id="5-fehlerbehandlung">5. Fehlerbehandlung</h3>
+<ul>
+<li><strong>Pfadfehler:</strong> Die Behandlung des <code>ValueError</code> beim Versuch, <code>target_root</code> relativ zu <code>base_path</code> zu berechnen, stellt sicher, dass die Funktion robust ist, falls die Pfade nicht direkt vergleichebar sind.</li>
+<li><strong>Kopierfehler:</strong> Die Verwendung von <code>ignore_errors=True</code> bei <code>shutil.rmtree</code> stellt sicher, dass das Skript nicht abstürzt, falls das Zielverzeichnis bereits existiert und nicht korrekt gelöscht werden kann.</li>
+</ul>
+<h3 id="6-verwendungshinweise">6. Verwendungshinweise</h3>
+<p>Diese Funktion sollte verwendet werden, um ein vollständiges, deploybares Artefakt (eine Distribution) aus einem Quellprojekt zu generieren. Stellen Sie sicher, dass <code>base_path</code> und <code>target_root</code> gültige, existierende Pfade sind.</p>
+<h2 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h2>
+<p>Dieses Dokument beschreibt die Funktionen aus der Datei <code>distribution_builder.py</code>, die für die Normalisierung von Distributionen und das Kopieren von Projektstrukturen zuständig sind. ---</p>
+<h3 id="1-funktion-normalize-flavor-flavor-str-str">1. Funktion: <code>_normalize_flavor(flavor: str) -&gt; str</code></h3>
+<p>Diese interne Funktion dient dazu, einen eingegebenen String, der eine Distribution oder einen Flavor darstellt, in einen standardisierten, internen Flavor-Namen umzuwandeln. <strong>Zweck:</strong> Standardisierung von Distributionen und deren Aliasnamen, um eine konsistente Verarbeitung in nachfolgenden Prozessen zu gewährleisten. <strong>Parameter:</strong></p>
+<ul>
+<li><code>flavor: str</code>: Der eingegebene String, der die Distribution oder den Flavor darstellt (z.B. <code>&quot;Windows Server&quot;</code>, <code>&quot;Linux&quot;</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der normalisierte Flavor-Name, der in <code>PACKAGE_FLAVORS</code> definiert ist.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Textvorverarbeitung:</strong> Der eingegebene <code>flavor</code> wird in einen String umgewandelt, entfernt Leerzeichen und wird kleingestellt (<code>.strip().lower()</code>). Standardmäßig wird <code>&quot;distribution&quot;</code> verwendet, falls <code>flavor</code> leer ist.</li>
+<li><strong>Alias-Mapping:</strong> Es wird ein Dictionary (<code>aliases</code>) verwendet, das verschiedene Eingaben (z.B. <code>&quot;windows&quot;</code>, <code>&quot;linux-server&quot;</code>) mit ihren internen Schlüsselwörtern (z.B. <code>&quot;windows-server-package&quot;</code>, <code>&quot;linux-server-package&quot;</code>) verknüpft.</li>
+<li><strong>Normalisierung:</strong> Es wird versucht, den Text im <code>aliases</code>-Dictionary zu finden.</li>
+<li><strong>Validierung:</strong> Wenn der normalisierte Name nicht in der globalen Konstante <code>PACKAGE_FLAVORS</code> enthalten ist, wird eine <code>ValueError</code> mit einer Fehlermeldung ausgelöst, die den ungültigen Flavor angibt.</li>
+<li><strong>Rückgabe:</strong> Der gefunden und validierte normalisierte Name wird zurückgegeben.</li>
+<p><strong>Wichtige Abhängigkeiten:</strong></p>
+</ol>
+<ul>
+<li><code>PACKAGE_FLAVORS</code>: Eine globale Konstante (nicht im bereitgestellten Code sichtbar), die die Liste der gültigen, normalisierten Flavor-Namen enthält.</li>
+<p>---</p>
+</ul>
+<h3 id="2-funktion-copy-project-tree-source-root-path-target-root-path-excluded-relative-paths-iterable-path-none-none-none">2. Funktion: <code>_copy_project_tree(source_root: Path, target_root: Path, *, excluded_relative_paths: Iterable[Path] | None = None) -&gt; None</code></h3>
+<p>Diese interne Funktion kopiert die gesamte Projektstruktur (Dateien und Verzeichnisse) von einem Quellverzeichnis (<code>source_root</code>) in ein Zielverzeichnis (<code>target_root</code>), wobei bestimmte Pfade ausgeschlossen werden können. <strong>Zweck:</strong> Repräsentiert den Kernprozess des Projekt- oder Verzeichniskopierens, einschließlich der Anwendung von Exklusionsregeln. <strong>Parameter:</strong></p>
+<ul>
+<li><code>source_root: Path</code>: Der Pfad zum Quellverzeichnis, dessen Inhalt kopiert werden soll.</li>
+<li><code>target_root: Path</code>: Der Pfad, in den die Kopie des Quellverzeichnisses kopiert werden soll.</li>
+<li><code>excluded_relative_paths: Iterable[Path] | None = None</code>: Eine optional übergeordnete Liste von relativen Pfaden, die im Quellverzeichnis ausgeschlossen werden sollen. Wenn <code>None</code> übergeben wird, werden keine Exklusionen angewendet.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code></li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Exklusionsvorbereitung:</strong></li>
+</ol>
+<ul>
+<li>Die übergebenen <code>excluded_relative_paths</code> werden bereinigt und normalisiert (<code>_normalize_relative_path</code>), um sicherzustellen, dass sie mit den Pfaden im Quellverzeichnis verglichen werden können.</li>
+<li>Die Ergebnisse werden durch <code>_is_excluded_relative_path</code> gefiltert.</li>
+</ul>
+<ol>
+<li><strong>Iteration über Quellverzeichnis:</strong></li>
+</ol>
+<ul>
+<li>Jedes Element (<code>item</code>) im <code>source_root</code> wird iteriert.</li>
+<li><strong>Relative Pfadberechnung:</strong> Der relative Pfad des aktuellen Elements zum <code>source_root</code> wird berechnet (<code>item.relative_to(source_root)</code> und dann <code>_normalize_relative_path</code>).</li>
+<li><strong>Exklusionsprüfung:</strong> Es wird geprüft, ob der berechnete relative Pfad in der Liste der ausgeschlossenen Pfade enthalten ist (<code>_is_excluded_relative_path</code>). Wenn ja, wird das Element übersprungen (<code>continue</code>).</li>
+<li><strong>Root-Prüfung:</strong> Es wird geprüft, ob das Element die Wurzel des Quellverzeichnisses ist (<code>_should_skip_root_entry</code>). Wenn ja, wird übersprungen.</li>
+</ul>
+<ol>
+<li><strong>Kopierprozess:</strong></li>
+</ol>
+<ul>
+<li><strong>Verzeichnis:</strong> Wenn das Element ein Verzeichnis (<code>item.is_dir()</code>) ist, wird es mithilfe der internen Funktion <code>_copy_directory</code> in das Zielverzeichnis kopiert.</li>
+<li><strong>Datei:</strong> Wenn das Element eine Datei (<code>item.is_file()</code>) ist:</li>
+<li>Es wird sichergestellt, dass das Zielverzeichnis der Datei existiert (<code>destination.parent.mkdir(parents=True, exist_ok=True)</code>).</li>
+<li>Die Datei wird mithilfe von <code>shutil.copy2</code> kopiert (um Metadaten wie Erstellungsdatum zu erhalten).</li>
+<p><strong>Wichtige Abhängigkeiten:</strong></p>
+<li><code>_normalize_relative_path(...)</code>: Eine interne Funktion zur Normalisierung von relativen Pfaden.</li>
+<li><code>_is_excluded_relative_path(...)</code>: Eine interne Funktion zur Überprüfung der Exklusionsregeln.</li>
+<li><code>_should_skip_root_entry(...)</code>: Eine interne Funktion zur Entscheidung, ob das Quellverzeichnis selbst übersprungen werden soll.</li>
+<li><code>_copy_directory(...)</code>: Eine interne Funktion zum Kopieren von Verzeichnissen.</li>
+<li><code>shutil.copy2</code>: Standardmodul für das Kopieren von Dateien.</li>
+<p>---</p>
+</ul>
+<h3 id="zusammenfassung-der-verantwortlichkeiten">Zusammenfassung der Verantwortlichkeiten</h3>
+<table><thead><tr>
+<th>Funktion</th>
+<th>Hauptaufgabe</th>
+<th>Fokus</th>
+</tr></thead><tbody>
+<tr>
+<td><code>_normalize_flavor</code></td>
+<td>String-zu-String-Mapping</td>
+<td>Datenbereinigung und Validierung von Distributionen.</td>
+</tr>
+<tr>
+<td><code>_copy_project_tree</code></td>
+<td>Strukturkopierer</td>
+<td>Iterative Überprüfung, Exklusion und Kopieren von Dateisystemstrukturen.</td>
+</tr>
+</tbody></table>
+<h2 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Datei <code>distribution_builder.py</code> enthält Funktionen, die für den Aufbau oder die Erstellung einer Verteilung (wahrscheinlich eines Modells oder einer Anwendung) zuständig sind. Der Fokus liegt auf dem rekursiven Kopieren von Dateien und Verzeichnissen aus einer Quellstruktur in ein Zielverzeichnis, unter Anwendung verschiedener Filter- und Skipsregeln.</p>
+<h3 id="2-funktionen">2. Funktionen</h3>
+<h4 id="2-1-copy-directory-source-dir-path-target-dir-path-source-root-path-excluded-relative-paths-list-path-none">2.1. <code>_copy_directory(source_dir: Path, target_dir: Path, *, source_root: Path, excluded_relative_paths: list[Path]) -&gt; None</code></h4>
+<p>Diese interne Funktion ist verantwortlich für das rekursive Kopieren von Inhalten eines Quellverzeichnisses (<code>source_dir</code>) in ein Zielverzeichnis (<code>target_dir</code>). <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>source_dir: Path</code>**: Der Pfad zum Verzeichnis, dessen Inhalt kopiert werden soll.</li>
+<li>**<code>target_dir: Path</code>**: Der Pfad des Zielverzeichnisses, in das die Dateien kopiert werden.</li>
+<li>**<code>source_root: Path</code>**: Der Stammverzeichnis-Pfad, der zur Normalisierung der relativen Pfade verwendet wird.</li>
+<li>**<code>excluded_relative_paths: list[Path]</code>**: Eine Liste von relativen Pfaden, die während des Kopiervorgangs explizit ausgeschlossen werden sollen.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Iteration:</strong> Durchläuft alle Elemente (<code>item</code>) im <code>source_dir</code>.</li>
+<li><strong>Relative Pfad Normalisierung:</strong> Berechnet den relativen Pfad des aktuellen Elements zum <code>source_root</code> mittels <code>_normalize_relative_path()</code>.</li>
+<li><strong>Ausschlussprüfung (Relative Pfade):</strong> Prüft, ob der normalisierte relative Pfad in der Liste <code>excluded_relative_paths</code> enthalten ist. Bei Übereinstimmung wird das Element übersprungen (<code>continue</code>).</li>
+<li><strong>Skipsprüfung (Elemente):</strong> Prüft, ob das aktuelle Element durch <code>_should_skip_entry(item, relative_path)</code> übersprungen werden soll. Bei Übereinstimmung wird das Element übersprungen (<code>continue</code>).</li>
+<li><strong>Zielpfad Bestimmung:</strong> Bestimmt den Zielpfad (<code>destination</code>) basierend auf dem Namen des Elements im <code>target_dir</code>.</li>
+<li><strong>Verzeichnis-Kopieren:</strong></li>
+</ol>
+<ul>
+<li>Wenn das Element ein Verzeichnis (<code>item.is_dir()</code>) ist, wird die Funktion rekursiv aufgerufen, um den Inhalt des Verzeichnisses zu kopieren.</li>
+<li>Wenn das Element eine Datei (<code>item.is_file()</code>) ist:</li>
+<li>Stellt sicher, dass das übergeordnete Verzeichnis im Zielverzeichnis existiert (<code>destination.parent.mkdir(parents=True, exist_ok=True)</code>).</li>
+<li>Kopiert die Datei mithilfe von <code>shutil.copy2</code> (behält Metadaten wie Änderungszeit und Berechtigungen bei).</li>
+</ul>
+<h4 id="2-2-should-skip-root-entry-path-path-relative-path-path-bool">2.2. <code>_should_skip_root_entry(path: Path, relative_path: Path) -&gt; bool</code></h4>
+<p>Diese Funktion dient dazu, spezifische Elemente im Quellverzeichnis zu ignorieren, die sich im Wurzelverzeichnis befinden. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>path: Path</code>**: Der vollständige Pfad des Elements im Quellverzeichnis.</li>
+<li>**<code>relative_path: Path</code>**: Der normalisierte relative Pfad des Elements zum Stammverzeichnis.</li>
+<p><strong>Logik:</strong></p>
+<li>**<code>data</code>:** Wenn der Name des Elements <code>&quot;data&quot;</code> ist, wird es übersprungen.</li>
+<li>**<code>Model</code>:** Wenn der Name des Elements <code>&quot;Model&quot;</code> ist, wird es übersprungen.</li>
+<li><strong>Rekursion:</strong> Ruft <code>_should_skip_entry(path, relative_path)</code> auf, um weitere Skipsregeln zu prüfen.</li>
+</ul>
+<h4 id="2-3-should-skip-entry-path-path-relative-path-path-bool">2.3. <code>_should_skip_entry(path: Path, relative_path: Path) -&gt; bool</code></h4>
+<p>Diese zentrale Funktion entscheidet, ob ein spezifisches Element (<code>path</code>) basierend auf seinem Namen und seiner Position im Verhältnis zum Stammverzeichnis (<code>relative_path</code>) übersprungen werden soll. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>path: Path</code>**: Der vollständige Pfad des Elements.</li>
+<li>**<code>relative_path: Path</code>**: Der normalisierte relative Pfad des Elements zum Stammverzeichnis.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Name-basierte Skips:</strong></li>
+</ol>
+<ul>
+<li>Wenn der Name des Elements in der globalen Konstante <code>SKIP_NAMES</code> enthalten ist, wird es übersprungen.</li>
+</ul>
+<ol>
+<li><strong>Struktur-basierte Skips:</strong></li>
+</ol>
+<ul>
+<li>Wenn die ersten zwei Teile des <code>relative_path</code> <code>&quot;Linux&quot;</code> und <code>&quot;project&quot;</code> sind, wird es übersprungen.</li>
+</ul>
+<ol>
+<li>**Dateispezifische Skips (<code>path.is_file()</code>):**</li>
+</ol>
+<ul>
+<li><strong>Name-basierte Skips:</strong> Wenn der Dateiname in der globalen Konstante <code>SKIP_FILE_NAMES</code> enthalten ist, wird es übersprungen.</li>
+<li><strong>Temporäre Dateien:</strong> Wenn der Dateiname mit <code>_tmp_</code> oder <code>tmp_</code> beginnt, wird es übersprungen.</li>
+<li><strong>Spezifische Dateiendungen:</strong> Wenn der Dateiname eine der Marker (<code>_analysis_dump.md</code> oder <code>.codedump.md</code>) endet, wird es übersprungen.</li>
+<li><strong>Dateiendungs-Filter:</strong> Wenn die Dateiendung (kleingeschrieben) in der globalen Konstante <code>SKIP_FILE_SUFFIXES</code> enthalten ist, wird es übersprungen.</li>
+</ul>
+<ol>
+<li><strong>Standardfall:</strong> Wenn keine der oben genannten Bedingungen zutrifft, wird <code>False</code> zurückgegeben (Element wird kopiert).</li>
+</ol>
+<h3 id="3-abh-ngigkeiten-und-konstanten-impliziert">3. Abhängigkeiten und Konstanten (Impliziert)</h3>
+<p>Die Funktion setzt auf folgende externe Komponenten und Konstanten, die in der Dokumentation nicht explizit definiert sind, aber für die korrekte Funktion sind notwendig:</p>
+<ul>
+<li>**<code>Path</code>**: Typ für Dateipfade (wahrscheinlich aus dem <code>pathlib</code>-Modul).</li>
+<li>**<code>shutil</code>**: Modul für Dateitransaktionen (speziell <code>shutil.copy2</code> und <code>Path.mkdir</code>).</li>
+<li>**<code>_normalize_relative_path(item: Path) -&gt; Path</code>**: Eine externe Funktion zur Bereinigung und Normalisierung relativer Pfade.</li>
+<li>**<code>_is_excluded_relative_path(relative_path: Path, excluded_relative_paths: list[Path]) -&gt; bool</code>**: Eine externe Funktion zur Überprüfung auf explizite Ausnahmen.</li>
+<li>**<code>_should_skip_entry(path: Path, relative_path: Path) -&gt; bool</code>**: Die Hauptlogik für die Skipsprüfung.</li>
+<li><strong>Konstanten:</strong></li>
+<li><code>SKIP_NAMES</code>: Eine <code>set</code> oder <code>list</code> von String-Namen, die Dateien/Verzeichnisse ignorieren sollen.</li>
+<li><code>SKIP_FILE_NAMES</code>: Eine <code>set</code> oder <code>list</code> von String-Namen, die Dateien ignorieren sollen.</li>
+<li><code>SKIP_FILE_SUFFIXES</code>: Eine <code>set</code> oder <code>list</code> von String-Suffixen, die Dateien ignorieren sollen.</li>
+</ul>
+<h3 id="4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</h3>
+<p><code>distribution_builder.py</code> implementiert einen robusten, rekursiven Kopiermechanismus, der durch eine mehrstufige Filterung von Pfaden und Dateinamen gesteuert wird. Ziel ist es, eine spezifische Struktur von Quelldaten in ein Zielverzeichnis zu replizieren, wobei bestimmte Dateien, Verzeichnisse oder Pfadstrukturen systematisch aus der Kopieroperation ausgeschlossen werden.</p>
+<h1 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Hilfsfunktionen für die Verarbeitung und Normalisierung von Pfaden, die wahrscheinlich im Kontext der Erstellung oder Verwaltung von Verteilungsstrukturen (Distribution Builder) verwendet werden. Die Funktionen dienen dazu, relative Pfade zu bereinigen und zu prüfen, ob ein Pfad von einer Liste von Ausnahmen ausgeschlossen ist.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-normalize-relative-path-path-path-path">1. <code>_normalize_relative_path(path: Path) -&gt; Path</code></h3>
+<p><strong>Beschreibung:</strong> Diese interne Funktion nimmt einen <code>Path</code>-Objekt entgegen und normalisiert ihn, indem sie leere Strings und Punkte (<code>.</code>) aus den Komponenten entfernt. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: Path</code>: Der Pfad-Objekt, der normalisiert werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Ein neu erstelltes <code>Path</code>-Objekt, das die normalisierten Komponenten enthält.</li>
+<p><strong>Details:</strong> Die Funktion iteriert über die <code>parts</code> des Eingabepaths und filtert alle Teile heraus, die entweder leer sind (<code>&quot;&quot;</code>) oder ein einzelner Punkt (<code>&quot;.&quot;</code>) sind. <strong>Beispiel:</strong></p>
+</ul>
+<pre><code class="language-python">from pathlib import Path
+path_input = Path(&quot;/a/./b/../c/&quot;)
+normalized_path = _normalize_relative_path(path_input)
+# Erwartete Ausgabe: Path(&#x27;a/b/c&#x27;) (oder ähnlich, abhängig von der genauen Implementierung von Path(*...) bei leeren Komponenten)</code></pre>
+<h3 id="2-is-excluded-relative-path-relative-path-path-excluded-relative-paths-list-path-bool">2. <code>_is_excluded_relative_path(relative_path: Path, excluded_relative_paths: list[Path]) -&gt; bool</code></h3>
+<p><strong>Beschreibung:</strong> Diese interne Funktion prüft, ob ein gegebenes <code>relative_path</code> von einer Liste von <code>excluded_relative_paths</code> ausgeschlossen ist. Die Prüfung erfolgt auf zwei Bedingungen:</p>
+<ol>
+<li><strong>Exakte Übereinstimmung:</strong> Der <code>relative_path</code> ist exakt gleich einem der ausgeschlossenen Pfade.</li>
+<li><strong>Präfix-Übereinstimmung:</strong> Die ersten Teile des <code>relative_path</code> entsprechen den ersten Teilen eines ausgeschlossenen Pfades (d.h., der <code>relative_path</code> beginnt mit dem ausgeschlossenen Pfad).</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>relative_path: Path</code>: Der Pfad, der geprüft werden soll.</li>
+<li><code>excluded_relative_paths: list[Path]</code>: Eine Liste von <code>Path</code>-Objekten, die als Ausnahmen definiert sind.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn der <code>relative_path</code> ausgeschlossen ist (entweder exakt oder als Präfix), <code>False</code> andernfalls.</li>
+<p><strong>Details:</strong></p>
+<li>Die Funktion iteriert durch jede <code>excluded</code> Pfad in der Liste.</li>
+<li>Sie ignoriert Pfade, die keine Komponenten haben (<code>if not excluded.parts: continue</code>).</li>
+<li>Die Prüfung erfolgt, ob <code>relative_path == excluded</code> oder ob die ersten Teile von <code>relative_path</code> mit den ersten Teilen von <code>excluded</code> übereinstimmen (<code>relative_path.parts[: len(excluded.parts)] == excluded.parts</code>).</li>
+<p><strong>Beispiel:</strong> Angenommen:</p>
+<li><code>relative_path</code> = <code>Path(&quot;data/config/settings.json&quot;)</code></li>
+<li><code>excluded_relative_paths</code> = [<code>Path(&quot;data/config&quot;)</code>, <code>Path(&quot;other/file&quot;)</code>]</li>
+<p>Die Funktion würde <code>True</code> zurückgeben, da <code>relative_path.parts[: len(Path(&quot;data/config&quot;).parts)]</code> gleich <code>Path(&quot;data/config&quot;).parts</code> ist.</p>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>pathlib.Path</code>: Für die Manipulation von Pfadstrukturen.</li>
+</ul>
+<h2 id="anmerkungen">Anmerkungen</h2>
+<ul>
+<li>Die Funktionen sind als interne Hilfsfunktionen (<code>_</code>) gekennzeichnet, was darauf hindeutet, dass sie primär zur Unterstützung komplexerer Logik innerhalb der Hauptklasse oder Funktion dienen.</li>
+<li>Die Normalisierung (<code>_normalize_relative_path</code>) ist entscheidend, um konsistente Vergleiche von Pfaden zu gewährleisten.</li>
+<li>Die Ausschlusslogik (<code>_is_excluded_relative_path</code>) implementiert eine gängige Mustererkennung für Pfad- oder Verzeichnis-Ausschlussmechanismen.</li>
+</ul>
+<h2 id="technische-dokumentation-funktion-create-distribution-scaffold">Technische Dokumentation: Funktion <code>_create_distribution_scaffold</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>_create_distribution_scaffold</code> ist eine interne Methode, die für die Erstellung eines strukturierten &quot;Distribution Scaffolds&quot; (Gerüstes) für eine bestimmte Version und Flavor eines Produkts (wahrscheinlich ein Server- oder Distributionspaket) verantwortlich ist. Diese Funktion stellt sicher, dass alle notwendigen Verzeichnisse, Konfigurationsdateien, Manifeste und Dokumentationen für den Erststart und die spätere Bereitstellung vorhanden sind, bevor das eigentliche Paket gebaut wird.</p>
+<h3 id="2-funktion">2. Funktion</h3>
+<p><strong>Name:</strong> <code>_create_distribution_scaffold</code> <strong>Beschreibung:</strong> Erstellt die notwendige Struktur und initiale Dateien für eine Distribution basierend auf dem bereitgestellten <code>staging_root</code>, der <code>version</code> und dem <code>flavor</code>. <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>staging_root</code></td>
+<td><code>Path</code></td>
+<td>Der Stammverzeichnispfad, in dem das Distributionsskelett erstellt werden soll.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>str</code></td>
+<td>Die spezifische Versionsnummer der Distribution (z.B. &quot;1.0.0&quot;).</td>
+</tr>
+<tr>
+<td><code>flavor</code></td>
+<td><code>str</code></td>
+<td>Die Art oder Plattform der Distribution (z.B. &quot;windows&quot;, &quot;linux&quot;).</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<ul>
+<li><code>None</code> (Die Funktion schreibt Dateien direkt in das bereitgestellte Verzeichnis.)</li>
+</ul>
+<h3 id="3-details-und-logik">3. Details und Logik</h3>
+<p>Die Funktion führt folgende Hauptschritte durch:</p>
+<h4 id="3-1-erstellung-von-platzhalter-verzeichnissen-ensure-placeholder">3.1. Erstellung von Platzhalter-Verzeichnissen (<code>_ensure_placeholder</code>)</h4>
+<p>Die Funktion verwendet eine Hilfsfunktion (<code>_ensure_placeholder</code>), um sicherzustellen, dass spezifische, notwendige Unterordner und Dateien im <code>staging_root</code> existieren. Diese Platzhalter dienen dazu, die Struktur für verschiedene Komponenten (z.B. Model-Daten, Konfigurationen, Logs) vorzubereiten. <strong>Erstellte/Gesperrte Verzeichnisse (Beispiele):</strong></p>
+<ul>
+<li><code>LIT/</code> (für den primären LiteRT-LM-Betrieb)</li>
+<li><code>Model/</code></li>
+<li><code>data/workspaces/users/</code></li>
+<li><code>data/workspaces/groups/</code></li>
+<li><code>data/reference_library/packs/</code></li>
+<li><code>data/reference_library/index/</code></li>
+<li><code>data/public_shares/</code></li>
+<li><code>data/exports/</code></li>
+<li><code>data/review_submissions/</code></li>
+<li><code>data/worker_dispatch/artifacts/</code></li>
+<li><code>data/container_build/</code></li>
+<li><code>data/python_package_cache/</code></li>
+<li><code>data/docs/</code></li>
+</ul>
+<h4 id="3-2-erstellung-der-serverkonfigurationsdatei">3.2. Erstellung der Serverkonfigurationsdatei</h4>
+<p>Es wird eine Beispielkonfigurationsdatei für den Server erstellt:</p>
+<ul>
+<li><strong>Dateiname:</strong> <code>server_config.json.example</code></li>
+<li><strong>Inhalt:</strong> Enthält eine standardisierte Konfiguration (<code>server_config_example</code>), die Host, Port, Session-TTL, Timeout-Werte und spezifische Identifikatoren (<code>tenant_id</code>, <code>school_name</code>) definiert.</li>
+<li><strong>Formatierung:</strong> Die JSON-Daten werden mit <code>indent=2</code> formatiert und als UTF-8-String geschrieben.</li>
+</ul>
+<h4 id="3-3-erstellung-des-release-manifests">3.3. Erstellung des Release-Manifests</h4>
+<p>Ein Manifest-File wird erstellt, das die spezifischen Eigenschaften der Distribution definiert:</p>
+<ul>
+<li><strong>Dateiname:</strong> <code>release_manifest.json</code></li>
+<li><strong>Inhalt:</strong> Ein JSON-Objekt mit folgenden Feldern:</li>
+<li><code>&quot;package_type&quot;</code>: Der übergeordnete <code>flavor</code>.</li>
+<li><code>&quot;version&quot;</code>: Die übergeordnete <code>version</code>.</li>
+<li><code>&quot;includes_runtime_data&quot;</code>: <code>False</code></li>
+<li><code>&quot;includes_reference_mirrors&quot;</code>: <code>False</code></li>
+<li><code>&quot;includes_workspaces&quot;</code>: <code>False</code></li>
+</ul>
+<h4 id="3-4-erstellung-der-dokumentation-distribution-readme-md">3.4. Erstellung der Dokumentation (<code>DISTRIBUTION_README.md</code>)</h4>
+<p>Eine detaillierte README-Datei wird erstellt, die dem Endbenutzer (Schule) Anweisungen für den ersten Einsatz gibt.</p>
+<ul>
+<li><strong>Inhalt:</strong> Die Dokumentation ist in Abschnitte unterteilt:</li>
+<li><strong>Beschreibung:</strong> Zielsetzung des Pakets (sauberes Distributionspaket für Schulen).</li>
+<li><strong>Inhalt:</strong> Auflistung dessen, was enthalten ist (Quellcode, Startskripte, Dokumentation, leere Datenordner etc.).</li>
+<li><strong>Nicht enthalten:</strong> Klare Abgrenzung dessen, was <em>nicht</em> im Paket enthalten ist (lokale Datenbanken, Modelle, Secrets etc.).</li>
+<li><strong>Start:</strong> Angabe der Startskripte für Windows (<code>start_server.ps1</code>) und Linux (<code>start_server.sh</code>).</li>
+<li><strong>Vor dem ersten produktiven Einsatz (Checkliste):</strong> Eine nummerierte Anleitung, die den Benutzer durch die notwendigen Schritte führt (Installation von <code>requirements.txt</code>, Konfigurationsanpassung, Import von Referenzbibliotheken, Befüllung von <code>LIT/</code>).</li>
+</ul>
+<h4 id="3-5-weitere-skripte">3.5. Weitere Skripte</h4>
+<p>Zwei weitere interne Hilfsfunktionen werden aufgerufen, um die spezifische Installation und Plattformanpassung zu gewährleisten:</p>
+<ol>
+<li><code>_write_lit_scaffold(staging_root)</code>: Erstellt die notwendige Struktur für den LiteRT-LM-Betrieb.</li>
+<li><code>_write_platform_installation_guide(staging_root, flavor, version)</code>: Generiert die spezifische Installationsanleitung basierend auf dem <code>flavor</code> und der <code>version</code>.</li>
+</ol>
+<h3 id="4-anwendungsfall">4. Anwendungsfall</h3>
+<p>Diese Funktion ist der <strong>Initialisierungs- und Vorbereitungs-Schritt</strong> im Build-Prozess. Sie stellt sicher, dass das Zielverzeichnis (<code>staging_root</code>) eine vollständige, strukturierte Basis hat, die alle notwendigen Dateien und Platzhalter enthält, um die nachfolgenden Schritte (wie das eigentliche Kompilieren oder Verpacken) erfolgreich durchführen zu können.</p>
+<h3 id="5-abh-ngigkeiten">5. Abhängigkeiten</h3>
+<ul>
+<li><code>Path</code> (von <code>pathlib</code> oder ähnlichem)</li>
+<li><code>json</code> (für die Serialisierung und Deserialisierung von Konfigurations- und Manifest-Dateien)</li>
+<li><code>str</code> (für String-Manipulation und Dateisystemoperationen)</li>
+</ul>
+<h3 id="6-sicherheit-und-best-practices">6. Sicherheit und Best Practices</h3>
+<ul>
+<li><strong>Dateisystem-Manipulation:</strong> Die Funktion arbeitet ausschließlich innerhalb des bereitgestellten <code>staging_root</code>.</li>
+<li><strong>Datenintegrität:</strong> Durch die Erstellung von <code>.gitkeep</code>-Dateien wird sichergestellt, dass die Verzeichnisse im Git-Repository sichtbar bleiben, auch wenn sie leer sind.</li>
+<li><strong>Dokumentation:</strong> Die detaillierte <code>DISTRIBUTION_README.md</code> dient als kritische Dokumentation für den Endbenutzer, um Missverständnisse bezüglich der enthaltenen und nicht enthaltenen Komponenten zu vermeiden.</li>
+</ul>
+<h2 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h2>
+<h3 id="funktion-prune-for-flavor-staging-root-path-flavor-str-none">Funktion: <code>_prune_for_flavor(staging_root: Path, flavor: str) -&gt; None</code></h3>
+<h4 id="beschreibung">Beschreibung</h4>
+<p>Diese interne Funktion dient dazu, die <code>staging_root</code>-Verzeichnisstruktur basierend auf dem angegebenen <code>flavor</code>-Typ zu bereinigen (Pruning). Sie entfernt spezifische Skripte, die für bestimmte Betriebssystem- oder Projekt-Flavors nicht relevant sind.</p>
+<h4 id="parameter">Parameter</h4>
+<ul>
+<li>**<code>staging_root: Path</code>**: Der absolute oder relative Pfad zum Verzeichnis, das bereinigt werden soll (das Staging-Verzeichnis).</li>
+<li>**<code>flavor: str</code>**: Der spezifische Flavor-Typ, der die Bereinigungslogik steuert (z.B. <code>&quot;windows-server-package&quot;</code>, <code>&quot;linux-server-package&quot;</code>, <code>&quot;linux-project&quot;</code>).</li>
+</ul>
+<h4 id="r-ckgabe">Rückgabe</h4>
+<ul>
+<li><code>None</code>: Die Funktion führt keine Rückgabe aus; sie modifiziert das <code>staging_root</code>-Verzeichnis direkt.</li>
+</ul>
+<h4 id="verhalten">Verhalten</h4>
+<p>Die Funktion implementiert eine bedingte Logik, um Dateien zu entfernen, die für einen bestimmten Flavor nicht benötigt werden.</p>
+<ol>
+<li>**Wenn <code>flavor</code> gleich <code>&quot;windows-server-package&quot;</code> ist:**</li>
+</ol>
+<ul>
+<li>Es werden die folgenden relativen Pfade im <code>staging_root</code> überprüft und entfernt, falls sie existieren:</li>
+<li><code>start_server.sh</code></li>
+<li><code>start_worker.sh</code></li>
+<li><code>run_tests.sh</code></li>
+</ul>
+<ol>
+<li>**Wenn <code>flavor</code> entweder <code>&quot;linux-server-package&quot;</code> oder <code>&quot;linux-project&quot;</code> ist:**</li>
+</ol>
+<ul>
+<li>Es werden die folgenden relativen Pfade im <code>staging_root</code> überprüft und entfernt, falls sie existieren:</li>
+<li><code>start_server.ps1</code></li>
+<li><code>start_worker.ps1</code></li>
+<li><code>run_tests.ps1</code></li>
+<p><strong>Unterstützte Flavors:</strong></p>
+<li><code>&quot;windows-server-package&quot;</code></li>
+<li><code>&quot;linux-server-package&quot;</code></li>
+<li><code>&quot;linux-project&quot;</code></li>
+</ul>
+<h4 id="abh-ngigkeiten">Abhängigkeiten</h4>
+<ul>
+<li>**<code>Path</code> (von <code>pathlib</code>)**: Für die Manipulation von Dateipfaden.</li>
+<li>**<code>_remove_if_exists(Path)</code>**: Eine interne Hilfsfunktion (nicht definiert in diesem Ausschnitt), die prüft, ob ein Pfad existiert, und ihn bei Existenz entfernt.</li>
+</ul>
+<h4 id="verwendung-beispiel">Verwendung (Beispiel)</h4>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, staging_root ist ein Path-Objekt und flavor ist ein String
+# Beispiel 1: Bereinigung für Windows Server Package
+staging_dir = Path(&quot;/tmp/staging/win_build&quot;)
+flavor_win = &quot;windows-server-package&quot;
+_prune_for_flavor(staging_dir, flavor_win)
+# Entfernt: start_server.sh, start_worker.sh, run_tests.sh
+# Beispiel 2: Bereinigung für Linux Project
+staging_dir_linux = Path(&quot;/tmp/staging/linux_project_build&quot;)
+flavor_linux = &quot;linux-project&quot;
+_prune_for_flavor(staging_dir_linux, flavor_linux)
+# Entfernt: start_server.ps1, start_worker.ps1, run_tests.ps1</code></pre>
+<p>--- <strong>Hinweis:</strong> Die Funktion <code>_remove_if_exists</code> muss in der Quelle definiert sein, um korrekt zu funktionieren.</p>
+<h2 id="technische-dokumentation-funktion-write-platform-installation-guide">Technische Dokumentation: Funktion <code>_write_platform_installation_guide</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>_write_platform_installation_guide</code> ist eine interne Methode, die für die Erstellung und Speicherung spezifischer Installationsanleitungen (Guides) für verschiedene Betriebssystem- und Deployment-Flavors generiert wird. Sie nimmt einen Pfad zum Staging-Root, einen <code>flavor</code>-Parameter (z.B. &quot;windows-server-package&quot;) und eine <code>version</code> entgegen und schreibt die entsprechende Dokumentation in eine Markdown-Datei im Staging-Root.</p>
+<h3 id="2-funktion">2. Funktion</h3>
+<p><strong>Name:</strong> <code>_write_platform_installation_guide</code> <strong>Zweck:</strong> Generiert und schreibt eine detaillierte Installationsanleitung basierend auf dem angegebenen Betriebssystem-Flavor und der Version in eine Markdown-Datei. <strong>Signatur:</strong></p>
+<pre><code class="language-python">def _write_platform_installation_guide(staging_root: Path, flavor: str, version: str) -&gt; None:</code></pre>
+<p><strong>Parameter:</strong></p>
+<ul>
+<li>**<code>staging_root: Path</code>**: Der Pfad zum Verzeichnis, in dem die Installationsanleitungen gespeichert werden sollen.</li>
+<li>**<code>flavor: str</code>**: Der spezifische Flavor oder die Zielplattform der Installation. Akzeptierte Werte sind:</li>
+<li><code>&quot;windows-server-package&quot;</code></li>
+<li><code>&quot;linux-server-package&quot;</code></li>
+<li><code>&quot;linux-project&quot;</code></li>
+<li>Andere Werte führen zu einer leeren Rückgabe.</li>
+<li>**<code>version: str</code>**: Die spezifische Version des zu dokumentierenden Pakets (z.B. &quot;1.0.0&quot;).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code> (Die Funktion schreibt die Datei direkt in das System).</li>
+</ul>
+<h3 id="3-logik-und-verhalten">3. Logik und Verhalten</h3>
+<p>Die Funktion verwendet eine <code>if-elif-else</code>-Struktur, um die Logik basierend auf dem Wert von <code>flavor</code> zu steuern. Für jeden definierten Flavor wird ein spezifischer Titel und ein entsprechend formatiierter Textkörper (<code>body</code>) generiert.</p>
+<h4 id="3-1-implementierungsdetails-nach-flavor">3.1. Implementierungsdetails nach Flavor</h4>
+<table><thead><tr>
+<th><code>flavor</code></th>
+<th>Generierter Guide Name</th>
+<th>Titel Format</th>
+<th>Inhalt (Zusammenfassung)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>&quot;windows-server-package&quot;</code></td>
+<td><code>WINDOWS_SERVER_PACKAGE.md</code></td>
+<td><code># Nova School Server Windows Server Package v{version}</code></td>
+<td>Detaillierte Anweisungen für Windows Server (Voraussetzungen: Win 11/Server, Python 3.12, Docker Desktop, LiteRT-LM).</td>
+</tr>
+<tr>
+<td><code>&quot;linux-server-package&quot;</code></td>
+<td><code>LINUX_SERVER_PACKAGE.md</code></td>
+<td><code># Nova School Server Linux Server Package v{version}</code></td>
+<td>Detaillierte Anweisungen für Ubuntu/Linux Server (Voraussetzungen: Ubuntu 24.04 LTS, Python 3.12, Docker/Podman, LiteRT-LM).</td>
+</tr>
+<tr>
+<td><code>&quot;linux-project&quot;</code></td>
+<td><code>PURE_LINUX_RELEASE.md</code></td>
+<td><code># Nova School Server Pure Linux Release v{version}</code></td>
+<td>Anweisungen für ein rein Linux-basiertes Release, das direkt startbar ist.</td>
+</tr>
+<tr>
+<td><strong>Andere</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Funktion gibt <code>None</code> zurück und führt keine Aktion aus.</td>
+</tr>
+</tbody></table>
+<h4 id="3-2-generierung-des-inhalts-body">3.2. Generierung des Inhalts (<code>body</code>)</h4>
+<p>Der Textkörper (<code>body</code>) wird als Multi-String-Literal definiert und enthält spezifische Schritte, Voraussetzungen und Betriebshinweise, die für die jeweilige Plattform relevant sind.</p>
+<h4 id="3-3-speicherung-der-datei">3.3. Speicherung der Datei</h4>
+<p>Nachdem der <code>body</code> generiert wurde, wird die Datei im <code>staging_root</code> gespeichert:</p>
+<ol>
+<li><strong>Guide Name:</strong> <code>guide_name</code> wird dynamisch gesetzt (z.B. <code>WINDOWS_SERVER_PACKAGE.md</code>).</li>
+<li><strong>Titel:</strong> Der Titel wird dynamisch gesetzt (z.B. <code># Nova School Server Windows Server Package v1.0.0</code>).</li>
+<li><strong>Inhalt:</strong> Der Titel und der Inhalt werden zusammen in eine Zeichenkette (<code>f&quot;{title}\n{body.lstrip()}&quot;</code>) zusammengefasst.</li>
+<li><strong>Speicheroperation:</strong> Die Zeichenkette wird mit <code>(staging_root / guide_name).write_text(..., encoding=&quot;utf-8&quot;)</code> in die entsprechende Datei geschrieben.</li>
+</ol>
+<h3 id="4-abh-ngigkeiten">4. Abhängigkeiten</h3>
+<ul>
+<li><code>pathlib.Path</code>: Für die Manipulation von Dateipfaden.</li>
+</ul>
+<h3 id="5-nutzungsszenarien-use-cases">5. Nutzungsszenarien (Use Cases)</h3>
+<p>Diese Funktion wird typischerweise aufgerufen, wenn das System eine neue Version eines Installationspakets bereitstellt und eine spezifische Dokumentation für die Zielplattform erstellen muss. <strong>Beispiel (Windows-Server):</strong></p>
+<pre><code class="language-python">from pathlib import Path
+# ... (Angenommen, staging_root ist definiert)
+_write_platform_installation_guide(staging_root, &quot;windows-server-package&quot;, &quot;2.5.1&quot;)</code></pre>
+<p><strong>Beispiel (Linux-Projekt):</strong></p>
+<pre><code class="language-python">from pathlib import Path
+# ... (Angenommen, staging_root ist definiert)
+_write_platform_installation_guide(staging_root, &quot;linux-project&quot;, &quot;3.0.0&quot;)</code></pre>
+<h3 id="6-sicherheit-und-robustheit">6. Sicherheit und Robustheit</h3>
+<ul>
+<li><strong>Encoding:</strong> Die Datei wird explizit mit <code>encoding=&quot;utf-8&quot;</code> gespeichert, was die Unterstützung verschiedener Zeichenkodierungen gewährleistet.</li>
+<li><strong>Pfadmanagement:</strong> Die Verwendung von <code>pathlib.Path</code> stellt sicher, dass Pfadoperationen plattformunabhängig sind.</li>
+<li><strong>Fehlerbehandlung:</strong> Die Funktion ist relativ robust, da sie für unbekannte <code>flavor</code>-Werte einfach ignoriert (<code>else: return</code>) und somit keine fehlerhafte Datei erstellt.</li>
+</ul>
+<h3 id="7-verbesserungsvorschl-ge-optional">7. Verbesserungsvorschläge (Optional)</h3>
+<ol>
+<li><strong>Konfigurationsmanagement:</strong> Die langen Markdown-Strings (<code>body</code>) könnten aus einer separaten Konfigurationsdatei (z.B. JSON oder YAML) geladen werden, um die Wartbarkeit und die Trennung von Code und Dokumentation zu verbessern.</li>
+<li><strong>Template-Design:</strong> Für eine größere Anzahl von Flavors könnte ein Template-basiertes System implementiert werden, bei dem nur die spezifischen Platzhalter (z.B. Voraussetzungen, Schritte) pro Flavor definiert werden.</li>
+<li><strong>Validierung:</strong> Eine zusätzliche Validierung für <code>flavor</code> könnte implementiert werden, um sicherzustellen, dass nur erwartete Werte übergeben werden.</li>
+</ol>
+<h1 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei (<code>distribution_builder.py</code>) enthält eine Reihe von privaten Hilfsfunktionen, die für den Prozess der Erstellung oder Vorbereitung einer Modellverteilung (Distribution) zuständig sind. Die Funktionen konzentrieren sich auf das Bereinigen von Dateien, das Sicherstellen von Platzhaltern und das Erstellen einer Dokumentationsstruktur für die LiteRT-LM-Runtime.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-remove-if-exists-path-path-none">1. <code>_remove_if_exists(path: Path) -&gt; None</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion prüft, ob eine Datei oder ein Verzeichnis an dem angegebenen Pfad existiert. Falls vorhanden, wird die Datei oder das Verzeichnis gelöscht. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: Path</code>: Der Pfad zur Datei oder zum Verzeichnis, das überprüft werden soll.</li>
+<p><strong>Verhalten:</strong></p>
+<li>Wenn <code>path.exists()</code> <code>True</code> ist, wird <code>path.unlink()</code> aufgerufen, um die Datei zu entfernen.</li>
+<p><strong>Zweck:</strong> Sicherstellen, dass bestimmte Dateien oder temporäre Verzeichnisse vor der Erstellung oder dem Bauprozess sauber sind.</p>
+</ul>
+<h3 id="2-ensure-placeholder-path-path-none">2. <code>_ensure_placeholder(path: Path) -&gt; None</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion stellt sicher, dass das Verzeichnis, in dem sich der angegebene Pfad befindet, existiert. Falls das Verzeichnis nicht existiert, wird es erstellt. Wenn der Pfad selbst nicht existiert, wird eine leere Textdatei in diesem Pfad erstellt. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: Path</code>: Der Pfad, dessen Parent-Verzeichnis überprüft und ggf. erstellt werden soll.</li>
+<p><strong>Verhalten:</strong></p>
+</ul>
+<ol>
+<li><code>path.parent.mkdir(parents=True, exist_ok=True)</code>: Erstellt das übergeordnete Verzeichnis rekursiv, falls es noch nicht existiert.</li>
+<li><code>if not path.exists(): path.write_text(&quot;&quot;, encoding=&quot;utf-8&quot;)</code>: Wenn der spezifische Pfad nicht existiert, wird eine leere Textdatei (<code>&quot;&quot;</code>) mit UTF-8-Kodierung in diesen Pfad geschrieben.</li>
+<p><strong>Zweck:</strong> Bereitstellung eines standardisierten Platzhalters (leere Datei) in einem definierten Pfad, um spätere Skripte oder Prozesse zu leiten.</p>
+</ol>
+<h3 id="3-write-lit-scaffold-staging-root-path-none">3. <code>_write_lit_scaffold(staging_root: Path) -&gt; None</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion schreibt eine standardisierte Dokumentationsdatei (<code>README.md</code>) in das <code>LIT/README.md</code>-Verzeichnis innerhalb des angegebenen <code>staging_root</code>-Verzeichnisses. Die Datei enthält wichtige Informationen zur LiteRT-LM-Runtime. <strong>Parameter:</strong></p>
+<ul>
+<li><code>staging_root: Path</code>: Der Stammpfad des Verzeichnisses, in dem die Dokumentation erstellt werden soll.</li>
+<p><strong>Inhalt der generierten Dokumentation:</strong> Die Dokumentation enthält folgende Schlüsselinformationen:</p>
+<li><strong>Runtime-Informationen:</strong> Hinweis auf die Nutzung der standardmäßigen LiteRT-LM.</li>
+<li><strong>Herkunft der Binary:</strong> Verweis auf das offizielle GitHub-Repository (<code>https://github.com/google-ai-edge/LiteRT-LM</code>).</li>
+<li><strong>Erwartete Inhalte:</strong> Spezifikation der erwarteten Dateien (z. B. <code>lit.windows_x86_64.exe</code> für Windows, native Binaries für Linux/macOS und ein <code>.litertlm</code>-Modell).</li>
+<li><strong>Modell-Download-Pfad:</strong> Angabe des empfohlenen Hugging Face-Repositorys für das Modell (<code>https://huggingface.co/google/gemma-3n-E4B-it-litert-lm/tree/main</code>).</li>
+<li><strong>Lizenzhinweis:</strong> Warnung, dass das Hugging Face-Repository gesperrt (gated) ist und eine Anmeldung sowie die Erteilung der Gemma-Lizenz erforderlich sind.</li>
+<li><strong>Release-Paket-Hinweis:</strong> Erklärung, warum die Release-Pakete leer sind (um große Modelle oder maschinenspezifische Binaries zu vermeiden).</li>
+<p><strong>Zweck:</strong> Bereitstellung einer standardisierten, informativen Dokumentation für die LiteRT-LM-Runtime, die Entwicklern oder Endbenutzern wichtige Kontextinformationen liefert.</p>
+</ul>
+<h2 id="zusammenfassung-der-nutzung">Zusammenfassung der Nutzung</h2>
+<p>Die Funktionen in <code>distribution_builder.py</code> dienen der <strong>strukturierten Vorbereitung</strong> einer Modellverteilung. Sie kümmern sich um:</p>
+<ol>
+<li><strong>Bereinigung</strong> (Entfernen bestehender Dateien).</li>
+<li><strong>Initialisierung</strong> (Erstellen von Verzeichnissen und Platzhaltern).</li>
+<li><strong>Dokumentation</strong> (Erstellung einer standardisierten README-Datei).</li>
+</ol>
+<h1 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Hilfsfunktionen für den Prozess der Erstellung einer Distribution, insbesondere im Hinblick auf die Kopierung von Systembinären für Linux-Umgebungen und das Komprimieren von Dateistrukturen in Archive.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-copy-optional-linux-runtime-binaries">1. <code>_copy_optional_linux_runtime_binaries</code></h3>
+<p>Diese Funktion ist verantwortlich für die optionalen Kopierungen von Linux-Runtime-Binärdateien zwischen Quell- und Zielpfaden basierend auf der gewählten <code>flavor</code> und einem spezifischen Flag. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _copy_optional_linux_runtime_binaries(
+source_root: Path,
+target_root: Path,
+flavor: str,
+*,
+include_for_linux_server_package: bool,
+) -&gt; None:</code></pre>
+<p><strong>Beschreibung:</strong> Kopiert die Datei <code>lit.linux_x86_64</code> aus dem Pfad <code>source_root/LIT/</code> in den Pfad <code>target_root/LIT/</code>. <strong>Logik:</strong></p>
+<ol>
+<li><strong>Flavor-Prüfung:</strong></li>
+</ol>
+<ul>
+<li>Wenn <code>flavor</code> gleich <code>&quot;linux-project&quot;</code> ist, wird die Funktion ignoriert (<code>pass</code>).</li>
+<li>Wenn <code>flavor</code> gleich <code>&quot;linux-server-package&quot;</code> <strong>und</strong> <code>include_for_linux_server_package</code> gleich <code>True</code> ist, wird die Funktion ignoriert (<code>pass</code>).</li>
+<li>Andernfalls wird die Funktion beendet (<code>return</code>).</li>
+</ul>
+<ol>
+<li><strong>Existenzprüfung Quelle:</strong> Prüft, ob die Datei <code>source_root/LIT/lit.linux_x86_64</code> existiert und eine Datei ist. Falls nicht, wird die Funktion beendet.</li>
+<li><strong>Zielpfad Vorbereitung:</strong> Stellt sicher, dass das Verzeichnis <code>target_root/LIT/</code> existiert (<code>mkdir(parents=True, exist_ok=True)</code>).</li>
+<li><strong>Kopie:</strong> Kopiert die Datei <code>lit.linux_x86_64</code> von der Quelle zur Zielposition.</li>
+<li><strong>Berechtigungsanpassung (Optional):</strong> Wenn das <code>stat</code>-Modul die Attribut <code>S_IXUSR</code> (Ausführbar für den Benutzer) besitzt, wird versucht, die Datei auf die entsprechenden Ausführbarkeitsbits zu setzen (<code>chmod</code>). Ein <code>OSError</code> wird abgefangen, falls die Änderung fehlschlägt.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>source_root: Path</code>: Der Pfad zum Quellverzeichnis.</li>
+<li><code>target_root: Path</code>: Der Pfad, in den die Binärdatei kopiert werden soll.</li>
+<li><code>flavor: str</code>: Der verwendete Flavor (z.B. <code>&quot;linux-project&quot;</code>, <code>&quot;linux-server-package&quot;</code>).</li>
+<li><code>include_for_linux_server_package: bool</code>: Flag, das die Kopie für den Server-Paket-Flavor aktiviert.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code></li>
+<p>---</p>
+</ul>
+<h3 id="2-zip-tree">2. <code>_zip_tree</code></h3>
+<p>Diese Funktion komprimiert einen gesamten Baum von Dateien in ein ZIP-Archiv. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _zip_tree(root: Path, archive_path: Path) -&gt; None:</code></pre>
+<p><strong>Beschreibung:</strong> Erstellt ein ZIP-Archiv an dem angegebenen <code>archive_path</code>, das den gesamten Inhalt des Verzeichnisses <code>root</code> enthält. <strong>Logik:</strong></p>
+<ol>
+<li>Öffnet das ZIP-Archiv an <code>archive_path</code> im Schreibmodus (<code>&quot;w&quot;</code>), mit <code>ZIP_DEFLATED</code> Komprimierung und einer Kompressionsstufe von 9.</li>
+<li>Iteriert über alle Dateien im Verzeichnisbaum <code>root</code> (siehe <code>_iter_files</code>).</li>
+<li>Für jede Datei wird sie in das Archiv geschrieben. Die relative Pfadangabe (<code>file_path.relative_to(root.parent)</code>) wird verwendet, um die Struktur des Archiven zu gewährleisten, wobei die Wurzel des Archiven das Verzeichnis <em>vor</em> <code>root</code> ist.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>root: Path</code>: Das Verzeichnis, dessen Inhalt komprimiert werden soll.</li>
+<li><code>archive_path: Path</code>: Der vollständige Pfad zum Ziel-ZIP-Archiv.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code></li>
+<p>---</p>
+</ul>
+<h3 id="3-iter-files">3. <code>_iter_files</code></h3>
+<p>Diese Hilfsfunktion dient dazu, alle Dateien innerhalb eines gegebenen Verzeichnisses rekursiv zu finden. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _iter_files(root: Path) -&gt; Iterable[Path]:</code></pre>
+<p><strong>Beschreibung:</strong> Gibt eine iterierbare Menge aller Dateien (und Unterverzeichnisse, die rekursiv durchsucht werden) im Verzeichnis <code>root</code> zurück. <strong>Logik:</strong></p>
+<ol>
+<li>Durchläuft alle Dateien und Verzeichnisse im Baum <code>root</code> rekursiv (<code>root.rglob(&quot;*&quot;)</code>).</li>
+<li>Für jede Pfad-Entität wird geprüft, ob es sich um eine Datei handelt (<code>path.is_file()</code>).</li>
+<li>Wenn es sich um eine Datei handelt, wird diese über <code>yield</code> an den Aufrufer übergeben.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>root: Path</code>: Das Verzeichnis, dessen Inhalt durchsucht werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Iterable[Path]</code>: Eine Generator-Funktion, die Pfade zu allen Dateien im Baum zurückgibt.</li>
+<p>---</p>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>pathlib.Path</code></li>
+<li><code>shutil</code></li>
+<li><code>zipfile</code></li>
+<li><code>stat</code></li>
+<li><code>iter</code> (implizit durch <code>rglob</code> und <code>yield</code>)</li>
+</ul>
+<h2 id="verwendungshinweise">Verwendungshinweise</h2>
+<ul>
+<li>Die Funktionen arbeiten primär mit <code>pathlib.Path</code>-Objekten.</li>
+<li><code>_copy_optional_linux_runtime_binaries</code> wird verwendet, um spezifische Binärdateien für Linux-Umgebungen zu synchronisieren.</li>
+<li><code>_zip_tree</code> wird verwendet, um eine vollständige Struktur eines Verzeichnisses in ein komprimiertes Archiv zu packen.</li>
+<li><code>_iter_files</code> ist eine interne Hilfsfunktion, die von <code>_zip_tree</code> verwendet wird, um die Dateien zu sammeln.</li>
+</ul>
+<h1 id="technische-dokumentation-distribution-builder-py">Technische Dokumentation: <code>distribution_builder.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Python-Skriptdatei <code>distribution_builder.py</code> dient dazu, ein sauberes Archiv einer Nova School Server Distribution zu erstellen. Das Skript verwendet die Argumentenzeilen-Parsing-Bibliothek <code>argparse</code>, um die notwendigen Konfigurationen für den Build-Prozess zu erhalten und ruft die Hauptfunktion <code>build_distribution_archive</code> auf, um das Archiv zu generieren.</p>
+<h2 id="2-funktionsbeschreibung">2. Funktionsbeschreibung</h2>
+<h3 id="funktion-main-none">Funktion: <code>main() -&gt; None</code></h3>
+<p>Die <code>main</code>-Funktion ist der Hauptpunkt des Skripts. Sie ist verantwortlich für die Konfiguration der Eingabeparameter über die Kommandozeile und die Ausführung des Build-Prozesses. <strong>Verhalten:</strong></p>
+<ol>
+<li><strong>Argumentenparsing:</strong> Sie initialisiert ein <code>ArgumentParser</code>-Objekt, um die notwendigen Kommandozeilenargumente zu definieren.</li>
+<li><strong>Argument-Definitionen:</strong> Sie definiert folgende obligatorische und optionale Argumente:</li>
+</ol>
+<ul>
+<li><code>base_path</code> (Pflicht): Der Pfad zur Projektwurzel, von dem aus der Build-Prozess gestartet wird. Standardwert ist <code>.</code>.</li>
+<li><code>--output-dir</code> (Optional): Der Zielordner, in dem das fertige Archiv gespeichert werden soll. Standardwert ist <code>.</code>.</li>
+<li><code>--version</code> (Optional): Eine optionale Versionsnummer, die im Archiv enthalten sein soll. Standardwert ist leer.</li>
+<li><code>--flavor</code> (Optional): Definiert den gewünschten Pakettyp für die Distribution.</li>
+<li><strong>Mögliche Werte (Choices):</strong> <code>distribution</code>, <code>windows-server-package</code>, <code>linux-server-package</code>, oder <code>linux-project</code>. Der Standardwert ist <code>distribution</code>.</li>
+</ul>
+<ol>
+<li><strong>Argument-Parsing:</strong> Sie parst die über die Kommandozeile übergebenen Argumente.</li>
+<li><strong>Build-Ausführung:</strong> Sie ruft die interne Funktion <code>build_distribution_archive</code> auf, um den eigentlichen Archivierungs-Prozess durchzuführen, wobei die geparsten Argumente als Parameter übergeben werden.</li>
+<li><strong>Ergebnis-Ausgabe:</strong> Sie gibt den Pfad zum generierten Archiv aus der Funktion <code>build_distribution_archive</code> aus.</li>
+</ol>
+<h3 id="funktion-build-distribution-archive-implizit">Funktion: <code>build_distribution_archive(...)</code> (Implizit)</h3>
+<p>Diese Funktion (nicht im bereitgestellten Code sichtbar, aber aufgerufen) ist der Kernprozess. Sie nimmt die Projektwurzel, den Zielordner, die Versionsnummer und den Pakettyp entgegen und führt die Logik zur Erstellung des Distribution-Archivs durch. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path</code>: <code>Path</code> Objekt, der die Projektwurzel angibt.</li>
+<li><code>output_dir</code>: <code>Path</code> Objekt, der den Zielordner angibt.</li>
+<li><code>version</code>: Optionales Versionszeichenfolge (<code>str</code> oder <code>None</code>).</li>
+<li><code>flavor</code>: Der gewählte Pakettyp (z.B. <code>&quot;distribution&quot;</code>).</li>
+<p><strong>Rückwert:</strong></p>
+<li>Ein Objekt (vermutlich ein <code>Result</code>-Objekt), das den Pfad zum erstellten Archiv enthält.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten">3. Abhängigkeiten</h2>
+<ul>
+<li>**<code>argparse</code>**: Für das Parsen von Kommandozeilenargumenten.</li>
+<li>**<code>pathlib.Path</code>**: Für die Handhabung von Dateipfaden (impliziert durch die Verwendung von <code>Path(...)</code>).</li>
+<li>**<code>PACKAGE_FLAVORS</code>**: Eine globale Konstante oder Liste, die die erlaubten Werte für das <code>--flavor</code>-Argument definiert.</li>
+</ul>
+<h2 id="4-verwendung-usage">4. Verwendung (Usage)</h2>
+<p>Das Skript wird primär über die Kommandozeile gestartet.</p>
+<h3 id="allgemeine-syntax">Allgemeine Syntax</h3>
+<pre><code class="language-bash">python distribution_builder.py [optionen]</code></pre>
+<h3 id="beispiele">Beispiele</h3>
+<p><strong>1. Standard-Build (Standardpfade und Standard-Flavor):</strong> Erstellt das Archiv in dem aktuellen Verzeichnis (<code>.</code>) mit dem Standard-Flavor (<code>distribution</code>).</p>
+<pre><code class="language-bash">python distribution_builder.py</code></pre>
+<p><strong>2. Build mit spezifischem Output-Verzeichnis und Versionsnummer:</strong> Erstellt das Archiv in einem benutzerdefinierten Ordner und fügt eine Versionsnummer hinzu.</p>
+<pre><code class="language-bash">python distribution_builder.py ./my_project --output-dir ./build_artifacts --version 1.0.0</code></pre>
+<p><strong>3. Build mit einem anderen Paket-Flavor (z.B. Linux Server Package):</strong> Wählt den Pakettyp explizit für den Build.</p>
+<pre><code class="language-bash">python distribution_builder.py ./src --flavor linux-server-package</code></pre>
+<p><strong>4. Hilfe anzeigen:</strong> Zeigt die Hilfe-Nachricht des Parsers an.</p>
+<pre><code class="language-bash">python distribution_builder.py -h</code></pre>
+<h2 id="5-code-analyse-und-best-practices">5. Code-Analyse und Best Practices</h2>
+<ul>
+<li><strong>Typisierung:</strong> Die Verwendung von Type Hinting (<code>-&gt; None</code>, <code>args: argparse.Namespace</code>) verbessert die Lesbarkeit und Wartbarkeit des Codes.</li>
+<li><strong>Robustheit:</strong> Die Verwendung von <code>argparse</code> stellt sicher, dass das Skript bei fehlenden oder ungültigen Argumenten fehlerhaft reagiert.</li>
+<li><strong>Flexibilität:</strong> Die Möglichkeit, <code>base_path</code>, <code>output_dir</code>, <code>version</code> und <code>flavor</code> flexibel über die Kommandozeile zu steuern, macht das Skript sehr anpassbar für verschiedene Build-Szenarien.</li>
+<li><strong>Klarheit:</strong> Die Argumentbeschreibungen (<code>help</code> Strings) sind präzise und helfen dem Benutzer, die verfügbaren Optionen zu verstehen.</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-konfiguration-und-konstanten">2. Konfiguration und Konstanten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-package-flavors">2.1. `PACKAGE_FLAVORS`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-skip-names">2.2. `SKIP_NAMES`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-skip-file-suffixes">2.3. `SKIP_FILE_SUFFIXES`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-skip-file-names">2.4. `SKIP_FILE_NAMES`</a></li>
+<li class="wiki-toc-link"><a href="#3-datenstrukturen-dataclasses">3. Datenstrukturen (Dataclasses)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-distributionbuildresult">3.1. `DistributionBuildResult`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-distributionmaterializeresult">3.2. `DistributionMaterializeResult`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-linuxprojectbuildresult">3.3. `LinuxProjectBuildResult`</a></li>
+<li class="wiki-toc-link"><a href="#4-funktionen">4. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-detect-project-version-base-path-path-str">4.1. `detect_project_version(base_path: Path) -&gt; str`</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-struktur">5. Zusammenfassung der Struktur</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-build-distribution-archive-funktion">Technische Dokumentation: `build_distribution_archive` Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktionssignatur">Funktionssignatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#parameter">Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#r-ckgabewert">Rückgabewert</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktionsweise-workflow">Funktionsweise (Workflow)</a></li>
+<li class="wiki-toc-link level-3"><a href="#abh-ngigkeiten-impliziert">Abhängigkeiten (Impliziert)</a></li>
+<li class="wiki-toc-link level-3"><a href="#anwendungsf-lle">Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-distribution-builder-py">Technische Dokumentation: `distribution_builder.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-build-linux-project-archive">Funktion: `build_linux_project_archive`</a></li>
+<li class="wiki-toc-link level-3"><a href="#signaturen">Signaturen</a></li>
+<li class="wiki-toc-link level-3"><a href="#beschreibung">Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#parameter">Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#r-ckgabe-return-value">Rückgabe (Return Value)</a></li>
+<li class="wiki-toc-link level-3"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#workflow">Workflow</a></li>
+<li class="wiki-toc-link level-3"><a href="#beispielanwendung-konzeptuell">Beispielanwendung (Konzeptuell)</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-materialize-distribution-directory">Technische Dokumentation: `materialize_distribution_directory`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-funktionsweise-und-logik">3. Funktionsweise und Logik</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-fehlerbehandlung">5. Fehlerbehandlung</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-verwendungshinweise">6. Verwendungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-distribution-builder-py">Technische Dokumentation: `distribution_builder.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-funktion-normalize-flavor-flavor-str-str">1. Funktion: `_normalize_flavor(flavor: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion-copy-project-tree-source-root-path-target-root-path-excluded-relative-paths-iterable-path-none-none-none">2. Funktion: `_copy_project_tree(source_root: Path, target_root: Path, *, excluded_relative_paths: Iterable[Path] | None = None) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#zusammenfassung-der-verantwortlichkeiten">Zusammenfassung der Verantwortlichkeiten</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-distribution-builder-py">Technische Dokumentation: `distribution_builder.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-abh-ngigkeiten-und-konstanten-impliziert">3. Abhängigkeiten und Konstanten (Impliziert)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-normalize-relative-path-path-path-path">1. `_normalize_relative_path(path: Path) -&gt; Path`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-is-excluded-relative-path-relative-path-path-excluded-relative-paths-list-path-bool">2. `_is_excluded_relative_path(relative_path: Path, excluded_relative_paths: list[Path]) -&gt; bool`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#anmerkungen">Anmerkungen</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-funktion-create-distribution-scaffold">Technische Dokumentation: Funktion `_create_distribution_scaffold`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-details-und-logik">3. Details und Logik</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-anwendungsfall">4. Anwendungsfall</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-abh-ngigkeiten">5. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-sicherheit-und-best-practices">6. Sicherheit und Best Practices</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-distribution-builder-py">Technische Dokumentation: `distribution_builder.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-prune-for-flavor-staging-root-path-flavor-str-none">Funktion: `_prune_for_flavor(staging_root: Path, flavor: str) -&gt; None`</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-funktion-write-platform-installation-guide">Technische Dokumentation: Funktion `_write_platform_installation_guide`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-logik-und-verhalten">3. Logik und Verhalten</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-nutzungsszenarien-use-cases">5. Nutzungsszenarien (Use Cases)</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-sicherheit-und-robustheit">6. Sicherheit und Robustheit</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-verbesserungsvorschl-ge-optional">7. Verbesserungsvorschläge (Optional)</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-remove-if-exists-path-path-none">1. `_remove_if_exists(path: Path) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-ensure-placeholder-path-path-none">2. `_ensure_placeholder(path: Path) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-write-lit-scaffold-staging-root-path-none">3. `_write_lit_scaffold(staging_root: Path) -&gt; None`</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzung">Zusammenfassung der Nutzung</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-copy-optional-linux-runtime-binaries">1. `_copy_optional_linux_runtime_binaries`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-zip-tree">2. `_zip_tree`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-iter-files">3. `_iter_files`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#verwendungshinweise">Verwendungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionsbeschreibung">2. Funktionsbeschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-main-none">Funktion: `main() -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-build-distribution-archive-implizit">Funktion: `build_distribution_archive(...)` (Implizit)</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-verwendung-usage">4. Verwendung (Usage)</a></li>
+<li class="wiki-toc-link level-3"><a href="#allgemeine-syntax">Allgemeine Syntax</a></li>
+<li class="wiki-toc-link level-3"><a href="#beispiele">Beispiele</a></li>
+<li class="wiki-toc-link"><a href="#5-code-analyse-und-best-practices">5. Code-Analyse und Best Practices</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "distribution_builder.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

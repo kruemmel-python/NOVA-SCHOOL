@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `server.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `server.py`</h1>
+          <p>Source: server.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-server-py">Technische Dokumentation: <code>server.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>server.py</code> dient als zentraler Einstiegspunkt und Hauptlogik für den Server-Dienst der Anwendung. Sie initialisiert die notwendigen Komponenten, verwaltet die Server-Konfiguration, handhabt HTTP-Anfragen und orchestriert die verschiedenen spezialisierten Dienste (z.B. Authentifizierung, Code-Ausführung, KI-Dienste, Datenbankzugriff). Die Struktur der Datei deutet auf eine modulare Architektur hin, bei der verschiedene Funktionen und Dienste über Importe aus Unterverzeichnissen (z.B. <code>.auth</code>, <code>.collaboration</code>, <code>.ai_service</code>, <code>.database</code> etc.) bereitgestellt werden.</p>
+<h2 id="2-konfiguration-und-konstanten">2. Konfiguration und Konstanten</h2>
+<h3 id="2-1-globale-konstanten">2.1. Globale Konstanten</h3>
+<table><thead><tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>COOKIE_NAME</code></td>
+<td>Der Name des Cookies, der für die Sitzungsverwaltung verwendet wird (<code>&quot;nova_school_token&quot;</code>).</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-konfigurations-keys">2.2. Konfigurations-Keys</h3>
+<p>Die Datei definiert zwei Hauptlisten von Schlüsselnamen, die für die Konfiguration des Servers relevant sind: **<code>ADMIN_SETTING_KEYS</code>**: Eine Liste von Schlüsselnamen, die für administrative Einstellungen des Servers oder der Umgebung konfiguriert werden. Diese betreffen unter anderem:</p>
+<ul>
+<li><strong>Server-Metadaten</strong>: <code>school_name</code>, <code>server_public_host</code>, <code>certificate_logo_path</code>.</li>
+<li><strong>Proxy-Einstellungen</strong>: <code>web_proxy_url</code>, <code>web_proxy_required</code>.</li>
+<li><strong>KI/LLM-Konfiguration</strong>: Details zu <code>llamacpp_model_path</code>, <code>litertlm_model_path</code>, sowie Parameter wie <code>ondevice_max_tokens</code>, <code>ondevice_temperature</code>.</li>
+<li><strong>Ressourcenmanagement</strong>: Limits für Container (<code>container_memory_limit</code>, <code>container_cpu_limit</code>, etc.) und Scheduler-Limits (<code>scheduler_max_concurrent_global</code>, etc.).</li>
+<li><strong>Datenretention</strong>: Einstellungen für die Speicherung von Chats und Audits (<code>retention_chat_days</code>, <code>retention_audit_days</code>).</li>
+<p>**<code>RUNTIME_FILE_CONFIG_KEYS</code>**: Eine Liste von Schlüsselnamen, die spezifisch für die Konfiguration der Laufzeitumgebung (Runtime) relevant sind. Diese umfassen:</p>
+<li><code>host</code>, <code>port</code> (für Netzwerkzugriff).</li>
+<li><code>session_ttl_seconds</code>, <code>run_timeout_seconds</code>, <code>live_run_timeout_seconds</code>.</li>
+<li><code>tenant_id</code>.</li>
+</ul>
+<h2 id="3-importe-und-abh-ngigkeiten">3. Importe und Abhängigkeiten</h2>
+<p>Die Datei importiert eine Vielzahl von Klassen und Funktionen aus verschiedenen Untermodulen, was die Komplexität des Servers widerspiegelt. Wichtige Importe umfassen:</p>
+<ul>
+<li><strong>HTTP/Web</strong>: <code>BaseHTTPRequestHandler</code>, <code>ThreadingHTTPServer</code>, <code>SimpleCookie</code>, <code>HTTPStatus</code>.</li>
+<li><strong>Datenbank/Repository</strong>: <code>SchoolRepository</code> (aus <code>.database</code>).</li>
+<li><strong>Dienste</strong>: <code>AuthService</code>, <code>NotebookCollaborationService</code>, <code>CodeRunner</code>, <code>CurriculumService</code>, <code>DeploymentService</code>, <code>DistributedPlaygroundService</code>, <code>LocalAIService</code>, <code>TeacherMaterialStudioService</code>, <code>SocraticMentorService</code>, <code>VirtualLecturerService</code>, <code>WikiManualService</code>, <code>UserAdministrationService</code>.</li>
+<li><strong>Netzwerk/Realtime</strong>: <code>RealtimeService</code>, <code>upgrade_websocket</code>.</li>
+<li><strong>Konfiguration</strong>: <code>ServerConfig</code>, <code>active_runtime_config</code>, <code>runtime_config_requires_restart</code>, <code>save_server_config_payload</code>, <code>stored_runtime_config</code>.</li>
+<li><strong>System/Utility</strong>: <code>pathlib.Path</code>, <code>urllib.parse</code> (für URL-Parsing), <code>shutil</code>, <code>atexit</code>, <code>base64</code>, <code>json</code>, <code>mimetypes</code>, <code>re</code>.</li>
+</ul>
+<h2 id="4-kernfunktionen-und-verantwortlichkeiten">4. Kernfunktionen und Verantwortlichkeiten</h2>
+<p>Die Hauptverantwortlichkeiten von <code>server.py</code> lassen sich in folgende Bereiche unterteilen:</p>
+<h3 id="4-1-initialisierung-und-setup">4.1. Initialisierung und Setup</h3>
+<ul>
+<li><strong>Importe</strong>: Importiert alle notwendigen Dienste und Konfigurationsmodulen.</li>
+<li><strong>Bootstrap</strong>: Importiert <code>bootstrap_application</code> aus <code>.seed</code>, was auf eine initiale Startlogik hindeutet.</li>
+</ul>
+<h3 id="4-2-http-server-management">4.2. HTTP-Server-Management</h3>
+<ul>
+<li><strong>HTTP-Handler</strong>: Implementiert oder nutzt <code>ThreadingHTTPServer</code> und <code>BaseHTTPRequestHandler</code> zur Erfassung und Verarbeitung externer HTTP-Anfragen.</li>
+<li><strong>Cookie-Handling</strong>: Nutzt <code>SimpleCookie</code> zur Verwaltung von Benutzer-Sitzungs-Tokens (<code>COOKIE_NAME</code>).</li>
+</ul>
+<h3 id="4-3-dienst-orchestrierung-service-orchestration">4.3. Dienst-Orchestrierung (Service Orchestration)</h3>
+<p>Der Server fungiert als zentraler Dispatcher für Anfragen, die an spezifische Dienste delegiert werden:</p>
+<ul>
+<li><strong>Authentifizierung</strong>: Wird über <code>AuthService</code> verwaltet.</li>
+<li><strong>Kollaboration</strong>: Wird über <code>NotebookCollaborationService</code> verwaltet.</li>
+<li><strong>Code-Ausführung</strong>: Wird über <code>CodeRunner</code> verwaltet.</li>
+<li><strong>KI/LLM</strong>: Wird über <code>LocalAIService</code> und möglicherweise andere LLM-spezifische Dienste (z.B. <code>LocalAIService</code> für lokale Modelle, <code>LocalAIService</code> für andere Implementierungen) verwaltet.</li>
+<li><strong>Ressourcen/Deployment</strong>: Wird über <code>DeploymentService</code> verwaltet.</li>
+<li><strong>Inhalt/Material</strong>: Wird über <code>TeacherMaterialStudioService</code> verwaltet.</li>
+<li><strong>Mentoring/Lehre</strong>: Wird über <code>SocraticMentorService</code> und <code>VirtualLecturerService</code> verwaltet.</li>
+<li><strong>Datenmanagement</strong>: Wird über <code>SchoolRepository</code> verwaltet.</li>
+<li><strong>Dokumentation/Wiki</strong>: Wird über <code>DocumentationCatalog</code> und <code>WikiManualService</code> verwaltet.</li>
+</ul>
+<h3 id="4-4-laufzeitkonfiguration-und-wartung">4.4. Laufzeitkonfiguration und Wartung</h3>
+<ul>
+<li><strong>Konfigurationsmanagement</strong>: Liest und verwaltet die aktuelle Laufzeitkonfiguration (<code>active_runtime_config</code>) und die gespeicherte Konfiguration (<code>stored_runtime_config</code>).</li>
+<li><strong>Neustart-Logik</strong>: Prüft möglicherweise, ob ein Neustart der Laufzeit erforderlich ist (<code>runtime_config_requires_restart</code>).</li>
+<li><strong>Cleanup</strong>: Nutzt <code>atexit</code> für saubere Bereinigungen beim Beenden des Prozesses.</li>
+</ul>
+<h2 id="5-technische-details-und-designmuster">5. Technische Details und Designmuster</h2>
+<ul>
+<li><strong>Modulare Architektur</strong>: Die starke Abhängigkeit von Importen aus spezifischen Modulen deutet auf ein <strong>Service-Oriented Architecture (SOA)</strong> oder <strong>Microservice-ähnliches Design</strong> hin, bei dem jeder Bereich (Code-Runner, AI, Datenbank) als eigenständiger, isolierter Dienst implementiert ist.</li>
+<li><strong>Konfigurations-Driven</strong>: Die umfangreichen Listen von Schlüsselnamen (<code>ADMIN_SETTING_KEYS</code>, <code>RUNTIME_FILE_CONFIG_KEYS</code>) zeigen, dass die Konfiguration stark auf Key-Value-Paaren basiert und dynamisch über verschiedene Speicherquellen (wahrscheinlich Dateien oder eine Datenbank) geladen wird.</li>
+<li><strong>Asynchrone/Threading-Fähigkeit</strong>: Die Verwendung von <code>ThreadingHTTPServer</code> impliziert, dass der Server darauf ausgelegt ist, mehrere HTTP-Anfragen gleichzeitig zu verarbeiten, was für eine skalierbare Anwendung wichtig ist.</li>
+<li><strong>URL-Manipulation</strong>: Die Verwendung von <code>urllib.parse</code> (<code>parse_qs</code>, <code>quote</code>, <code>unquote</code>, <code>urlparse</code>) zeigt eine tiefgehende Verarbeitung von Web-Parametern und URLs.</li>
+</ul>
+<h2 id="6-zusammenfassung-der-hauptaufgaben">6. Zusammenfassung der Hauptaufgaben</h2>
+<p><code>server.py</code> ist das <strong>Orchestrierungssystem</strong> des gesamten Systems. Seine Hauptaufgaben sind:</p>
+<ol>
+<li><strong>Netzwerk-Einstieg</strong>: Bereitstellung eines robusten HTTP-Endpunkts.</li>
+<li><strong>Zustandsverwaltung</strong>: Sicherstellen, dass Benutzerauthentifizierung und Sitzungen korrekt verwaltet werden.</li>
+<li><strong>Ressourcen-Routing</strong>: Weiterleitung von Anfragen an die korrekten spezialisierten Dienste (KI, Code-Ausführung, Datenbank, etc.).</li>
+<li><strong>Konfigurationsmanagement</strong>: Laden und Bereitstellen der notwendigen Betriebsparameter für alle Unterdienste.</li>
+</ol>
+<p>Bitte stellen Sie mir den vollständigen Code von <code>server.py</code> zur Verfügung, damit ich eine technische Dokumentation erstellen kann. Sobald Sie den Code bereitstellen, werde ich eine detaillierte technische Dokumentation erstellen, die typischerweise folgende Abschnitte umfasst:</p>
+<ol>
+<li><strong>Überblick (Overview):</strong> Kurze Beschreibung dessen, was die Datei und die Klasse tun.</li>
+<li><strong>Architektur und Design (Architecture and Design):</strong> Erklärung der Struktur, der verwendeten Muster und der allgemeinen Architektur des Servers.</li>
+<li><strong>Klassen- und Funktionsübersicht (Class and Function Overview):</strong> Detaillierte Beschreibung jeder Klasse und jeder wichtigen Funktion.</li>
+<li><strong>API/Schnittstellen (API/Interfaces):</strong> Beschreibung der öffentlichen Methoden, deren Parameter und Rückgabewerte.</li>
+<li><strong>Konfiguration (Configuration):</strong> Welche Einstellungen werden benötigt und wie werden sie gesetzt?</li>
+<li><strong>Verwendung (Usage):</strong> Ein Beispiel, wie man die Klasse oder die Funktionen verwendet.</li>
+<li><strong>Fehlerbehandlung (Error Handling):</strong> Wie werden Fehler im Code behandelt?</li>
+<li><strong>Abhängigkeiten (Dependencies):</strong> Welche externen Bibliotheken sind erforderlich?</li>
+<p><strong>Ich warte auf Ihren Code!</strong></p>
+</ol>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 4637 &gt;= 4096</p>
+<h2 id="technische-dokumentation-server-py">Technische Dokumentation: <code>server.py</code></h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei <code>server.py</code> enthält eine Funktion zur Initialisierung und Erstellung einer Anwendung (<code>NovaSchoolApplication</code>) basierend auf einer Konfigurationsstruktur (<code>ServerConfig</code>). Diese Funktion stellt sicher, dass die Anwendung beim Beenden des Prozesses korrekt geschlossen wird.</p>
+<h3 id="2-funktionen">2. Funktionen</h3>
+<h4 id="create-application-config-serverconfig-novaschoolapplication"><code>create_application(config: ServerConfig) -&gt; NovaSchoolApplication</code></h4>
+<p><strong>Beschreibung:</strong> Diese Funktion ist der zentrale Einstiegspunkt zur Erstellung einer <code>NovaSchoolApplication</code>. Sie nimmt eine <code>ServerConfig</code> als Argument entgegen und initialisiert die Anwendung. Darüber hinaus wird die Methode zum Schließen der Anwendung (<code>application.close</code>) als Exit-Handler registriert, um sicherzustellen, dass die Ressourcen der Anwendung ordnungsgemäß freigegeben werden, wenn das Programm beendet wird. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>config: ServerConfig</code>**: Ein Objekt vom Typ <code>ServerConfig</code>, das alle notwendigen Einstellungen und Konfigurationsdaten für die Anwendung enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>NovaSchoolApplication</code>**: Ein instanziertes Objekt der Klasse <code>NovaSchoolApplication</code>, das die Konfiguration verwendet und bereit ist, zu laufen.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Initialisierung:</strong> Es wird eine Instanz von <code>NovaSchoolApplication</code> erstellt, wobei die bereitgestellte <code>config</code> verwendet wird.</li>
+<li><strong>Exit-Handler Registrierung:</strong> Die Methode <code>application.close</code> wird über <code>atexit.register()</code> registriert. Dies stellt sicher, dass die <code>close</code>-Methode automatisch aufgerufen wird, wenn das Python-Skript normal beendet wird (z.B. durch <code>exit()</code> oder das Schließen des Hauptprozesses).</li>
+</ol>
+<h3 id="3-klassen">3. Klassen</h3>
+<h4 id="novaschoolapplication-impliziert"><code>NovaSchoolApplication</code> (Impliziert)</h4>
+<p>Obwohl die Definition der Klasse nicht in diesem Codeausschnitt enthalten ist, wird sie durch die Verwendung in <code>create_application</code> impliziert. <strong>Zweck:</strong> Diese Klasse repräsentiert die Hauptanwendung, die die Konfiguration verarbeitet und die Geschäftslogik der NovaSchool-Anwendung implementiert. <strong>Wichtige Methoden (Impliziert durch die Verwendung):</strong></p>
+<ul>
+<li>**<code>__init__(self, config)</code>**: Der Konstruktor, der die übermittelte <code>ServerConfig</code> speichert und die Anwendung initialisiert.</li>
+<li>**<code>close(self)</code>**: Eine Methode, die alle Ressourcen der Anwendung (z.B. Datenbankverbindungen, Netzwerkverbindungen) ordnungsgemäß beendet und freigibt.</li>
+</ul>
+<h3 id="4-abh-ngigkeiten">4. Abhängigkeiten</h3>
+<ul>
+<li>**<code>atexit</code> (Standardbibliothek):** Wird verwendet, um Funktionen zu registrieren, die automatisch beim Beenden des Python-Skripts aufgerufen werden sollen.</li>
+<li>**<code>ServerConfig</code> (Externe/Interne Klasse):** Eine definierte Klasse, die die Struktur der Anwendungseinstellungen definiert.</li>
+<li>**<code>NovaSchoolApplication</code> (Externe/Interne Klasse):** Die Hauptklasse, die die Anwendung selbst darstellt.</li>
+</ul>
+<h3 id="5-anwendungsfall">5. Anwendungsfall</h3>
+<p>Diese Funktion dient als <strong>Factory-Methode</strong> oder <strong>Initialisierungs-Wrapper</strong>. Sie trennt die Verantwortung für die Konfigurationsbereitstellung und die Lebenszyklusverwaltung (insbesondere das saubere Schließen der Anwendung) von der Hauptlogik des Programms.</p>
+<h3 id="6-code-analyse-code-review">6. Code-Analyse (Code-Review)</h3>
+<ul>
+<li><strong>Klarheit:</strong> Der Code ist sehr klar und folgt dem Standardmuster für die Initialisierung von Anwendungen mit notwendigen Cleanup-Mechanismen.</li>
+<li><strong>Robustheit:</strong> Die Verwendung von <code>atexit.register(application.close)</code> ist eine robuste Methode, um sicherzustellen, dass Ressourcen freigegeben werden, selbst bei unvorhergesehenem Abbruch.</li>
+<li><strong>Typisierung:</strong> Die Verwendung von Type Hinting (<code>config: ServerConfig -&gt; NovaSchoolApplication</code>) verbessert die Lesbarkeit und die Wartbarkeit des Codes.</li>
+<p>--- <strong>Zusammenfassung:</strong> Die Funktion <code>create_application</code> ist verantwortlich für die saubere Erstellung und Registrierung des Schlussprozesses für die <code>NovaSchoolApplication</code>.</p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 19601 &gt;= 4096</p>
+<h1 id="technische-dokumentation-server-py">Technische Dokumentation: <code>server.py</code></h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Die Datei <code>server.py</code> enthält die Hauptlogik für die Initialisierung und den Start eines Webservers für die &quot;Nova School&quot; Anwendung. Sie definiert die Funktion <code>run_server</code>, die den HTTP-Server startet, und eine Hilfsfunktion <code>_guess_lan_ipv4</code> zur Schätzung der lokalen IP-Adresse im lokalen Netzwerk.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="2-1-run-server-application-novaschoolapplication-none">2.1. <code>run_server(application: NovaSchoolApplication) -&gt; None</code></h3>
+<p>Diese Funktion ist der zentrale Startpunkt für den Webserver. Sie initialisiert den Handler, startet den <code>ThreadingHTTPServer</code> und verwaltet den Lebenszyklus des Servers. <strong>Parameter:</strong></p>
+<ul>
+<li><code>application</code>: Eine Instanz der Klasse <code>NovaSchoolApplication</code>, die alle notwendigen Konfigurationsdaten (Host, Port, Seed-Informationen) enthält.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li><strong>Handler-Definition:</strong> Definiert eine Klasse <code>Handler</code>, die von <code>NovaSchoolRequestHandler</code> erbt (wobei die Implementierung in dieser Version leer ist).</li>
+<li><strong>Handler-Zuweisung:</strong> Setzt die Klasse <code>Handler.application</code> auf die übergegebene <code>application</code>.</li>
+<li><strong>Server-Initialisierung:</strong> Erstellt einen <code>ThreadingHTTPServer</code> an der angegebenen Adresse (<code>application.config.host</code>, <code>application.config.port</code>) und weist den <code>Handler</code> zu.</li>
+<li><strong>Seed-Login-Log:</strong> Generiert eine Zeichenkette (<code>seed_lines</code>), die alle Benutzer-Passwort-Paare aus <code>application.seed_info[&quot;seed_users&quot;]</code> im Format <code>&quot;username/password&quot;</code> zusammenfügt.</li>
+<li><strong>IP-Adresse-Logik (LAN-Erkennung):</strong></li>
+</ol>
+<ul>
+<li>Überprüft, ob der <code>bound_host</code> entweder <code>&quot;0.0.0.0&quot;</code> oder <code>&quot;::&quot;</code> ist (was auf einen bindenden Listen- oder Anycast-Host hindeutet).</li>
+<li><strong>Wenn ja:</strong></li>
+<li>Gibt eine Meldung aus, dass der Server auf dem Host/Port lauscht.</li>
+<li>Gibt die lokale Adresse (<code>http://127.0.0.1:{bound_port}</code>) aus.</li>
+<li>Ruft die Funktion <code>_guess_lan_ipv4()</code> auf, um eine lokale IPv4-Adresse zu ermitteln.</li>
+<li>Gibt die lokale Adresse aus, falls eine LAN-IP gefunden wird (z.B. <code>http://&lt;lan_ip&gt;:{bound_port}</code>).</li>
+<li>Gibt eine Platzhalter-Adresse aus, falls keine LAN-IP gefunden wird (z.B. <code>http://&lt;server-ip&gt;:{bound_port}</code>).</li>
+<li><strong>Wenn nein:</strong></li>
+<li>Gibt eine allgemeine Meldung aus, dass der Server auf <code>http://{bound_host}:{bound_port}</code> läuft.</li>
+</ul>
+<ol>
+<li><strong>Demo-Logins-Ausgabe:</strong> Gibt die generierten <code>seed_lines</code> aus.</li>
+<li><strong>Server-Start:</strong> Startet den Server im unendlichen Schleifendurchlauf (<code>server.serve_forever()</code>).</li>
+<li><strong>Fehlerbehandlung (Graceful Shutdown):</strong> Fängt <code>KeyboardInterrupt</code> (z.B. Ctrl+C) ab und führt einen sauberen Abbau durch.</li>
+<li>**Cleanup (<code>finally</code>-Block):**</li>
+</ol>
+<ul>
+<li>Schließt den Server (<code>server.server_close()</code>).</li>
+<li>Schließt die Hauptanwendung (<code>application.close()</code>).</li>
+</ul>
+<h3 id="2-2-guess-lan-ipv4-str-none">2.2. <code>_guess_lan_ipv4() -&gt; str | None</code></h3>
+<p>Diese interne Hilfsfunktion versucht, die lokale IPv4-Adresse des Servers im lokalen Netzwerk zu bestimmen, indem sie eine DNS-Auflösung über ein externes Ziel (Google DNS) versucht. <strong>Beschreibung:</strong></p>
+<ol>
+<li><strong>Socket-Erstellung:</strong> Erstellt ein Socket für IPv4 (<code>socket.AF_INET</code>) und SOCK-Typ UDP (<code>socket.SOCK_DGRAM</code>).</li>
+<li><strong>Probe:</strong> Versucht, eine Verbindung zu <code>8.8.8.8</code> auf Port <code>80</code> herzustellen (eine DNS-Anfrage).</li>
+<li><strong>IP-Erfassung:</strong> Wenn die Verbindung erfolgreich ist, liest die Funktion die zurückgegebene Adresse (<code>probe.getsockname()[0]</code>) aus.</li>
+<li><strong>Validierung:</strong></li>
+</ol>
+<ul>
+<li>Wenn eine Adresse zurückgegeben wird und diese nicht mit <code>&quot;127.&quot;</code> beginnt (was auf eine lokale Loopback-Adresse hindeutet), wird diese Adresse als mögliche LAN-IP zurückgegeben.</li>
+<li>Andernfalls wird <code>None</code> zurückgegeben.</li>
+</ul>
+<ol>
+<li><strong>Fehlerbehandlung:</strong> Fängt <code>OSError</code> ab (z.B. wenn die Netzwerkverbindung fehlschlägt) und gibt <code>None</code> zurück.</li>
+</ol>
+<h2 id="3-abh-ngigkeiten">3. Abhängigkeiten</h2>
+<ul>
+<li>**<code>NovaSchoolApplication</code>:** Die Hauptklasse, die Konfiguration und Seed-Daten bereitstellt.</li>
+<li>**<code>NovaSchoolRequestHandler</code>:** Eine Basisklasse für die HTTP-Request-Handler.</li>
+<li>**<code>ThreadingHTTPServer</code>:** Eine Klasse, die den eigentlichen HTTP-Server implementiert.</li>
+<li>**<code>socket</code>:** Das Standardmodul für Netzwerkoperationen (AF_INET, SOCK_DGRAM).</li>
+</ul>
+<h2 id="4-nutzung-und-anwendungsfall">4. Nutzung und Anwendungsfall</h2>
+<p>Diese Datei ist verantwortlich für die <strong>Deployment- und Startphase</strong> der Nova School Anwendung. Sie stellt sicher, dass die Anwendung auf dem angegebenen Host und Port läuft, die notwendigen Seed-Daten für die initiale Einrichtung bereitstellt und versucht, die lokale Netzwerkposition des Servers zu identifizieren, um Benutzerfreundlichkeit zu verbessern.</p>
+<h2 id="5-sicherheitshinweise">5. Sicherheitshinweise</h2>
+<ul>
+<li><strong>Seed-Daten:</strong> Die Seed-Daten werden direkt in der Konfiguration oder im Code (im <code>seed_info</code>) verwendet. Stellen Sie sicher, dass diese Informationen sicher verwaltet werden.</li>
+<li><strong>Netzwerkzugriff:</strong> Die Funktion <code>_guess_lan_ipv4</code> führt eine DNS-Probe durch. Dies ist ein geringes Risiko, da es nur eine externe, öffentliche DNS-Server (8.8.8.8) kontaktieren kann.</li>
+<p>--- <em>Erstellt am: [Aktuelles Datum]</em></p>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-konfiguration-und-konstanten">2. Konfiguration und Konstanten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-globale-konstanten">2.1. Globale Konstanten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-konfigurations-keys">2.2. Konfigurations-Keys</a></li>
+<li class="wiki-toc-link"><a href="#3-importe-und-abh-ngigkeiten">3. Importe und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-kernfunktionen-und-verantwortlichkeiten">4. Kernfunktionen und Verantwortlichkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-initialisierung-und-setup">4.1. Initialisierung und Setup</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-http-server-management">4.2. HTTP-Server-Management</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-3-dienst-orchestrierung-service-orchestration">4.3. Dienst-Orchestrierung (Service Orchestration)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-4-laufzeitkonfiguration-und-wartung">4.4. Laufzeitkonfiguration und Wartung</a></li>
+<li class="wiki-toc-link"><a href="#5-technische-details-und-designmuster">5. Technische Details und Designmuster</a></li>
+<li class="wiki-toc-link"><a href="#6-zusammenfassung-der-hauptaufgaben">6. Zusammenfassung der Hauptaufgaben</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-server-py">Technische Dokumentation: `server.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-klassen">3. Klassen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-anwendungsfall">5. Anwendungsfall</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-code-analyse-code-review">6. Code-Analyse (Code-Review)</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-run-server-application-novaschoolapplication-none">2.1. `run_server(application: NovaSchoolApplication) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-guess-lan-ipv4-str-none">2.2. `_guess_lan_ipv4() -&gt; str | None`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-nutzung-und-anwendungsfall">4. Nutzung und Anwendungsfall</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheitshinweise">5. Sicherheitshinweise</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "server.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

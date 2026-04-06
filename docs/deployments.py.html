@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `deployments.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `deployments.py`</h1>
+          <p>Source: deployments.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-deployments-py">Technische Dokumentation: <code>deployments.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>deployments.py</code> dient als zentraler Modul für die Verwaltung und Durchführung von Deployment-Prozessen. Sie orchestriert verschiedene Schritte, die für den Übergang einer Anwendung oder eines Projekts von einer Entwicklungsumgebung zu einer Zielumgebung (z.B. Staging, Produktion) notwendig sind. Das Modul nutzt externe Bibliotheken und interne Komponenten (wie <code>ServerConfig</code>, <code>SchoolRepository</code>, <code>copy_project_snapshot</code>, <code>WorkspaceManager</code>), um komplexe Aufgaben wie das Erstellen von Snapshots, das Komprimieren von Dateien und das Ausführen von Befehlen zu steuern.</p>
+<h2 id="2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</h2>
+<p>Das Modul importiert folgende wichtige Komponenten:</p>
+<table><thead><tr>
+<th>Modul/Klasse</th>
+<th>Beschreibung</th>
+<th>Zweck</th>
+</tr></thead><tbody>
+<tr>
+<td><code>json</code>, <code>os</code>, <code>shutil</code>, <code>subprocess</code>, <code>tempfile</code>, <code>time</code>, <code>uuid</code>, <code>zipfile</code>, <code>pathlib.Path</code></td>
+<td>Standard-Python-Bibliotheken</td>
+<td>Grundlegende Dateimanagement-, Prozess- und Zeitfunktionen.</td>
+</tr>
+<tr>
+<td><code>.config.ServerConfig</code></td>
+<td>Konfigurationsklasse</td>
+<td>Enthält Server-spezifische Einstellungen (z.B. URLs, Pfade, Credentials).</td>
+</tr>
+<tr>
+<td><code>.database.SchoolRepository</code></td>
+<td>Repository-Klasse</td>
+<td>Verantwortlich für die Interaktion mit der Datenbank (wahrscheinlich zur Speicherung von Deployment-Metadaten oder Konfigurationen).</td>
+</tr>
+<tr>
+<td><code>.project_files.copy_project_snapshot</code></td>
+<td>Funktion/Klasse</td>
+<td>Verantwortlich für das Erstellen eines vollständigen Snapshots des Projektverzeichnisses.</td>
+</tr>
+<tr>
+<td><code>.workspace.WorkspaceManager</code></td>
+<td>Klasse</td>
+<td>Verantwortlich für die Verwaltung des Arbeitsbereichs und die Steuerung von Workspace-Operationen.</td>
+</tr>
+</tbody></table>
+<h2 id="3-hauptklasse">3. Hauptklasse</h2>
+<p>Die Datei definiert eine Klasse, die als Haupt-Controller für die Deployment-Logik fungiert (der Name der Klasse ist im bereitgestellten Codeausschnitt nicht explizit genannt, aber die Struktur deutet auf eine Orchestrierungsfunktion hin). <strong>[Hinweis: Da der Codeausschnitt nur die Importe und die Definition der Klasse beginnt, wird die Dokumentation auf die Struktur und die implizierte Funktion der Klasse fokussiert.]</strong></p>
+<h3 id="3-1-klasse-name-der-klasse-implizit">3.1. Klasse: <code>[Name der Klasse, implizit]</code></h3>
+<p><strong>Zweck:</strong> Orchestrierung des gesamten Deployment-Workflows. <strong>Verantwortlichkeiten:</strong></p>
+<ol>
+<li><strong>Konfiguration:</strong> Ladevorgang der notwendigen Serverkonfigurationen aus <code>ServerConfig</code>.</li>
+<li><strong>Datenmanagement:</strong> Interaktion mit dem <code>SchoolRepository</code> zur Speicherung von Deployment-Status oder Metadaten.</li>
+<li><strong>Snapshot-Erstellung:</strong> Aufruf von <code>copy_project_snapshot</code> zur Sicherung des aktuellen Projektzustands.</li>
+<li><strong>Workspace-Management:</strong> Nutzung des <code>WorkspaceManager</code> zur Steuerung von Arbeitsbereichsoperationen.</li>
+<li><strong>System-Interaktion:</strong> Ausführung externer Befehle mittels <code>subprocess</code> (wahrscheinlich für das Starten von Services, das Deployment-Skript oder andere Systembefehle).</li>
+<li><strong>Dateiverwaltung:</strong> Nutzung von temporären Dateien (<code>tempfile</code>) und Archivierung (<code>zipfile</code>) für temporäre oder finale Deployment-Pakete.</li>
+</ol>
+<h3 id="3-2-schl-sselfunktionen-und-methoden-impliziert">3.2. Schlüsselfunktionen und Methoden (Impliziert)</h3>
+<p>Basierend auf den Importen lassen sich folgende typische Methoden ableiten:</p>
+<ul>
+<li>**<code>_load_config()</code>:** Lädt die notwendigen Serverkonfigurationen.</li>
+<li>**<code>_save_deployment_status(status: str, details: Any)</code>:** Speichert den aktuellen Status des Deployments in der Datenbank.</li>
+<li>**<code>create_project_snapshot(project_path: Path) -&gt; Path</code>:** Ruft die interne Logik zur Erstellung eines Projekt-Snapshots auf.</li>
+<li>**<code>execute_deployment_steps(config: ServerConfig)</code>:** Der Hauptpfad, der die gesamte Kette von Schritten (Snapshot, Komprimierung, Datenbank-Update, System-Befehle) sequenziell ausführt.</li>
+<li>**<code>generate_deployment_package(snapshot_path: Path) -&gt; Path</code>:** Erstellt ein komprimiertes Archiv (ZIP-Datei) aus dem erstellten Snapshot.</li>
+</ul>
+<h2 id="4-technische-details-und-best-practices">4. Technische Details und Best Practices</h2>
+<h3 id="4-1-fehlerbehandlung-impliziert">4.1. Fehlerbehandlung (Impliziert)</h3>
+<p>Da das Modul viele externe Operationen (<code>subprocess</code>, Dateizugriffe) beinhaltet, ist eine robuste Fehlerbehandlung (z.B. <code>try...except</code> Blöcke) für alle kritischen Schritte (Datenbankzugriff, Dateisystemoperationen, externe Befehlsausführung) zwingend erforderlich.</p>
+<h3 id="4-2-ressourcenmanagement">4.2. Ressourcenmanagement</h3>
+<ul>
+<li><strong>Temporäre Dateien:</strong> Die Verwendung von <code>tempfile.NamedTemporaryFile</code> oder ähnlichen Mechanismen sollte sicherstellen, dass temporäre Dateien nach Abschluss der Operation korrekt gelöscht werden, um Speicher- und Dateisystemressourcen zu sparen.</li>
+<li><strong>Prozessmanagement:</strong> Die Nutzung von <code>subprocess</code> sollte auf die korrekte Erfassung von <code>stdout</code> und <code>stderr</code> und die Überprüfung des Rückgabecodes (<code>returncode</code>) angewiesen sein, um den Erfolg oder die Fehlermeldung des externen Befehls zu beurteilen.</li>
+</ul>
+<h3 id="4-3-dateisystem-operationen">4.3. Dateisystem-Operationen</h3>
+<p>Die Verwendung von <code>pathlib.Path</code> deutet auf eine moderne, objektorientierte Handhabung von Pfaden hin, was die Portabilität des Codes verbessert.</p>
+<h2 id="5-zusammenfassung">5. Zusammenfassung</h2>
+<p><code>deployments.py</code> ist das Herzstück der Deployment-Pipeline. Es fungiert als <strong>Orchestrierungs-Engine</strong>, die sicherstellt, dass alle notwendigen Schritte – von der Sicherung des Quellcodes über die Erstellung von Artefakten bis hin zur Interaktion mit der Infrastruktur – in einer definierten und nachvollziehbaren Reihenfolge ausgeführt werden. --- <strong>Nächster Schritt:</strong> Die Dokumentation sollte nun die spezifischen Methoden und die genauen Argumente der Hauptfunktionen detailliert beschreiben, sobald der vollständige Code verfügbar ist.</p>
+<h1 id="technische-dokumentation-deploymentservice">Technische Dokumentation: <code>DeploymentService</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>DeploymentService</code> ist eine zentrale Komponente im System, die für die Verwaltung des Lebenszyklus von Deployment-Artefakten (wie Freigaben und Exporte von Projekten) verantwortlich ist. Sie orchestriert die Erstellung, Speicherung, Auflösung und Verwaltung von Deployment-Artefakten, wobei sie eng mit dem Repository, dem Workspace Manager und der Sicherheitsebene sowie den Konfigurationsdaten interagiert.</p>
+<h2 id="2-klasse-deploymentservice">2. Klasse: <code>DeploymentService</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert den <code>DeploymentService</code> und stellt sicher, dass die notwendigen Ressourcen und Pfade für die Speicherung von Artefakten bereitgestellt werden. <strong>Parameter:</strong></p>
+<ul>
+<li><code>repository: SchoolRepository</code>: Zugriff auf die Datenbank- und Repository-Operationen.</li>
+<li><code>workspace_manager: WorkspaceManager</code>: Zugriff auf die Verwaltung des Projekt-Workspaces.</li>
+<li><code>security_plane: Any</code>: Objekt zur Überprüfung von Quoten und Berechtigungen.</li>
+<li><code>config: ServerConfig</code>: Konfigurationsdaten, einschließlich Pfaden für Daten und Speicherbereiche.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li>Speichert die Abhängigkeiten.</li>
+<li>Berechnet die Speicherpfade für Freigaben (<code>share_root</code>) und Exporte (<code>export_root</code>) basierend auf `config.data_</li>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-hauptklasse">3. Hauptklasse</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-name-der-klasse-implizit">3.1. Klasse: `[Name der Klasse, implizit]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-schl-sselfunktionen-und-methoden-impliziert">3.2. Schlüsselfunktionen und Methoden (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#4-technische-details-und-best-practices">4. Technische Details und Best Practices</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-fehlerbehandlung-impliziert">4.1. Fehlerbehandlung (Impliziert)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-ressourcenmanagement">4.2. Ressourcenmanagement</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-3-dateisystem-operationen">4.3. Dateisystem-Operationen</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung">5. Zusammenfassung</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-deploymentservice">2. Klasse: `DeploymentService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "deployments.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

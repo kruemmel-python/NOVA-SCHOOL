@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `nova_bridge.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `nova_bridge.py`</h1>
+          <p>Source: nova_bridge.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-nova-bridge-py">Technische Dokumentation: <code>nova_bridge.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>nova_bridge.py</code> definiert eine Klasse <code>NovaBridge</code>, die als zentraler Vermittler (Bridge) zwischen verschiedenen Komponenten des eingebetteten Nova-Systems dient. Sie dient dazu, die notwendigen Laufzeitumgebungen und Sicherheitsmechanismen (Security Plane, Tool Sandbox, Nova AI Provider Runtime) zu konfigurieren und zu initialisieren.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<h3 id="2-1-klasse-novabridge">2.1. Klasse <code>NovaBridge</code></h3>
+<p>Die <code>NovaBridge</code> ist eine <code>dataclass</code>, die zur strukturierten Speicherung der Abhängigkeiten für die Nova-Bridge verwendet wird. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>SecurityPlane</code></td>
+<td><code>type</code></td>
+<td>Die Klasse oder der Typ der Sicherheitsebene, die für die Bridge verwendet wird.</td>
+</tr>
+<tr>
+<td><code>ToolSandbox</code></td>
+<td><code>type</code></td>
+<td>Die Klasse oder der Typ des Tool Sandboxes, der für die Bridge verwendet wird.</td>
+</tr>
+<tr>
+<td><code>NovaAIProviderRuntime</code></td>
+<td><code>type</code></td>
+<td>Die Klasse oder der Typ des Laufzeitumgebungs-Providers für die Nova AI, der für die Bridge verwendet wird.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>str</code></td>
+<td>Der Quell- oder Kontext-String, der angibt, woher die Konfiguration stammt. Standardwert ist <code>&quot;embedded&quot;</code>.</td>
+</tr>
+</tbody></table>
+<p><strong>Merkmale:</strong></p>
+<ul>
+<li>**<code>slots=True</code>**: Wird verwendet, um die Speicherplatznutzung zu optimieren und die Attribute effizienter zu speichern.</li>
+<li>**<code>@dataclass</code>**: Ermöglicht die einfache Erstellung von Datenstrukturen.</li>
+</ul>
+<h3 id="2-2-funktion-load-nova-bridge">2.2. Funktion <code>load_nova_bridge()</code></h3>
+<p>Diese Funktion ist der zentrale Einstiegspunkt zur Initialisierung der <code>NovaBridge</code>. <strong>Beschreibung:</strong> Die Funktion erstellt und zurückgibt eine instanz der <code>NovaBridge</code>, indem sie die spezifischen, im Modul importierten Typen für die Sicherheitsebene, den Tool Sandbox und den AI-Provider Runtime verwendet. <strong>Rückgabetyp:</strong> <code>NovaBridge</code> <strong>Implementierung:</strong></p>
+<pre><code class="language-python">def load_nova_bridge() -&gt; NovaBridge:
+return NovaBridge(
+SecurityPlane=EmbeddedSecurityPlane,
+ToolSandbox=EmbeddedToolSandbox,
+NovaAIProviderRuntime=EmbeddedNovaAIProviderRuntime,
+source=&quot;embedded&quot;,
+)</code></pre>
+<p><strong>Abhängigkeiten (Importierte Typen):</strong> Die Funktion setzt voraus, dass die folgenden Klassen/Typen aus dem Modul <code>.embedded_nova</code> importiert sind:</p>
+<ol>
+<li><code>EmbeddedSecurityPlane</code></li>
+<li><code>EmbeddedToolSandbox</code></li>
+<li><code>EmbeddedNovaAIProviderRuntime</code></li>
+</ol>
+<h2 id="3-verwendung-usage">3. Verwendung (Usage)</h2>
+<p>Um die Nova-Bridge zu initialisieren, wird die Funktion <code>load_nova_bridge()</code> aufgerufen, um eine konfigurierte <code>NovaBridge</code>-Instanz zu erhalten. <strong>Beispiel:</strong></p>
+<pre><code class="language-python">from nova_bridge import load_nova_bridge
+# Initialisierung der Bridge
+bridge = load_nova_bridge()
+# Zugriff auf die Konfiguration
+print(f&quot;Bridge Source: {bridge.source}&quot;)
+# bridge.SecurityPlane wird nun die Klasse EmbeddedSecurityPlane referenzieren</code></pre>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<ul>
+<li><code>.embedded_nova</code>: Enthält die notwendigen Typdefinitionen (<code>EmbeddedSecurityPlane</code>, <code>EmbeddedToolSandbox</code>, <code>EmbeddedNovaAIProviderRuntime</code>).</li>
+</ul>
+<h2 id="5-design-berlegungen">5. Design-Überlegungen</h2>
+<ul>
+<li><strong>Typ-basiertes Design:</strong> Durch die Verwendung von <code>type</code> als Typen für die Abhängigkeiten wird sichergestellt, dass die Bridge explizit die korrekten Implementierungen der eingebetteten Komponenten verwendet.</li>
+<li><strong>Immutabilität (impliziert):</strong> Da es sich um eine <code>dataclass</code> handelt, wird die Bridge nach der Initialisierung als eine feste Konfiguration behandelt.</li>
+<li><strong>Modulare Trennung:</strong> Die Logik zur Konfiguration der Bridge ist klar von der Logik der einzelnen Komponenten getrennt, was die Wartbarkeit erhöht.</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klasse-novabridge">2.1. Klasse `NovaBridge`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-funktion-load-nova-bridge">2.2. Funktion `load_nova_bridge()`</a></li>
+<li class="wiki-toc-link"><a href="#3-verwendung-usage">3. Verwendung (Usage)</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-design-berlegungen">5. Design-Überlegungen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "nova_bridge.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

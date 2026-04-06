@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `archive_utils.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `archive_utils.py`</h1>
+          <p>Source: archive_utils.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-archive-utils-py">Technische Dokumentation: <code>archive_utils.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält eine Funktion namens <code>extract_zip_safely</code>, die es ermöglicht, einen ZIP-Archiv sicher in ein beliebiges Zielverzeichnis zu extrahieren. Die Funktion beinhaltet Validierungen für den Pfad und die Erstellung notwendiger Verzeichnisse.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="extract-zip-safely-archive-zipfile-zipfile-destination-path-none"><code>extract_zip_safely(archive: zipfile.ZipFile, destination: Path) -&gt; None</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion liest ein gegebenes <code>zipfile.ZipFile</code>-Objekt und extrahiert alle seine Mitglieder in das angegebene <code>destination</code>-Verzeichnis. Sie führt eine Sicherheitsprüfung durch, um sicherzustellen, dass die extrahierten Dateien im erwarteten Pfad liegen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>archive: zipfile.ZipFile</code>: Das offene <code>ZipFile</code>-Objekt, das das zu extrahierende Archiv repräsentiert.</li>
+<li><code>destination: Path</code>: Der Pfad zum Zielverzeichnis, in das die Dateien extrahiert werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code>: Die Funktion führt keine explizite Rückgabe durch, sondern modifiziert das Zielverzeichnis.</li>
+<p><strong>Verhalten und Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Zielverzeichnis Validierung:</strong></li>
+</ol>
+<ul>
+<li>Das absolute Zielverzeichnis (<code>root</code>) wird berechnet, wobei <code>strict=False</code> verwendet wird, um Probleme bei nicht existierenden Elternverzeichnissen zu umgehen.</li>
+</ul>
+<ol>
+<li><strong>Mitgliedsverarbeitung:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion iteriert über alle Mitglieder (<code>infolist()</code>) des ZIP-Archivs.</li>
+<li>Für jedes Mitglied wird der relative Pfad (<code>relative</code>) mithilfe der internen Funktion <code>_validated_zip_member_path</code> validiert.</li>
+<li>Der absolute Zielpfad (<code>target</code>) wird berechnet.</li>
+</ul>
+<ol>
+<li><strong>Pfadvalidierung (Sicherheitsschritt):</strong></li>
+</ol>
+<ul>
+<li>Es wird versucht, den <code>target</code> Pfad relativ zum <code>root</code> Pfad zu berechnen (<code>target.relative_to(root)</code>).</li>
+<li><strong>Fehlerbehandlung:</strong> Falls die Berechnung fehlschlägt (z. B. wenn der Pfad außerhalb des erwarteten Strukturverlaufs liegt), wird eine <code>PermissionError</code> ausgelöst, die angibt, dass das ZIP-Mitglied das Zielverzeichnis verlässt.</li>
+</ul>
+<ol>
+<li><strong>Verzeichnis-Erstellung:</strong></li>
+</ol>
+<ul>
+<li>**Wenn das Mitglied ein Verzeichnis (<code>member.is_dir()</code>) ist:** Es wird sichergestellt, dass das entsprechende Zielverzeichnis erstellt wird (<code>target.mkdir(parents=True, exist_ok=True)</code>), und die Verarbeitung dieses Mitglieds wird mit <code>continue</code> beendet.</li>
+<li><strong>Wenn das Mitglied eine Datei ist:</strong> Es wird sichergestellt, dass das Elternverzeichnis des Zielpfads existiert (<code>target.parent.mkdir(parents=True, exist_ok=True)</code>).</li>
+</ul>
+<ol>
+<li><strong>Datei-Extraktion:</strong></li>
+</ol>
+<ul>
+<li>Die Datei wird im Modus <code>&quot;r&quot;</code> (Lesen) aus dem Archiv geöffnet.</li>
+<li>Die Datei wird im Modus <code>&quot;wb&quot;</code> (Schreiben binär) in das Zielverzeichnis geschrieben.</li>
+<li><strong>Chunking:</strong> Die Datei wird in 1 MB große Chunks gelesen (<code>source.read(1024 * 1024)</code>), um effizientes Lesen und Schreiben zu gewährleisten.</li>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>os</code>: Für grundlegende Dateisystemoperationen.</li>
+<li><code>stat</code>: Für Metadaten von Dateien (impliziert durch die Verwendung von <code>member.is_dir()</code>).</li>
+<li><code>zipfile</code>: Für die Arbeit mit ZIP-Archiven.</li>
+<li><code>pathlib.Path</code>: Für die moderne und objektorientierte Handhabung von Pfaden.</li>
+</ul>
+<h2 id="hinweise-und-vorbedingungen">Hinweise und Vorbedingungen</h2>
+<ul>
+<li>**<code>_validated_zip_member_path</code>:** Diese interne Funktion ist für die korrekte Normalisierung und Validierung der Pfade innerhalb des ZIP-Archivs verantwortlich. Ihre genaue Implementierung ist in dieser Datei nicht enthalten, aber sie ist kritisch für die Funktion.</li>
+<li><strong>Fehlerbehandlung:</strong> Die Funktion ist robust gegenüber Fehlern beim Pfadvergleich, indem sie spezifische <code>PermissionError</code>-Ausnahmen wirft, wenn ein Pfad außerhalb der erwarteten Struktur liegt.</li>
+<li><strong>Ressourcenmanagement:</strong> Die Verwendung von <code>with archive.open(...)</code> und <code>with target.open(...)</code> stellt sicher, dass die Dateihandler korrekt geschlossen werden.</li>
+<p>--- <em>Erstellt am: [Aktuelles Datum]</em></p>
+</ul>
+<h1 id="technische-dokumentation-archive-utils-py">Technische Dokumentation: <code>archive_utils.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Hilfsfunktionen (<code>_validated_zip_member_path</code> und <code>_zip_entry_is_symlink</code>), die zur Validierung und Normalisierung von Pfaden von Dateien innerhalb eines ZIP-Archivs dienen. Sie stellen sicher, dass die extrahierten Pfade sicher und gültig sind, bevor sie verwendet werden.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="validated-zip-member-path-member-zipfile-zipinfo-path"><code>_validated_zip_member_path(member: zipfile.ZipInfo) -&gt; Path</code></h3>
+<p>Diese interne Funktion validiert den Namen eines einzelnen ZIP-Eintrags (<code>zipfile.ZipInfo</code>) und konvertiert ihn in einen gültigen <code>pathlib.Path</code>-Objekt. <strong>Zweck:</strong> Stellt sicher, dass der Pfad des ZIP-Eintrags keine ungültigen oder potenziell gefährlichen Zeichen enthält, die zu Problemen bei der Dateiverarbeitung führen könnten. <strong>Parameter:</strong></p>
+<ul>
+<li><code>member: zipfile.ZipInfo</code>: Ein Objekt, das Informationen über einen Eintrag im ZIP-Archiv enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Ein <code>pathlib.Path</code>-Objekt, das den validierten und normalisierten Pfad darstellt.</li>
+<p><strong>Ausnahmen (Exceptions):</strong></p>
+<li>**<code>PermissionError</code>**: Wird ausgelöst, wenn eine der folgenden Bedingungen erfüllt ist:</li>
+<li>Der Name des ZIP-Eintrags ist leer.</li>
+<li>Der Pfad beginnt mit <code>/</code>, <code>../</code> oder enthält die Sequenz <code>/../</code>.</li>
+<li>Der Pfad endet mit <code>/..</code>.</li>
+<li>Der Pfad enthält Leerzeichen oder Doppelpunkte (<code>:</code>).</li>
+<li>Der ZIP-Eintrag ist ein Symbolverweis (Symlink).</li>
+<p><strong>Details zur Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Raw Name Normalisierung:</strong> Der <code>member.filename</code> wird in einen String umgewandelt, Backslashes (<code>\</code>) werden durch Forward Slashes (<code>/</code>) ersetzt und Leerzeichen werden entfernt.</li>
+<li><strong>Leerer Eintrag-Check:</strong> Prüft, ob der resultierende Name leer ist.</li>
+<li><strong>Ungültige Pfad-Checks:</strong> Überprüft spezifische Pfadstrukturen (<code>/</code>, <code>../</code>, <code>/../</code>, <code>endswith(&quot;/..&quot;)</code>).</li>
+<li><strong>Teilaufteilung:</strong> Der normalisierte Pfad wird durch <code>/</code> geteilt, wobei leere Strings und <code>.</code> (Punkt) ignoriert werden.</li>
+<li><strong>Finaler Pfad-Check:</strong> Prüft, ob nach der Teilaufteilung noch <code>..</code> enthalten ist oder ob ein Doppelpunkt (<code>:</code>) in einem Teil des Pfades vorkommt.</li>
+<li><strong>Symlink-Check:</strong> Ruft die interne Funktion <code>_zip_entry_is_symlink</code> auf, um festzustellen, ob der Eintrag ein Symbolverweis ist.</li>
+<p>---</p>
+</ol>
+<h3 id="zip-entry-is-symlink-member-zipfile-zipinfo-bool"><code>_zip_entry_is_symlink(member: zipfile.ZipInfo) -&gt; bool</code></h3>
+<p>Diese interne Funktion prüft, ob ein spezifischer ZIP-Eintrag ein Symbolverweis (Symbolic Link) ist. <strong>Zweck:</strong> Bestimmt, ob die Metadaten des ZIP-Eintrags auf ein System-Symbolverweis hinweisen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>member: zipfile.ZipInfo</code>: Ein Objekt, das Informationen über einen Eintrag im ZIP-Archiv enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn der Eintrag ein Symbolverweis ist; <code>False</code> ansonsten.</li>
+<p><strong>Details zur Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Extrahierung des Attributs:</strong> Es wird das Attribut <code>external_attr</code> des <code>ZipInfo</code>-Objekts verwendet.</li>
+<li><strong>Maskierung:</strong> Ein spezifischer Bitmasken-Bereich (<code>(member.external_attr &gt;&gt; 16) &amp; 0xFFFF</code>) wird extrahiert, um den eigentlichen Attributwert zu isolieren.</li>
+<li><strong>Statische Prüfung:</strong> Der extrahierte Wert wird mit der Systemkonstante <code>stat.S_ISLNK</code> verglichen, um festzustellen, ob es sich um einen Link handelt.</li>
+<p>---</p>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>zipfile</code>: Für die Arbeit mit ZIP-Archiven und <code>ZipInfo</code>-Objekten.</li>
+<li><code>pathlib.Path</code>: Für die Erstellung von Pfadobjekten.</li>
+<li><code>stat</code>: Für die Prüfung von Dateisystemattributen (insbesondere <code>stat.S_ISLNK</code>).</li>
+</ul>
+<h2 id="verwendungshinweise">Verwendungshinweise</h2>
+<p>Diese Funktionen sollten nur verwendet werden, wenn Sie sicher sind, dass die Eingabedateien (ZIP-Einträge) eine erwartete Struktur aufweisen. Die strikten Validierungsregeln in <code>_validated_zip_member_path</code> dienen der Sicherheit und der Vermeidung von Dateisystem-Operationen, die durch ungültige Pfade fehlschlagen könnten.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#extract-zip-safely-archive-zipfile-zipfile-destination-path-none">`extract_zip_safely(archive: zipfile.ZipFile, destination: Path) -&gt; None`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#hinweise-und-vorbedingungen">Hinweise und Vorbedingungen</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#validated-zip-member-path-member-zipfile-zipinfo-path">`_validated_zip_member_path(member: zipfile.ZipInfo) -&gt; Path`</a></li>
+<li class="wiki-toc-link level-3"><a href="#zip-entry-is-symlink-member-zipfile-zipinfo-bool">`_zip_entry_is_symlink(member: zipfile.ZipInfo) -&gt; bool`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#verwendungshinweise">Verwendungshinweise</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "archive_utils.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

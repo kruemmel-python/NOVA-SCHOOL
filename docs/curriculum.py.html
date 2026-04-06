@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `curriculum.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `curriculum.py`</h1>
+          <p>Source: curriculum.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-curriculum-py">Technische Dokumentation: <code>curriculum.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>curriculum.py</code> dient als zentraler Modul für die Verwaltung, Generierung und möglicherweise die Validierung von Lehrplänen (Curricula) und deren Zertifikaten. Sie importiert Funktionen aus anderen Modulen (<code>curriculum_catalog</code>, <code>curriculum_certificate_pdf</code>) und definiert wichtige Konstanten und möglicherweise Klassenstrukturen für die Verwaltung von Curriculum-Paketen.</p>
+<h2 id="2-importierte-module-und-funktionen">2. Importierte Module und Funktionen</h2>
+<p>Das Modul importiert Abhängigkeiten aus anderen Teilen des Projekts:</p>
+<table><thead><tr>
+<th>Modul/Funktion</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>from .curriculum_catalog import get_course, list_courses</code></td>
+<td>Importiert Funktionen zur Abfrage und Auflistung von Kursen im Curriculum-Katalog.</td>
+</tr>
+<tr>
+<td><code>from .curriculum_certificate_pdf import build_curriculum_certificate_pdf</code></td>
+<td>Importiert eine Funktion zur Erstellung eines PDF-Zertifikats basierend auf einem Curriculum.</td>
+</tr>
+</tbody></table>
+<h2 id="3-konstanten-und-schl-sseldefinitionen">3. Konstanten und Schlüsseldefinitionen</h2>
+<p>Das Modul definiert mehrere wichtige Konstanten, die für die Strukturierung und Sicherheit der Curriculum-Daten entscheidend sind:</p>
+<table><thead><tr>
+<th>Konstante</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>FINAL_MODULE_ID</code></td>
+<td><code>str</code></td>
+<td>Ein eindeutiger Marker, der wahrscheinlich den Abschluss oder die finale Version eines Moduls kennzeichnet (Wert: <code>&quot;__final__&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>CURRICULUM_BUNDLE_SCHEMA_VERSION</code></td>
+<td><code>int</code></td>
+<td>Die Version des Schemas, das für die Strukturierung der Curriculum-Pakete verwendet wird (Wert: <code>1</code>).</td>
+</tr>
+<tr>
+<td><code>CURRICULUM_ACTIVE_BUNDLE_SETTING</code></td>
+<td><code>str</code></td>
+<td>Der Name der Einstellung, die den aktuell aktiven Curriculum-Bundle-ID speichert (Wert: <code>&quot;curriculum_active_bundle_id&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>CURRICULUM_BUNDLE_SECRET_SETTING</code></td>
+<td><code>str</code></td>
+<td>Der Name der Einstellung, die den geheimen Schlüssel für ein Curriculum-Bundle speichert (Wert: <code>&quot;curriculum_bundle_secret&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>CURRICULUM_BUNDLE_ALLOWED_TOP_LEVEL</code></td>
+<td><code>frozenset[str]</code></td>
+<td>Eine feste Menge von Schlüsseldateien, die als Top-Level-Elemente für ein Curriculum-Bundle erlaubt sind (z.B. zur Signatur oder Manifest-Datei). (Inhalt: <code>{&quot;manifest.json&quot;, &quot;signature.json&quot;}</code>).</td>
+</tr>
+</tbody></table>
+<h2 id="4-importierte-standard-bibliotheken">4. Importierte Standard-Bibliotheken</h2>
+<p>Das Modul importiert Standard-Python-Bibliotheken für verschiedene Aufgaben:</p>
+<ul>
+<li>**<code>copy</code>**: Für das Erstellen von Kopien von Daten.</li>
+<li>**<code>hashlib</code>**: Für die Erstellung von kryptografischen Hashes (z.B. zur Integritätsprüfung).</li>
+<li>**<code>html</code>**: Für die Manipulation von HTML-Daten.</li>
+<li>**<code>hmac</code>**: Für die Berechnung von Message Authentication Codes (MACs) zur Sicherung der Datenintegrität.</li>
+<li>**<code>io</code>**: Für die Arbeit mit I/O-Streams (z.B. zur Verarbeitung von Daten in Speicherformat).</li>
+<li>**<code>json</code>**: Für die Serialisierung und Deserialisierung von JSON-Daten.</li>
+<li>**<code>re</code>**: Für reguläre Ausdrücke (Regex) zur Mustererkennung.</li>
+<li>**<code>time</code>**: Für Zeitmessungen oder Zeitstempel.</li>
+<li>**<code>uuid</code>**: Für die Generierung eindeutiger Identifikatoren (UUIDs).</li>
+<li>**<code>zipfile</code>**: Für die Erstellung oder Manipulation von ZIP-Archiven.</li>
+<li>**<code>typing.Any</code>**: Für die Typisierung von Variablen, die beliebigen Typen entsprechen.</li>
+</ul>
+<h2 id="5-zusammenfassung-der-funktionalit-t">5. Zusammenfassung der Funktionalität</h2>
+<p><code>curriculum.py</code> fungiert als die Schnittstelle zwischen der Datenverwaltung (durch Importe aus <code>curriculum_catalog</code>) und der Dokumenten-/Zertifikatsgenerierung (durch Importe aus <code>curriculum_certificate_pdf</code>). Es legt die notwendigen Metadaten und Sicherheitsparameter fest, die für die Verwaltung von Curriculum-Paketen erforderlich sind. --- <strong>Hinweis:</strong> Die eigentliche Implementierung der Logik (Klassen oder Funktionen, die nicht explizit gezeigt werden) befindet sich in den folgenden, nicht bereitgestellten Teilen der Datei.</p>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 20915 &gt;= 4096</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-importierte-module-und-funktionen">2. Importierte Module und Funktionen</a></li>
+<li class="wiki-toc-link"><a href="#3-konstanten-und-schl-sseldefinitionen">3. Konstanten und Schlüsseldefinitionen</a></li>
+<li class="wiki-toc-link"><a href="#4-importierte-standard-bibliotheken">4. Importierte Standard-Bibliotheken</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-funktionalit-t">5. Zusammenfassung der Funktionalität</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "curriculum.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

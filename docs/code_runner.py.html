@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `code_runner.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `code_runner.py`</h1>
+          <p>Source: code_runner.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-code-runner-py">Technische Dokumentation: <code>code_runner.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>code_runner.py</code> dient als zentraler Orchestrator für das Ausführen von Code in verschiedenen Umgebungen (Container) basierend auf der Sprache der Datei. Sie implementiert die Logik zur Erkennung der Programmiersprache, zur Auswahl des entsprechenden Docker-Images und zur Durchführung des Code-Executions. Das Skript nutzt verschiedene Bibliotheken wie <code>hashlib</code> für Dateisummen, <code>os</code> und <code>pathlib</code> für Dateimanagement, <code>subprocess</code> für das Ausführen von Shell-Befehlen (wie <code>docker</code>), <code>threading</code> für parallele Operationen und <code>dataclasses</code> für die Strukturierung von Daten.</p>
+<h2 id="2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</h2>
+<h3 id="2-1-importe">2.1 Importe</h3>
+<p>Das Skript importiert verschiedene Module und Bibliotheken:</p>
+<ul>
+<li><strong>Standardbibliotheken:</strong> <code>hashlib</code>, <code>os</code>, <code>re</code>, <code>shlex</code>, <code>shutil</code>, <code>subprocess</code>, <code>threading</code>, <code>time</code>, <code>textwrap</code>, <code>uuid</code>.</li>
+<li><strong>Interne Module:</strong></li>
+<li><code>config.ServerConfig</code>: Enthält Serverkonfigurationen.</li>
+<li><code>container_seccomp.resolve_seccomp_profile_option</code>: Verantwortlich für die Auflösung von Seccomp-Profiloptionen.</li>
+<li><code>permissions.allowed_tool_names</code>: Definiert die erlaubten Tool-Namen für die Ausführung.</li>
+<li><code>workspace.WorkspaceManager</code>: Managiert den Arbeitsbereich.</li>
+</ul>
+<h3 id="2-2-konfiguration-und-konstanten">2.2 Konfiguration und Konstanten</h3>
+<p>Das Skript definiert mehrere wichtige Mappings und Muster, die für die Spracherkennung und die Container-Konfiguration entscheidend sind:</p>
+<h4 id="2-2-1-sprach-und-erweiterungs-mappings">2.2.1 Sprach- und Erweiterungs-Mappings</h4>
+<ul>
+<li>**<code>LANGUAGE_TO_PERMISSION</code> (Dict):** Mappt die Programmiersprache auf den entsprechenden Befehl für die Ausführung in einem Container (z.B. <code>&quot;python&quot;</code> wird zu <code>&quot;run.python&quot;</code>).</li>
+<li>**<code>EXTENSION_TO_LANGUAGE</code> (Dict):** Mappt Dateiendungen auf die Programmiersprache (z.B. <code>.py</code> wird zu <code>&quot;python&quot;</code>).</li>
+</ul>
+<h4 id="2-2-2-docker-image-definitionen">2.2.2 Docker-Image-Definitionen</h4>
+<ul>
+<li>**<code>DEFAULT_CONTAINER_IMAGES</code> (Dict):** Definiert Standard-Docker-Images für die wichtigsten Sprachen (z.B. <code>python</code> verwendet <code>python:3.12-slim</code>).</li>
+</ul>
+<h4 id="2-2-3-regex-muster-f-r-code-analyse">2.2.3 Regex-Muster für Code-Analyse</h4>
+<p>Diese Muster werden zur Erkennung spezifischer Code-Elemente verwendet, um die Sprache zu bestimmen oder spezielle GUI-Anforderungen zu identifizieren:</p>
+<ul>
+<li>**<code>JAVA_PACKAGE_PATTERN</code> (re.Pattern):** Wird verwendet, um Java-Paketnamen zu identifizieren (z.B. <code>package com.example;</code>).</li>
+<li>**<code>_PYTHON_GUI_IMPORT_PATTERNS</code> (Tuple):** Eine Liste von Tupeln, die Muster definieren, um Importe von GUI-Bibliotheken (wie <code>tkinter</code>, <code>PyQt</code>, <code>wx</code>) zu erkennen.</li>
+<li>**<code>_PYTHON_GUI_USAGE_PATTERNS</code> (Tuple):** Muster, um die Verwendung von GUI-Initialisierungen (z.B. <code>mainloop()</code>, <code>QApplication()</code>) zu erkennen.</li>
+<li>**<code>_PYTHON_TRACEBACK_WRAPPER_PATHS</code> (Tuple):** Pfade, die als mögliche Orte für Python-Tracebacks dienen.</li>
+<li>**<code>_PYTHON_TRACEBACK_WRAPPER_PATTERNS</code> (Tuple):** Regex-Muster, um spezifische Python-Traceback-Zeilen zu identifizieren.</li>
+</ul>
+<h2 id="3-datenstrukturen">3. Datenstrukturen</h2>
+<h3 id="3-1-dataclass-slots-true-coderunner">3.1 <code>@dataclass(slots=True) CodeRunner</code></h3>
+<p>Die Klasse <code>CodeRunner</code> (impliziert durch die Importe, obwohl die Definition hier abgeschnitten ist) wird verwendet, um die notwendigen Informationen für die Code-Ausführung zu kapseln.</p>
+<ul>
+<li>**<code>slots=True</code>:** Reduziert den Speicherverbrauch der Instanz, indem es die Verwendung von <code>__dict__</code> vermeidet.</li>
+</ul>
+<h2 id="4-kernfunktionen-implizit">4. Kernfunktionen (Implizit)</h2>
+<p>Obwohl die Hauptlogik in den folgenden Teilen der Datei liegt, impliziert die Struktur folgende Hauptaufgaben:</p>
+<ol>
+<li><strong>Dateianalyse:</strong> Lesen der bereitgestellten Datei, um die Dateiendung zu bestimmen.</li>
+<li><strong>Sprachbestimmung:</strong> Basierend auf der Dateiendung wird die Programmiersprache identifiziert.</li>
+<li><strong>Container-Konfiguration:</strong> Auswahl des passenden Docker-Images und der notwendigen Befehle (<code>LANGUAGE_TO_PERMISSION</code>).</li>
+<li><strong>Code-Handling:</strong> Verarbeitung des Codes (impliziert durch die Nutzung von <code>shlex</code> und <code>subprocess</code> zur Ausführung).</li>
+<li><strong>GUI-Analyse (Python-spezifisch):</strong> Anwendung der definierten Regex-Muster, um festzustellen, ob eine GUI-Umgebung benötigt wird und welche Bibliotheken verwendet werden.</li>
+<li><strong>Parallelisierung:</strong> Nutzung von <code>threading</code> zur effizienten Verwaltung mehrerer Code-Ausführungen.</li>
+</ol>
+<h2 id="5-schl-sselkonzepte-und-designmuster">5. Schlüsselkonzepte und Designmuster</h2>
+<ul>
+<li><strong>Configuration-Driven Design:</strong> Die Abhängigkeiten (Sprachen, Images, Muster) sind zentral in Konstanten und Mappings definiert, was die Wartbarkeit und Erweiterbarkeit erleichtert.</li>
+<li><strong>Regex-basierte Analyse:</strong> Die Verwendung von komplexen Regular Expressions ermöglicht eine flexible Erkennung von Code-Strukturen, die über einfache Dateiendungen hinausgehen (z.B. GUI-Importe).</li>
+<li><strong>Modulare Struktur:</strong> Die Trennung von Konfiguration, Container-Management und Code-Analyse in verschiedene Importe deutet auf ein gut strukturiertes, modulares Design hin.</li>
+<li><strong>Thread-Safety:</strong> Die Verwendung von <code>threading</code> deutet darauf hin, dass das System darauf ausgelegt ist, mehrere Code-Ausführungen gleichzeitig zu verarbeiten.</li>
+</ul>
+<h2 id="6-zusammenfassung">6. Zusammenfassung</h2>
+<p><code>code_runner.py</code> ist das Herzstück eines automatisierten Code-Ausführers. Es transformiert eine Dateiendung in eine vollständige Ausführungsstrategie, die das korrekte Container-Image lädt und die notwendigen Befehle für die Code-Execution bereitstellt. Die detaillierten Regex-Muster zeigen eine starke Fokussierung auf die spezifischen Anforderungen von Python-Umgebungen, insbesondere im Hinblick auf GUI-Bibliotheken.</p>
+<h1 id="technische-dokumentation-code-runner-py">Technische Dokumentation: <code>code_runner.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Klassen und Datentypen, die in der Datei <code>code_runner.py</code> definiert sind. Diese Komponenten dienen dazu, die Ergebnisse und Metadaten von Code-Ausführungsoperationen (Runs) zu strukturieren und zu speichern.</p>
+<h2 id="2-klassen-und-datentypen">2. Klassen und Datentypen</h2>
+<h3 id="2-1-runresult">2.1. <code>RunResult</code></h3>
+<p>Die Klasse <code>RunResult</code> dient als zentrales Objekt zur Speicherung aller Ergebnisse einer Code-Ausführung. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>run_id</code></td>
+<td><code>str</code></td>
+<td>eindeutige Identifikationsnummer der Ausführung.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>str</code></td>
+<td>Die Programmiersprache, in der der Code ausgeführt wurde.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td><code>list[str]</code></td>
+<td>Die Liste der Befehle, die zur Ausführung des Codes verwendet wurden.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>stdout</code></td>
+<td><code>str</code></td>
+<td>Standardausgabe (Standard-Output) der Ausführung.</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>stderr</code></td>
+<td><code>str</code></td>
+<td>Standardfehler (Standard-Error) der Ausführung.</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>returncode</code></td>
+<td><code>int</code></td>
+<td>Der Rückgabecode des Ausführungsprozesses (z.B. 0 für Erfolg).</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>duration_ms</code></td>
+<td><code>int</code></td>
+<td>Die Dauer der Ausführung in Millisekunden.</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>preview_path</code></td>
+<td><code>str</code></td>
+<td>Pfad zu einer Vorschau des Ergebnisses.</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td>`list[str]</td>
+<td>None`</td>
+<td>Eine Liste von zusätzlichen Anmerkungen oder Beobachtungen zur Ausführung.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>tool_session</code></td>
+<td>`dict[str, Any]</td>
+<td>None`</td>
+<td>Ein Dictionary, das detaillierte Informationen über die verwendete Tool-Sitzung enthält.</td>
+<td><code>None</code></td>
+</tr>
+</tbody></table>
+<p><strong>Methoden:</strong></p>
+<ul>
+<li>**<code>to_dict(self) -&gt; dict[str, Any]</code>**: Konvertiert das gesamte Objekt in ein Python-Dictionary, das für die Serialisierung oder Speicherung geeignet ist.</li>
+</ul>
+<h3 id="2-2-livepreparedrun">2.2. <code>LivePreparedRun</code></h3>
+<p>Diese Klasse hält detaillierte Informationen über eine laufende oder vorbereitete Ausführung, die möglicherweise noch nicht abgeschlossen ist. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>session_id</code></td>
+<td><code>str</code></td>
+<td>Eindeutige ID der Sitzung.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>run_id</code></td>
+<td><code>str</code></td>
+<td>Verweis auf die ID der zu erstellenden <code>RunResult</code>.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>str</code></td>
+<td>Die Programmiersprache.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td><code>list[str]</code></td>
+<td>Die Befehle, die ausgeführt werden sollen.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>cwd</code></td>
+<td><code>Path</code></td>
+<td>Der Arbeitsverzeichnis (Current Working Directory), in dem der Code ausgeführt wird.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td><code>dict[str, str]</code></td>
+<td>Das Umfeld (Environment Variables), das dem Prozess zur Verfügung gestellt wird.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td><code>list[str]</code></td>
+<td>Eine Liste von Anmerkungen.</td>
+<td>Leere Liste</td>
+</tr>
+<tr>
+<td><code>tool_session</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Detaillierte Informationen zur Tool-Sitzung.</td>
+<td>Nicht definiert</td>
+</tr>
+<tr>
+<td><code>pty_command</code></td>
+<td>`list[str]</td>
+<td>None`</td>
+<td>Optionaler Befehl, der für eine PTY-Sitzung verwendet wird.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>preview_path</code></td>
+<td><code>str</code></td>
+<td>Pfad zur Vorschau.</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>prelude_stdout</code></td>
+<td><code>str</code></td>
+<td>Standardausgabe aus einer Vorphase (Prelude).</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>prelude_stderr</code></td>
+<td><code>str</code></td>
+<td>Standardfehler aus einer Vorphase (Prelude).</td>
+<td><code>&quot;&quot;</code> (leer)</td>
+</tr>
+<tr>
+<td><code>failed_returncode</code></td>
+<td>`int</td>
+<td>None`</td>
+<td>Der Rückgabecode, falls die Ausführung fehlgeschlagen ist.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>scheduler_lease</code></td>
+<td>`&quot;SchedulerLease</td>
+<td>None&quot;`</td>
+<td>Optionaler Verweis auf eine <code>SchedulerLease</code>.</td>
+<td><code>None</code></td>
+</tr>
+</tbody></table>
+<h3 id="2-3-schedulerlease">2.3. <code>SchedulerLease</code></h3>
+<p>Diese Klasse repräsentiert eine Lizenz oder einen Zeitplan-Lease, der für die Priorisierung und Verwaltung von Ausführungen verwendet wird. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>lease_id</code></td>
+<td><code>str</code></td>
+<td>Eindeutige ID des Leases.</td>
+</tr>
+<tr>
+<td><code>owner_username</code></td>
+<td><code>str</code></td>
+<td>Der Benutzer, der den Lease besitzt.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>str</code></td>
+<td>Die Rolle, die dem Lease zugewiesen ist.</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td><code>int</code></td>
+<td>Die Priorität des Leases.</td>
+</tr>
+<tr>
+<td><code>waited_ms</code></td>
+<td><code>int</code></td>
+<td>Die Zeit in Millisekunden, die seit der Wartung vergangen ist.</td>
+</tr>
+<tr>
+<td><code>queue_position</code></td>
+<td><code>int</code></td>
+<td>Die aktuelle Position im Warteschlangen-Queue.</td>
+</tr>
+</tbody></table>
+<h2 id="3-zusammenfassung-der-struktur">3. Zusammenfassung der Struktur</h2>
+<p>Die Struktur der Klassen deutet auf einen Workflow hin, der folgende Phasen abdeckt:</p>
+<ol>
+<li>**<code>SchedulerLease</code>**: Verwaltung der Priorisierung und Zuweisung von Ressourcen.</li>
+<li>**<code>LivePreparedRun</code>**: Speicherung des Zustands einer laufenden oder vorbereiteten Aufgabe (inkl. Umgebung, Befehle, Pfade).</li>
+<li>**<code>RunResult</code>**: Speicherung des finalen Ergebnisses einer abgeschlossenen Ausführung (inkl. Output, Rückgabecode und Metriken).</li>
+<p>Diese Struktur ermöglicht eine robuste Nachverfolgung von Code-Ausführungen von der Planung über die Ausführung bis hin zur Ergebnisdarstellung.</p>
+</ol>
+<h1 id="technische-dokumentation-runscheduler-klasse">Technische Dokumentation: <code>RunScheduler</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>RunScheduler</code> ist verantwortlich für die Verwaltung und Steuerung der Ausführung von Aufgaben (oder &quot;Leasen&quot;) basierend auf bestimmten Benutzerrollen und globalen/individuellen Limits. Sie implementiert einen Warteschlangen- und Aktivierungsmechanismus, der sicherstellt, dass Ressourcen (oder Ausführungen) gemäß festgelegten Prioritäten und Kapazitäten zugewiesen werden.</p>
+<h2 id="2-klasse-runscheduler">2. Klasse: <code>RunScheduler</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Initialisiert die Scheduler-Instanz und setzt die notwendigen internen Zustände. <strong>Parameter:</strong></p>
+<ul>
+<li><code>repository: Any | None = None</code>: Eine Referenz auf ein Repository-Objekt, das zur Abfrage von Konfigurationswerten (Settings) verwendet wird. Wenn <code>None</code>, werden Standardwerte verwendet.</li>
+<p><strong>Attribute:</strong></p>
+<li><code>self.repository</code>: Das Repository-Objekt zur Konfigurationsabfrage.</li>
+<li><code>self._condition</code>: Ein <code>threading.Condition</code>-Objekt, das für die Synchronisation von Zugriffsoperationen und Warteschlangenzugriffen verwendet wird.</li>
+<li><code>self._queue: list[dict[str, Any]]</code>: Die Warteschlange für eingehende Anfragen (Requests).</li>
+<li><code>self._active_total: int</code>: Die aktuelle Gesamtzahl der aktivierten Ressourcen/Leasen.</li>
+<li><code>self._active_by_owner: dict[str, int]</code>: Eine Dictionary, das die Anzahl der aktivierten Ressourcen pro Benutzer (<code>owner_username</code>) speichert.</li>
+<li><code>self._sequence: int</code>: Ein Zähler, der die sequentielle Nummerierung der Anfragen verzeichnet.</li>
+</ul>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="2-2-1-acquire-self-owner-username-str-role-str-schedulerlease">2.2.1. <code>acquire(self, owner_username: str, role: str) -&gt; SchedulerLease</code></h4>
+<p>Diese Methode wird aufgerufen, wenn ein Benutzer eine Ausführung anfordern möchte. Sie führt die folgenden Schritte durch:</p>
+<ol>
+<li><strong>Anfrageerstellung:</strong> Erstellt eine <code>request</code>-Dictionary mit Metadaten wie <code>request_id</code> (UUID-basiert), <code>owner_username</code>, <code>role</code>, <code>priority</code> (basierend auf der Rolle) und dem Zeitstempel der Einreichung (<code>submitted_at</code>).</li>
+<li><strong>Synchronisation:</strong> Verriegelt den Zugriff auf die interne Warteschlange (<code>self._condition</code>).</li>
+<li><strong>Sequenzierung:</strong> Erhöht den internen Sequenzzähler (<code>self._sequence</code>) und fügt die Anfrage zur Warteschlange hinzu.</li>
+<li><strong>Priorisierte Sortierung:</strong> Sortiert die gesamte Warteschlange basierend auf der Priorität (numerisch) und der Sequenznummer (numerisch).</li>
+<li><strong>Aktivitätsprüfung:</strong></li>
+</ol>
+<ul>
+<li>Es wird geprüft, ob die aktuelle Anfrage die höchste Priorität hat und ob die Bedingungen für die Aktivierung erfüllt sind (<code>self._can_activate</code>).</li>
+<li><strong>Wenn die Bedingungen erfüllt sind:</strong></li>
+<li>Die Anfrage wird aus der Warteschlange entfernt.</li>
+<li><code>self._active_total</code> wird um 1 erhöht.</li>
+<li>Die Zählung für den <code>owner_username</code> wird inkrementiert.</li>
+<li>Ein <code>SchedulerLease</code>-Objekt wird erstellt und zurückgegeben, das alle relevanten Informationen (Lease-ID, Zeit bis zur Aktivierung, Warteschlangenposition) enthält.</li>
+<li><strong>Wenn die Bedingungen nicht erfüllt sind:</strong></li>
+<li>Die Methode wartet (<code>self._condition.wait(timeout=0.1)</code>) auf eine Benachrichtigung, um erneut zu prüfen, ob die Bedingungen erfüllt sind oder ob andere Anfragen priorisiert werden müssen.</li>
+<p><strong>Rückgabe:</strong> Ein Objekt vom Typ <code>SchedulerLease</code>, falls die Anfrage erfolgreich aktiviert wurde.</p>
+</ul>
+<h4 id="2-2-2-release-self-lease-schedulerlease-none-none">2.2.2. <code>release(self, lease: SchedulerLease | None) -&gt; None</code></h4>
+<p>Diese Methode wird aufgerufen, wenn ein zugewiesener Lease beendet wird.</p>
+<ol>
+<li><strong>Validierung:</strong> Prüft, ob ein gültiges <code>lease</code>-Objekt übergeben wurde.</li>
+<li><strong>Synchronisation:</strong> Verriegelt den Zugriff auf die interne Zustände.</li>
+<li><strong>Aktualisierung der Aktivität:</strong></li>
+</ol>
+<ul>
+<li><code>self._active_total</code> wird um 1 reduziert (mindestens 0).</li>
+<li>Die Zählung für den <code>owner_username</code> wird um 1 reduziert.</li>
+<li>Falls die Zählung für den Benutzer auf 0 fällt, wird der Eintrag aus <code>self._active_by_owner</code> entfernt.</li>
+</ul>
+<ol>
+<li><strong>Benachrichtigung:</strong> Ruft <code>self._condition.notify_all()</code> auf, um andere wartende Threads zu informieren, dass sich der Zustand geändert hat.</li>
+</ol>
+<h4 id="2-2-3-can-activate-self-owner-username-str-role-str-bool">2.2.3. <code>_can_activate(self, owner_username: str, role: str) -&gt; bool</code></h4>
+<p>Prüft die aktuellen Kapazitäten, um eine Aktivierung zu erlauben:</p>
+<ul>
+<li><strong>Globale Limit:</strong> Ist die Gesamtanzahl der aktiven Ressourcen (<code>self._active_total</code>) kleiner als das globale Limit (<code>self._global_limit()</code>)?</li>
+<li><strong>Individuelles Limit:</strong> Ist die Anzahl der aktiven Ressourcen für den spezifischen Benutzer (<code>self._active_by_owner.get(owner_username, 0)</code>) kleiner als das Limit für seine Rolle (<code>self._per_owner_limit(role)</code>)?</li>
+</ul>
+<h4 id="2-2-4-global-limit-self-int">2.2.4. <code>_global_limit(self) -&gt; int</code></h4>
+<p>Litet das globale Limit für die Anzahl der gleichzeitig aktiven Ressourcen aus der Konfiguration ab.</p>
+<ul>
+<li><strong>Konfiguration:</strong> Liest den Wert für den Schlüssel <code>&quot;scheduler_max_concurrent_global&quot;</code>.</li>
+<li><strong>Standardwert:</strong> Wenn der Schlüssel nicht existiert oder fehlschlägt, wird der Standardwert <code>4</code> verwendet.</li>
+<li><strong>Mindestwert:</strong> Der zurückgegebene Wert wird auf <code>max(1, value)</code> gesetzt.</li>
+</ul>
+<h4 id="2-2-5-per-owner-limit-self-role-str-int">2.2.5. <code>_per_owner_limit(self, role: str) -&gt; int</code></h4>
+<p>Litet das spezifische Limit für die Anzahl der gleichzeitig aktiven Ressourcen für eine bestimmte Rolle ab.</p>
+<ol>
+<li><strong>Rollen-Mapping:</strong> Mappt die eingegebene <code>role</code> auf einen Konfigurationsschlüssel (z.B. &quot;student&quot; $\rightarrow$ <code>&quot;scheduler_max_concurrent_student&quot;</code>).</li>
+<li><strong>Standardwert-Mapping:</strong> Mappt die <code>role</code> auf einen Standardwert (z.B. &quot;student&quot; $\rightarrow$ 1).</li>
+<li><strong>Konfigurationsabfrage:</strong> Liest den Wert für den entsprechenden Schlüssel aus dem Repository.</li>
+<li><strong>Mindestwert:</strong> Der zurückgegebene Wert wird auf <code>max(1, value)</code> gesetzt.</li>
+</ol>
+<h4 id="2-2-6-setting-int-self-key-str-default-int-minimum-int-1-int">2.2.6. <code>_setting_int(self, key: str, default: int, *, minimum: int = 1) -&gt; int</code></h4>
+<p>Eine private Hilfsmethode zur sicheren Abfrage und Validierung von Integer-Einstellungen aus dem Repository.</p>
+<ul>
+<li><strong>Logik:</strong> Versucht, den Wert für den <code>key</code> aus dem Repository zu lesen. Fängt alle <code>Exception</code> (z.B. <code>KeyError</code>, <code>ValueError</code>) ab und gibt den <code>default</code> Wert zurück.</li>
+<li><strong>Validierung:</strong> Stellt sicher, dass der zurückgegebene Wert mindestens den Wert von <code>minimum</code> hat.</li>
+</ul>
+<h4 id="2-2-7-priority-for-role-self-role-str-int">2.2.7. <code>_priority_for_role(self, role: str) -&gt; int</code></h4>
+<p>Definiert die Prioritätswerte für verschiedene Rollen, um die Sortierung in <code>acquire</code> zu steuern:</p>
+<ul>
+<li><strong>admin:</strong> 0 (Höchste Priorität)</li>
+<li><strong>teacher:</strong> 1</li>
+<li><strong>student:</strong> 2 (Niedrigste Priorität)</li>
+<li><strong>Fehlende Rolle:</strong> Gibt den Wert 2 zurück (Standard für &quot;student&quot;).</li>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-datenstrukturen">3. Abhängigkeiten und Datenstrukturen</h2>
+<ul>
+<li>**<code>threading.Condition</code>:** Wird für das Thread-Safety-Management verwendet, um den Zugriff auf die Warteschlange und die Zähler zu synchronisieren.</li>
+<li>**<code>uuid.uuid4().hex[:12]</code>:** Wird verwendet, um eindeutige, kurze Identifikatoren für Anfragen zu generieren.</li>
+<li>**<code>time.perf_counter()</code>:** Wird verwendet, um präzise Zeitstempel für die Einreichung und die Berechnung der Wartezeit zu erfassen.</li>
+<li>**<code>SchedulerLease</code> (Extern):** Ein extern definiertes Objekt, das die Details einer aktivierten Ausführung speichert.</li>
+</ul>
+<h2 id="4-zusammenfassung-der-funktionsweise">4. Zusammenfassung der Funktionsweise</h2>
+<p>Die <code>RunScheduler</code> fungiert als zentraler Gatekeeper für Ressourcenallokation. Anfragen werden in einer priorisierten Warteschlange gesammelt. Die Aktivierung einer Anfrage ist nur möglich, wenn sowohl die <strong>globale Kapazität</strong> als auch die <strong>individuelle Kapazität</strong> für den jeweiligen Benutzer und seine Rolle nicht überschritten werden. Die gesamte Logik ist durch <code>threading.Condition</code> sichergestellt, um Race Conditions bei gleichzeitigen Anfragen zu vermeiden.</p>
+<p>Gerne, hier ist ein Entwurf für eine technische Dokumentation, basierend auf dem bereitgestellten Code-Ausschnitt (<code>code_runner.py</code>, Teil 4/6). Da Sie nur den Anfang der Klasse (<code>class &lt;|end|&gt;</code>) bereitgestellt haben, werde ich eine <strong>strukturierte Vorlage</strong> erstellen, die Sie mit den vollständigen Code-Details füllen können. ---</p>
+<h1 id="technische-dokumentation-code-runner-py">Technische Dokumentation: <code>code_runner.py</code></h1>
+<p><strong>Version:</strong> 1.0 (Entwurf) <strong>Datum:</strong> [Aktuelles Datum einfügen] <strong>Autor:</strong> [Ihr Name/Team einfügen]</p>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Dieses Dokument beschreibt die Struktur, Funktion und die Architektur der Python-Klasse <code>CodeRunner</code>, die in der Datei <code>code_runner.py</code> implementiert ist. Die Klasse dient dazu, Code-Snippets zu verarbeiten, auszuführen und deren Ergebnisse zu erfassen.</p>
+<h2 id="2-architektur-und-design">2. Architektur und Design</h2>
+<h3 id="2-1-hauptziel-der-klasse">2.1. Hauptziel der Klasse</h3>
+<p>Die primäre Aufgabe der <code>CodeRunner</code>-Klasse ist es, einen definierten Code-String entgegenzunehmen, diesen in einer isolierten Umgebung auszuführen und die resultierende Ausgabe (Standardausgabe, Fehlerprotokolle) zu sammeln und zurückzugeben.</p>
+<h3 id="2-2-klassenstruktur-basierend-auf-dem-bereitgestellten-ausschnitt">2.2. Klassenstruktur (Basierend auf dem bereitgestellten Ausschnitt)</h3>
+<p><em>(Hier sollten Sie die vollständige Klasse einfügen. Die Struktur sollte folgende Komponenten enthalten:)</em></p>
+<ul>
+<li><strong>Attribute:</strong> Welche Daten speichert die Klasse (z.B. Konfigurationen, Cache, Status)?</li>
+<li>**Konstruktor (<code>__init__</code>):** Welche Parameter werden benötigt, um die Instanz initial zuisieren?</li>
+<li><strong>Kernmethode(n):</strong> Welche Methoden führen die eigentliche Ausführung durch (z.B. <code>run_code()</code>, <code>execute()</code>)?</li>
+<li><strong>Private/Interne Methoden:</strong> Methoden, die die Ausführungsschritte verbergen (z.B. Code-Parsing, Umgebungsvorbereitung).</li>
+</ul>
+<h2 id="3-funktionsbeschreibung">3. Funktionsbeschreibung</h2>
+<h3 id="3-1-methode-name-der-ersten-methode-z-b-init">3.1. Methode: <code>[Name der ersten Methode, z.B. __init__]</code></h3>
+<ul>
+<li><strong>Beschreibung:</strong> [Detaillierte Erklärung, was diese Methode tut. Welche Eingaben erwartet sie und welche Ausgaben liefert sie?]</li>
+<li><strong>Parameter:</strong></li>
+<li><code>[Parameter_Name]</code>: [Typ des Parameters] – [Beschreibung]</li>
+<li><strong>Rückgabe:</strong> [Typ der Rückgabe] – [Beschreibung]</li>
+<li><strong>Beispiel:</strong></li>
+</ul>
+<pre><code class="language-python"># Beispiel-Aufruf
+runner = CodeRunner(timeout=30)</code></pre>
+<h3 id="3-2-methode-name-der-ausf-hrungs-methode-z-b-run-code-code-string">3.2. Methode: <code>[Name der Ausführungs-Methode, z.B. run_code(code_string)]</code></h3>
+<ul>
+<li><strong>Beschreibung:</strong> Diese Methode ist der zentrale Funktionspunkt. Sie nimmt einen Python-Code-String entgegen, erstellt eine temporäre Umgebung (falls erforderlich), führt den Code aus und behandelt die Standardausgabe (<code>stdout</code>) und Fehlermeldungen (<code>stderr</code>).</li>
+<li><strong>Parameter:</strong></li>
+<li><code>code_string</code> (str): Der vollständige Python-Code, der ausgeführt werden soll.</li>
+<li><code>[Optionale_Parameter_1]</code>: [Typ] – [Beschreibung]</li>
+<li><strong>Rückgabe:</strong> Ein Dictionary oder eine spezielle <code>Result</code>-Klasse, die die Ausführungsergebnisse enthält.</li>
+<li><code>&#x27;stdout&#x27;</code> (str): Die Ausgabe, die der Code erfolgreich ausgegeben hat.</li>
+<li><code>&#x27;stderr&#x27;</code> (str): Fehlermeldungen oder Warnungen.</li>
+<li><code>&#x27;status&#x27;</code> (str): Der Abschlussstatus (z.B. &#x27;SUCCESS&#x27;, &#x27;RUNTIME_ERROR&#x27;, &#x27;TIMEOUT&#x27;).</li>
+<li><strong>Fehlertoleranz:</strong> [Beschreiben Sie, wie die Klasse mit Syntaxfehlern, Laufzeitfehlern oder Timeout-Situationen umgeht.]</li>
+</ul>
+<h2 id="4-datenfluss-und-ablauf-workflow">4. Datenfluss und Ablauf (Workflow)</h2>
+<ol>
+<li><strong>Initialisierung:</strong> Der Benutzer instanziiert <code>CodeRunner</code> mit notwendigen Konfigurationen.</li>
+<li><strong>Input:</strong> Der Benutzer übermittelt einen Code-String an die Ausführungsfunktion.</li>
+<li><strong>Vorbereitung:</strong> Die Klasse validiert den Code (optional: Syntaxprüfung) und stellt sicher, dass die notwendigen Laufzeitumgebungen (z.B. Speicherlimits, Abhängigkeiten) bereit sind.</li>
+<li><strong>Ausführung:</strong> Der Code wird in einem isolierten Prozess (z.B. <code>subprocess</code> oder <code>exec()</code>) ausgeführt.</li>
+<li><strong>Erfassung:</strong> Die Standardausgabe und die Fehlerausgabe werden in Echtzeit erfasst.</li>
+<li><strong>Rückgabe:</strong> Die Ergebnisse werden strukturiert in einem Ergebnisobjekt zurückgegeben.</li>
+</ol>
+<h2 id="5-abh-ngigkeiten">5. Abhängigkeiten</h2>
+<ul>
+<li><strong>Standardbibliothek:</strong> Python 3.x</li>
+<li><strong>Externe Bibliotheken:</strong> [Liste aller importierten Bibliotheken, z.B. <code>subprocess</code>, <code>json</code>, etc.]</li>
+</ul>
+<h2 id="6-erweiterungen-und-zuk-nftige-pl-ne">6. Erweiterungen und zukünftige Pläne</h2>
+<ul>
+<li><strong>Asynchrone Ausführung:</strong> Implementierung von <code>async/await</code> für längere Laufzeiten.</li>
+<li><strong>Sandbox-Funktionalität:</strong> Stärkere Implementierung von Sicherheitsmechanismen (z.B. Sandboxing) zur Begrenzung des Schadenspotenzials von extern auszuführenden Code.</li>
+<li><strong>Code-Caching:</strong> Implementierung eines Caches für häufig wiederkehrende Code-Snippets, um Latenzen zu reduzieren.</li>
+<p>--- <strong>Nächste Schritte:</strong> Bitte fügen Sie den vollständigen Code der Klasse ein, damit ich diese Dokumentation präzisieren und die technischen Details (insbesondere die Implementierung der Ausführungslogik) detaillierter ausfüllen kann.</p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 29174 &gt;= 4096</p>
+<h2 id="technische-dokumentation-code-runner-py">Technische Dokumentation: <code>code_runner.py</code></h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei <code>code_runner.py</code> definiert eine Klasse namens <code>_RawResult</code>, die zur strukturierten Speicherung der Rohdaten und Metriken eines Code-Ausführungs- oder Runner-Prozesses dient. Diese Klasse dient wahrscheinlich dazu, die Ergebnisse von externen Code-Ausführungen (z.B. Shell-Befehle, Container-Ausführungen) zu erfassen und zu serialisieren.</p>
+<h3 id="2-klasse-rawresult">2. Klasse: <code>_RawResult</code></h3>
+<p><strong>Zweck:</strong> Speichert alle relevanten Informationen, die aus einer Code-Ausführung resultieren. <strong>Beschreibung:</strong> Die Klasse <code>_RawResult</code> ist eine Datenstruktur (wahrscheinlich eine <code>dataclass</code> oder eine einfache Klasse), die die Ausgabe, Fehlerinformationen und Zeitmessungen einer Code-Ausführung kapselt. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>stdout</code></td>
+<td><code>str</code></td>
+<td>Die Standardausgabe (Standard Output) des ausgeführten Codes.</td>
+</tr>
+<tr>
+<td><code>stderr</code></td>
+<td><code>str</code></td>
+<td>Die Standardfehlerausgabe (Standard Error) des ausgeführten Codes.</td>
+</tr>
+<tr>
+<td><code>returncode</code></td>
+<td><code>int</code></td>
+<td>Der Rückgabecode des ausgeführten Prozesses (typischerweise 0 für Erfolg, nicht-null für Fehler).</td>
+</tr>
+<tr>
+<td><code>duration_ms</code></td>
+<td><code>int</code></td>
+<td>Die Dauer der Code-Ausführung, gemessen in Millisekunden (ms).</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>`list[str]</td>
+<td>None`</td>
+<td>Eine Optionale Liste von Strings, die den vollständigen Befehl oder die Kommandosyntax darstellen, die ausgeführt wurde. Kann <code>None</code> sein, wenn der Befehl nicht protokolliert wurde.</td>
+</tr>
+</tbody></table>
+<p><strong>Konstruktor (Impliziert):</strong> Obwohl der Konstruktor nicht explizit im bereitgestellten Codeausschnitt definiert ist, impliziert die Struktur, dass ein Instanz dieser Klasse mit den oben genannten Attributen initialisiert wird, nachdem eine Code-Ausführung abgeschlossen wurde.</p>
+<h3 id="3-verwendung-und-api">3. Verwendung und API</h3>
+<p><strong>Verwendungsszenario:</strong> Diese Klasse wird typischerweise verwendet, um die Ergebnisse von Funktionen oder Methoden zu sammeln, die externe Befehle ausführen. Sie ermöglicht eine konsistente und leicht zugängliche Darstellung komplexer Ausführungsdaten. <strong>Beispiel (Konzeptuell):</strong></p>
+<pre><code class="language-python"># Angenommene Nutzung
+result = _RawResult(
+stdout=&quot;Hallo Welt\n&quot;,
+stderr=&quot;&quot;,
+returncode=0,
+duration_ms=150,
+command=[&quot;python&quot;, &quot;my_script.py&quot;]
+)
+print(f&quot;Ausgabe (STDOUT): {result.stdout}&quot;)
+print(f&quot;Rückgabecode: {result.returncode}&quot;)</code></pre>
+<h3 id="4-technische-details-und-design-berlegungen">4. Technische Details und Design-Überlegungen</h3>
+<ul>
+<li><strong>Datenintegrität:</strong> Durch die explizite Definition der Felder (<code>stdout</code>, <code>stderr</code>, <code>returncode</code>, <code>duration_ms</code>, <code>command</code>) wird sichergestellt, dass alle kritischen Metriken einer Code-Ausführung erfasst werden.</li>
+<li><strong>Flexibilität:</strong> Das optional definierte Attribut <code>command</code> erlaubt es, die Struktur der Klasse zu halten, während sie auch Fälle unterstützt, in denen der Befehl selbst nicht relevant ist (z.B. bei internen Framework-Aufrufen).</li>
+<li><strong>Typisierung:</strong> Die Verwendung von Python-Typen (<code>str</code>, <code>int</code>, <code>list[str] | None</code>) verbessert die Lesbarkeit und die Wartbarkeit des Codes.</li>
+</ul>
+<h3 id="5-abh-ngigkeiten">5. Abhängigkeiten</h3>
+<ul>
+<li>Keine expliziten externen Bibliotheken sind in diesem Ausschnitt sichtbar, aber die Struktur deutet auf eine Nutzung von Python-Standardfunktionen oder einer Datenstruktur-Bibliothek hin (z.B. <code>dataclasses</code>).</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>_RawResult</code> ist ein zentrales Modell zur Protokollierung und Speicherung der vollständigen Ergebnisse von Code-Ausführungen, einschließlich Ausgabedaten, Fehlercodes und Zeitmessungen.</p>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-importe">2.1 Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-konfiguration-und-konstanten">2.2 Konfiguration und Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#3-datenstrukturen">3. Datenstrukturen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-dataclass-slots-true-coderunner">3.1 `@dataclass(slots=True) CodeRunner`</a></li>
+<li class="wiki-toc-link"><a href="#4-kernfunktionen-implizit">4. Kernfunktionen (Implizit)</a></li>
+<li class="wiki-toc-link"><a href="#5-schl-sselkonzepte-und-designmuster">5. Schlüsselkonzepte und Designmuster</a></li>
+<li class="wiki-toc-link"><a href="#6-zusammenfassung">6. Zusammenfassung</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klassen-und-datentypen">2. Klassen und Datentypen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-runresult">2.1. `RunResult`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-livepreparedrun">2.2. `LivePreparedRun`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-schedulerlease">2.3. `SchedulerLease`</a></li>
+<li class="wiki-toc-link"><a href="#3-zusammenfassung-der-struktur">3. Zusammenfassung der Struktur</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-runscheduler">2. Klasse: `RunScheduler`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-datenstrukturen">3. Abhängigkeiten und Datenstrukturen</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-funktionsweise">4. Zusammenfassung der Funktionsweise</a></li>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-architektur-und-design">2. Architektur und Design</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-hauptziel-der-klasse">2.1. Hauptziel der Klasse</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-klassenstruktur-basierend-auf-dem-bereitgestellten-ausschnitt">2.2. Klassenstruktur (Basierend auf dem bereitgestellten Ausschnitt)</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsbeschreibung">3. Funktionsbeschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-methode-name-der-ersten-methode-z-b-init">3.1. Methode: `[Name der ersten Methode, z.B. __init__]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-methode-name-der-ausf-hrungs-methode-z-b-run-code-code-string">3.2. Methode: `[Name der Ausführungs-Methode, z.B. run_code(code_string)]`</a></li>
+<li class="wiki-toc-link"><a href="#4-datenfluss-und-ablauf-workflow">4. Datenfluss und Ablauf (Workflow)</a></li>
+<li class="wiki-toc-link"><a href="#5-abh-ngigkeiten">5. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#6-erweiterungen-und-zuk-nftige-pl-ne">6. Erweiterungen und zukünftige Pläne</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-code-runner-py">Technische Dokumentation: `code_runner.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-klasse-rawresult">2. Klasse: `_RawResult`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-verwendung-und-api">3. Verwendung und API</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-technische-details-und-design-berlegungen">4. Technische Details und Design-Überlegungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-abh-ngigkeiten">5. Abhängigkeiten</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "code_runner.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

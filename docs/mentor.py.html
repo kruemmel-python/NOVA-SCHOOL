@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `mentor.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="index.html" href="index.html">index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="templates.py.html" href="templates.py.html">templates.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `mentor.py`</h1>
+          <p>Source: mentor.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-mentor-py">Technische Dokumentation: <code>mentor.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>mentor.py</code> definiert die Kernlogik und die Systemanweisungen für einen KI-Code-Mentor namens &quot;Nova Mentor&quot;. Diese Klasse oder dieser Modulteil ist darauf ausgelegt, als interaktiver, sokratischer Code-Mentor in einer Schulumgebung zu fungieren.</p>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<p>Das Modul hängt von folgenden internen Komponenten ab:</p>
+<ul>
+<li><code>./ai_service</code>: Enthält die Funktion <code>_prepare_prompt_with_budget</code>, die wahrscheinlich die Eingabeaufforderung (Prompt) für die KI-Modelle formatiert.</li>
+<li><code>./database</code>: Enthält die Klasse <code>SchoolRepository</code>, die für den Zugriff auf schulbezogene Daten zuständig ist.</li>
+</ul>
+<h2 id="3-konstanten-und-globaler-zustand">3. Konstanten und Globaler Zustand</h2>
+<table><thead><tr>
+<th>Name</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>MENTOR_SYSTEM_PROMPT</code></td>
+<td><code>str</code></td>
+<td>Die zentrale Systemanweisung, die dem KI-Modell vorgesagt wird, wie es sich als Nova Mentor verhalten soll (sokratisch, nicht sofortige Lösungen, Fokus auf Konzeptverständnis).</td>
+</tr>
+<tr>
+<td><code>MENTOR_INPUT_TOKEN_BUDGET</code></td>
+<td><code>int</code></td>
+<td>Eine definierte Budgetgrenze (2400), die wahrscheinlich für die Generierung von Prompts oder die Ressourcenallokation im Kontext der KI-Interaktion relevant ist.</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-mentor-system-prompt-details">3.1. <code>MENTOR_SYSTEM_PROMPT</code> Details</h3>
+<p>Dieser String legt das Verhalten des Mentors fest:</p>
+<ul>
+<li><strong>Rolle:</strong> Nova Mentor, ein sokratischer KI-Code-Mentor für eine Schulumgebung.</li>
+<li><strong>Verhaltensregeln (Kernprinzip):</strong></li>
+<li><strong>Keine sofortige Lösung:</strong> Gib niemals die vollständige Lösung direkt aus.</li>
+<li><strong>Interaktive Methode:</strong> Stelle zuerst 2 bis 4 gezielte Rückfragen oder Denkanstöße.</li>
+<li><strong>Verweisbarkeit:</strong> Verweise explizit auf relevante Stellen im Code oder auf die Fehlermeldung.</li>
+<li><strong>Konzepterklärung:</strong> Erkläre das zugrunde liegende Konzept knapp.</li>
+<li><strong>Ausnahme (Explizite Anfrage):</strong> Wenn der Nutzer explizit nach der Lösung fragt, liefere eine kompakte Musterlösung inklusive Begründung.</li>
+<li><strong>Ton:</strong> Freundlich, klar und technisch präzise.</li>
+</ul>
+<h2 id="4-klassen-und-funktionen">4. Klassen und Funktionen</h2>
+<p>Die Datei definiert eine Klasse (deren Definition im bereitgestellten Codeausschnitt abgeschnitten ist, aber impliziert wird, dass sie die Mentor-Logik kapselt).</p>
+<h3 id="4-1-mentor-system-prompt-konstante">4.1. <code>MENTOR_SYSTEM_PROMPT</code> (Konstante)</h3>
+<p>(Siehe Abschnitt 3.1)</p>
+<h3 id="4-2-mentor-input-token-budget-konstante">4.2. <code>MENTOR_INPUT_TOKEN_BUDGET</code> (Konstante)</h3>
+<p>(Siehe Abschnitt 3.1)</p>
+<h3 id="4-3-importe">4.3. Importe</h3>
+<ul>
+<li><code>from __future__ import annotations</code>: Ermöglicht die Verwendung von Typ-Hinten in älteren Python-Versionen.</li>
+<li><code>from typing import Any</code>: Wird verwendet, um flexible Typ-Hinweise für die Eingaben oder Ausgaben zu verwenden.</li>
+<li><code>from .ai_service import _prepare_prompt_with_budget</code>: Importiert eine interne Funktion zur Prompt-Erstellung.</li>
+<li><code>from .database import SchoolRepository</code>: Importiert die Schnittstelle zur Datenbankverwaltung für schulbezogene Daten.</li>
+</ul>
+<h2 id="5-funktionsweise-impliziert">5. Funktionsweise (Impliziert)</h2>
+<p>Obwohl der Hauptkörper der Klasse fehlt, lässt sich die Funktion der Datei wie folgt ableiten:</p>
+<ol>
+<li><strong>Initialisierung:</strong> Die Klasse wird wahrscheinlich mit den Systemanweisungen (<code>MENTOR_SYSTEM_PROMPT</code>) und den Ressourcen (z.B. über <code>SchoolRepository</code>) initialisiert.</li>
+<li><strong>Interaktion:</strong> Die Hauptmethode der Klasse wird die Benutzeranfrage entgegennehmen.</li>
+<li><strong>Prompt-Generierung:</strong> Die eingehende Anfrage wird mithilfe von <code>_prepare_prompt_with_budget</code> formatiert, wobei die Systemanweisung und die spezifische Benutzeranfrage kombiniert werden.</li>
+<li><strong>KI-Ausführung:</strong> Der generierte Prompt wird an ein zugrundeliegendes KI-Modell gesendet.</li>
+<li><strong>Antwort-Verarbeitung:</strong> Die Antwort der KI wird analysiert, um sicherzustellen, dass die Regeln des <code>MENTOR_SYSTEM_PROMPT</code> eingehalten werden (sokratisch, konzeptuell, etc.).</li>
+</ol>
+<h2 id="6-sicherheit-und-design-berlegungen">6. Sicherheit und Design-Überlegungen</h2>
+<ul>
+<li><strong>Prompt Engineering:</strong> Die strikte Definition des <code>MENTOR_SYSTEM_PROMPT</code> ist ein zentrales Designelement, um eine konsistente und didaktisch wertvolle Interaktion zu gewährleisten.</li>
+<li><strong>Abgrenzung:</strong> Die Trennung von Datenbankzugriff (<code>SchoolRepository</code>) und der eigentlichen KI-Logik (<code>ai_service</code>) deutet auf ein sauberes, modularisiertes Design hin.</li>
+<li><strong>Ressourcenmanagement:</strong> Die Verwendung von <code>MENTOR_INPUT_TOKEN_BUDGET</code> deutet auf eine mögliche Begrenzung der Komplexität oder Kosten der KI-Aufrufe hin.</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>mentor.py</code> dient als die zentrale Schnittstelle für einen didaktisch orientierten KI-Code-Mentor, der durch strenge Systemanweisungen dazu angehalten wird, durch Fragen und Konzepterklärungen zu lehren, anstatt sofortige Antworten zu liefern.</p>
+</ul>
+<h1 id="technische-dokumentation-socraticmentorservice">Technische Dokumentation: <code>SocraticMentorService</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>SocraticMentorService</code> ist ein zentraler Dienst, der die Logik für die Durchführung einer <strong>sokratischen Mentoring-Interaktion</strong> in einem Entwicklungsprojekt verwaltet. Sie orchestriert die Interaktion zwischen dem Nutzer (Session), dem Repository (für Chat-Historie) und optional einem Curriculum-Service (für kontextbezogene Lernmaterialien), um dem Nutzer bei der Problemlösung, Debugging und Code-Verbesserung zu helfen.</p>
+<h2 id="2-klasse-socraticmentorservice">2. Klasse: <code>SocraticMentorService</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert den Dienst und injiziert notwendige Abhängigkeiten. <strong>Signaturen:</strong></p>
+<pre><code class="language-python">def __init__(self, repository: SchoolRepository, *, curriculum_service: Any | None = None) -&gt; None:
+self.repository = repository
+self.curriculum_service = curriculum_service</code></pre>
+<p><strong>Parameter:</strong></p>
+<ul>
+<li><code>repository</code>: Eine Instanz der <code>SchoolRepository</code>-Klasse, die für den Zugriff auf Chat-Nachrichten und Projektinformationen zuständig ist.</li>
+<li><code>curriculum_service</code> (optional, <code>Any | None</code>): Eine Optionale Instanz eines <code>CurriculumService</code>. Wird verwendet, um Lernkontext (Kursziele, Module, Mentor-Regeln) in die Prompt-Generierung einzubinden.</li>
+</ul>
+<h3 id="2-2-methode-thread">2.2. Methode: <code>thread</code></h3>
+<p>Diese Methode dient dazu, die Chat-Historie eines bestimmten Projekts und Nutzers abzurufen. <strong>Signaturen:</strong></p>
+<pre><code class="language-python">def thread(self, session: Any, project: dict[str, Any], *, username: str | None = None) -&gt; list[dict[str, Any]]:
+# ... Implementierung ...</code></pre>
+<p><strong>Beschreibung:</strong> Richtet die Chat-Historie für eine spezifische Projekt-Session ab. <strong>Logik:</strong></p>
+<ol>
+<li><strong>Nutzerbestimmung:</strong> Bestimmt den <code>owner</code> (Username oder <code>session.username</code>).</li>
+<li><strong>Berechtigungsprüfung:</strong> Prüft, ob der <code>owner</code> entweder der aktuelle <code>session.username</code> ist oder ob die <code>session.is_teacher</code> (<code>True</code>) ist. Andernfalls wird eine <code>PermissionError</code> geworfen.</li>
+<li><strong>Room Key Generierung:</strong> Erzeugt einen eindeutigen Schlüssel (<code>room_key</code>) basierend auf der <code>project_id</code> und dem <code>owner</code>.</li>
+<li><strong>Historienabruf:</strong> Ruft die letzten 50 Chat-Nachrichten aus dem Repository für diesen <code>room_key</code> ab.</li>
+<li><strong>Formatierung:</strong> Formatiert die abgerufenen Nachrichten in eine Liste von Dictionaries, wobei die Metadaten (<code>role</code>, <code>author_display_name</code>, <code>text</code>, <code>created_at</code>, <code>mode</code>) extrahiert werden.</li>
+<p><strong>Rückgabe:</strong> Eine Liste von Dictionaries, die die Chat-Historie darstellen.</p>
+</ol>
+<h3 id="2-3-methode-prepare">2.3. Methode: <code>prepare</code></h3>
+<p>Diese Methode ist der Kern der Prompt-Generierung. Sie sammelt alle relevanten Informationen (Projekt, Nutzeranfrage, Code, Lauf-Output, Historie und optionalen Curriculum-Kontext) und fasst sie in einen optimierten Prompt zusammen. <strong>Signaturen:</strong></p>
+<pre><code class="language-python">def prepare(
+self,
+session: Any,
+project: dict[str, Any],
+*,
+prompt: str,
+code: str,
+path_hint: str,
+run_output: str,
+course_id: str = &quot;&quot;,
+module_id: str = &quot;&quot;,
+) -&gt; dict[str, str]:
+# ... Implementierung ...</code></pre>
+<p><strong>Beschreibung:</strong> Erstellt den finalen Prompt, der an ein LLM gesendet wird, indem er verschiedene Kontextinformationen strukturiert. <strong>Schritte:</strong></p>
+<ol>
+<li><strong>Historie Abruf:</strong> Ruft die Chat-Historie über <code>self.thread()</code> ab.</li>
+<li><strong>Historie Kompression:</strong> Erstellt eine kompakte Zusammenfassung der letzten 8 Nachrichten (<code>compact_history</code>).</li>
+<li><strong>Curriculum Kontext:</strong> Wenn <code>self.curriculum_service</code> vorhanden ist, ruft er den Kontext (<code>curriculum_context</code>) ab.</li>
+<li>**Prompt Komposition (<code>_compose_prompt</code>):**</li>
+</ol>
+<ul>
+<li><strong>Basis-Sektionen:</strong> Fügt Informationen über das Projektname, den Dateipfad und die aktuelle Frage hinzu.</li>
+<li><strong>Curriculum-Integration (falls vorhanden):</strong> Fügt detaillierte Informationen zu Kurs, Modul, Lernzielen, bereits bestandenen Modulen und spezifischen Mentor-Regeln hinzu.</li>
+<li><strong>Lauf-Output:</strong> Fügt die letzte Ausgabe oder Fehlermeldung ein.</li>
+<li><strong>Code-Kontext:</strong> Fügt den bereitgestellten Code ein.</li>
+<li><strong>Verlauf:</strong> Fügt die gesamte Chat-Historie ein.</li>
+<li><strong>System-Anweisung:</strong> Fügt die allgemeine Anweisung hinzu, wie der Mentor agieren soll (Debugging-Denken, Clean-Code-Hinweise, Tests).</li>
+<li><strong>Token-Budgeting:</strong> Ruft die finale Prompt-Generierung über <code>_prepare_prompt_with_budget</code> auf, um sicherzustellen, dass die Gesamtgröße des Prompts das definierte <code>MENTOR_INPUT_TOKEN_BUDGET</code> nicht überschreitet.</li>
+<p><strong>Rückgabe:</strong> Ein Dictionary mit zwei Werten:</p>
+<li><code>prompt</code>: Der final zusammengestellte, optimierte Prompt-String.</li>
+<li><code>system_prompt</code>: Die feste Systemanweisung (<code>MENTOR_SYSTEM_PROMPT</code>).</li>
+</ul>
+<h3 id="2-4-methode-store-reply">2.4. Methode: <code>store_reply</code></h3>
+<p>Diese Methode speichert die Interaktion (Nutzer-Frage und Mentor-Antwort) im Chat-Repository. <strong>Signaturen:</strong></p>
+<pre><code class="language-python">def store_reply(
+self,
+session: Any,
+project: dict[str, Any],
+*,
+prompt: str,
+reply: str,
+model: str | None = None,
+) -&gt; dict[str, Any]:
+# ... Implementierung ...</code></pre>
+<p><strong>Beschreibung:</strong> Speichert die Benutzeranfrage und die Antwort des Mentors im Chat-Repository. <strong>Schritte:</strong></p>
+<ol>
+<li><strong>Room Key Generierung:</strong> Erzeugt den <code>room_key</code> basierend auf der Projekt-ID und dem aktuellen Nutzer.</li>
+<li><strong>Benutzer-Nachricht Speichern:</strong> Speichert die Benutzeranfrage (<code>prompt</code>) mit der Rolle <code>&quot;user&quot;</code> und dem <code>mode=&quot;mentor&quot;</code>.</li>
+<li><strong>Mentor-Antwort Speichern:</strong> Speichert die Antwort (<code>reply</code>) mit der Rolle <code>&quot;assistant&quot;</code> und dem <code>mode=&quot;mentor&quot;</code>, inklusive optionalem <code>model</code>-Parameter.</li>
+<li><strong>Historie Abruf:</strong> Ruft die gesamte Chat-Historie für die Session ab (<code>self.thread(session, project)</code>).</li>
+<li><strong>Rückgabe:</strong> Gibt ein Dictionary zurück, das die Antwort, den verwendeten Modellnamen und die aktualisierte Chat-Historie enthält.</li>
+</ol>
+<h3 id="2-5-statische-methoden">2.5. Statische Methoden</h3>
+<h4 id="room-key-project-id-str-username-str-str"><code>_room_key(project_id: str, username: str) -&gt; str</code></h4>
+<p>Generiert einen standardisierten Schlüssel für den Chat-Kontext.</p>
+<ul>
+<li><strong>Format:</strong> <code>f&quot;mentor:{project_id}:{username}&quot;</code></li>
+</ul>
+<h4 id="compose-prompt-str"><code>_compose_prompt(...) -&gt; str</code></h4>
+<p>Die private, komplexe Methode, die die gesamte Logik zur Erstellung des finalen LLM-Prompts implementiert. Sie ist verantwortlich für die Strukturierung von Projekt-, Code-, Historie- und Kontextinformationen.</p>
+<h2 id="3-schl-sselkonzepte-und-abh-ngigkeiten">3. Schlüsselkonzepte und Abhängigkeiten</h2>
+<table><thead><tr>
+<th>Konzept</th>
+<th>Beschreibung</th>
+<th>Abhängigkeiten</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Sokratischer Ansatz</strong></td>
+<td>Der Dienst ist darauf ausgelegt, durch gezielte Fragen, Hinweise und Debugging-Denken den Nutzer zur Selbstfindung und Verbesserung zu führen.</td>
+<td>LLM-Fähigkeiten (impliziert durch die Prompt-Struktur).</td>
+</tr>
+<tr>
+<td><strong>Kontextmanagement</strong></td>
+<td>Der Dienst kann dynamisch Kontext aus dem Curriculum (Lernziele, Regeln) und aus der Chat-Historie ziehen.</td>
+<td><code>SchoolRepository</code>, <code>CurriculumService</code>.</td>
+</tr>
+<tr>
+<td><strong>Token-Management</strong></td>
+<td>Die Methode <code>_prepare_prompt</code> nutzt <code>MENTOR_INPUT_TOKEN_BUDGET</code> und <code>reserved_tokens</code>, um sicherzustellen, dass die generierte Prompt-String die Token-Limits des zugrundeliegenden Modells respektiert.</td>
+<td>Konstanten (<code>MENTOR_INPUT_TOKEN_BUDGET</code>, <code>reserved_tokens</code>).</td>
+</tr>
+<tr>
+<td><strong>Repository-Abstraktion</strong></td>
+<td>Die Interaktion mit der Speicherung und Abfrage von Chat-Daten erfolgt über die <code>SchoolRepository</code>-Abstraktion.</td>
+<td><code>SchoolRepository</code>.</td>
+</tr>
+</tbody></table>
+<h2 id="4-api-zusammenfassung">4. API-Zusammenfassung</h2>
+<table><thead><tr>
+<th>Methode</th>
+<th>Zweck</th>
+<th>Eingaben (Wichtigste)</th>
+<th>Ausgaben (Wichtigste)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>__init__</code></td>
+<td>Initialisierung des Dienstes.</td>
+<td><code>repository</code>, optional <code>curriculum_service</code>.</td>
+<td>Keine</td>
+</tr>
+<tr>
+<td><code>thread</code></td>
+<td>Abrufen der Chat-Historie.</td>
+<td><code>session</code>, <code>project</code>.</td>
+<td>Liste von Chat-Nachrichten.</td>
+</tr>
+<tr>
+<td><code>prepare</code></td>
+<td>Erstellung des finalen LLM-Prompts.</td>
+<td><code>session</code>, <code>project</code>, <code>prompt</code>, <code>code</code>, <code>run_output</code>, optional <code>course_id</code>/<code>module_id</code>.</td>
+<td><code>dict[str, str]</code> (Prompt und System Prompt).</td>
+</tr>
+<tr>
+<td><code>store_reply</code></td>
+<td>Speichern der Benutzer- und Mentor-Interaktion.</td>
+<td><code>session</code>, <code>project</code>, <code>prompt</code>, <code>reply</code>, optional <code>model</code>.</td>
+<td><code>dict[str, Any]</code> (Antwort, Modell, Historie).</td>
+</tr>
+</tbody></table>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-konstanten-und-globaler-zustand">3. Konstanten und Globaler Zustand</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-mentor-system-prompt-details">3.1. `MENTOR_SYSTEM_PROMPT` Details</a></li>
+<li class="wiki-toc-link"><a href="#4-klassen-und-funktionen">4. Klassen und Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-mentor-system-prompt-konstante">4.1. `MENTOR_SYSTEM_PROMPT` (Konstante)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-mentor-input-token-budget-konstante">4.2. `MENTOR_INPUT_TOKEN_BUDGET` (Konstante)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-3-importe">4.3. Importe</a></li>
+<li class="wiki-toc-link"><a href="#5-funktionsweise-impliziert">5. Funktionsweise (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#6-sicherheit-und-design-berlegungen">6. Sicherheit und Design-Überlegungen</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-socraticmentorservice">2. Klasse: `SocraticMentorService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methode-thread">2.2. Methode: `thread`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-methode-prepare">2.3. Methode: `prepare`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-methode-store-reply">2.4. Methode: `store_reply`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-5-statische-methoden">2.5. Statische Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-schl-sselkonzepte-und-abh-ngigkeiten">3. Schlüsselkonzepte und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-api-zusammenfassung">4. API-Zusammenfassung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "mentor.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>
