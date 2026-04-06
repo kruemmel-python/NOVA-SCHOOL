@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_material_studio.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_material_studio.py`</h1>
+          <p>Source: test_material_studio.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-material-studio-py">Technische Dokumentation: <code>test_material_studio.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>test_material_studio.py</code>) enthält Unit-Tests für Komponenten, die mit dem <strong>Material Studio</strong> in Verbindung stehen, wahrscheinlich im Kontext eines Schulservers (<code>nova_school_server</code>). Die Datei implementiert <strong>Mocking- oder Fake-Runner- und KI-Klassen</strong>, um die Funktionalität von Hauptkomponenten zu isolieren und zu testen.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei definiert drei Hauptklassen, die als Test-Skelette oder Mock-Implementierungen dienen:</p>
+<ol>
+<li>**<code>_FakeRunner</code>**: Simuliert einen Prozess-Runner, der Ergebnisse verarbeitet.</li>
+<li>**<code>_FakeAI</code>**: Simuliert eine Künstliche Intelligenz (KI)-Komponente, die Antworten liefert.</li>
+<li><strong>Importierte Abhängigkeiten</strong>: Importiert notwendige Klassen und Konstanten aus anderen Modulen (<code>SchoolRepository</code>, <code>TeacherMaterialStudioService</code>, verschiedene Catalog-Funktionen und Resolver).</li>
+</ol>
+<h2 id="3-detaillierte-analyse-der-klassen">3. Detaillierte Analyse der Klassen</h2>
+<h3 id="3-1-klasse-fakerunner">3.1. Klasse <code>_FakeRunner</code></h3>
+<p>Diese Klasse dient dazu, die Logik eines Runner-Prozesses zu simulieren. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.results</code>: Eine Liste von Ergebnissen (<code>list[dict[str, object]]</code>), die als Ergebnisse des Runners gespeichert werden.</li>
+<li><code>self.payloads</code>: Eine Liste von übergebenen Daten (<code>list[dict[str, object]]</code>), die während des Runners verarbeitet wurden.</li>
+<p><strong>Methoden:</strong></p>
+<li>**<code>__init__(self, results: list[dict[str, object]]) -&gt; None</code>**:</li>
+<li>Initialisiert die Klasse, indem die bereitgestellten Ergebnisse in <code>self.results</code> kopiert werden.</li>
+<li>Initialisiert <code>self.payloads</code> als leere Liste.</li>
+<li>**<code>run_bundle(self, _session, payload: dict[str, object]) -&gt; dict[str, object]</code>**:</li>
+<li>Fügt das übergebene <code>payload</code> zur Liste <code>self.payloads</code> hinzu.</li>
+<li><strong>Validierung:</strong> Prüft, ob <code>self.results</code> leer ist. Wenn ja, wirft eine <code>AssertionError</code>, da keine weiteren Ergebnisse verfügbar sind.</li>
+<li><strong>Rückgabe:</strong> Entfernt das erste Element aus <code>self.results</code> (<code>self.results.pop(0)</code>) und gibt es als Ergebnis zurück.</li>
+<p><strong>Zweck:</strong> Testet die korrekte Verarbeitung von Eingabedaten (<code>payload</code>) und die Extraktion von Ergebnissen aus einer Ergebnisquelle (<code>results</code>).</p>
+</ul>
+<h3 id="3-2-klasse-fakeai">3.2. Klasse <code>_FakeAI</code></h3>
+<p>Diese Klasse simuliert eine Schnittstelle zu einem KI-Modell, das Antworten generiert. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.responses</code>: Eine Liste von erwarteten Antworten (<code>list[object]</code>), die als Antworten des KI-Modells gespeichert werden.</li>
+<li><code>self.calls</code>: Eine Liste von Aufrufen (<code>list[dict[str, object]]</code>), die die tatsächlichen Anfragen an das KI-Modell darstellen.</li>
+<p><strong>Methoden:</strong></p>
+<li>**<code>__init__(self, responses: list[object]) -&gt; None</code>**:</li>
+<li>Initialisiert die Klasse mit einer Liste von erwarteten Antworten.</li>
+<li>Initialisiert <code>self.calls</code> als leere Liste.</li>
+<li>**<code>complete(self, **kwargs) -&gt; tuple[str, str]</code>**:</li>
+<li>Fügt die übergebenen Schlüssel-Wert-Paare (<code>kwargs</code>) zur Liste <code>self.calls</code> hinzu.</li>
+<li><strong>Validierung:</strong> Prüft, ob <code>self.responses</code> leer ist. Wenn ja, wirft eine <code>AssertionError</code>.</li>
+<li><strong>Antwort-Extraktion:</strong> Nimmt die erste Antwort aus <code>self.responses</code> (<code>self.responses.pop(0)</code>).</li>
+<li><strong>Fehlerbehandlung (Exception):</strong> Wenn die Antwort eine <code>Exception</code> ist, wird diese direkt zurückgeworfen.</li>
+<li><strong>Formatvalidierung:</strong> Prüft, ob die Antwort entweder ein Tupel von zwei Elementen (<code>(text, model)</code>) ist oder eine <code>Exception</code> ist. Fällt dies nicht, wird eine <code>AssertionError</code> geworfen.</li>
+<li><strong>Rückgabe:</strong> Gibt die extrahierte Antwort zurück.</li>
+<p><strong>Zweck:</strong> Testet die korrekte Protokollierung von KI-Anfragen und die korrekte Rückgabe von KI-Antworten, einschließlich der Behandlung von Fehlern.</p>
+</ul>
+<h2 id="4-abh-ngigkeiten-und-kontext">4. Abhängigkeiten und Kontext</h2>
+<p>Die Klasse ist stark von folgenden externen Modulen abhängig:</p>
+<ul>
+<li>**<code>nova_school_server.database.SchoolRepository</code>**: Wahrscheinlich für den Zugriff auf Schuldaten.</li>
+<li>**<code>nova_school_server.material_studio</code>**: Enthält die Kernlogik des Material Studio, einschließlich:</li>
+<li><code>SUPPORTED_LANGUAGES</code></li>
+<li><code>TeacherMaterialStudioService</code></li>
+<li><code>material_studio_instruction_preset_catalog</code></li>
+<li><code>material_studio_profile_catalog</code></li>
+<li><code>resolve_material_studio_instruction_preset</code> (Funktion zum Auflösen von Anweisungen).</li>
+</ul>
+<h2 id="5-zusammenfassung-und-testzweck">5. Zusammenfassung und Testzweck</h2>
+<p>Die Datei dient primär dazu, <strong>Unit-Tests für die Schnittstellenlogik</strong> von Material Studio zu erstellen. Durch die Verwendung von <code>_FakeRunner</code> und <code>_FakeAI</code> können Entwickler die Kernfunktionen des Material Studio-Services isoliert testen, ohne auf komplexe Datenbank- oder tatsächliche KI-Infrastrukturen angewiesen zu sein. <strong>Schlüsselthemen im Test:</strong></p>
+<ol>
+<li><strong>Datenfluss-Validierung:</strong> Sicherstellen, dass Daten korrekt von einem Runner zum nächsten fließen.</li>
+<li><strong>Fehlerbehandlung:</strong> Testen, wie die Klassen auf leere Ergebnislisten oder ungültige KI-Antworten reagieren.</li>
+<li><strong>Protokollierung:</strong> Überprüfung, ob Aufrufe und Ergebnisse korrekt in die jeweiligen Listen protokolliert werden.</li>
+</ol>
+<h1 id="technische-dokumentation-test-material-studio-py">Technische Dokumentation: <code>test_material_studio.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Python-Klassen, die scheinbar Teile einer Simulation oder eines Testframeworks für einen &quot;Material Studio&quot; darstellen. Die Klassen <code>_FakeCurriculumService</code> und <code>_TeacherSession</code> dienen dazu, spezifische Geschäftslogiken oder Zustände zu simulieren, insbesondere im Kontext von Präferenzen/Presets und Benutzerrollen.</p>
+<h2 id="2-klassen-analyse">2. Klassen-Analyse</h2>
+<h3 id="2-1-klasse-fakecurriculumservice">2.1. Klasse <code>_FakeCurriculumService</code></h3>
+<p>Diese Klasse simuliert einen Dienst, der Anweisungen oder Präferenzen basierend auf einem bereitgestellten Preset auflöst. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.preset: dict[str, object] | None</code>: Ein optionales Dictionary, das die Konfiguration (Preset) enthält, das zur Auflösung verwendet werden kann.</li>
+<li><code>self.calls: list[dict[str, str]]</code>: Eine Liste, die alle aufgerufenen Anweisungen (Calls) speichert. Jedes Element in der Liste ist ein Dictionary mit den Schlüsseln <code>&quot;preset_key&quot;</code>, <code>&quot;profile&quot;</code> und <code>&quot;language&quot;</code>.</li>
+<p><strong>Methoden:</strong></p>
+<li>**<code>resolve_material_studio_instruction_preset(self, preset_key: str, *, profile: str, language: str) -&gt; dict[str, object] | None</code>**</li>
+<li><strong>Beschreibung:</strong> Diese Methode versucht, ein Material Studio-Instruktions-Preset basierend auf den übergebenen Schlüssel, Profil und Sprache zu finden und zurückzugeben.</li>
+<li><strong>Parameter:</strong></li>
+<li><code>preset_key: str</code>: Der eindeutige Schlüssel des gesuchten Presets.</li>
+<li><code>profile: str</code>: Das zugehörige Profil.</li>
+<li><code>language: str</code>: Die gewünschte Sprache.</li>
+<li><strong>Logik:</strong></li>
+</ul>
+<ol>
+<li>Fügt die aktuellen Aufrufparameter (<code>preset_key</code>, <code>profile</code>, <code>language</code>) zur internen Liste <code>self.calls</code> hinzu.</li>
+<li>Prüft, ob das gespeicherte <code>self.preset</code> existiert und ob die Schlüssel (<code>&quot;key&quot;</code>, <code>&quot;profile&quot;</code>, <code>&quot;language&quot;</code>) des gespeicherten Presets exakt mit den übergebenen Werten übereinstimmen.</li>
+<li><strong>Erfolg:</strong> Wenn die Übereinstimmung zutrifft, wird das gesamte gespeicherte <code>self.preset</code> als Dictionary zurückgegeben.</li>
+<li><strong>Fehler/Nicht-Treffer:</strong> Andernfalls wird <code>None</code> zurückgegeben.</li>
+</ol>
+<h3 id="2-2-klasse-teachersession">2.2. Klasse <code>_TeacherSession</code></h3>
+<p>Diese Klasse definiert die grundlegenden Eigenschaften und Berechtigungen einer simulierten Lehrer-Sitzung. <strong>Attribute:</strong></p>
+<ul>
+<li><code>username: str</code>: Der Standard-Benutzername, gesetzt auf <code>&quot;teacher&quot;</code>.</li>
+<li><code>role: str</code>: Die Standardrolle, gesetzt auf <code>&quot;teacher&quot;</code>.</li>
+<li><code>is_teacher: bool</code>: Der Status, gesetzt auf <code>True</code>, um die Rolle als Lehrer zu bestätigen.</li>
+<li><code>permissions: dict[str, bool]</code>: Ein Dictionary, das die Berechtigungen des Benutzers definiert.</li>
+<li><code>&quot;ai.use&quot;: True</code>: Berechtigung zur Nutzung von KI-Funktionen.</li>
+<li><code>&quot;teacher.materials.use&quot;: True</code>: Berechtigung zur Nutzung von Lehrer-Materialien.</li>
+<li><code>&quot;run.python&quot;: True</code>: Berechtigung zur Ausführung von Python-Code.</li>
+<li><code>&quot;web.access&quot;: False</code>: Berechtigung zum Webzugriff ist deaktiviert.</li>
+</ul>
+<h2 id="3-zusammenfassung-und-verwendungshinweise">3. Zusammenfassung und Verwendungshinweise</h2>
+<p>Die Datei implementiert zwei isolierte Komponenten:</p>
+<ol>
+<li>**Dienst-Simulation (<code>_FakeCurriculumService</code>):** Dient der Abbildung eines Dienstes, der Konfigurationen (Presets) nach spezifischen Parametern abfragt.</li>
+<li>**Zustandsmodell (<code>_TeacherSession</code>):** Dient der Definition eines Benutzerprofils mit festen Rollen und Berechtigungen.</li>
+<p><strong>Anwendungsfall:</strong> Diese Klassen sind typisch für Unit-Tests oder Mocking-Setups, um zu verifizieren, wie ein System mit Benutzerkonfigurationen und Dienstaufrufen interagiert.</p>
+</ol>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Klasse <code>_FakeCurriculumService</code> verwendet Standard-Python-Typen (<code>dict</code>, <code>list</code>, <code>str</code>, <code>object</code>). Es sind keine externen Bibliotheken erforderlich.</p>
+<h1 id="technische-dokumentation-test-material-studio-py">Technische Dokumentation: <code>test_material_studio.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests für die Klasse <code>MaterialStudioTests</code> aus dem <code>material_studio</code>-Modul. Die Tests validieren die Funktionalität verschiedener Komponenten des Material-Studios, darunter:</p>
+<ol>
+<li><strong>Profilkatalog:</strong> Überprüfung, ob spezifische Lehrerprofile (z.B. <code>example-code</code>, <code>worksheet</code>) und deren Schlüssel vorhanden sind.</li>
+<li><strong>Anweisungs-Preset-Katalog:</strong> Validierung der Struktur und des Inhalts des Katalogs für verschiedene Sprachen und Profile.</li>
+<li><strong>Curriculum-Service-Interaktion:</strong> Testen, wie der <code>TeacherMaterialStudioService</code> Anweisungs-Presets über den <code>CurriculumService</code> überschreiben kann.</li>
+<li><strong>JSON-Parsing:</strong> Überprüfung der Fähigkeit der Methode <code>_extract_json_object</code>, um verschachtelte JSON-Strukturen aus Markdown-Formatierungen zu extrahieren.</li>
+<li><strong>Code-Block-Extraktion:</strong> Validierung der Robustheit der Methode <code>_extract_code_block</code> bei verschiedenen Formaten (eingeschlossene Fences, ungeschlossene Fences, reine Code-Strings).</li>
+<li><strong>Code-Response-Parsing:</strong> Testen, wie die Methode <code>_parse_code_response</code> Code-Antworten verarbeitet, einschließlich der Ablehnung von selbstevaluierendem Prosa.</li>
+</ol>
+<h2 id="2-test-setup-und-teardown">2. Test-Setup und -Teardown</h2>
+<h3 id="2-1-setup-self-none">2.1. <code>setUp(self) -&gt; None</code></h3>
+<ul>
+<li><strong>Zweck:</strong> Initialisiert die Testumgebung.</li>
+<li><strong>Aktionen:</strong></li>
+<li>Erstellt ein temporäres Verzeichnis (<code>self.tmp</code>) für die Datenbankdatei.</li>
+<li>Initialisiert eine <code>SchoolRepository</code> mit der temporären Datenbankdatei (<code>self.tmp.name / &quot;school.db&quot;</code>).</li>
+</ul>
+<h3 id="2-2-teardown-self-none">2.2. <code>tearDown(self) -&gt; None</code></h3>
+<ul>
+<li><strong>Zweck:</strong> Reinigt die Ressourcen nach jedem Test.</li>
+<li><strong>Aktionen:</strong></li>
+<li>Schließt die <code>SchoolRepository</code>.</li>
+<li>Führt die Bereinigung des temporären Verzeichnisses (<code>self.tmp.cleanup()</code>) durch.</li>
+</ul>
+<h2 id="3-testf-lle-test-cases">3. Testfälle (Test Cases)</h2>
+<h3 id="3-1-test-profile-catalog-contains-specialized-teacher-profiles">3.1. <code>test_profile_catalog_contains_specialized_teacher_profiles</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Sicherstellen, dass der Katalog aller verfügbaren Lehrerprofile die erwarteten Schlüssel enthält.</li>
+<li><strong>Erwartungen:</strong> Der Schlüssel für <code>example-code</code>, <code>worksheet</code>, <code>assessment</code>, <code>board-lesson</code> und <code>differentiation</code> muss im resultierenden Schlüssel-Set enthalten sein.</li>
+</ul>
+<h3 id="3-2-test-instruction-preset-catalog-contains-python-course-entries-for-worksheet-and-example-code">3.2. <code>test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Validiert die spezifische Struktur und die korrekte Resolution von Anweisungs-Presets für die Sprache Python.</li>
+<li><strong>Erwartungen:</strong></li>
+<li>Der Katalog muss für <code>worksheet</code> und <code>example-code</code> Einträge enthalten.</li>
+<li>Alle unterstützten Sprachen (<code>SUPPORTED_LANGUAGES</code>) müssen im Katalog vorhanden sein.</li>
+<li><strong>Resolutionstests:</strong></li>
+<li>Die Resolution eines <code>worksheet</code>-Presets für Python muss erfolgreich sein.</li>
+<li>Die Resolution eines <code>example-code</code>-Presets für Python muss erfolgreich sein und den erwarteten Prompt (<code>&quot;kompaktes, direkt ausfuehrbares Python-Beispiel&quot;</code>) enthalten.</li>
+<li>Die Resolution eines <code>worksheet</code>-Presets für Python als <code>example-code</code> muss <code>None</code> zurückgeben.</li>
+</ul>
+<h3 id="3-3-test-instruction-preset-catalog-covers-every-supported-language-with-both-profiles">3.3. <code>test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Überprüfen, dass für jede unterstützte Sprache sowohl <code>worksheet</code>- als auch <code>example-code</code>-Presets existieren.</li>
+<li><strong>Erwartungen:</strong></li>
+<li>Für jede Sprache muss mindestens ein Preset für <code>worksheet</code> und ein Preset für <code>example-code</code> existieren.</li>
+<li><strong>Spezifische Inhaltserwartungen:</strong></li>
+<li>Ein <code>example-code</code>-Preset für <code>rust</code> muss den Prompt <code>&quot;Rust-Grundkurs&quot;</code> und <code>&quot;println!&quot;</code> enthalten.</li>
+<li>Ein <code>worksheet</code>-Preset für <code>node</code> muss den Prompt <code>&quot;Node.js-Grundkurs&quot;</code> und <code>&quot;keine DOM- oder Browser-APIs&quot;</code> enthalten.</li>
+</ul>
+<h3 id="3-4-test-curriculum-service-can-override-instruction-preset-resolution">3.4. <code>test_curriculum_service_can_override_instruction_preset_resolution</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testen, ob der <code>TeacherMaterialStudioService</code> die Resolution von Anweisungs-Presets durch eine externe <code>CurriculumService</code>-Konfiguration überschreiben kann.</li>
+<li><strong>Erwartungen:</strong></li>
+<li>Ein spezifisches Preset (<code>bundle-python</code>) wird über den <code>CurriculumService</code> bereitgestellt.</li>
+<li>Die Methode <code>_instruction_preset_from_state</code> muss den Wert des <code>label</code> (z.B. &quot;Bundle Python&quot;) korrekt aus dem Curriculum-Objekt zurückgeben.</li>
+</ul>
+<h3 id="3-5-test-extract-json-object-merges-multiple-fenced-objects">3.5. <code>test_extract_json_object_merges_multiple_fenced_objects</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Validiert die Fähigkeit von <code>_extract_json_object</code>, mehrere JSON-Objekte, getrennt durch Fences, zu verarbeiten und zu fusionieren.</li>
+<li><strong>Erwartungen:</strong> Die extrahierte Payload muss sowohl <code>teacher_notes_markdown</code> als auch <code>student_material_markdown</code> korrekt aus den beiden separaten JSON-Blöcken extrahieren.</li>
+</ul>
+<h3 id="3-6-test-extract-json-object-accepts-jsonish-string-concatenation">3.6. <code>test_extract_json_object_accepts_jsonish_string_concatenation</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Robustheit des Parsers bei JSON-Strukturen, die über Zeilenumbrüche oder Kommentare (wie in einem Markdown-Block) verbunden sind.</li>
+<li><strong>Erwartungen:</strong> Die extrahierte Liste (<code>student_material_markdown</code>) muss die Inhalte der beiden JSON-Objekte korrekt als eine einzige Liste zusammenfügen.</li>
+</ul>
+<h3 id="3-7-test-extract-code-block-prefers-nested-language-block-over-outer-text-wrapper">3.7. <code>test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Priorität der Code-Block-Extraktion.</li>
+<li><strong>Erwartungen:</strong> Wenn ein Code-Block durch äußere Text-Wrapper (z.B. ```<code>text ... </code>``<code>) umschlossen ist, muss der Parser den Inhalt des inneren, spezifischen Code-Fences (z.B. </code>``<code>python ... </code>```) bevorzugen und nur den reinen Code zurückgeben.</li>
+</ul>
+<h3 id="3-8-test-extract-code-block-recovers-trailing-code-from-unclosed-fence">3.8. <code>test_extract_code_block_recovers_trailing_code_from_unclosed_fence</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Fehlerbehandlung bei ungeschlossenen Code-Fences.</li>
+<li><strong>Erwartungen:</strong> Bei einem ungeschlossenen ```<code>python</code> Block muss der Parser den gesamten nachfolgenden Text, der als Code interpretiert werden kann, korrekt extrahieren.</li>
+</ul>
+<h3 id="3-9-test-parse-code-response-accepts-plain-python-code-without-fence">3.9. <code>test_parse_code_response_accepts_plain_python_code_without_fence</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Fähigkeit von <code>_parse_code_response</code>, reinen Python-Code, der keinen Fence enthält, zu verarbeiten.</li>
+<li><strong>Erwartungen:</strong> Der zurückgegebene Code muss exakt den ursprünglichen String (nach Entfernen von Whitespace) wiedergeben.</li>
+</ul>
+<h3 id="3-10-test-parse-code-response-rejects-self-evaluation-prose">3.10. <code>test_parse_code_response_rejects_self_evaluation_prose</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Sicherheits-/Validierungsfunktion, die verhindert, dass selbstevaluierende Prosa als Code interpretiert wird.</li>
+<li><strong>Erwartungen:</strong> Wenn die Eingabe Text ist, der selbstbewertend ist, muss eine <code>ValueError</code> ausgelöst werden.</li>
+</ul>
+<h3 id="3-11-test-parse-code-response-rejects-python-main-without-invocation">3.11. <code>test_parse_code_response_rejects_python_main_without_invocation</code></h3>
+<ul>
+<li><strong>Ziel:</strong> Testet die Validierung, dass Code-Antworten eine ausführbare Struktur (z.B. eine Funktion oder einen Aufruf) benötigen.</li>
+<li><strong>Erwartungen:</strong> Wenn der Code nur eine einfache <code>main</code>-Funktion ohne tatsächlichen Aufruf enthält, muss eine <code>ValueError</code> ausgelöst werden.</li>
+</ul>
+<h2 id="4-zusammenfassung-und-fazit">4. Zusammenfassung und Fazit</h2>
+<p>Die Testsuite deckt die Kernfunktionen des <code>MaterialStudioService</code> umfassend ab, insbesondere in den Bereichen Datenmodellierung (Kataloge), Datenmanipulation (JSON-Parsing) und Text-/Code-Verarbeitung (Code-Block-Extraktion und Parsing). Die Tests sind gut strukturiert, um sowohl die korrekte Datenintegrität als auch die Robustheit gegenüber unvorhergesehenen Markdown-Formaten zu gewährleisten.</p>
+<p>Bitte stellen Sie mir den vollständigen Code oder den Kontext der Datei <code>test_material_studio.py</code> zur Verfügung, damit ich eine technische Dokumentation erstellen kann. Sobald Sie mir den Code geben, werde ich eine Dokumentation erstellen, die typischerweise folgende Elemente umfassen wird:</p>
+<ol>
+<li><strong>Überblick (Overview):</strong> Kurze Beschreibung, was das Skript/Modul tut.</li>
+<li><strong>Funktionsbeschreibung (Function Descriptions):</strong> Detaillierte Erklärungen zu jeder Funktion (wie <code>def &lt;|end|&gt;</code>).</li>
+<li><strong>Parameter (Parameters):</strong> Beschreibung der Eingabeparameter für jede Funktion (Name, Typ, Beschreibung).</li>
+<li><strong>Rückgabe (Returns):</strong> Beschreibung des Wertes, den die Funktion zurückgibt.</li>
+<li><strong>Seitenleisigkeiten (Side Effects):</strong> Beschreibung, ob die Funktion Dateien schreibt, Datenbanken aktualisiert oder andere Zustände ändert.</li>
+<li><strong>Beispiele (Examples):</strong> Konkrete Beispiele, wie die Funktionen verwendet werden können.</li>
+<li><strong>Installation/Voraussetzungen (Prerequisites):</strong> Welche Bibliotheken oder Abhängigkeiten benötigt werden.</li>
+<p><strong>Beispiel, wie die Dokumentation aussehen könnte (wenn Sie mir den Code geben):</strong> ---</p>
+</ol>
+<h1 id="technische-dokumentation-test-material-studio-py">Technische Dokumentation: <code>test_material_studio.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Dieses Modul (<code>test_material_studio.py</code>) dient zur Durchführung von Tests oder zur Implementierung spezifischer Funktionen innerhalb eines Materials Studios. Es beinhaltet eine Reihe von Funktionen, die wahrscheinlich zur Verarbeitung, Erstellung oder Validierung von Materialdaten verwendet werden.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="name-der-ersten-funktion"><code>[Name der ersten Funktion]</code></h3>
+<p><strong>Beschreibung:</strong> [Hier eine detaillierte Erklärung, was diese Funktion genau macht. Welche Logik wird angewendet? Welche Daten werden verarbeitet?] <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Name</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht?</th>
+</tr></thead><tbody>
+<tr>
+<td><code>input_data</code></td>
+<td><code>dict</code> / <code>list</code></td>
+<td>Die primären Datenstrukturen, die verarbeitet werden sollen.</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td><code>config_path</code></td>
+<td><code>str</code></td>
+<td>Pfad zur Konfigurationsdatei, die für die Verarbeitung benötigt wird.</td>
+<td>Nein</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<ul>
+<li><strong>Typ:</strong> <code>bool</code> / <code>dict</code> / <code>str</code></li>
+<li><strong>Beschreibung:</strong> Gibt <code>True</code> zurück, wenn die Verarbeitung erfolgreich war, oder eine Fehlermeldung/ein Ergebnis-Dictionary zurück, falls ein Fehler auftritt.</li>
+<p><strong>Seitenleisigkeiten:</strong></p>
+<li>Modifiziert den lokalen Zustand (z.B. durch das Erstellen neuer Objekte).</li>
+<li>Loggt Fehler über die Standard-Logging-Funktion.</li>
+<p><strong>Beispiel:</strong></p>
+</ul>
+<pre><code class="language-python"># Beispielaufruf
+result = function_name(input_data, config_path=&quot;default.cfg&quot;)
+print(result)</code></pre>
+<h3 id="name-der-zweiten-funktion"><code>[Name der zweiten Funktion]</code></h3>
+<p><em>(... weitere Funktionen folgen in diesem Format ...)</em></p>
+<h2 id="3-voraussetzungen">3. Voraussetzungen</h2>
+<ul>
+<li><strong>Python Version:</strong> [z.B. 3.8 oder höher]</li>
+<li><strong>Abhängigkeiten:</strong></li>
+<li><code>[Bibliothek A]</code> (Version X.Y.Z)</li>
+<li><code>[Bibliothek B]</code> (Version X.Y.Z)</li>
+<p>--- <strong>Bitte fügen Sie den Code ein, damit ich die Dokumentation erstellen kann!</strong></p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 7353 &gt;= 4096</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link"><a href="#3-detaillierte-analyse-der-klassen">3. Detaillierte Analyse der Klassen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-fakerunner">3.1. Klasse `_FakeRunner`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-klasse-fakeai">3.2. Klasse `_FakeAI`</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten-und-kontext">4. Abhängigkeiten und Kontext</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-und-testzweck">5. Zusammenfassung und Testzweck</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klassen-analyse">2. Klassen-Analyse</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klasse-fakecurriculumservice">2.1. Klasse `_FakeCurriculumService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-klasse-teachersession">2.2. Klasse `_TeacherSession`</a></li>
+<li class="wiki-toc-link"><a href="#3-zusammenfassung-und-verwendungshinweise">3. Zusammenfassung und Verwendungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-test-setup-und-teardown">2. Test-Setup und -Teardown</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-setup-self-none">2.1. `setUp(self) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-teardown-self-none">2.2. `tearDown(self) -&gt; None`</a></li>
+<li class="wiki-toc-link"><a href="#3-testf-lle-test-cases">3. Testfälle (Test Cases)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-test-profile-catalog-contains-specialized-teacher-profiles">3.1. `test_profile_catalog_contains_specialized_teacher_profiles`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-test-instruction-preset-catalog-contains-python-course-entries-for-worksheet-and-example-code">3.2. `test_instruction_preset_catalog_contains_python_course_entries_for_worksheet_and_example_code`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-test-instruction-preset-catalog-covers-every-supported-language-with-both-profiles">3.3. `test_instruction_preset_catalog_covers_every_supported_language_with_both_profiles`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-test-curriculum-service-can-override-instruction-preset-resolution">3.4. `test_curriculum_service_can_override_instruction_preset_resolution`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-5-test-extract-json-object-merges-multiple-fenced-objects">3.5. `test_extract_json_object_merges_multiple_fenced_objects`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-6-test-extract-json-object-accepts-jsonish-string-concatenation">3.6. `test_extract_json_object_accepts_jsonish_string_concatenation`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-7-test-extract-code-block-prefers-nested-language-block-over-outer-text-wrapper">3.7. `test_extract_code_block_prefers_nested_language_block_over_outer_text_wrapper`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-8-test-extract-code-block-recovers-trailing-code-from-unclosed-fence">3.8. `test_extract_code_block_recovers_trailing_code_from_unclosed_fence`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-9-test-parse-code-response-accepts-plain-python-code-without-fence">3.9. `test_parse_code_response_accepts_plain_python_code_without_fence`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-10-test-parse-code-response-rejects-self-evaluation-prose">3.10. `test_parse_code_response_rejects_self_evaluation_prose`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-11-test-parse-code-response-rejects-python-main-without-invocation">3.11. `test_parse_code_response_rejects_python_main_without_invocation`</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-und-fazit">4. Zusammenfassung und Fazit</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#name-der-ersten-funktion">`[Name der ersten Funktion]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#name-der-zweiten-funktion">`[Name der zweiten Funktion]`</a></li>
+<li class="wiki-toc-link"><a href="#3-voraussetzungen">3. Voraussetzungen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_material_studio.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

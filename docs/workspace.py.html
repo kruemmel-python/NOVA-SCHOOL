@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `WorkspaceManager` Klasse | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `WorkspaceManager` Klasse</h1>
+          <p>Source: workspace.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h2 id="technische-dokumentation-workspace-py">Technische Dokumentation: <code>workspace.py</code></h2>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel <strong>Beschreibung:</strong> Diese Datei (<code>workspace.py</code>) dient als zentraler Einstiegspunkt oder Hauptmodul für die Verwaltung und Orchestrierung von Arbeitsbereichen (Workspaces), wahrscheinlich im Kontext eines Projekts, das auf Template-basierten Strukturen basiert. Sie beinhaltet Funktionen für das Laden von Konfigurationen, das Parsen von Daten und das Management von Dateisystemoperationen. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p><code>workspace.py</code> ist eine Python-Klasse, die die notwendigen Komponenten für die Initialisierung und das Management von Arbeitsumgebungen bereitstellt. Sie importiert Abhängigkeiten aus anderen Modulen (<code>config</code>, <code>templates</code>) und scheint die Logik für das Laden von Projekt- oder Workspace-Definitionen zu enthalten.</p>
+<h3 id="2-importierte-module-und-klassen">2. Importierte Module und Klassen</h3>
+<table><thead><tr>
+<th>Modul/Klasse</th>
+<th>Beschreibung</th>
+<th>Zweck</th>
+</tr></thead><tbody>
+<tr>
+<td><code>json</code></td>
+<td>Standard-Python-Modul für die Arbeit mit JSON-Daten.</td>
+<td>Parsen und Serialisieren von Konfigurations- oder Projektdateien.</td>
+</tr>
+<tr>
+<td><code>re</code></td>
+<td>Standard-Python-Modul für reguläre Ausdrücke (Regular Expressions).</td>
+<td>Mustererkennung, Validierung oder Extraktion von Daten aus Strings.</td>
+</tr>
+<tr>
+<td><code>shutil</code></td>
+<td>Modul für High-Level-Dateisystemoperationen (Kopieren, Verschieben, Löschen).</td>
+<td>Verwaltung von Dateien und Ordnerstrukturen (z.B. beim Kopieren von Templates).</td>
+</tr>
+<tr>
+<td><code>pathlib.Path</code></td>
+<td>Modul für objektorientierte Dateisystempfad-Manipulation.</td>
+<td>Sichere und plattformunabhängige Handhabung von Dateipfaden.</td>
+</tr>
+<tr>
+<td><code>ServerConfig</code> (aus <code>.config</code>)</td>
+<td>Eine Klasse oder ein Datentyp, der Serverkonfigurationen hält.</td>
+<td>Speicherung von Server-spezifischen Einstellungen.</td>
+</tr>
+<tr>
+<td><code>PROJECT_TEMPLATES</code> (aus <code>.templates</code>)</td>
+<td>Eine globale oder importierte Struktur, die Projekt-Templates definiert.</td>
+<td>Bereitstellung der verfügbaren Vorlagen für neue Workspaces.</td>
+</tr>
+<tr>
+<td>### 3. Klasse: `&lt;</td>
+<td>end</td>
+<td>&gt;` (Implizierte Klasse)</td>
+</tr>
+<tr>
+<td><strong>Hinweis:</strong> Die bereitgestellte Code-Stückung endet abrupt mit `&lt;</td>
+<td>end</td>
+<td>&gt;`. Basierend auf den Importen und der Struktur ist es höchstwahrscheinlich, dass die Klasse, die hier definiert wird, die Hauptlogik für das Erstellen, Laden oder Verwalten eines Workspaces enthält.</td>
+</tr>
+</tbody></table>
+<p><strong>Funktionale Hypothese:</strong> Die Klasse wird wahrscheinlich Methoden enthalten, die folgende Aufgaben erfüllen:</p>
+<ol>
+<li><strong>Konfigurladen:</strong> Laden von <code>ServerConfig</code> oder spezifischen Workspace-Konfigurationen.</li>
+<li><strong>Template-Verwaltung:</strong> Nutzung von <code>PROJECT_TEMPLATES</code> zur Erstellung neuer Workspace-Strukturen.</li>
+<li><strong>Dateimanipulation:</strong> Verwendung von <code>shutil</code> und <code>pathlib</code> zur Erstellung, Kopie oder Bereinigung von Dateien und Ordnern.</li>
+<li><strong>Datenverarbeitung:</strong> Nutzung von <code>json</code> und <code>re</code> zur Validierung oder Transformation von Workspace-Definitionen.</li>
+</ol>
+<h3 id="4-schl-sselkomponenten-und-methoden-basierend-auf-imports">4. Schlüsselkomponenten und Methoden (Basierend auf Imports)</h3>
+<h4 id="4-1-konfiguration-und-templates">4.1. Konfiguration und Templates</h4>
+<ul>
+<li>**<code>ServerConfig</code>:** Dient als zentraler Speicherort für Infrastruktur- oder Server-spezifische Parameter.</li>
+<li>**<code>PROJECT_TEMPLATES</code>:** Enthält die Definitionen (wahrscheinlich als JSON oder andere strukturierte Daten) für verschiedene Projekt-Startpunkte.</li>
+</ul>
+<h4 id="4-2-dateisystem-operationen">4.2. Dateisystem-Operationen</h4>
+<ul>
+<li>**<code>Path</code> Objekte:** Wird verwendet, um Pfade sicher zu konstruieren und zu manipulieren (z.B. <code>Path(&#x27;new_workspace&#x27;).mkdir()</code>).</li>
+<li>**<code>shutil</code>:** Wird für komplexe Kopier- oder Verschiebeoperationen genutzt, um ganze Projektstrukturen schnell zu replizieren.</li>
+</ul>
+<h4 id="4-3-datenverarbeitung">4.3. Datenverarbeitung</h4>
+<ul>
+<li><strong>JSON-Handling:</strong> Wahrscheinlich wird die Struktur eines Workspaces aus einer JSON-Datei geladen, um die notwendigen Pfade, Abhängigkeiten oder Einstellungen zu extrahieren.</li>
+<li><strong>Regex-Nutzung:</strong> Wird verwendet, um spezifische Schlüssel-Wert-Paare aus komplexen Konfigurationsdateien zu extrahieren oder um Dateinamen zu validieren.</li>
+</ul>
+<h3 id="5-anwendungsf-lle-use-cases">5. Anwendungsfälle (Use Cases)</h3>
+<ol>
+<li><strong>Workspace-Initialisierung:</strong> Erstellung eines neuen, standardisierten Arbeitsordners basierend auf einem definierten Template.</li>
+<li><strong>Konfigurations-Mapping:</strong> Laden einer Workspace-Definition (JSON) und Mapping dieser Daten auf die zugrunde liegende <code>ServerConfig</code>.</li>
+<li><strong>Template-Deployment:</strong> Kopieren und Anpassen von Template-Dateien in ein neues Projektverzeichnis.</li>
+<li><strong>Validierung:</strong> Überprüfung der Integrität einer Workspace-Definition mittels regulärer Ausdrücke.</li>
+</ol>
+<h3 id="6-abh-ngigkeiten">6. Abhängigkeiten</h3>
+<ul>
+<li><strong>Standardbibliothek:</strong> <code>json</code>, <code>re</code>, <code>shutil</code>, <code>pathlib</code>, <code>typing</code>.</li>
+<li><strong>Modul-Abhängigkeiten:</strong></li>
+<li><code>.config</code> (für <code>ServerConfig</code>)</li>
+<li><code>.templates</code> (für <code>PROJECT_TEMPLATES</code>)</li>
+</ul>
+<h3 id="7-sicherheit-und-fehlerbehandlung-empfehlung">7. Sicherheit und Fehlerbehandlung (Empfehlung)</h3>
+<ul>
+<li><strong>Dateisystem-Operationen:</strong> Da <code>shutil</code> und <code>pathlib</code> verwendet werden, sollte die Klasse robuste Fehlerbehandlung für I/O-Fehler (z.B. fehlende Berechtigungen, nicht existierende Pfade) implementieren.</li>
+<li><strong>JSON-Parsing:</strong> Der <code>json.load()</code> oder <code>json.loads()</code> muss in <code>try...except</code> Blöcken verpackt werden, um zu verhindern, dass das gesamte Programm bei fehlerhaftem JSON-Input abstürzt.</li>
+<li><strong>Regex-Nutzung:</strong> Muster, die in Konfigurationsdateien verwendet werden, sollten sorgfältig getestet werden, um Denial-of-Service-Angriffe durch fehlerhafte Muster zu vermeiden.</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>workspace.py</code> bildet das Fundament für die Projektverwaltung, indem es die notwendigen Werkzeuge für Konfiguration, Template-basiertes Deployment und Dateisystem-Manipulation bereitstellt.</p>
+</ul>
+<h1 id="technische-dokumentation-workspacemanager-klasse">Technische Dokumentation: <code>WorkspaceManager</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>WorkspaceManager</code> ist eine zentrale Klasse, die für die Verwaltung des Dateisystems und der Projektstruktur innerhalb eines Workspace verantwortlich ist. Sie kümmert sich um die Erstellung von Verzeichnissen, das Materialisieren von Projektstrukturen aus Templates, das Lesen und Schreiben von Dateien, sowie das Management von Notebook-Dateien. Die Klasse arbeitet eng mit einer <code>ServerConfig</code>-Instanz zusammen, um die Pfade für Benutzer- und Gruppenarbeitsräume zu bestimmen.</p>
+<h2 id="2-klasse-workspacemanager">2. Klasse: <code>WorkspaceManager</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert den Manager und stellt sicher, dass die notwendigen Hauptverzeichnisse für Benutzer- und Gruppenarbeitsräume existieren. <strong>Parameter:</strong></p>
+<ul>
+<li><code>config: ServerConfig</code>: Eine Instanz der Konfigurationsklasse, die Pfadinformationen liefert.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li>Speichert die <code>config</code> als Attribut.</li>
+<li>Erstellt das Verzeichnis für Benutzerarbeitsräume (<code>self.config.users_workspace_path</code>) mit allen notwendigen Elternverzeichnissen (<code>parents=True</code>) und ignoriert bestehende Verzeichnisse (<code>exist_ok=True</code>).</li>
+<li>Erstellt das Verzeichnis für Gruppenarbeitsräume (<code>self.config.groups_workspace_path</code>) mit allen notwendigen Elternverzeichnissen und ignoriert bestehende Verzeichnisse.</li>
+</ol>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="2-2-1-ensure-profile-folder-owner-type-str-owner-key-str-path">2.2.1. <code>ensure_profile_folder(owner_type: str, owner_key: str) -&gt; Path</code></h4>
+<p>Stellt sicher, dass das spezifische Verzeichnis für einen bestimmten Besitzer (Benutzer oder Gruppe) existiert. <strong>Parameter:</strong></p>
+<ul>
+<li><code>owner_type: str</code>: Der Typ des Besitzers (z.B. <code>&quot;user&quot;</code> oder <code>&quot;group&quot;</code>).</li>
+<li><code>owner_key: str</code>: Der eindeutige Schlüssel des Besitzers.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>Path</code>: Der Pfad zum erstellten oder bestehenden Verzeichnis.</li>
+<p><strong>Beschreibung:</strong> Navigiert über <code>owner_root</code> und erstellt das entsprechende Verzeichnis.</p>
+</ul>
+<h4 id="2-2-2-owner-root-owner-type-str-owner-key-str-path">2.2.2. <code>owner_root(owner_type: str, owner_key: str) -&gt; Path</code></h4>
+<p>Bestimmt den Basis-Root-Pfad basierend auf dem Besitzertyp und dem Schlüssel. <strong>Parameter:</strong></p>
+<ul>
+<li><code>owner_type: str</code>: Der Typ des Besitzers.</li>
+<li><code>owner_key: str</code>: Der Schlüssel des Besitzers.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>Path</code>: Der absolute Pfad zum Root-Verzeichnis.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li>Normalisiert den <code>owner_key</code> mithilfe der <code>slugify</code>-Funktion.</li>
+<li>Wenn <code>owner_type</code> <code>&quot;user&quot;</code> ist, verwendet <code>self.config.users_workspace_path</code>.</li>
+<li>Wenn <code>owner_type</code> <code>&quot;group&quot;</code> ist, verwendet <code>self.config.groups_workspace_path</code>.</li>
+<li>Löst einen <code>ValueError</code> aus, falls ein unbekannter <code>owner_type</code> übergeben wird.</li>
+</ol>
+<h4 id="2-2-3-project-root-project-dict-str-any-path">2.2.3. <code>project_root(project: dict[str, Any]) -&gt; Path</code></h4>
+<p>Bestimmt den Haupt-Root-Pfad für ein spezifisches Projekt. <strong>Parameter:</strong></p>
+<ul>
+<li><code>project: dict[str, Any]</code>: Ein Dictionary, das Projektinformationen enthält (muss <code>owner_type</code> und <code>owner_key</code> enthalten).</li>
+<p><strong>Rückgabetyp:</strong> *</p>
+</ul>
+<h2 id="technische-dokumentation-workspace-py">Technische Dokumentation: <code>workspace.py</code></h2>
+<h3 id="funktion-slugify-value-str-str">Funktion: <code>slugify(value: str) -&gt; str</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion nimmt einen eingegebenen String (<code>value</code>), bereinigt ihn und konvertiert ihn in eine &quot;Slug&quot;-Form. Eine Slug ist eine URL-freundliche Zeichenkette, die typischerweise für Dateinamen oder URL-Parameter verwendet wird (kleingeschrieben, nur alphanumerische Zeichen und Bindestriche). <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>value</code> (str):** Der Eingabestring, der bereinigt und in eine Slug umgewandelt werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>str</code>:** Die generierte Slug-String. Wenn der bereinigte String leer ist, wird der Standardwert <code>&quot;workspace&quot;</code> zurückgegeben.</li>
+<p><strong>Details und Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Bereinigung und Normalisierung (Lowercase &amp; Stripping):</strong></li>
+</ol>
+<ul>
+<li><code>lowered = value.strip().lower()</code>: Der eingegebene String wird zuerst um Leerzeichen und Whitespace an den Rändern entfernt und in Kleinbuchstaben umgewandelt.</li>
+<li><code>normalized = re.sub(r&quot;[^a-z0-9]+&quot;, &quot;-&quot;, lowered)</code>: Ein regulärer Ausdruck (<code>re.sub</code>) wird verwendet, um alle Zeichen zu ersetzen, die <strong>keine</strong> Kleinbuchstaben (<code>a-z</code>), Ziffern (<code>0-9</code>) oder Bindestriche (<code>-</code>) sind, durch einen einzelnen Bindestrich (<code>-</code>) zu ersetzen. Dies dient dazu, Sonderzeichen und Leerzeichen in Bindestriche umzuwandeln.</li>
+<li><code>normalized = normalized.strip(&quot;-&quot;)</code>: Jegliche Bindestriche an den Anfang oder Ende der Zeichenkette werden entfernt.</li>
+</ul>
+<ol>
+<li><strong>Fallback-Mechanismus:</strong></li>
+</ol>
+<ul>
+<li><code>return normalized or &quot;workspace&quot;</code>: Wenn nach der Normalisierung die Zeichenkette leer ist (z. B. wenn der ursprüngliche Input nur aus Leerzeichen oder Sonderzeichen bestand), wird der Standardwert <code>&quot;workspace&quot;</code> zurückgegeben.</li>
+<p><strong>Beispiele:</strong></p>
+</ul>
+<table><thead><tr>
+<th>Eingabe (<code>value</code>)</th>
+<th>Prozessschritte</th>
+<th>Ausgabe (<code>slugify(value)</code>)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>&quot;  Meine Datei! Version 1.0 &quot;</code></td>
+<td>1. <code>lower()</code>: <code>&quot;  meine Datei! version 1.0 &quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2. <code>strip()</code>: <code>&quot;meine Datei! version 1.0&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3. <code>lower()</code>: <code>&quot;meine Datei! version 1.0&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4. <code>re.sub(...)</code>: <code>&quot;meine-datei-version-1-0&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>5. <code>strip(&quot;-&quot;)</code>: <code>&quot;meine-datei-version-1-0&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>6. Rückgabe</td>
+<td><code>&quot;meine-datei-version-1-0&quot;</code></td>
+</tr>
+<tr>
+<td><code>&quot;Test&quot;</code></td>
+<td>1. <code>lower()</code>: <code>&quot;test&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2. <code>re.sub(...)</code>: <code>&quot;test&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3. <code>strip(&quot;-&quot;)</code>: <code>&quot;test&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4. Rückgabe</td>
+<td><code>&quot;test&quot;</code></td>
+</tr>
+<tr>
+<td><code>&quot;!!!&quot;</code></td>
+<td>1. <code>lower()</code>: <code>&quot;!!!&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2. <code>re.sub(...)</code>: <code>&quot;-&quot;</code> (oder leer, je nach Regex-Interpretation, aber hier wird es zu einem Bindestrich)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3. <code>strip(&quot;-&quot;)</code>: <code>&quot;&quot;</code> (leer)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4. Fallback</td>
+<td><code>&quot;workspace&quot;</code></td>
+</tr>
+<tr>
+<td>**<code>&quot;&quot;</code> (Leerzeichen)**</td>
+<td>1. <code>lower()</code>: <code>&quot;&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2. <code>re.sub(...)</code>: <code>&quot;&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3. <code>strip(&quot;-&quot;)</code>: <code>&quot;&quot;</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4. Fallback</td>
+<td><code>&quot;workspace&quot;</code></td>
+</tr>
+</tbody></table>
+<p><strong>Annahmen:</strong></p>
+<ul>
+<li>Es wird die <code>re</code>-Bibliothek (Regular Expressions) benötigt.</li>
+<li>Die Funktion ist robust gegenüber verschiedenen Whitespace-Charaktern (Leerzeichen, Tabs, etc.) durch die Verwendung von <code>.strip()</code> und <code>.lower()</code>.</li>
+<p><strong>Verwendete Bibliotheken:</strong></p>
+<li><code>re</code> (Standardbibliothek für reguläre Ausdrücke)</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-workspace-py">Technische Dokumentation: `workspace.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-importierte-module-und-klassen">2. Importierte Module und Klassen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-schl-sselkomponenten-und-methoden-basierend-auf-imports">4. Schlüsselkomponenten und Methoden (Basierend auf Imports)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-anwendungsf-lle-use-cases">5. Anwendungsfälle (Use Cases)</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-abh-ngigkeiten">6. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-sicherheit-und-fehlerbehandlung-empfehlung">7. Sicherheit und Fehlerbehandlung (Empfehlung)</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-workspacemanager">2. Klasse: `WorkspaceManager`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-workspace-py">Technische Dokumentation: `workspace.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-slugify-value-str-str">Funktion: `slugify(value: str) -&gt; str`</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "workspace.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

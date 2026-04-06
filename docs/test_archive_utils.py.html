@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_archive_utils.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_archive_utils.py`</h1>
+          <p>Source: test_archive_utils.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-archive-utils-py">Technische Dokumentation: <code>test_archive_utils.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei, <code>test_archive_utils.py</code>, dient primär der <strong>Unit-Test-Abdeckung</strong> für die Funktionen, die in der Moduldatei <code>nova_school_server.archive_utils</code> definiert sind. Sie stellt sicher, dass die Funktionen zur sicheren Extraktion von ZIP-Archiven (<code>extract_zip_safely</code>) korrekt und robust funktionieren. Die Datei importiert spezifische Funktionen aus <code>nova_school_server.archive_utils</code> und nutzt Standard-Python-Module (<code>stat</code>, <code>tempfile</code>, <code>unittest</code>, <code>zipfile</code>, <code>pathlib</code>) sowie das <code>unittest</code>-Framework zur Durchführung der Tests.</p>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<ul>
+<li>**<code>nova_school_server.archive_utils</code>**: Abhängigkeit für die zu testenden Kernfunktionen (insbesondere <code>extract_zip_safely</code>).</li>
+<li><strong>Standard Python-Module</strong>: <code>stat</code>, <code>tempfile</code>, <code>unittest</code>, <code>zipfile</code>, <code>pathlib</code>.</li>
+</ul>
+<h2 id="3-struktur-und-inhalt">3. Struktur und Inhalt</h2>
+<p>Der bereitgestellte Codeausschnitt definiert eine Testklasse, die typischerweise die folgenden Komponenten enthält:</p>
+<h3 id="3-1-importe">3.1. Importe</h3>
+<pre><code class="language-python">from __future__ import annotations
+import stat
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+from nova_school_server.archive_utils import extract_zip_safely</code></pre>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Type-Hints in älteren Python-Versionen.</li>
+<li>**<code>import stat</code>**: Wird wahrscheinlich zur Prüfung von Dateisystemattributen (z.B. Berechtigungen) verwendet.</li>
+<li>**<code>import tempfile</code>**: Wird verwendet, um temporäre Dateien und Verzeichnisse für die Testumgebung zu erstellen.</li>
+<li>**<code>import unittest</code>**: Das zentrale Framework für die Erstellung und Ausführung der Testsuite.</li>
+<li>**<code>import zipfile</code>**: Wird benötigt, um die Struktur und Inhalte von ZIP-Dateien zu manipulieren und zu validieren.</li>
+<li>**<code>from pathlib import Path</code>**: Wird verwendet, um Pfade in einer objektorientierten, plattformunabhängigen Weise zu verwalten.</li>
+<li>**<code>from nova_school_server.archive_utils import extract_zip_safely</code>**: Importiert die spezifische Funktion, die im Fokus der Tests steht.</li>
+</ul>
+<h3 id="3-2-testklasse-impliziert">3.2. Testklasse (Impliziert)</h3>
+<p>Die Klasse, die mit <code>&lt;|end|&gt;</code> beginnt, ist die Hauptklasse, die die Testlogik kapselt. Sie wird wahrscheinlich auf <code>unittest.TestCase</code> basieren und spezifische Testmethoden definieren, um verschiedene Szenarien für <code>extract_zip_safely</code> zu testen (z.B. erfolgreiche Extraktion, Umgang mit beschädigten Archiven, Fehlerbehandlung).</p>
+<h2 id="4-funktionsweise-hypothetisch">4. Funktionsweise (Hypothetisch)</h2>
+<p>Die Hauptaufgabe dieser Datei ist es, die <strong>Sicherheit und Robustheit</strong> der Funktion <code>extract_zip_safely</code> zu validieren. Dies beinhaltet typischerweise:</p>
+<ol>
+<li><strong>Erfolgreiche Extraktion</strong>: Testen, dass das Archiv korrekt entpackt wird.</li>
+<li><strong>Fehlerbehandlung</strong>: Testen, wie die Funktion auf ungültige ZIP-Dateien, fehlende Berechtigungen oder andere I/O-Fehler reagiert (z.B. durch das Auswerfen spezifischer Exceptions).</li>
+<li><strong>Ressourcenmanagement</strong>: Sicherstellen, dass temporäre Dateien korrekt aufgeräumt werden.</li>
+</ol>
+<h2 id="5-verwendung">5. Verwendung</h2>
+<p>Diese Datei wird primär von Entwicklern verwendet, um sicherzustellen, dass Änderungen an der <code>extract_zip_safely</code>-Funktion die Funktionalität nicht beeinträchtigen (Regression Testing).</p>
+<h2 id="6-hinweise-f-r-die-wartung">6. Hinweise für die Wartung</h2>
+<ul>
+<li><strong>Test-Abdeckung</strong>: Stellen Sie sicher, dass alle kritischen Fehlerpfade der <code>extract_zip_safely</code>-Funktion durch entsprechende Testfälle abgedeckt sind.</li>
+<li><strong>Testdaten</strong>: Die Testfälle sollten mit realistischen, aber isolierten Testdaten (z.B. kleine, funktionierende und fehlerhafte ZIP-Dateien) ausgestattet sein.</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>test_archive_utils.py</code> ist das zentrale Test-Framework für die Sicherheit und Funktionalität der Archivierungsfunktionen im Projekt.</p>
+</ul>
+<h1 id="technische-dokumentation-test-archive-utils-py">Technische Dokumentation: <code>test_archive_utils.py</code></h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests, die die Funktionalität der Funktion <code>extract_zip_safely</code> (die in einer anderen Datei definiert ist, aber hier getestet wird) validieren. Die Tests konzentrieren sich darauf, wie die Funktion mit verschiedenen Szenarien im ZIP-Archiv umgeht, insbesondere bei der Sicherstellung der Sicherheit beim Extrahieren von Dateien.</p>
+<h2 id="2-zielsetzung-der-tests">2. Zielsetzung der Tests</h2>
+<p>Das Hauptziel dieser Tests ist es, sicherzustellen, dass die Funktion <code>extract_zip_safely</code> folgende Sicherheitsanforderungen erfüllt:</p>
+<ol>
+<li><strong>Sichere Extraktion normaler Dateien:</strong> Die Funktion muss Dateien korrekt und sicher in das Zielverzeichnis extrahieren können.</li>
+<li><strong>Verweigerung von Pfad-Traversal (Path Traversal):</strong> Die Funktion muss verhindern, dass Benutzer durch das Verwenden von relativen Pfaden (z.B. <code>../../</code>) auf Dateien außerhalb des Zielverzeichnisses zugreifen.</li>
+<li><strong>Verweigerung von Symbollinks:</strong> Die Funktion muss die Extraktion von Dateien, die als Symbollinks konfiguriert sind, verhindern, um Sicherheitslücken zu vermeiden.</li>
+</ol>
+<h2 id="3-testf-lle-im-detail">3. Testfälle im Detail</h2>
+<p>Die Datei enthält drei spezifische Testfälle, die jeweils eine bestimmte Sicherheitsaspekt prüfen:</p>
+<h3 id="3-1-testfall-test-extract-zip-safely-writes-normal-files">3.1. Testfall: <code>test_extract_zip_safely_writes_normal_files</code></h3>
+<p><strong>Beschreibung:</strong> Dieser Test stellt sicher, dass die Funktion korrekt und erfolgreich eine normale Datei aus einem ZIP-Archiv extrahieren kann. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein ZIP-Archiv (<code>safe.zip</code>) wird erstellt, das eine Datei (<code>folder/main.py</code>) enthält.</li>
+<li>Die Funktion <code>extract_zip_safely</code> wird auf dieses Archiv angewendet.</li>
+<li>Es wird überprüft, ob der Inhalt der extrahierten Datei (<code>main.py</code>) exakt mit dem ursprünglichen Inhalt übereinstimmt.</li>
+<p><strong>Erwartetes Ergebnis:</strong> Der Inhalt der extrahierten Datei muss exakt dem ursprünglichen Inhalt entsprechen.</p>
+</ol>
+<h3 id="3-2-testfall-test-extract-zip-safely-rejects-traversal">3.2. Testfall: <code>test_extract_zip_safely_rejects_traversal</code></h3>
+<p><strong>Beschreibung:</strong> Dieser Test validiert die Schutzmechanismen gegen <strong>Path Traversal</strong>. Er prüft, ob die Funktion verhindert, dass Benutzer durch Manipulierung des Pfades (z.B. durch <code>../../</code>) auf Dateien außerhalb des definierten Zielverzeichnisses zugreifen. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein ZIP-Archiv (<code>traversal.zip</code>) wird erstellt, das einen Pfad enthält, der außerhalb des Zielverzeichnisses liegt (z.B. <code>../../outside.txt</code>).</li>
+<li>Die Funktion <code>extract_zip_safely</code> wird auf dieses Archiv angewendet.</li>
+<li>Es wird erwartet, dass die Funktion eine <code>PermissionError</code> (oder eine ähnliche Fehlermeldung, die auf Zugriffsbeschränkungen hinweist) ausgibt, da der Zugriff außerhalb des erlaubten Bereichs blockiert werden muss.</li>
+<p><strong>Erwartetes Ergebnis:</strong> Es muss eine <code>PermissionError</code> ausgelöst werden, was beweist, dass der Pfad-Traversal erfolgreich abgefangen wurde.</p>
+</ol>
+<h3 id="3-3-testfall-test-extract-zip-safely-rejects-symlink-entries">3.3. Testfall: <code>test_extract_zip_safely_rejects_symlink_entries</code></h3>
+<p><strong>Beschreibung:</strong> Dieser Test prüft die Sicherheit bezüglich <strong>Symbollinks</strong>. Er stellt sicher, dass die Funktion die Extraktion von Dateien verhindert, die als Symbollinks konfiguriert sind, um das Ausführen von Befehlen oder das Umgehen von Dateisystembeschränkungen zu verhindern. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein ZIP-Archiv (<code>symlink.zip</code>) wird erstellt, das eine spezielle <code>ZipInfo</code>-Struktur enthält, die den Eintrag als Symbollink kennzeichnet (<code>info.create_system = 3</code> und eine spezifische <code>external_attr</code> für einen Link).</li>
+<li>Die Funktion <code>extract_zip_safely</code> wird auf dieses Archiv angewendet.</li>
+<li>Es wird erwartet, dass die Funktion eine <code>PermissionError</code> ausgibt, da die Extraktion von Symbollinks blockiert werden muss.</li>
+<p><strong>Erwartetes Ergebnis:</strong> Es muss eine <code>PermissionError</code> ausgelöst werden, was beweist, dass die Extraktion von Symbollinks erfolgreich verhindert wurde.</p>
+</ol>
+<h2 id="4-voraussetzungen">4. Voraussetzungen</h2>
+<p>Um diese Tests ausführen zu können, müssen folgende Bibliotheken installiert sein:</p>
+<ul>
+<li><code>unittest</code> (Standardbibliothek)</li>
+<li><code>zipfile</code> (Standardbibliothek)</li>
+<li><code>pathlib.Path</code> (Standardbibliothek)</li>
+<li><code>tempfile</code> (Standardbibliothek)</li>
+<li><code>stat</code> (Standardbibliothek)</li>
+</ul>
+<h2 id="5-zusammenfassung">5. Zusammenfassung</h2>
+<p>Die Testsuite <code>ArchiveUtilsTests</code> ist ein effektives Werkzeug, um die Robustheit und die Implementierung der Sicherheitsmechanismen in <code>extract_zip_safely</code> zu verifizieren. Sie deckt kritische Angriffsvektoren wie Pfad-Traversal und die Extraktion von Symbollinks ab.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-struktur-und-inhalt">3. Struktur und Inhalt</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-importe">3.1. Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-testklasse-impliziert">3.2. Testklasse (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#4-funktionsweise-hypothetisch">4. Funktionsweise (Hypothetisch)</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung">5. Verwendung</a></li>
+<li class="wiki-toc-link"><a href="#6-hinweise-f-r-die-wartung">6. Hinweise für die Wartung</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-zielsetzung-der-tests">2. Zielsetzung der Tests</a></li>
+<li class="wiki-toc-link"><a href="#3-testf-lle-im-detail">3. Testfälle im Detail</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-testfall-test-extract-zip-safely-writes-normal-files">3.1. Testfall: `test_extract_zip_safely_writes_normal_files`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-testfall-test-extract-zip-safely-rejects-traversal">3.2. Testfall: `test_extract_zip_safely_rejects_traversal`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-testfall-test-extract-zip-safely-rejects-symlink-entries">3.3. Testfall: `test_extract_zip_safely_rejects_symlink_entries`</a></li>
+<li class="wiki-toc-link"><a href="#4-voraussetzungen">4. Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung">5. Zusammenfassung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_archive_utils.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

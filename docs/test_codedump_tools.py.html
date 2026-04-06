@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_codedump_tools.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_codedump_tools.py`</h1>
+          <p>Source: test_codedump_tools.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-codedump-tools-py">Technische Dokumentation: <code>test_codedump_tools.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei, <code>test_codedump_tools.py</code>, dient als Testsuite für die Funktionen der <code>nova_school_server.codedump_tools</code>-Module. Sie verwendet das <code>unittest</code>-Framework, um die Funktionalität der Tools zur Erfassung, Komprimierung und Formatierung von Code-Dumps zu validieren. Die Hauptziele dieser Tests sind:</p>
+<ol>
+<li><strong>Validierung der Konfiguration:</strong> Sicherstellen, dass die Konfigurationen korrekt verarbeitet werden.</li>
+<li><strong>Test der Datenerfassung:</strong> Überprüfung, ob <code>collect_directory_dump</code> die Dateien korrekt sammelt.</li>
+<li><strong>Test der Ausgabeformatierung:</strong> Überprüfung, ob <code>dump_target_to_markdown</code> die erfassten Daten korrekt in das gewünschte Markdown-Format umwandelt.</li>
+</ol>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<p>Die Datei ist abhängig von folgenden Modulen und Bibliotheken:</p>
+<ul>
+<li>**<code>tempfile</code>**: Für das Erstellen temporärer Dateien und Verzeichnisse während der Tests.</li>
+<li>**<code>unittest</code>**: Das Standard-Framework für die Durchführung der Tests.</li>
+<li>**<code>zipfile</code>**: Für die Überprüfung der Komprimierungsfunktionen.</li>
+<li>**<code>pathlib.Path</code>**: Für das moderne und objektorientierte Umgang mit Dateipfaden.</li>
+<li>**<code>nova_school_server.codedump_tools</code>**: Importiert die Kernfunktionen der Tools, darunter:</li>
+<li><code>DumpConfig</code></li>
+<li><code>collect_directory_dump</code></li>
+<li><code>config_for_profile</code></li>
+<li><code>default_output_path_for_profile</code></li>
+<li><code>dump_target_to_markdown</code></li>
+</ul>
+<h2 id="3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</h2>
+<p>Der bereitgestellte Codeausschnitt definiert die Testklasse und importiert die notwendigen Komponenten.</p>
+<pre><code class="language-python">from __future__ import annotations
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+from nova_school_server.codedump_tools import (
+DumpConfig,
+collect_directory_dump,
+config_for_profile,
+default_output_path_for_profile,
+dump_target_to_markdown,
+)
+class &lt;|end|&gt;</code></pre>
+<h3 id="3-1-importe-und-setup">3.1. Importe und Setup</h3>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hinting für Variablen und Parameter, was die Lesbarkeit verbessert.</li>
+<li>**<code>import tempfile</code>**: Wird verwendet, um temporäre Dateien und Verzeichnisse zu erstellen, die für die Testumgebung notwendig sind, ohne das Hauptsystem zu verändern.</li>
+<li>**<code>import unittest</code>**: Importiert die Basisklasse für alle Testklassen.</li>
+<li>**<code>import zipfile</code>**: Wird wahrscheinlich verwendet, um die Integrität der komprimierten Dump-Dateien zu prüfen.</li>
+<li>**<code>from pathlib import Path</code>**: Wird für die konstruierte und manipulierte Pfadverwaltung verwendet.</li>
+<li>**Importe aus <code>nova_school_server.codedump_tools</code>**: Alle spezifischen Funktionen und Klassen, die getestet werden sollen, werden importiert.</li>
+</ul>
+<h3 id="3-2-testklasse-class-end">3.2. Testklasse (<code>class &lt;|end|&gt;</code>)</h3>
+<p>Die Klasse, die hier definiert wird, wird die eigentlichen Testmethoden enthalten. Basierend auf den Importen und der Struktur der anderen Teile der Datei wird erwartet, dass diese Klasse:</p>
+<ol>
+<li><strong>Initialisierung:</strong> Testkonfigurationen (<code>DumpConfig</code>) initialisiert.</li>
+<li><strong>Testfälle:</strong> Spezifische Testfälle für die verschiedenen Funktionen der Code-Dump-Tools implementiert.</li>
+<li><strong>Setup/Teardown:</strong> Wahrscheinlich nutzt sie <code>setUp</code> und <code>tearDown</code> Methoden, um die Testumgebung (z.B. temporäre Verzeichnisse) vor und nach jedem Test aufzuräumen.</li>
+</ol>
+<h2 id="4-erwartete-struktur-weiterf-hrende-analyse">4. Erwartete Struktur (Weiterführende Analyse)</h2>
+<p>Die restliche Datei wird voraussichtlich folgende Testmethoden enthalten:</p>
+<ul>
+<li>**Testfälle für <code>collect_directory_dump</code>**: Überprüfung, ob alle Dateien im Zielverzeichnis korrekt erfasst werden.</li>
+<li>**Testfälle für <code>config_for_profile</code>**: Überprüfung, ob die Profileinstellungen korrekt interpretiert werden.</li>
+<li>**Testfälle für <code>dump_target_to_markdown</code>**: Überprüfung der Syntax und Struktur des generierten Markdown-Outputs.</li>
+<li><strong>Integrationstests</strong>: Szenarien, die den gesamten Workflow (Konfiguration $\rightarrow$ Sammlung $\rightarrow$ Komprimierung $\rightarrow$ Formatierung) abdecken.</li>
+</ul>
+<h2 id="5-zusammenfassung-und-n-chste-schritte">5. Zusammenfassung und Nächste Schritte</h2>
+<p>Die Datei <code>test_codedump_tools.py</code> bildet die Grundlage für die Qualitätssicherung der Code-Dump-Funktionalität. Der aktuelle Teil stellt die notwendige Importstruktur und die Definition der Testklasse dar. <strong>Nächste Schritte:</strong> Die vollständige Dokumentation erfordert die Analyse der Methoden innerhalb der Klasse <code>&lt;|end|&gt;</code> um die spezifischen Testfälle und deren Erwartungen detailliert zu beschreiben.</p>
+<h1 id="technische-dokumentation-test-codedump-tools-py">Technische Dokumentation: <code>test_codedump_tools.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests (<code>CodeDumpToolsTests</code>), die die Funktionalität der Tools zur Erstellung von Code-Dumps (wahrscheinlich <code>dump_target_to_markdown</code>, <code>collect_directory_dump</code>, <code>default_output_path_for_profile</code>) validieren. Die Tests prüfen verschiedene Szenarien, wie z.B. die Ignorierung von Laufzeitdaten, die Verarbeitung von ZIP-Archiven, die Erkennung großer Dateien und die Anwendung verschiedener Konfigurationen (Profile) zur Selektion von Dateien.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei implementiert eine Testklasse <code>CodeDumpToolsTests</code>, die spezifische Testfälle definiert, um die Robustheit der Code-Dumping-Funktionalität zu gewährleisten.</p>
+<h3 id="2-1-testf-lle-test-methods">2.1. Testfälle (Test Methods)</h3>
+<p>Die folgenden Methoden testen spezifische Aspekte der Code-Dumping-Logik:</p>
+<h4 id="2-1-1-test-directory-dump-ignores-runtime-data-and-writes-markdown">2.1.1. <code>test_directory_dump_ignores_runtime_data_and_writes_markdown</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Überprüft, dass die Funktion bei der Erstellung eines Markdown-Dumps von einem Verzeichnis:</li>
+<li>Laufzeitdaten ignoriert.</li>
+<li>Dateien korrekt in Markdown-Formatierung dargestellt werden.</li>
+<li>Unterordner und spezifische Dateien (wie <code>index.json</code> in einem Datenverzeichnis) korrekt ausgenommen werden.</li>
+<li><strong>Setup:</strong> Erstellt ein temporäres Verzeichnis mit Python-Dateien (<code>main.py</code>) und einer Markdown-Datei (<code>README.md</code>), sowie ein verschachteltes Datenverzeichnis (<code>data/reference_library/index.json</code>).</li>
+<li><strong>Erwartetes Verhalten:</strong> Der generierte <code>CODEDUMP.md</code> muss die Hauptdateien enthalten, aber die JSON-Datei im tiefsten Verzeichnis darf nicht erscheinen.</li>
+</ul>
+<h4 id="2-1-2-test-zip-dump-keeps-zip-support">2.1.2. <code>test_zip_dump_keeps_zip_support</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Validiert, dass die Funktion korrekt mit ZIP-Archiven umgehen kann und die Inhalte dieser Archive korrekt in den Markdown-Dump übertragen werden.</li>
+<li><strong>Setup:</strong> Erstellt eine ZIP-Datei mit zwei Dateien (<code>src/app.py</code> und <code>data/reference_library/index.json</code>).</li>
+<li><strong>Erwartetes Verhalten:</strong> Der Dump muss die Inhalte der ZIP-Datei korrekt abbilden, wobei die Struktur und die Ignorierung von bestimmten Pfaden beibehalten werden.</li>
+</ul>
+<h4 id="2-1-3-test-directory-collect-marks-large-files-with-placeholder">2.1.3. <code>test_directory_collect_marks_large_files_with_placeholder</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Testet die Funktion <code>collect_directory_dump</code> zur Erkennung von Dateien, die über eine definierte Größe hinausgehen.</li>
+<li><strong>Setup:</strong> Erstellt eine große Python-Datei (<code>big.py</code>).</li>
+<li><strong>Erwartetes Verhalten:</strong> Die Funktion muss die Datei als zu groß markieren und einen Platzhaltertext (&quot;file too large&quot;) im Ergebnis zurückgeben.</li>
+</ul>
+<h4 id="2-1-4-test-compact-profile-excludes-docs-wiki-and-tests">2.1.4. <code>test_compact_profile_excludes_docs_wiki_and_tests</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Testet ein spezifisches Profil (<code>compact</code>), das Dokumentation (<code>docs</code>), Wiki-Inhalte und Tests (<code>tests</code>) aus dem Dump ausschließt.</li>
+<li><strong>Setup:</strong> Erstellt eine Struktur mit Code (<code>server.py</code>), Tests (<code>tests/test_demo.py</code>), Dokumentation (<code>docs/guide.md</code>) und Wiki (<code>wiki/teacher.md</code>).</li>
+<li><strong>Erwartetes Verhalten:</strong> Der Dump sollte nur den Code (<code>server.py</code>) enthalten und die Dokumentations- und Testdateien nicht.</li>
+</ul>
+<h4 id="2-1-5-test-deep-profile-includes-docs-wiki-and-tests">2.1.5. <code>test_deep_profile_includes_docs_wiki_and_tests</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Testet ein Profil (<code>deep</code>), das im Gegensatz zum <code>compact</code>-Profil Dokumentation, Wiki und Tests einschließt.</li>
+<li><strong>Setup:</strong> Gleiches Setup wie in <code>test_compact_profile_excludes_docs_wiki_and_tests</code>, aber mit der Konfiguration für das <code>deep</code>-Profil.</li>
+<li><strong>Erwartetes Verhalten:</strong> Der Dump muss alle Dateien (Code, Docs, Wiki, Tests) enthalten.</li>
+</ul>
+<h4 id="2-1-6-test-default-output-path-uses-profile-suffix-for-non-standard-profiles">2.1.6. <code>test_default_output_path_uses_profile_suffix_for_non_standard_profiles</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Überprüft die Logik zur Generierung des Ausgabe-Pfades basierend auf dem Profilnamen und dem Zielort (Verzeichnis oder ZIP-Datei).</li>
+<li><strong>Setup:</strong> Definiert spezifische Zielpfade (<code>directory_target</code>, <code>zip_target</code>).</li>
+<li><strong>Erwartetes Verhalten:</strong> Die erwarteten Namenskonventionen für die generierten Dump-Dateien (<code>CODEDUMP.md</code>, <code>CODEDUMP.compact.md</code>, <code>project.deep.codedump.md</code>) werden überprüft.</li>
+</ul>
+<h4 id="2-1-7-test-existing-dump-artifacts-are-not-reincluded">2.1.7. <code>test_existing_dump_artifacts_are_not_reincluded</code></h4>
+<ul>
+<li><strong>Ziel:</strong> Stellt sicher, dass beim Erstellen eines neuen Dumps bestehende, bereits generierte Dump-Artefakte (z.B. <code>CODEDUMP.compact.md</code>) nicht versehentlich wieder aufgenommen werden.</li>
+<li><strong>Setup:</strong> Erstellt einen alten Dump (<code>CODEDUMP.compact.md</code>) und versucht, einen neuen, tieferen Dump (<code>CODEDUMP.deep.md</code>) zu erstellen.</li>
+<li><strong>Erwartetes Verhalten:</strong> Der neue Dump sollte die neuen Informationen enthalten, aber die alten Artefakte dürfen nicht wieder auftauchen.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-voraussetzungen">3. Abhängigkeiten und Voraussetzungen</h2>
+<ul>
+<li><strong>Standardbibliothek:</strong> <code>unittest</code>, <code>tempfile</code>, <code>pathlib</code>, <code>zipfile</code>.</li>
+<li><strong>Externe Funktionen/Klassen:</strong></li>
+<li><code>dump_target_to_markdown(source, output_path, config)</code>: Die zentrale Funktion zur Erstellung des Markdown-Dumps.</li>
+<li><code>collect_directory_dump(root, config)</code>: Funktion zur Sammlung von Dateien aus einem Verzeichnis.</li>
+<li><code>default_output_path_for_profile(target, profile)</code>: Funktion zur Bestimmung des korrekten Ausgabeformats.</li>
+<li><code>config_for_profile(profile_name)</code>: Funktion zur Erstellung von Konfigurationsobjekten für verschiedene Profile.</li>
+</ul>
+<h2 id="4-zusammenfassung-der-testziele">4. Zusammenfassung der Testziele</h2>
+<p>Die Testsuite stellt sicher, dass die Code-Dumping-Bibliothek folgende Kernanforderungen erfüllt:</p>
+<ol>
+<li><strong>Korrekte Datenextraktion:</strong> Dateien werden korrekt identifiziert und extrahiert (inkl. ZIP-Support).</li>
+<li><strong>Konfigurationsgesteuerte Selektion:</strong> Profile ermöglichen präzise Steuerung, welche Teile des Projekts (Code, Docs, Tests) im Dump enthalten sind.</li>
+<li><strong>Robustheit:</strong> Umgang mit Randfällen wie sehr großen Dateien oder bestehenden Artefakten.</li>
+<li><strong>Formatierung:</strong> Der finale Output ist konsistent im Markdown-Format.</li>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-importe-und-setup">3.1. Importe und Setup</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-testklasse-class-end">3.2. Testklasse (`class &lt;|end|&gt;`)</a></li>
+<li class="wiki-toc-link"><a href="#4-erwartete-struktur-weiterf-hrende-analyse">4. Erwartete Struktur (Weiterführende Analyse)</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-und-n-chste-schritte">5. Zusammenfassung und Nächste Schritte</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-testf-lle-test-methods">2.1. Testfälle (Test Methods)</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-voraussetzungen">3. Abhängigkeiten und Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-testziele">4. Zusammenfassung der Testziele</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_codedump_tools.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

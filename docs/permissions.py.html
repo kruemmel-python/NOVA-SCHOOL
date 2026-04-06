@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: Berechtigungsmanagement (`permissions.py`) | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: Berechtigungsmanagement (`permissions.py`)</h1>
+          <p>Source: permissions.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-berechtigungsmanagement-permissions-py">Technische Dokumentation: Berechtigungsmanagement (<code>permissions.py</code>)</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>permissions.py</code>) definiert die Struktur und die Regeln für die Berechtigungsverwaltung innerhalb der Anwendung. Sie legt fest, welche Aktionen (Key) welche Labels und welche Kategorien zugeordnet sind, welche Rollen welche Berechtigungen erhalten und welche Mindestanforderungen (Floors) für bestimmte Rollen gelten.</p>
+<h2 id="2-konstanten-und-datenstrukturen">2. Konstanten und Datenstrukturen</h2>
+<h3 id="2-1-permission-definitions">2.1. <code>PERMISSION_DEFINITIONS</code></h3>
+<p>Dies ist eine Tupel von Dictionaries, die die vollständige Liste aller definierten Berechtigungen definieren. Jedes Dictionary enthält drei Schlüssel: <code>key</code>, <code>label</code> und <code>category</code>. <strong>Struktur:</strong> <code>tuple[dict[str, str], ...]</code> <strong>Beispiel-Eintrag:</strong></p>
+<pre><code class="language-python">{&quot;key&quot;: &quot;project.create&quot;, &quot;label&quot;: &quot;Projekte erstellen&quot;, &quot;category&quot;: &quot;Arbeitsbereich&quot;}</code></pre>
+<h3 id="2-2-permission-keys">2.2. <code>PERMISSION_KEYS</code></h3>
+<p>Eine Tupel, die alle <code>key</code>-Strings aus <code>PERMISSION_DEFINITIONS</code> extrahiert. Diese dienen als eindeutige Identifikatoren für alle Berechtigungen. <strong>Struktur:</strong> <code>tuple[str, ...]</code></p>
+<h3 id="2-3-all-true">2.3. <code>_ALL_TRUE</code></h3>
+<p>Ein Satz (Set), der alle Berechtigungs-Keys enthält, um schnell zu prüfen, ob eine Berechtigung definiert ist. <strong>Struktur:</strong> <code>set[str]</code></p>
+<h3 id="2-4-role-defaults">2.4. <code>ROLE_DEFAULTS</code></h3>
+<p>Ein Dictionary, das die Standardberechtigungen für verschiedene Benutzerrollen definiert. Jede Rolle ist ein Dictionary, das den Berechtigungs-Keys als Schlüssel und einen Boolean-Wert (True/False) als Wert enthält. <strong>Struktur:</strong> <code>dict[str, dict[str, bool]]</code> <strong>Definitionen der Rollen:</strong></p>
+<ul>
+<li>**<code>&quot;student&quot;</code>**: Definiert die Berechtigungen für Studierende.</li>
+<li>**<code>&quot;teacher&quot;</code>**: Definiert die Berechtigungen für Lehrkräfte.</li>
+<li>**<code>&quot;admin&quot;</code>**: Definiert die Berechtigungen für Administratoren.</li>
+<p><strong>Beispiel (Auszug für &quot;student&quot;):</strong></p>
+</ul>
+<pre><code class="language-python">&quot;student&quot;: {
+&quot;project.create&quot;: True,
+&quot;workspace.personal&quot;: True,
+# ... weitere Berechtigungen
+&quot;web.access&quot;: False,  # Beispiel für eine verweigerte Berechtigung
+&quot;ai.use&quot;: True,
+# ...
+}</code></pre>
+<p><strong>Beispiel (Auszug für &quot;admin&quot;):</strong></p>
+<pre><code class="language-python">&quot;admin&quot;: dict(_ALL_TRUE)  # Alle definierten Berechtigungen sind True</code></pre>
+<h3 id="2-5-role-permission-floors">2.5. <code>ROLE_PERMISSION_FLOORS</code></h3>
+<p>Ein Dictionary, das die Mindestanforderungen (Floors) für bestimmte Rollen definiert. <strong>Struktur:</strong> <code>dict[str, dict[str, bool]]</code> <strong>Definitionen der Floors:</strong></p>
+<ul>
+<li>**<code>&quot;admin&quot;</code>**: Erhält alle Berechtigungen (<code>dict(_ALL_TRUE)</code>).</li>
+</ul>
+<h2 id="3-funktionsweise-und-logik">3. Funktionsweise und Logik</h2>
+<p>Die Datei dient primär als <strong>Konfigurations- und Referenzpunkt</strong> für das Berechtigungs-System.</p>
+<ol>
+<li><strong>Definition:</strong> <code>PERMISSION_DEFINITIONS</code> definiert das gesamte Berechtigungs-Schema.</li>
+<li><strong>Referenz:</strong> <code>PERMISSION_KEYS</code> und <code>_ALL_TRUE</code> ermöglichen eine schnelle Abfrage der gesamten Berechtigungsmenge.</li>
+<li><strong>Rollenzuweisung:</strong> <code>ROLE_DEFAULTS</code> speichert die spezifische Berechtigungsmatrix für jede Rolle.</li>
+<li><strong>Mindestanforderungen:</strong> <code>ROLE_PERMISSION_FLOORS</code> definiert, welche Berechtigungen eine Rolle <em>mindestens</em> besitzen muss, um bestimmte Funktionen nutzen zu können.</li>
+<p><strong>Implizite Logik (für das verwendete System):</strong> Ein Benutzer erhält eine bestimmte Berechtigung, wenn:</p>
+<li>Die Berechtigung in der <code>ROLE_DEFAULTS</code> für die zugewiesene Rolle explizit auf <code>True</code> gesetzt ist.</li>
+<li>(Optional, aber impliziert durch die Struktur) Die Berechtigung erfüllt die Anforderungen der <code>ROLE_PERMISSION_FLOORS</code>.</li>
+</ol>
+<h2 id="4-zusammenfassung-der-rollen-berechtigungen">4. Zusammenfassung der Rollen-Berechtigungen</h2>
+<table><thead><tr>
+<th>Rolle</th>
+<th>Schlüsselberechtigungen (Beispiele)</th>
+<th>Besonderheiten</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>student</strong></td>
+<td><code>project.create</code>, <code>run.*</code>, <code>ai.use</code>, <code>docs.read</code></td>
+<td>Begrenzte Zugriffsberechtigungen (z.B. <code>web.access: False</code>).</td>
+</tr>
+<tr>
+<td><strong>teacher</strong></td>
+<td><code>project.create</code>, <code>web.access</code>, <code>curriculum.manage</code>, <code>teacher.chat.*</code></td>
+<td>Erweitertes Management- und Moderationsrecht.</td>
+</tr>
+<tr>
+<td><strong>admin</strong></td>
+<td>Alle Berechtigungen (<code>dict(_ALL_TRUE)</code>)</td>
+<td>Voller Zugriff auf alle Funktionen.</td>
+</tr>
+</tbody></table>
+<p>--- <strong>Hinweis:</strong> Diese Dokumentation basiert ausschließlich auf dem bereitgestellten Codeausschnitt. Für eine vollständige Funktionsbeschreibung des Berechtigungsmechanismus müssten die Implementierungsdateien (die die Logik zur Überprüfung der Berechtigungen ausführen) konsultiert werden.</p>
+<h1 id="technische-dokumentation-permissions-py">Technische Dokumentation: <code>permissions.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Die Datei <code>permissions.py</code> enthält eine Reihe von Funktionen, die für die Verwaltung, Normalisierung und Auflösung von Berechtigungen (Permissions) in einem System zuständig sind. Diese Funktionen ermöglichen es, Berechtigungen basierend auf Rollen, Gruppenüberschreibungen und Benutzerüberschreibungen zu bestimmen.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-normalize-permission-overrides-raw-dict-str-any-none-dict-str-bool">1. <code>normalize_permission_overrides(raw: dict[str, Any] | None] -&gt; dict[str, bool]</code></h3>
+<p><strong>Zweck:</strong> Normalisiert ein rohes Dictionary von Berechtigungsüberschreibungen in ein Dictionary, das nur <code>str</code>-Schlüssel und <code>bool</code>-Werte enthält. <strong>Parameter:</strong></p>
+<ul>
+<li><code>raw: dict[str, Any] | None</code>: Ein optionales Dictionary, das die Rohdaten der Berechtigungsüberschreibungen enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, bool]</code>: Ein Dictionary, das die bereinigten Berechtigungen enthält.</li>
+<p><strong>Beschreibung:</strong> Diese Funktion filtert das eingegebene Dictionary, indem sie nur Schlüssel behält, die in <code>PERMISSION_KEYS</code> definiert sind, und ignoriert Werte, die <code>None</code> sind. Alle Werte werden explizit in einen Boolean-Wert umgewandelt (<code>bool(value)</code>). <strong>Details:</strong></p>
+<li>Wenn <code>raw</code> <code>None</code> ist, wird ein leeres Dictionary zurückgegeben.</li>
+<li>Schlüssel, die nicht in <code>PERMISSION_KEYS</code> enthalten sind, oder Werte, die <code>None</code> sind, werden ignoriert.</li>
+<p>---</p>
+</ul>
+<h3 id="2-resolve-permissions-role-str-group-overrides-list-dict-str-any-none-none-user-overrides-dict-str-any-none-none-dict-str-bool">2. <code>resolve_permissions(role: str, group_overrides: list[dict[str, Any]] | None = None, user_overrides: dict[str, Any] | None = None) -&gt; dict[str, bool]</code></h3>
+<p><strong>Zweck:</strong> Berechnet das effektive Set von Berechtigungen für eine bestimmte Rolle unter Berücksichtigung von Gruppenüberschreibungen und Benutzerüberschreibungen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>role: str</code>: Die Rolle, für die die Berechtigungen aufgelöst werden sollen.</li>
+<li><code>group_overrides: list[dict[str, Any]] | None</code>: Eine Liste von Dictionaries, die spezifische Berechtigungen für Gruppenüberschreibungen enthalten.</li>
+<li><code>user_overrides: dict[str, Any] | None</code>: Ein optionales Dictionary mit Berechtigungsüberschreibungen, die durch den Benutzer gesetzt werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, bool]</code>: Das finale Dictionary mit den effektiven Berechtigungen (Schlüssel: Berechtigungsname, Wert: <code>True</code> oder <code>False</code>).</li>
+<p><strong>Beschreibung:</strong> Diese Funktion folgt einer hierarchischen Logik zur Bestimmung der Berechtigungen:</p>
+</ul>
+<ol>
+<li><strong>Basiswert:</strong> Sie beginnt mit den Standardberechtigungen (<code>ROLE_DEFAULTS</code>) der angegebenen <code>role</code> (Standardwert ist <code>&quot;student&quot;</code>).</li>
+<li><strong>Gruppenüberschreibungen:</strong> Sie prüft die <code>group_overrides</code>.</li>
+</ol>
+<ul>
+<li>Wenn für eine bestimmte Berechtigung in <em>allen</em> Gruppenüberschreibungen ein <code>False</code> gesetzt ist, wird die Berechtigung auf <code>False</code> gesetzt.</li>
+<li>Wenn für eine bestimmte Berechtigung in <em>mindestens einem</em> Gruppenüberschreibungen ein <code>True</code> gesetzt ist, wird die Berechtigung auf <code>True</code> gesetzt.</li>
+</ul>
+<ol>
+<li><strong>Benutzerüberschreibungen:</strong> Die Ergebnisse der Normalisierung von <code>user_overrides</code> werden verwendet, um die Berechtigungen zu überschreiben.</li>
+<li><strong>Rollen-Floor-Regeln:</strong> Sie prüft die <code>ROLE_PERMISSION_FLOORS</code> für die Rolle. Wenn ein Wert in <code>ROLE_PERMISSION_FLOORS</code> für einen Schlüssel <code>True</code> ist, wird die entsprechende Berechtigung auf <code>True</code> gesetzt (was eine Art &quot;Floor&quot;-Regel darstellt).</li>
+<p>---</p>
+</ol>
+<h3 id="3-permission-catalog-list-dict-str-str">3. <code>permission_catalog() -&gt; list[dict[str, str]]</code></h3>
+<p><strong>Zweck:</strong> Generiert einen Katalog aller definierten Berechtigungen. <strong>Parameter:</strong></p>
+<ul>
+<li>Keine.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[dict[str, str]]</code>: Eine Liste von Dictionaries, wobei jedes Dictionary eine Berechtigung definiert (wahrscheinlich Schlüssel: Berechtigungsname, Wert: Beschreibung oder Definition).</li>
+<p><strong>Beschreibung:</strong> Diese Funktion konvertiert die internen <code>PERMISSION_DEFINITIONS</code> in ein Format, das für die Dokumentation oder die Darstellung der Berechtigungen geeignet ist. ---</p>
+</ul>
+<h3 id="4-allowed-tool-names-permissions-dict-str-bool-tuple-str">4. <code>allowed_tool_names(permissions: dict[str, bool]) -&gt; tuple[str, ...]</code></h3>
+<p><strong>Zweck:</strong> Filtert ein Set von Berechtigungen, um eine Tupel von Berechtigungsnamen zurückzugeben, die für die Ausführung eines bestimmten Tools erlaubt sind. <strong>Parameter:</strong></p>
+<ul>
+<li><code>permissions: dict[str, bool]</code>: Ein Dictionary der effektiven Berechtigungen (Schlüssel: Berechtigungsname, Wert: <code>True</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>tuple[str, ... ]</code>: Ein Tupel von Strings, die die Namen der erlaubten Berechtigungen darstellen.</li>
+<p><strong>Beschreibung:</strong> Diese Funktion wählt alle Schlüssel aus dem <code>permissions</code>-Dictionary aus, für die der Wert <code>True</code> ist, sortiert diese alphabetisch und gibt sie als Tupel zurück. ---</p>
+</ul>
+<h2 id="abh-ngigkeiten-und-konstanten-impliziert">Abhängigkeiten und Konstanten (Impliziert)</h2>
+<p>Die Funktion <code>permissions.py</code> basiert auf folgenden internen Konstanten, die in der Datei definiert sein müssen:</p>
+<ul>
+<li>**<code>PERMISSION_KEYS</code>**: Eine Liste oder ein Satz von Strings, die die gültigen Berechtigungsnamen definieren.</li>
+<li>**<code>ROLE_DEFAULTS</code>**: Ein Dictionary, das Standardberechtigungen für verschiedene Rollen definiert.</li>
+<li>**<code>PERMISSION_DEFINITIONS</code>**: Eine Liste von Dictionaries, die die detaillierten Definitionen aller Berechtigungen enthalten.</li>
+<li>**<code>ROLE_PERMISSION_FLOORS</code>**: Ein Dictionary, das spezifische Regeln definiert, die die Berechtigungen für bestimmte Rollen beeinflussen (Floor-Regeln).</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<ol>
+<li><strong>Berechtigungsprüfung:</strong> Rufen Sie <code>resolve_permissions(role, group_overrides, user_overrides)</code> auf, um festzustellen, welche Berechtigungen eine bestimmte Rolle unter gegebenen Bedingungen besitzt.</li>
+<li><strong>Tool-Filterung:</strong> Rufen Sie <code>allowed_tool_names(effective_permissions)</code> auf, um schnell zu prüfen, welche Tools ein Benutzer aufgrund seiner Berechtigungen nutzen darf.</li>
+<li><strong>Katalog-Management:</strong> Nutzen Sie <code>permission_catalog()</code> zur Erstellung oder Aktualisierung der Definitionen aller Berechtigungen.</li>
+<li><strong>Datenbereinigung:</strong> <code>normalize_permission_overrides</code> wird intern verwendet, um externe Daten sauber in das interne Boolean-Format zu überführen.</li>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-konstanten-und-datenstrukturen">2. Konstanten und Datenstrukturen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-permission-definitions">2.1. `PERMISSION_DEFINITIONS`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-permission-keys">2.2. `PERMISSION_KEYS`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-all-true">2.3. `_ALL_TRUE`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-role-defaults">2.4. `ROLE_DEFAULTS`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-5-role-permission-floors">2.5. `ROLE_PERMISSION_FLOORS`</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsweise-und-logik">3. Funktionsweise und Logik</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-rollen-berechtigungen">4. Zusammenfassung der Rollen-Berechtigungen</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-normalize-permission-overrides-raw-dict-str-any-none-dict-str-bool">1. `normalize_permission_overrides(raw: dict[str, Any] | None] -&gt; dict[str, bool]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-resolve-permissions-role-str-group-overrides-list-dict-str-any-none-none-user-overrides-dict-str-any-none-none-dict-str-bool">2. `resolve_permissions(role: str, group_overrides: list[dict[str, Any]] | None = None, user_overrides: dict[str, Any] | None = None) -&gt; dict[str, bool]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-permission-catalog-list-dict-str-str">3. `permission_catalog() -&gt; list[dict[str, str]]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-allowed-tool-names-permissions-dict-str-bool-tuple-str">4. `allowed_tool_names(permissions: dict[str, bool]) -&gt; tuple[str, ...]`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-konstanten-impliziert">Abhängigkeiten und Konstanten (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "permissions.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

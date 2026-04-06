@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_realtime.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_realtime.py`</h1>
+          <p>Source: test_realtime.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-realtime-py">Technische Dokumentation: <code>test_realtime.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>test_realtime.py</code>) scheint eine Test- oder Hilfsklasse zu sein, die Komponenten aus dem <code>nova_school_server</code>-Framework simuliert oder testet, insbesondere im Kontext von Echtzeit-Funktionalitäten (WebSocket-Verbindungen, Code-Ausführung, Benutzer-Sitzungen). Die Datei definiert mehrere interne Klassen (<code>_FakeToolSandbox</code>, <code>_Session</code>, <code>_TeacherSession</code>, <code>_RecordingConnection</code>), die wahrscheinlich zur Simulation von Authentifizierungsmechanismen, Benutzerrollen und der Protokollierung von Ereignissen in Echtzeit-Verbindungen dienen.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei enthält die folgenden definierten Klassen:</p>
+<h3 id="2-1-faketoolsandbox">2.1. <code>_FakeToolSandbox</code></h3>
+<p>Diese Klasse dient wahrscheinlich als Mock oder Fake für einen Tool-Sandbox-Mechanismus.</p>
+<ul>
+<li><strong>Methode:</strong> <code>authorize(self, *_args, **_kwargs)</code></li>
+<li><strong>Beschreibung:</strong> Simuliert die Autorisierung eines Benutzers oder einer Anfrage.</li>
+<li><strong>Rückgabe:</strong> Ein Dictionary, das den Status der Autorisierung zurückgibt: <code>{&quot;authorized&quot;: True}</code>.</li>
+</ul>
+<h3 id="2-2-session-basisklasse">2.2. <code>_Session</code> (Basisklasse)</h3>
+<p>Diese Klasse definiert die grundlegenden Eigenschaften und Berechtigungen für eine Benutzer-Sitzung.</p>
+<ul>
+<li><strong>Attribute:</strong></li>
+<li><code>username</code>: Standardmäßig <code>&quot;student&quot;</code>.</li>
+<li><code>role</code>: Standardmäßig <code>&quot;student&quot;</code>.</li>
+<li><code>is_teacher</code>: Standardmäßig <code>False</code>.</li>
+<li><code>permissions</code>: Ein Dictionary, das die Berechtigungen für verschiedene Operationen (z.B. Code-Ausführungstypen wie <code>run.python</code>, <code>web.access</code>) definiert.</li>
+</ul>
+<h3 id="2-3-teachersession-abstrakte-erweiterte-sitzung">2.3. <code>_TeacherSession</code> (Abstrakte/Erweiterte Sitzung)</h3>
+<p>Diese Klasse erbt von <code>_Session</code> und definiert die spezifischen Eigenschaften für Lehrer-Sitzungen.</p>
+<ul>
+<li><strong>Attribute:</strong></li>
+<li><code>username</code>: Standardmäßig <code>&quot;teacher&quot;</code>.</li>
+<li><code>role</code>: Standardmäßig <code>&quot;teacher&quot;</code>.</li>
+<li><code>is_teacher</code>: Standardmäßig <code>True</code>.</li>
+</ul>
+<h3 id="2-4-recordingconnection">2.4. <code>_RecordingConnection</code></h3>
+<p>Diese Klasse ist verantwortlich für die Protokollierung von Ereignissen, die über eine Verbindung (wahrscheinlich eine WebSocket-Verbindung) gesendet werden.</p>
+<ul>
+<li><strong>Attribute:</strong></li>
+<li><code>events</code>: Eine Liste (<code>list[dict[str, object]]</code>), die alle gesammelten Ereignisse speichert.</li>
+<li><code>_lock</code>: Ein <code>threading.Lock</code>, der für den Thread-sicheren Zugriff auf die <code>events</code>-Liste sorgt.</li>
+<li><strong>Methoden:</strong></li>
+<li><code>send_json(self, payload: dict)</code></li>
+<li><strong>Beschreibung:</strong> Fügt ein gegebenes JSON-Payload zur Ereignisliste hinzu.</li>
+<li><strong>Sicherheit:</strong> Nutzt einen <code>threading.Lock</code>, um Race Conditions bei der Modifikation der Liste zu verhindern.</li>
+<li><code>snapshot(self) -&gt; list[dict[str, object]]</code></li>
+<li><strong>Beschreibung:</strong> Gibt den aktuellen Zustand der Ereignisliste zurück.</li>
+<li><strong>Sicherheit:</strong> Nutzt einen <code>threading.Lock</code>, um einen sicheren Abruf der Liste zu gewährleisten.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-importe">3. Abhängigkeiten und Importe</h2>
+<p>Die Datei importiert verschiedene Module aus dem <code>nova_school_server</code>-Paket:</p>
+<ul>
+<li><code>importlib.util</code>, <code>os</code>, <code>random</code>, <code>struct</code>, <code>tempfile</code>, <code>threading</code>, <code>time</code>, <code>unittest</code>, <code>pathlib.Path</code>: Standard-Python-Bibliotheken für Systemoperationen, Zufallsgenerierung, Datenstruktur-Manipulation, Threading und Test-Frameworks.</li>
+<li><code>CodeRunner</code>: Wahrscheinlich für die Ausführung von Code.</li>
+<li><code>ServerConfig</code>: Für Serverkonfigurationen.</li>
+<li><code>SchoolRepository</code>: Für die Verwaltung von Schuldaten.</li>
+<li><code>MAX_CLIENT_WS_FRAME_BYTES</code>, <code>LiveRunManager</code>, <code>RealtimeClient</code>, <code>WebSocketConnection</code>: Kernkomponenten für Echtzeit-Kommunikation und Live-Ausführungen.</li>
+<li><code>WorkspaceManager</code>: Für die Verwaltung von Arbeitsbereichen.</li>
+</ul>
+<h2 id="4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</h2>
+<p><code>test_realtime.py</code> dient als <strong>Test- oder Mock-Setup-Layer</strong> für die Echtzeit-Komponenten des Servers. Es implementiert Mechanismen zur:</p>
+<ol>
+<li><strong>Sitzungsverwaltung:</strong> Definition von Benutzerrollen und Berechtigungen (<code>_Session</code>, <code>_TeacherSession</code>).</li>
+<li><strong>Tool-Sicherheit:</strong> Simulation der Autorisierung (<code>_FakeToolSandbox</code>).</li>
+<li><strong>Ereignisprotokollierung:</strong> Sichere Speicherung von Daten über Verbindungen (<code>_RecordingConnection</code>).</li>
+<p>Diese Klassen legen die Grundlage dafür, wie Benutzerinteraktionen, Code-Ausführungen und Echtzeit-Updates im System verarbeitet und protokolliert werden.</p>
+</ol>
+<h1 id="technische-dokumentation-fakesocket-klasse">Technische Dokumentation: <code>_FakeSocket</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>_FakeSocket</code> ist eine Simulationsklasse, die die Funktionalität eines Netzwerk-Sockets (Socket) für Testzwecke bereitstellt. Sie dient dazu, die Kommunikation zwischen verschiedenen Komponenten zu simulieren, insbesondere das Lesen (<code>recv</code>) und Schreiben (<code>sendall</code>) von Daten in Chunks.</p>
+<h2 id="2-klasse-fakesocket">2. Klasse: <code>_FakeSocket</code></h2>
+<p>Diese Klasse implementiert eine vereinfachte Version eines Sockets, die Daten in diskreten Teilen (Chunks) verarbeitet und die Möglichkeit bietet, Timeout-Verhalten zu simulieren.</p>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert den Zustand des Fake-Sockets. <strong>Parameter:</strong></p>
+<ul>
+<li><code>chunks: list[bytes] = None</code>: Eine Liste von Datenfragmenten (<code>bytes</code>), die als Puffer für zukünftige Empfangsvorgänge dienen. Wenn <code>None</code> angegeben wird, wird eine leere Liste erstellt.</li>
+<li><code>raise_timeout: bool = False</code>: Ein boolescher Flag, das bestimmt, ob der <code>recv</code>-Aufruf bei Timeout-Bedingungen eine <code>TimeoutError</code> auslösen soll.</li>
+<p><strong>Attribute:</strong></p>
+<li><code>self.timeout: str = &quot;unset&quot;</code>: Speichert den aktuellen Timeout-Status. Standardwert ist <code>&quot;unset&quot;</code>.</li>
+<li><code>self.chunks: list[bytes]</code>: Eine Liste von Datenfragmenten, die noch empfangen werden müssen.</li>
+<li><code>self.raise_timeout: bool</code>: Flag, das die Timeout-Verhalten steuert.</li>
+<li><code>self.sent_frames: list[bytes]</code>: Eine Liste von Datenblöcken (<code>bytes</code>), die über die Methode <code>sendall</code> gesendet wurden.</li>
+<p><strong>Spezielle Methoden:</strong></p>
+<li><code>settimeout(value: str) -&gt; None</code>: Setzt den Timeout-Status des Sockets.</li>
+<li><code>recv(size: int) -&gt; bytes</code>: Simuliert den Empfang von Daten.</li>
+<li><code>sendall(data: bytes) -&gt; None</code>: Simuliert das Senden von Daten.</li>
+<li><code>shutdown(_how: None) -&gt; None</code>: Simuliert den Shutdown-Prozess (aktuell leer).</li>
+<li><code>close() -&gt; None</code>: Simuliert das Schließen des Sockets (aktuell leer).</li>
+</ul>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="2-2-1-settimeout-self-value-str-none">2.2.1. <code>settimeout(self, value: str) -&gt; None</code></h4>
+<p>Setzt den Timeout-Status des Sockets auf den angegebenen Wert.</p>
+<ul>
+<li>**<code>value</code>**: Der neue Timeout-Wert (String).</li>
+</ul>
+<h4 id="2-2-2-recv-self-size-int-bytes">2.2.2. <code>recv(self, size: int) -&gt; bytes</code></h4>
+<p>Simuliert den Empfang von <code>size</code> Bytes von der verbundenen Quelle. <strong>Funktionsweise:</strong></p>
+<ol>
+<li><strong>Timeout-Prüfung:</strong> Prüft, ob <code>self.raise_timeout</code> auf <code>True</code> gesetzt ist. Wenn ja, wird eine <code>TimeoutError(&quot;timed out&quot;)</code> geworfen.</li>
+<li><strong>Chunk-Verarbeitung:</strong> Wenn <code>self.chunks</code> nicht leer ist:</li>
+</ol>
+<ul>
+<li>Der erste Chunk (<code>self.chunks[0]</code>) wird entfernt und als <code>chunk</code> extrahiert.</li>
+<li>Die ersten <code>size</code> Bytes dieses Chunks werden als Ergebnis zurückgegeben (<code>current</code>).</li>
+<li>Der Rest des Chunks (<code>remainder</code>) wird geprüft. Wenn dieser Rest existiert, wird er wieder an den Anfang der <code>self.chunks</code>-Liste eingefügt.</li>
+</ul>
+<ol>
+<li><strong>Ende der Daten:</strong> Wenn <code>self.chunks</code> leer ist, wird eine leere Byte-Sequenz (<code>b&quot;&quot;</code>) zurückgegeben.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li><code>size: int</code>: Die maximale Anzahl von Bytes, die vom Socket empfangen werden sollen.</li>
+<p><strong>Rückgabetyp:</strong></p>
+<li><code>bytes</code>: Die empfangenen Bytes (maximal <code>size</code> Bytes).</li>
+</ul>
+<h4 id="2-2-3-sendall-self-data-bytes-none">2.2.3. <code>sendall(self, data: bytes) -&gt; None</code></h4>
+<p>Simuliert das Senden von Daten an den verbundenen Partner. <strong>Funktionsweise:</strong></p>
+<ul>
+<li>Die gesamte übermittelte <code>data</code>-Sequenz wird zur Liste <code>self.sent_frames</code> hinzugefügt.</li>
+<p><strong>Parameter:</strong></p>
+<li><code>data: bytes</code>: Die Daten, die gesendet werden sollen.</li>
+</ul>
+<h4 id="2-2-4-shutdown-self-how-none-none">2.2.4. <code>shutdown(self, _how: None) -&gt; None</code></h4>
+<p>Simuliert den Shutdown-Prozess des Sockets.</p>
+<ul>
+<li><strong>Parameter:</strong></li>
+<li><code>_how</code>: Optionaler Parameter, der den Art des Shutdowns angibt (aktuell nicht implementiert).</li>
+</ul>
+<h4 id="2-2-5-close-self-none">2.2.5. <code>close(self) -&gt; None</code></h4>
+<p>Simuliert das Schließen des Sockets.</p>
+<ul>
+<li><strong>Funktionsweise:</strong> Keine spezifische Aktion implementiert (aktuell leer).</li>
+</ul>
+<h2 id="3-verwendung-beispiel">3. Verwendung (Beispiel)</h2>
+<pre><code class="language-python"># Beispiel-Nutzung
+from test_realtime import _FakeSocket
+# 1. Initialisierung mit einigen Datenchunks
+data_chunk_1 = b&quot;Hello, &quot;
+data_chunk_2 = b&quot;World!&quot;
+socket_sim = _FakeSocket(chunks=[data_chunk_1, data_chunk_2])
+# 2. Empfangen von 5 Bytes
+received_data = socket_sim.recv(5)
+print(f&quot;Empfangen: {received_data}&quot;)  # Ausgabe: b&#x27;Hell&#x27;
+# 3. Senden von Daten
+socket_sim.sendall(b&quot;Data sent&quot;)
+# 4. Empfangen des Restes des ersten Chunks
+received_data_2 = socket_sim.recv(10)
+print(f&quot;Empfangen: {received_data_2}&quot;) # Ausgabe: b&#x27;o, World!&#x27; (oder entsprechend der Logik)
+# 5. Timeout-Simulation (falls raise_timeout=True gesetzt wäre)
+# socket_sim.settimeout(&quot;5s&quot;)
+# try:
+#     socket_sim.recv(100)
+# except TimeoutError as e:
+#     print(f&quot;Timeout erfasst: {e}&quot;)</code></pre>
+<h2 id="4-api-struktur-zusammenfassung">4. API-Struktur (Zusammenfassung)</h2>
+<table><thead><tr>
+<th>Methode</th>
+<th>Beschreibung</th>
+<th>Parameter(s)</th>
+<th>Rückgabe</th>
+</tr></thead><tbody>
+<tr>
+<td><code>__init__(chunks, raise_timeout)</code></td>
+<td>Initialisiert den Socket-Zustand.</td>
+<td><code>chunks: list[bytes]</code>, <code>raise_timeout: bool</code></td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>settimeout(value)</code></td>
+<td>Setzt den Timeout-Status.</td>
+<td><code>value: str</code></td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>recv(size)</code></td>
+<td>Simuliert das Lesen von <code>size</code> Bytes.</td>
+<td><code>size: int</code></td>
+<td><code>bytes</code></td>
+</tr>
+<tr>
+<td><code>sendall(data)</code></td>
+<td>Simuliert das Senden von <code>data</code> Bytes.</td>
+<td><code>data: bytes</code></td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>shutdown(_how)</code></td>
+<td>Simuliert den Socket-Shutdown.</td>
+<td><code>_how: None</code></td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Simuliert das Schließen des Sockets.</td>
+<td><code>None</code></td>
+<td><code>None</code></td>
+</tr>
+</tbody></table>
+<h1 id="technische-dokumentation-test-realtime-py">Technische Dokumentation: <code>test_realtime.py</code></h1>
+<h2 id="berblick">Überblick</h2>
+<p>Diese Dokumentation beschreibt die Funktionen, die in der Datei <code>test_realtime.py</code> definiert sind. Die Funktionen scheinen Teil eines Systems zu sein, das mit der Verarbeitung und Maskierung von Daten (wahrscheinlich in einem Netzwerk- oder Protokollkontext) arbeitet, sowie mit der Chunking-Operation von Daten.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-build-masked-frame">1. <code>_build_masked_frame</code></h3>
+<p>Diese interne Funktion ist dafür verantwortlich, einen verschlüsselten oder maskierten Datenrahmen (Frame) zu konstruieren. Sie berechnet den Header und den optional maskierten Payload basierend auf verschiedenen Parametern. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _build_masked_frame(
+*,
+opcode: int = 0x1,
+payload: bytes = b&quot;&quot;,
+fin: bool = True,
+masked: bool = True,
+rsv: int = 0,
+mask_key: bytes = b&quot;\x01\x02\x03\x04&quot;,
+declared_length: int | None = None,
+) -&gt; bytes:
+&quot;&quot;&quot;
+Baut einen Datenrahmen (Frame) zusammen, der optional maskiert wird.
+Args:
+opcode: Der Operationscode (standardmäßig 0x1).
+payload: Die eigentlichen Daten, die verschraubt werden sollen.
+fin: Flag, ob der Frame als Ende (Finish) gekennzeichnet ist (standardmäßig True).
+masked: Flag, ob der Payload maskiert werden soll (standardmäßig True).
+rsv: Reserved-Bit-Wert für den Header.
+mask_key: Eine Schlüsselsequenz (4 Bytes), die für die Maskierung verwendet wird.
+declared_length: Optionaler deklarierter Länge des Payloads. Wenn None, wird die tatsächliche Länge verwendet.
+Returns:
+Die vollständige Byte-Sequenz des Frames (Header + optional Maskierung + Payload).
+&quot;&quot;&quot;
+# 1. Header-Berechnung
+first = (0x80 if fin else 0x00) | (rsv &amp; 0x70) | (opcode &amp; 0x0F)
+actual_length = len(payload)
+wire_length = actual_length if declared_length is None else max(0, int(declared_length))
+second_base = 0x80 if masked else 0x00
+# Header-Typisierung basierend auf der Wire Length
+if wire_length &lt; 126:
+# Header: [first, second_base | wire_length]
+header = bytes([first, second_base | wire_length])
+elif wire_length &lt; 65536:
+# Header: [first, second_base | 126], gefolgt von der 2-Byte-Länge (H)
+header = bytes([first, second_base | 126]) + struct.pack(&quot;!H&quot;, wire_length)
+else:
+# Header: [first, second_base | 127], gefolgt von der 8-Byte-Länge (Q)
+header = bytes([first, second_base | 127]) + struct.pack(&quot;!Q&quot;, wire_length)
+# 2. Payload-Verarbeitung
+if not masked:
+# Wenn nicht maskiert, Header + Payload
+return header + payload
+# Wenn maskiert: Byte-für-Byte-XOR-Maskierung
+masked_payload = bytes(byte ^ mask_key[index % 4] for index, byte in enumerate(payload))
+# Endergebnis: Header + Maskenschlüssel + Maskierter Payload
+return header + mask_key + masked_payload
+### 2. `_chunk_bytes`
+Diese Funktion ist dafür verantwortlich, eine Byte-Sequenz in eine Liste von kleineren, zufällig definierten Byte-Chunks zu zerlegen.
+**Signature:**</code></pre>
+<p>def _chunk_bytes(data: bytes, seed: int) -&gt; list[bytes]: &quot;&quot;&quot; Zerlegt eine Byte-Sequenz in zufällig große Chunks basierend auf einem Seed. Args: data: Die zu zerlegende Byte-Sequenz. seed: Der Zufallsgenerator-Seed, um die Chunk-Größen zu bestimmen. Returns: Eine Liste von Byte-Objekten (Chunks). &quot;&quot;&quot; randomizer = random.Random(seed) index = 0 chunks: list[bytes] = [] while index &lt; len(data):</p>
+<h1 id="bestimmt-die-gr-e-des-n-chsten-chunks-zwischen-1-und-7-bytes">Bestimmt die Größe des nächsten Chunks zwischen 1 und 7 Bytes</h1>
+<p>step = randomizer.randint(1, 7) chunks.append(data[index : index + step]) index += step return chunks</p>
+<pre><code>## Zusammenfassung der Logik
+1. **Frame-Konstruktion (`_build_masked_frame`):**
+* Berechnet einen Header basierend auf der gewünschten `fin`-Flag, `rsv`-Wert und `opcode`.
+* Bestimmt die Länge des Frames (`wire_length`) und formatiert den Header entsprechend der Länge (klein, mittel oder groß).
+* Wenn `masked=True`, wird der Payload durch eine XOR-Operation mit einem zyklischen `mask_key` verschlüsselt.
+* Das Ergebnis ist `Header + Maskenschlüssel + Maskierter Payload`.
+2. **Daten-Chunking (`_chunk_bytes`):**
+* Initialisiert einen Zufallsgenerator mit dem bereitgestellten `seed`.
+* Iteriert durch die Eingabedaten und teilt sie in Segmente (Chunks) auf, wobei die Größe jedes Segments zufällig zwischen 1 und 7 Bytes liegt.
+## Abhängigkeiten
+* **`struct`:** Wird für die Serialisierung/Deserialisierung von Integer-Typen (`!H` für 2-Byte-Unsigned Short, `!Q` für 8-Byte-Unsigned Long) verwendet.
+* **`random`:** Wird für die Generierung zufälliger Chunk-Größen verwendet.
+---
+*Diese Dokumentation basiert ausschließlich auf dem bereitgestellten Codeausschnitt.*
+
+## Technische Dokumentation: Funktion `_random_frame(seed: int) -&gt; bytes`
+**Datei:** `test_realtime.py`
+**Funktion:** `_random_frame(seed: int) -&gt; bytes`
+---
+### 1. Beschreibung
+Die Funktion `_random_frame` ist eine interne Hilfsfunktion, die basierend auf einem gegebenen `seed`-Wert ein zufälliges Datenpaket (Frame) generiert. Diese Funktion simuliert die Erstellung von Datenpaketen, die wahrscheinlich für eine Echtzeit- oder Netzwerkkommunikationsanwendung relevant sind, indem sie verschiedene Frame-Typen (basierend auf einem zufälligen Modus) generiert.
+Die Funktion verwendet einen `random.Random`-Instanz, initialisiert mit dem bereitgestellten `seed`, um reproduzierbare, aber zufällige Ergebnisse zu gewährleisten.
+### 2. Signatur</code></pre>
+<p>def _random_frame(seed: int) -&gt; bytes:</p>
+<h1 id="implementierung">... Implementierung ...</h1>
+<p>return bytes</p>
+<pre><code>* **Name:** `_random_frame`
+* **Parameter:**
+* `seed: int`: Ein Integer-Wert, der als Initialisierungs-Seed für den Zufallsgenerator verwendet wird.
+* **Rückgabe:**
+* `bytes`: Ein Byte-String, der den generierten Frame darstellt.
+### 3. Logik und Funktionsweise
+Die Funktion führt eine sequenzielle Logik aus, um den Frame zu bestimmen:
+1. **Zufallsgenerator initialisieren:** Ein `random.Random`-Objekt wird mit dem übergebenen `seed` initialisiert.
+2. **Modusbestimmung:** Es wird ein zufälliger Modus (`mode`) zwischen 0 und 2 ausgewählt (`randomizer.randrange(4)`).
+3. **Modus-spezifische Generierung:** Basierend auf dem `mode` wird eine der folgenden drei Pfade ausgeführt:
+#### Modus 0: Maskierter Frame mit variabler Payload
+* **Payload-Größe:** Die Größe der Payload wird zufällig zwischen 0 und 47 Bytes gewählt (`randomizer.randrange(0, 48)`).
+* **Payload-Inhalt:** Die Payload besteht aus zufälligen Bytes (0 bis 255).
+* **Frame-Parameter:**
+* `opcode`: Zufällige Wahl zwischen 0 und 15.
+* `fin` (Finish Flag): Zufällig binär (0 oder 1).
+* `masked`: Zufällig binär (0 oder 1).
+* `rsv` (Reserved): Ein Wert, der durch `randomizer.randrange(0, 8)` verschoben wird (`&lt;&lt; 4`).
+* `mask_key`: Eine Schlüssel-Byte-Sequenz von 4 Bytes, generiert aus zufälligen Bytes (0 bis 255).
+* **Ergebnis:** Der generierte Frame wird über die interne Funktion `_build_masked_frame` konstruiert.
+#### Modus 1: Maskierter Frame mit fester Opcode und variabler Länge
+* **Wire Length (Übertragungsgröße):** Die Länge des Frames wird aus einer Liste von Werten gewählt:
+* 126, 127, 200, 1024, oder `MAX_CLIENT_WS_FRAME_BYTES` plus ein zufälliges Byte (0 bis 255).
+* **Payload-Größe:** Die Payload besteht aus zufälligen Bytes, wobei die Größe zwischen 0 und 31 Bytes gewählt wird (`randomizer.randrange(0, 32)`).
+* **Frame-Parameter:**
+* `opcode`: Zufällige Wahl aus $\{0x1, 0x8, 0x9, 0xA\}$.
+* `masked`: Wird explizit auf `True` gesetzt.
+* `declared_length`: Der zuvor gewählte `wire_length`.
+* `mask_key`: Eine Schlüssel-Byte-Sequenz von 4 Bytes, generiert aus zufälligen Bytes (0 bis 255).
+* **Ergebnis:** Der generierte Frame wird über die interne Funktion `_build_masked_frame` konstruiert.
+#### Modus 2: Einfacher, unmaskierter Frame
+* **Payload-Größe:** Die Payload besteht aus zufälligen Bytes, wobei die Größe zwischen 0 und 63 Bytes gewählt wird (`randomizer.randrange(0, 64)`).
+* **Payload-Inhalt:** Zufällige Bytes (0 bis 255).
+* **Frame-Parameter:** Keine spezifischen Opcode- oder Maskierungs-Parameter werden gesetzt.
+* **Ergebnis:** Der generierte Frame besteht ausschließlich aus der generierten Payload.
+#### Standardfall (Fallback)
+* **Payload-Inhalt:** Die Payload besteht aus dem String `&quot;ok-&quot;` gefolgt vom String-Repräsentation des `seed` (kodiert in UTF-8).
+* **Frame-Parameter:**
+* `opcode`: Fest auf `0x1` gesetzt.
+* `masked`: Wird auf `True` gesetzt.
+* **Ergebnis:** Der generierte Frame wird über die interne Funktion `_build_masked_frame` konstruiert.
+### 4. Abhängigkeiten und Konstanten
+* **Abhängigkeiten:**
+* `random` (Standardbibliothek)
+* `_build_masked_frame` (Eine externe, nicht gezeigte Hilfsfunktion, die die eigentliche Frame-Konstruktion übernimmt.)
+* **Konstanten (impliziert):**
+* `MAX_CLIENT_WS_FRAME_BYTES`: Eine definierte Konstante, die die maximale Größe für Modus 1 definiert.
+### 5. Nutzungsszenario
+Diese Funktion wird typischerweise verwendet, um:
+1. Testdaten für Netzwerkprotokolle zu generieren.
+2. Simulierter Datenverkehr in einer Echtzeit-Anwendung zu erstellen.
+3. Reproduzierbare Testfälle zu erstellen, indem der gleichen `seed` verwendet wird.
+### 6. Sicherheit und Robustheit
+* **Zufallsgenerierung:** Die Verwendung von `random.Random(seed)` stellt sicher, dass die Ergebnisse reproduzierbar sind, was für Debugging und Unit-Tests wichtig ist.
+* **Datenintegrität:** Die Funktion generiert Byte-Strings, was die Eignung für Netzwerkprotokolle impliziert.
+* **Fehlermeldungen:** Es wird angenommen, dass die interne Funktion `_build_masked_frame` alle notwendigen Validierungen und Formatierungsprüfungen für die Frame-Struktur durchführt.
+---
+**Zusammenfassung:** `_random_frame` ist ein generischer Frame-Generator, der durch einen Seed initialisiert wird und zufällig zwischen drei definierten Protokoll- oder Frame-Strukturen wechselt.
+
+# Technische Dokumentation: `test_realtime.py`
+## 1. Überblick
+Diese Datei (`test_realtime.py`) enthält eine Sammlung von Unit-Tests, die die Funktionalität der Klasse `WebSocketConnection` und des gesamten Echtzeit-Test-Frameworks (wahrscheinlich `LiveRunManager` und damit verbundene Komponenten) validieren. Die Tests konzentrieren sich auf die korrekte Handhabung von WebSocket-Protokoll-Details, Fehlerbehandlung bei ungültigen Frames und die korrekte Simulation eines Live-Code-Ausführungs-Workflows.
+## 2. Struktur und Komponenten
+Die Datei implementiert eine Testklasse `RealtimeTests`, die alle spezifischen Testfälle kapselt.
+### 2.1. Klasse: `RealtimeTests(unittest.TestCase)`
+Diese Klasse erbt von `unittest.TestCase` und verwendet Assertions, um die erwarteten Verhaltensweisen der Systemkomponenten zu überprüfen.
+## 3. Detaillierte Analyse der Testfälle
+Die Tests lassen sich in mehrere Hauptkategorien einteilen: WebSocket-Protokoll-Validierung, Fehlerbehandlung und End-to-End-Workflow-Simulation.
+### 3.1. WebSocket-Protokoll-Validierungstests
+Diese Tests prüfen, ob die `WebSocketConnection` korrekt mit verschiedenen WebSocket-Operationen und Protokollregeln interagiert.
+| Test-Methode | Beschreibung | Erwartetes Verhalten |
+| :--- | :--- | :--- |
+| `test_websocket_accept_key_matches_reference` | Überprüft, ob die Schlüssel-Accept-Funktion einen erwarteten Wert zurückgibt. | Der zurückgegebene Schlüssel muss exakt dem Referenzwert entsprechen. |
+| `test_websocket_connection_is_long_lived_without_idle_timeout` | Testet, ob eine Verbindung ohne Inaktivitäts-Timeout länger bestehen kann. | Das zugrundeliegende Socket-Objekt (`fake_socket`) sollte keine Timeout-Einstellung besitzen. |
+| `test_websocket_timeout_is_reported_as_connection_close` | Simuliert einen Timeout auf der Socket-Ebene und prüft, ob dies korrekt als `ConnectionError` gemeldet wird. | Beim Versuch, Daten zu empfangen (`recv_text()`), muss eine `ConnectionError` ausgelöst werden. |
+| `test_websocket_rejects_unmasked_client_frames` | Prüft, ob Frames mit unmaskierten Client-Daten (z.B. `\x81\x02`) abgelehnt werden. | Eine `ConnectionError` muss ausgelöst werden. |
+| `test_websocket_rejects_oversized_frames_before_payload_read` | Testet die Robustheit gegen Frames, deren Metadaten (z.B. Frame-Länge) über die maximal zulässige Größe hinausgehen. | Eine `ConnectionError` muss ausgelöst werden. |
+| `test_websocket_rejects_reserved_bits` | Prüft die Validierung von reservierten Bits innerhalb eines Frames. | Eine `ConnectionError` muss ausgelöst werden, die spezifisch auf &quot;Extensionsbits&quot; hinweist. |
+| `test_websocket_rejects_oversized_control_frame_payloads` | Testet die Begrenzung der Payload-Größe für Control-Frames (z.B. Opcode 0x9). | Eine `ConnectionError` muss ausgelöst werden, die spezifisch auf &quot;Control-Frames&quot; hinweist. |
+| `test_websocket_invalid_utf8_is_reported_as_connection_error` | Überprüft die Fehlerbehandlung bei ungültigem UTF-8-Inhalt in der Payload. | Eine `ConnectionError` muss ausgelöst werden, die spezifisch auf &quot;ungueltiges UTF-8&quot; hinweist. |
+| `test_websocket_parser_fuzz_harness_only_returns_text_or_connection_error` | Ein Fuzzing-Test, der zufällige Frames generiert, um sicherzustellen, dass der Parser entweder einen String zurückgibt oder eine `ConnectionError` wirft. | Der Parser muss entweder einen `str` zurückgeben oder eine `ConnectionError` auslösen. |
+### 3.2. End-to-End-Workflow-Test
+Dieser Test simuliert den gesamten Lebenszyklus eines Live-Code-Runners, um zu bestätigen, dass die Kommunikation zwischen Client, Server und dem Code-Interpreter korrekt funktioniert.
+| Test-Methode | Beschreibung | Erwartetes Verhalten |
+| :--- | :--- | :--- |
+| `test_live_run_manager_streams_prompt_and_accepts_input` | Simuliert die Initialisierung eines Live-Run-Systems, das einen Python-Code ausführt, Benutzerinput entgegennimmt und die Ausgabe zurückgibt. | 1. Der Prozess startet erfolgreich (`run.started`). 2. Der Benutzerinput (&quot;Nova\n&quot;) wird gesendet. 3. Die erwartete Ausgabe (&quot;Hallo Nova!&quot;) wird im `run.output`-Stream erfasst. 4. Der Prozess beendet sich korrekt (`run.exit` mit Returncode 0). 5. Die Metadaten (z.B. `cell_id`) stimmen überein. |
+**Wichtige Details des E2E-Tests:**
+* **Setup:** Es wird ein temporäres Verzeichnis erstellt, Konfigurationen (`ServerConfig`), ein Repository (`SchoolRepository`), ein Workspace (`WorkspaceManager`) und ein `CodeRunner` initialisiert.
+* **Client-Setup:** Ein `RealtimeClient` wird mit einer `_RecordingConnection` und einem `_TeacherSession` erstellt.
+* **Code-Ausführung:** Ein einfacher Python-Code (`name = input(&#x27;Name: &#x27;)\nprint(f&#x27;Hallo {name}!&#x27;)\n`) wird ausgeführt.
+* **Interaktion:** Der Test simuliert das Eingeben des Namens &quot;Nova&quot; und wartet auf die Ausgabe.
+* **Validierung:** Es werden spezifische String-Ergebnisse (`&quot;Name:&quot;`, `&quot;Hallo Nova!&quot;`) und die korrekte Exit-Information (`returncode=0`) sowie die korrekte Zuweisung der Zelle (`cell_id=&quot;cell-1&quot;`) überprüft.
+## 4. Technische Zusammenfassung und Implikationen
+1. **Robustheit des WebSocket-Parsers:** Die Tests deuten auf eine sehr robuste Implementierung des WebSocket-Parsers hin, der explizit auf Protokollfehler (ungültige UTF-8, falsche Frame-Größen, reservierte Bits) reagiert, indem er spezifische `ConnectionError`-Ausnahmen wirft.
+2. **Fehlerbehandlung:** Die Unterscheidung zwischen einem Netzwerk-/Socket-Fehler (`ConnectionError`) und einem allgemeinen Python-Fehler ist wichtig, insbesondere im Fuzzing-Test.
+3. **Workflow-Integration:** Der E2E-Test bestätigt, dass die gesamte Architektur – von der Projektinitialisierung über die Verbindungseröffnung bis hin zur Ausführung eines Code-Blocks und der Erfassung der Ergebnisse – kohärent funktioniert.
+4. **Abhängigkeiten:** Der Test ist stark abhängig von externen oder internen Klassen und Funktionen (z.B. `_FakeSocket`, `_build_masked_frame`, `_random_frame`, `_chunk_bytes`, `ServerConfig`, `CodeRunner`, `LiveRunManager`), deren genaue Implementierung ist für eine vollständige Analyse erforderlich.
+## 5. Empfehlungen
+* **Dokumentation der Helper-Funktionen:** Die Funktionen, die zur Frame-Generierung (`_build_masked_frame`, `_random_frame`) und Datenmanipulation (`_chunk_bytes`) verwendet werden, sollten in der Hauptdokumentation oder in ihren jeweiligen Modulen detailliert beschrieben werden, da sie die Grundlage für die Protokoll-Validierung bilden.
+* **Klärung der Fehlercodes:** Die spezifischen Fehlermeldungen in den `assertRaisesRegex`-Tests (z.B. `&quot;Extensionsbits&quot;`, `&quot;ungueltiges UTF-8&quot;`) sollten in der Dokumentation erklärt werden, um Entwicklern zu helfen, die Ursachen von Fehlern im Protokoll zu verstehen.</code></pre>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-faketoolsandbox">2.1. `_FakeToolSandbox`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-session-basisklasse">2.2. `_Session` (Basisklasse)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-teachersession-abstrakte-erweiterte-sitzung">2.3. `_TeacherSession` (Abstrakte/Erweiterte Sitzung)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-recordingconnection">2.4. `_RecordingConnection`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-importe">3. Abhängigkeiten und Importe</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-fakesocket">2. Klasse: `_FakeSocket`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-verwendung-beispiel">3. Verwendung (Beispiel)</a></li>
+<li class="wiki-toc-link"><a href="#4-api-struktur-zusammenfassung">4. API-Struktur (Zusammenfassung)</a></li>
+<li class="wiki-toc-link"><a href="#berblick">Überblick</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-build-masked-frame">1. `_build_masked_frame`</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_realtime.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

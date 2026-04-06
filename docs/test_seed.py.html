@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_seed.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_seed.py`</h1>
+          <p>Source: test_seed.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-seed-py">Technische Dokumentation: <code>test_seed.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Diese Datei, <code>test_seed.py</code>, dient als Test- und Initialisierungs-Skript für die Anwendung <code>nova_school_server</code>. Sie scheint primär dazu gedacht zu sein, die notwendigen Komponenten zu initialisieren, möglicherweise Daten zu generieren (Seeds) und die grundlegende Struktur der Anwendung zu validieren oder zu testen. Die Datei importiert eine Vielzahl von Klassen und Funktionen aus verschiedenen Modulen der Anwendung, was auf eine tiefgehende Integrationstests oder eine umfangreiche Setup-Funktionalität hindeutet.</p>
+<h2 id="2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</h2>
+<p>Die Datei importiert Komponenten aus folgenden Modulen:</p>
+<ul>
+<li>**<code>nova_school_server.auth</code>**: Enthält Funktionen für Authentifizierung und Passwort-Hashing (<code>AuthService</code>, <code>hash_password</code>).</li>
+<li>**<code>nova_school_server.database</code>**: Enthält die Schnittstelle zur Datenbankverwaltung (<code>SchoolRepository</code>).</li>
+<li>**<code>nova_school_server.docs_catalog</code>**: Enthält die Verwaltung der Dokumentationskataloge (<code>DocumentationCatalog</code>).</li>
+<li>**<code>nova_school_server.embedded_nova</code>**: Enthält Komponenten für die Sicherheitsebene (<code>EmbeddedSecurityPlane</code>).</li>
+<li>**<code>nova_school_server.seed</code>**: Enthält die Hauptfunktion zur Initialisierung der Anwendung (<code>bootstrap_application</code>).</li>
+<li>**<code>nova_school_server.workspace</code>**: Enthält die Verwaltung des Arbeitsbereichs (<code>WorkspaceManager</code>).</li>
+<li>**<code>nova_school_server.config</code>**: Enthält die Konfigurationsstruktur (<code>ServerConfig</code>).</li>
+</ul>
+<h2 id="3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</h2>
+<p>Der bereitgestellte Codeausschnitt definiert eine Klasse, die wahrscheinlich für die Durchführung von Tests oder die Initialisierung von Testumgebungen zuständig ist.</p>
+<pre><code class="language-python">from __future__ import annotations
+import tempfile
+import unittest
+from pathlib import Path
+from nova_school_server.auth import AuthService, hash_password
+from nova_school_server.database import SchoolRepository
+from nova_school_server.docs_catalog import DocumentationCatalog
+from nova_school_server.embedded_nova import EmbeddedSecurityPlane
+from nova_school_server.seed import bootstrap_application
+from nova_school_server.workspace import WorkspaceManager
+from nova_school_server.config import ServerConfig
+class &lt;|end|&gt;</code></pre>
+<h3 id="3-1-importe-und-setup">3.1. Importe und Setup</h3>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hinten als Strings, was in modernen Python-Codebases üblich ist.</li>
+<li>**<code>import tempfile</code>**: Wird wahrscheinlich verwendet, um temporäre Dateien oder Datenbank-Inhibitoren zu erstellen.</li>
+<li>**<code>import unittest</code>**: Zeigt stark darauf hin, dass die Klasse, die folgt, entweder ein <code>unittest.TestCase</code>-Erbe erbt oder Testmethoden enthält.</li>
+<li>**<code>from pathlib import Path</code>**: Wird für die moderne, objektorientierte Handhabung von Dateipfaden verwendet.</li>
+</ul>
+<h3 id="3-2-abh-ngigkeiten-modul-level">3.2. Abhängigkeiten (Modul-Level)</h3>
+<p>Die Importe zeigen, dass die Klasse, die folgt, Zugriff auf alle Kernkomponenten der Anwendung hat:</p>
+<ul>
+<li><strong>Authentifizierung &amp; Sicherheit</strong>: <code>AuthService</code>, <code>hash_password</code>, <code>EmbeddedSecurityPlane</code>.</li>
+<li><strong>Datenmanagement</strong>: <code>SchoolRepository</code>.</li>
+<li><strong>Metadaten/Dokumentation</strong>: <code>DocumentationCatalog</code>.</li>
+<li><strong>Initialisierung/Bootstrap</strong>: <code>bootstrap_application</code>.</li>
+<li><strong>Workspace-Management</strong>: <code>WorkspaceManager</code>.</li>
+<li><strong>Konfiguration</strong>: <code>ServerConfig</code>.</li>
+</ul>
+<h2 id="4-implikationen-und-erwartete-funktion">4. Implikationen und Erwartete Funktion</h2>
+<p>Basierend auf den Importen und dem Kontext (<code>test_seed.py</code>), ist die folgende Klasse höchstwahrscheinlich eine <strong>Testklasse</strong> oder eine <strong>Setup-Klasse</strong> für die Anwendung. <strong>Mögliche Aufgaben der Klasse (nach dem fehlenden Code):</strong></p>
+<ol>
+<li><strong>Test-Setup</strong>: Initialisierung von Mock-Datenbanken oder temporären Dateien.</li>
+<li><strong>Seed-Funktionalität</strong>: Aufruf von <code>bootstrap_application</code> zur vollständigen Initialisierung der Anwendungsumgebung.</li>
+<li><strong>Komponenten-Test</strong>: Überprüfung, ob die verschiedenen Module (Auth, DB, Config) korrekt miteinander interagieren.</li>
+<li><strong>Sicherheitsprüfung</strong>: Testen der <code>EmbeddedSecurityPlane</code>.</li>
+</ol>
+<h2 id="5-n-chste-schritte-anmerkung">5. Nächste Schritte (Anmerkung)</h2>
+<p>Um eine vollständige technische Dokumentation zu erstellen, ist der <strong>Rest des Codes</strong> (die Definition der Klasse <code>&lt;|end|&gt;</code>) erforderlich. Ohne diesen Code kann nur die Struktur und die beabsichtigte Funktion der Datei (als Test- oder Setup-Skript) beschrieben werden. <strong>Empfehlung:</strong> Bitte fügen Sie den restlichen Code ein, damit eine detaillierte Analyse der Implementierungsdetails (Methoden, Argumente, Logik) durchgeführt werden kann.</p>
+<h1 id="technische-dokumentation-test-seed-py">Technische Dokumentation: <code>test_seed.py</code></h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Diese Datei enthält eine Testklasse <code>SeedBootstrapTests</code>, die die Funktionalität des Seed-Bootstrap-Prozesses in der Anwendung validiert. Der Fokus liegt darauf, sicherzustellen, dass der Bootstrap-Prozess Benutzer, Gruppen und deren Berechtigungen korrekt initialisiert oder zurückgesetzt werden, selbst wenn vorherige, möglicherweise fehlerhafte oder überlagernde Einstellungen existieren.</p>
+<h2 id="2-zielsetzung-der-tests">2. Zielsetzung der Tests</h2>
+<p>Das Hauptziel dieser Testsuite ist es zu verifizieren, dass die Funktion <code>bootstrap_application</code> (die in der Testmethode aufgerufen wird) folgende Zustände erzwingt:</p>
+<ol>
+<li><strong>Benutzer-Status:</strong> Benutzer, die zuvor mit spezifischen Rollen und Statusen erstellt wurden, werden auf den Standardstatus <code>&quot;active&quot;</code> gesetzt.</li>
+<li><strong>Benutzer-Display-Namen:</strong> Spezifische Display-Namen werden auf vordefinierte Werte (&quot;Lehrkraft&quot;, &quot;Schueler Demo&quot;) gesetzt.</li>
+<li><strong>Benutzer-Berechtigungen:</strong> Die spezifischen Berechtigungen, die zuvor dem Benutzer zugewiesen wurden, werden auf ein leeres Set (<code>{}</code>) zurückgesetzt.</li>
+<li><strong>Gruppen-Berechtigungen:</strong> Die Berechtigungen einer Gruppe werden auf ein spezifisches, vordefiniertes Set (<code>{&quot;workspace.group&quot;: True, &quot;chat.use&quot;: True, &quot;docs.read&quot;: True}</code>) gesetzt.</li>
+</ol>
+<h2 id="3-code-analyse">3. Code-Analyse</h2>
+<h3 id="3-1-klasse-seedbootstraptests">3.1. Klasse: <code>SeedBootstrapTests</code></h3>
+<p>Diese Klasse implementiert die Testlogik und nutzt das <code>unittest</code>-Framework.</p>
+<h4 id="3-1-1-setup-self-none">3.1.1. <code>setUp(self) -&gt; None</code></h4>
+<p>Die <code>setUp</code>-Methode wird vor jeder Testaufgabe ausgeführt und dient dazu, alle notwendigen Abhängigkeiten und Ressourcen für die Tests einzurichten. <strong>Aktion:</strong></p>
+<ul>
+<li><strong>Temporäre Umgebung:</strong> Ein temporäres Verzeichnis (<code>self.tmp</code>) wird erstellt (<code>tempfile.TemporaryDirectory</code>).</li>
+<li><strong>Konfiguration:</strong> Eine <code>ServerConfig</code> wird aus dem temporären Pfad geladen.</li>
+<li><strong>Repository:</strong> Eine Instanz von <code>SchoolRepository</code> wird mit dem Datenbankpfad der Konfiguration initialisiert.</li>
+<li><strong>Sicherheit:</strong> Eine Instanz von <code>EmbeddedSecurityPlane</code> wird mit dem temporären Pfad initialisiert.</li>
+<li><strong>Authentifizierung:</strong> Eine Instanz von <code>AuthService</code> wird mit dem Repository, der Sicherheit, dem Tenant-ID und der Session-TTL initialisiert.</li>
+<li><strong>Dokumentation:</strong> Eine Instanz von <code>DocumentationCatalog</code> wird mit dem Dokumentationspfad initialisiert.</li>
+<li><strong>Workspace Management:</strong> Eine Instanz von <code>WorkspaceManager</code> wird mit der Konfiguration initialisiert.</li>
+</ul>
+<h4 id="3-1-2-teardown-self-none">3.1.2. <code>tearDown(self) -&gt; None</code></h4>
+<p>Die <code>tearDown</code>-Methode wird nach jedem Testaufruf ausgeführt und sorgt für die saubere Bereinigung der Ressourcen. <strong>Aktion:</strong></p>
+<ul>
+<li><strong>Repository Schließen:</strong> <code>self.repository.close()</code> wird aufgerufen.</li>
+<li><strong>Sicherheit Schließen:</strong> <code>self.security.close()</code> wird aufgerufen.</li>
+<li><strong>Temporäre Umgebung Bereinigen:</strong> <code>self.tmp.cleanup()</code> wird aufgerufen, um das temporäre Verzeichnis zu löschen.</li>
+</ul>
+<h4 id="3-1-3-testmethode-test-bootstrap-resets-demo-accounts-to-role-defaults-even-when-old-overrides-exist">3.1.3. Testmethode: <code>test_bootstrap_resets_demo_accounts_to_role_defaults_even_when_old_overrides_exist</code></h4>
+<p>Diese Methode simuliert einen Szenario, in dem Benutzerdaten und Gruppen existieren, die möglicherweise nicht den gewünschten Bootstrap-Zuständen entsprechen, und prüft, ob der Bootstrap-Prozess diese korrigiert. <strong>Schritte im Test:</strong></p>
+<ol>
+<li><strong>Dateninitialisierung (Setup-Daten):</strong></li>
+</ol>
+<ul>
+<li><strong>Benutzer &quot;teacher&quot;:</strong> Ein Benutzer wird erstellt mit spezifischen Rollen, Berechtigungen und dem Status <code>&quot;suspended&quot;</code>.</li>
+<li><strong>Benutzer &quot;student&quot;:</strong> Ein Benutzer wird erstellt mit spezifischen Rollen, Berechtigungen und dem Status <code>&quot;inactive&quot;</code>.</li>
+<li><strong>Gruppe &quot;class-1a&quot;:</strong> Eine Gruppe wird erstellt mit spezifischen Berechtigungen.</li>
+</ul>
+<ol>
+<li><strong>Bootstrap-Ausführung:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion <code>bootstrap_application</code> wird mit den initialisierten Abhängigkeiten (<code>self.repository</code>, <code>self.auth</code>, <code>self.docs</code>, <code>self.workspace</code>) aufgerufen, um den Bootstrap-Prozess zu starten.</li>
+</ul>
+<ol>
+<li><strong>Validierung (Assertions):</strong></li>
+</ol>
+<ul>
+<li><strong>Existenzprüfung:</strong> Es wird sichergestellt, dass die erstellten Benutzer (<code>teacher</code>, <code>student</code>) und die Gruppe (<code>class-1a</code>) im Repository existieren (<code>assertIsNotNone</code>).</li>
+<li><strong>Statusprüfung:</strong> Der Status des Lehrers wird auf <code>&quot;active&quot;</code> überprüft. Der Status des Studenten wird auf <code>&quot;active&quot;</code> überprüft.</li>
+<li><strong>Display-Name-Prüfung:</strong> Die Display-Namen werden auf die erwarteten Werte (&quot;Lehrkraft&quot;, &quot;Schueler Demo&quot;) überprüft.</li>
+<li><strong>Berechtigungsprüfung (Benutzer):</strong> Die Berechtigungssets der Benutzer werden auf leere Sets (<code>{}</code>) überprüft.</li>
+<li><strong>Berechtigungsprüfung (Gruppe):</strong> Die Berechtigungsset der Gruppe wird auf das erwartete Set (<code>{&quot;workspace.group&quot;: True, &quot;chat.use&quot;: True, &quot;docs.read&quot;: True}</code>) überprüft.</li>
+</ul>
+<h2 id="4-zusammenfassung-und-implikationen">4. Zusammenfassung und Implikationen</h2>
+<p>Dieser Test stellt sicher, dass der <strong>Bootstrap-Mechanismus eine konsistente und definierte Ausgangsbasis für Benutzer- und Gruppenkonfigurationen</strong> schafft. Er validiert die Robustheit des Systems, indem er prüft, ob ältere oder fehlerhafte Konfigurationen durch den Bootstrap-Prozess überschrieben werden, um auf die definierten Standardwerte zurückzukehren. <strong>Schlüsselkomponenten, die getestet werden:</strong></p>
+<ul>
+<li>Datenpersistenz (Erstellung/Abruf von Benutzern und Gruppen).</li>
+<li>Status-Management (Übersetzung von initialen Statuscodes).</li>
+<li>Berechtigungs-Reset-Logik (Wiederherstellung von Standardberechtigungen).</li>
+<li>Konfigurations-Injection (Überprüfung, ob die Bootstrap-Funktion die korrekten Werte in die Datenbank schreibt).</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-importe-und-setup">3.1. Importe und Setup</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-abh-ngigkeiten-modul-level">3.2. Abhängigkeiten (Modul-Level)</a></li>
+<li class="wiki-toc-link"><a href="#4-implikationen-und-erwartete-funktion">4. Implikationen und Erwartete Funktion</a></li>
+<li class="wiki-toc-link"><a href="#5-n-chste-schritte-anmerkung">5. Nächste Schritte (Anmerkung)</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-zielsetzung-der-tests">2. Zielsetzung der Tests</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse">3. Code-Analyse</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-seedbootstraptests">3.1. Klasse: `SeedBootstrapTests`</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-und-implikationen">4. Zusammenfassung und Implikationen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_seed.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

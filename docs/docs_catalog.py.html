@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `DocumentationCatalog` Klasse | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `DocumentationCatalog` Klasse</h1>
+          <p>Source: docs_catalog.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-documentationcatalog-klasse">Technische Dokumentation: <code>DocumentationCatalog</code> Klasse</h1>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Die Klasse <code>DocumentationCatalog</code> dient dazu, eine zentrale Verwaltung und Interaktion mit einer Sammlung von Dokumentationen zu ermöglichen. Sie ist verantwortlich für die Strukturierung, Erstellung und Abfrage von Dokumenten, die lokal in einem definierten Verzeichnis gespeichert sind.</p>
+<h2 id="2-klasse-documentationcatalog">2. Klasse: <code>DocumentationCatalog</code></h2>
+<h3 id="2-1-beschreibung">2.1. Beschreibung</h3>
+<p>Die Klasse <code>DocumentationCatalog</code> initialisiert ein Verzeichnis für die Dokumente und bietet Methoden zur Sicherstellung der Existenz von Dokumenten, zur Auflistung aller verfügbaren Dokumente und zur Abfrage des Inhalts eines spezifischen Dokuments.</p>
+<h3 id="2-2-abh-ngigkeiten">2.2. Abhängigkeiten</h3>
+<ul>
+<li><code>pathlib.Path</code>: Für die Verwaltung von Dateipfaden und Verzeichnissen.</li>
+<li><code>templates.OFFLINE_DOCS</code>: Eine externe Struktur (vermutlich ein Dictionary), die die Metadaten und Inhalte der Dokumente definiert.</li>
+</ul>
+<h3 id="2-3-attribute">2.3. Attribute</h3>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>self.docs_path</code></td>
+<td><code>Path</code></td>
+<td>Der Pfad zum Verzeichnis, in dem die Dokumentendateien gespeichert werden.</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-methoden">2.4. Methoden</h3>
+<h4 id="2-4-1-init-self-docs-path-path-none">2.4.1. <code>__init__(self, docs_path: Path) -&gt; None</code></h4>
+<p><strong>Zweck:</strong> Initialisiert den Katalog und stellt sicher, dass das Zielverzeichnis für die Dokumente existiert. <strong>Parameter:</strong></p>
+<ul>
+<li><code>docs_path: Path</code>: Der Pfad zum Verzeichnis, in dem die Dokumente abgelegt werden sollen.</li>
+<p><strong>Ablauf:</strong></p>
+</ul>
+<ol>
+<li>Speichert den bereitgestellten <code>docs_path</code> als Attribut.</li>
+<li>Verwendet <code>self.docs_path.mkdir(parents=True, exist_ok=True)</code>, um das Verzeichnis zu erstellen.</li>
+</ol>
+<ul>
+<li><code>parents=True</code>: Erstellt notwendige übergeordnete Verzeichnisse.</li>
+<li><code>exist_ok=True</code>: Verhindert einen Fehler, falls das Verzeichnis bereits existiert.</li>
+</ul>
+<h4 id="2-4-2-ensure-seed-docs-self-none">2.4.2. <code>ensure_seed_docs(self) -&gt; None</code></h4>
+<p><strong>Zweck:</strong> Stellt sicher, dass alle Dokumente, die in der <code>OFFLINE_DOCS</code>-Konfiguration definiert sind, physisch als Markdown-Dateien (<code>.md</code>) im Speicherdirektor existieren. <strong>Ablauf:</strong></p>
+<ol>
+<li>Iteriert über alle Schlüssel-Wert-Paare (<code>slug</code>, <code>payload</code>) im globalen Dictionary <code>OFFLINE_DOCS</code>.</li>
+<li>Für jeden Eintrag konstruiert den Zielpfad (<code>target</code>) für die Datei (z.B. <code>slug.md</code>).</li>
+<li><strong>Prüfung:</strong> Wenn die Datei bereits existiert (<code>target.exists()</code>), wird übersprungen.</li>
+<li><strong>Erstellung:</strong> Wenn die Datei nicht existiert, wird der Inhalt (<code>payload[&quot;content&quot;]</code>) in die Datei geschrieben, wobei die Zeichenkodierung <code>utf-8</code> verwendet wird.</li>
+</ol>
+<h4 id="2-4-3-list-docs-self-list-dict-str-object">2.4.3. <code>list_docs(self) -&gt; list[dict[str, object]]</code></h4>
+<p><strong>Zweck:</strong> Gibt eine Liste aller definierten Dokumente zurück, zusammen mit ihren Metadaten und Pfaden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Erzeugt eine Liste von Dictionaries.</li>
+<li>Iteriert über alle Einträge in <code>OFFLINE_DOCS</code>.</li>
+<li>Für jeden Eintrag erstellt ein Dictionary, das folgende Informationen enthält:</li>
+</ol>
+<ul>
+<li><code>slug</code>: Der eindeutige Schlüssel.</li>
+<li><code>title</code>: Der Titel aus dem Payload.</li>
+<li><code>tags</code>: Eine Liste der Tags, falls vorhanden.</li>
+<li><code>path</code>: Der vollständige Pfad zur Markdown-Datei.</li>
+<p><strong>Rückgabe:</strong> Eine Liste von Dictionaries, wobei jedes Dictionary eine strukturierte Zusammenfassung eines Dokuments darstellt.</p>
+</ul>
+<h4 id="2-4-4-get-doc-self-slug-str-dict-str-object">2.4.4. <code>get_doc(self, slug: str) -&gt; dict[str, object]</code></h4>
+<p><strong>Zweck:</strong> Lese und gibt den vollständigen Inhalt eines spezifischen Dokuments basierend auf seinem Slug zurück. <strong>Parameter:</strong></p>
+<ul>
+<li><code>slug: str</code>: Der eindeutige Slug des gesuchten Dokuments.</li>
+<p><strong>Ablauf:</strong></p>
+</ul>
+<ol>
+<li><strong>Existenzprüfung:</strong> Prüft, ob der <code>slug</code> in der <code>OFFLINE_DOCS</code>-Konfiguration existiert.</li>
+</ol>
+<ul>
+<li><strong>Fehlerbehandlung:</strong> Wenn der Slug nicht gefunden wird, wirft die Ausnahme <code>FileNotFoundError</code> mit einer spezifischen Fehlermeldung.</li>
+</ul>
+<ol>
+<li><strong>Pfadkonstruktion:</strong> Konstruiert den vollständigen Dateipfad (<code>path</code>) für die gesuchte Datei.</li>
+<li><strong>Inhaltsabruf:</strong> Liest den gesamten Textinhalt der Datei (<code>path.read_text(encoding=&quot;utf-8&quot;)</code>).</li>
+<li><strong>Rückgabe:</strong> Gibt ein Dictionary zurück, das folgende Informationen enthält:</li>
+</ol>
+<ul>
+<li><code>slug</code>: Der Slug.</li>
+<li><code>title</code>: Der Titel.</li>
+<li><code>tags</code>: Die Liste der Tags.</li>
+<li><code>content</code>: Der vollständige Textinhalt der Markdown-Datei.</li>
+</ul>
+<h2 id="3-verwendung-beispiel">3. Verwendung (Beispiel)</h2>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, OFFLINE_DOCS ist definiert und die Klasse DocumentationCatalog ist importiert
+# 1. Initialisierung
+DOCS_DIRECTORY = Path(&quot;./documentation_files&quot;)
+catalog = DocumentationCatalog(docs_path=DOCS_DIRECTORY)
+# 2. Sicherstellen, dass alle Dateien existieren (falls sie fehlen)
+catalog.ensure_seed_docs()
+# 3. Auflisten aller verfügbaren Dokumente
+print(&quot;--- Verfügbare Dokumente ---&quot;)
+docs_list = catalog.list_docs()
+for doc in docs_list:
+print(f&quot;Slug: {doc[&#x27;slug&#x27;]}, Titel: {doc[&#x27;title&#x27;]}, Pfad: {doc[&#x27;path&#x27;]}&quot;)
+# 4. Ein spezifisches Dokument abrufen
+try:
+specific_doc = catalog.get_doc(&quot;introduction&quot;)
+print(&quot;\n--- Inhalt des Dokuments &#x27;introduction&#x27; ---&quot;)
+print(f&quot;Titel: {specific_doc[&#x27;title&#x27;]}&quot;)
+print(f&quot;Tags: {specific_doc[&#x27;tags&#x27;]}&quot;)
+print(&quot;--- Inhalt ---&quot;)
+print(specific_doc[&#x27;content&#x27;][:500] + &quot;...&quot;) # Zeigt die ersten 500 Zeichen
+except FileNotFoundError as e:
+print(f&quot;Fehler beim Abrufen: {e}&quot;)</code></pre>
+<h2 id="4-fehlerbehandlung">4. Fehlerbehandlung</h2>
+<table><thead><tr>
+<th>Ausnahme</th>
+<th>Ursache</th>
+<th>Wann wird sie ausgelöst?</th>
+</tr></thead><tbody>
+<tr>
+<td><code>FileNotFoundError</code></td>
+<td>Der angeforderte <code>slug</code> existiert nicht in der <code>OFFLINE_DOCS</code>-Konfiguration.</td>
+<td>In der Methode <code>get_doc(self, slug: str)</code>.</td>
+</tr>
+</tbody></table>
+<h2 id="5-design-berlegungen">5. Design-Überlegungen</h2>
+<ul>
+<li><strong>Separation von Sorgen:</strong> Die Klasse trennt die Logik der Dateisystemoperationen (Erstellen, Lesen, Listen) von der Definition der Dokumentenstruktur (<code>OFFLINE_DOCS</code>).</li>
+<li><strong>Pathlib-Nutzung:</strong> Die Verwendung von <code>pathlib.Path</code> sorgt für eine plattformübergreifende und leserfreundliche Handhabung von Dateipfaden.</li>
+<li><strong>Immutabilität der Metadaten:</strong> Die Metadaten (Titel, Tags) werden bei der Abfrage aus der zentralen Konfiguration (<code>OFFLINE_DOCS</code>) abgerufen, während der eigentliche Inhalt dynamisch aus dem Dateisystem gelesen wird.</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-documentationcatalog">2. Klasse: `DocumentationCatalog`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-beschreibung">2.1. Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-abh-ngigkeiten">2.2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-attribute">2.3. Attribute</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-methoden">2.4. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-verwendung-beispiel">3. Verwendung (Beispiel)</a></li>
+<li class="wiki-toc-link"><a href="#4-fehlerbehandlung">4. Fehlerbehandlung</a></li>
+<li class="wiki-toc-link"><a href="#5-design-berlegungen">5. Design-Überlegungen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "docs_catalog.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

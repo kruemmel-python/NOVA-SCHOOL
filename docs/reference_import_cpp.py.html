@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `reference_import_cpp.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `reference_import_cpp.py`</h1>
+          <p>Source: reference_import_cpp.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-reference-import-cpp-py">Technische Dokumentation: <code>reference_import_cpp.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Das Python-Skript <code>reference_import_cpp.py</code> dient dazu, Inhalte von der C++ Reference (cppreference.com) zu importieren und zu verarbeiten. Es scheint darauf ausgelegt zu sein, spezifische Code- oder Dokumentationsabschnitte basierend auf definierten Themen (Seeds) zu extrahieren, zu parsen und möglicherweise zu speichern oder weiterzuverarbeiten. Das Skript verwendet eine Reihe von Bibliotheken für Web-Scraping (impliziert durch <code>urllib.request</code>), Textverarbeitung (Regex), Datenstrukturen (<code>dataclasses</code>), und Dateimanagement (<code>pathlib</code>, <code>shutil</code>).</p>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<p>Das Skript hängt von folgenden Standard-Python-Bibliotheken ab:</p>
+<ul>
+<li><code>argparse</code>: Für die Verarbeitung von Kommandozeilenargumenten.</li>
+<li><code>html</code>, <code>json</code>, <code>re</code>: Für String- und HTML-Manipulation sowie regelbasierte Mustererkennung.</li>
+<li><code>shutil</code>: Für Dateisystemoperationen (z.B. Kopieren oder Verschieben).</li>
+<li><code>sys</code>: Für Zugriff auf das Standard-System-Skript.</li>
+<li><code>time</code>: Für Zeitmessungen (falls implementiert).</li>
+<li><code>urllib.request</code>: Für das Herunterladen von Webseiteninhalten.</li>
+<li><code>collections.deque</code>: Für die Verwaltung von Warteschlangen (impliziert).</li>
+<li><code>dataclasses</code>: Für die Definition von Datenstrukturen.</li>
+<li><code>hashlib.sha1</code>: Für die Erzeugung von Hashes (wahrscheinlich zur Integritätsprüfung oder als Schlüssel).</li>
+<li><code>pathlib.Path</code>: Für objektorientierte Dateisystempfad-Manipulation.</li>
+<li><code>typing</code>: Für Typ-Hints (<code>Iterable</code>).</li>
+<li><code>urllib.parse</code>: Für die Zerlegung und Zusammenführung von URL-Komponenten.</li>
+</ul>
+<h2 id="3-konfiguration-und-konstanten">3. Konfiguration und Konstanten</h2>
+<p>Das Skript definiert mehrere wichtige Konstanten und Datenstrukturen, die die Zielsetzung und die Struktur der importierten Daten definieren:</p>
+<h3 id="3-1-basis-urls-cppreference">3.1. Basis-URLs (CPPREFERENCE)</h3>
+<p>Definiert die Basis-URLs für die C++ Reference:</p>
+<ul>
+<li><code>CPPREFERENCE_BASE</code>: <code>&quot;https://en.cppreference.com&quot;</code></li>
+<li><code>CPPREFERENCE_HOST</code>: <code>&quot;en.cppreference.com&quot;</code></li>
+<li><code>CPPREFERENCE_UPLOAD_HOST</code>: <code>&quot;upload.cppreference.com&quot;</code> (Wahrscheinlich für den Upload von Daten).</li>
+</ul>
+<h3 id="3-2-seeds-themen-mapping">3.2. Seeds (Themen-Mapping)</h3>
+<p>Das Dictionary <code>DEFAULT_SEEDS</code> mappt spezifische Schlüssel (Themen) auf relative Pfade innerhalb der C++ Reference:</p>
+<table><thead><tr>
+<th>Schlüssel</th>
+<th>Zielpfad</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>&quot;00_cpp&quot;</code></td>
+<td><code>/w/cpp</code></td>
+<td>Allgemeine C++-Sektion.</td>
+</tr>
+<tr>
+<td><code>&quot;01_language&quot;</code></td>
+<td><code>/w/cpp/language</code></td>
+<td>Informationen zu C++-Sprachen.</td>
+</tr>
+<tr>
+<td><code>&quot;02_containers&quot;</code></td>
+<td><code>/w/cpp/container</code></td>
+<td>Informationen zu Containern.</td>
+</tr>
+<tr>
+<td><code>&quot;03_strings&quot;</code></td>
+<td><code>/w/cpp/string</code></td>
+<td>Informationen zu Strings.</td>
+</tr>
+<tr>
+<td><code>&quot;04_algorithms&quot;</code></td>
+<td><code>/w/cpp/algorithm</code></td>
+<td>Informationen zu Algorithmen.</td>
+</tr>
+<tr>
+<td><code>&quot;05_memory&quot;</code></td>
+<td><code>/w/cpp/memory</code></td>
+<td>Informationen zu Speicherverwaltung.</td>
+</tr>
+<tr>
+<td><code>&quot;06_threads&quot;</code></td>
+<td><code>/w/cpp/thread</code></td>
+<td>Informationen zu Threads.</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-regex-muster-regular-expressions">3.3. Regex-Muster (Regular Expressions)</h3>
+<p>Das Skript verwendet mehrere komplexe Regex-Muster zur gezielten Extraktion von HTML-Elementen und Attributen:</p>
+<ul>
+<li>**<code>INLINE_SCRIPT_RE</code>**: Erfasst <code>&lt;script&gt;...&lt;/script&gt;</code> Blöcke.</li>
+<li>**<code>STYLE_TAG_RE</code>**: Erfasst <code>&lt;style&gt;...&lt;/style&gt;</code> Blöcke.</li>
+<li>**<code>ATTR_RE</code>**: Erfasst Attribute wie <code>href</code>, <code>src</code>, <code>poster</code>, <code>action</code> (mit den entsprechenden Werten).</li>
+<li>**<code>SRCSET_RE</code>**: Erfasst Attribute wie <code>srcset</code> (wahrscheinlich für Ressourcen-Sets).</li>
+<li>**<code>CSS_URL_RE</code>**: Erfasst <code>url(...)</code> Befehle, die CSS-Ressourcen verweisen.</li>
+<li>**<code>TITLE_RE</code>**: Erfasst den Inhalt des <code>&lt;title&gt;</code>-Tags.</li>
+</ul>
+<h3 id="3-4-dateiendungen">3.4. Dateiendungen</h3>
+<ul>
+<li><code>STATIC_ASSET_SUFFIXES</code>: Eine Liste von Dateiendungen (<code>.css</code>, <code>.js</code>, <code>.png</code>, <code>.jpg</code>, etc.), die als statische Assets identifiziert werden.</li>
+</ul>
+<h2 id="4-datenstrukturen">4. Datenstrukturen</h2>
+<h3 id="4-1-dataclass">4.1. <code>dataclass</code></h3>
+<p>Es wird eine <code>dataclass</code> definiert, die wahrscheinlich die Struktur für die extrahierten Daten darstellt.</p>
+<ul>
+<li><strong>Name:</strong> Nicht explizit benannt, aber es wird eine Klasse definiert, die als <code>frozen=True</code> und mit <code>slots=True</code> gekennzeichnet ist.</li>
+<li><strong>Zweck:</strong> Dient zur strukturierten Speicherung der extrahierten Informationen.</li>
+</ul>
+<h2 id="5-funktionsweise-impliziert">5. Funktionsweise (Impliziert)</h2>
+<p>Basierend auf den Importen und Konstanten lässt sich der Workflow wie folgt ableiten:</p>
+<ol>
+<li><strong>Argumentenverarbeitung:</strong> Das Skript verwendet <code>argparse</code>, um von der Kommandozeile spezifische Anweisungen (z.B. welche Seed verarbeitet werden soll, welche URL zu scrapen ist) zu erhalten.</li>
+<li><strong>URL-Navigation:</strong> Es wird wahrscheinlich eine Funktion verwendet, um die Basis-URL mit den Pfaden aus <code>DEFAULT_SEEDS</code> zu kombinieren, um die Ziel-URL für das Scraping zu generieren.</li>
+<li><strong>Web-Scraping:</strong> Es wird <code>urllib.request</code> verwendet, um den HTML-Inhalt der Zielseite abzurufen.</li>
+<li><strong>Parsing:</strong> Der erhaltene HTML-String wird durch die definierten Regex-Muster gefiltert, um relevante Code- oder Stilinformationen zu extrahieren.</li>
+<li><strong>Datenmodellierung:</strong> Die extrahierten Daten werden in die definierte <code>dataclass</code> umgewandelt.</li>
+<li><strong>Speicherung/Verarbeitung:</strong> Die Daten werden entweder in einer Datei gespeichert oder für eine weitere Verarbeitung (z.B. das Hochladen auf <code>CPPREFERENCE_UPLOAD_HOST</code>) vorbereitet.</li>
+</ol>
+<h2 id="6-sicherheit-und-best-practices">6. Sicherheit und Best Practices</h2>
+<ul>
+<li><strong>Regex-Nutzung:</strong> Die Verwendung von Regex ist notwendig für die Struktur des HTML, birgt aber das Risiko von Regex-Injection, falls die Eingabedaten nicht streng kontrolliert werden. Hier scheint die Anwendung jedoch auf statische, bekannte Strukturen der C++ Reference zu beschränkt zu sein.</li>
+<li><strong>URL-Handling:</strong> Die Verwendung von <code>urllib.parse</code> deutet auf eine sorgfältige Behandlung von URL-Komponenten hin, was für das Scraping wichtig ist.</li>
+<li><strong>Dateisystemoperationen:</strong> <code>shutil</code> und <code>pathlib</code> werden verwendet, was auf eine saubere und moderne Verwaltung von Dateien hindeutet.</li>
+</ul>
+<h2 id="7-zusammenfassung-der-hauptfunktionen">7. Zusammenfassung der Hauptfunktionen</h2>
+<p>Das Skript ist ein <strong>Web-Scraping-Tool</strong>, das darauf spezialisiert ist, <strong>spezifische thematische Inhalte</strong> (definiert durch <code>DEFAULT_SEEDS</code>) von der C++ Reference zu extrahieren, diese strukturiert zu speichern und möglicherweise für den Upload vorzubereiten.</p>
+<h2 id="technische-dokumentation-reference-import-cpp-py">Technische Dokumentation: <code>reference_import_cpp.py</code></h2>
+<p><strong>Version:</strong> 1.0 (Basierend auf bereitgestellten Code-Ausschnitten) <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team] ---</p>
+<h3 id="1-einf-hrung">1. Einführung</h3>
+<p>Diese Dokumentation beschreibt die Struktur und die Komponenten der Python-Klasse <code>ReferenceTarget</code>, die in der Datei <code>reference_import_cpp.py</code> definiert ist. Diese Klasse dient dazu, Metadaten für Referenzziele (wahrscheinlich URLs oder lokale Pfade) zu speichern und zu verwalten, die möglicherweise für Importprozesse in C++ oder andere externe Systeme benötigt werden. ---</p>
+<h3 id="2-klassenstruktur">2. Klassenstruktur</h3>
+<h4 id="klasse-referencetarget">Klasse: <code>ReferenceTarget</code></h4>
+<p>Die Klasse <code>ReferenceTarget</code> ist eine Datenstruktur (oder ein Datenträger), die spezifische Informationen über ein Ziel speichert, das referenziert werden soll. <strong>Code-Ausschnitt:</strong></p>
+<pre><code class="language-python">class ReferenceTarget:
+kind: str
+url: str
+local_path: str
+fragment: str = &quot;&quot;</code></pre>
+<h4 id="2-1-attribute-der-klasse">2.1. Attribute der Klasse</h4>
+<p>Die Klasse definiert vier Attribute, die alle als Eigenschaften des jeweiligen <code>ReferenceTarget</code>-Objekts betrachtet werden:</p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ (Impliziert)</th>
+<th>Beschreibung</th>
+<th>Pflichtfeld?</th>
+<th>Anmerkungen</th>
+</tr></thead><tbody>
+<tr>
+<td><code>kind</code></td>
+<td><code>str</code> (String)</td>
+<td>Gibt den Typ oder die Art des Referenzziels an (z.B. &#x27;URL&#x27;, &#x27;FILE_PATH&#x27;, &#x27;API_ENDPOINT&#x27;).</td>
+<td>Ja</td>
+<td>Definiert die Art der Referenz.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>str</code> (String)</td>
+<td>Die vollständige URL oder der primäre Endpunkt der Referenz.</td>
+<td>Ja</td>
+<td>Wichtig für Web- oder Netzwerkreferenzen.</td>
+</tr>
+<tr>
+<td><code>local_path</code></td>
+<td><code>str</code> (String)</td>
+<td>Der lokale Dateipfad oder Pfad, der mit der Referenz verknüpft ist.</td>
+<td>Ja</td>
+<td>Wichtig für lokale Dateizugriffe.</td>
+</tr>
+<tr>
+<td><code>fragment</code></td>
+<td><code>str</code> (String)</td>
+<td>Ein optionaler Fragment-Teil der URL (nach <code>#</code>).</td>
+<td>Nein</td>
+<td>Standardwert ist leer (<code>&quot;&quot;</code>).</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-konstruktor-impliziert">2.2. Konstruktor (Impliziert)</h4>
+<p>Obwohl der Konstruktor nicht explizit im bereitgestellten Code gezeigt wird, impliziert die Struktur, dass ein Instanz von <code>ReferenceTarget</code> bei der Erstellung (Instanziierung) diese vier Attribute mit den entsprechenden Werten initialisiert werden müssen. <strong>Beispiel für Instanziierung (Konzeptuell):</strong></p>
+<pre><code class="language-python">target1 = ReferenceTarget(
+kind=&quot;URL&quot;,
+url=&quot;https://example.com/resource&quot;,
+local_path=&quot;/data/local/resource.txt&quot;
+)
+target2 = ReferenceTarget(
+kind=&quot;FILE_PATH&quot;,
+url=&quot;file:///local/data/config.ini&quot;,
+local_path=&quot;/home/user/config.ini&quot;
+)</code></pre>
+<p>---</p>
+<h3 id="3-verwendung-und-schnittstellen">3. Verwendung und Schnittstellen</h3>
+<h4 id="3-1-zweck">3.1. Zweck</h4>
+<p>Die Klasse <code>ReferenceTarget</code> dient als Datenmodell, um eine konsistente Art zu definieren, wie Referenzinformationen (die sowohl Netzwerk- als auch lokale Pfade umfassen können) in das System eingegeben und gespeichert werden.</p>
+<h4 id="3-2-schnittstellen-zu-c-impliziert">3.2. Schnittstellen zu C++ (Impliziert)</h4>
+<p>Basierend auf dem Namen der Datei (<code>reference_import_cpp.py</code>) und der Struktur der Klasse deutet dies darauf hin, dass diese Python-Klasse wahrscheinlich als <strong>Datenstruktur-Wrapper</strong> oder <strong>Serialisierungs-Template</strong> verwendet wird, um:</p>
+<ol>
+<li><strong>Datenvorbereitung:</strong> Python-Daten zu sammeln und zu validieren.</li>
+<li><strong>Export:</strong> Die Daten in ein Format zu konvertieren (z.B. JSON, YAML oder eine spezifische C++ Struct/Class), das von der C++-Implementierung konsumiert werden kann.</li>
+<p><strong>Erwartete C++-Mapping (Hypothetisch):</strong> Die Attribute könnten in eine C++ <code>struct</code> oder <code>class</code> mappers übersetzt werden, beispielsweise:</p>
+</ol>
+<pre><code class="language-cpp">struct ReferenceTarget {
+std::string kind;
+std::string url;
+std::string local_path;
+std::string fragment; // Optional
+};</code></pre>
+<p>---</p>
+<h3 id="4-zusammenfassung-und-hinweise">4. Zusammenfassung und Hinweise</h3>
+<ul>
+<li><strong>Datenintegrität:</strong> Es wird erwartet, dass alle vier Felder (<code>kind</code>, <code>url</code>, <code>local_path</code>, <code>fragment</code>) für jede Instanz definiert werden, um eine vollständige Referenz zu gewährleisten.</li>
+<li><strong>Flexibilität:</strong> Durch das Feld <code>kind</code> wird die Flexibilität erhöht, verschiedene Arten von Referenzen (Web, Datei, etc.) innerhalb derselben Struktur zu verwalten.</li>
+<li><strong>Standardwerte:</strong> Das Feld <code>fragment</code> hat einen impliziten Standardwert von leer (<code>&quot;&quot;</code>), was bedeutet, dass es bei der Erstellung nicht explizit gesetzt werden muss, wenn kein Fragment vorhanden ist.</li>
+<p>--- <em>Ende der Dokumentation</em></p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 4817 &gt;= 4096</p>
+<h1 id="technische-dokumentation-reference-import-cpp-py">Technische Dokumentation: <code>reference_import_cpp.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Python-Skript <code>reference_import_cpp.py</code> dient dazu, Inhalte von C++-Referenzseiten (vermutlich cppreference) zu kopieren und in eine lokale Offline-Referenzbibliothek (Nova School) zu importieren. Es verwendet das <code>argparse</code>-Modul, um eine Reihe von Kommandozeilen-Argumenten zu verarbeiten, die den Importprozess steuern.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="2-1-build-argument-parser-argparse-argumentparser">2.1. <code>build_argument_parser() -&gt; argparse.ArgumentParser</code></h3>
+<p>Diese Funktion ist verantwortlich für die Definition und Erstellung des <code>argparse.ArgumentParser</code>-Objekts. Sie definiert alle möglichen Kommandozeilen-Optionen, die der Benutzer beim Ausführen des Skripts verwenden kann. <strong>Argumente:</strong></p>
+<table><thead><tr>
+<th>Argument</th>
+<th>Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>--output</code></td>
+<td><code>str</code></td>
+<td><code>&quot;D:\Nova_school_server\data\reference_library\packs\cpp&quot;</code></td>
+<td>Zielverzeichnis für den Import. Die HTML-Spiegelung wird in das Unterverzeichnis der angegebenen Site geschrieben.</td>
+</tr>
+<tr>
+<td><code>--page-limit</code></td>
+<td><code>int</code></td>
+<td><code>1200</code></td>
+<td>Maximale Anzahl von HTML-Seiten, die gespiegelt werden sollen.</td>
+</tr>
+<tr>
+<td><code>--asset-limit</code></td>
+<td><code>int</code></td>
+<td><code>400</code></td>
+<td>Maximale Anzahl von lokalen CSS/Bild-Assets, die gespiegelt werden sollen.</td>
+</tr>
+<tr>
+<td><code>--delay</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>Optionale Verzögerung (in Sekunden) zwischen den Anfragen.</td>
+</tr>
+<tr>
+<td><code>--timeout</code></td>
+<td><code>int</code></td>
+<td><code>25</code></td>
+<td>HTTP-Timeout pro Anfrage (in Sekunden).</td>
+</tr>
+<tr>
+<td><code>--clean</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Wenn gesetzt (<code>--clean</code>), wird ein bestehender Site-Mirror vor dem Import entfernt.</td>
+</tr>
+<tr>
+<td>### 2.2. `main(argv: Iterable[str]</td>
+<td>None = None) -&gt; int`</td>
+</tr>
+</tbody></table>
+<p>Diese Hauptfunktion orchestriert den gesamten Importprozess:</p>
+<ol>
+<li><strong>Argumentenparserung:</strong> Ruft <code>build_argument_parser()</code> auf, um das Argumenten-Parser-Objekt zu erhalten, und parst die übergebenen Kommandozeilen-Argumente (<code>argv</code>) mithilfe von <code>parser.parse_args()</code>.</li>
+<li><strong>Builder-Initialisierung:</strong> Initialisiert eine Instanz der Klasse <code>CppReferenceMirrorBuilder</code> mit den durch die Argumente definierten Parametern (<code>output_root</code>, <code>page_limit</code>, <code>asset_limit</code>, <code>delay_seconds</code>, <code>timeout_seconds</code>, <code>clean</code>).</li>
+<li><strong>Mirror-Generierung:</strong> Ruft die Methode <code>builder.build()</code> auf, um den Importprozess durchzuführen und ein Manifest zu generieren.</li>
+<li><strong>Ausgabe:</strong> Gibt das generierte Manifest als JSON-String aus, wobei <code>ensure_ascii=False</code> verwendet wird, um nicht-ASCII-Zeichen korrekt darzustellen.</li>
+<li><strong>Rückgabewert:</strong> Gibt <code>0</code> zurück, was typischerweise auf erfolgreiche Ausführung hindeutet.</li>
+</ol>
+<h2 id="3-hauptausf-hrung-if-name-main">3. Hauptausführung (<code>if __name__ == &quot;__main__&quot;:</code>)</h2>
+<p>Das Skript wird nur ausgeführt, wenn es direkt als Skript gestartet wird (<code>if __name__ == &quot;__main__&quot;:</code>). Es ruft die <code>main</code>-Funktion auf und gibt den resultierenden Wert (der <code>SystemExit</code>-Aufruf durchführt) als Exit-Code zurück.</p>
+<pre><code class="language-python">raise SystemExit(main(sys.argv[1:]))</code></pre>
+<h2 id="4-voraussetzungen">4. Voraussetzungen</h2>
+<ul>
+<li><strong>Bibliotheken:</strong> Das Skript benötigt die Standardbibliothekspakete <code>argparse</code>, <code>json</code>, <code>pathlib.Path</code> (impliziert durch die Verwendung von <code>Path</code>), sowie die Klasse <code>CppReferenceMirrorBuilder</code> (die nicht im bereitgestellten Code definiert ist, aber für die Funktion notwendig ist).</li>
+<li><strong>Systemanforderungen:</strong> Zugriff auf das Internet für HTTP-Anfragen (da es sich um einen Mirror handelt).</li>
+</ul>
+<h2 id="5-verwendung">5. Verwendung</h2>
+<p>Das Skript wird von der Kommandozeile gestartet und benötigt optional Argumente zur Steuerung des Importprozesses. <strong>Beispiel für die Ausführung:</strong></p>
+<pre><code class="language-bash">python reference_import_cpp.py --output /path/to/your/output_dir --page-limit 5000 --timeout 30 --clean</code></pre>
+<p><strong>Erwartete Ausgabe (Manifest):</strong> Das Skript wird ein JSON-Objekt ausgeben, das die Details des erstellten Mirrors enthält.</p>
+<pre><code class="language-json">{
+&quot;manifest&quot;: {
+&quot;status&quot;: &quot;success&quot;,
+&quot;pages_mirrored&quot;: 1200,
+&quot;assets_mirrored&quot;: 400,
+&quot;output_directory&quot;: &quot;/path/to/your/output_dir&quot;,
+// ... weitere Details
+}
+}</code></pre>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-konfiguration-und-konstanten">3. Konfiguration und Konstanten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-basis-urls-cppreference">3.1. Basis-URLs (CPPREFERENCE)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-seeds-themen-mapping">3.2. Seeds (Themen-Mapping)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-regex-muster-regular-expressions">3.3. Regex-Muster (Regular Expressions)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-dateiendungen">3.4. Dateiendungen</a></li>
+<li class="wiki-toc-link"><a href="#4-datenstrukturen">4. Datenstrukturen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-dataclass">4.1. `dataclass`</a></li>
+<li class="wiki-toc-link"><a href="#5-funktionsweise-impliziert">5. Funktionsweise (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#6-sicherheit-und-best-practices">6. Sicherheit und Best Practices</a></li>
+<li class="wiki-toc-link"><a href="#7-zusammenfassung-der-hauptfunktionen">7. Zusammenfassung der Hauptfunktionen</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-reference-import-cpp-py">Technische Dokumentation: `reference_import_cpp.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-klassenstruktur">2. Klassenstruktur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-verwendung-und-schnittstellen">3. Verwendung und Schnittstellen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-zusammenfassung-und-hinweise">4. Zusammenfassung und Hinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-build-argument-parser-argparse-argumentparser">2.1. `build_argument_parser() -&gt; argparse.ArgumentParser`</a></li>
+<li class="wiki-toc-link"><a href="#3-hauptausf-hrung-if-name-main">3. Hauptausführung (`if __name__ == &quot;__main__&quot;:`)</a></li>
+<li class="wiki-toc-link"><a href="#4-voraussetzungen">4. Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#5-verwendung">5. Verwendung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "reference_import_cpp.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

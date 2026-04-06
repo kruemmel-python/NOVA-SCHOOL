@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `curriculum_catalog.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `curriculum_catalog.py`</h1>
+          <p>Source: curriculum_catalog.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: <code>curriculum_catalog.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Hilfsfunktionen zur Erstellung von Fragenstrukturen für einen Lehrplan- oder Quiz-Katalog. Die Funktionen <code>_single</code> und <code>_multi</code> sind spezialisiert darauf, aus gegebenen Eingabeparametern eine standardisierte JSON- oder Dictionary-Struktur für eine Frage zu generieren.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-single-question-id-str-prompt-str-options-list-tuple-str-str-correct-str-explanation-str-points-int-1-dict-str-any">1. <code>_single(question_id: str, prompt: str, options: list[tuple[str, str]], correct: str, explanation: str, *, points: int = 1) -&gt; dict[str, Any]</code></h3>
+<p>Diese Funktion erstellt eine Frage mit <strong>einer einzigen korrekten Antwort</strong>. <strong>Beschreibung:</strong> Generiert ein Dictionary, das die Struktur einer einzelnen Multiple-Choice-Frage darstellt. <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>question_id</code></td>
+<td><code>str</code></td>
+<td>eindeutige Kennung für die Frage.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>Der eigentliche Fragestellung oder die Aufgabenstellung.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>list[tuple[str, str]]</code></td>
+<td>Eine Liste von Tupeln, wobei jedes Tupel <code>(option_id, label)</code> enthält.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>correct</code></td>
+<td><code>str</code></td>
+<td>Die ID oder der Wert der korrekten Antwort.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>explanation</code></td>
+<td><code>str</code></td>
+<td>Eine detaillierte Erklärung zur korrekten Antwort.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>points</code></td>
+<td><code>int</code></td>
+<td>Die Anzahl der Punkte, die für diese Frage vergeben werden sollen.</td>
+<td>Nein</td>
+<td><code>1</code></td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong> Ein Dictionary (<code>dict[str, Any]</code>) mit der Struktur:</p>
+<pre><code class="language-json">{
+&quot;id&quot;: &quot;...&quot;,
+&quot;type&quot;: &quot;single&quot;,
+&quot;prompt&quot;: &quot;...&quot;,
+&quot;options&quot;: [
+{&quot;id&quot;: &quot;opt1_id&quot;, &quot;label&quot;: &quot;Option 1&quot;},
+// ... weitere Optionen
+],
+&quot;correct&quot;: [&quot;korrekte_antwort_id&quot;],
+&quot;points&quot;: 1,
+&quot;explanation&quot;: &quot;Erklärung zur korrekten Antwort.&quot;
+}</code></pre>
+<p><strong>Beispiel:</strong> Wenn <code>options = [(&quot;A1&quot;, &quot;Antwort A&quot;), (&quot;B2&quot;, &quot;Antwort B&quot;)]</code> und <code>correct = &quot;A1&quot;</code> ist, wird die korrekte Antwort als Liste (<code>[&quot;A1&quot;]</code>) in das Ergebnis aufgenommen. ---</p>
+<h3 id="2-multi-question-id-str-prompt-str-options-list-tuple-str-str-correct-list-str-explanation-str-points-int-2-dict-str-any">2. <code>_multi(question_id: str, prompt: str, options: list[tuple[str, str]], correct: list[str], explanation: str, *, points: int = 2) -&gt; dict[str, Any]</code></h3>
+<p>Diese Funktion erstellt eine Frage mit <strong>mehreren korrekten Antworten</strong>. <strong>Beschreibung:</strong> Generiert ein Dictionary, das die Struktur einer Multiple-Choice-Frage mit mehreren möglichen korrekten Antworten darstellt. <strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Pflicht</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>question_id</code></td>
+<td><code>str</code></td>
+<td>eindeutige Kennung für die Frage.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>str</code></td>
+<td>Der eigentliche Fragestellung oder die Aufgabenstellung.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>list[tuple[str, str]]</code></td>
+<td>Eine Liste von Tupeln, wobei jedes Tupel <code>(option_id, label)</code> enthält.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>correct</code></td>
+<td><code>list[str]</code></td>
+<td>Eine Liste von IDs oder Werten, die als korrekte Antworten gelten.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>explanation</code></td>
+<td><code>str</code></td>
+<td>Eine detaillierte Erklärung zu den korrekten Antworten.</td>
+<td>Ja</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>points</code></td>
+<td><code>int</code></td>
+<td>Die Anzahl der Punkte, die für diese Frage vergeben werden sollen.</td>
+<td>Nein</td>
+<td><code>2</code></td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong> Ein Dictionary (<code>dict[str, Any]</code>) mit der Struktur:</p>
+<pre><code class="language-json">{
+&quot;id&quot;: &quot;...&quot;,
+&quot;type&quot;: &quot;multi&quot;,
+&quot;prompt&quot;: &quot;...&quot;,
+&quot;options&quot;: [
+{&quot;id&quot;: &quot;opt1_id&quot;, &quot;label&quot;: &quot;Option 1&quot;},
+// ... weitere Optionen
+],
+&quot;correct&quot;: [&quot;korrekte_antwort_id_1&quot;, &quot;korrekte_antwort_id_2&quot;],
+&quot;points&quot;: 2,
+&quot;explanation&quot;: &quot;Erklärung zu den korrekten Antworten.&quot;
+}</code></pre>
+<p><strong>Beispiel:</strong> Wenn <code>correct = [&quot;A1&quot;, &quot;C3&quot;]</code> ist, wird die korrekte Antwort als Liste (<code>[&quot;A1&quot;, &quot;C3&quot;]</code>) in das Ergebnis aufgenommen.</p>
+<h2 id="nutzungshinweise">Nutzungshinweise</h2>
+<p>Diese Hilfsfunktionen dienen dazu, die Datenstruktur für die Erstellung eines Fragenkatalogs zu standardisieren. Sie sind primär für die Datenvorbereitung gedacht, bevor die Fragen in eine Datenbank oder eine andere Anwendung integriert werden.</p>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>typing</code>: Für die Typisierung der Parameter und Rückgabewerte.</li>
+</ul>
+<h2 id="technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: <code>curriculum_catalog.py</code></h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Dieses Dokument beschreibt die Struktur und die Funktion der Python-Datei <code>curriculum_catalog.py</code>. Die Datei dient als zentrale Quelle für die Definition eines Lehrplans (Curriculum Catalog) für einen Python-Kurs, wobei sie detaillierte Informationen zu Modulen, Fragen und Lerninhalten enthält.</p>
+<h3 id="2-hauptkomponenten">2. Hauptkomponenten</h3>
+<p>Die Datei besteht aus folgenden Hauptkomponenten:</p>
+<h4 id="2-1-funktion-text">2.1. Funktion: <code>_text</code></h4>
+<p>Dies ist eine private Hilfsfunktion, die zur Erstellung von Text-basierten Fragen im Curriculum dient. <strong>Signature:</strong></p>
+<pre><code class="language-python">def _text(question_id: str, prompt: str, accepted: list[str], explanation: str, *, points: int = 2, placeholder: str = &quot;&quot;) -&gt; dict[str, Any]:
+# ... Implementierung</code></pre>
+<p><strong>Beschreibung:</strong> Diese Funktion konstruiert ein Dictionary, das die Struktur einer Textfrage im Curriculum abbildet. Sie ist für Fragen konzipiert, bei denen die Antwort nicht aus einer vordefinierten Auswahl besteht, sondern eine freie Eingabe (Text) erfordert. <strong>Parameter:</strong></p>
+<ul>
+<li><code>question_id</code> (<code>str</code>): eindeutige Kennung der Frage.</li>
+<li><code>prompt</code> (<code>str</code>): Die eigentliche Frage, die gestellt wird.</li>
+<li><code>accepted</code> (<code>list[str]</code>): Eine Liste der akzeptierten Antworten (wird in der Struktur gespeichert, aber für Textfragen weniger relevant als bei Multiple-Choice).</li>
+<li><code>explanation</code> (<code>str</code>): Die korrekte Erklärung zur Frage.</li>
+<li><code>points</code> (<code>int</code>, optional, Standardwert 2): Die Anzahl der Punkte, die für diese Frage vergeben werden.</li>
+<li><code>placeholder</code> (<code>str</code>, optional, Standardwert &quot;&quot;): Ein Platzhaltertext, der dem Benutzer angezeigt wird, wenn er antwortet.</li>
+<p><strong>Rückgabewert:</strong></p>
+<li><code>dict[str, Any]</code>: Ein Dictionary mit den Schlüssel-Werten: <code>&quot;id&quot;</code>, <code>&quot;type&quot;</code>, <code>&quot;prompt&quot;</code>, <code>&quot;accepted&quot;</code>, <code>&quot;points&quot;</code>, <code>&quot;explanation&quot;</code>, <code>&quot;placeholder&quot;</code>.</li>
+</ul>
+<h4 id="2-2-datenstruktur-course-catalog">2.2. Datenstruktur: <code>COURSE_CATALOG</code></h4>
+<p>Dies ist das zentrale Dictionary, das den gesamten Lehrplan für den Kurs &quot;Python Grundlagen&quot; strukturiert. <strong>Typ:</strong> <code>dict[str, dict[str, Any]]</code> <strong>Struktur:</strong> Das Hauptdictionary ist Schlüsselbasiert durch den Kursnamen oder eine eindeutige ID (hier: <code>&quot;python-grundlagen&quot;</code>). Der Wert ist ein weiteres Dictionary, das alle Kursdetails enthält. **Struktur des Kurs-Dictionaries (Beispiel: <code>&quot;python-grundlagen&quot;</code>):**</p>
+<ul>
+<li><code>course_id</code> (<code>str</code>): Eindeutige ID des Kurses.</li>
+<li><code>title</code> (<code>str</code>): Der vollständige Titel des Kurses.</li>
+<li><code>subtitle</code> (<code>str</code>): Eine kurze Beschreibung des Kurses.</li>
+<li><code>summary</code> (<code>str</code>): Eine Zusammenfassung des gesamten Kursinhalts.</li>
+<li><code>audience</code> (<code>str</code>): Zielgruppe des Kurses.</li>
+<li><code>estimated_hours</code> (<code>int</code>): Geschätzte Gesamtdauer in Stunden.</li>
+<li><code>certificate_title</code> (<code>str</code>): Titel des zu erhaltenden Zertifikats.</li>
+<li><code>pass_ratio</code> (<code>float</code>): Bestehensquote des Kurses.</li>
+<li><code>final_pass_ratio</code> (<code>float</code>): Bestehensquote nach Abschluss des gesamten Kurses.</li>
+<li><code>modules</code> (<code>list[dict]</code>): Eine Liste von Modulen, die den Kurs in logische Einheiten unterteilen.</li>
+<p>**Struktur eines Modul-Dictionaries (Beispiel: Modul `m</p>
+</ul>
+<p>Gerne, um eine technische Dokumentation für den Codeausschnitt aus <code>curriculum_catalog.py</code> erstellen zu können, benötige ich den <strong>kontext</strong>, der vor diesem Codeausschnitt steht, sowie den <strong>vollständigen Code</strong> oder zumindest den <strong>Kontext der Funktion</strong>, die durch <code>&lt;|end|&gt;</code> markiert ist. Da Sie nur den Codeausschnitt <code>def &lt;|end|&gt;</code> bereitgestellt haben, kann ich keine spezifische Dokumentation erstellen. <strong>Bitte stellen Sie mir den vollständigen Code oder den Kontext zur Verfügung.</strong> --- <strong>Sobald Sie den Code bereitstellen, werde ich eine Dokumentation erstellen, die typischerweise folgende Elemente umfasst:</strong></p>
+<ol>
+<li><strong>Funktionsname und Beschreibung:</strong> Was macht die Funktion?</li>
+<li><strong>Parameter (Arguments):</strong> Welche Eingabedaten erwartet die Funktion? (Name, Typ, Beschreibung)</li>
+<li><strong>Rückgabe (Return Value):</strong> Was gibt die Funktion aus? (Typ, Beschreibung)</li>
+<li><strong>Logik/Verhalten:</strong> Eine Erklärung, wie die Funktion funktioniert (Schritt-für-Schritt-Beschreibung).</li>
+<li><strong>Beispiele (Optional, aber empfohlen):</strong> Ein kurzes Beispiel, wie die Funktion verwendet werden kann.</li>
+<li><strong>Kommentare (Code-Level):</strong> Erläuterungen innerhalb des Codes (falls nötig).</li>
+<p>--- <strong>Beispiel, wie die Dokumentation aussehen könnte (wenn es sich um eine typische Funktion handelt):</strong> <em>(Dies ist nur ein Platzhalter, bis Sie den Code bereitstellen)</em></p>
+</ol>
+<pre><code class="language-python">def &lt;|end|&gt; (Parameter_Name1: Typ1, Parameter_Name2: Typ2) -&gt; ErgebnisTyp:
+&quot;&quot;&quot;
+[Beschreibung der Funktion]: Diese Funktion führt eine spezifische Operation auf den bereitgestellten Curriculum-Daten durch,
+um eine aggregierte Übersicht zu erstellen.
+Args:
+Parameter_Name1 (Typ1): Die erste Eingabedatenquelle (z.B. eine Liste von Kurs-IDs).
+Parameter_Name2 (Typ2): Eine zusätzliche Konfigurationsparameter (z.B. ein Filterwert).
+Returns:
+ErgebnisTyp: Ein Dictionary, das die aggregierten Daten enthält, oder None bei Fehlern.
+Raises:
+ValueError: Wenn die Eingabedaten ungültig sind (z.B. leere Listen).
+&quot;&quot;&quot;
+# Hier folgt die eigentliche Logik der Funktion...
+pass</code></pre>
+<p><strong>Ich warte auf Ihren Code!</strong></p>
+<h1 id="technische-dokumentation-python-lernpfad-curriculum-catalog">Technische Dokumentation: Python Lernpfad (Curriculum Catalog)</h1>
+<p>Dieses Dokument dient als technische Übersicht über die Struktur und den Inhalt des bereitgestellten Curriculum Catalogs. Es beschreibt die verschiedenen Module, deren Ziele, Inhalte und die zugehörigen Quizfragen. ---</p>
+<h2 id="1-struktur-des-curriculum-catalogs">1. Struktur des Curriculum Catalogs</h2>
+<p>Der bereitgestellte Code ist eine Liste von Kursmodulen, wobei jedes Objekt eine spezifische Struktur hat, die folgende Schlüsselinformationen enthält:</p>
+<ul>
+<li>**<code>module_id</code>**: eindeutige Kennung des Moduls (z.B. <code>&quot;m06_q1&quot;</code>).</li>
+<li>**<code>title</code>**: Der Titel des Moduls.</li>
+<li>**<code>estimated_minutes</code>**: Geschätzte Zeitdauer für das Modul in Minuten.</li>
+<li>**<code>objectives</code>**: Eine Liste der Lernziele, die durch das Modul erreicht werden sollen.</li>
+<li>**<code>lesson_markdown</code>**: Der eigentliche Inhalt des Moduls, formatiert in Markdown.</li>
+<li>**<code>quiz_pass_ratio</code>**: Der erwartete oder erreichte Durchsagen-Wert für das Quiz (als Dezimalzahl).</li>
+<li>**<code>questions</code>**: Eine Liste von Quizfragen, die mit spezifischen Typen (<code>_single</code>, <code>_text</code>) definiert sind.</li>
+<p>---</p>
+</ul>
+<h2 id="2-detaillierte-module-bersicht">2. Detaillierte Moduleübersicht</h2>
+<p>Im Folgenden werden die definierten Module im Detail dargestellt.</p>
+<h3 id="modul-1-impliziert-durch-den-ersten-code-snippet">Modul 1: (Impliziert durch den ersten Code-Snippet)</h3>
+<p><strong>Code-Ausschnitt:</strong></p>
+<pre><code class="language-python">def begruesse(name: str) -&gt; str:
+return f&quot;Hallo {name}&quot;</code></pre>
+<p><strong>Analyse:</strong> Dieses Snippet zeigt eine einfache Funktion zur Begrüßung. Es demonstriert die Definition einer Funktion (<code>def</code>), die einen Parameter (<code>name: str</code>) akzeptiert und einen Wert (<code>str</code>) zurückgibt (<code>return</code>). <strong>Zugehörige Quizfragen (aus dem Kontext):</strong></p>
+<ul>
+<li>**<code>m06_q1</code>**: Fokus auf die Funktion des <code>return</code>-Statements.</li>
+<li>**<code>m06_q2</code>**: Fokus auf String-Methoden (<code>.upper()</code>).</li>
+<li>**<code>m06_q3</code>**: Fokus auf die Definition von Funktionen (<code>def</code>).</li>
+<p>---</p>
+</ul>
+<h3 id="modul-2-m07-erweiterte-datentypen-und-funktionen">Modul 2: <code>m07_erweiterte_datentypen_und_funktionen</code></h3>
+<p><strong>Titel:</strong> Sets, Dictionaries und erweiterte Funktionen <strong>Geschätzte Zeit:</strong> 55 Minuten <strong>Lernziele (Objectives):</strong></p>
+<ol>
+<li>Sets und Dictionaries voneinander unterscheiden.</li>
+<li>Optionale, benannte und variable Parameter einordnen.</li>
+<li>Lambda und Rekursion auf Grundniveau verstehen.</li>
+<p><strong>Inhalt (Lesson Markdown):</strong> Das Modul behandelt die grundlegenden Datenstrukturen Python:</p>
+</ol>
+<ul>
+<li><strong>Set</strong>: Ungeordnete Menge ohne doppelte Einträge.</li>
+<li><strong>Dictionary</strong>: Zuordnung von Schlüssel zu Wert (Key-Value-Paare).</li>
+<li><strong>Erweiterte Funktionen</strong>: Fokus auf benannte Parameter, optionale Parameter mit Default-Werten, <code>*args</code> (variable Positionsparameter) und Lambdas (kurze anonyme Funktionen).</li>
+<p><strong>Quizfragen (Beispiele):</strong></p>
+<li>**<code>m07_q1</code>**: Identifizierung von Dictionaries.</li>
+<li>**<code>m07_q2</code>**: Verständnis der Eigenschaft von Sets (keine Duplikate).</li>
+<li>**<code>m07_q3</code>**: Definition von Lambdas.</li>
+<p>---</p>
+</ul>
+<h3 id="modul-3-m08-module-dateien-csv">Modul 3: <code>m08_module_dateien_csv</code></h3>
+<p><strong>Titel:</strong> Module, CSV-Dateien und prozedurale Programmierung <strong>Geschätzte Zeit:</strong> 55 Minuten <strong>Lernziele (Objectives):</strong></p>
+<ol>
+<li>Import-Anweisungen lesen und schreiben.</li>
+<li>Dateien öffnen, lesen und schreiben.</li>
+<li>CSV als typisches Datenformat erkennen.</li>
+<p><strong>Inhalt (Lesson Markdown):</strong> Das Modul konzentriert sich auf I/O-Operationen und Datenformatierung:</p>
+</ol>
+<ul>
+<li><strong>Module</strong>: Verwendung von <code>import</code> zur Einbindung externer Code oder Bibliotheken.</li>
+<li><strong>Dateien</strong>: Sicheres und lesbares Dateizugriff mittels <code>with open(...)</code> (Resource Management).</li>
+<li><strong>CSV</strong>: Erklärung des CSV-Formats für tabellarische Daten.</li>
+<p><strong>Quizfragen (Beispiele):</strong></p>
+<li>**<code>m08_q1</code>**: Zweck von <code>import</code>.</li>
+<li>**<code>m08_q2</code>**: Sicherheit beim Dateizugriff (<code>with</code>-Block).</li>
+<li>**<code>m08_q3</code>**: Erkennung des CSV-Formats.</li>
+<p>---</p>
+</ul>
+<h3 id="modul-4-m09-oop-und-klassen">Modul 4: <code>m09_oop_und_klassen</code></h3>
+<p><strong>Titel:</strong> Objektorientierung, Klassen und Vererbung <strong>Geschätzte Zeit:</strong> 60 Minuten <strong>Lernziele (Objectives):</strong></p>
+<ol>
+<li>Klassen und Objekte unterscheiden.</li>
+<li>Konstruktor, Felder und Methoden anwenden.</li>
+<li>Vererbung als Erweiterungskonzept beschreiben.</li>
+<p><strong>Inhalt (Lesson Markdown):</strong> Das Modul führt in die Grundlagen der Objektorientierung (OOP) ein:</p>
+</ol>
+<ul>
+<li><strong>OOP-Grundidee</strong>: Daten und Verhalten in Klassen gruppieren.</li>
+<li>(Der bereitgestellte Markdown-Block ist unvollständig, beginnt aber mit der Definition von Klassen.)</li>
+<p><strong>Quizfragen (Beispiele):</strong></p>
+<li>(Quizfragen für dieses Modul sind im bereitgestellten Snippet nicht vollständig sichtbar, aber sie zielen auf Klassen-Konstruktion und Vererbung ab.)</li>
+<p>---</p>
+</ul>
+<h2 id="3-technische-metadaten-und-design-prinzipien">3. Technische Metadaten und Design-Prinzipien</h2>
+<h3 id="a-typisierung-und-signatur">A. Typisierung und Signatur</h3>
+<p>Die Funktionen verwenden moderne Python-Typisierung (z.B. <code>name: str -&gt; str</code>), was die Lesbarkeit und Wartbarkeit erhöht.</p>
+<h3 id="b-fehlerbehandlung-und-ressourcenmanagement">B. Fehlerbehandlung und Ressourcenmanagement</h3>
+<p>Im Modul <code>m08_module_dateien_csv</code> wird explizit der <code>with</code>-Block für Dateizugriffe empfohlen, was eine Best Practice für das Management von Ressourcen (Dateihandeln) darstellt.</p>
+<h3 id="c-modularit-t">C. Modularität</h3>
+<p>Die Struktur des Catalogs ist modular aufgebaut. Jedes Modul ist eine eigenständige Einheit mit klaren Zielen, Inhalten und Prüfungsfragen, was eine effektive Lernpfadplanung ermöglicht.</p>
+<h3 id="d-quiz-design">D. Quiz-Design</h3>
+<p>Die Quizfragen sind diversifiziert und decken verschiedene Konzepte ab:</p>
+<ul>
+<li><strong>Definitionen</strong> (z.B. <code>return</code>, <code>def</code>).</li>
+<li><strong>Konzeptverständnis</strong> (z.B. Set vs. Dictionary).</li>
+<li><strong>Syntax</strong> (z.B. <code>lambda</code>, <code>import</code>).</li>
+<li><strong>Anwendung</strong> (z.B. <code>upper()</code>, Dateizugriff).</li>
+<p>--- <strong>Zusammenfassung:</strong> Der Curriculum Catalog ist ein gut strukturierter Plan, der von grundlegenden Funktionen über fortgeschrittene Datenstrukturen (Sets, Dictionaries), I/O-Operationen (CSV, Module) bis hin zur Objektorientierung führt. Die Kombination aus theoretischem Markdown-Inhalt und gezielten Quizfragen unterstützt eine effektive Wissensvermittlung.</p>
+</ul>
+<p>Bitte stellen Sie mir den vollständigen Inhalt der Datei <code>curriculum_catalog.py</code> zur Verfügung, damit ich eine technische Dokumentation für den gegebenen Codeabschnitt erstellen kann. Sobald Sie mir den Code liefern, werde ich eine Dokumentation erstellen, die typischerweise folgende Elemente umfasst:</p>
+<ol>
+<li><strong>Überblick (Overview):</strong> Eine kurze Beschreibung, was die Klasse/Funktion tut.</li>
+<li><strong>Klassen-/Funktionsbeschreibung (Class/Function Description):</strong> Detaillierte Erklärung der Struktur und der Logik.</li>
+<li><strong>Attribute/Parameter (Attributes/Parameters):</strong> Eine Auflistung aller verwendeten Variablen, Methoden oder Argumente mit deren Typ und Zweck.</li>
+<li><strong>Methoden/Funktionen (Methods/Functions):</strong> Eine detaillierte Beschreibung jeder Methode, einschließlich ihrer Eingaben (Parameters), ihrer Logik und ihrer Ausgaben (Return Values).</li>
+<li><strong>Verwendung (Usage Examples):</strong> Beispiele, wie die Klasse oder Funktion in einem realen Programm verwendet werden kann.</li>
+<li><strong>Hinweise/Erklärungen (Notes/Caveats):</strong> Wichtige Informationen, Abhängigkeiten oder potenzielle Fallstricke.</li>
+<p><strong>Beispiel, wie die Dokumentation aussehen könnte (wenn Sie mir den Code geben):</strong> ---</p>
+</ol>
+<h2 id="technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: <code>curriculum_catalog.py</code></h2>
+<h3 id="klasse-name-der-klasse-falls-vorhanden">Klasse: <code>[Name der Klasse, falls vorhanden]</code></h3>
+<p><strong>Überblick:</strong> [Hier wird beschrieben, welche Hauptfunktion diese Klasse im gesamten System erfüllt. Z.B.: Diese Klasse dient zur Verwaltung und Katalogisierung aller verfügbaren Lehrpläne und Kurse innerhalb der Lernplattform.] <strong>Beschreibung:</strong> [Detaillierte Erklärung der Struktur und der Architektur der Klasse.] <strong>Attribute (Attributes):</strong></p>
+<ul>
+<li>**<code>[Attribute_Name]</code> (Typ):** [Beschreibung, was dieser Attribut speichert und welche Rolle er spielt.]</li>
+<li>**<code>[Attribute_Name]</code> (Typ):** [Beschreibung...]</li>
+<p><strong>Methoden (Methods):</strong> **1. <code>[method_name]</code> (Parameter: <code>[Typ]</code>):**</p>
+<li><strong>Beschreibung:</strong> [Detaillierte Erklärung der Funktion. Was passiert bei Aufruf?]</li>
+<li><strong>Return Value:</strong> [Was gibt die Methode zurück?]</li>
+<li><strong>Beispiel:</strong> <code>result = self.method_name(parameter1, parameter2)</code></li>
+<p>**2. <code>[method_name]</code> (Parameter: <code>[Typ]</code>):**</p>
+<li><strong>Beschreibung:</strong> [Beschreibung...]</li>
+<p>--- <strong>Bitte fügen Sie den Code ein!</strong></p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 10040 &gt;= 4096</p>
+<p>Gerne, um eine technische Dokumentation für den Code in <code>curriculum_catalog.py</code> zu erstellen, benötige ich den <strong>vollständigen Code</strong> der Datei. Der von Ihnen bereitgestellte Codeausschnitt ist:</p>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<p>Dieser Codeausschnitt ist <strong>unvollständig</strong> und liefert keine Informationen über die Klasse, ihre Methoden oder die Funktion der Datei. **Bitte fügen Sie den vollständigen Inhalt von <code>curriculum_catalog.py</code> ein<strong>, damit ich eine präzise und nützliche technische Dokumentation erstellen kann. --- </strong>Sobald Sie den Code bereitstellen, werde ich eine Dokumentation erstellen, die typischerweise folgende Abschnitte umfasst:**</p>
+<ol>
+<li><strong>Überblick (Overview):</strong> Kurze Beschreibung, was die Datei und die Klasse tun.</li>
+<li><strong>Klassendefinitionen (Class Definitions):</strong> Detaillierte Erklärung der Klasse (z.B. <code>CurriculumCatalog</code>).</li>
+<li><strong>Attribute/Methoden (Attributes/Methods):</strong> Beschreibung aller wichtigen Variablen und Funktionen.</li>
+</ol>
+<ul>
+<li><strong>Attribute:</strong> Name, Typ, Beschreibung.</li>
+<li><strong>Methoden:</strong> Name, Parameter, Rückgabe, Beschreibung der Logik.</li>
+</ul>
+<ol>
+<li><strong>Verwendung (Usage):</strong> Beispiele, wie die Klasse oder die Funktionen verwendet werden sollen.</li>
+<li><strong>Abhängigkeiten (Dependencies):</strong> Welche Bibliotheken oder externen Ressourcen benötigt werden.</li>
+<li><strong>API-Referenz (API Reference):</strong> (Optional, aber hilfreich) Eine strukturierte Übersicht der öffentlichen Schnittstellen.</li>
+<p><strong>Ich warte auf Ihren Code!</strong></p>
+</ol>
+<h2 id="technische-dokumentation-curriculum-catalog-py-teil-8-11">Technische Dokumentation: <code>curriculum_catalog.py</code> (Teil 8/11)</h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Dieses Dokument beschreibt einen Ausschnitt aus einer Curriculum-Katalog-Datei (<code>curriculum_catalog.py</code>), der spezifische Lerninhalte, Module und Quiz-Elemente für einen Kurs enthält. Der Fokus liegt auf der Strukturierung von Lernmaterialien, der Definition von Klassen und der Integration von Tests.</p>
+<h3 id="2-code-analyse-klasse-konto">2. Code-Analyse: Klasse <code>Konto</code></h3>
+<p>Der bereitgestellte Code definiert eine einfache Klasse namens <code>Konto</code>, die die grundlegenden Operationen für eine Kontofunktion implementiert. <strong>Code-Auszug:</strong></p>
+<pre><code class="language-python">class Konto {
+public:
+double stand = 0.0;
+void einzahlen(double betrag) {
+stand += betrag;
+}
+};</code></pre>
+<p>**Beschreibung der Klasse <code>Konto</code>:**</p>
+<ul>
+<li><strong>Zweck:</strong> Repräsentiert eine einfache Kontofunktion, die den aktuellen Kontostand speichert und die Möglichkeit bietet, Gelder einzuzahlen.</li>
+<li><strong>Attribute (Member):</strong></li>
+<li><code>stand</code>: Ein <code>double</code>-Attribut, das den aktuellen Kontostand speichert. Es wird standardmäßig auf <code>0.0</code> initialisiert.</li>
+<li><strong>Methoden (Functions):</strong></li>
+<li><code>einzahlen(double betrag)</code>: Eine Methode, die den Kontostand (<code>stand</code>) um den übergebenen <code>betrag</code> erhöht.</li>
+<p><strong>Technische Hinweise:</strong></p>
+<li><strong>Sprachkontext:</strong> Der verwendete Syntax (<code>public:</code>, <code>double</code>, <code>void</code>) deutet stark auf eine C++-Implementierung hin, obwohl die Datei selbst Python-Syntax verwendet (was auf eine Mischung oder eine spezifische Metaprogramm-Struktur hindeutet).</li>
+<li><strong>Design:</strong> Die Klasse folgt dem Prinzip der Daten- und Verhaltenstrennung (Daten: <code>stand</code>; Verhalten: <code>einzahlen</code>).</li>
+</ul>
+<h3 id="3-metadaten-und-quiz-konfiguration">3. Metadaten und Quiz-Konfiguration</h3>
+<p>Der Abschnitt enthält Metadaten für ein spezifisches Quiz-Element, das mit einem Modul verknüpft ist. <strong>Konfigurationsdetails:</strong></p>
+<ul>
+<li>**<code>quiz_pass_ratio</code>**: <code>0.67</code> (Indikator für die erwartete Erfolgsquote des Tests).</li>
+<li>**<code>questions</code>**: Eine Liste von Fragen, die das Quiz definieren.</li>
+<p><strong>Analyse der Fragen:</strong></p>
+</ul>
+<table><thead><tr>
+<th>ID</th>
+<th>Typ</th>
+<th>Frage/Beschreibung</th>
+<th>Optionen</th>
+<th>Korrekte Antwort</th>
+<th>Fokusbereich</th>
+</tr></thead><tbody>
+<tr>
+<td><code>c04_q1</code></td>
+<td><code>_single</code></td>
+<td>Was beschreibt eine Klasse in C++ am besten?</td>
+<td>a: Eine Sammlung aus Daten und passendem Verhalten</td>
+<td>a</td>
+<td>Grundlagen OOP</td>
+</tr>
+<tr>
+<td><code>c04_q2</code></td>
+<td><code>_single</code></td>
+<td>Wozu dient ein Namespace?</td>
+<td>a: Zur Strukturierung von Namen</td>
+<td>a</td>
+<td>Organisation/Scope</td>
+</tr>
+<tr>
+<td><code>c04_q3</code></td>
+<td><code>_text</code></td>
+<td>Wie nennt man Programme oder Routinen, die erwartetes Verhalten automatisch pruefen?</td>
+<td>[&quot;tests&quot;, &quot;automatisierte tests&quot;]</td>
+<td>Automatisierte Tests pruefen Verhalten systematisch.</td>
+<td>Test-Methodik</td>
+</tr>
+</tbody></table>
+<h3 id="4-modul-definition-c05-oop-erweitert">4. Modul-Definition: <code>c05_oop_erweitert</code></h3>
+<p>Dieser Abschnitt definiert ein spezifisches Lernmodul innerhalb des Curriculums. <strong>Modul-Details:</strong></p>
+<ul>
+<li>**<code>module_id</code>**: <code>c05_oop_erweitert</code></li>
+<li>**<code>title</code>**: Erweiterte objektorientierte Programmierung</li>
+<li>**<code>estimated_minutes</code>**: 60 Minuten</li>
+<li>**<code>objectives</code> (Lernziele):**</li>
+</ul>
+<ol>
+<li>Vererbung als Erweiterungskonzept erklären.</li>
+<li>Den Lebenszyklus von Objekten beschreiben.</li>
+<li>Sicheren und qualitativen Code mit objektorientiertem Design verbinden.</li>
+</ol>
+<ul>
+<li>**<code>lesson_markdown</code> (Inhalt):**</li>
+<li><strong>Thema:</strong> Klassen weiterdenken</li>
+<li><strong>Kernbotschaft:</strong> Vererbung ermöglicht Wiederverwendung gemeinsamer Eigenschaften, erfordert jedoch eine klare Trennung von Verantwortlichkeiten (Konstruktoren, Destruktoren, Ressourcen).</li>
+<p><strong>Technische Implikationen:</strong> Das Modul <code>c05_oop_erweitert</code> zielt darauf ab, fortgeschrittene Konzepte der Objektorientierten Programmierung (OOP) zu vermitteln, insbesondere Vererbung und das Verständnis des Lebenszyklus von Objekten.</p>
+</ul>
+<h3 id="5-zusammenfassung-und-fazit">5. Zusammenfassung und Fazit</h3>
+<p>Die Datei <code>curriculum_catalog.py</code> dient als zentrales Repository für die Strukturierung eines technischen Kurses. Sie kombiniert:</p>
+<ol>
+<li><strong>Code-Definition:</strong> Die Implementierung einer einfachen Klasse (<code>Konto</code>).</li>
+<li><strong>Test-Management:</strong> Die Definition von Fragen und deren Bewertung (Quiz-Konfiguration).</li>
+<li><strong>Lernpfad-Management:</strong> Die Strukturierung komplexer Themen in thematische Module (<code>c05_oop_erweitert</code>) mit klaren Lernzielen und inhaltlichen Erklärungen.</li>
+<p>Die Struktur ist modular und darauf ausgelegt, sowohl die theoretischen Grundlagen (OOP-Prinzipien) als auch die praktische Umsetzung (Klassenimplementierung) abzudecken.</p>
+</ol>
+<p>Gerne, hier ist ein Entwurf für eine technische Dokumentation, basierend auf dem bereitgestellten Code-Ausschnitt (<code>curriculum_catalog.py</code>, Teil 9/11, Code: <code>class</code>). Da der Codeausschnitt nur die Definition eines Klassenstarts zeigt, werde ich eine <strong>strukturierte Dokumentation</strong> erstellen, die die typischen Elemente einer technischen Dokumentation (Zweck, Struktur, Details) abbildet und Platzhalter für die weiteren Inhalte der Klasse enthält. ---</p>
+<h1 id="technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: <code>curriculum_catalog.py</code></h1>
+<h2 id="9-11-klasse-definition">9/11: Klasse Definition</h2>
+<h3 id="9-1-berblick">9.1. Überblick</h3>
+<p>Diese Sektion dokumentiert die Struktur und Funktion der Klasse, die in der Datei <code>curriculum_catalog.py</code> definiert wird. Diese Klasse dient dazu, die Struktur, Metadaten und möglicherweise die Logik für die Verwaltung und Abfrage eines Lehrplans oder eines Curriculum-Katalogs zu kapseln.</p>
+<h3 id="9-2-code-ausschnitt">9.2. Code-Ausschnitt</h3>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<h3 id="9-3-beschreibung-der-klasse">9.3. Beschreibung der Klasse</h3>
+<p><strong>Name:</strong> <code>&lt;|end|&gt;</code> (Platzhalter für den tatsächlichen Klassenname) <strong>Zweck:</strong> Die Klasse <code>&lt;|end|&gt;</code> ist verantwortlich für die Initialisierung, Speicherung und Verwaltung aller notwendigen Datenstrukturen, die für die Darstellung, Filterung und Abfrage eines vollständigen Curriculum-Katalogs erforderlich sind. Sie fungiert als zentraler Datencontainer für alle Kurse, Module, Lehrpläne und zugehörigen Metadaten. <strong>Verantwortlichkeiten:</strong></p>
+<ol>
+<li><strong>Initialisierung:</strong> Bereitstellen von Standardwerten oder der Einrichtung von Datenbankverbindungen/Dateizugriffen.</li>
+<li><strong>Datenhaltung:</strong> Speichern von Kursinformationen (Titel, Beschreibung, Dauer, Voraussetzungen, etc.).</li>
+<li><strong>Abfrage-Logik:</strong> Implementierung von Methoden zur Suche, Sortierung und Filterung des Katalogs.</li>
+<li><strong>Validierung:</strong> Sicherstellen, dass eingegebene Daten den definierten Schema-Anforderungen entsprechen.</li>
+</ol>
+<h3 id="9-4-struktur-und-attribute-erwartet">9.4. Struktur und Attribute (Erwartet)</h3>
+<p><em>(Dieser Abschnitt wird nach der vollständigen Definition der Klasse ausgefüllt, sobald der vollständige Code verfügbar ist.)</em></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Initialisierung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>self.catalog_data</code></td>
+<td><code>dict</code> / <code>list</code></td>
+<td>Die primäre Struktur, die alle Kurse oder Module speichert.</td>
+<td>Initialisiert (z.B. leerer Dictionary)</td>
+</tr>
+<tr>
+<td><code>self.version</code></td>
+<td><code>str</code></td>
+<td>Die aktuelle Version des Curriculum-Modells.</td>
+<td>Konfiguriert</td>
+</tr>
+<tr>
+<td><code>self.default_filter</code></td>
+<td><code>str</code></td>
+<td>Der Standardfilter, der bei einer Abfrage angewendet wird.</td>
+<td>Konfiguriert</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+<h3 id="9-5-methoden-erwartet">9.5. Methoden (Erwartet)</h3>
+<p><em>(Dieser Abschnitt wird nach der vollständigen Definition der Klasse ausgefüllt.)</em></p>
+<table><thead><tr>
+<th>Methode</th>
+<th>Beschreibung</th>
+<th>Parameter(e)</th>
+<th>Rückgabe(n)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>__init__(self, ...)</code></td>
+<td>Initialisiert die Klasse und lädt die anfänglichen Daten.</td>
+<td>...</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>add_course(self, course_data)</code></td>
+<td>Fügt einen neuen Kurs zum Katalog hinzu.</td>
+<td><code>course_data</code> (Dictionary)</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>search_courses(self, query)</code></td>
+<td>Sucht nach Kursen basierend auf Schlüsselwörtern oder IDs.</td>
+<td><code>query</code> (str)</td>
+<td><code>list</code> of <code>CourseObject</code></td>
+</tr>
+<tr>
+<td><code>get_course_details(self, course_id)</code></td>
+<td>Gibt detaillierte Informationen zu einem spezifischen Kurs zurück.</td>
+<td><code>course_id</code> (str/int)</td>
+<td><code>CourseObject</code> oder <code>None</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+<h3 id="9-6-abh-ngigkeiten">9.6. Abhängigkeiten</h3>
+<ul>
+<li><strong>Externe Bibliotheken:</strong> (z.B. <code>json</code>, <code>sqlite3</code>, <code>pandas</code>)</li>
+<li><strong>Externe Dienste:</strong> (z.B. API-Endpunkte für externe Metadaten)</li>
+<p>--- <strong>Nächste Schritte:</strong> Bitte stellen Sie den vollständigen Code der Klasse <code>&lt;|end|&gt;</code> zur Verfügung, damit die Sektionen 9.4, 9.5 und 9.6 mit spezifischen Details und Implementierungsdetails gefüllt werden können.</p>
+</ul>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 5176 &gt;= 4096</p>
+<h1 id="technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: <code>curriculum_catalog.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält Funktionen zur Verwaltung und Abfrage eines Kurskatalogs. Sie definiert Schnittstellen zur Auflistung aller verfügbaren Kurse und zur Einzelabfrage eines spezifischen Kurses anhand seiner ID.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="2-1-list-courses-list-dict-str-any">2.1. <code>list_courses() -&gt; list[dict[str, Any]]</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion liefert eine vollständige Liste aller Kurse aus dem globalen Kurskatalog (<code>COURSE_CATALOG</code>). Sie wandelt die Werte des Katalogs in eine Liste von Dictionaries um, wobei jeder Dictionary die Details eines Kurses enthält. <strong>Parameter:</strong></p>
+<ul>
+<li>Keine</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[dict[str, Any]]</code>: Eine Liste von Dictionaries, wobei jedes Dictionary die Struktur eines Kurses darstellt.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<pre><code class="language-python">def list_courses() -&gt; list[dict[str, Any]]:
+&quot;&quot;&quot;
+Gibt eine Liste aller Kurse aus dem COURSE_CATALOG zurück.
+:return: Eine Liste von Kurs-Dictionaries.
+&quot;&quot;&quot;
+return [dict(course) for course in COURSE_CATALOG.values()]</code></pre>
+<p><strong>Annahmen:</strong></p>
+<ul>
+<li>Es existiert eine globale Variable <code>COURSE_CATALOG</code>, die ein Mapping (wahrscheinlich ein Dictionary) von Kurs-IDs zu Kurs-Objekten/Daten enthält.</li>
+<p>---</p>
+</ul>
+<h3 id="2-2-get-course-course-id-str-dict-str-any-none">2.2. <code>get_course(course_id: str) -&gt; dict[str, Any] | None</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion ermöglicht die Abfrage eines spezifischen Kurses anhand seiner eindeutigen ID. Sie sucht den entsprechenden Eintrag im <code>COURSE_CATALOG</code> und gibt ihn zurück, falls gefunden, andernfalls <code>None</code>. <strong>Parameter:</strong></p>
+<ul>
+<li><code>course_id: str</code>: Die eindeutige Kennung (ID) des gesuchten Kurses.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, Any] | None</code>:</li>
+<li>Ein Dictionary, das die vollständigen Details des gesuchten Kurses enthält, falls die ID gültig ist.</li>
+<li><code>None</code>, falls keine Kurs-ID mit der angegebenen <code>course_id</code> im Katalog gefunden wird.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<pre><code class="language-python">def get_course(course_id: str) -&gt; dict[str, Any] | None:
+&quot;&quot;&quot;
+Gibt die Details eines Kurses basierend auf seiner ID zurück.
+:param course_id: Die eindeutige ID des gesuchten Kurses.
+:return: Das Dictionary mit Kursdetails oder None, falls der Kurs nicht existiert.
+&quot;&quot;&quot;
+course = COURSE_CATALOG.get(course_id)
+return dict(course) if course else None</code></pre>
+<p><strong>Annahmen:</strong></p>
+<ul>
+<li>Es existiert eine globale Variable <code>COURSE_CATALOG</code>, die eine Schlüssel-Wert-Zuordnung (Key: <code>course_id</code> (str), Value: Kurs-Daten) bereitstellt.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-kontext">3. Abhängigkeiten und Kontext</h2>
+<ul>
+<li>**<code>COURSE_CATALOG</code>**: Eine globale Struktur (wahrscheinlich ein <code>dict</code>), die die gesamte Datenbank oder das Verzeichnis aller verfügbaren Kurse speichert.</li>
+<li><strong>Typisierung</strong>: Die Funktion nutzt Python-Typ-Hints (<code>list</code>, <code>dict</code>, <code>str</code>, <code>Any</code>), um die erwarteten Datenstrukturen klar zu definieren.</li>
+</ul>
+<h2 id="4-nutzungsszenarien">4. Nutzungsszenarien</h2>
+<ol>
+<li><strong>Alle Kurse anzeigen:</strong> Rufen Sie <code>list_courses()</code> auf, um eine vollständige Übersicht aller Kurse im Katalog zu erhalten.</li>
+<li><strong>Kursdetails abrufen:</strong> Rufen Sie <code>get_course(&quot;COURSE_XYZ123&quot;)</code> auf, um die spezifischen Informationen zu einem Kurs mit der ID &quot;COURSE\_XYZ123&quot; abzurufen.</li>
+<li><strong>Fehlerbehandlung:</strong> Wenn <code>get_course()</code> <code>None</code> zurückgibt, muss die Anwendung dies abfangen, um eine Fehlermeldung oder eine entsprechende Standardantwort für einen nicht existierenden Kurs zu generieren.</li>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-single-question-id-str-prompt-str-options-list-tuple-str-str-correct-str-explanation-str-points-int-1-dict-str-any">1. `_single(question_id: str, prompt: str, options: list[tuple[str, str]], correct: str, explanation: str, *, points: int = 1) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-multi-question-id-str-prompt-str-options-list-tuple-str-str-correct-list-str-explanation-str-points-int-2-dict-str-any">2. `_multi(question_id: str, prompt: str, options: list[tuple[str, str]], correct: list[str], explanation: str, *, points: int = 2) -&gt; dict[str, Any]`</a></li>
+<li class="wiki-toc-link"><a href="#nutzungshinweise">Nutzungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: `curriculum_catalog.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-hauptkomponenten">2. Hauptkomponenten</a></li>
+<li class="wiki-toc-link"><a href="#1-struktur-des-curriculum-catalogs">1. Struktur des Curriculum Catalogs</a></li>
+<li class="wiki-toc-link"><a href="#2-detaillierte-module-bersicht">2. Detaillierte Moduleübersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#modul-1-impliziert-durch-den-ersten-code-snippet">Modul 1: (Impliziert durch den ersten Code-Snippet)</a></li>
+<li class="wiki-toc-link level-3"><a href="#modul-2-m07-erweiterte-datentypen-und-funktionen">Modul 2: `m07_erweiterte_datentypen_und_funktionen`</a></li>
+<li class="wiki-toc-link level-3"><a href="#modul-3-m08-module-dateien-csv">Modul 3: `m08_module_dateien_csv`</a></li>
+<li class="wiki-toc-link level-3"><a href="#modul-4-m09-oop-und-klassen">Modul 4: `m09_oop_und_klassen`</a></li>
+<li class="wiki-toc-link"><a href="#3-technische-metadaten-und-design-prinzipien">3. Technische Metadaten und Design-Prinzipien</a></li>
+<li class="wiki-toc-link level-3"><a href="#a-typisierung-und-signatur">A. Typisierung und Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#b-fehlerbehandlung-und-ressourcenmanagement">B. Fehlerbehandlung und Ressourcenmanagement</a></li>
+<li class="wiki-toc-link level-3"><a href="#c-modularit-t">C. Modularität</a></li>
+<li class="wiki-toc-link level-3"><a href="#d-quiz-design">D. Quiz-Design</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-curriculum-catalog-py">Technische Dokumentation: `curriculum_catalog.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#klasse-name-der-klasse-falls-vorhanden">Klasse: `[Name der Klasse, falls vorhanden]`</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-curriculum-catalog-py-teil-8-11">Technische Dokumentation: `curriculum_catalog.py` (Teil 8/11)</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-code-analyse-klasse-konto">2. Code-Analyse: Klasse `Konto`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-metadaten-und-quiz-konfiguration">3. Metadaten und Quiz-Konfiguration</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-modul-definition-c05-oop-erweitert">4. Modul-Definition: `c05_oop_erweitert`</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-zusammenfassung-und-fazit">5. Zusammenfassung und Fazit</a></li>
+<li class="wiki-toc-link"><a href="#9-11-klasse-definition">9/11: Klasse Definition</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-1-berblick">9.1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-2-code-ausschnitt">9.2. Code-Ausschnitt</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-3-beschreibung-der-klasse">9.3. Beschreibung der Klasse</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-4-struktur-und-attribute-erwartet">9.4. Struktur und Attribute (Erwartet)</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-5-methoden-erwartet">9.5. Methoden (Erwartet)</a></li>
+<li class="wiki-toc-link level-3"><a href="#9-6-abh-ngigkeiten">9.6. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-list-courses-list-dict-str-any">2.1. `list_courses() -&gt; list[dict[str, Any]]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-get-course-course-id-str-dict-str-any-none">2.2. `get_course(course_id: str) -&gt; dict[str, Any] | None`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-kontext">3. Abhängigkeiten und Kontext</a></li>
+<li class="wiki-toc-link"><a href="#4-nutzungsszenarien">4. Nutzungsszenarien</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "curriculum_catalog.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

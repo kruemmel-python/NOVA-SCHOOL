@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_mentor.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_mentor.py`</h1>
+          <p>Source: test_mentor.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-mentor-py">Technische Dokumentation: <code>test_mentor.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Struktur, die Komponenten und die Funktion der Python-Datei <code>test_mentor.py</code>. Die Datei scheint primär für die Unit-Tests oder die Validierung der Funktionalität eines Mentorservice (<code>SocraticMentorService</code>) innerhalb einer größeren Anwendung namens <code>nova_school_server</code> zu dienen.</p>
+<h2 id="2-abh-ngigkeiten-und-importe">2. Abhängigkeiten und Importe</h2>
+<p>Die Datei importiert verschiedene Module aus verschiedenen Unterpaketen der <code>nova_school_server</code>-Struktur, sowie Standard-Python-Module und Bibliotheken für Dateiverarbeitung und Sicherheit. <strong>Importierte Module:</strong></p>
+<ul>
+<li><code>__future__</code>: Für zukünftige Python-Syntax-Features.</li>
+<li><code>hashlib</code>: Für kryptografische Hashing-Operationen.</li>
+<li><code>hmac</code>: Für Message Authentication Codes (MAC).</li>
+<li><code>io</code>: Für die Arbeit mit I/O-Streams.</li>
+<li><code>json</code>: Für die Serialisierung und Deserialisierung von Daten.</li>
+<li><code>tempfile</code>: Für das Erstellen temporärer Dateien.</li>
+<li><code>time</code>: Für Zeitmessungen.</li>
+<li><code>unittest</code>: Für die Implementierung von Unit-Tests.</li>
+<li><code>zipfile</code>: Für die Arbeit mit ZIP-Archiven.</li>
+<li><code>pathlib.Path</code>: Für eine objektorientierte und plattformunabhängige Dateiverwaltung.</li>
+<p>**Importierte Klassen/Funktionen (aus <code>nova_school_server</code>):**</p>
+<li><code>nova_school_server.ai_service.PROMPT_TRUNCATION_MARKER</code>: Eine Konstante, die wahrscheinlich zur Markierung oder Begrenzung von Prompts in KI-Interaktionen verwendet wird.</li>
+<li><code>nova_school_server.curriculum.CurriculumService</code>: Ein Service zur Verwaltung von Lehrplänen.</li>
+<li><code>nova_school_server.database.SchoolRepository</code>: Eine Schnittstelle zur Interaktion mit der Datenbank.</li>
+<li><code>nova_school_server.mentor.SocraticMentorService</code>: Der zentrale Service, der die Mentoring-Logik implementiert.</li>
+</ul>
+<h2 id="3-hauptkomponenten">3. Hauptkomponenten</h2>
+<h3 id="3-1-klasse-session">3.1. Klasse <code>_Session</code></h3>
+<p>Diese Klasse dient zur Strukturierung und Speicherung der Kontextinformationen eines Benutzers während einer Sitzung oder eines Mentoring-Prozesses. <strong>Attribute:</strong></p>
+<ul>
+<li><code>username: str</code>: Der eindeutige Benutzername.</li>
+<li><code>is_teacher: bool = False</code>: Flag, ob der Benutzer ein Lehrer ist (Standardwert: <code>False</code>).</li>
+<li><code>permissions: dict | None = None</code>: Ein Dictionary, das spezifische Berechtigungen des Benutzers speichert (Standardwert: leeres Dictionary <code>{}</code>).</li>
+<li><code>group_ids: list[str] | None = None</code>: Eine Liste von IDs von Gruppen, zu denen der Benutzer gehört (Standardwert: leere Liste <code>[]</code>).</li>
+<li><code>user: dict</code>: Ein internes Dictionary, das die öffentliche Darstellung des Benutzers enthält, z.B. <code>{&quot;display_name&quot;: username.title()}</code>.</li>
+<p>**Konstruktor (<code>__init__</code>):** Initialisiert die Attribute und setzt Standardwerte für <code>permissions</code> und <code>group_ids</code>.</p>
+</ul>
+<pre><code class="language-python">def __init__(self, username: str, *, is_teacher: bool = False, permissions: dict | None = None, group_ids: list[str] | None = None) -&gt; None:
+self.username = username
+self.is_teacher = is_teacher
+self.permissions = permissions or {}
+self.group_ids = group_ids or []
+self.user = {&quot;display_name&quot;: username.title()}</code></pre>
+<h2 id="4-funktionale-details">4. Funktionale Details</h2>
+<p>Die bereitgestellte Code-Stücke zeigen die Definition einer Klasse und die Importstruktur. Die eigentliche Logik der Tests oder der Mentoring-Funktionen ist in diesem Ausschnitt nicht enthalten, aber die Importe deuten auf folgende mögliche Funktionen hin:</p>
+<ol>
+<li><strong>Sicherheitsmechanismen:</strong> Die Importe von <code>hashlib</code> und <code>hmac</code> deuten darauf hin, dass die Verarbeitung von Daten (z.B. Prompts oder Session-Daten) kryptografisch gesichert wird (z.B. durch Signaturen oder Hashing).</li>
+<li><strong>Datenverarbeitung:</strong> <code>json</code> und <code>io</code> deuten auf die Serialisierung/Deserialisierung von Datenstrukturen hin.</li>
+<li><strong>Dateimanagement:</strong> <code>tempfile</code> und <code>pathlib.Path</code> deuten darauf hin, dass Tests oder die Anwendung temporäre Dateien erstellen oder manipulieren.</li>
+<li><strong>Service-Interaktion:</strong> Die Importe von <code>CurriculumService</code> und <code>SchoolRepository</code> zeigen, dass die Mentoring-Logik mit Schul- und Lehrplan-Daten interagiert.</li>
+</ol>
+<h2 id="5-zusammenfassung-und-nutzungsszenario">5. Zusammenfassung und Nutzungsszenario</h2>
+<p><code>test_mentor.py</code> ist ein zentraler Punkt für die <strong>Validierung und Testung</strong> des <code>SocraticMentorService</code>. Die Klasse <code>_Session</code> stellt sicher, dass alle notwendigen Kontextdaten (Benutzerinformationen, Rollen, Berechtigungen) für die Mentoring-Interaktion korrekt initialisiert werden, bevor die eigentliche Logik des Mentors ausgeführt wird. <strong>Zielsetzung:</strong> Sicherstellen, dass der Mentor korrekt auf Basis der Benutzerkontextinformationen (Wer ist der Benutzer? Welche Rechte hat er? Zu welcher Gruppe gehört er?) reagiert. --- *Hinweis: Die vollständige Dokumentation der Testfälle oder der Implementierungslogik des <code>SocraticMentorService</code> müsste in weiteren Dateien oder im Hauptteil der Datei spezifiziert werden.*</p>
+<h2 id="technische-dokumentation-funktion-bundle-archive-secret-str-bytes">Technische Dokumentation: Funktion <code>_bundle_archive(secret: str) -&gt; bytes</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>_bundle_archive</code> ist eine interne Funktion, die eine komplexe Datenstruktur (Manifest, Kursinformationen, Mentor-Regeln) basierend auf einem geheimen Schlüssel (<code>secret</code>) serialisiert, signiert und in ein ZIP-Archiv verpackt. Das Ergebnis ist die binäre Datenstruktur des erstellten ZIP-Archivs. <strong>Zweck:</strong> Erstellung eines standardisierten, verschlüsselten und signierten Archivs, das spezifische Lernmaterialien und Mentor-Anweisungen für einen bestimmten Kurs enthält. <strong>Eingabe:</strong></p>
+<ul>
+<li><code>secret: str</code>: Ein geheimes Passwort oder Schlüssel, der für die kryptografische Signatur verwendet wird.</li>
+<p><strong>Ausgabe:</strong></p>
+<li><code>bytes</code>: Die binären Daten des erstellten ZIP-Archivs.</li>
+</ul>
+<h3 id="2-funktionsweise-algorithmus">2. Funktionsweise (Algorithmus)</h3>
+<p>Die Funktion folgt mehreren Schritten, um das finale Archiv zu generieren:</p>
+<ol>
+<li><strong>Manifest-Erstellung:</strong> Ein Dictionary (<code>manifest</code>) wird erstellt, das Metadaten über das Archiv selbst enthält (z.B. <code>bundle_id</code>, <code>schema_version</code>, Erstellungsdatum).</li>
+<li><strong>Kurs-Datenstruktur:</strong> Ein detailliertes Dictionary (<code>course</code>) wird definiert, das alle spezifischen Informationen zu einem Kurs (z.B. <code>python-grundlagen</code>) enthält, einschließlich Module, Quizfragen und Abschlussprüfungen.</li>
+<li><strong>Mentor-Regel-Definition:</strong> Eine spezifische Mentor-Regel (<code>mentor_rule</code>) wird definiert, die Anweisungen für einen bestimmten Kurs und Modul enthält.</li>
+<li><strong>Kanonische Serialisierung:</strong> Die gesamte Struktur (Manifest, Kurs, Mentor-Regel) wird zu einem JSON-String serialisiert (<code>canonical</code>). Dabei werden <code>sort_keys=True</code> und <code>separators=(&quot;,&quot;, &quot;:&quot;)</code> verwendet, um eine konsistente Darstellung zu gewährleisten.</li>
+<li><strong>Signatur-Erstellung:</strong></li>
+</ol>
+<ul>
+<li><strong>SHA-256-Hash:</strong> Der <code>canonical</code>-String wird mittels SHA-256 gehasht (<code>canonical_sha256</code>).</li>
+<li><strong>HMAC-Signatur:</strong> Eine HMAC-SHA256-Signatur wird berechnet, wobei der <code>secret</code> als Schlüssel verwendet wird, um die Integrität des <code>canonical</code>-Strings zu verifizieren (<code>signature</code>).</li>
+</ul>
+<ol>
+<li><strong>Archiv-Erstellung (ZIP):</strong></li>
+</ol>
+<ul>
+<li>Ein <code>io.BytesIO</code>-Buffer wird erstellt, um die Daten im Speicher zu speichern.</li>
+<li>Ein <code>zipfile.ZipFile</code> wird auf diesen Buffer geschrieben.</li>
+<li><strong>Inhalte des Archivs:</strong></li>
+<li><code>manifest.json</code>: Das serialisierte Manifest.</li>
+<li><code>signature.json</code>: Die serialisierte Signaturinformation.</li>
+<li><code>courses/python-grundlagen.json</code>: Die serialisierte Kursstruktur.</li>
+<li><code>mentor_rules/python-grundlagen-p01.json</code>: Die serialisierte Mentor-Regel.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong> Die gesamten binären Daten des erstellten ZIP-Archivs werden über <code>buffer.getvalue()</code> zurückgegeben.</li>
+</ol>
+<h3 id="3-abh-ngigkeiten">3. Abhängigkeiten</h3>
+<p>Die Funktion benötigt die folgenden Standard-Python-Module:</p>
+<ul>
+<li><code>time</code>: Für die Erstellung des Zeitstempels.</li>
+<li><code>json</code>: Für die Serialisierung der Daten in JSON-Formate.</li>
+<li><code>hashlib</code>: Für die Berechnung des SHA-256-Hashes.</li>
+<li><code>hmac</code>: Für die Berechnung der HMAC-Signatur.</li>
+<li><code>io</code>: Für die Verwendung von <code>io.BytesIO</code> als in-memory-Speicher.</li>
+<li><code>zipfile</code>: Für die Erstellung des ZIP-Archivs.</li>
+</ul>
+<h3 id="4-datenstruktur-schema-output-archiv">4. Datenstruktur-Schema (Output-Archiv)</h3>
+<p>Das generierte ZIP-Archiv enthält folgende Dateien:</p>
+<table><thead><tr>
+<th>Dateiname</th>
+<th>Inhaltstyp</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>manifest.json</code></td>
+<td>JSON</td>
+<td>Metadaten und Versionsinformationen des Bundles.</td>
+</tr>
+<tr>
+<td><code>signature.json</code></td>
+<td>JSON</td>
+<td>Die berechnete SHA-256-Hash und die HMAC-SHA256-Signatur.</td>
+</tr>
+<tr>
+<td><code>courses/python-grundlagen.json</code></td>
+<td>JSON</td>
+<td>Die vollständige Struktur des Kurses, einschließlich aller Module und Prüfungen.</td>
+</tr>
+<tr>
+<td><code>mentor_rules/python-grundlagen-p01.json</code></td>
+<td>JSON</td>
+<td>Die spezifische Mentor-Anweisung für das erste Modul des Kurses.</td>
+</tr>
+</tbody></table>
+<h3 id="5-sicherheit-und-integrit-t">5. Sicherheit und Integrität</h3>
+<p>Die Funktion implementiert eine grundlegende Integritätsprüfung durch kryptografische Mechanismen:</p>
+<ul>
+<li><strong>Integrität:</strong> Die <code>canonical_sha256</code> stellt sicher, dass der ursprüngliche JSON-String unverändert ist.</li>
+<li><strong>Authentizität:</strong> Die <code>signature</code> (HMAC-SHA256) stellt sicher, dass die Daten von einer autorisierten Quelle stammen und nicht manipuliert wurden, da sie nur mit dem <code>secret</code> generiert werden kann.</li>
+</ul>
+<h3 id="6-anwendungsf-lle">6. Anwendungsfälle</h3>
+<p>Diese Funktion wird typischerweise verwendet, wenn:</p>
+<ul>
+<li>Lernmaterialien oder Testkontexte sicher und konsistent an verschiedene Systeme übergeben werden müssen.</li>
+<li>Die Datenintegrität und -authentizität des Pakets gewährleistet werden muss.</li>
+<li>Eine standardisierte, versionierte Verpackung von Lerninhalten erforderlich ist.</li>
+</ul>
+<p>Gerne, um eine technische Dokumentation für die Datei <code>test_mentor.py</code> erstellen zu können, benötige ich den <strong>vollständigen Code</strong> der Datei. Sie haben mir nur den Anfang des Codes (<code>class &lt;|end|&gt;</code>) und den Kontext (&quot;Teil 3/4&quot;) gegeben. **Bitte fügen Sie den gesamten Inhalt der Datei <code>test_mentor.py</code> ein.** Sobald Sie den Code bereitstellen, werde ich eine detaillierte technische Dokumentation erstellen, die typischerweise folgende Abschnitte umfasst: ---</p>
+<h3 id="struktur-der-geplanten-technischen-dokumentation">Struktur der geplanten technischen Dokumentation</h3>
+<ol>
+<li><strong>Überblick (Overview):</strong></li>
+</ol>
+<ul>
+<li>Kurze Beschreibung, was die Datei <code>test_mentor.py</code> tut.</li>
+<li>Zweck der Datei im Gesamtprojekt.</li>
+</ul>
+<ol>
+<li><strong>Installation &amp; Voraussetzungen (Prerequisites):</strong></li>
+</ol>
+<ul>
+<li>Benötigte Python-Versionen oder Bibliotheken (falls zutreffend).</li>
+</ul>
+<ol>
+<li><strong>Code-Analyse (Code Analysis):</strong></li>
+</ol>
+<ul>
+<li><strong>Klassen/Funktionen:</strong> Detaillierte Beschreibung jeder wichtigen Klasse und jeder Funktion.</li>
+<li>**<code>class &lt;|end|&gt;</code>:** Beschreibung der Klasse, ihrer Attribute und Methoden.</li>
+<li><strong>Funktionen:</strong> Beschreibung der Eingabeparameter, der Rückgabe und der Logik.</li>
+<li><strong>Wichtige Algorithmen/Designmuster:</strong> Erläuterung komplexer Designentscheidungen.</li>
+</ul>
+<ol>
+<li><strong>Verwendung (Usage):</strong></li>
+</ol>
+<ul>
+<li>Beispiele, wie die Klasse/Funktionen verwendet werden können (Code-Beispiele).</li>
+</ul>
+<ol>
+<li><strong>API-Referenz (API Reference - Optional, aber empfohlen):</strong></li>
+</ol>
+<ul>
+<li>Detaillierte Auflistung aller öffentlichen Methoden und deren Signatur.</li>
+</ul>
+<ol>
+<li><strong>Testfälle (Testing Strategy - Falls vorhanden):</strong></li>
+</ol>
+<ul>
+<li>Beschreibung, wie die Tests in dieser Datei implementiert sind (falls es sich um eine Testdatei handelt).</li>
+</ul>
+<ol>
+<li><strong>Hinweise &amp; Limitationen (Notes &amp; Limitations):</strong></li>
+</ol>
+<ul>
+<li>Wichtige Designentscheidungen, Performance-Hinweise oder bekannte Einschränkungen.</li>
+<p>--- <strong>Ich warte auf Ihren Code!</strong></p>
+</ul>
+<h1 id="technische-dokumentation-mentortests">Technische Dokumentation: MentorTests</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Struktur und die Testfälle der Klasse <code>MentorTests</code>, die Teil eines größeren Testsets (vermutlich für eine Mentor-Funktionalität) ist. Die Tests konzentrieren sich auf die korrekte Verarbeitung von Kontextinformationen, die Begrenzung von Eingaben (Prompt-Truncation) und die korrekte Generierung von Mentor-Anweisungen.</p>
+<h2 id="2-zielsetzung-der-tests">2. Zielsetzung der Tests</h2>
+<p>Das Hauptziel dieser Testklasse ist es, die Funktionalität der <code>SocraticMentorService</code> (über die <code>Mentor</code>-Klasse) zu validieren, insbesondere in folgenden Bereichen:</p>
+<ol>
+<li><strong>Kontext-Inklusion:</strong> Sicherstellen, dass der generierte Prompt den notwendigen Kurskontext und Modulinformationen enthält.</li>
+<li><strong>Anweisungserstellung:</strong> Verifizieren, dass die Mentor-Anweisung spezifische, handlungsleitende Fragen generiert.</li>
+<li><strong>Kontext-Trunkierung:</strong> Überprüfen, dass sehr lange Eingaben (Code, Laufzeit-Output) korrekt verkürzt werden, um die Verarbeitungseffizienz zu gewährleisten.</li>
+</ol>
+<h2 id="3-teststruktur-und-setup">3. Teststruktur und Setup</h2>
+<h3 id="3-1-klasse-mentortests">3.1. Klasse: <code>MentorTests</code></h3>
+<p>Diese Klasse verwendet das Standard-<code>unittest</code>-Framework, um die Methoden zu definieren, die die Funktionalität des Mentor-Systems testen.</p>
+<h3 id="3-2-methode-setup-self-none">3.2. Methode: <code>setUp(self) -&gt; None</code></h3>
+<p>Die <code>setUp</code>-Methode wird vor jedem einzelnen Test aufgerufen, um einen konsistenten und isolierten Testumgebungszustand zu erstellen. <strong>Ablauf:</strong></p>
+<ol>
+<li><strong>Temporäre Umgebung:</strong> Ein temporäres Verzeichnis (<code>self.tmp</code>) wird erstellt, um Dateien und Datenbanken für den Testlauf zu isolieren.</li>
+<li><strong>Repository Initialisierung:</strong></li>
+</ol>
+<ul>
+<li>Ein <code>SchoolRepository</code> wird mit einer Datenbankdatei (<code>school.db</code>) in das temporäre Verzeichnis initialisiert.</li>
+<li>Eine spezifische Einstellung (<code>curriculum_bundle_secret</code>) wird gesetzt.</li>
+<li>Ein Benutzer (<code>student</code>) wird erstellt mit spezifischen Berechtigungen (<code>curriculum.use: True</code>, <code>mentor.use: True</code>).</li>
+</ul>
+<ol>
+<li><strong>Service-Setup:</strong></li>
+</ol>
+<ul>
+<li>Der <code>CurriculumService</code> wird mit dem Repository instanziiert.</li>
+<li>Ein Administrator-Session (<code>admin</code>) wird erstellt, um die notwendigen Berechtigungen für die Import-Funktionalität zu simulieren.</li>
+<li>Die Import-Funktionalität (<code>import_bundle_archive</code>) wird aufgerufen, um einen Bundle zu importieren und zu aktivieren.</li>
+</ul>
+<ol>
+<li><strong>Mentor-Instanziierung:</strong></li>
+</ol>
+<ul>
+<li>Der <code>SocraticMentorService</code> (<code>self.mentor</code>) wird mit dem Repository und dem <code>CurriculumService</code> initialisiert.</li>
+</ul>
+<ol>
+<li><strong>Session-Setup:</strong></li>
+</ol>
+<ul>
+<li>Eine <code>_Session</code> (<code>self.session</code>) für einen Studenten wird erstellt, der die notwendigen Berechtigungen besitzt.</li>
+</ul>
+<ol>
+<li><strong>Projekt-Definition:</strong></li>
+</ol>
+<ul>
+<li>Eine definierte Projektstruktur (<code>self.project</code>) wird festgelegt.</li>
+</ul>
+<h3 id="3-3-methode-teardown-self-none">3.3. Methode: <code>tearDown(self) -&gt; None</code></h3>
+<p>Die <code>tearDown</code>-Methode wird nach Abschluss jedes Tests aufgerufen, um die Ressourcen freizugeben:</p>
+<ol>
+<li><strong>Repository Schließen:</strong> Die Datenbankverbindung wird geschlossen (<code>self.repository.close()</code>).</li>
+<li><strong>Temporäre Umgebung Aufräumen:</strong> Das temporäre Verzeichnis wird bereinigt (<code>self.tmp.cleanup()</code>).</li>
+</ol>
+<h2 id="4-testf-lle-test-cases">4. Testfälle (Test Cases)</h2>
+<h3 id="4-1-testfall-test-prepare-includes-curriculum-context-and-bundle-mentor-rules">4.1. Testfall: <code>test_prepare_includes_curriculum_context_and_bundle_mentor_rules</code></h3>
+<p><strong>Ziel:</strong> Validieren, dass die <code>mentor.prepare</code>-Funktion den generierten Prompt mit allen erwarteten Kontextinformationen und spezifischen Mentor-Anweisungen füllt. <strong>Input:</strong></p>
+<ul>
+<li><strong>Prompt:</strong> &quot;Warum sehe ich keine Ausgabe?&quot;</li>
+<li><strong>Code:</strong> <code>&quot;print(\&quot;Hallo\&quot;)&quot;</code></li>
+<li><strong>Kontext:</strong> <code>course_id=&quot;python-grundlagen&quot;</code>, <code>module_id=&quot;p01_einstieg&quot;</code></li>
+<p><strong>Erwartete Assertions:</strong></p>
+<li>Der generierte Prompt muss den Kurskontext (&quot;Kurskontext: Python Grundlagen&quot;) enthalten.</li>
+<li>Der generierte Prompt muss den aktuellen Modulkontext (&quot;Aktuelles Modul: Einfuhrung in Python und Programmieren&quot;) enthalten.</li>
+<li>Der generierte Prompt muss eine spezifische Mentor-Vorgabe enthalten (z.B. &quot;Frage zuerst nach der Funktion von print()&quot;).</li>
+<li>Der generierte Prompt muss eine allgemeine Frage enthalten (&quot;Welche Zeile zeigt etwas auf dem Bildschirm?&quot;).</li>
+</ul>
+<h3 id="4-2-testfall-test-prepare-trims-large-runtime-context">4.2. Testfall: <code>test_prepare_trims_large_runtime_context</code></h3>
+<p><strong>Ziel:</strong> Validieren, dass die Funktion bei sehr großen Eingaben (Code und Laufzeit-Output) den Prompt korrekt verkürzt (Truncation), um die Verarbeitungsgrenzen einzuhalten. <strong>Input:</strong></p>
+<ul>
+<li><strong>Code:</strong> Eine sehr lange Liste von <code>print(index)</code> Aufrufen (6000 Zeilen).</li>
+<li><strong>Laufzeit-Output:</strong> Eine sehr lange Liste von Fehlermeldungen (2000 Zeilen).</li>
+<p><strong>Erwartete Assertions:</strong></p>
+<li>Der generierte Prompt muss die ursprüngliche Frage enthalten.</li>
+<li>Der generierte Prompt muss eine spezifische Aufgabe enthalten (&quot;Aufgabe: Fuehre den Nutzer ueber Fragen&quot;).</li>
+<li>Der generierte Prompt muss den Marker für Prompt-Truncation (<code>PROMPT_TRUNCATION_MARKER.strip()</code>) enthalten, was belegt, dass die Begrenzung aktiv wurde.</li>
+<li>Die Länge des generierten Prompts muss unter einem definierten Schwellenwert liegen (hier: <code>&lt; 9000</code> Zeichen), was die erfolgreiche Trunkierung bestätigt.</li>
+</ul>
+<h2 id="5-zusammenfassung-und-implikationen">5. Zusammenfassung und Implikationen</h2>
+<p>Die Testsuite stellt sicher, dass die Mentor-Funktionalität nicht nur logisch korrekt ist, sondern auch <strong>robust</strong> gegenüber großen Datenmengen ist (durch Trunkierung) und <strong>kontextsensitiv</strong> ist (durch korrekte Inkorporation von Kurs- und Modulinformationen). Die erfolgreiche Ausführung dieser Tests bestätigt die korrekte Implementierung der Kontext-Handling- und Prompt-Generierungslogik im <code>SocraticMentorService</code>.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten-und-importe">2. Abhängigkeiten und Importe</a></li>
+<li class="wiki-toc-link"><a href="#3-hauptkomponenten">3. Hauptkomponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-session">3.1. Klasse `_Session`</a></li>
+<li class="wiki-toc-link"><a href="#4-funktionale-details">4. Funktionale Details</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-und-nutzungsszenario">5. Zusammenfassung und Nutzungsszenario</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-funktion-bundle-archive-secret-str-bytes">Technische Dokumentation: Funktion `_bundle_archive(secret: str) -&gt; bytes`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktionsweise-algorithmus">2. Funktionsweise (Algorithmus)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-datenstruktur-schema-output-archiv">4. Datenstruktur-Schema (Output-Archiv)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-sicherheit-und-integrit-t">5. Sicherheit und Integrität</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-anwendungsf-lle">6. Anwendungsfälle</a></li>
+<li class="wiki-toc-link level-3"><a href="#struktur-der-geplanten-technischen-dokumentation">Struktur der geplanten technischen Dokumentation</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-zielsetzung-der-tests">2. Zielsetzung der Tests</a></li>
+<li class="wiki-toc-link"><a href="#3-teststruktur-und-setup">3. Teststruktur und Setup</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-klasse-mentortests">3.1. Klasse: `MentorTests`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-methode-setup-self-none">3.2. Methode: `setUp(self) -&gt; None`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-methode-teardown-self-none">3.3. Methode: `tearDown(self) -&gt; None`</a></li>
+<li class="wiki-toc-link"><a href="#4-testf-lle-test-cases">4. Testfälle (Test Cases)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-testfall-test-prepare-includes-curriculum-context-and-bundle-mentor-rules">4.1. Testfall: `test_prepare_includes_curriculum_context_and_bundle_mentor_rules`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-testfall-test-prepare-trims-large-runtime-context">4.2. Testfall: `test_prepare_trims_large_runtime_context`</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-und-implikationen">5. Zusammenfassung und Implikationen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_mentor.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

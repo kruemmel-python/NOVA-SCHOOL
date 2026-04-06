@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `realtime.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `realtime.py`</h1>
+          <p>Source: realtime.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-realtime-py">Technische Dokumentation: <code>realtime.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>realtime.py</code> dient als zentraler Knotenpunkt für die Implementierung von Echtzeit-Kommunikations- und Prozessmanagement-Funktionen innerhalb des Systems. Sie orchestriert wahrscheinlich die Kommunikation mit externen Prozessen (z.B. durch PTYs), die Verwaltung von Sitzungszuständen (<code>SessionContext</code>), die Interaktion mit einer Datenbank (<code>SchoolRepository</code>) und die Durchführung von Code-Ausführungen (<code>CodeRunner</code>). Die Klasse, die in diesem Ausschnitt definiert wird, scheint die Hauptlogik für die Echtzeit-Verarbeitung und die Verbindung zwischen verschiedenen Komponenten zu beherbergen.</p>
+<h2 id="2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</h2>
+<p>Die Datei importiert eine Vielzahl von Modulen, die auf spezifische Funktionen im System zugreifen:</p>
+<ul>
+<li>**<code>__future__</code>**: Für zukünftige Python-Syntax-Funktionen.</li>
+<li>**<code>base64</code>, <code>codecs</code>, <code>hashlib</code>, <code>json</code>**: Standardmodulen für Datenkodierung, Hashing und JSON-Serialisierung.</li>
+<li>**<code>socket</code>**: Für Netzwerkkommunikation.</li>
+<li>**<code>struct</code>**: Für die Serialisierung/Deserialisierung von binären Daten (wahrscheinlich für Protokoll- oder Prozessdaten).</li>
+<li>**<code>subprocess</code>**: Für das Ausführen externer Befehle oder Prozesse.</li>
+<li>**<code>threading</code>, <code>time</code>**: Für Multithreading und Zeitsteuerung.</li>
+<li>**<code>uuid</code>**: Zur Generierung eindeutiger Identifikatoren.</li>
+<li>**<code>dataclasses</code>**: Für die Definition von Datenstrukturen (<code>dataclass</code>).</li>
+<li>**<code>http.HTTPStatus</code>**: Für die Darstellung von HTTP-Statuscodes.</li>
+<li><strong>Interne Module:</strong></li>
+<li>**<code>.auth.SessionContext</code>**: Wahrscheinlich für die Verwaltung von Benutzer- oder Sitzungsdaten.</li>
+<li>**<code>.code_runner.CodeRunner</code>, <code>LivePreparedRun</code>**: Für die Ausführung und Überwachung von Code.</li>
+<li>**<code>.database.SchoolRepository</code>**: Für die Abfrage und Speicherung von Schuldaten.</li>
+<li>**<code>.pty_host.PtyProcess</code>, <code>create_pty_process</code>, <code>normalize_terminal_size</code>**: Für die Verwaltung von Pseudo-Terminal-Prozessen (PTY) und Terminal-Größenanpassungen.</li>
+</ul>
+<h2 id="3-konstanten">3. Konstanten</h2>
+<table><thead><tr>
+<th>Konstante</th>
+<th>Beschreibung</th>
+<th>Wert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>WS_MAGIC</code></td>
+<td>Ein eindeutiger Magic-String, wahrscheinlich zur Identifizierung von WebSocket-Verbindungen oder Protokollen.</td>
+<td><code>&quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot;</code></td>
+</tr>
+<tr>
+<td><code>MAX_CLIENT_WS_FRAME_BYTES</code></td>
+<td>Die maximale Größe für einen einzelnen WebSocket-Frame, um Überlastung zu verhindern.</td>
+<td>$4 \times 1024 \times 1024$ Bytes (4 MB)</td>
+</tr>
+</tbody></table>
+<h2 id="4-klasse-unvollst-ndig">4. Klasse: (Unvollständig)</h2>
+<p>Die Datei beginnt mit der Definition einer Klasse, deren genaue Struktur im bereitgestellten Codeausschnitt fehlt. Basierend auf den Importen und Konstanten lässt sich ableiten, dass diese Klasse wahrscheinlich folgende Verantwortlichkeiten übernimmt:</p>
+<ul>
+<li><strong>Echtzeit-Verbindungsprotokoll:</strong> Handhabung der WebSocket- oder ähnlicher Echtzeit-Kommunikationskanäle.</li>
+<li><strong>Prozess-Management:</strong> Orchestrierung der Erstellung, Kommunikation und Überwachung von PTY-Prozessen (<code>PtyProcess</code>).</li>
+<li><strong>Zustandsverwaltung:</strong> Nutzung von <code>SessionContext</code> zur Speicherung des aktuellen Zustands von Verbindungen oder Aufgaben.</li>
+<li><strong>Datenintegration:</strong> Schnittstelle zur Datenbank (<code>SchoolRepository</code>) und zur Code-Ausführung (<code>CodeRunner</code>).</li>
+<li><strong>Sicherheit/Authentifizierung:</strong> Wahrscheinlich Integration der Authentifizierungsmechanismen.</li>
+</ul>
+<h3 id="4-1-schl-sselkomponenten-basierend-auf-imports">4.1. Schlüsselkomponenten (Basierend auf Imports)</h3>
+<ol>
+<li><strong>Authentifizierung und Sitzung:</strong> Abhängigkeit von <code>SessionContext</code> deutet auf eine robuste Sitzungsverwaltung hin.</li>
+<li><strong>Code-Ausführung:</strong> Die Integration von <code>CodeRunner</code> impliziert, dass die Klasse Befehle oder Code-Snippets in einem isolierten oder kontrollierten Umfeld ausführen kann.</li>
+<li><strong>Terminal-Interaktion:</strong> Die Abhängigkeit von <code>PtyProcess</code> deutet darauf hin, dass die Klasse die Schnittstelle zwischen dem Hauptsystem und einem externen Terminal- oder Shell-Prozess bereitstellt.</li>
+<li><strong>Datenformatierung:</strong> Die Verwendung von <code>base64</code>, <code>json</code> und <code>struct</code> zeigt, dass Daten entweder für die Netzwerktransmission (Base64/JSON) oder für die effiziente Serialisierung/Deserialisierung von binären Prozessdaten (<code>struct</code>) formatiert werden.</li>
+</ol>
+<h2 id="5-zusammenfassung-der-funktion">5. Zusammenfassung der Funktion</h2>
+<p><code>realtime.py</code> ist das Herzstück der Echtzeit-Interaktion. Es verbindet Netzwerkkommunikation mit Systemprozessen und Datenquellen. Die Implementierung zielt darauf ab, eine robuste, skalierbare und sicherheitsbewusste Plattform zu schaffen, die komplexe Aufgaben (wie Code-Ausführung oder Terminal-Interaktion) in Echtzeit managen kann. --- <strong>Hinweis:</strong> Die vollständige Dokumentation der Klasse erfordert den gesamten Codeblock. Dieser Abschnitt basiert auf der Analyse der bereitgestellten Header-Informationen und Importe.</p>
+<h1 id="technische-dokumentation-websocketconnection-klasse">Technische Dokumentation: <code>WebSocketConnection</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>WebSocketConnection</code> ist eine Klasse, die die Kommunikation über eine einzelne WebSocket-Verbindung (repräsentiert durch eine <code>socket.socket</code>) abstrahiert. Sie implementiert die notwendigen Protokollfunktionen, um Daten (JSON-Payloads und Text) zwischen dem Client und dem WebSocket-Server zu senden und zu empfangen, basierend auf dem WebSocket-Protokoll. Die Klasse beinhaltet Logik für das Parsen von WebSocket-Frames (Header, Opcode, Payload-Größe) und die korrekte Formatierung von Frames für Senden.</p>
+<h2 id="2-klasse-websocketconnection">2. Klasse: <code>WebSocketConnection</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Initialisiert die Verbindung und stellt die notwendigen internen Zustände und Locks bereit. <strong>Parameter:</strong></p>
+<ul>
+<li><code>sock: socket.socket</code>: Die zugrundeliegende Socket-Objekt, über die die WebSocket-Verbindung läuft.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li>Speichert die zugrundeliegende Socket.</li>
+<li>Setzt den Timeout der Socket auf <code>None</code>, um eine unbegrenzte Lesezeit zu ermöglichen.</li>
+<li>Initialisiert einen <code>threading.Lock</code> (<code>_send_lock</code>) zur Synchronisation bei Schreibvorgängen.</li>
+<li>Initialisiert einen <code>threading.Event</code> (<code>_closed</code>), um den geschlossenen Zustand der Verbindung zu signalisieren.</li>
+<p><strong>Attribute:</strong></p>
+</ol>
+<ul>
+<li><code>self.sock</code>: Die aktive Socket-Objekt.</li>
+<li><code>self._send_lock</code>: Ein Lock zur Sicherstellung der atomaren Sendeoperationen.</li>
+<li><code>self._closed</code>: Ein Event, das den geschlossenen Zustand der Verbindung steuert.</li>
+</ul>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="2-2-1-send-json-self-payload-dict-str-any-none">2.2.1. <code>send_json(self, payload: dict[str, Any]) -&gt; None</code></h4>
+<p>Sendet einen JSON-Payload über die WebSocket-Verbindung. <strong>Parameter:</strong></p>
+<ul>
+<li><code>payload: dict[str, Any]</code>: Das zu sendende Python-Dictionary.</li>
+<p><strong>Beschreibung:</strong> Konvertiert das Python-Dictionary in eine JSON-String-Repräsentation und sendet diesen String über die interne <code>send_text</code>-Methode.</p>
+</ul>
+<h4 id="2-2-2-send-text-self-text-str-none">2.2.2. <code>send_text(self, text: str) -&gt; None</code></h4>
+<p>Sendet eine reine Textnachricht über das WebSocket. <strong>Parameter:</strong></p>
+<ul>
+<li><code>text: str</code>: Der Textstring, der gesendet werden soll.</li>
+<p><strong>Beschreibung:</strong> Verpackt den Text in ein WebSocket-Frame mit Opcode <code>0x1</code> (Text Frame) und sendet ihn.</p>
+</ul>
+<h4 id="2-2-3-recv-json-self-dict-str-any">2.2.3. <code>recv_json(self) -&gt; dict[str, Any]</code></h4>
+<p>Empfängt eine Nachricht und versucht, diese als JSON-Dictionary zu parsen. <strong>Beschreibung:</strong> Rufen <code>recv_text()</code> auf, um die Rohdaten zu erhalten, und versucht anschließend, diese Daten zu einem Python-Dictionary zu deserialisieren.</p>
+<h4 id="2-2-4-recv-text-self-str">2.2.4. <code>recv_text(self) -&gt; str</code></h4>
+<p>Empfängt eine Rohdaten-Nachricht (Text Frame) und dekodiert sie. <strong>Beschreibung:</strong> Wartet auf das nächste WebSocket-Frame, parst den Opcode und den Payload, und dekodiert den Payload in einen UTF-8-String. <strong>Fehlerbehandlung:</strong></p>
+<ul>
+<li>**<code>UnicodeDecodeError</code>:** Wird ausgelöst, wenn der empfangene Payload nicht korrekt als UTF-8 dekodiert werden kann.</li>
+<li>**Opcode <code>0x8</code> (Close Frame):** Führt die Verbindung sofort ab und wirft eine <code>ConnectionError</code>.</li>
+<li><strong>Ungültiger Opcode:</strong> Wirft eine <code>ConnectionError</code>, falls ein nicht unterstützter Opcode empfangen wird.</li>
+</ul>
+<h4 id="2-2-5-close-self-code-int-1000-reason-str-none">2.2.5. <code>close(self, code: int = 1000, reason: str = &quot;&quot;) -&gt; None</code></h4>
+<p>Schließt die WebSocket-Verbindung sauber. <strong>Parameter:</strong></p>
+<ul>
+<li><code>code: int = 1000</code>: Der WebSocket-Abstimmungs-Code (z.B. 1000 für Normalgeschlossen).</li>
+<li><code>reason: str = &quot;&quot;</code>: Der Begründungstext für den Abschluss.</li>
+<p><strong>Aktionen:</strong></p>
+</ul>
+<ol>
+<li>Setzt den internen Zustand <code>_closed</code> auf <code>True</code>.</li>
+<li>Packt den Abschluss-Code und den Begründungstext in ein WebSocket-Control-Frame (Opcode <code>0x8</code>) und sendet ihn.</li>
+<li>Schaltet die Socket auf <code>SHUT_RDWR</code> (Read/Write) um.</li>
+<li>Schließt die Socket (<code>sock.close()</code>).</li>
+</ol>
+<h4 id="2-2-6-accept-key-self-key-str-str-statische-methode">2.2.6. <code>accept_key(self, key: str) -&gt; str</code> (Statische Methode)</h4>
+<p>Generiert einen kryptografisch gesicherten Schlüssel basierend auf einem Eingabeschlüssel. <strong>Parameter:</strong></p>
+<ul>
+<li><code>key: str</code>: Der Eingabeschlüssel.</li>
+<p><strong>Beschreibung:</strong> Berechnet einen SHA1-Hash der Kombination aus <code>key</code> und einer definierten Magic-String (<code>WS_MAGIC</code>) und kodiert das Ergebnis als Base64-String.</p>
+</ul>
+<h4 id="2-2-7-recv-frame-self-tuple-int-bytes-private-methode">2.2.7. <code>_recv_frame(self) -&gt; tuple[int, bytes]</code> (Private Methode)</h4>
+<p>Die Kernlogik zum Parsen eines einzelnen WebSocket-Frames. <strong>Beschreibung:</strong></p>
+<ol>
+<li>Ruft <code>_recv_exact(2)</code> auf, um den Header zu lesen.</li>
+<li>Extrahiert Opcode, FIN-Flag, Reserved-Flag und Mask-Flag aus dem Header.</li>
+<li><strong>Validierungsprüfungen:</strong> Überprüft, ob Extensions-Bits gesetzt sind, ob das Frame fragmentiert ist, ob es maskiert ist und ob die Payload-Größe korrekt interpretiert wird (inkl. Handling von 126-Byte und 127-Byte-Payload-Längen).</li>
+<li><strong>Masking:</strong> Wenn das Frame maskiert ist, wird der Mask-Byte-Block (<code>_recv_exact(4)</code>) verwendet, um die Payload zu entschlüsseln (XOR-Operation).</li>
+<li>Gibt den Opcode und die entschlüsselte Payload zurück.</li>
+</ol>
+<h4 id="2-2-8-send-frame-self-opcode-int-payload-bytes-none-private-methode">2.2.8. <code>_send_frame(self, opcode: int, payload: bytes) -&gt; None</code> (Private Methode)</h4>
+<p>Formatiert und sendet ein WebSocket-Frame. <strong>Parameter:</strong></p>
+<ul>
+<li><code>opcode: int</code>: Der WebSocket-Opcode (z.B. 0x1 für Text).</li>
+<li><code>payload: bytes</code>: Die zu sendende Nutzlast.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li>Berechnet die notwendige Header-Struktur basierend auf der Länge der Payload (126, 127 oder eine feste Länge).</li>
+<li>Fügt den Header und die Payload zusammen.</li>
+<li>Sendet die kombinierten Daten über <code>self.sock.sendall()</code>.</li>
+<li>Nutzt einen <code>threading.Lock</code> (<code>self._send_lock</code>), um die Sendeoperation zu synchronisieren.</li>
+</ol>
+<h4 id="2-2-9-recv-exact-self-size-int-bytes-private-methode">2.2.9. <code>_recv_exact(self, size: int) -&gt; bytes</code> (Private Methode)</h4>
+<p>Stellt sicher, dass exakt <code>size</code> Bytes von der Socket gelesen werden. <strong>Parameter:</strong></p>
+<ul>
+<li><code>size: int</code>: Die gewünschte Anzahl der Bytes.</li>
+<p><strong>Beschreibung:</strong> Wartet, bis die gesuchte Anzahl an Bytes empfangen wurde. Nutzt <code>self.sock.recv()</code> und behandelt <code>TimeoutError</code> oder leere Rücksendungen als Verbindungsschluss.</p>
+</ul>
+<h2 id="3-protokoll-details-websocket-frame-types">3. Protokoll-Details (WebSocket Frame Types)</h2>
+<p>Die Klasse unterstützt die Verarbeitung der folgenden grundlegenden Frame-Typen:</p>
+<table><thead><tr>
+<th>Opcode (Hex)</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>0x1</code></td>
+<td>Text Frame</td>
+<td>Für den Austausch von Textdaten (nutzt <code>send_json</code>/<code>recv_json</code>).</td>
+</tr>
+<tr>
+<td><code>0x8</code></td>
+<td>Close Frame</td>
+<td>Signalisiert den Abschluss der Verbindung (nutzt <code>close</code>).</td>
+</tr>
+<tr>
+<td><code>0xA</code></td>
+<td>Continuation Frame</td>
+<td>Wird verwendet, um eine Nachricht in mehrere Frames zu zerlegen.</td>
+</tr>
+<tr>
+<td><code>0x9</code></td>
+<td>Write Binary Frame</td>
+<td>Wird verwendet, um binäre Daten zu senden (nutzt <code>_send_frame</code>).</td>
+</tr>
+<tr>
+<td><code>0xA</code></td>
+<td>Ping Frame</td>
+<td>Wird verwendet, um die Verbindung zu überprüfen (impliziert in <code>_recv_frame</code>).</td>
+</tr>
+</tbody></table>
+<h2 id="4-abh-ngigkeiten">4. Abhängigkeiten</h2>
+<p>Die Klasse benötigt die folgenden Standard-Python-Module:</p>
+<ul>
+<li><code>socket</code>: Für die Netzwerkkommunikation.</li>
+<li><code>threading</code>: Für die Synchronisation (<code>Lock</code>, <code>Event</code>).</li>
+<li><code>json</code>: Für die Serialisierung und Deserialisierung von JSON-Daten.</li>
+<li><code>struct</code>: Für die Packung und Unpackung von binären Daten (Header-Größen).</li>
+<li><code>hashlib</code>: Für die SHA1-Hashing-Funktion.</li>
+<li><code>base64</code>: Für die Base64-Kodierung/Dekodierung.</li>
+<li><code>dataclasses</code>: Für die Verwendung von <code>@dataclass</code> (in der Definition).</li>
+</ul>
+<h2 id="5-sicherheits-und-robustheitsaspekte">5. Sicherheits- und Robustheitsaspekte</h2>
+<ol>
+<li><strong>Timeouts:</strong> Die Socket-Leseoperationen sind auf <code>None</code> gesetzt, was eine kontinuierliche Erwartung der Daten ermöglicht, aber die Anwendung muss Mechanismen zur Timeout-Handhabung bereitstellen (was durch <code>_recv_exact</code> abgedeckt wird).</li>
+<li><strong>Data Integrity:</strong> Die Protokollprüfung in <code>_recv_frame</code> stellt sicher, dass nur gültige WebSocket-Header und Frame-Größen verarbeitet werden.</li>
+<li><strong>Encoding Safety:</strong> Es wird explizit auf <code>utf-8</code> dekodiert, und Fehler werden bei der Dekodierung von Text-Payloads explizit abgefangen (<code>ConnectionError</code>).</li>
+<li><strong>Concurrency Safety:</strong> Der <code>_send_lock</code> stellt sicher, dass mehrere Threads nicht gleichzeitig versuchen, Daten über die Socket zu senden, was zu Datenkorruption führen würde.</li>
+<li><strong>Resource Management:</strong> Die <code>close</code>-Methode stellt sicher, dass die Socket korrekt geschlossen wird, selbst bei Fehlern während des Sendevorgangs.</li>
+</ol>
+<h1 id="technische-dokumentation-realtime-py">Technische Dokumentation: <code>realtime.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Struktur und die definierten Klassen im Modul <code>realtime.py</code>. Das Modul scheint eine Klasse für die Verwaltung von Echtzeit-Clients und eine Datentyp-Definition für laufende Live-Runs zu enthalten.</p>
+<h2 id="2-klassen-definitionen">2. Klassen-Definitionen</h2>
+<h3 id="2-1-klasse-realtimeclient">2.1. Klasse <code>RealtimeClient</code></h3>
+<p>Diese Klasse repräsentiert einen Echtzeit-Client und hält die notwendigen Zustandsvariablen für die Verbindung und den Kontext. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>client_id</code></td>
+<td><code>str</code></td>
+<td>eindeutige Kennung des Clients.</td>
+</tr>
+<tr>
+<td><code>connection</code></td>
+<td><code>WebSocketConnection</code></td>
+<td>Die aktive WebSocket-Verbindung zum Server oder Dienst.</td>
+</tr>
+<tr>
+<td><code>session</code></td>
+<td><code>SessionContext</code></td>
+<td>Der Kontext der aktuellen Sitzung.</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Eine Dictionary-Struktur, die Metadaten oder Konfigurationen des zugehörigen Projekts enthält.</td>
+</tr>
+</tbody></table>
+<p><strong>Zusammenfassung:</strong> <code>RealtimeClient</code> dient als Hauptcontainer für alle Ressourcen, die für die Kommunikation und den Betrieb eines spezifischen Echtzeit-Clients erforderlich sind.</p>
+<h3 id="2-2-dataclass-activeliverun">2.2. Dataclass <code>ActiveLiveRun</code></h3>
+<p>Diese Dataclass (definiert mit <code>slots=True</code> für Effizienz) dient dazu, den Zustand einer laufenden, aktiven Live-Ausführung (Run) zu modellieren. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>session_id</code></td>
+<td><code>str</code></td>
+<td>Identifikator der Sitzung, zu der die Run gehört.</td>
+</tr>
+<tr>
+<td><code>run_id</code></td>
+<td><code>str</code></td>
+<td>Eindeutige Kennung der spezifischen Live-Ausführung.</td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td><code>str</code></td>
+<td>ID des Clients, der die Run startet.</td>
+</tr>
+<tr>
+<td><code>owner_username</code></td>
+<td><code>str</code></td>
+<td>Der Benutzer, der die Run besitzt oder gestartet hat.</td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td><code>str</code></td>
+<td>ID des Projekts, in dem die Run stattfindet.</td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td><code>str</code></td>
+<td>Der Name des Projekts.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>str</code></td>
+<td>Die Programmiersprache, die für die Run verwendet wird.</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td><code>list[str]</code></td>
+<td>Die Liste der Befehle oder Skripte, die ausgeführt werden sollen.</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td><code>list[str]</code></td>
+<td>Eine Liste von Anmerkungen oder Protokolleinträgen.</td>
+</tr>
+<tr>
+<td><code>tool_session</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Spezifische Konfiguration oder Metadaten für die verwendete Tool-Sitzung.</td>
+</tr>
+<tr>
+<td><code>process</code></td>
+<td>`subprocess.Popen[str]</td>
+<td>None`</td>
+<td>Ein laufender Prozess-Handle (z.B. ein <code>subprocess.Popen</code>-Objekt), falls ein externer Prozess gestartet wurde.</td>
+</tr>
+<tr>
+<td><code>pty_process</code></td>
+<td>`PtyProcess</td>
+<td>None`</td>
+<td>Ein spezieller Prozess-Handle für eine PTY-Sitzung (Pseudo-Terminal).</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td><code>float</code></td>
+<td>Der Zeitstempel (als Float) des Startzeitpunkts der Run.</td>
+</tr>
+<tr>
+<td><code>emit</code></td>
+<td><code>Callable[[dict[str, Any]], None]</code></td>
+<td>Eine Callback-Funktion, die aufgerufen wird, wenn Daten aus der Run verfügbar sind (nimmt ein Dictionary entgegen).</td>
+</tr>
+<tr>
+<td><code>client_meta</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Metadaten spezifisch für diesen Client.</td>
+</tr>
+<tr>
+<td><code>preview_path</code></td>
+<td><code>str</code></td>
+<td>Der Pfad zu einer Vorschau-Datei, falls vorhanden. Standardwert: <code>&quot;&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>timed_out</code></td>
+<td><code>bool</code></td>
+<td>Flag, das anzeigt, ob die Run aufgrund eines Zeitlimits beendet wurde. Standardwert: <code>False</code>.</td>
+</tr>
+<tr>
+<td><code>terminal</code></td>
+<td>`dict[str, Any]</td>
+<td>None`</td>
+<td>Konfiguration oder Statusinformationen bezüglich des Terminals.</td>
+</tr>
+<tr>
+<td><code>decoder</code></td>
+<td>`Any</td>
+<td>None`</td>
+<td>Ein optionales Objekt, das zur Dekodierung von Ausgabedaten verwendet wird.</td>
+</tr>
+<tr>
+<td><code>scheduler_lease</code></td>
+<td>`Any</td>
+<td>None`</td>
+<td>Ein optionales Objekt, das einen Leasewert für den Scheduler darstellt.</td>
+</tr>
+</tbody></table>
+<p><strong>Zusammenfassung:</strong> <code>ActiveLiveRun</code> ist ein umfassendes Datenmodell, das alle notwendigen Informationen speichert, um den Lebenszyklus, die Konfiguration und den aktuellen Status einer einzelnen, laufenden Live-Ausführung detailliert zu verfolgen.</p>
+<h2 id="3-abh-ngigkeiten-und-typen">3. Abhängigkeiten und Typen</h2>
+<p>Das Modul verwendet folgende implizite oder explizite Typen:</p>
+<ul>
+<li>**<code>WebSocketConnection</code>**: Ein Typ, der die Verbindungsinformationen zur WebSocket-Sitzung darstellt.</li>
+<li>**<code>SessionContext</code>**: Ein Typ, der den Kontext der Sitzung (z.B. Authentifizierungsinformationen, globale Sitzungsdaten) hält.</li>
+<li>**<code>subprocess.Popen[str] | None</code>**: Ein optionaler Handle für einen externen Prozess.</li>
+<li>**<code>PtyProcess | None</code>**: Ein optionaler Handle für einen Pseudo-Terminal-Prozess.</li>
+<li>**<code>Callable[[dict[str, Any]], None]</code>**: Eine typisierte Funktion, die eine Dictionary-Eingabe erwartet und nichts zurückgibt.</li>
+<li>**<code>Any</code>**: Wird verwendet, um flexible, nicht näher spezifizierte Datenstrukturen für verschiedene Metadaten (z.B. <code>tool_session</code>, <code>scheduler_lease</code>) zu speichern.</li>
+</ul>
+<h2 id="4-verwendungshinweise">4. Verwendungshinweise</h2>
+<ol>
+<li>**<code>RealtimeClient</code>**: Wird verwendet, um die Verbindung und den allgemeinen Kontext für einen Client zu initialisieren und zu verwalten.</li>
+<li>**<code>ActiveLiveRun</code>**: Wird verwendet, um den detaillierten Zustand einer spezifischen, laufenden Aufgabe (Run) zu speichern und zu aktualisieren.</li>
+<li>**<code>emit</code> Callback**: Entwickler müssen sicherstellen, dass die Funktion, die an <code>emit</code> gebunden wird, korrekt implementiert ist, um Echtzeitdaten effizient zu verarbeiten.</li>
+<li><strong>Slots</strong>: Die Verwendung von <code>slots=True</code> in <code>ActiveLiveRun</code> deutet auf eine Optimierung der Speicherplatznutzung hin, insbesondere wenn viele Instanzen dieser Klasse erstellt werden.</li>
+</ol>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 4504 &gt;= 4096</p>
+<p>Gerne, um eine technische Dokumentation für die Datei <code>realtime.py</code> erstellen zu können, benötige ich den <strong>gesamten Code</strong> der Datei. Sie haben mir nur den Anfang des Codes (<code>class &lt;|end|&gt;</code>) und den Kontext (&quot;Datei: realtime.py&quot;, &quot;Teil 5/7&quot;) gegeben. **Bitte fügen Sie den vollständigen Code von <code>realtime.py</code> ein.** Sobald Sie den Code bereitstellen, werde ich eine umfassende technische Dokumentation erstellen, die typischerweise folgende Abschnitte umfasst: ---</p>
+<h3 id="beispielstruktur-der-gew-nschten-dokumentation">Beispielstruktur der gewünschten Dokumentation</h3>
+<p>**Dokumentation für: <code>realtime.py</code><strong> </strong>Version:<strong> [Z.B. 1.0.0] </strong>Datum der letzten Änderung:<strong> [Aktuelles Datum] </strong>Autor:** [Ihr Name/Team]</p>
+<h4 id="1-berblick-overview">1. Überblick (Overview)</h4>
+<ul>
+<li><strong>Zweck:</strong> Kurze Erklärung, wofür die Datei <code>realtime.py</code> verwendet wird (z.B. Echtzeit-Datenverarbeitung, Netzwerkkommunikation, etc.).</li>
+<li><strong>Architektur:</strong> Eine kurze Beschreibung, wie die Klasse/Module strukturiert ist.</li>
+</ul>
+<h4 id="2-klassen-und-funktionen-classes-and-functions">2. Klassen und Funktionen (Classes and Functions)</h4>
+<h5 id="2-1-klasse-name-der-klasse-falls-vorhanden">2.1. Klasse: <code>[Name der Klasse, falls vorhanden]</code></h5>
+<ul>
+<li><strong>Beschreibung:</strong> Detaillierte Erklärung der Funktion der Klasse.</li>
+<li><strong>Attribute (Properties):</strong> Auflistung aller wichtigen Instanzvariablen und deren Zweck.</li>
+<li><code>self.attribute_name</code>: [Beschreibung]</li>
+<li><strong>Methoden (Methods):</strong> Detaillierte Beschreibung jeder Methode.</li>
+<li><code>method_name(argumente)</code>:</li>
+<li><strong>Beschreibung:</strong> Was macht diese Methode?</li>
+<li><strong>Parameter:</strong></li>
+<li><code>argument_name</code> (Typ): Beschreibung des Parameters.</li>
+<li><strong>Rückgabe (Return Value):</strong> Was wird zurückgegeben und in welchem Format?</li>
+<li><strong>Beispiel:</strong> (Optional, aber hilfreich)</li>
+</ul>
+<h5 id="2-2-funktion-name-der-funktion">2.2. Funktion: <code>[Name der Funktion]</code></h5>
+<ul>
+<li><strong>Beschreibung:</strong> Zweck der Funktion.</li>
+<li><strong>Parameter:</strong> (Typ, Pflicht/Optional, Beschreibung)</li>
+<li><strong>Rückgabe:</strong> (Typ, Beschreibung)</li>
+</ul>
+<h4 id="3-abh-ngigkeiten-dependencies">3. Abhängigkeiten (Dependencies)</h4>
+<ul>
+<li>Liste aller externen Bibliotheken (z.B. <code>requests</code>, <code>numpy</code>, etc.), die für die korrekte Ausführung der Datei erforderlich sind.</li>
+</ul>
+<h4 id="4-verwendung-usage-examples">4. Verwendung (Usage Examples)</h4>
+<ul>
+<li><strong>Beispiel 1 (Einfach):</strong> Wie man die Klasse initialisiert und eine einfache Methode aufruft.</li>
+<li><strong>Beispiel 2 (Komplex):</strong> Ein Szenario, das die komplexesten Funktionen der Datei nutzt.</li>
+</ul>
+<h4 id="5-fehlerbehandlung-error-handling">5. Fehlerbehandlung (Error Handling)</h4>
+<ul>
+<li>Welche Arten von Fehlern werden erwartet (z.B. <code>ValueError</code>, <code>ConnectionError</code>) und wie werden diese im Code abgefangen?</li>
+<p>--- <strong>Ich warte auf Ihren Code!</strong></p>
+</ul>
+<h1 id="technische-dokumentation-realtimeservice-klasse">Technische Dokumentation: <code>RealtimeService</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>RealtimeService</code> ist verantwortlich für die Verwaltung der Echtzeit-Verbindungen (Sockets) zu Benutzern, die mit einer Anwendung interagieren. Sie orchestriert die Kommunikation zwischen den Echtzeit-Clients (<code>RealtimeClient</code>), der Anwendung selbst (<code>application</code>) und dem Live-Run-Manager (<code>LiveRunManager</code>). Die Klasse bietet Mechanismen zur Registrierung, Deaktivierung von Verbindungen, dem Handling von Echtzeit-Nachrichten und dem gleichzeitigen Senden von Updates an andere Clients innerhalb desselben Projekts.</p>
+<h2 id="2-klasse-realtimeservice">2. Klasse: <code>RealtimeService</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Initialisiert die Service-Instanz und stellt die notwendigen Abhängigkeiten bereit. <strong>Parameter:</strong></p>
+<ul>
+<li><code>application: Any</code>: Eine Instanz der Hauptanwendung, die Zugriff auf Funktionen wie <code>runner</code>, <code>repository</code> und <code>collaboration</code> bietet.</li>
+<p><strong>Attribute:</strong></p>
+<li><code>self.application</code>: Referenz auf die übergegebene Anwendung.</li>
+<li><code>self.live_runs</code>: Eine Instanz von <code>LiveRunManager</code>, initialisiert mit dem Runner und dem Repository der Anwendung.</li>
+<li><code>self._lock</code>: Ein <code>threading.RLock</code> (Reentrant Lock), der für den sicheren Zugriff auf den internen Zustand (<code>_project_clients</code>) verwendet wird.</li>
+<li><code>self._project_clients</code>: Ein Dictionary, das die Echtzeit-Clients organisiert.</li>
+<li><strong>Struktur:</strong> <code>dict[str, dict[str, RealtimeClient]]</code></li>
+<li>Schlüssel: Der eindeutige ID des Projekts (<code>project_id</code> als String).</li>
+<li>Wert: Ein weiteres Dictionary, das die Clients für dieses Projekt enthält.</li>
+<li>Schlüssel: Die eindeutige Client-ID (<code>client_id</code>).</li>
+<li>Wert: Der <code>RealtimeClient</code>-Objekt.</li>
+</ul>
+<h3 id="2-2-methoden">2.2. Methoden</h3>
+<h4 id="2-2-1-close-self-none">2.2.1. <code>close(self) -&gt; None</code></h4>
+<p>Stellt einen sauberen Abschluss aller laufenden Echtzeit-Verbindungen und Live-Runs sicher. <strong>Funktion:</strong></p>
+<ol>
+<li>Ruft <code>self.live_runs.close()</code> auf, um alle laufenden Live-Runs zu beenden.</li>
+<li>Sperrt den Zugriff auf <code>_project_clients</code> (<code>self._lock</code>).</li>
+<li>Sammelt alle <code>RealtimeClient</code>-Instanzen aus allen Projekten.</li>
+<li>Leert das gesamte <code>self._project_clients</code> Dictionary.</li>
+<li>Schließt die Verbindung (<code>connection.close()</code>) jedes gesammelten Clients.</li>
+</ol>
+<h4 id="2-2-2-handle-project-socket-self-connection-websocketconnection-session-sessioncontext-project-dict-str-any-none">2.2.2. <code>handle_project_socket(self, connection: WebSocketConnection, session: SessionContext, project: dict[str, Any]) -&gt; None</code></h4>
+<p>Die Hauptmethode, die eine neue WebSocket-Verbindung verarbeitet und den Client initialisiert. <strong>Parameter:</strong></p>
+<ul>
+<li><code>connection: WebSocketConnection</code>: Die aktive WebSocket-Verbindung.</li>
+<li><code>session: SessionContext</code>: Kontextinformationen über die Sitzung des Benutzers (z.B. Benutzername, Berechtigungen).</li>
+<li><code>project: dict[str, Any]</code>: Die spezifischen Daten des Projekts, zu dem der Client gehört.</li>
+<p><strong>Ablauf:</strong></p>
+</ul>
+<ol>
+<li><strong>Client-Initialisierung:</strong> Erstellt einen neuen <code>RealtimeClient</code> mit einer zufälligen ID, der Verbindung und den Session-Kontext.</li>
+<li><strong>Registrierung:</strong> Ruft <code>self._register(client)</code> auf, um den Client zu speichern.</li>
+<li><strong>Initialisierung der Verbindung:</strong> Sendet eine Willkommensnachricht (<code>{&quot;type&quot;: &quot;hello&quot;, ...}</code>) an den Client.</li>
+<li><strong>Initialer State (Optional):</strong> Wenn die Berechtigung <code>&quot;notebook.collaborate&quot;</code> vorhanden ist, holt er den aktuellen Zustand des Projekts (<code>snapshot</code>) und sendet ihn an den Client (<code>{&quot;type&quot;: &quot;collab.state&quot;, ...}</code>).</li>
+<li><strong>Haupt-Loop:</strong> Startet eine Schleife, die kontinuierlich Nachrichten von der Verbindung empfängt (<code>connection.recv_json()</code>).</li>
+</ol>
+<ul>
+<li>Jede empfangene Nachricht wird an <code>self._handle_message(client, message)</code> weitergeleitet.</li>
+<li><strong>Fehlerbehandlung:</strong> Fängt Ausnahmen während des Nachrichtenverarbeitens ab und sendet eine Fehlermeldung zurück.</li>
+</ul>
+<ol>
+<li>**Aufräumphase (<code>finally</code> Block):** Unabhängig vom Ende der Schleife (sei es durch einen Fehler oder einen manuellen Abbruch):</li>
+</ol>
+<ul>
+<li>Ruft <code>self.live_runs.stop_for_client(client.client_id)</code> auf, um den Live-Run für diesen Client zu beenden.</li>
+<li>Ruft <code>self._unregister(client)</code> auf, um den Client aus der Registry zu entfernen.</li>
+<li>Schließt die WebSocket-Verbindung.</li>
+</ul>
+<h4 id="2-2-3-handle-message-self-client-realtimeclient-message-dict-str-any-none">2.2.3. <code>_handle_message(self, client: RealtimeClient, message: dict[str, Any]) -&gt; None</code></h4>
+<p>Verarbeitet die vom Client empfangenen Echtzeit-Aktionen basierend auf dem <code>action</code>-Feld der Nachricht. <strong>Logik (Aktionen):</strong></p>
+<table><thead><tr>
+<th>Aktion (<code>action</code>)</th>
+<th>Beschreibung</th>
+<th>Abhängigkeiten/Aktionen</th>
+</tr></thead><tbody>
+<tr>
+<td><code>&quot;ping&quot;</code></td>
+<td>Antwortet auf eine Ping-Anfrage.</td>
+<td>Sendet <code>&quot;pong&quot;</code> mit aktuellen Zeitstempel.</td>
+</tr>
+<tr>
+<td><code>&quot;collab.presence&quot;</code></td>
+<td>Aktualisiert die Präsenz/Heartbeat-Informationen.</td>
+<td>Prüft Berechtigung (<code>notebook.collaborate</code>). Ruft <code>application.collaboration.heartbeat()</code> auf und sendet das Ergebnis an alle Clients des Projekts (<code>_broadcast_project</code>).</td>
+</tr>
+<tr>
+<td><code>&quot;collab.sync&quot;</code></td>
+<td>Synchronisiert den Zustand (z.B. Code-Zellen).</td>
+<td>Prüft Berechtigung. Ruft <code>application.collaboration.sync()</code> auf. Sendet den synchronisierten Zustand an alle Clients (<code>_broadcast_project</code>).</td>
+</tr>
+<tr>
+<td><code>&quot;run.start&quot;</code></td>
+<td>Startet einen Live-Run.</td>
+<td>Ruft <code>self.live_runs.start()</code> auf mit den Payload-Daten.</td>
+</tr>
+<tr>
+<td><code>&quot;run.stdin&quot;</code></td>
+<td>Sendet Eingabe in einen laufenden Live-Run.</td>
+<td>Überprüft <code>session_id</code>. Ruft <code>self.live_runs.send_input()</code> auf.</td>
+</tr>
+<tr>
+<td><code>&quot;run.resize&quot;</code></td>
+<td>Ändert die Größe des Terminalfensters.</td>
+<td>Überprüft <code>session_id</code>. Ruft <code>self.live_runs.resize()</code> auf.</td>
+</tr>
+<tr>
+<td><code>&quot;run.stop&quot;</code></td>
+<td>Beendet einen laufenden Live-Run.</td>
+<td>Überprüft <code>session_id</code>. Ruft <code>self.live_runs.stop()</code> auf.</td>
+</tr>
+<tr>
+<td><strong>Unbekannt</strong></td>
+<td>Fehlerfall.</td>
+<td>Löst eine <code>ValueError</code> aus.</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-4-broadcast-project-self-project-id-str-payload-dict-str-any-none">2.2.4. <code>_broadcast_project(self, project_id: str, payload: dict[str, Any]) -&gt; None</code></h4>
+<p>Sendet eine Nachricht (<code>payload</code>) an alle Clients, die diesem spezifischen Projekt zugeordnet sind. <strong>Sicherheit:</strong> Der Zugriff auf die Clients erfolgt unter Verwendung des internen Locks (<code>self._lock</code>), um Race Conditions zu verhindern.</p>
+<h4 id="2-2-5-register-self-client-realtimeclient-none">2.2.5. <code>_register(self, client: RealtimeClient) -&gt; None</code></h4>
+<p>Fügt einen neuen <code>RealtimeClient</code> zur internen Registry hinzu. <strong>Logik:</strong></p>
+<ol>
+<li>Sperrt den Zugriff.</li>
+<li>Setzt den <code>client</code> in das Dictionary unter dem <code>project_id</code> des Clients.</li>
+<li>Falls das Projekt-Dictionary für diesen <code>project_id</code> neu ist, wird es erstellt.</li>
+</ol>
+<h4 id="2-2-6-unregister-self-client-realtimeclient-none">2.2.6. <code>_unregister(self, client: RealtimeClient) -&gt; None</code></h4>
+<p>Entfernt einen <code>RealtimeClient</code> aus der Registry. <strong>Logik:</strong></p>
+<ol>
+<li>Bestimmt den <code>project_id</code> des Clients.</li>
+<li>Sperrt den Zugriff.</li>
+<li>Entfernt den Eintrag des Clients aus dem Projekt-Bucket.</li>
+<li><strong>Optional:</strong> Wenn das Projekt-Bucket leer wird, wird der gesamte Eintrag für diesen <code>project_id</code> aus <code>self._project_clients</code> entfernt.</li>
+</ol>
+<h4 id="2-2-7-require-permission-self-session-sessioncontext-key-str-none">2.2.7. <code>_require_permission(self, session: SessionContext, key: str) -&gt; None</code></h4>
+<p>Eine Hilfsmethode zur Überprüfung der Benutzerberechtigungen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>session: SessionContext</code>: Der Kontext des Benutzers.</li>
+<li><code>key: str</code>: Der Schlüssel der benötigten Berechtigung (z.B. <code>&quot;notebook.collaborate&quot;</code>).</li>
+<p><strong>Verhalten:</strong></p>
+<li>Prüft, ob <code>session.permissions</code> den Schlüssel <code>key</code> mit <code>True</code> oder einem entsprechenden Wert enthält.</li>
+<li>Löst bei fehlender Berechtigung eine <code>PermissionError</code> aus.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</h2>
+<ul>
+<li>**<code>WebSocketConnection</code>**: Die Schnittstelle zur physischen Netzwerkverbindung.</li>
+<li>**<code>SessionContext</code>**: Metadaten über den aktuell verbundenen Benutzer (z.B. Benutzername, Berechtigungen).</li>
+<li>**<code>RealtimeClient</code>**: Repräsentiert einen einzelnen, aktiven Client, der eine Verbindung hält und Nachrichten empfängt/sendet.</li>
+<li>**<code>LiveRunManager</code>**: Verantwortlich für das Management von Live-Sessions (Starten, Stopper, Eingabe/Resize).</li>
+<li>**<code>application</code>**: Der zentrale Dienst, der die Geschäftslogik (Kollaboration, Runner) bereitstellt.</li>
+<li><strong>Threading</strong>: Nutzt <code>threading.RLock</code> zur Sicherstellung der Datenintegrität bei gleichzeitigen Zugriffsoperationen auf <code>_project_clients</code>.</li>
+</ul>
+<h2 id="4-sicherheit-und-fehlerbehandlung">4. Sicherheit und Fehlerbehandlung</h2>
+<ul>
+<li><strong>Zugriffskontrolle:</strong> Berechtigungen (<code>_require_permission</code>) werden vor sensiblen Aktionen (<code>collab.presence</code>, <code>collab.sync</code>) immer geprüft.</li>
+<li><strong>Robustheit:</strong> Die Hauptverarbeitung in <code>handle_project_socket</code> verwendet umfassende <code>try...except...finally</code>-Blöcke, um sicherzustellen, dass Verbindungen und Ressourcen (Live-Runs) immer ordnungsgemäß beendet werden, selbst bei Netzwerkfehlern oder Verarbeitungsproblemen.</li>
+<li><strong>Validierung:</strong> Spezifische Validierungen werden für Befehle wie <code>&quot;run.stdin&quot;</code> und <code>&quot;run.resize&quot;</code> durchgeführt (z.B. Prüfung auf fehlende <code>session_id</code>).</li>
+<li><strong>Fehlermeldungen:</strong> Fehler, die während der Verarbeitung auftreten, werden entweder an den Client zurückgesendet oder im internen Log (durch die <code>try/except</code> Blöcke) behandelt.</li>
+</ul>
+<h2 id="technische-dokumentation-def-upgrade-websocket-handler-any-websocketconnection">Technische Dokumentation: <code>def upgrade_websocket(handler: Any) -&gt; WebSocketConnection</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>upgrade_websocket</code> ist eine Methode, die dazu dient, eine HTTP-Anfrage (repräsentiert durch ein <code>handler</code>-Objekt) auf eine WebSocket-Verbindung umzuwandeln. Sie implementiert den Standardprozess für den WebSocket-Upgrade-Header-Austausch, wie er in HTTP-Protokollen definiert ist.</p>
+<h3 id="2-signatur">2. Signatur</h3>
+<pre><code class="language-python">def upgrade_websocket(handler: Any) -&gt; WebSocketConnection:
+# ... Implementierung ...</code></pre>
+<ul>
+<li><strong>Name:</strong> <code>upgrade_websocket</code></li>
+<li><strong>Parameter:</strong></li>
+<li><code>handler: Any</code>: Ein Objekt, das die HTTP-Anfrage-Informationen enthält (z.B. ein HTTP-Request-Objekt). Es muss Header-Zugriff und Methoden wie <code>send_response</code>, <code>send_header</code>, <code>end_headers</code>, und <code>close_connection</code> besitzen.</li>
+<li><strong>Rückgabe:</strong></li>
+<li><code>WebSocketConnection</code>: Ein Objekt, das die neu etablierte WebSocket-Verbindung repräsentiert.</li>
+</ul>
+<h3 id="3-funktionsbeschreibung">3. Funktionsbeschreibung</h3>
+<p>Die Funktion führt die notwendigen Schritte aus, um den HTTP-Header-Austausch für eine WebSocket-Verbindung zu initialisieren:</p>
+<ol>
+<li><strong>Upgrade-Header-Validierung:</strong> Sie prüft, ob der <code>Upgrade</code>-Header in den Anfrage-Headern auf <code>&quot;websocket&quot;</code> (kleingeschrieben) gesetzt ist.</li>
+<li><strong>WebSocket-Key-Extraktion:</strong> Sie extrahiert den <code>Sec-WebSocket-Key</code> aus den Headern.</li>
+<li><strong>Fehlerbehandlung (Validierung):</strong> Sie stellt sicher, dass sowohl der <code>Upgrade</code>-Header als auch der <code>Sec-WebSocket-Key</code> vorhanden sind.</li>
+<li><strong>HTTP-Response-Setzung:</strong> Sie sendet die entsprechenden HTTP-Antwort-Header an den Client:</li>
+</ol>
+<ul>
+<li><code>HTTPStatus.SWITCHING_PROTOCOLS</code>: Gibt an, dass der Protokollwechsel initiiert wird.</li>
+<li><code>Upgrade: websocket</code>: Gibt den gewünschten Protokollwechsel an.</li>
+<li><code>Connection: Upgrade</code>: Gibt an, dass die Verbindung für den Upgrade-Prozess verwendet wird.</li>
+<li><code>Sec-WebSocket-Accept</code>: Setzt den Antwort-Key basierend auf dem eingehenden <code>Sec-WebSocket-Key</code> mithilfe der Methode <code>WebSocketConnection.accept_key(key)</code>.</li>
+</ul>
+<ol>
+<li><strong>Header-Ende:</strong> Sie ruft <code>handler.end_headers()</code> auf, um die Header-Senden abzuschließen.</li>
+<li><strong>Verbindungseinstellung:</strong> Sie setzt die Verbindung des Handlers auf <code>close_connection = True</code>, um die Verbindung nach dem Upgrade zu schließen.</li>
+<li><strong>Status-Setzung:</strong> Sie setzt ein internes Attribut <code>_websocket_upgraded</code> auf <code>True</code>, um den Status der Verbindung zu markieren.</li>
+<li><strong>Rückgabe:</strong> Sie erstellt und gibt eine neue Instanz von <code>WebSocketConnection</code> zurück, die die zugrunde liegende Verbindung des Handlers verwaltet.</li>
+</ol>
+<h3 id="4-abh-ngigkeiten-und-voraussetzungen">4. Abhängigkeiten und Voraussetzungen</h3>
+<ul>
+<li>**<code>handler</code>:** Muss ein Objekt sein, das die notwendigen HTTP-Funktionen (Header-Setzung, Response-Senden) bereitstellt.</li>
+<li>**<code>HTTPStatus</code>:** Muss eine Enum- oder Konstanten-Definition für HTTP-Statuscodes enthalten (z.B. <code>HTTPStatus.SWITCHING_PROTOCOLS</code>).</li>
+<li>**<code>WebSocketConnection</code>:** Muss eine Klasse sein, die die Logik zur Generierung des <code>Sec-WebSocket-Accept</code>-Keys (<code>accept_key(key)</code>) und die Repräsentation der WebSocket-Verbindung bereitstellt.</li>
+</ul>
+<h3 id="5-fehlerbehandlung-exceptions">5. Fehlerbehandlung (Exceptions)</h3>
+<p>Die Funktion wirft <code>ValueError</code> bei folgenden Bedingungen, wenn die notwendigen Header fehlen oder falsch sind:</p>
+<ol>
+<li><strong>Falscher Upgrade-Header:</strong> Wenn der <code>Upgrade</code>-Header nicht exakt <code>&quot;websocket&quot;</code> (nach Entfernen von Leerzeichen und Kleinbuchstaben) ist.</li>
+<li><strong>Fehlender Key:</strong> Wenn der <code>Sec-WebSocket-Key</code>-Header fehlt.</li>
+</ol>
+<h3 id="6-use-case">6. Use Case</h3>
+<p>Diese Funktion wird typischerweise im Kontext eines Web-Frameworks oder eines HTTP-Server-Handlers verwendet, um eine initiale HTTP-Anfrage, die eine WebSocket-Verbindung anfordert, in eine aktive WebSocket-Sitzung umzuwandeln.</p>
+<h3 id="7-code-analyse-detail">7. Code-Analyse (Detail)</h3>
+<table><thead><tr>
+<th>Zeile(n)</th>
+<th>Code-Ausschnitt</th>
+<th>Zweck</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td><code>upgrade = str(handler.headers.get(&quot;Upgrade&quot;, &quot;&quot;)).strip().lower()</code></td>
+<td>Extrahiert und normalisiert den <code>Upgrade</code>-Header.</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td><code>if upgrade != &quot;websocket&quot;: raise ValueError(...)</code></td>
+<td>Validiert, ob der gewünschte Protokollwechsel korrekt ist.</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td><code>key = str(handler.headers.get(&quot;Sec-WebSocket-Key&quot;, &quot;&quot;)).strip()</code></td>
+<td>Extrahiert und normalisiert den eindeutigen Schlüssel.</td>
+</tr>
+<tr>
+<td>6-7</td>
+<td><code>if not key: raise ValueError(...)</code></td>
+<td>Validiert die Existenz des Schlüssel-Headers.</td>
+</tr>
+<tr>
+<td>8-11</td>
+<td><code>handler.send_response(...)</code>, <code>handler.send_header(...)</code></td>
+<td>Setzt die notwendigen HTTP-Header für den WebSocket-Upgrade.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>handler.end_headers()</code></td>
+<td>Beendet den Header-Senden.</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>handler.close_connection = True</code></td>
+<td>Markiert die Verbindung als geschlossen (da sie durch das Upgrade ersetzt wird).</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>setattr(handler, &quot;_websocket_upgraded&quot;, True)</code></td>
+<td>Setzt einen internen Status für das Handler-Objekt.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>return WebSocketConnection(handler.connection)</code></td>
+<td>Erstellt und gibt die neue WebSocket-Klasse zurück.</td>
+</tr>
+</tbody></table>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-importierte-module-und-abh-ngigkeiten">2. Importierte Module und Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-konstanten">3. Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#4-klasse-unvollst-ndig">4. Klasse: (Unvollständig)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-schl-sselkomponenten-basierend-auf-imports">4.1. Schlüsselkomponenten (Basierend auf Imports)</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-funktion">5. Zusammenfassung der Funktion</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-websocketconnection">2. Klasse: `WebSocketConnection`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-protokoll-details-websocket-frame-types">3. Protokoll-Details (WebSocket Frame Types)</a></li>
+<li class="wiki-toc-link"><a href="#4-abh-ngigkeiten">4. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheits-und-robustheitsaspekte">5. Sicherheits- und Robustheitsaspekte</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klassen-definitionen">2. Klassen-Definitionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klasse-realtimeclient">2.1. Klasse `RealtimeClient`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-dataclass-activeliverun">2.2. Dataclass `ActiveLiveRun`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-typen">3. Abhängigkeiten und Typen</a></li>
+<li class="wiki-toc-link"><a href="#4-verwendungshinweise">4. Verwendungshinweise</a></li>
+<li class="wiki-toc-link level-3"><a href="#beispielstruktur-der-gew-nschten-dokumentation">Beispielstruktur der gewünschten Dokumentation</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-realtimeservice">2. Klasse: `RealtimeService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methoden">2.2. Methoden</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</a></li>
+<li class="wiki-toc-link"><a href="#4-sicherheit-und-fehlerbehandlung">4. Sicherheit und Fehlerbehandlung</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-def-upgrade-websocket-handler-any-websocketconnection">Technische Dokumentation: `def upgrade_websocket(handler: Any) -&gt; WebSocketConnection`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-signatur">2. Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-funktionsbeschreibung">3. Funktionsbeschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-abh-ngigkeiten-und-voraussetzungen">4. Abhängigkeiten und Voraussetzungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-fehlerbehandlung-exceptions">5. Fehlerbehandlung (Exceptions)</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-use-case">6. Use Case</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-code-analyse-detail">7. Code-Analyse (Detail)</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "realtime.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `database.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `database.py`</h1>
+          <p>Source: database.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-database-py">Technische Dokumentation: <code>database.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Datei <code>database.py</code> dient als zentraler Modul für die Verwaltung und Interaktion mit einer Datenbank. Sie scheint für die Speicherung, Abfrage und möglicherweise die Synchronisation von Daten verantwortlich zu sein. Die Verwendung von <code>sqlite3</code>, <code>threading</code> und <code>json</code> deutet auf eine robuste, möglicherweise multithreadige Anwendung hin, die eine persistente Datenhaltung benötigt.</p>
+<h2 id="2-abh-ngigkeiten-imports">2. Abhängigkeiten (Imports)</h2>
+<p>Die Datei importiert die folgenden Module und Funktionen:</p>
+<table><thead><tr>
+<th>Import</th>
+<th>Zweck</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>json</code></td>
+<td>Datenserialisierung/Deserialisierung</td>
+<td>Wird wahrscheinlich verwendet, um Daten zwischen der Datenbank und anderen Systemen (z.B. für Caching oder API-Antworten) zu serialisieren.</td>
+</tr>
+<tr>
+<td><code>sqlite3</code></td>
+<td>Datenbankzugriff</td>
+<td>Der primäre Modul für die Interaktion mit SQLite-Datenbanken.</td>
+</tr>
+<tr>
+<td><code>threading</code></td>
+<td>Multithreading</td>
+<td>Wird verwendet, um parallele Datenbankoperationen oder den Zugriff auf die Datenbank von mehreren Threads sicher zu steuern.</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Zeitmessung</td>
+<td>Wahrscheinlich für Logging, Timeout-Management oder Performance-Metriken.</td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td>Universelle eindeutige Identifikatoren</td>
+<td>Wird wahrscheinlich zur Generierung eindeutiger IDs für neue Datensätze verwendet.</td>
+</tr>
+<tr>
+<td><code>pathlib.Path</code></td>
+<td>Dateisystemoperationen</td>
+<td>Wird für die Verwaltung von Datenbankdateien oder temporären Dateien verwendet.</td>
+</tr>
+<tr>
+<td><code>typing.Any</code></td>
+<td>Typ-Hinweise</td>
+<td>Wird für die Typisierung von Variablen und Rückgabewerten verwendet, um die Code-Lesbarkeit zu verbessern.</td>
+</tr>
+<tr>
+<td><code>.permissions.normalize_permission_overrides</code></td>
+<td>Berechtigungsverwaltung</td>
+<td>Ein Import aus einem lokalen Modul, das wahrscheinlich die Logik zur Normalisierung oder Priorisierung von Berechtigungsregeln enthält.</td>
+</tr>
+<tr>
+<td>## 3. Hauptkomponenten (Klasse `&lt;</td>
+<td>end</td>
+<td>&gt;`)</td>
+</tr>
+<tr>
+<td>Der bereitgestellte Code endet mit der Definition einer Klasse (markiert durch `&lt;</td>
+<td>end</td>
+<td>&gt;`). Basierend auf den Imports lässt sich ableiten, dass diese Klasse die Hauptlogik für die Datenbankverwaltung enthält.</td>
+</tr>
+</tbody></table>
+<p><strong>Erwartete Funktionen der Klasse:</strong></p>
+<ol>
+<li><strong>Initialisierung:</strong> Die Klasse muss wahrscheinlich eine Methode zur Verbindung zur SQLite-Datenbank herstellen und diese initialisieren.</li>
+<li><strong>Datenoperationen (CRUD):</strong> Methoden zur Erstellung (<code>Create</code>), Lese (<code>Read</code>), Aktualisierung (<code>Update</code>) und Löschung (<code>Delete</code>) von Daten.</li>
+<li><strong>Thread-Sicherheit:</strong> Methoden, die Mechanismen wie Locks oder Transaktionen verwenden, um sicherzustellen, dass mehrere Threads gleichzeitig auf die Datenbank zugreifen können, ohne Datenkorruption zu verursachen.</li>
+<li><strong>Berechtigungsprüfung:</strong> Integration der Logik aus <code>normalize_permission_overrides</code>, um zu prüfen, ob ein aktueller Benutzer oder Prozess die notwendigen Rechte für eine bestimmte Datenbankoperation besitzt.</li>
+<li><strong>ID-Generierung:</strong> Nutzung von <code>uuid.uuid4()</code> zur Erzeugung eindeutiger Primärschlüssel.</li>
+</ol>
+<h2 id="4-design-und-architektur-berlegungen">4. Design- und Architektur-Überlegungen</h2>
+<h3 id="4-1-datenhaltung">4.1. Datenhaltung</h3>
+<ul>
+<li><strong>Technologie:</strong> SQLite. Dies impliziert, dass die Anwendung entweder lokal läuft oder eine einfache, Datei-basierte Datenbankstruktur benötigt.</li>
+<li><strong>Struktur:</strong> Die Struktur der Datenbanktabellen (Schema) wird wahrscheinlich durch die Implementierung der Methoden in dieser Klasse definiert.</li>
+</ul>
+<h3 id="4-2-multithreading-strategie">4.2. Multithreading-Strategie</h3>
+<p>Die Importe von <code>threading</code> deuten darauf hin, dass die Datenbankoperationen entweder: a) von verschiedenen Threads parallel ausgeführt werden sollen (z.B. für hohe I/O-Last). b) eine zentrale Synchronisationslogik benötigen, um den Datenbank-Handle zu schützen. <strong>Wichtige Design-Entscheidungen, die hier implementiert werden müssen:</strong></p>
+<ul>
+<li><strong>Locking:</strong> Es ist wahrscheinlich, dass <code>threading.Lock</code> oder ähnliche Mechanismen verwendet werden, um den Zugriff auf die SQLite-Instanz oder spezifische Datenbankoperationen zu serialisieren.</li>
+<li><strong>Transaktionen:</strong> Für komplexe Operationen (mehrere <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>) ist die Verwendung von SQLite-Transaktionen (<code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code>) zwingend erforderlich, um Datenkonsistenz zu gewährleisten.</li>
+</ul>
+<h3 id="4-3-datenformatierung">4.3. Datenformatierung</h3>
+<p>Die Verwendung von <code>json</code> deutet darauf hin, dass die Daten, die aus der Datenbank abgerufen werden, entweder:</p>
+<ul>
+<li>Als JSON-Strings in der Datenbank gespeichert werden (für flexible Schemata).</li>
+<li>Oder dass die Ergebnisse der Datenbankoperationen in ein JSON-Objekt serialisiert werden, bevor sie an den Benutzer oder eine andere Anwendung übergeben werden.</li>
+</ul>
+<h2 id="5-nutzungsszenarien-hypothetisch">5. Nutzungsszenarien (Hypothetisch)</h2>
+<p>Diese Datei wird typischerweise in folgenden Szenarien verwendet:</p>
+<ol>
+<li><strong>Backend-API-Service:</strong> Als Datenquelle für eine Webanwendung, die auf die Datenbank zugreift.</li>
+<li><strong>Worker-Prozesse:</strong> Für Hintergrundprozesse, die regelmäßig Daten verarbeiten oder synchronisieren müssen.</li>
+<li><strong>Datenpersistenz-Layer:</strong> Als isolierte Schicht, die die Geschäftslogik von der direkten SQLite-Implementierung trennt.</li>
+</ol>
+<h2 id="6-fazit-und-empfehlungen">6. Fazit und Empfehlungen</h2>
+<p>Die Struktur von <code>database.py</code> legt eine solide Grundlage für eine skalierbare, datenpersistente Anwendung. Die Hauptfokusbereiche für die weitere Dokumentation und Implementierung sind:</p>
+<ol>
+<li><strong>Detaillierte Schema-Definition:</strong> Eine klare Definition der Tabellenstruktur.</li>
+<li><strong>Thread-Sicherheitsmechanismen:</strong> Exakte Beschreibung, wie Locks oder andere Synchronisationswerkzeuge verwendet werden, um Race Conditions zu vermeiden.</li>
+<li><strong>Fehlerbehandlung:</strong> Implementierung robuster <code>try...except</code>-Blöcke, insbesondere für SQLite-Fehler (z.B. Datenbankverbindungsprobleme, Constraint Violations).</li>
+<li><strong>API-Spezifikation:</strong> Wenn diese Klasse eine API-Schicht bildet, sollte eine klare Dokumentation der Methoden (Parameter, Rückgabewerte, Fehlercodes) erstellt werden.</li>
+</ol>
+<p>Error: stream error: INVALID_ARGUMENT: Input token ids are too long. Exceeding the maximum number of tokens allowed: 10922 &gt;= 4096</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten-imports">2. Abhängigkeiten (Imports)</a></li>
+<li class="wiki-toc-link"><a href="#4-design-und-architektur-berlegungen">4. Design- und Architektur-Überlegungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-1-datenhaltung">4.1. Datenhaltung</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-2-multithreading-strategie">4.2. Multithreading-Strategie</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-3-datenformatierung">4.3. Datenformatierung</a></li>
+<li class="wiki-toc-link"><a href="#5-nutzungsszenarien-hypothetisch">5. Nutzungsszenarien (Hypothetisch)</a></li>
+<li class="wiki-toc-link"><a href="#6-fazit-und-empfehlungen">6. Fazit und Empfehlungen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "database.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_config.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_config.py`</h1>
+          <p>Source: test_config.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h2 id="technische-dokumentation-test-config-py">Technische Dokumentation: <code>test_config.py</code></h2>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2026-04-06 <strong>Autor:</strong> Ralf Krümmel <strong>Beschreibung:</strong> Diese Datei dient als Test-Setup oder als Teil eines Testmoduls, das die Konfigurationsmechanismen des <code>nova_school_server</code> Moduls validiert oder simuliert. Sie importiert verschiedene Konfigurationsfunktionen und Klassen aus dem <code>nova_school_server.config</code> Modul. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei <code>test_config.py</code> importiert spezifische Komponenten aus dem Konfigurationsmodul (<code>nova_school_server.config</code>) und scheint darauf abzuzielen, die Funktionalität von Konfigurations-Laden, Speichern und der Verwaltung von Laufzeitkonfigurationen zu testen oder zu demonstrieren.</p>
+<h3 id="2-importierte-komponenten">2. Importierte Komponenten</h3>
+<p>Die Datei importiert folgende Elemente aus <code>nova_school_server.config</code>:</p>
+<table><thead><tr>
+<th>Importierter Name</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>ServerConfig</code></td>
+<td>Klasse</td>
+<td>Wahrscheinlich die Hauptklasse zur Strukturierung der Serverkonfiguration.</td>
+</tr>
+<tr>
+<td><code>active_runtime_config</code></td>
+<td>Variablentyp</td>
+<td>Die aktuell aktive Laufzeitkonfiguration.</td>
+</tr>
+<tr>
+<td><code>load_server_config_payload</code></td>
+<td>Funktion</td>
+<td>Funktion zum Laden der Serverkonfiguration aus einem Payload.</td>
+</tr>
+<tr>
+<td><code>runtime_config_requires_restart</code></td>
+<td>Boolescher Typ</td>
+<td>Flag, das angibt, ob eine Änderung der Laufzeitkonfiguration einen Neustart erfordert.</td>
+</tr>
+<tr>
+<td><code>save_server_config_payload</code></td>
+<td>Funktion</td>
+<td>Funktion zum Speichern der Serverkonfiguration in einem Payload.</td>
+</tr>
+<tr>
+<td><code>stored_runtime_config</code></td>
+<td>Variablentyp</td>
+<td>Die aktuell gespeicherte Laufzeitkonfiguration.</td>
+</tr>
+</tbody></table>
+<h3 id="3-code-analyse-zeilenweise">3. Code-Analyse (Zeilenweise)</h3>
+<pre><code class="language-python">from __future__ import annotations
+import os
+import tempfile
+import unittest
+from pathlib import Path
+import nova_school_server.config as config_module
+from nova_school_server.config import (
+ServerConfig,
+active_runtime_config,
+load_server_config_payload,
+runtime_config_requires_restart,
+save_server_config_payload,
+stored_runtime_config,
+)</code></pre>
+<p><strong>Analyse:</strong></p>
+<ol>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hints (wie <code>Type[T]</code>) in älteren Python-Versionen, was die Code-Lesbarkeit verbessert.</li>
+<li>**<code>import os, tempfile, unittest, pathlib.Path</code>**: Diese Standardmodule werden importiert. Dies deutet stark darauf hin, dass die Datei entweder:</li>
+</ol>
+<ul>
+<li><strong>Testfälle</strong> (<code>unittest</code>) enthält.</li>
+<li><strong>Temporäre Dateien</strong> (<code>tempfile</code>, <code>Path</code>) für das Testen von Konfigurationsdateien verwendet.</li>
+<li><strong>Dateisystemoperationen</strong> (<code>os</code>) zur Manipulation von Konfigurationsdateien durchführt.</li>
+</ul>
+<ol>
+<li>**<code>import nova_school_server.config as config_module</code>**: Das Hauptkonfigurationsmodul wird importiert und als <code>config_module</code> alias gesetzt.</li>
+<li><strong>Importliste</strong>: Die spezifischen Funktionen und Klassen aus dem Konfigurationsmodul werden explizit importiert, um sie direkt zu verwenden.</li>
+</ol>
+<h3 id="4-funktionale-implikationen">4. Funktionale Implikationen</h3>
+<p>Basierend auf den importierten Funktionen lässt sich ableiten, dass die Datei folgende Hauptaufgaben erfüllen wird:</p>
+<ol>
+<li><strong>Konfigurations-Deserialisierung/Serialisierung:</strong> Sie wird wahrscheinlich <code>load_server_config_payload</code> und <code>save_server_config_payload</code> nutzen, um Konfigurationsdaten zwischen verschiedenen Speichermedien (z.B. JSON, YAML, oder binäre Payloads) zu übertragen.</li>
+<li><strong>Zustandsverwaltung:</strong> Sie interagiert mit den globalen oder Klassen-Attribute (<code>active_runtime_config</code>, <code>stored_runtime_config</code>) zur Verwaltung des aktuellen und gespeicherten Konfigurationszustands.</li>
+<li><strong>Fehler-/Restart-Logik:</strong> Die Prüfung von <code>runtime_config_requires_restart</code> deutet darauf hin, dass die Logik, die Konfigurationsänderungen verarbeitet, eine Entscheidung treffen muss, ob ein Neustart des Servers notwendig ist.</li>
+</ol>
+<h3 id="5-nutzungsempfehlung-kontext">5. Nutzungsempfehlung (Kontext)</h3>
+<p>Diese Datei ist primär ein <strong>Setup- oder Test-Skript</strong>. Für eine vollständige Dokumentation müsste der Rest des Codes (der hier nicht bereitgestellt wurde) analysiert werden, um zu verstehen:</p>
+<ul>
+<li><strong>Welche spezifischen Konfigurationsdaten</strong> werden geladen/gespeichert?</li>
+<li><strong>Wie werden die temporären Dateien</strong> (<code>tempfile</code>, <code>Path</code>) verwendet?</li>
+<li><strong>Welche Testfälle</strong> (<code>unittest</code>) werden ausgeführt?</li>
+<p>--- <strong>Hinweis:</strong> Diese Dokumentation basiert ausschließlich auf dem bereitgestellten Code-Snippet. Für eine vollständige technische Spezifikation des gesamten Moduls ist der vollständige Code erforderlich.</p>
+</ul>
+<h1 id="technische-dokumentation-test-config-py">Technische Dokumentation: <code>test_config.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests, die die Funktionalität der Konfigurationsverwaltung und -initialisierung in der Anwendung (vermutlich im Kontext von <code>ServerConfig</code> und <code>runtime_config</code>) validieren. Die Tests konzentrieren sich auf die korrekte Handhabung von Konfigurationsquellen (Standardwerte, Umgebungsvariablen, gespeicherte Payloads und Laufzeitkonfigurationen).</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei definiert eine Testklasse <code>ConfigTests</code>, die spezifische Szenarien für die Konfigurationslogik abdeckt. <strong>Wichtige Abhängigkeiten (impliziert):</strong></p>
+<ul>
+<li><code>ServerConfig</code>: Eine Klasse, die die Konfiguration lädt und verwaltet.</li>
+<li><code>tempfile</code>: Für das Erstellen temporärer Verzeichnisse zur Simulation von Dateisystempfaden.</li>
+<li><code>os</code>: Für die Manipulation von Umgebungsvariablen.</li>
+<li><code>Path</code>: Für die Arbeit mit Dateipfaden.</li>
+<li><code>save_server_config_payload</code> und <code>load_server_config_payload</code>: Funktionen zur Speicherung und Wiederherstellung von Konfigurationsdaten.</li>
+<li><code>stored_runtime_config</code> und <code>active_runtime_config</code>: Funktionen zur Abfrage von gespeicherten und aktiven Laufzeitkonfigurationen.</li>
+<li><code>runtime_config_requires_restart</code>: Eine Funktion, die prüft, ob ein Neustart erforderlich ist.</li>
+</ul>
+<h2 id="3-detaillierte-testf-lle">3. Detaillierte Testfälle</h2>
+<p>Die folgenden Tests werden im Detail beschrieben:</p>
+<h3 id="3-1-test-default-host-binds-for-lan">3.1. <code>test_default_host_binds_for_lan</code></h3>
+<p><strong>Ziel:</strong> Überprüfen, dass die Standardkonfiguration den erwarteten Hostwert für lokale Netzwerke zurückgibt. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li><code>ServerConfig.from_base_path()</code> wird mit diesem Verzeichnis aufgerufen.</li>
+<li>Es wird verifiziert, dass das zurückgegebene <code>config.host</code> den Wert <code>&quot;0.0.0.0&quot;</code> hat.</li>
+</ol>
+<h3 id="3-2-test-env-host-override-is-respected">3.2. <code>test_env_host_override_is_respected</code></h3>
+<p><strong>Ziel:</strong> Validieren, dass Umgebungsvariablen, die die Konfiguration überschreiben sollen (speziell <code>NOVA_SCHOOL_HOST</code>), korrekt angewendet werden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Der aktuelle Wert von <code>NOVA_SCHOOL_HOST</code> wird gespeichert.</li>
+<li>Die Umgebungsvariable wird temporär auf <code>&quot;127.0.0.1&quot;</code> gesetzt.</li>
+<li><code>ServerConfig.from_base_path()</code> wird aufgerufen.</li>
+<li>Es wird verifiziert, dass <code>config.host</code> den Wert <code>&quot;127.0.0.1&quot;</code> hat.</li>
+<li><strong>Cleanup:</strong> Die Umgebungsvariable wird auf ihren ursprünglichen Wert zurückgesetzt.</li>
+</ol>
+<h3 id="3-3-test-server-config-payload-is-saved-and-loaded">3.3. <code>test_server_config_payload_is_saved_and_loaded</code></h3>
+<p><strong>Ziel:</strong> Testen, dass die Speicherung und Wiederherstellung eines spezifischen Konfigurations-Payloads erfolgreich sind und die Daten korrekt übernommen werden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein spezifisches Payload (<code>{&quot;host&quot;: &quot;127.0.0.1&quot;, &quot;port&quot;: 9999, &quot;tenant_id&quot;: &quot;school-x&quot;}</code>) wird mithilfe von <code>save_server_config_payload</code> gespeichert.</li>
+<li>Das gespeicherte Payload wird direkt verifiziert.</li>
+<li>Die Konfiguration wird mithilfe von <code>load_server_config_payload</code> aus dem Verzeichnis geladen.</li>
+<li>Es wird verifiziert, dass das <code>tenant_id</code> korrekt <code>&quot;school-x&quot;</code> ist.</li>
+</ol>
+<h3 id="3-4-test-stored-runtime-config-falls-back-to-active-values">3.4. <code>test_stored_runtime_config_falls_back_to_active_values</code></h3>
+<p><strong>Ziel:</strong> Sicherstellen, dass die gespeicherte Laufzeitkonfiguration (<code>stored</code>) mit der aktuell aktiven Laufzeitkonfiguration (<code>active</code>) konsistent ist, wenn keine Änderungen vorgenommen wurden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Die <code>ServerConfig</code> wird initialisiert.</li>
+<li>Die Laufzeitkonfiguration wird gespeichert (<code>stored_runtime_config</code>).</li>
+<li>Die aktive Laufzeitkonfiguration wird abgerufen (<code>active_runtime_config</code>).</li>
+<li>Es wird verifiziert, dass <code>stored[&quot;host&quot;] == active[&quot;host&quot;]</code> und <code>stored[&quot;port&quot;] == active[&quot;port&quot;]</code>.</li>
+<li>Es wird verifiziert, dass <code>runtime_config_requires_restart(active, stored)</code> <strong>falsch</strong> zurückgibt (kein Neustart nötig).</li>
+</ol>
+<h3 id="3-5-test-runtime-config-requires-restart-when-stored-values-differ">3.5. <code>test_runtime_config_requires_restart_when_stored_values_differ</code></h3>
+<p><strong>Ziel:</strong> Validieren, dass ein Neustart erforderlich ist, wenn die gespeicherten Laufzeitkonfigurationen von den aktiven abweichen. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Die <code>ServerConfig</code> wird initialisiert.</li>
+<li>Ein spezifisches Payload (<code>{&quot;port&quot;: 9988, &quot;run_timeout_seconds&quot;: 45}</code>) wird gespeichert.</li>
+<li>Die aktive Laufzeitkonfiguration wird abgerufen (<code>active_runtime_config</code>).</li>
+<li>Die gespeicherte Laufzeitkonfiguration wird abgerufen (<code>stored_runtime_config</code>).</li>
+<li>Es wird verifiziert, dass <code>runtime_config_requires_restart(active, stored)</code> <strong>wahr</strong> zurückgibt (Neustart erforderlich).</li>
+</ol>
+<h3 id="3-6-test-static-path-falls-back-to-real-package-root-for-flat-repo-layout">3.6. <code>test_static_path_falls_back_to_real_package_root_for_flat_repo_layout</code></h3>
+<p><strong>Ziel:</strong> Überprüfen, dass der Pfad zur statischen Ressource (<code>static_path</code>) korrekt berechnet wird, wenn die Repository-Struktur flach ist. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Die <code>ServerConfig</code> wird initialisiert.</li>
+<li>Der erwartete Pfad wird berechnet: <code>Path(config_module.__file__).resolve().parent / &quot;static&quot;</code>.</li>
+<li>Es wird verifiziert, dass <code>config.static_path</code> exakt diesem berechneten Pfad entspricht.</li>
+</ol>
+<h2 id="4-zusammenfassung-und-implikationen">4. Zusammenfassung und Implikationen</h2>
+<p>Diese Testsuite stellt sicher, dass die Konfigurationsmechanismen der Anwendung robust sind:</p>
+<ul>
+<li><strong>Flexibilität:</strong> Die Konfiguration kann über verschiedene Quellen (Standard, Umgebung, Payload) gesteuert werden.</li>
+<li><strong>Konsistenz:</strong> Es wird sichergestellt, dass die Unterscheidung zwischen aktiven und gespeicherten Laufzeitkonfigurationen korrekt gemanagt wird, insbesondere im Hinblick auf die Notwendigkeit eines Neustarts.</li>
+<li><strong>Pfadmanagement:</strong> Die relative Pfadlogik für statische Dateien ist korrekt implementiert, um Abhängigkeiten von der Repository-Struktur zu lösen.</li>
+<p><strong>Empfehlung:</strong> Die Tests sind gut strukturiert und decken die wichtigsten Schnittstellen der Konfigurationsverwaltung ab. Sie sind für die Validierung der Kernlogik der Konfigurations-Loader sehr nützlich.</p>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-test-config-py">Technische Dokumentation: `test_config.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-importierte-komponenten">2. Importierte Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-code-analyse-zeilenweise">3. Code-Analyse (Zeilenweise)</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-funktionale-implikationen">4. Funktionale Implikationen</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-nutzungsempfehlung-kontext">5. Nutzungsempfehlung (Kontext)</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link"><a href="#3-detaillierte-testf-lle">3. Detaillierte Testfälle</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-test-default-host-binds-for-lan">3.1. `test_default_host_binds_for_lan`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-test-env-host-override-is-respected">3.2. `test_env_host_override_is_respected`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-3-test-server-config-payload-is-saved-and-loaded">3.3. `test_server_config_payload_is_saved_and_loaded`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-4-test-stored-runtime-config-falls-back-to-active-values">3.4. `test_stored_runtime_config_falls_back_to_active_values`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-5-test-runtime-config-requires-restart-when-stored-values-differ">3.5. `test_runtime_config_requires_restart_when_stored_values_differ`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-6-test-static-path-falls-back-to-real-package-root-for-flat-repo-layout">3.6. `test_static_path_falls_back_to_real_package_root_for_flat_repo_layout`</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-und-implikationen">4. Zusammenfassung und Implikationen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_config.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>
