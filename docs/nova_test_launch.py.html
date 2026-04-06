@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `nova_test_launch.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `nova_test_launch.py`</h1>
+          <p>Source: nova_test_launch.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-nova-test-launch-py">Technische Dokumentation: <code>nova_test_launch.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Python-Datei <code>nova_test_launch.py</code> dient als Hauptpunkt für das Ausführen von Unit-Tests für ein Projekt, das wahrscheinlich mit dem Namen &quot;Nova&quot; in Verbindung steht. Sie orchestriert den Start des Bootstrap-Prozesses und führt anschließend die Tests aus, die im Verzeichnis <code>tests/</code> lokalisiert sind.</p>
+<h2 id="2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</h2>
+<h3 id="2-1-importe">2.1 Importe</h3>
+<p>Die Datei importiert folgende Module:</p>
+<ul>
+<li>**<code>sys</code>**: Standardmodul für den Zugriff auf die Python-Shell.</li>
+<li>**<code>unittest</code>**: Das Standardmodul für das Ausführen von Unit-Tests in Python.</li>
+<li>**<code>pathlib.Path</code>**: Ein modernes Modul zur objektorientierten Handhabung von Dateipfaden.</li>
+<li>**<code>nova_bootstrap.bootstrap_package</code>**: Eine Funktion, die für die Initialisierung oder das Setup des Projekt-Packages zuständig ist.</li>
+</ul>
+<h3 id="2-2-hauptfunktionen">2.2 Hauptfunktionen</h3>
+<h4 id="main-int"><code>main() -&gt; int</code></h4>
+<p>Diese Funktion ist der Kern der Skriptlogik und führt die folgenden Schritte in sequenzieller Reihenfolge aus:</p>
+<ol>
+<li><strong>Bootstrap-Prozess starten</strong>:</li>
+</ol>
+<pre><code class="language-python">bootstrap_package()</code></pre>
+<p>Rufen die Funktion <code>bootstrap_package</code> aus dem <code>nova_bootstrap</code>-Modul auf, um notwendige Initialisierungen oder Setups für das Projekt durchzuführen.</p>
+<ol>
+<li><strong>Root-Verzeichnis bestimmen</strong>:</li>
+</ol>
+<pre><code class="language-python">root = Path(__file__).resolve(strict=False).parent</code></pre>
+<p>Bestimmt das Verzeichnis, das dem aktuellen Skript (<code>nova_test_launch.py</code>) gleichgestellt ist (das Verzeichnis, in dem die Datei liegt).</p>
+<ol>
+<li><strong>Test-Suite discovern</strong>:</li>
+</ol>
+<pre><code class="language-python">suite = unittest.defaultTestLoader.discover(str(root / &quot;tests&quot;))</code></pre>
+<p>Nutzt den <code>unittest</code>-Loader, um alle Testdateien im Unterverzeichnis <code>tests/</code> (relativ zum Root-Verzeichnis) zu finden und eine Test-Suite zu erstellen.</p>
+<ol>
+<li><strong>Tests ausführen</strong>:</li>
+</ol>
+<pre><code class="language-python">result = unittest.TextTestRunner(verbosity=2).run(suite)</code></pre>
+<p>Führt die erstellte Test-Suite aus, wobei <code>unittest.TextTestRunner</code> verwendet wird. Die Option <code>verbosity=2</code> sorgt für eine detailliertere Ausgabe während der Testausführung.</p>
+<ol>
+<li><strong>Rückgabewert bestimmen</strong>:</li>
+</ol>
+<pre><code class="language-python">return 0 if result.wasSuccessful() else 1</code></pre>
+<p>Gibt einen Exit-Code zurück:</p>
+<ul>
+<li><code>0</code> (Erfolg), wenn alle Tests erfolgreich waren.</li>
+<li><code>1</code> (Fehler), wenn mindestens ein Test fehlgeschlagen ist.</li>
+</ul>
+<h4 id="if-name-main-block"><code>if __name__ == &quot;__main__&quot;:</code> Block</h4>
+<p>Dieser Block wird nur ausgeführt, wenn das Skript direkt als Hauptprogramm gestartet wird (nicht als Importobjekt).</p>
+<pre><code class="language-python">if __name__ == &quot;__main__&quot;:
+raise SystemExit(main())</code></pre>
+<p>Dieser Block ruft die <code>main()</code>-Funktion auf und wirft einen <code>SystemExit</code> mit dem zurückgegebenen Exit-Code. Dies stellt sicher, dass das Skript beim direkten Ausführen einen eindeutigen Statuscode (0 für Erfolg, 1 für Fehler) an das Betriebssystem zurückgibt.</p>
+<h2 id="3-funktionsweise-und-workflow">3. Funktionsweise und Workflow</h2>
+<p>Der Workflow von <code>nova_test_launch.py</code> ist wie folgt:</p>
+<ol>
+<li><strong>Initialisierung</strong>: Das Projekt wird durch <code>bootstrap_package()</code> vorbereitet.</li>
+<li><strong>Test-Suche</strong>: Das Skript sucht nach allen Dateien, die als Unit-Tests im <code>tests/</code> Verzeichnis konfiguriert sind.</li>
+<li><strong>Testausführung</strong>: Die gefundenen Tests werden sequenziell ausgeführt.</li>
+<li><strong>Rückmeldung</strong>: Das Ergebnis der Testausführung wird als Exit-Code an das System zurückgegeben.</li>
+</ol>
+<h2 id="4-verwendung-und-anwendung">4. Verwendung und Anwendung</h2>
+<p>Dieses Skript ist primär dazu gedacht, die Qualitätssicherung (QA) des &quot;Nova&quot;-Projekts zu gewährleisten. <strong>Anwendungsszenario:</strong> Um die Tests auszuführen, wird das Skript direkt im Terminal ausgeführt:</p>
+<pre><code class="language-bash">python nova_test_launch.py</code></pre>
+<p><strong>Erwartetes Verhalten:</strong></p>
+<ul>
+<li><strong>Erfolgreich</strong>: Wenn alle Tests bestehen, wird die Ausgabe der Tests angezeigt, und das Skript beendet sich mit dem Exit-Code <code>0</code>.</li>
+<li><strong>Fehler</strong>: Wenn ein Test fehlschlägt, wird die Fehlermeldung angezeigt, und das Skript beendet sich mit dem Exit-Code <code>1</code>.</li>
+</ul>
+<h2 id="5-sicherheit-und-best-practices">5. Sicherheit und Best Practices</h2>
+<ul>
+<li><strong>Path Handling</strong>: Die Verwendung von <code>pathlib.Path</code> ist eine moderne und robuste Methode zur Verwaltung von Dateipfaden, was die Portabilität des Skripts verbessert.</li>
+<li><strong>Exit Code</strong>: Die explizite Rückgabe von <code>0</code> oder <code>1</code> ist eine gängige Best Practice für automatisiertes CI/CD-Systeme, um den Status des Builds oder der Tests eindeutig zu kommunizieren.</li>
+<li><strong>Bootstrap-Abhängigkeit</strong>: Die Stabilität des Test-Launchers hängt stark von der korrekten Implementierung der <code>nova_bootstrap.bootstrap_package()</code>-Funktion ab.</li>
+<p>--- <strong>Version:</strong> 1.0 <strong>Datum:</strong> [Aktuelles Datum einfügen] <strong>Autor:</strong> [Ihr Name/Team]</p>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-importe">2.1 Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-hauptfunktionen">2.2 Hauptfunktionen</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsweise-und-workflow">3. Funktionsweise und Workflow</a></li>
+<li class="wiki-toc-link"><a href="#4-verwendung-und-anwendung">4. Verwendung und Anwendung</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheit-und-best-practices">5. Sicherheit und Best Practices</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "nova_test_launch.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

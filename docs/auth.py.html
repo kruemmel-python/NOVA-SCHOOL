@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `auth.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `auth.py`</h1>
+          <p>Source: auth.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-auth-py">Technische Dokumentation: <code>auth.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei (<code>auth.py</code>) definiert die Struktur für den <strong>Session Context</strong> und enthält die notwendigen Komponenten für die Verwaltung von Benutzer- und Sitzungsdaten, einschließlich der Extraktion von Benutzerinformationen und der Überprüfung von Berechtigungen.</p>
+<h2 id="klassen-und-datentypen">Klassen und Datentypen</h2>
+<h3 id="sessioncontext-dataclass"><code>SessionContext</code> (dataclass)</h3>
+<p>Die Klasse <code>SessionContext</code> dient als zentrales Objekt, um alle relevanten Informationen zu einem aktiven Benutzer-Sitzung (Session) zu kapseln. Sie verwendet <code>dataclasses</code> mit <code>slots=True</code> für eine effiziente Speicherung. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>token</code></td>
+<td><code>str</code></td>
+<td>Der eindeutige Sitzungstoken.</td>
+</tr>
+<tr>
+<td><code>token_id</code></td>
+<td><code>str</code></td>
+<td>Eine eindeutige ID für das Token.</td>
+</tr>
+<tr>
+<td><code>principal</code></td>
+<td><code>Any</code></td>
+<td>Der Haupt-Principal (kann eine beliebige Art von Objekt sein).</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td><code>dict[str, Any]</code></td>
+<td>Eine Dictionary, das die grundlegenden Benutzerdaten enthält (z.B. <code>username</code>, <code>role</code>, <code>display_name</code>).</td>
+</tr>
+<tr>
+<td><code>groups</code></td>
+<td><code>list[dict[str, Any]]</code></td>
+<td>Eine Liste von Dictionaries, die die Gruppenmitgliedschaften darstellen (z.B. <code>group_id</code>, <code>display_name</code>).</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td><code>dict[str, bool]</code></td>
+<td>Eine Dictionary, das die spezifischen Berechtigungen des Benutzers speichert (Schlüssel sind wahrscheinlich Berechtigennamen, Werte sind <code>True</code>/<code>False</code>).</td>
+</tr>
+</tbody></table>
+<p><strong>Properties (Zugriffsschnittstellen):</strong> Die Klasse definiert mehrere Read-Only-Properties, um den Zugriff auf spezifische Benutzerinformationen zu vereinfachen:</p>
+<ul>
+<li>**<code>username</code> (str):** Gibt den Benutzernamen aus dem <code>user</code>-Dictionary zurück.</li>
+<li>**<code>role</code> (str):** Gibt die Rolle des Benutzers aus dem <code>user</code>-Dictionary zurück.</li>
+<li>**<code>is_teacher</code> (bool):** Gibt <code>True</code> zurück, wenn die Rolle <code>&quot;teacher&quot;</code> oder <code>&quot;admin&quot;</code> ist.</li>
+<li>**<code>is_admin</code> (bool):** Gibt <code>True</code> zurück, wenn die Rolle exakt <code>&quot;admin&quot;</code> ist.</li>
+<li>**<code>group_ids</code> (list[str]):** Gibt eine Liste der <code>group_id</code>s zurück, indem nur die <code>group_id</code> aus jedem Gruppen-Dictionary extrahiert wird.</li>
+<p><strong>Methoden:</strong></p>
+<li>**<code>to_dict(self) -&gt; dict[str, Any]</code>:**</li>
+<li>Konvertiert den gesamten <code>SessionContext</code> in ein einfaches Python-Dictionary.</li>
+<li><strong>Struktur des zurückgegebenen Dictionaries:</strong></li>
+<li><code>&quot;username&quot;</code>: Der Benutzername.</li>
+<li><code>&quot;display_name&quot;</code>: Der angezeigte Name.</li>
+<li><code>&quot;role&quot;</code>: Die Rolle.</li>
+<li><code>&quot;groups&quot;</code>: Eine Liste von Dictionaries, die die Gruppeninformationen (<code>group_id</code> und <code>display_name</code>) enthalten.</li>
+<li><code>&quot;permissions&quot;</code>: Das gesamte Berechtigungs-Dictionary.</li>
+<li><code>&quot;token_id&quot;</code>: Die Token-ID.</li>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<p>Die Klasse <code>SessionContext</code> hängt von folgenden externen Komponenten ab:</p>
+<ol>
+<li>**<code>SchoolRepository</code> (aus <code>.database</code>):** Wahrscheinlich wird diese Klasse verwendet, um Benutzer- oder Sitzungsdaten aus einer Datenbank abzurufen, um einen <code>SessionContext</code> zu initialisieren.</li>
+<li>**<code>resolve_permissions</code> (aus <code>.permissions</code>):** Diese Funktion wird implizit oder explizit verwendet, um Berechtigungen zu verarbeiten oder zu validieren.</li>
+</ol>
+<h2 id="zusammenfassung-der-funktionalit-t">Zusammenfassung der Funktionalität</h2>
+<p>Die Datei dient als Datenmodell für die Sitzungsverwaltung. Sie stellt sicher, dass alle notwendigen Informationen (Identität, Rolle, Gruppenmitgliedschaften, Berechtigungen) in einem konsistenten Objekt (<code>SessionContext</code>) zusammengefasst sind, was die spätere Verarbeitung von Anfragen (z.B. Zugriffskontrolle) vereinfacht.</p>
+<h1 id="technische-dokumentation-authservice-klasse">Technische Dokumentation: <code>AuthService</code> Klasse</h1>
+<h2 id="1-bersicht">1. Übersicht</h2>
+<p>Die Klasse <code>AuthService</code> ist eine zentrale Komponente für die Verwaltung von Benutzerauthentifizierung, -verwaltung und Sitzungsmanagement innerhalb einer Anwendung. Sie koordiniert die Interaktion mit dem Datenrepository (zur Speicherung von Benutzerdaten) und dem Sicherheitsplan (zur Token-Generierung und -Validierung).</p>
+<h2 id="2-klasse-authservice">2. Klasse: <code>AuthService</code></h2>
+<h3 id="2-1-konstruktor-init">2.1. Konstruktor (<code>__init__</code>)</h3>
+<p>Der Konstruktor initialisiert die notwendigen Abhängigkeiten und konfiguriert die Tenant-Spezifischen Einstellungen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>repository: SchoolRepository</code>: Eine Instanz des Repositorys, die für die Speicherung und Abfrage von Benutzerdaten verantwortlich ist.</li>
+<li><code>security_plane: Any</code>: Eine Instanz des Sicherheitsplans, die für die Token-Generierung, -Validierung und -Rückzug zuständig ist.</li>
+<li><code>tenant_id: str</code>: Die eindeutige Kennung des Tenants (z.B. der Schule), zu dem die Benutzer gehören.</li>
+<li><code>session_ttl_seconds: int</code>: Die Zeitdauer (in Sekunden), über die eine Sitzung gültig ist (Time-To-Live).</li>
+<p><strong>Aktion:</strong></p>
+</ul>
+<ol>
+<li>Speichert die Abhängigkeiten (<code>repository</code>, <code>security_plane</code>, <code>tenant_id</code>, <code>session_ttl_seconds</code>).</li>
+<li>Rstellt die Tenant-Konfiguration im <code>security_plane</code>, indem <code>security_plane.register_tenant(self.tenant_id, display_name=&quot;Nova School&quot;)</code> aufgerufen wird.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>None</code></li>
+</ul>
+<h3 id="2-2-methode-ensure-user">2.2. Methode: <code>ensure_user</code></h3>
+<p>Diese Methode wird verwendet, um die Existenz eines Benutzers zu prüfen und gegebenenfalls die Kontodaten zu aktualisieren oder neu zu erstellen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>username: str</code>: Der gewünschte Benutzername.</li>
+<li><code>password: str</code>: Das Passwort des Benutzers.</li>
+<li><code>role: str</code>: Die Rolle des Benutzers (<code>&quot;student&quot;</code>, <code>&quot;teacher&quot;</code>, <code>&quot;admin&quot;</code>).</li>
+<li><code>display_name: str</code>: Der angezeigte Name des Benutzers.</li>
+<li><code>permissions: dict[str, Any] | None = None</code>: Optionales Dictionary mit spezifischen Berechtigungen.</li>
+<p><strong>Aktion:</strong></p>
+</ul>
+<ol>
+<li><strong>Existenzprüfung:</strong> Prüft, ob der Benutzer mit dem <code>username</code> existiert.</li>
+</ol>
+<ul>
+<li><strong>Wenn Benutzer nicht existiert:</strong></li>
+<li>Hashet das Passwort (<code>hash_password(password)</code>).</li>
+<li>Erstellt den Benutzer über <code>self.repository.create_user(...)</code> mit den bereitgestellten Daten.</li>
+<li>Gibt die erstellte Benutzerinformation zurück.</li>
+<li><strong>Wenn Benutzer existiert:</strong></li>
+<li>Prüft, ob die angezeigten Daten (<code>display_name</code>, <code>role</code>, <code>status=&quot;active&quot;</code>) mit den gespeicherten Daten übereinstimmen.</li>
+<li><strong>Aktualisierung:</strong> Wenn die Daten nicht übereinstimmen, wird die <code>display_name</code>, <code>role</code> und der <code>status</code> auf <code>&quot;active&quot;</code> aktualisiert (<code>self.repository.update_user_account(...)</code>).</li>
+<li><strong>Berechtigungen:</strong> Wenn <code>permissions</code> angegeben sind, werden die Benutzerberechtigungen aktualisiert (<code>self.repository.update_user_permissions(...)</code>).</li>
+<li>Gibt die aktualisierte Benutzerinformation zurück.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>dict[str, Any]</code>: Die vollständigen Benutzerdaten.</li>
+</ul>
+<h3 id="2-3-methode-create-user">2.3. Methode: <code>create_user</code></h3>
+<p>Diese Methode wird ausschließlich zur Erstellung eines neuen Benutzers verwendet. <strong>Parameter:</strong></p>
+<ul>
+<li><code>username: str</code>: Der eindeutige Benutzername.</li>
+<li><code>password: str</code>: Das Passwort.</li>
+<li><code>role: str</code>: Die Rolle des Benutzers (muss <code>&quot;student&quot;</code>, <code>&quot;teacher&quot;</code> oder <code>&quot;admin&quot;</code> sein).</li>
+<li><code>display_name: str</code>: Der angezeigte Name.</li>
+<li><code>permissions: dict[str, Any] | None = None</code>: Optionales Dictionary mit spezifischen Berechtigungen.</li>
+<p><strong>Validierung (Pre-Checks):</strong></p>
+</ul>
+<ol>
+<li>Prüft, ob <code>username</code>, <code>display_name</code> und <code>password</code> nicht leer sind.</li>
+<li>Prüft, ob <code>role</code> eine der erlaubten Werte ist.</li>
+<li>Prüft, ob der Benutzer bereits existiert.</li>
+<p><strong>Aktion:</strong></p>
+<li>Hashet das Passwort.</li>
+<li>Erstellt den Benutzer über <code>self.repository.create_user(...)</code>.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>dict[str, Any]</code>: Die erstellten Benutzerdaten.</li>
+</ul>
+<h3 id="2-4-methode-login">2.4. Methode: <code>login</code></h3>
+<p>Diese Methode validiert Anmeldedaten und generiert eine Sitzung (Token) bei erfolgreicher Authentifizierung. <strong>Parameter:</strong></p>
+<ul>
+<li><code>username: str</code>: Der Benutzername.</li>
+<li><code>password: str</code>: Das Passwort.</li>
+<p><strong>Aktion:</strong></p>
+</ul>
+<ol>
+<li><strong>Benutzerprüfung:</strong> Holt den Benutzer über das Repository. Prüft, ob der Benutzer existiert und der Status <code>&quot;active&quot;</code> ist. Fällt bei Nichtbefriedigung auf <code>PermissionError</code>.</li>
+<li><strong>Passwortvalidierung:</strong> Vergleicht das eingegebene Passwort mit dem gespeicherten Hash und Salt (<code>verify_password(...)</code>). Fällt bei Nichtbefriedigung auf <code>PermissionError</code>.</li>
+<li><strong>Token-Generierung:</strong> Ruft <code>self.security_plane.issue_token(...)</code> auf, um ein Token zu generieren, das den Tenant, den Benutzernamen, die Rollen und die Session-TTL enthält.</li>
+<li><strong>Sitzungsabfrage:</strong> Ruft <code>self.session_from_token(...)</code> auf, um die Sitzungsdetails aus dem Token zu extrahieren. Fällt bei fehlgeschlagener Sitzungsabfrage auf <code>PermissionError</code>.</li>
+<li><strong>Rückgabe:</strong> Gibt das generierte Token und die erstellte <code>SessionContext</code> zurück.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>tuple[str, SessionContext]</code>: Ein Tupel, bestehend aus dem Token-String und dem <code>SessionContext</code>.</li>
+</ul>
+<h3 id="2-5-methode-session-from-token">2.5. Methode: <code>session_from_token</code></h3>
+<p>Diese Methode validiert ein eingehendes Token und rekonstruiert die vollständigen Sitzungsdetails. <strong>Parameter:</strong></p>
+<ul>
+<li><code>token: str</code>: Der zu validierende Token-String.</li>
+<p><strong>Aktion:</strong></p>
+</ul>
+<ol>
+<li><strong>Token-Authentifizierung:</strong> Ruft <code>self.security_plane.authenticate(token)</code> auf, um die Authentifizierung durchzuführen. Fällt bei <code>None</code> auf <code>None</code> zurück.</li>
+<li><strong>Benutzer-Identifikation:</strong> Nimmt die <code>subject</code> des Authentifizierungsprinzips und sucht den entsprechenden Benutzer im Repository.</li>
+</ol>
+<ul>
+<li>Prüft, ob der Benutzer existiert und <code>&quot;active&quot;</code> ist. Fällt bei Nichtbefriedigung auf <code>None</code> zurück.</li>
+</ul>
+<ol>
+<li><strong>Gruppen- und Berechtigungs-Rekonstruktion:</strong></li>
+</ol>
+<ul>
+<li>Ruft <code>self.repository.list_user_groups(user[&quot;username&quot;])</code> auf, um die Gruppen des Benutzers abzurufen.</li>
+<li>Führt eine Logik zur Berechtigungsresolution durch (<code>resolve_permissions</code>), die die Berechtigungen aus den Gruppen und die expliziten Berechtigungen des Benutzers kombiniert.</li>
+</ul>
+<ol>
+<li><strong>Sitzungs-Objekt Erstellung:</strong> Erstellt und gibt ein <code>SessionContext</code> zurück, das alle rekonstruierten Informationen (Token, User, Gruppen, Berechtigungen) enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>SessionContext | None</code>: Ein <code>SessionContext</code>-Objekt, falls die Validierung erfolgreich war, oder <code>None</code>, falls die Validierung fehlschlägt.</li>
+</ul>
+<h3 id="2-6-methode-logout">2.6. Methode: <code>logout</code></h3>
+<p>Diese Methode wird verwendet, um eine Sitzung zu beenden, indem das Token ungültig gemacht wird. <strong>Parameter:</strong></p>
+<ul>
+<li><code>token_id: str</code>: Die eindeutige ID des Tokens, das ungültig gemacht werden soll.</li>
+<p><strong>Aktion:</strong></p>
+</ul>
+<ol>
+<li>Ruft <code>self.security_plane.revoke_token(token_id)</code> auf, um das Token im System zu widerrufen.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>dict[str, Any]</code>: Eine Antwort, die durch den Sicherheitsplan zurückgegeben wird (Details zum Widerruf).</li>
+<p>---</p>
+</ul>
+<h2 id="3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</h2>
+<table><thead><tr>
+<th>Abhängigkeit</th>
+<th>Zweck</th>
+</tr></thead><tbody>
+<tr>
+<td><code>SchoolRepository</code></td>
+<td>Datenpersistenz (CRUD-Operationen für Benutzer).</td>
+</tr>
+<tr>
+<td><code>Any</code> (Security Plane)</td>
+<td>Verantwortlich für die gesamte Authentifizierungslogik (Token-Generierung, Passwort-Hashing, Token-Validierung).</td>
+</tr>
+<tr>
+<td><code>hash_password</code></td>
+<td>Hilfsfunktion zur Erstellung von Passwort-Hashes und Salts.</td>
+</tr>
+<tr>
+<td><code>verify_password</code></td>
+<td>Hilfsfunktion zur Überprüfung von Passwörtern.</td>
+</tr>
+<tr>
+<td><code>resolve_permissions</code></td>
+<td>Hilfsfunktion zur komplexen Berechtigungslogik (Kombination von Rollen, Gruppen und expliziten Berechtigungen).</td>
+</tr>
+<tr>
+<td><code>SessionContext</code></td>
+<td>Datenstruktur, die alle Informationen einer aktiven Sitzung (Token, Benutzer, Gruppen, Berechtigungen) kapselt.</td>
+</tr>
+</tbody></table>
+<h2 id="4-fehlerbehandlung-exceptions">4. Fehlerbehandlung (Exceptions)</h2>
+<p>Die Klasse wirft spezifische Python-Standardausnahmen, um verschiedene Authentifizierungsfehler abzufangen:</p>
+<ul>
+<li>**<code>ValueError</code>**: Wird bei ungültigen Eingaben in <code>create_user</code> (z.B. leere Felder) oder bei ungültigen Rollen in <code>create_user</code> geworfen.</li>
+<li>**<code>PermissionError</code>**: Wird bei fehlgeschlagener Authentifizierung (ungültige Zugangsdaten, fehlende Sitzung) in <code>login</code> und <code>session_from_token</code> geworfen.</li>
+</ul>
+<h2 id="5-sicherheitshinweise">5. Sicherheitshinweise</h2>
+<ol>
+<li><strong>Passwortspeicherung:</strong> Passwörter werden nicht im Klartext gespeichert, sondern durch Hashing (<code>hash_password</code>) geschützt.</li>
+<li><strong>Sitzungsmanagement:</strong> Sitzungen werden über JWT-ähnliche Token verwaltet, die eine begrenzte Gültigkeitsdauer (<code>session_ttl_seconds</code>) haben.</li>
+<li><strong>Tenant-Isolation:</strong> Die Tenant-ID wird bei der Registrierung im Sicherheitsplan verwendet, um die Datenisolation zu gewährleisten.</li>
+<li><strong>Berechtigungsmanagement:</strong> Die Berechtigungsprüfung in <code>session_from_token</code> ist komplex und kombiniert Rollen, Gruppen und individuelle Berechtigungen, was eine robuste Zugriffskontrolle ermöglicht.</li>
+</ol>
+<h1 id="technische-dokumentation-passwort-hashing-und-verifizierung">Technische Dokumentation: Passwort-Hashing- und -Verifizierung</h1>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Diese Dokumentation beschreibt die Funktionen <code>hash_password</code> und <code>verify_password</code> aus der Datei <code>auth.py</code>, die für die sichere Speicherung und Überprüfung von Passwörtern verwendet werden. Die Implementierung basiert auf dem <strong>Password-Hashing-Standard PBKDF2 (Password-Based Key Derivation Function 2)</strong>, was eine robuste Methode zur Sicherung von Passwörtern darstellt, indem es eine bewusste Rechenzeit (durch Iterationen) und einen zufälligen Salt verwendet.</p>
+<h2 id="2-funktionen">2. Funktionen</h2>
+<h3 id="2-1-hash-password-password-str-tuple-str-str">2.1. <code>hash_password(password: str) -&gt; tuple[str, str]</code></h3>
+<p>Diese Funktion nimmt ein Klartext-Passwort entgegen und generiert einen verschlüsselten Hash sowie einen Salt. <strong>Beschreibung:</strong> Die Funktion erzeugt einen einzigartigen, zufälligen Salt und verwendet diesen zusammen mit dem Passwort, um einen Hash zu generieren. Der Hash wird mittels PBKDF2 mit dem SHA-256-Hash-Algorithmus berechnet. <strong>Parameter:</strong></p>
+<ul>
+<li><code>password: str</code>: Das Klartext-Passwort, das gehasht werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>tuple[str, str]</code>: Eine Tupel, das die beiden generierten Werte enthält:</li>
+</ul>
+<ol>
+<li><strong>Erster String (Salt):</strong> Der Base64 URL-safe kodierte Salt.</li>
+<li><strong>Zweiter String (Hash):</strong> Der Base64 URL-safe kodierte Hash-Wert.</li>
+<p><strong>Details zur Implementierung:</strong></p>
+<li><strong>Salt Generierung:</strong> Ein zufälliger 16-Byte-Salt wird mithilfe von <code>os.urandom(16)</code> generiert.</li>
+<li><strong>Hashing:</strong> Die Funktion <code>hashlib.pbkdf2_hmac</code> wird verwendet, um den Hash zu berechnen:</li>
+</ol>
+<ul>
+<li><strong>Algorithmus:</strong> <code>sha256</code></li>
+<li><strong>Input:</strong> Encodedes Passwort (<code>password.encode(&quot;utf-8&quot;)</code>), der generierte Salt und eine Iterationszahl von $200\_000$.</li>
+</ul>
+<ol>
+<li><strong>Kodierung:</strong> Sowohl der Salt als auch der resultierende Hash werden mittels <code>base64.urlsafe_b64encode</code> kodiert und in ASCII-Strings umgewandelt, um sie als Textdaten zu speichern.</li>
+<p><strong>Sicherheitshinweis:</strong> Die Iterationszahl von $200\_000$ ist eine bewusste Entscheidung, um die Rechenzeit zu erhöhen und Brute-Force-Angriffe zu verlangsamen. ---</p>
+</ol>
+<h3 id="2-2-verify-password-password-str-salt-text-str-hash-text-str-bool">2.2. <code>verify_password(password: str, salt_text: str, hash_text: str) -&gt; bool</code></h3>
+<p>Diese Funktion prüft, ob ein gegebenes Passwort mit den bereitgestellten Salt- und Hash-Werten übereinstimmt. <strong>Beschreibung:</strong> Diese Funktion dekodiert den gespeicherten Salt und den Hash, berechnet den Hash des eingegebenen Passworts mit dem dekodierten Salt und vergleicht den neuen Hash mit dem gespeicherten Hash mithilfe eines sicheren Vergleichs (<code>hmac.compare_digest</code>). <strong>Parameter:</strong></p>
+<ul>
+<li><code>password: str</code>: Das Passwort, das der Benutzer eingibt, um die Identität zu verifizieren.</li>
+<li><code>salt_text: str</code>: Der Base64 URL-safe kodierte Salt, der beim Hashing gespeichert wurde.</li>
+<li><code>hash_text: str</code>: Der Base64 URL-safe kodierte Hash-Wert, der beim Hashing gespeichert wurde.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn das Passwort korrekt ist; <code>False</code>, andernfalls.</li>
+<p><strong>Details zur Implementierung:</strong></p>
+</ul>
+<ol>
+<li><strong>Salt Dekodierung:</strong> Der <code>salt_text</code> wird mittels <code>base64.urlsafe_b64decode</code> in den ursprünglichen 16-Byte-Salt umgewandelt.</li>
+<li><strong>Hash Dekodierung:</strong> Der <code>hash_text</code> wird mittels <code>base64.urlsafe_b64decode</code> in den ursprünglichen Hash-Wert umgewandelt.</li>
+<li><strong>Actual Hash Berechnung:</strong> Der Hash des eingegebenen <code>password</code> wird exakt so berechnet, wie er beim Hashing erstellt wurde:</li>
+</ol>
+<ul>
+<li><strong>Algorithmus:</strong> <code>sha256</code></li>
+<li><strong>Input:</strong> Encodedes Passwort, der dekodierte Salt und die Iterationszahl von $200\_000$.</li>
+</ul>
+<ol>
+<li><strong>Sicherer Vergleich:</strong> Die Funktion <code>hmac.compare_digest(actual, expected)</code> wird verwendet, um den berechneten Hash mit dem dekodierten erwarteten Hash zu vergleichen. Dies ist entscheidend, um Timing-Angriffe zu verhindern.</li>
+</ol>
+<h2 id="3-abh-ngigkeiten">3. Abhängigkeiten</h2>
+<p>Für die korrekte Ausführung dieser Funktionen sind die folgenden Standard-Python-Module erforderlich:</p>
+<ul>
+<li><code>os</code>: Für die Generierung des zufälligen Salts (<code>os.urandom</code>).</li>
+<li><code>hashlib</code>: Für die Implementierung des PBKDF2-Hashing-Algorithmus.</li>
+<li><code>base64</code>: Für die URL-safe Kodierung und Dekodierung der Salt- und Hash-Strings.</li>
+<li><code>hmac</code>: Für den sicheren Vergleich von Hashes (<code>hmac.compare_digest</code>).</li>
+</ul>
+<h2 id="4-zusammenfassung-der-sicherheitsma-nahmen">4. Zusammenfassung der Sicherheitsmaßnahmen</h2>
+<p>Die Implementierung folgt modernen Best Practices für Passwort-Management:</p>
+<ol>
+<li><strong>Salt-Verwendung:</strong> Jeder Hash wird mit einem einzigartigen, zufälligen Salt kombiniert, was die Angriffsanstrengung, die durch Rainbow Tables oder gemeinsame Hashes erleichtert wird, massiv erhöht.</li>
+<li><strong>PBKDF2:</strong> Die Verwendung von PBKDF2 (anstatt einfacher SHA-256) stellt sicher, dass die Berechnung des Hashes bewusst zeitaufwendig gestaltet wird.</li>
+<li><strong>Iterationen:</strong> Die hohe Iterationszahl ($200\_000$) verlangsamt gezielt Angriffe.</li>
+<li><strong>Sicherer Vergleich:</strong> Der Vergleich der Hashes erfolgt asynchron (<code>hmac.compare_digest</code>), um Timing-Angriffe zu verhindern.</li>
+<li><strong>Base64 URL-Safe:</strong> Die Daten werden in einer sicheren, textbasierten Form für die Speicherung und Übertragung kodiert.</li>
+</ol>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#klassen-und-datentypen">Klassen und Datentypen</a></li>
+<li class="wiki-toc-link level-3"><a href="#sessioncontext-dataclass">`SessionContext` (dataclass)</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-funktionalit-t">Zusammenfassung der Funktionalität</a></li>
+<li class="wiki-toc-link"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-authservice">2. Klasse: `AuthService`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-konstruktor-init">2.1. Konstruktor (`__init__`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-methode-ensure-user">2.2. Methode: `ensure_user`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-methode-create-user">2.3. Methode: `create_user`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-methode-login">2.4. Methode: `login`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-5-methode-session-from-token">2.5. Methode: `session_from_token`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-6-methode-logout">2.6. Methode: `logout`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</a></li>
+<li class="wiki-toc-link"><a href="#4-fehlerbehandlung-exceptions">4. Fehlerbehandlung (Exceptions)</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheitshinweise">5. Sicherheitshinweise</a></li>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-hash-password-password-str-tuple-str-str">2.1. `hash_password(password: str) -&gt; tuple[str, str]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-verify-password-password-str-salt-text-str-hash-text-str-bool">2.2. `verify_password(password: str, salt_text: str, hash_text: str) -&gt; bool`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-sicherheitsma-nahmen">4. Zusammenfassung der Sicherheitsmaßnahmen</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "auth.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

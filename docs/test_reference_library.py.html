@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: Testsuite für die ReferenceLibraryService | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: Testsuite für die ReferenceLibraryService</h1>
+          <p>Source: test_reference_library.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h2 id="technische-dokumentation-test-reference-library-py">Technische Dokumentation: <code>test_reference_library.py</code></h2>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Diese Datei, <code>test_reference_library.py</code>, dient dazu, die Funktionalität der Klasse <code>ReferenceLibraryService</code> aus dem Modul <code>nova_school_server.reference_library</code> zu testen. Sie verwendet das <code>unittest</code>-Framework, um eine Reihe von Testfällen zu definieren, die sicherstellen sollen, dass die Referenzbibliothek korrekt funktioniert.</p>
+<h3 id="2-abh-ngigkeiten">2. Abhängigkeiten</h3>
+<ul>
+<li><code>nova_school_server.reference_library.ReferenceLibraryService</code>: Die Klasse, deren Verhalten getestet wird.</li>
+<li>Standard-Python-Bibliotheken: <code>tempfile</code>, <code>time</code>, <code>unittest</code>, <code>pathlib</code>.</li>
+</ul>
+<h3 id="3-struktur-und-inhalt">3. Struktur und Inhalt</h3>
+<p>Die Datei beginnt mit Importen und definiert eine Testklasse, die die eigentlichen Testmethoden enthält.</p>
+<h4 id="3-1-importe">3.1. Importe</h4>
+<pre><code class="language-python">from __future__ import annotations
+import tempfile
+import time
+import unittest
+from pathlib import Path
+from nova_school_server.reference_library import ReferenceLibraryService</code></pre>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hinten als Strings, was die Code-Lesbarkeit verbessert.</li>
+<li>**<code>import tempfile</code>**: Wird wahrscheinlich verwendet, um temporäre Dateien oder Verzeichnisse für die Testumgebung zu erstellen.</li>
+<li>**<code>import time</code>**: Wird möglicherweise zur Messung von Zeitspannen oder Latenzen in den Tests benötigt.</li>
+<li>**<code>import unittest</code>**: Das zentrale Framework für das Schreiben und Ausführen der Tests.</li>
+<li>**<code>from pathlib import Path</code>**: Wird verwendet, um Dateipfade und -strukturen manipulationssicher zu handhaben.</li>
+<li>**<code>from nova_school_server.reference_library import ReferenceLibraryService</code>**: Importiert die zu testende Klasse.</li>
+</ul>
+<h4 id="3-2-testklasse">3.2. Testklasse</h4>
+<p>Die eigentliche Testlogik ist in einer Klasse implementiert, die von <code>unittest.TestCase</code> erbt (obwohl die Erbenachricht fehlt, wird dies implizit durch die Verwendung von <code>unittest.TestCase</code> angenommen).</p>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<p><em>(Anmerkung: Der Codeausschnitt endet hier, aber die Struktur deutet darauf hin, dass die Testmethoden folgen werden.)</em></p>
+<h3 id="4-funktionale-beschreibung-basierend-auf-dem-kontext">4. Funktionale Beschreibung (Basierend auf dem Kontext)</h3>
+<p>Die Testdatei zielt darauf ab, die folgenden Aspekte der <code>ReferenceLibraryService</code> zu validieren:</p>
+<ol>
+<li><strong>Initialisierung und Zustand:</strong> Überprüfung, ob die Service-Instanz korrekt initialisiert wird.</li>
+<li><strong>Datenzugriff/Operationen:</strong> Testen der Methoden, die mit der Referenzbibliothek interagieren (z.B. Hinzufügen, Abrufen, Löschen von Referenzen).</li>
+<li><strong>Ressourcenmanagement:</strong> Prüfung, wie die Klasse mit temporären Dateien oder Ressourcen umgeht (angedeutet durch <code>tempfile</code>).</li>
+<li><strong>Performance (Optional):</strong> Messung der Zeit, die für bestimmte Operationen benötigt wird (angedeutet durch <code>time</code>).</li>
+</ol>
+<h3 id="5-nutzung-und-ausf-hrung">5. Nutzung und Ausführung</h3>
+<p>Um die Tests auszuführen, wird die Standard-Python-Test-Suche verwendet:</p>
+<pre><code class="language-bash">python -m unittest test_reference_library.py</code></pre>
+<h3 id="6-zusammenfassung">6. Zusammenfassung</h3>
+<p><code>test_reference_library.py</code> ist ein unitärer Test-Suite, der die Robustheit und Korrektheit der <code>ReferenceLibraryService</code> gewährleistet. Die Verwendung von <code>unittest</code> und <code>pathlib</code> deutet auf eine sorgfältige Prüfung von Dateisystem- und Datenmanipulationslogik hin. --- <strong>Hinweis:</strong> Da der bereitgestellte Codeausschnitt nur die Importe und die Definition der Testklasse enthält, sind die spezifischen Testmethoden (die eigentliche Logik der Validierung) in diesem Ausschnitt nicht sichtbar. Die Dokumentation basiert auf der Struktur und den verwendeten Bibliotheken.</p>
+<h1 id="technische-dokumentation-testsuite-f-r-die-referencelibraryservice">Technische Dokumentation: Testsuite für die ReferenceLibraryService</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Testsuite <code>ReferenceLibraryTests</code>, die die Funktionalität der Klasse <code>ReferenceLibraryService</code> (vermutlich) im Kontext einer Referenzbibliothek (Reference Library) validiert. Die Tests konzentrieren sich auf verschiedene Aspekte der Bibliothek, darunter:</p>
+<ul>
+<li><strong>Built-in Fallback:</strong> Verhalten bei der Nutzung eingebauter Funktionen und Suchanfragen.</li>
+<li><strong>Mirrored Packs:</strong> Indexierung und Auflösung von Assets für parallele oder gespiegelte Dokumentationspacks.</li>
+<li><strong>Plain Text Packs:</strong> Umgang mit direkten Textdateien als Dokumentationsquellen.</li>
+<li><strong>Dynamische Indexierung:</strong> Aktualisierung des Katalogs bei Änderungen an den Dokumentationspacks.</li>
+<li><strong>Sanitierung von Markdown:</strong> Sicherstellung, dass Markdown-Inhalte korrekt für die Darstellung (Rendering) bereinigt werden.</li>
+</ul>
+<h2 id="2-testklassen-und-methoden">2. Testklassen und Methoden</h2>
+<p>Die Testklasse <code>ReferenceLibraryTests</code> verwendet das Standard-<code>unittest</code>-Framework, um die Implementierung der <code>ReferenceLibraryService</code> zu überprüfen.</p>
+<h3 id="2-1-test-builtin-fallback-catalog-and-search-work">2.1. <code>test_builtin_fallback_catalog_and_search_work</code></h3>
+<p><strong>Ziel:</strong> Überprüfung, dass die grundlegenden Funktionen der Bibliothek (Katalog-Abfrage und Suche) korrekt funktionieren, wenn keine spezifischen Pakete verwendet werden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Eine <code>ReferenceLibraryService</code> wird mit diesem Verzeichnis initialisiert.</li>
+<li>Der Katalog wird abgerufen.</li>
+<li>Es wird nach einem Eintrag mit dem Slug <code>&quot;python&quot;</code> gesucht.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Der Status muss <code>&quot;starter&quot;</code> sein und die Dokumentenzahl (<code>doc_count</code>) muss mindestens 1 betragen.</li>
+</ul>
+<ol>
+<li>Eine Suche (<code>service.search(&quot;sum&quot;, area=&quot;python&quot;, limit=10)</code>) wird durchgeführt.</li>
+</ol>
+<ul>
+<li><strong>Erwartung:</strong> Das Ergebnis muss mindestens ein Element enthalten, das die <code>area</code> <code>&quot;python&quot;</code> aufweist.</li>
+</ul>
+<ol>
+<li>Eine Portal-Rendertest (<code>service.render_portal(...)</code>) wird ausgeführt.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Das generierte Portal muss spezifische HTML-Elemente und Pfade enthalten (z.B. <code>&quot;Offline Referenzbibliothek&quot;</code>, <code>&quot;Python&quot;</code>, <code>&quot;data-reference-sidebar-toggle&quot;</code>, und den Pfad zu <code>&quot;/static/reference.js&quot;</code>).</li>
+</ul>
+<h3 id="2-2-test-mirrored-pack-is-indexed-and-asset-path-is-resolved">2.2. <code>test_mirrored_pack_is_indexed_and_asset_path_is_resolved</code></h3>
+<p><strong>Ziel:</strong> Validierung des Indexierprozesses für &quot;mirrored&quot; Packs, die eine externe HTML-Datei als Dokumentationsquelle verwenden. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Eine Struktur für ein &quot;Mirror&quot;-Pack wird erstellt: <code>root/packs/python/site/index.html</code>.</li>
+<li>Die <code>ReferenceLibraryService</code> wird initialisiert.</li>
+<li>Die Dokumente für <code>&quot;python&quot;</code> werden abgerufen.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Der Status des ersten Dokuments muss <code>&quot;mirrored&quot;</code> sein, und der Viewer muss <code>&quot;iframe&quot;</code> sein.</li>
+</ul>
+<ol>
+<li>Eine Suche wird durchgeführt.</li>
+</ol>
+<ul>
+<li><strong>Erwartung:</strong> Die gesuchte Dokument-ID (<code>doc_id</code>) muss <code>&quot;index.html&quot;</code> sein.</li>
+</ul>
+<ol>
+<li>Die Asset-Auflösung (<code>service.resolve_asset(&quot;python&quot;, &quot;index.html&quot;)</code>) wird getestet.</li>
+</ol>
+<ul>
+<li><strong>Erwartung:</strong> Die resulte Datei muss existieren (<code>asset.exists()</code> ist <code>True</code>).</li>
+</ul>
+<h3 id="2-3-test-plain-text-pack-directly-in-area-root-is-used">2.3. <code>test_plain_text_pack_directly_in_area_root_is_used</code></h3>
+<p><strong>Ziel:</strong> Überprüfung, wie die Bibliothek mit einfachen Textdateien (Plain Text Packs) umgeht, die direkt im Area-Root platziert sind. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Eine Struktur für ein &quot;Plain Text&quot;-Pack wird erstellt: <code>root/packs/python/contents.txt</code>.</li>
+<li>Die <code>ReferenceLibraryService</code> wird initialisiert.</li>
+<li>Der Katalog wird abgerufen, um den Eintrag für <code>&quot;python&quot;</code> zu finden.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Der Status muss <code>&quot;mirrored&quot;</code> sein, und der Installationspfad (<code>install_path</code>) muss korrekt auf den <code>pack_root</code> zeigen.</li>
+</ul>
+<ol>
+<li>Die Dokumente werden abgerufen.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Der Status muss <code>&quot;mirrored&quot;</code> sein, der <code>content_type</code> muss <code>&quot;text&quot;</code> sein, und die <code>doc_id</code> muss <code>&quot;contents.txt&quot;</code> sein.</li>
+</ul>
+<ol>
+<li>Eine Suche wird durchgeführt.</li>
+</ol>
+<ul>
+<li><strong>Erwartung:</strong> Das Suchergebnis muss die Dokument-ID <code>&quot;contents.txt&quot;</code> enthalten.</li>
+</ul>
+<h3 id="2-4-test-index-is-rebuilt-when-pack-changes">2.4. <code>test_index_is_rebuilt_when_pack_changes</code></h3>
+<p><strong>Ziel:</strong> Überprüfung der Mechanismen, die eine Aktualisierung des Pakets (Hinzufügen/Änderung einer Datei) auslösen, um den Index neu zu bauen. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein erstes Dokument (<code>alpha.txt</code>) wird hinzugefügt. Der Katalog wird abgerufen (1 Dokument).</li>
+<li>Eine kurze Pause (<code>time.sleep(0.02)</code>) wird eingefügt, um eine Zustandsänderung zu simulieren.</li>
+<li>Eine zweite Datei (<code>beta.txt</code>) wird hinzugefügt.</li>
+<li>Die Dokumente werden erneut abgerufen.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong> Die Anzahl der Dokumente muss von 1 auf 2 steigen, und die neue Dokument-ID muss <code>&quot;beta.txt&quot;</code> sein.</li>
+</ul>
+<h3 id="2-5-test-cpp-markdown-mirror-is-sanitized-for-rendering">2.5. <code>test_cpp_markdown_mirror_is_sanitized_for_rendering</code></h3>
+<p><strong>Ziel:</strong> Überprüfung, dass Markdown-Inhalte aus C++-Packs korrekt für das Rendering bereinigt werden, insbesondere durch Entfernen von Markdown-Syntax-Tags wie <code>[edit]</code>. <strong>Ablauf:</strong></p>
+<ol>
+<li>Ein temporäres Verzeichnis wird erstellt.</li>
+<li>Ein Markdown-File (<code>string.md</code>) mit Markdown-Syntax (<code>## Contents</code>, <code>### [ edit ] ...</code>) wird erstellt.</li>
+<li>Die <code>ReferenceLibraryService</code> wird initialisiert.</li>
+<li>Die Dokumente für <code>&quot;cpp&quot;</code> werden abgerufen.</li>
+<li>Das spezifische Dokument (<code>03_strings/string.md</code>) wird isoliert.</li>
+</ol>
+<ul>
+<li><strong>Erwartungen:</strong></li>
+<li>Die Titel und Überschriften (<code># Strings Library</code>, <code>### Characters</code>) müssen korrekt extrahiert werden.</li>
+<li>Die Markdown-Syntax-Tags (<code>[edit]</code>) müssen aus dem finalen <code>render_content</code> entfernt werden.</li>
+</ul>
+<h2 id="3-zusammenfassung-der-validierten-funktionen">3. Zusammenfassung der Validierten Funktionen</h2>
+<table><thead><tr>
+<th>Test-Fall</th>
+<th>Validierte Funktion/Aspekt</th>
+<th>Schlüsselresultate</th>
+</tr></thead><tbody>
+<tr>
+<td><code>test_builtin_fallback_catalog_and_search_work</code></td>
+<td>Katalog-Abfrage, Suchfunktion, Portal-Rendering</td>
+<td>Status-Prüfung, Suchergebnis-Filterung, Portal-Inhaltserfassung.</td>
+</tr>
+<tr>
+<td><code>test_mirrored_pack_is_indexed_and_asset_path_is_resolved</code></td>
+<td>Indexierung von Mirror-Packs, Asset-Auflösung</td>
+<td>Status-Prüfung (<code>mirrored</code>), Viewer-Typ (<code>iframe</code>), Asset-Existenz.</td>
+</tr>
+<tr>
+<td><code>test_plain_text_pack_directly_in_area_root_is_used</code></td>
+<td>Verarbeitung von Plain Text-Paketen</td>
+<td>Status-Prüfung (<code>mirrored</code>), Content-Typ (<code>text</code>), Doc-ID-Zuordnung.</td>
+</tr>
+<tr>
+<td><code>test_index_is_rebuilt_when_pack_changes</code></td>
+<td>Dynamische Indexierung/Rebuild-Logik</td>
+<td>Erfassung von Dokumentenzahl bei Pack-Änderung.</td>
+</tr>
+<tr>
+<td><code>test_cpp_markdown_mirror_is_sanitized_for_rendering</code></td>
+<td>Markdown-Sanitizing/Rendering</td>
+<td>Korrekte Extraktion von Überschriften, Entfernung von Metadaten-Tags (<code>[edit]</code>).</td>
+</tr>
+</tbody></table>
+<h2 id="4-fazit">4. Fazit</h2>
+<p>Die Testsuite stellt eine robuste Abdeckung der Kernfunktionen der <code>ReferenceLibraryService</code> dar. Sie bestätigt, dass die Bibliothek erfolgreich verschiedene Implementierungsstrategien (Fallback, Mirroring, Plain Text) handhaben kann, dass Indexierungsmechanismen bei Änderungen reagieren und dass die Datenvorverarbeitung (insbesondere bei Markdown) korrekt durchgeführt wird.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-test-reference-library-py">Technische Dokumentation: `test_reference_library.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-struktur-und-inhalt">3. Struktur und Inhalt</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-funktionale-beschreibung-basierend-auf-dem-kontext">4. Funktionale Beschreibung (Basierend auf dem Kontext)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-nutzung-und-ausf-hrung">5. Nutzung und Ausführung</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-zusammenfassung">6. Zusammenfassung</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-testklassen-und-methoden">2. Testklassen und Methoden</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-test-builtin-fallback-catalog-and-search-work">2.1. `test_builtin_fallback_catalog_and_search_work`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-test-mirrored-pack-is-indexed-and-asset-path-is-resolved">2.2. `test_mirrored_pack_is_indexed_and_asset_path_is_resolved`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-test-plain-text-pack-directly-in-area-root-is-used">2.3. `test_plain_text_pack_directly_in_area_root_is_used`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-4-test-index-is-rebuilt-when-pack-changes">2.4. `test_index_is_rebuilt_when_pack_changes`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-5-test-cpp-markdown-mirror-is-sanitized-for-rendering">2.5. `test_cpp_markdown_mirror_is_sanitized_for_rendering`</a></li>
+<li class="wiki-toc-link"><a href="#3-zusammenfassung-der-validierten-funktionen">3. Zusammenfassung der Validierten Funktionen</a></li>
+<li class="wiki-toc-link"><a href="#4-fazit">4. Fazit</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_reference_library.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

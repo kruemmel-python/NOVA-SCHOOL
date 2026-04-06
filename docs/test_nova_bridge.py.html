@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_nova_bridge.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_nova_bridge.py`</h1>
+          <p>Source: test_nova_bridge.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <p>Gerne, hier ist ein Entwurf für eine technische Dokumentation basierend auf dem bereitgestellten Code-Ausschnitt. Da es sich um einen Test- oder Setup-Code handelt, wird die Dokumentation den Zweck der Datei und der darin enthaltenen Funktionen beschreiben. ---</p>
+<h1 id="technische-dokumentation-test-nova-bridge-py">Technische Dokumentation: <code>test_nova_bridge.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team] <strong>Beschreibung:</strong> Diese Datei dient als Test- und Setup-Skript für die Interaktion mit der <code>nova_bridge</code>-Komponente des Nova School Servers. Sie beinhaltet die notwendigen Mechanismen zur temporären Erstellung von Dateien und die Durchführung von Unit-Tests, um die Funktionalität der Bridge zu validieren.</p>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Das Hauptziel dieser Datei ist es, die Integration und die korrekte Initialisierung der <code>nova_bridge</code> zu testen. Sie nutzt das <code>unittest</code>-Framework und das <code>tempfile</code>-Modul, um sicherzustellen, dass die Bridge in einem isolierten und temporären Kontext korrekt funktioniert.</p>
+<h2 id="2-abh-ngigkeiten">2. Abhängigkeiten</h2>
+<ul>
+<li><code>nova_school_server.nova_bridge</code>: Die zentrale Schnittstelle, die die Logik für die Kommunikation mit dem Nova School Server bereitstellt.</li>
+<li><code>tempfile</code>: Für die Erstellung temporärer Dateien.</li>
+<li><code>unittest</code>: Für die Durchführung von automatisierten Tests.</li>
+<li><code>pathlib.Path</code>: Für die moderne und objektorientierte Dateimanagement-Manipulation.</li>
+</ul>
+<h2 id="3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</h2>
+<h3 id="3-1-importe">3.1 Importe</h3>
+<pre><code class="language-python">from __future__ import annotations
+import tempfile
+import unittest
+from pathlib import Path
+from nova_school_server.nova_bridge import load_nova_bridge</code></pre>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hinting für Strings, was die Code-Lesbarkeit verbessert.</li>
+<li>**<code>import tempfile</code>**: Wird verwendet, um temporäre Dateien oder Verzeichnisse zu erstellen, die während der Tests benötigt werden, ohne das System dauerhaft zu verändern.</li>
+<li>**<code>import unittest</code>**: Importiert das Standard-Unit-Testing-Framework, um Tests zu definieren und auszuführen.</li>
+<li>**<code>from pathlib import Path</code>**: Bietet eine objektorientierte Methode zur Arbeit mit Dateipfaden, was die Dateiverarbeitung robuster macht.</li>
+<li>**<code>from nova_school_server.nova_bridge import load_nova_bridge</code>**: Importiert die spezifische Funktion, die für die Initialisierung oder das Laden der <code>nova_bridge</code> verantwortlich ist.</li>
+</ul>
+<h3 id="3-2-klasse-funktion-start">3.2 Klasse/Funktion (Start)</h3>
+<pre><code class="language-python">class &lt;|end|&gt;</code></pre>
+<ul>
+<li><strong>Zweck:</strong> Dieser Abschnitt markiert den Beginn der Testklasse oder der Hauptlogik. Die tatsächliche Implementierung der Testlogik folgt in den folgenden Teilen der Datei.</li>
+</ul>
+<h2 id="4-funktionsweise-und-teststrategie">4. Funktionsweise und Teststrategie</h2>
+<p>Basierend auf dem Import von <code>load_nova_bridge</code> lässt sich ableiten, dass die Teststrategie folgende Schritte umfassen wird:</p>
+<ol>
+<li><strong>Initialisierung:</strong> Die Funktion <code>load_nova_bridge</code> wird aufgerufen, um eine Instanz oder einen Kontext der Bridge zu laden.</li>
+<li><strong>Isolation:</strong> Verwendung von <code>tempfile</code> zur Sicherstellung, dass Testdaten oder temporäre Ressourcen sauber nach dem Test entfernt werden.</li>
+<li><strong>Validierung:</strong> Durchführung von Unit-Tests, um zu prüfen, ob die Bridge die erwarteten Operationen (z.B. Datenübertragung, Konfiguration) korrekt ausführt.</li>
+</ol>
+<h2 id="5-nutzung-und-anwendung">5. Nutzung und Anwendung</h2>
+<p>Dieses Skript ist primär für Entwickler und QA-Ingenieure gedacht, die die Funktionalität der <code>nova_bridge</code> validieren müssen, bevor sie in größere Systeme integriert werden. <strong>Anwendungsfall:</strong></p>
+<ul>
+<li>Validierung der korrekten Initialisierungsparameter der Bridge.</li>
+<li>Testen von End-to-End-Szenarien, die über die Bridge laufen.</li>
+<li>Überprüfung der Fehlerbehandlung der Bridge unter verschiedenen Bedingungen.</li>
+</ul>
+<h2 id="6-hinweise-und-einschr-nkungen">6. Hinweise und Einschränkungen</h2>
+<ul>
+<li><strong>Kontextabhängigkeit:</strong> Die genauen Testfälle sind in den folgenden Teilen der Datei definiert. Diese Dokumentation beschreibt die Struktur, nicht die spezifischen Testfälle.</li>
+<li><strong>Ressourcenmanagement:</strong> Es ist entscheidend, dass alle temporär erstellten Ressourcen (Dateien, Prozesse) im Rahmen des <code>tearDown</code>-Prozesses (falls vorhanden) korrekt beendet werden, um Ressourcenlecks zu vermeiden.</li>
+<p>--- <strong>Nächster Schritt:</strong> Bitte fügen Sie den Rest des Codes ein, damit eine detaillierte Analyse der spezifischen Testfälle und der Implementierung der <code>load_nova_bridge</code>-Funktion erfolgen kann.</p>
+</ul>
+<h1 id="technische-dokumentation-testsuite-f-r-die-embedded-nova-bridge">Technische Dokumentation: Testsuite für die Embedded Nova Bridge</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Dokumentation beschreibt die Testsuite <code>EmbeddedNovaBridgeTests</code>, die zur Validierung der Funktionalität der <strong>Embedded Nova Bridge</strong> dient. Der Fokus liegt auf der Überprüfung, dass die Bridge ohne externe Abhängigkeiten korrekt Token-Flows und Tool-Sandbox-Autorisierungen handhabt.</p>
+<h2 id="2-zielsetzung-der-tests">2. Zielsetzung der Tests</h2>
+<p>Die Hauptziele dieser Tests sind:</p>
+<ol>
+<li><strong>Token-Flow-Validierung:</strong> Sicherstellen, dass die Bridge Token-Generierung und Authentifizierung korrekt durchführt, selbst wenn keine externen Abhängigkeiten vorhanden sind.</li>
+<li><strong>Tool-Sandbox-Autorisierung:</strong> Verifizieren, dass die Tool-Sandbox korrekt die Berechtigungen (Autorisierung) für spezifische Werkzeuge (Tools) basierend auf Benutzerrollen und Projektkontext gewährt.</li>
+<li><strong>Architektur-Verifizierung:</strong> Bestätigen, dass die Testumgebung korrekt als &quot;embedded&quot; (eingebettet) konfiguriert ist.</li>
+</ol>
+<h2 id="3-testf-lle-im-detail">3. Testfälle im Detail</h2>
+<p>Die Testsuite besteht aus zwei Hauptmethoden, die jeweils spezifische Aspekte der Embedded Nova Bridge abdecken.</p>
+<h3 id="3-1-testfall-test-embedded-bridge-handles-token-flow-without-external-dependency">3.1. Testfall: <code>test_embedded_bridge_handles_token_flow_without_external_dependency</code></h3>
+<p><strong>Beschreibung:</strong> Dieser Test validiert den vollständigen Token-Generierungs- und Authentifizierungszyklus der Bridge, wobei explizit sichergestellt wird, dass keine externen Bibliotheken oder Dienste benötigt werden. <strong>Schritte:</strong></p>
+<ol>
+<li><strong>Setup:</strong> Ein temporäres Verzeichnis wird erstellt (<code>tempfile.TemporaryDirectory()</code>).</li>
+<li><strong>Bridge Initialisierung:</strong> Die Funktion <code>load_nova_bridge()</code> wird verwendet, um eine Instanz der Bridge zu laden.</li>
+<li><strong>Security Plane Initialisierung:</strong> Eine <code>SecurityPlane</code> wird mit dem temporären Verzeichnis initialisiert.</li>
+<li><strong>Tenant Registrierung:</strong> Ein Tenant (<code>nova-school</code>) wird registriert.</li>
+<li><strong>Token-Generierung:</strong> Ein Token wird mithilfe von <code>security.issue_token()</code> für den Benutzer &quot;teacher&quot; mit den Rollen <code>{&quot;teacher&quot;}</code> und einer Lebensdauer von 3600 Sekunden generiert.</li>
+<li><strong>Authentifizierung:</strong> Der generierte Token wird über <code>security.authenticate()</code> validiert.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+</ol>
+<ul>
+<li><strong>Erfolg:</strong> Der Authentifizierungsaufruf muss erfolgreich einen <code>principal</code> (Benutzerobjekt) zurückgeben (<code>self.assertIsNotNone(principal)</code>).</li>
+<li><strong>Rollenprüfung:</strong> Das <code>subject</code> des erstellten Principals muss <code>&quot;teacher&quot;</code> sein (<code>self.assertEqual(principal.subject, &quot;teacher&quot;)</code>).</li>
+<li><strong>Token-ID-Konsistenz:</strong> Die <code>token_id</code> des Principals muss exakt mit der <code>token_id</code> des generierten Tokens übereinstimmen.</li>
+<li><strong>Backend-Verifizierung:</strong> Die Snapshot-Information der Sandbox muss bestätigen, dass das Backend als <code>&quot;embedded&quot;</code> konfiguriert ist (<code>self.assertEqual(security.snapshot()[&quot;backend&quot;], &quot;embedded&quot;)</code>).</li>
+</ul>
+<h3 id="3-2-testfall-test-embedded-tool-sandbox-authorizes-requests">3.2. Testfall: <code>test_embedded_tool_sandbox_authorizes_requests</code></h3>
+<p><strong>Beschreibung:</strong> Dieser Test prüft die Logik der <code>ToolSandbox</code> zur Entscheidungsfindung, ob ein Benutzer für die Ausführung spezifischer Werkzeuge autorisiert ist. <strong>Schritte:</strong></p>
+<ol>
+<li><strong>Bridge Initialisierung:</strong> Eine Instanz der Bridge wird geladen.</li>
+<li><strong>Sandbox Initialisierung:</strong> Die <code>ToolSandbox</code> wird instanziiert.</li>
+<li><strong>Autorisierungsanfrage:</strong> Eine <code>authorize()</code>-Methode wird aufgerufen mit folgenden Parametern:</li>
+</ol>
+<ul>
+<li><strong>Benutzer:</strong> <code>&quot;user:teacher&quot;</code></li>
+<li><strong>Erlaubte Tools:</strong> <code>{&quot;run.python&quot;, &quot;ai.use&quot;}</code></li>
+<li><strong>Angefragte Tools:</strong> <code>{&quot;run.python&quot;}</code></li>
+<li><strong>Metadaten:</strong> <code>{&quot;project_id&quot;: &quot;abc&quot;}</code></li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+<li><strong>Autorisierung:</strong> Die Methode muss <code>True</code> zurückgeben, was bedeutet, dass die Anfrage autorisiert wurde (<code>self.assertTrue(session[&quot;authorized&quot;])</code>).</li>
+<li><strong>Angefragte Tools:</strong> Das angefragte Tool (<code>&quot;run.python&quot;</code>) muss in der Liste der angefragten Tools enthalten sein (<code>self.assertIn(&quot;run.python&quot;, session[&quot;requested_tools&quot;])</code>).</li>
+<li><strong>Backend-Verifizierung:</strong> Die Snapshot-Information der Sandbox muss bestätigen, dass das Backend als <code>&quot;embedded&quot;</code> konfiguriert ist (<code>self.assertEqual(sandbox.snapshot()[&quot;backend&quot;], &quot;embedded&quot;)</code>).</li>
+</ul>
+<h2 id="4-voraussetzungen">4. Voraussetzungen</h2>
+<p>Um diese Tests ausführen zu können, sind folgende Komponenten und Bibliotheken erforderlich:</p>
+<ul>
+<li>Die Implementierung der <code>NovaBridge</code> und deren Unterklassen (z.B. <code>SecurityPlane</code>, <code>ToolSandbox</code>).</li>
+<li>Die Funktion <code>load_nova_bridge()</code>, die die Bridge-Instanz initialisiert.</li>
+<li>Standard-Python-Bibliotheken (<code>unittest</code>, <code>tempfile</code>, <code>pathlib</code>).</li>
+</ul>
+<h2 id="5-zusammenfassung">5. Zusammenfassung</h2>
+<p>Die Testsuite stellt sicher, dass die <strong>Embedded Nova Bridge</strong> sowohl die grundlegende Authentifizierungslogik (Token-Flow) als auch die granulare Zugriffskontrolle (Tool-Sandbox) korrekt implementiert und konfiguriert, insbesondere im Kontext einer &quot;embedded&quot;-Umgebung.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-abh-ngigkeiten">2. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse-teil-1-2">3. Code-Analyse (Teil 1/2)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-importe">3.1 Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-klasse-funktion-start">3.2 Klasse/Funktion (Start)</a></li>
+<li class="wiki-toc-link"><a href="#4-funktionsweise-und-teststrategie">4. Funktionsweise und Teststrategie</a></li>
+<li class="wiki-toc-link"><a href="#5-nutzung-und-anwendung">5. Nutzung und Anwendung</a></li>
+<li class="wiki-toc-link"><a href="#6-hinweise-und-einschr-nkungen">6. Hinweise und Einschränkungen</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-zielsetzung-der-tests">2. Zielsetzung der Tests</a></li>
+<li class="wiki-toc-link"><a href="#3-testf-lle-im-detail">3. Testfälle im Detail</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-testfall-test-embedded-bridge-handles-token-flow-without-external-dependency">3.1. Testfall: `test_embedded_bridge_handles_token_flow_without_external_dependency`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-testfall-test-embedded-tool-sandbox-authorizes-requests">3.2. Testfall: `test_embedded_tool_sandbox_authorizes_requests`</a></li>
+<li class="wiki-toc-link"><a href="#4-voraussetzungen">4. Voraussetzungen</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung">5. Zusammenfassung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_nova_bridge.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

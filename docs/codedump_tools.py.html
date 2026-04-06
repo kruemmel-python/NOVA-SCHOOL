@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `codedump_tools.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `codedump_tools.py`</h1>
+          <p>Source: codedump_tools.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <p>Gerne, hier ist ein Entwurf für eine technische Dokumentation basierend auf dem bereitgestellten Code-Ausschnitt. Da der Code nur den Anfang einer Datei zeigt, werde ich die Dokumentation allgemein halten und die Struktur für die restlichen Teile der Datei (die wahrscheinlich die eigentliche Funktionalität) vorbereiten. ---</p>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<p><strong>Version:</strong> 1.0 (Entwurf) <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team]</p>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Diese Dokumentation beschreibt die Struktur, die Komponenten und die Funktionsweise der Python-Bibliothek <code>codedump_tools.py</code>. Das Hauptziel dieser Bibliothek ist es, Werkzeuge zur Analyse, Extraktion oder Manipulation von Code- oder Dump-Dateien bereitzustellen.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei <code>codedump_tools.py</code> verwendet moderne Python-Features wie <code>dataclasses</code> und <code>pathlib</code>, um eine saubere und wartbare Struktur für die Handhabung von Daten und Dateisystempfaden zu gewährleisten.</p>
+<h3 id="2-1-importe">2.1. Importe</h3>
+<p>Die folgenden Standard- und spezifischen Bibliotheken werden importiert:</p>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hints in der Deklaration von Variablen und Funktionsparametern, was die Lesbarkeit verbessert.</li>
+<li>**<code>from dataclasses import dataclass, field</code>**: Wird verwendet, um Datenstrukturen (Klassen) effizient zu definieren.</li>
+<li>**<code>from pathlib import Path</code>**: Bietet eine objektorientierte und plattformunabhängige Methode zur Arbeit mit Dateipfaden.</li>
+<li>**<code>from typing import Iterable</code>**: Wird für die Definition von Rückgabetypen verwendet, die eine Sammlung von Elementen darstellen.</li>
+<li>**<code>import zipfile</code>**: Importiert die notwendige Bibliothek für die Arbeit mit ZIP-Archiven.</li>
+</ul>
+<h3 id="2-2-datenstrukturen-dataclasses">2.2. Datenstrukturen (Dataclasses)</h3>
+<p>Der Code beginnt mit der Definition einer <code>dataclass</code>, die wahrscheinlich eine spezifische Struktur für die Tools oder die zu verarbeitenden Daten darstellt.</p>
+<h4 id="class-end-anmerkung-der-name-ist-unvollst-ndig"><code>class &lt;|end|&gt;</code> (Anmerkung: Der Name ist unvollständig)</h4>
+<pre><code class="language-python">@dataclass(slots=True)class &lt;|end|&gt;</code></pre>
+<p><strong>Beschreibung:</strong> Diese Klasse dient als Datencontainer für spezifische Informationen, die von den Tools verarbeitet werden.</p>
+<ul>
+<li>**<code>@dataclass(slots=True)</code>**:</li>
+<li><code>@dataclass</code>: Dekoriert die Klasse, um automatisch Methoden wie <code>__init__</code>, <code>__repr__</code> und andere Metadaten zu generieren.</li>
+<li><code>slots=True</code>: Optimiert den Speicherverbrauch der Instanzen, indem es verhindert, dass für jede Instanz eine Standard-Attribute-Dictionary erstellt wird. Dies führt zu einer effizienteren Speicherung, insbesondere bei vielen Instanzen.</li>
+<p><strong>Funktionalität:</strong> Die genaue Funktionalität hängt von den definierten Feldern (Attributes) ab, die in dieser Klasse hinzugefügt werden. (Diese Sektion muss im vollständigen Code ergänzt werden.)</p>
+</ul>
+<h2 id="3-funktionsweise-analyse-des-anfangs">3. Funktionsweise (Analyse des Anfangs)</h2>
+<p>Der bereitgestellte Code etabliert die notwendige Infrastruktur für Dateiverarbeitung und Datenmodellierung.</p>
+<h3 id="3-1-dateisystem-interaktion-pathlib-path">3.1. Dateisystem-Interaktion (<code>pathlib.Path</code>)</h3>
+<p>Die Verwendung von <code>Path</code>-Objekten deutet darauf hin, dass die Tools darauf ausgelegt sind, Pfade robust und plattformübergreifend zu verwalten (z.B. das Lesen von Dateien, das Erstellen von temporären Dateien oder das Verwalten von Archivpfaden).</p>
+<h3 id="3-2-archivverarbeitung-zipfile">3.2. Archivverarbeitung (<code>zipfile</code>)</h3>
+<p>Der Import von <code>zipfile</code> legt nahe, dass eine Kernfunktion der Bibliothek die Arbeit mit ZIP-Archiven beinhaltet – sei es das Entpacken von Code-Dumps oder das Erstellen von Archiv-Backups.</p>
+<h2 id="4-api-design-voraussicht">4. API-Design (Voraussicht)</h2>
+<p>Basierend auf der Struktur lässt sich ableiten, dass die Hauptfunktionen wahrscheinlich folgende Muster befolgen:</p>
+<ol>
+<li><strong>Initialisierung:</strong> Eine Funktion, die eine Instanz der <code>dataclass</code> erstellt oder eine Konfiguration lädt.</li>
+<li><strong>Input-Handling:</strong> Funktionen, die <code>Path</code>-Objekte als Argumente entgegennehmen, um Dateien oder Archive zu spezifizieren.</li>
+<li><strong>Processing:</strong> Kernfunktionen, die den Inhalt der Datei (z.B. durch <code>zipfile.ZipFile</code>) lesen und analysieren.</li>
+<li><strong>Output:</strong> Rückgabe von Datenstrukturen (wahrscheinlich Instanzen der definierten <code>dataclass</code> oder <code>Iterable</code>s).</li>
+</ol>
+<h2 id="5-anwendungsf-lle-beispielhaft">5. Anwendungsfälle (Beispielhaft)</h2>
+<ul>
+<li><strong>Code-Dump-Analyse:</strong> Verarbeitung von binären oder textbasierten Code-Dumps, die in ZIP-Format vorliegen.</li>
+<li><strong>Archiv-Management:</strong> Automatisierte Extraktion von Code-Dateien aus großen Archivdateien.</li>
+<li><strong>Datenmodellierung:</strong> Strukturierte Speicherung von Metadaten zu den analysierten Code-Segmenten mittels der <code>dataclass</code>.</li>
+<p>--- <strong>Nächste Schritte für die Dokumentation:</strong> Um diese Dokumentation vollständig zu machen, müssen die folgenden Bereiche im vollständigen Code ergänzt werden:</p>
+</ul>
+<ol>
+<li>**Definition der <code>dataclass</code>:** Welche Felder hat die Klasse <code>&lt;|end|&gt;</code>?</li>
+<li><strong>Implementierung der Hauptfunktionen:</strong> Welche Funktionen existieren und welche Argumente nehmen sie entgegen?</li>
+<li><strong>Fehlerbehandlung (Error Handling):</strong> Wie werden Datei- oder Archivfehler behandelt?</li>
+<li><strong>Beispiel-Code (Examples):</strong> Konkrete Beispiele, wie die Tools verwendet werden sollen.</li>
+</ol>
+<h1 id="technische-dokumentation-dumpconfig-klasse">Technische Dokumentation: <code>DumpConfig</code> Klasse</h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Die Klasse <code>DumpConfig</code> dient als zentraler Konfigurationscontainer für die Tools, die für das Dumpen von Dateien oder Code-Ausschnitten verwendet werden. Sie definiert die globalen Parameter und Einstellungen, die das Dump-Verhalten steuern, einschließlich der unterstützten Dateitypen, der zu ignorierenden Dateien und der maximalen Dateigröße.</p>
+<h2 id="2-klasse-dumpconfig">2. Klasse: <code>DumpConfig</code></h2>
+<p>Die Klasse <code>DumpConfig</code> ist eine Dataclass, die alle relevanten Konfigurationsparameter kapselt. Durch die Verwendung von <code>slots=True</code> wird die Speicherplatznutzung optimiert.</p>
+<h3 id="2-1-attribute">2.1. Attribute</h3>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Standardwert</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>profile</code></td>
+<td><code>str</code></td>
+<td><code>&quot;standard&quot;</code></td>
+<td>Definiert das aktuell aktive Profil für das Dump-Verhalten. Mögliche Profile sind: <code>&quot;compact&quot;</code>, <code>&quot;standard&quot;</code>, <code>&quot;deep&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>allowed_extensions</code></td>
+<td><code>set[str]</code></td>
+<td>(Definiert)</td>
+<td>Eine Menge von Dateiendungen (<code>.ext</code>), die für das Dumpen von Dateien erlaubt sind.</td>
+</tr>
+<tr>
+<td><code>allowed_filenames</code></td>
+<td><code>set[str]</code></td>
+<td>(Definiert)</td>
+<td>Eine Menge von Dateinamen, die explizit erlaubt sind (z.B. Konfigurationsdateien, Build-Skripte).</td>
+</tr>
+<tr>
+<td><code>ignore_names</code></td>
+<td><code>tuple[str, ...]</code></td>
+<td>(Definiert)</td>
+<td>Eine Tupel von String-Namen, die bei der Dateiauswahl ignoriert werden sollen (z.B. Cache-Dateien, Git-Verzeichnisse).</td>
+</tr>
+<tr>
+<td><code>ignore_prefixes</code></td>
+<td><code>tuple[str, ...]</code></td>
+<td><code>(&quot;data&quot;,)</code></td>
+<td>Ein Tupel von Präfixen, die bei der Dateiauswahl ignoriert werden sollen (z.B. alle Dateien, die mit <code>data/</code> beginnen).</td>
+</tr>
+<tr>
+<td><code>max_file_size</code></td>
+<td><code>int</code></td>
+<td><code>200_000</code></td>
+<td>Die maximale Größe (in Bytes) einer Datei, die für das Dump-Verfahren in Betracht gezogen wird.</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td><code>str</code></td>
+<td><code>&quot;utf-8&quot;</code></td>
+<td>Die bevorzugte Zeichenkodierung für das Lesen und Verarbeiten der Datei.</td>
+</tr>
+<tr>
+<td><code>fallback_encoding</code></td>
+<td><code>str</code></td>
+<td><code>&quot;latin-1&quot;</code></td>
+<td>Die Kodierung, die verwendet wird, falls die primäre <code>encoding</code> fehlschlägt.</td>
+</tr>
+<tr>
+<td><code>skipped_preview_limit</code></td>
+<td><code>int</code></td>
+<td><code>40</code></td>
+<td>Die maximale Anzahl von Dateien, die bei einer Vorschau (Preview) ignoriert werden, bevor die Vorschau stoppt.</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-standardwerte-und-initialisierung">2.2. Standardwerte und Initialisierung</h3>
+<p>Die Konfiguration wird beim Initialisieren der Klasse durch die definierten Standardwerte gesetzt:</p>
+<ul>
+<li>**<code>profile</code>**: Standardmäßig auf <code>&quot;standard&quot;</code> gesetzt.</li>
+<li>**<code>allowed_extensions</code>**: Enthält eine umfangreiche Liste von Sprachen und Dateitypen (z.B. <code>.py</code>, <code>.js</code>, <code>.cpp</code>, <code>.json</code>, <code>.sql</code> etc.).</li>
+<li>**<code>allowed_filenames</code>**: Enthält typische Projektkonfigurationsdateien (<code>Dockerfile</code>, <code>Makefile</code>, <code>README</code>, <code>.gitignore</code> etc.).</li>
+<li>**<code>ignore_names</code>**: Enthält gängige Verzeichnisse und Cache-Dateien (<code>__pycache__</code>, <code>.git</code>, <code>node_modules</code>, <code>.venv</code>, etc.).</li>
+<li>**<code>ignore_prefixes</code>**: Ignoriert alle Dateien, die mit dem Präfix <code>&quot;data&quot;</code> beginnen.</li>
+<li>**<code>max_file_size</code>**: Standardmäßig auf 200.000 Bytes eingestellt.</li>
+<li>**<code>encoding</code>**: Standardmäßig auf <code>&quot;utf-8&quot;</code> gesetzt.</li>
+<li>**<code>fallback_encoding</code>**: Standardmäßig auf <code>&quot;latin-1&quot;</code> gesetzt.</li>
+<li>**<code>skipped_preview_limit</code>**: Standardmäßig auf 40 gesetzt.</li>
+</ul>
+<h3 id="2-3-globale-konstanten">2.3. Globale Konstanten</h3>
+<p>Neben der Instanzklasse werden zwei globale Konstanten definiert:</p>
+<ul>
+<li>**<code>CONFIG</code>**: Eine Instanz der <code>DumpConfig</code> Klasse, die die aktuell gültige Konfiguration darstellt.</li>
+<li>**<code>PROFILE_NAMES</code>**: Eine Tupel, das alle definierten Profilnamen enthält: <code>(&quot;compact&quot;, &quot;standard&quot;, &quot;deep&quot;)</code>.</li>
+</ul>
+<h2 id="3-verwendung">3. Verwendung</h2>
+<p>Die Konfiguration wird primär über die globale Instanz <code>CONFIG</code> zugänglich gemacht. <strong>Beispielhafte Nutzung:</strong></p>
+<pre><code class="language-python">from codedump_tools import CONFIG, PROFILE_NAMES
+# Zugriff auf die aktuelle Konfiguration
+print(f&quot;Aktuelles Profil: {CONFIG.profile}&quot;)
+# Zugriff auf verfügbare Profile
+print(f&quot;Verfügbare Profile: {PROFILE_NAMES}&quot;)
+# Beispiel: Überprüfung der erlaubten Erweiterungen
+print(f&quot;Erlaubte Erweiterungen: {CONFIG.allowed_extensions}&quot;)
+# Beispiel: Zugriff auf eine spezifische Einstellung
+print(f&quot;Maximale Dateigröße: {CONFIG.max_file_size} Bytes&quot;)</code></pre>
+<h2 id="4-design-berlegungen">4. Design-Überlegungen</h2>
+<ol>
+<li><strong>Dataclass und Slots</strong>: Die Verwendung von <code>@dataclass(slots=True)</code> sorgt für eine effiziente Speicherung der Konfigurationsdaten und reduziert den Speicherbedarf, insbesondere wenn viele Instanzen der Konfiguration erstellt werden.</li>
+<li><strong>Definitivierte Standardwerte</strong>: Alle Parameter haben klare Standardwerte, was eine robuste und sofort einsatzbereite Konfiguration gewährleistet.</li>
+<li><strong>Trennung von Konfiguration und Logik</strong>: Die Klasse dient rein der Speicherung von Einstellungen, was die Trennung von Daten (Konfiguration) und Verhalten (Dump-Logik) fördert.</li>
+<li><strong>Lesbarkeit</strong>: Die Verwendung von <code>set</code> und <code>tuple</code> für die Listen von erlaubten/ignorierbaren Elementen macht die Absicht der Datenstruktur klar.</li>
+</ol>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Diese Dokumentation beschreibt die Struktur und die definierten Klassen sowie Konfigurationsdaten der Python-Bibliothek <code>codedump_tools.py</code>. Das Modul scheint darauf ausgelegt zu sein, Code- oder Datei-Dump-Operationen durchzuführen, Metadaten zu sammeln und diese strukturiert darzustellen.</p>
+<h2 id="2-klassen-und-datentypen">2. Klassen und Datentypen</h2>
+<h3 id="2-1-dumpentry">2.1. <code>DumpEntry</code></h3>
+<p>Diese Klasse repräsentiert einen einzelnen Eintrag oder eine Datei, die im Dump-Prozess identifiziert wurde. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>str</code></td>
+<td>Der vollständige Pfad zur Datei oder zum Code-Segment.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>str</code></td>
+<td>Die identifizierte Programmiersprache der Datei (z.B. &quot;python&quot;, &quot;java&quot;).</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>int</code></td>
+<td>Die Größe der Datei oder des Code-Segments in Bytes (oder einer anderen definierten Einheit).</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>Der aktuelle Status des Dump-Prozesses für diesen Eintrag (z.B. &quot;success&quot;, &quot;error&quot;, &quot;skipped&quot;).</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>str</code></td>
+<td>Der eigentliche Inhalt des Code-Segments oder der Datei (wahrscheinlich als Zeichenkette).</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-dumpresult">2.2. <code>DumpResult</code></h3>
+<p>Diese Klasse fasst die Ergebnisse eines vollständigen Dump-Prozesses zusammen. <strong>Attribute:</strong></p>
+<table><thead><tr>
+<th>Attribut</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>source_name</code></td>
+<td><code>str</code></td>
+<td>Ein allgemeiner Name oder eine Kennung für die Quelle des Dumps.</td>
+</tr>
+<tr>
+<td><code>source_kind</code></td>
+<td><code>str</code></td>
+<td>Die Art der Quelle (z.B. &quot;file&quot;, &quot;directory&quot;).</td>
+</tr>
+<tr>
+<td><code>source_path</code></td>
+<td><code>str</code></td>
+<td>Der Pfad zum ursprünglichen Quellverzeichnis oder zur Quelle.</td>
+</tr>
+<tr>
+<td><code>entries</code></td>
+<td><code>list[DumpEntry]</code></td>
+<td>Eine Liste aller einzelnen <code>DumpEntry</code>-Objekte, die im Dump enthalten sind.</td>
+</tr>
+<tr>
+<td><code>ignored_paths</code></td>
+<td><code>list[str]</code></td>
+<td>Eine Liste von Pfaden, die vom Dump-Prozess explizit ignoriert wurden.</td>
+</tr>
+<tr>
+<td><code>non_code_paths</code></td>
+<td><code>list[str]</code></td>
+<td>Eine Liste von Pfaden, die als nicht-Code-Dateien (z.B. Konfigurationsdateien, Dokumentationen) klassifiziert wurden.</td>
+</tr>
+</tbody></table>
+<p><strong>Merkmale:</strong></p>
+<ul>
+<li>Die Klasse verwendet <code>@dataclass(slots=True)</code>, was auf eine optimierte Speicherung von Daten und eine reduzierte Speicherplatzbelegung hindeutet.</li>
+<li>Die Struktur ermöglicht eine klare Trennung zwischen den Rohdaten (<code>entries</code>) und den Metadaten/Filterkriterien (<code>ignored_paths</code>, <code>non_code_paths</code>).</li>
+</ul>
+<h2 id="3-konfigurationsdaten">3. Konfigurationsdaten</h2>
+<h3 id="3-1-language-map">3.1. <code>LANGUAGE_MAP</code></h3>
+<p>Dies ist ein global definierter Dictionary, der eine Zuordnung von Dateiendungen zu formalisierten Programmiersprachen darstellt. <strong>Struktur:</strong> <code>dict[str, str]</code> (Dateiendung: Programmiersprache) <strong>Beispielhafte Zuordnungen:</strong></p>
+<ul>
+<li><code>.py</code> $\rightarrow$ <code>&quot;python&quot;</code></li>
+<li><code>.js</code> $\rightarrow$ <code>&quot;javascript&quot;</code></li>
+<li><code>.cpp</code> $\rightarrow$ <code>&quot;cpp&quot;</code></li>
+<li><code>.json</code> $\rightarrow$ <code>&quot;json&quot;</code></li>
+<li><code>.sh</code> $\rightarrow$ <code>&quot;bash&quot;</code></li>
+<p><strong>Zweck:</strong> Diese Map wird wahrscheinlich verwendet, um die <code>language</code>-Eigenschaft in den <code>DumpEntry</code>-Objekten automatisch zu bestimmen, basierend auf der Endung der Datei.</p>
+</ul>
+<h2 id="4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</h2>
+<p>Das Modul definiert die Datenstrukturen (<code>DumpEntry</code> und <code>DumpResult</code>), die zur Verwaltung und Darstellung von Ergebnissen eines Code-Dump-Tools dienen. Es enthält eine zentrale Konfiguration (<code>LANGUAGE_MAP</code>), die die Klassifizierung von Dateien erleichtert. --- <em>Ende der Dokumentation</em></p>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält eine Reihe von Funktionen, die zur <strong>Filterung und Erkennung von Dateien</strong> dienen, insbesondere im Kontext eines &quot;Dump&quot;- oder Analyseprozesses (wie durch den Namen <code>codedump_tools.py</code> und die Verwendung von <code>DumpConfig</code> angedeutet). Die Funktionen prüfen, ob eine Datei ignoriert werden soll, ob sie als Code-Datei gilt oder welche Programmiersprache sie verwendet.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-is-ignored-path-str-config-dumpconfig-output-path-str-none-none-bool">1. <code>is_ignored(path: str, config: DumpConfig, *, output_path: str | None = None) -&gt; bool</code></h3>
+<p>Diese Funktion entscheidet, ob ein gegebener Pfad ignoriert werden soll, basierend auf verschiedenen Kriterien aus der Konfiguration (<code>DumpConfig</code>). <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: str</code>: Der vollständige Pfad zur Datei, die überprüft werden soll.</li>
+<li><code>config: DumpConfig</code>: Ein Objekt, das die Konfigurationsparameter für die Ignorierung enthält (z.B. <code>ignore_names</code>, <code>ignore_prefixes</code>).</li>
+<li><code>output_path: str | None = None</code>: Optionaler Pfad, der zur Normalisierung des Zielpfads verwendet wird, falls dieser als Ignorierungskriterium relevant ist.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Normalisierung des Pfades:</strong></li>
+</ol>
+<ul>
+<li>Der Eingabepfad wird auf Unix-ähnliche Pfadzeichen (<code>/</code>) umgewandelt und führende/ende Schrägstriche entfernt.</li>
+<li>Der Pfad wird in Kleinbuchstaben umgewandelt (<code>casefold()</code>).</li>
+<li>Falls <code>output_path</code> angegeben ist, wird dieser ebenfalls normalisiert und in Kleinbuchstaben umgewandelt.</li>
+</ul>
+<ol>
+<li><strong>Direkte Übereinstimmung mit Ausgabe:</strong></li>
+</ol>
+<ul>
+<li>Wenn der normalisierte Pfad und der normalisierte <code>output_path</code> (falls vorhanden) identisch sind, wird die Datei ignoriert (<code>True</code>).</li>
+</ul>
+<ol>
+<li><strong>Erkennung von Dump-Artefakten:</strong></li>
+</ol>
+<ul>
+<li>Es wird die interne Funktion <code>_is_dump_artifact(normalized)</code> aufgerufen. Wenn diese Funktion <code>True</code> zurückgibt, wird die Datei ignoriert.</li>
+</ul>
+<ol>
+<li><strong>Ignorierung nach Dateinamen/Teilen:</strong></li>
+</ol>
+<ul>
+<li>Der normalisierte Pfad wird in seine Komponenten (Teile) zerlegt.</li>
+<li>Jede Teilkomponente wird in Kleinbuchstaben umgewandelt.</li>
+<li>Es wird geprüft, ob irgendein Teilkomponente mit den Namen in <code>config.ignore_names</code> übereinstimmt. Wenn ja, wird die Datei ignoriert.</li>
+</ul>
+<ol>
+<li><strong>Ignorierung nach Präfixen:</strong></li>
+</ol>
+<ul>
+<li>Für jedes Präfix in <code>config.ignore_prefixes</code> wird geprüft:</li>
+<li>Ist der gesamte normalisierte Pfad gleich dem normalisierten Präfix?</li>
+<li>Fängt der normalisierte Pfad mit dem Präfix gefolgt von einem Schrägstrich an (z.B. <code>prefix/rest_of_path</code>)?</li>
+<li>Wenn eine dieser Bedingungen erfüllt ist, wird die Datei ignoriert.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Wenn keine der oben genannten Ignorierungsbedingungen zutrifft, wird <code>False</code> zurückgegeben.</li>
+<p>---</p>
+</ul>
+<h3 id="2-def-is-code-file-path-str-config-dumpconfig-bool">2. <code>def is_code_file(path: str, config: DumpConfig) -&gt; bool</code></h3>
+<p>Diese Funktion prüft, ob eine Datei als Code-Datei klassifiziert werden soll, basierend auf den erlaubten Dateiendungen und Dateinamen in der Konfiguration. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: str</code>: Der Pfad zur Datei, die überprüft werden soll.</li>
+<li><code>config: DumpConfig</code>: Die Konfiguration, die die erlaubten Erweiterungen und Dateinamen definiert.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Erweiterung extrahieren:</strong> Die Dateiendung (<code>suffix</code>) des Pfades wird extrahiert und in Kleinbuchstaben umgewandelt.</li>
+<li><strong>Prüfung:</strong> Es wird geprüft, ob die extrahierte Erweiterung in der Liste der erlaubten Erweiterungen (<code>config.allowed_extensions</code>) enthalten ist.</li>
+<li><strong>Alternative Prüfung:</strong> Es wird geprüft, ob der Dateiname (<code>candidate.name</code>) in der Liste der erlaubten Dateinamen (<code>config.allowed_filenames</code>) enthalten ist.</li>
+<li><strong>Rückgabe:</strong> Die Funktion gibt <code>True</code> zurück, wenn entweder die Erweiterung oder der Dateiname erlaubt ist, ansonsten <code>False</code>.</li>
+<p>---</p>
+</ol>
+<h3 id="3-def-detect-language-path-str-str">3. <code>def detect_language(path: str) -&gt; str</code></h3>
+<p>Diese Funktion identifiziert die Programmiersprache einer Datei basierend auf ihrer Dateiendung. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: str</code>: Der Pfad zur Datei, deren Sprache erkannt werden soll.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Dateiendung extrahieren:</strong> Die Dateiendung (<code>suffix</code>) des Pfades wird extrahiert und in Kleinbuchstaben umgewandelt.</li>
+<li><strong>Abfrage der Karte:</strong> Die Funktion sucht in der globalen Konstante <code>LANGUAGE_MAP</code> nach einem Eintrag, der mit der Dateiendung übereinstimmt.</li>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Wenn eine Übereinstimmung gefunden wird, wird der zugeordnete Spracheingang zurückgegeben.</li>
+<li>Wenn keine Übereinstimmung gefunden wird, wird standardmäßig <code>&quot;text&quot;</code> zurückgegeben.</li>
+<p>---</p>
+</ul>
+<h2 id="abh-ngigkeiten-und-konstanten">Abhängigkeiten und Konstanten</h2>
+<ul>
+<li>**<code>Path</code>:** Wahrscheinlich eine Klasse aus dem <code>pathlib</code>-Modul, verwendet zur Manipulation von Dateipfaden (z.B. zur Extraktion von <code>.suffix</code> oder <code>.parts</code>).</li>
+<li>**<code>DumpConfig</code>:** Eine Klasse oder ein Dictionary, das die Konfigurationsparameter für die Ignorierung und Klassifizierung speichert.</li>
+<li>**<code>LANGUAGE_MAP</code>:** Eine globale Struktur (wahrscheinlich ein Dictionary), die Dateiendungen mit ihren entsprechenden Programmiersprachen verknüpft.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<p>Diese Tools sind primär für die <strong>Vorverarbeitung von Code- oder Dump-Dateien</strong> gedacht, um sie effizient zu filtern oder zu kategorisieren:</p>
+<ol>
+<li><strong>Ignorierung:</strong> <code>is_ignored()</code> wird verwendet, um Dateien zu identifizieren, die aufgrund von Namen, Pfadstrukturen oder Artefakten verworfen werden sollen.</li>
+<li><strong>Klassifizierung:</strong> <code>is_code_file()</code> wird verwendet, um schnell zu bestimmen, ob eine Datei als Code-Datei behandelt werden soll.</li>
+<li><strong>Sprachbestimmung:</strong> <code>detect_language()</code> wird verwendet, um die Sprache einer Datei zu bestimmen, was für weitere spezifische Verarbeitungsschritte notwendig ist.</li>
+</ol>
+<h2 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h2>
+<p>Dieses Dokument beschreibt die Funktionen der Python-Datei <code>codedump_tools.py</code>, die Werkzeuge zur Analyse und Darstellung von Code-Strukturen und Zippedump-Inhalten bereitstellt. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei <code>codedump_tools.py</code> enthält Funktionen, die primär zur <strong>Baumdarstellung (Tree Generation)</strong> von Dateipfaden und zur <strong>Konvertierung von ZIP-Inhalten in Markdown</strong> dienen.</p>
+<h3 id="2-funktionen">2. Funktionen</h3>
+<h4 id="2-1-generate-tree-file-paths-list-str-str">2.1. <code>generate_tree(file_paths: list[str]) -&gt; str</code></h4>
+<p><strong>Beschreibung:</strong> Diese Funktion nimmt eine Liste von Dateipfaden entgegen und generiert eine hierarchische Baumstruktur (Tree) basierend auf diesen Pfaden. Sie verwendet die <code>pathlib.Path</code>-Objekte, um die Pfade in eine Baumstruktur zu konvertieren und diese dann in ein lesbares Textformat (Markdown-ähnlich) zu rendern. <strong>Parameter:</strong></p>
+<ul>
+<li><code>file_paths: list[str]</code>: Eine Liste von Strings, die die vollständigen Pfade zu den Dateien oder Verzeichnissen darstellen, deren Struktur dargestellt werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Eine Zeichenkette, die die generierte Baumstruktur im Textformat darstellt.</li>
+<p><strong>Funktionsweise:</strong></p>
+</ul>
+<ol>
+<li><strong>Baumaufbau:</strong> Sie iteriert über jeden eingegebenen Pfad. Für jeden Pfad baut sie ein verschachteltes Dictionary (<code>tree</code>) auf, wobei die Teile des Pfades als Schlüssel dienen und die Werte als Unter-Dictionaries (für die nächsten Pfadteile) gespeichert werden.</li>
+<li><strong>Rendern:</strong> Sie verwendet eine interne rekursive Funktion <code>render</code>, um das erstellte Dictionary in eine formatierte Textdarstellung umzuwandeln.</li>
+</ol>
+<ul>
+<li>Die Darstellung verwendet standardmäßige Baumnotation (<code>├──</code> und <code>└──</code>) und Indentation, um die Hierarchie klar darzustellen.</li>
+<li>Die Schlüssel (Dateinamen/Verzeichnisse) werden alphabetisch sortiert.</li>
+<p><strong>Beispiel (Konzept):</strong> Wenn <code>file_paths = [&quot;src/main.py&quot;, &quot;src/utils/helper.py&quot;]</code> ist, würde die Ausgabe eine Darstellung der Struktur von <code>src/main.py</code> und <code>src/utils/helper.py</code> liefern. ---</p>
+</ul>
+<h4 id="2-2-def-dump-zip-to-markdown-zip-path-str-path-output-md-str-path-config-dumpconfig-config-none">2.2. <code>def dump_zip_to_markdown(zip_path: str | Path, output_md: str | Path, config: DumpConfig = CONFIG) -&gt; None</code></h4>
+<p><strong>Beschreibung:</strong> Diese Funktion dient als Wrapper für die eigentliche Logik zur Konvertierung eines ZIP-Archivs in ein Markdown-Dokument. Sie ruft die interne Funktion <code>dump_target_to_markdown</code> auf, um den Prozess durchzuführen. <strong>Parameter:</strong></p>
+<ul>
+<li><code>zip_path: str | Path</code>: Der Pfad zum zu konvertierenden ZIP-Archiv.</li>
+<li><code>output_md: str | Path</code>: Der Zielpfad oder die Zeichenkette, in die das resultierende Markdown-Dokument geschrieben werden soll.</li>
+<li><code>config: DumpConfig = CONFIG</code>: Eine optional konfigurierbare Struktur (<code>DumpConfig</code>), die spezifische Einstellungen für den Dump-Prozess steuert (Standardeinstellung ist <code>CONFIG</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>None</code>: Die Funktion führt die Operation aus und gibt nichts zurück.</li>
+<p><strong>Funktionsweise:</strong></p>
+</ul>
+<ol>
+<li>Sie delegiert die eigentliche Arbeit an die Funktion <code>dump_target_to_markdown</code>.</li>
+<li><code>dump_target_to_markdown</code> (nicht im bereitgestellten Code sichtbar, aber impliziert) ist verantwortlich für das Entpacken des ZIP-Inhalts und die Erstellung der Markdown-Struktur.</li>
+<p>---</p>
+</ol>
+<h3 id="3-abh-ngigkeiten-und-notizen">3. Abhängigkeiten und Notizen</h3>
+<ul>
+<li>**<code>pathlib.Path</code>:** Die Funktion <code>generate_tree</code> nutzt die <code>Path</code>-Klasse aus dem <code>pathlib</code>-Modul, was auf moderne, objektorientierte Pfadmanipulation hindeutet.</li>
+<li>**<code>DumpConfig</code>:** Die Funktion <code>dump_zip_to_markdown</code> hängt von einer extern definierten Klasse <code>DumpConfig</code> ab, die die Konfiguration für den ZIP-Dump steuert.</li>
+<li>**<code>dump_target_to_markdown</code>:** Diese Funktion ist die Kernlogik für die ZIP-zu-Markdown-Konvertierung und wird durch <code>dump_zip_to_markdown</code> aufgerufen.</li>
+<p>---</p>
+</ul>
+<h3 id="4-zusammenfassung-der-nutzungsszenarien">4. Zusammenfassung der Nutzungsszenarien</h3>
+<table><thead><tr>
+<th>Funktion</th>
+<th>Zweck</th>
+<th>Eingabe</th>
+<th>Ausgabe</th>
+</tr></thead><tbody>
+<tr>
+<td><code>generate_tree</code></td>
+<td>Visualisierung der Dateihierarchie.</td>
+<td>Liste von Pfaden (<code>list[str]</code>)</td>
+<td>Formatierte Baumstruktur (<code>str</code>)</td>
+</tr>
+<tr>
+<td><code>dump_zip_to_markdown</code></td>
+<td>Konvertierung eines ZIP-Archivs in Markdown.</td>
+<td>ZIP-Pfad, Ziel-Markdown-Pfad, Konfiguration</td>
+<td>Keine (Side Effect: Datei wird erstellt)</td>
+</tr>
+</tbody></table>
+<h2 id="technische-dokumentation-dump-target-to-markdown-funktion">Technische Dokumentation: <code>dump_target_to_markdown</code> Funktion</h2>
+<h3 id="1-funktion-overview">1. Funktion overview</h3>
+<p>Die Funktion <code>dump_target_to_markdown</code> ist eine zentrale Schnittstelle zur Generierung eines Markdown-Dokuments aus einem gegebenen Ziel (Datei oder Verzeichnis). Sie übernimmt die Logik, um den Inhalt des Zielobjekts zu sammeln (entweder als Verzeichnis-Dump oder als ZIP-Datei-Dump) und das Ergebnis in ein formatiertes Markdown-Format zu rendern, bevor es in die angegebene Ausgabe geschrieben wird.</p>
+<h3 id="2-signatur">2. Signatur</h3>
+<pre><code class="language-python">def dump_target_to_markdown(target: str | Path, output_md: str | Path, config: DumpConfig = CONFIG) -&gt; Path:
+# ... Funktionskörper ...</code></pre>
+<h3 id="3-parameter">3. Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>target</code></td>
+<td><code>str</code> oder <code>Path</code></td>
+<td>Der Pfad zur zu dumpenden Ressource. Kann ein Dateipfad (<code>str</code> oder <code>Path</code>) oder ein Verzeichnis (<code>Path</code>) sein.</td>
+<td>Nicht angegeben</td>
+</tr>
+<tr>
+<td><code>output_md</code></td>
+<td><code>str</code> oder <code>Path</code></td>
+<td>Der Pfad oder die Zeichenkette, an die das resultierende Markdown-Dokument geschrieben werden soll.</td>
+<td>Nicht angegeben</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>DumpConfig</code></td>
+<td>Eine Konfigurationsstruktur, die für den Dump-Prozess verwendet wird (z.B. für spezifische Dump-Einstellungen).</td>
+<td><code>CONFIG</code> (Globaler Standardwert)</td>
+</tr>
+</tbody></table>
+<h3 id="4-r-ckgabe-return-value">4. Rückgabe (Return Value)</h3>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>Path</code></td>
+<td>Der Pfad zur erfolgreich erstellten Markdown-Datei (<code>output_path</code>).</td>
+</tr>
+</tbody></table>
+<h3 id="5-logik-und-verhalten">5. Logik und Verhalten</h3>
+<p>Die Funktion führt die folgenden Schritte durch:</p>
+<ol>
+<li><strong>Pfad-Konvertierung:</strong></li>
+</ol>
+<ul>
+<li>Der eingegebene <code>target</code> wird in ein <code>Path</code>-Objekt umgewandelt (<code>target_path</code>).</li>
+<li>Der <code>output_md</code> wird in ein <code>Path</code>-Objekt umgewandelt (<code>output_path</code>).</li>
+</ul>
+<ol>
+<li><strong>Ausgabeverzeichnis Sicherstellung:</strong></li>
+</ol>
+<ul>
+<li>Das Verzeichnis, das dem <code>output_path</code> zugeordnet ist, wird erstellt, falls es nicht existiert (<code>output_path.parent.mkdir(parents=True, exist_ok=True)</code>).</li>
+</ul>
+<ol>
+<li><strong>Input-Typ-Prüfung und Dump-Methode Auswahl:</strong></li>
+<p>Die Funktion prüft den Typ des <code>target_path</code>, um die korrekte Dump-Methode auszuwählen:</p>
+</ol>
+<ul>
+<li>**Fall 1: Verzeichnis (<code>target_path.is_dir()</code>):**</li>
+<li>Es wird die Funktion <code>collect_directory_dump</code> aufgerufen, um den Inhalt des Verzeichnisses zu sammeln.</li>
+<li>**Fall 2: ZIP-Datei (<code>target_path.is_file() and target_path.suffix.lower() == &quot;.zip&quot;</code>):**</li>
+<li>Es wird die Funktion <code>collect_zip_dump</code> aufgerufen, um den Inhalt der ZIP-Datei zu sammeln.</li>
+<li><strong>Fall 3: Ungültiger Input:</strong></li>
+<li>Wenn weder ein Verzeichnis noch eine <code>.zip</code>-Datei erkannt wird, wird eine <code>FileNotFoundError</code> mit einer spezifischen Fehlermeldung ausgelöst.</li>
+</ul>
+<ol>
+<li><strong>Markdown-Rendern und Speichern:</strong></li>
+</ol>
+<ul>
+<li>Das Ergebnis (<code>result</code>) der jeweiligen Dump-Funktion wird durch die Funktion <code>render_dump_markdown</code> in ein Markdown-String umgewandelt.</li>
+<li>Dieser String wird in die Datei unter Verwendung der UTF-8-Kodierung geschrieben (<code>output_path.write_text(...)</code>).</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Der Pfad zur erstellten Markdown-Datei wird zurückgegeben.</li>
+</ul>
+<h3 id="6-abh-ngigkeiten">6. Abhängigkeiten</h3>
+<ul>
+<li><code>Path</code> (von <code>pathlib</code>)</li>
+<li><code>collect_directory_dump</code> (Externe Funktion)</li>
+<li><code>collect_zip_dump</code> (Externe Funktion)</li>
+<li><code>render_dump_markdown</code> (Externe Funktion)</li>
+<li><code>DumpConfig</code> (Definierte Konfigurationsklasse/Struktur)</li>
+</ul>
+<h3 id="7-fehlerbehandlung">7. Fehlerbehandlung</h3>
+<ul>
+<li>**<code>FileNotFoundError</code>:** Wird explizit geworfen, wenn das <code>target</code> weder ein Verzeichnis noch eine <code>.zip</code>-Datei ist.</li>
+</ul>
+<h3 id="8-anwendungsf-lle">8. Anwendungsfälle</h3>
+<p>Diese Funktion ist ideal für Szenarien, in denen man strukturierten, lesbaren Dokumentationen (Markdown) aus komplexen Datenquellen (Dateisysteme oder komprimierten Archiven) generieren muss. <strong>Beispiel-Workflow:</strong> Ein Benutzer möchte den gesamten Inhalt eines Projektverzeichnisses (<code>/home/user/project_data</code>) in ein Markdown-Dokument speichern, das in den Ordner <code>/output/reports/</code> abgelegt wird.</p>
+<pre><code class="language-python"># Beispielaufruf (angenommen, CONFIG ist definiert)
+output_file = Path(&quot;/output/reports/project_dump.md&quot;)
+dump_target_to_markdown(
+target=&quot;/home/user/project_data&quot;,
+output_md=output_file,
+config=CONFIG
+)
+# Ergebnis: output_file enthält das generierte Markdown</code></pre>
+<h2 id="technische-dokumentation-collect-directory-dump-funktion">Technische Dokumentation: <code>collect_directory_dump</code> Funktion</h2>
+<h3 id="1-funktion-collect-directory-dump">1. Funktion: <code>collect_directory_dump</code></h3>
+<p><strong>Zweck:</strong> Diese Funktion durchläuft einen gegebenen Projektordner (<code>project_root</code>) rekursiv, identifiziert Dateien, die als Code gelten, und erstellt daraus einen Dump-Ergebnis (<code>DumpResult</code>). Sie filtert gleichzeitig Dateien, die gemäß einer Konfiguration ignoriert werden, und sammelt Pfade zu Dateien, die nicht als Code betrachtet werden. <strong>Signature:</strong></p>
+<pre><code class="language-python">def collect_directory_dump(project_root: Path, *, config: DumpConfig = CONFIG, output_path: Path | None = None) -&gt; DumpResult:</code></pre>
+<p><strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>project_root</code></td>
+<td><code>Path</code></td>
+<td>Der Wurzelpfad des zu analysierenden Projekts.</td>
+<td>Muss angegeben werden</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>DumpConfig</code></td>
+<td>Eine Konfigurationsstruktur, die die Regeln für die Ignorierung und Klassifizierung von Dateien definiert.</td>
+<td><code>CONFIG</code> (Standardkonfiguration)</td>
+</tr>
+<tr>
+<td><code>output_path</code></td>
+<td>`Path</td>
+<td>None`</td>
+<td>Optionaler Zielpfad für das generierte Dump-Ergebnis. Wenn angegeben, werden Dateien, die diesem Pfad entsprechen, ignoriert.</td>
+<td><code>None</code></td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DumpResult</code></td>
+<td>Ein Objekt, das die Ergebnisse des Dump-Prozesses enthält, einschließlich der gefundenen Einträge, ignorierter Pfade und Pfade zu nicht-Code-Dateien.</td>
+</tr>
+</tbody></table>
+<p>---</p>
+<h3 id="2-funktionsbeschreibung-und-logik">2. Funktionsbeschreibung und Logik</h3>
+<p>Die Funktion führt die folgenden Schritte durch:</p>
+<ol>
+<li><strong>Initialisierung:</strong></li>
+</ol>
+<ul>
+<li>Eine leere Liste <code>entries</code> wird initialisiert, um die gefundenen Code-Dateien zu speichern.</li>
+<li>Eine leere Liste <code>ignored_paths</code> wird initialisiert, um Pfade zu speichern, die ignoriert wurden.</li>
+<li>Eine leere Liste <code>non_code_paths</code> wird initialisiert, um Pfade zu speichern, die nicht als Code-Dateien klassifiziert wurden.</li>
+<li>Der Zielpfad (<code>output_path</code>) wird normalisiert (<code>output_resolved</code>) und gegebenenfalls relativ zum Projektwurzelpfad (<code>output_relative</code>) berechnet.</li>
+</ul>
+<ol>
+<li><strong>Rekursive Durchsicht des Projekts:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion iteriert über alle Dateien und Verzeichnisse im <code>project_root</code> rekursiv (<code>project_root.rglob(&quot;*&quot;)</code>).</li>
+<li>Die Iteration erfolgt in <strong>alphabetischer Reihenfolge</strong> (basierend auf der POSIX-Sortierung des Pfades), um eine konsistente Ausgabe zu gewährleisten.</li>
+<li><strong>Filterung 1: Nicht-Dateien:</strong> Dateien, die keine Dateien sind (z.B. Verzeichnisse), werden übersprungen.</li>
+</ul>
+<ol>
+<li><strong>Filterung 2: Spezifische Ignorierung (Output-Pfad):</strong></li>
+</ol>
+<ul>
+<li>Wenn <code>output_path</code> angegeben ist, wird geprüft, ob der aktuelle Pfad exakt dem aufgelösten Zielpfad entspricht. Wenn ja, wird der relative Pfad des aktuellen Pfades zum Projektwurzelpfad in <code>ignored_paths</code> aufgenommen, und die Iteration wird fortgesetzt (<code>continue</code>).</li>
+</ul>
+<ol>
+<li><strong>Filterung 3: Allgemeine Ignorierung:</strong></li>
+</ol>
+<ul>
+<li>Der relative Pfad der aktuellen Datei wird berechnet.</li>
+<li>Die Funktion prüft, ob <code>is_ignored(rel_path, config, output_path=output_relative)</code> <code>True</code> zurückgibt. Wenn ja, wird der relative Pfad in <code>ignored_paths</code> aufgenommen, und die Iteration wird fortgesetzt.</li>
+</ul>
+<ol>
+<li><strong>Filterung 4: Code-Dateien:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion prüft, ob <code>is_code_file(rel_path, config)</code> <code>True</code> zurückgibt.</li>
+<li>Wenn <strong>nicht</strong> Code-Datei (<code>False</code>), wird der relative Pfad in <code>non_code_paths</code> aufgenommen, und die Iteration wird fortgesetzt.</li>
+<li>Wenn Code-Datei (<code>True</code>), wird die Datei als Eintrag in <code>entries</code> hinzugefügt mithilfe der internen Funktion <code>_entry_from_path</code>.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Am Ende wird ein <code>DumpResult</code> Objekt erstellt, das alle gesammelten Daten (<code>source_name</code>, <code>source_path</code>, <code>entries</code>, <code>ignored_paths</code>, <code>non_code_paths</code>) enthält und zurückgegeben wird.</li>
+<p>---</p>
+</ul>
+<h3 id="3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</h3>
+<ul>
+<li>**<code>Path</code> (von <code>pathlib</code>):** Wird verwendet, um Dateisystempfade manipulationssicher zu verwalten.</li>
+<li>**<code>DumpConfig</code>:** Eine externe Struktur, die die Geschäftslogik für die Klassifizierung von Dateien (z.B. welche Dateiendungen oder Verzeichnisse ignoriert werden) definiert.</li>
+<li>**<code>is_ignored(rel_path, config, output_path)</code>:** Eine interne Helper-Funktion, die die spezifischen Ignorierungsregeln prüft.</li>
+<li>**<code>is_code_file(rel_path, config)</code>:** Eine interne Helper-Funktion, die entscheidet, ob eine Datei als Code-Datei betrachtet werden soll.</li>
+<li>**<code>_entry_from_path(path, rel_path, config)</code>:** Eine interne Helper-Funktion, die die spezifische Struktur des Dump-Eintrags für eine identifizierte Code-Datei erstellt.</li>
+<p>---</p>
+</ul>
+<h3 id="4-anwendungsf-lle">4. Anwendungsfälle</h3>
+<p>Diese Funktion ist ideal für folgende Szenarien:</p>
+<ul>
+<li><strong>Code-Analyse-Vorbereitung:</strong> Erstellung einer Übersicht aller relevanten Code-Dateien in einem Projekt, während gleichzeitig nicht-Code-Dateien und konfigurierte Ignorierungen separat erfasst werden.</li>
+<li><strong>Build-System-Integration:</strong> Nutzung der Ergebnisse, um zu entscheiden, welche Dateien in einen bestimmten Build-Prozess einbezogen werden sollen.</li>
+<li><strong>Repository-Scanning:</strong> Systematische Erfassung der Struktur und der Codebasis eines gesamten Projektverzeichnisses.</li>
+</ul>
+<h2 id="technische-dokumentation-collect-zip-dump-funktion">Technische Dokumentation: <code>collect_zip_dump</code> Funktion</h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>collect_zip_dump</code> ist eine zentrale Methode zur Verarbeitung eines ZIP-Archivs. Sie durchläuft alle Dateien im Archiv, filtert diese basierend auf Konfigurationsregeln (Ignorieren von Pfaden, Identifizierung von Code-Dateien) und erstellt eine strukturierte <code>DumpResult</code>-Instanz, die die extrahierten Informationen enthält.</p>
+<h3 id="2-funktion">2. Funktion</h3>
+<pre><code class="language-python">def collect_zip_dump(zip_path: Path, *, config: DumpConfig = CONFIG, output_path: Path | None = None) -&gt; DumpResult:
+# ... (Implementierung)</code></pre>
+<h3 id="3-beschreibung">3. Beschreibung</h3>
+<p>Diese Funktion liest ein ZIP-Archiv an der angegebenen <code>zip_path</code> und extrahiert die relevanten Dateien. Sie wendet spezifische Filter an, um nur Code-Dateien zu extrahieren und andere Dateien (wie Dokumentationen oder Konfigurationsdateien) zu kategorisieren.</p>
+<h3 id="4-parameter">4. Parameter</h3>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Pflicht</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>zip_path</code></td>
+<td><code>Path</code></td>
+<td>Ja</td>
+<td>Der vollständige Pfad zum zu verarbeitenden ZIP-Archiv.</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>DumpConfig</code></td>
+<td>Nein</td>
+<td>Eine Konfigurationsstruktur, die Regeln für das Ignorieren von Pfaden und die Identifizierung von Code-Dateien definiert. Standardmäßig wird die globale <code>CONFIG</code> verwendet.</td>
+</tr>
+<tr>
+<td><code>output_path</code></td>
+<td>`Path</td>
+<td>None`</td>
+<td>Nein</td>
+<td>Optionaler Pfad für die Ausgabe des Dump-Ergebnisses. Wenn angegeben, wird der Name des Zielpfads als Basis für den Output-Namen verwendet. Wenn <code>None</code>, wird kein spezifischer Output-Name generiert.</td>
+</tr>
+</tbody></table>
+<h3 id="5-r-ckgabe-return-value">5. Rückgabe (Return Value)</h3>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DumpResult</code></td>
+<td>Eine Instanz der Klasse <code>DumpResult</code>, die die Ergebnisse der Analyse enthält.</td>
+</tr>
+</tbody></table>
+<p>**Struktur von <code>DumpResult</code>:**</p>
+<ul>
+<li><code>source_name</code>: Der Stammname des ZIP-Archivs (ohne die <code>.zip</code>-Erweiterung).</li>
+<li><code>source_kind</code>: Der Typ der Quelle (<code>&quot;zip&quot;</code>).</li>
+<li><code>source_path</code>: Der vollständige Pfad zum ursprünglichen ZIP-Archiv (als String).</li>
+<li><code>entries</code>: Eine Liste von <code>DumpEntry</code>-Objekten, die die erfolgreich identifizierten Code-Dateien enthalten.</li>
+<li><code>ignored_paths</code>: Eine Liste von relativen Pfaden, die aufgrund der Konfiguration ignoriert wurden.</li>
+<li><code>non_code_paths</code>: Eine Liste von relativen Pfaden, die als nicht-Code-Dateien klassifiziert wurden.</li>
+</ul>
+<h3 id="6-funktionsweise-algorithmus">6. Funktionsweise (Algorithmus)</h3>
+<ol>
+<li><strong>Initialisierung:</strong></li>
+</ol>
+<ul>
+<li>Eine leere Liste <code>entries</code> wird initialisiert, um die gefundenen Code-Dateien zu speichern.</li>
+<li>Zwei Listen, <code>ignored_paths</code> und <code>non_code_paths</code>, werden initialisiert, um die Kategorisierung zu speichern.</li>
+<li>Der Name des Ausgabe-Pfads (<code>output_name</code>) wird basierend auf <code>output_path</code> ermittelt.</li>
+</ul>
+<ol>
+<li><strong>Archiv-Lesevorgang:</strong></li>
+</ol>
+<ul>
+<li>Das ZIP-Archiv wird im Modus <code>r</code> (read) geöffnet.</li>
+</ul>
+<ol>
+<li><strong>Dateien-Durchlauf:</strong></li>
+</ol>
+<ul>
+<li>Alle Elemente (<code>infolist()</code>) des Archivs werden durchlaufen.</li>
+<li><strong>Filter 1 (Nicht-Verzeichnisse):</strong> Nur Dateien (<code>not info.is_dir()</code>) werden in die Liste <code>files</code> aufgenommen.</li>
+<li><strong>Sortierung:</strong> Die Dateien werden nach ihrem relativen Pfad (case-insensitive) sortiert, um eine konsistente Verarbeitung zu gewährleisten.</li>
+</ul>
+<ol>
+<li><strong>Einzelne Datei-Verarbeitung:</strong></li>
+</ol>
+<ul>
+<li>Für jede Datei wird der relative Pfad (<code>rel_path</code>) extrahiert (Windows-Backslashes werden auf Unix-Forward Slashes umgewandelt und Leerzeichen entfernt).</li>
+<li><strong>Filter 2 (Ignorieren):</strong> Es wird geprüft, ob <code>is_ignored(rel_path, config, output_path=output_name)</code> wahr ist. Wenn ja, wird der Pfad zu <code>ignored_paths</code> hinzugefügt, und die Verarbeitung dieser Datei wird beendet (<code>continue</code>).</li>
+<li><strong>Filter 3 (Code-Identifikation):</strong> Es wird geprüft, ob <code>is_code_file(rel_path, config)</code> wahr ist. Wenn nein, wird der Pfad zu <code>non_code_paths</code> hinzugefügt, und die Verarbeitung dieser Datei wird beendet (<code>continue</code>).</li>
+<li><strong>Erfassung:</strong> Wenn die Datei weder ignoriert noch als nicht-Code-Datei identifiziert wurde, wird ein <code>_entry_from_zip</code>-Objekt erstellt und zur Liste <code>entries</code> hinzugefügt.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion gibt die finalisierte <code>DumpResult</code>-Instanz zurück.</li>
+</ul>
+<h3 id="7-abh-ngigkeiten">7. Abhängigkeiten</h3>
+<ul>
+<li><code>pathlib.Path</code>: Für die Handhabung von Dateipfaden.</li>
+<li><code>zipfile.ZipFile</code>: Für die Arbeit mit ZIP-Archiven.</li>
+<li><code>DumpConfig</code>: Eine definierte Konfigurationsklasse/Struktur.</li>
+<li><code>DumpEntry</code>: Eine definierte Klasse/Struktur für die erstellten Einträge.</li>
+<li><code>is_ignored(rel_path, config, output_path)</code>: Eine externe Helper-Funktion zur Ignorierregeln.</li>
+<li><code>is_code_file(rel_path, config)</code>: Eine externe Helper-Funktion zur Klassifizierung von Code-Dateien.</li>
+<li><code>_entry_from_zip(archive, info, config)</code>: Eine interne Helper-Funktion zur Konvertierung der ZIP-Info in ein <code>DumpEntry</code>-Objekt.</li>
+</ul>
+<h3 id="8-anwendungsf-lle">8. Anwendungsfälle</h3>
+<ul>
+<li><strong>Code-Audit:</strong> Systematische Extraktion aller Quellcode-Dateien aus einem Projekt-ZIP-Archiv zur schnellen Analyse.</li>
+<li><strong>Archiv-Cleanup:</strong> Identifizierung und Trennung von Code-Dateien von Metadaten oder Dokumentationsdateien innerhalb eines Archivs.</li>
+<li><strong>Konfigurationsanalyse:</strong> Spezifische Filterung von Dateien, die für die Analyse irrelevant sind (z.B. Build-Artefakte oder temporäre Dateien).</li>
+</ul>
+<h2 id="technische-dokumentation-funktion-render-dump-markdown">Technische Dokumentation: Funktion <code>render_dump_markdown</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Funktion <code>render_dump_markdown</code> ist eine Methode, die das Ergebnis einer Code-Dump-Analyse (<code>DumpResult</code>) in ein formatiertes Markdown-String-Format umwandelt. Sie dient dazu, die Ergebnisse der Analyse lesbar und strukturiert darzustellen, ideal für Berichte oder Dokumentationen.</p>
+<h3 id="2-signatur">2. Signatur</h3>
+<pre><code class="language-python">def render_dump_markdown(result: DumpResult, *, config: DumpConfig = CONFIG) -&gt; str:</code></pre>
+<p><strong>Parameter:</strong></p>
+<ul>
+<li>**<code>result: DumpResult</code>**: Das Ergebnis der Code-Dump-Analyse. Dieses Objekt enthält Metadaten über die Quelle, die gefundenen Dateien, ignorierte Pfade und andere relevante Informationen.</li>
+<li>**<code>config: DumpConfig = CONFIG</code> (Optional)**: Eine Konfigurationsstruktur, die spezifische Formatierungsdetails steuert (z.B. Profilname, maximale Dateigröße, Limitierungen für die Zusammenfassung ignorierter Pfade). Standardmäßig wird die globale Konfiguration <code>CONFIG</code> verwendet.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>str</code>**: Ein zusammenhängender String im Markdown-Format, der die strukturierte Darstellung des Code-Dumps enthält.</li>
+</ul>
+<h3 id="3-funktionsbeschreibung">3. Funktionsbeschreibung</h3>
+<p>Die Funktion konstruiert einen Markdown-String, der folgende Hauptabschnitte enthält:</p>
+<ol>
+<li><strong>Titel und Metadaten:</strong> Eine Überschrift mit dem Namen der Quelle und eine Zusammenfassung der Analyseparameter (Quelle, Typ, Profil, Anzahl der Dateien, Ignorierte Pfade etc.).</li>
+<li><strong>Ignorierte Bereiche (Optional):</strong> Wenn <code>result.ignored_paths</code> nicht leer ist, wird ein Abschnitt für ignorierte Pfade erstellt, basierend auf der Konfiguration (<code>config.skipped_preview_limit</code>).</li>
+<li><strong>Projektstruktur:</strong> Eine Darstellung des Dateisystems (Baumstruktur) der gefundenen Dateien, generiert mithilfe der Funktion <code>generate_tree</code>.</li>
+<li><strong>Dateien:</strong> Eine detaillierte Auflistung aller gefundenen Dateien. Für jede Datei werden folgende Informationen angezeigt:</li>
+</ol>
+<ul>
+<li>Pfad (<code>entry.path</code>)</li>
+<li>Sprache (<code>entry.language</code>)</li>
+<li>Größe (<code>entry.size</code>)</li>
+<li>Status (<code>entry.status</code>)</li>
+<li>Der eigentliche Code-Inhalt, formatiert in einem Code-Block, der der Sprache (<code>entry.language</code>) entspricht.</li>
+</ul>
+<h3 id="4-abh-ngigkeiten-und-interne-logik">4. Abhängigkeiten und interne Logik</h3>
+<p>Die Funktion verlässt sich auf folgende interne Komponenten:</p>
+<ul>
+<li>**<code>_summarize_paths(result.ignored_paths, config=config)</code>**: Eine interne Funktion, die die ignorierten Pfade zusammenfasst, um die Anzahl der Dateien pro Label zu ermitteln.</li>
+<li>**<code>generate_tree(...)</code>**: Eine interne Funktion, die eine Baumstruktur (Tree View) aus einer Liste von Pfaden generiert.</li>
+</ul>
+<h3 id="5-datenfluss-und-logikschritte">5. Datenfluss und Logikschritte</h3>
+<ol>
+<li><strong>Initialisierung:</strong> Eine Liste (<code>lines</code>) wird mit den statischen Header-Informationen (Titel, Übersicht) gefüllt.</li>
+<li><strong>Ignorierte Pfade Verarbeitung:</strong></li>
+</ol>
+<ul>
+<li>Prüft, ob <code>result.ignored_paths</code> existiert.</li>
+<li>Wenn ja, fügt die Überschriften für &quot;Ignorierte Bereiche&quot; hinzu.</li>
+<li>Iteriert über die zusammengefassten ignorierten Pfade und fügt eine Liste von Einträgen hinzu.</li>
+</ul>
+<ol>
+<li><strong>Projektstruktur Generierung:</strong></li>
+</ol>
+<ul>
+<li>Fügt die Überschrift &quot;Projektstruktur&quot; hinzu.</li>
+<li>Fügt einen Text-Code-Block (<code> </code>`<code>text </code>) ein.</li>
+<li>Fügt das Ergebnis von <code>generate_tree</code> ein (oder eine Standardnachricht, falls keine Dateien gefunden wurden).</li>
+<li>Schließt den Text-Code-Block.</li>
+</ul>
+<ol>
+<li><strong>Dateien Auflisten:</strong></li>
+</ol>
+<ul>
+<li>Iteriert über alle Einträge in <code>result.entries</code>.</li>
+<li>Für jeden Eintrag wird ein Abschnitt (<code>### {entry.path}</code>) erstellt.</li>
+<li>Die Metadaten (Sprache, Größe, Status) werden aufgelistet.</li>
+<li>Der Code-Inhalt wird in einem entsprechenden Code-Block (<code> </code>`<code>language </code>) eingefügt.</li>
+</ul>
+<ol>
+<li><strong>Finalisierung:</strong> Alle erstellten Zeilen werden durch einen Zeilenumbruch (<code>\n</code>) verbunden und die resultierende Zeichenkette wird bereinigt (<code>.rstrip()</code>) und mit einem abschließenden Zeilenumbruch beendet.</li>
+</ol>
+<h3 id="6-randbedingungen-und-besonderheiten">6. Randbedingungen und Besonderheiten</h3>
+<ul>
+<li><strong>Konfigurationsabhängigkeit:</strong> Die Darstellung von ignorierten Pfaden wird durch <code>config.skipped_preview_limit</code> begrenzt.</li>
+<li><strong>Code-Block-Formatierung:</strong> Die Sprache des Code-Blocks wird dynamisch aus <code>entry.language</code> bestimmt, was eine sprachspezifische Syntaxhervorhebung ermöglicht.</li>
+<li><strong>Fehlende Dateien:</strong> Wenn <code>result.entries</code> leer ist, wird stattdessen eine Platzhalternachricht (<code>[keine passenden Dateien gefunden]</code>) im Baum-Abschnitt angezeigt.</li>
+</ul>
+<h3 id="7-nutzungsszenario">7. Nutzungsszenario</h3>
+<p>Diese Funktion wird typischerweise aufgerufen, wenn eine Analyse abgeschlossen ist und die Rohdaten (die Dump-Ergebnisse) in ein benutzerfreundliches, lesbares Dokument umgewandelt werden sollen, beispielsweise für die Anzeige in einer Web-Oberfläche oder die Erstellung eines finalen Berichts.</p>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Dokumentation beschreibt die Funktion <code>_entry_from_path</code> aus der Datei <code>codedump_tools.py</code>. Diese Funktion ist verantwortlich für die Verarbeitung einer Datei basierend auf einem gegebenen Pfad, der Größe der Datei und den Konfigurationsparametern für das Dump-Verfahren. Sie prüft zuerst, ob die Datei die maximale erlaubte Größe überschreitet, und versucht anschließend, den Inhalt der Datei zu lesen, falls die Größe akzeptabel ist.</p>
+<h2 id="funktion-entry-from-path">Funktion: <code>_entry_from_path</code></h2>
+<p><strong>Beschreibung:</strong> Diese interne Funktion liest den Inhalt einer Datei, prüft deren Größe gegen eine Konfiguration und erstellt ein <code>DumpEntry</code> Objekt, das den Prozessstatus (erfolgreich, übersprungen wegen Größe, oder Fehler beim Lesen) dokumentiert. <strong>Signatur:</strong></p>
+<pre><code class="language-python">def _entry_from_path(path: Path, relative_path: str, config: DumpConfig) -&gt; DumpEntry:</code></pre>
+<p><strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>Path</code></td>
+<td>Der vollständige Pfad zur Datei, die verarbeitet werden soll.</td>
+</tr>
+<tr>
+<td><code>relative_path</code></td>
+<td><code>str</code></td>
+<td>Der relative Pfad, der in der Dump-Ergebnisseite angezeigt werden soll.</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>DumpConfig</code></td>
+<td>Eine Konfigurationsstruktur, die Parameter wie <code>max_file_size</code> enthält.</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DumpEntry</code></td>
+<td>Ein Objekt, das die Ergebnisse der Verarbeitung (Pfad, Sprache, Größe, Status und Inhalt) speichert.</td>
+</tr>
+</tbody></table>
+<p><strong>Logik und Verhalten:</strong></p>
+<ol>
+<li><strong>Größenprüfung:</strong></li>
+</ol>
+<ul>
+<li>Die aktuelle Dateigröße (<code>size</code>) wird mithilfe von <code>path.stat().st_size</code> ermittelt.</li>
+<li><strong>Bedingung:</strong> Wenn die <code>size</code> größer ist als der Wert von <code>config.max_file_size</code>, wird die Funktion sofort einen <code>DumpEntry</code> mit dem Status <code>&quot;skipped-too-large&quot;</code> zurückgeben.</li>
+</ul>
+<ol>
+<li><strong>Dateilese-Versuch:</strong></li>
+</ol>
+<ul>
+<li>Falls die Datei die Größenbeschränkung nicht überschreitet, wird versucht, den gesamten Inhalt der Datei in Bytes zu lesen (<code>path.read_bytes()</code>).</li>
+<li><strong>Fehlerbehandlung (Lesefehler):</strong> Falls ein Fehler beim Lesen der Datei auftritt (z.B. Berechtigsprobleme, Datei nicht erreichbar), wird ein <code>DumpEntry</code> mit dem Status <code>&quot;read-error&quot;</code> zurückgegeben, der den spezifischen Fehler (<code>exc</code>) dokumentiert.</li>
+</ul>
+<ol>
+<li><strong>Erfolgreiche Verarbeitung:</strong></li>
+</ol>
+<ul>
+<li>Wenn das Lesen der Datei erfolgreich ist, wird die Funktion zur internen Hilfsfunktion <code>_entry_from_bytes</code> delegiert, um den eigentlichen Dump-Eintrag zu erstellen.</li>
+<p><strong>Abhängigkeiten:</strong></p>
+<li><code>Path</code> (von <code>pathlib</code>)</li>
+<li><code>DumpConfig</code> (eine definierte Konfigurationsklasse/Struktur)</li>
+<li><code>detect_language(relative_path)</code> (eine externe Funktion zur Sprachdetektion)</li>
+<li><code>_entry_from_bytes(...)</code> (eine interne Funktion, die den eigentlichen Inhalt verarbeitet)</li>
+</ul>
+<h2 id="beispiel-workflow">Beispiel-Workflow</h2>
+<ol>
+<li><strong>Input:</strong> Ein Pfad zu einer Datei, eine Konfiguration mit <code>max_file_size=102400</code> Bytes.</li>
+<li><strong>Schritt 1:</strong> Die Größe der Datei wird ermittelt.</li>
+<li><strong>Prüfung:</strong> Ist die Größe $&gt; 102400$ Bytes?</li>
+</ol>
+<ul>
+<li><strong>JA:</strong> Rückgabe: <code>status=&quot;skipped-too-large&quot;</code>.</li>
+<li><strong>NEIN:</strong> Versuche, die Datei zu lesen.</li>
+</ul>
+<ol>
+<li><strong>Lesevorgang:</strong> Wenn das Lesen fehlschlägt, Rückgabe: <code>status=&quot;read-error&quot;</code>.</li>
+<li><strong>Erfolg:</strong> Wenn das Lesen erfolgreich ist, wird der Inhalt verarbeitet und ein <code>DumpEntry</code> mit dem korrekten Status zurückgegeben.</li>
+<p>--- <em>Diese Dokumentation basiert auf der Analyse des bereitgestellten Codeausschnitts und der impliziten Funktionsweise der beteiligten Komponenten.</em></p>
+</ol>
+<h2 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h2>
+<h3 id="bersicht">Übersicht</h3>
+<p>Diese Dokumentation beschreibt die Funktion <code>_entry_from_zip</code> aus der Datei <code>codedump_tools.py</code>. Diese Funktion ist Teil eines größeren Systems, das wahrscheinlich ZIP-Archive analysiert, um bestimmte Dateien oder Inhalte zu extrahieren oder zu dokumentieren (wahrscheinlich im Kontext eines &quot;Code Dump&quot;-Tools).</p>
+<h3 id="funktion-entry-from-zip">Funktion: <code>_entry_from_zip</code></h3>
+<p><strong>Zweck:</strong> Diese interne Funktion ist dafür verantwortlich, eine einzelne Datei innerhalb eines <code>zipfile.ZipFile</code>-Archivs zu verarbeiten. Sie prüft die Dateigröße, behandelt mögliche Lesefehler und leitet die Rohdaten der Datei an eine nachfolgende Funktion (<code>_entry_from_bytes</code>) weiter, falls alle Prüfungen erfolgreich sind. <strong>Signaturen:</strong></p>
+<pre><code class="language-python">def _entry_from_zip(archive: zipfile.ZipFile, info: zipfile.ZipInfo, config: DumpConfig) -&gt; DumpEntry:
+# ... Implementierung ...</code></pre>
+<p><strong>Parameter:</strong></p>
+<table><thead><tr>
+<th>Parameter</th>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>archive</code></td>
+<td><code>zipfile.ZipFile</code></td>
+<td>Das offene ZIP-Archiv-Objekt, aus dem die Datei gelesen werden soll.</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>zipfile.ZipInfo</code></td>
+<td>Informationen über die spezifische Datei innerhalb des ZIP-Archivs (z.B. Name, Größe).</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>DumpConfig</code></td>
+<td>Eine Konfigurationsstruktur, die globale Parameter für die Verarbeitung (z.B. <code>max_file_size</code>) enthält.</td>
+</tr>
+</tbody></table>
+<p><strong>Rückgabe:</strong></p>
+<table><thead><tr>
+<th>Typ</th>
+<th>Beschreibung</th>
+</tr></thead><tbody>
+<tr>
+<td><code>DumpEntry</code></td>
+<td>Ein Objekt, das die Ergebnisse der Verarbeitung der Datei zusammenfasst (Pfad, Sprache, Größe, Status und Inhalt/Fehlermeldung).</td>
+</tr>
+</tbody></table>
+<p><strong>Logik und Verhalten:</strong></p>
+<ol>
+<li><strong>Pfadbereinigung:</strong></li>
+</ol>
+<ul>
+<li>Der <code>info.filename</code> wird bereinigt, indem Backslashes (<code>\</code>) durch Slashes (<code>/</code>) ersetzt und führende/ende Slashes entfernt (<code>strip(&quot;/&quot;)</code>). Dies stellt sicher, dass ein konsistenter, Unix-ähnlicher Pfad für die interne Verarbeitung verwendet wird.</li>
+</ul>
+<ol>
+<li><strong>Größenprüfung (Size Check):</strong></li>
+</ol>
+<ul>
+<li>Die Größe der Datei (<code>info.file_size</code>) wird mit dem maximal zulässigen Dateigrößenlimit (<code>config.max_file_size</code>) verglichen.</li>
+<li><strong>Wenn die Datei zu groß ist:</strong> Die Funktion gibt sofort eine <code>DumpEntry</code> zurück mit dem Status <code>&quot;skipped-too-large&quot;</code> und einer Meldung über die Übersprünge.</li>
+</ul>
+<ol>
+<li><strong>Dateileseversuch (File Reading):</strong></li>
+</ol>
+<ul>
+<li><strong>Wenn die Größe akzeptabel ist:</strong> Es wird versucht, die Datei im Archiv zu öffnen und den gesamten Inhalt in eine Bytes-Variable (<code>raw</code>) zu lesen (<code>archive.open(info)</code>).</li>
+<li><strong>Fehlerbehandlung (Exception Handling):</strong></li>
+<li>Falls ein Fehler beim Öffnen oder Lesen der Datei auftritt (z.B. Korruptes Archiv, Zugriffsprobleme), wird eine <code>DumpEntry</code> zurückgegeben mit dem Status <code>&quot;read-error&quot;</code> und einer detaillierten Fehlermeldung, die den verursachten <code>Exception</code> enthält.</li>
+</ul>
+<ol>
+<li><strong>Weiterleitung an nachfolgende Funktion:</strong></li>
+</ol>
+<ul>
+<li><strong>Bei erfolgreichem Lesen:</strong> Die Rohdaten (<code>raw</code>) und die Metadaten werden an die Funktion <code>_entry_from_bytes</code> weitergegeben, zusammen mit dem bereinigten Pfad, der ursprüngliche Dateigröße und die Konfiguration.</li>
+</ul>
+<ol>
+<li><strong>Rückgabe (Erfolg):</strong></li>
+</ol>
+<ul>
+<li>Wenn alle Schritte erfolgreich sind, wird das Ergebnis der Verarbeitung durch <code>_entry_from_bytes</code> zurückgegeben.</li>
+</ul>
+<h3 id="abh-ngigkeiten">Abhängigkeiten</h3>
+<ul>
+<li><code>zipfile</code> (Standardbibliothek)</li>
+<li><code>DumpConfig</code> (Custom Klasse)</li>
+<li><code>DumpEntry</code> (Custom Klasse)</li>
+<li><code>detect_language</code> (Externe Funktion, die die Sprache aus dem Pfad erkennt)</li>
+<li><code>_entry_from_bytes</code> (Interne Funktion, die die eigentliche Datenverarbeitung durchführt)</li>
+</ul>
+<h3 id="anwendungsf-lle">Anwendungsfälle</h3>
+<p>Diese Funktion wird verwendet, um sicherzustellen, dass nur Dateien mit akzeptabler Größe und die erfolgreich lesbaren Dateien aus einem ZIP-Archiv verarbeitet werden, bevor die eigentliche Analyse oder Extraktion der Datei beginnt.</p>
+<h3 id="verbesserungsvorschl-ge-optional">Verbesserungsvorschläge (Optional)</h3>
+<ol>
+<li><strong>Typ-Checking:</strong> Obwohl die Typen angegeben sind, könnte eine stärkere Typisierung (z.B. durch <code>typing.Annotated</code> oder spezifischere Interfaces) die Wartbarkeit verbessern.</li>
+<li><strong>Konfigurationsprüfung:</strong> Es könnte eine zusätzliche Prüfung erfolgen, um sicherzustellen, dass <code>config.max_file_size</code> eine gültige positive Zahl ist, bevor die Größenprüfung durchgeführt wird.</li>
+<li><strong>Fehler-Logging:</strong> Für eine produktive Anwendung wäre es ratsam, die zurückgegebenen <code>DumpEntry</code>-Objekte nicht nur zurückzugeben, sondern sie an ein zentrales Logging-System zu senden, um Fehler und Übersprünge zu protokollieren.</li>
+</ol>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält Funktionen zur Verarbeitung von Rohdaten (Bytes) aus einem Dump-Prozess, um diese in strukturierte <code>DumpEntry</code>-Objekte zu konvertieren und Pfade zu aggregieren. Die Hauptfunktionen behandeln die Erkennung von binären Daten und die Dekodierung von Textdaten.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-entry-from-bytes-relative-path-str-raw-bytes-size-int-config-dumpconfig-dumpentry">1. <code>_entry_from_bytes(relative_path: str, raw: bytes, size: int, config: DumpConfig) -&gt; DumpEntry</code></h3>
+<p>Diese interne Funktion ist verantwortlich für die Verarbeitung eines einzelnen Datenblocks (<code>raw</code> Bytes) basierend auf dem angegebenen Pfad und den Konfigurationsparametern. <strong>Zweck:</strong> Entscheidet, ob die Daten als binär oder als textbasiert behandelt werden sollen, und erstellt entsprechend eine <code>DumpEntry</code>. <strong>Parameter:</strong></p>
+<ul>
+<li><code>relative_path: str</code>: Der relative Pfad des analysierten Datenblocks.</li>
+<li><code>raw: bytes</code>: Die rohen Daten, die analysiert werden sollen.</li>
+<li><code>size: int</code>: Die Größe der analysierten Daten (wahrscheinlich in Bytes).</li>
+<li><code>config: DumpConfig</code>: Eine Konfigurationsstruktur, die die notwendigen Informationen für die Dekodierung (Encoding, Fallback-Encoding) bereitstellt.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Binäre Datenprüfung:</strong> Prüft, ob das Byte <code>b&quot;\x00&quot;</code> in den <code>raw</code>-Daten vorkommt.</li>
+</ol>
+<ul>
+<li><strong>Wenn ja:</strong> Die Datei wird als binär markiert (<code>status=&quot;skipped-binary&quot;</code>) und der Inhalt wird als Platzhalter (<code>&quot;[SKIPPED: binary content detected]&quot;</code>) gespeichert.</li>
+</ul>
+<ol>
+<li><strong>Text-Dekodierung:</strong> Wenn keine Null-Byte-Sequenz gefunden wird, versucht die Dekodierung der Bytes:</li>
+</ol>
+<ul>
+<li>Zuerst wird die Dekodierung mit <code>config.encoding</code> versucht.</li>
+<li>Falls eine <code>UnicodeDecodeError</code> auftritt, wird versucht, die Dekodierung mit <code>config.fallback_encoding</code> unter Verwendung von <code>errors=&quot;replace&quot;</code> durchzuführen.</li>
+</ul>
+<ol>
+<li><strong>Ergebnis:</strong> Ein <code>DumpEntry</code> wird zurückgegeben, wobei der Status entweder <code>&quot;included&quot;</code> (für erfolgreich dekodierten Text) oder <code>&quot;skipped-binary&quot;</code> (für binäre Daten) ist.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li><code>DumpEntry</code>: Ein Objekt, das den Pfad, die Sprache (erkannt durch <code>detect_language</code>), die Größe, den Status und den dekodierten Inhalt enthält.</li>
+<p>---</p>
+</ul>
+<h3 id="2-summarize-paths-paths-iterable-str-config-dumpconfig-list-tuple-str-int">2. <code>_summarize_paths(paths: Iterable[str], *, config: DumpConfig) -&gt; list[tuple[str, int]]</code></h3>
+<p>Diese Funktion aggregiert Pfade basierend auf einer Labeling-Strategie, um eine Zusammenfassung der Pfadverteilung zu erstellen. <strong>Zweck:</strong> Zählt die Häufigkeit verschiedener Labels für eine Liste von Pfaden und sortiert das Ergebnis nach Häufigkeit (absteigend) und dann alphabetisch (kleingeschrieben). <strong>Parameter:</strong></p>
+<ul>
+<li><code>paths: Iterable[str]</code>: Eine iterable Liste von Pfaden, die zusammengefasst werden sollen.</li>
+<li><code>config: DumpConfig</code>: Die Konfigurationsstruktur, die für die Bestimmung des Labels verwendet wird.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Initialisierung:</strong> Ein Dictionary <code>buckets</code> wird erstellt, um die Zählung der Labels zu speichern (<code>label: count</code>).</li>
+<li><strong>Labeling und Zählung:</strong> Iteriert über jeden <code>path</code> in <code>paths</code>:</li>
+</ol>
+<ul>
+<li>Rückt das Label (<code>label</code>) für den Pfad mithilfe von <code>_summary_label_for_path(path, config=config)</code> heraus.</li>
+<li>Incrementiert den Zähler für dieses Label in <code>buckets</code>.</li>
+</ul>
+<ol>
+<li><strong>Sortierung:</strong> Das resultierende Dictionary wird in eine Liste von Tupeln (<code>(label, count)</code>) umgewandelt und sortiert:</li>
+</ol>
+<ul>
+<li><strong>Primärer Sortierkriterium:</strong> Die Zählung (<code>item[1]</code>) in absteigender Reihenfolge ($-item[1]$).</li>
+<li><strong>Sekundärer Sortierkriterium:</strong> Der Label (<code>item[0]</code>) in alphabetischer Reihenfolge (kleingeschrieben, <code>item[0].casefold()</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[tuple[str, int]]</code>: Eine sortierte Liste von Tupeln, wobei jedes Tupel ein Label und die Anzahl der Pfade darstellt, die dieses Label aufweisen.</li>
+</ul>
+<h2 id="abh-ngigkeiten-und-notizen">Abhängigkeiten und Notizen</h2>
+<ul>
+<li>**<code>DumpConfig</code>:** Diese Klasse muss definiert sein und muss die notwendigen Attribute (<code>encoding</code>, <code>fallback_encoding</code>) für die Dekodierung bereitstellen.</li>
+<li>**<code>detect_language(relative_path: str) -&gt; str</code>:** Eine externe Funktion, die die Sprache eines Pfades erkennt.</li>
+<li>**<code>_summary_label_for_path(path: str, config: DumpConfig) -&gt; str</code>:** Eine externe Funktion, die entscheidet, welches Label für einen bestimmten Pfad verwendet werden soll.</li>
+<li>**<code>DumpEntry</code>:** Eine Klasse, die die Ergebnisse der Verarbeitung (Pfad, Inhalt, Status etc.) strukturiert.</li>
+</ul>
+<h2 id="verwendungshinweise">Verwendungshinweise</h2>
+<ul>
+<li>Die Funktionen <code>_entry_from_bytes</code> und <code>_summarize_paths</code> sind interne Hilfsfunktionen und sollten primär über die Hauptlogik des Dump-Prozesses aufgerufen werden.</li>
+<li>Stellen Sie sicher, dass <code>config</code> korrekt initialisiert ist, um fehlerhafte Dekodierungen zu vermeiden.</li>
+</ul>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Dokumentation beschreibt die Funktionen der Python-Datei <code>codedump_tools.py</code>, die spezifische Logik für die Verarbeitung und Benennung von Pfaden im Kontext eines &quot;Code Dump&quot;-Prozesses implementiert. Die Funktionen dienen dazu, Pfade zu normalisieren, zu ignorieren und den korrekten Ausgabe-/Referenznamen für einen Code Dump zu bestimmen.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-summary-label-for-path-path-str-config-dumpconfig-str">1. <code>_summary_label_for_path(path: str, *, config: DumpConfig) -&gt; str</code></h3>
+<p>Diese interne Funktion ist verantwortlich für die Generierung eines zusammenfassenden Labels oder Namens für einen gegebenen Pfad basierend auf einer Konfiguration (<code>DumpConfig</code>). <strong>Beschreibung:</strong> Sie normalisiert den Eingabepfad, prüft, ob er durch bestimmte Präfixe oder ignorierte Namen gekennzeichnet ist, und entscheidet basierend auf diesen Regeln, welchen Label-Namen zurückgegeben werden soll. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: str</code>: Der Pfad, für den ein Label generiert werden soll.</li>
+<li><code>config: DumpConfig</code>: Eine Konfigurationsstruktur, die Regeln für die Pfadverarbeitung enthält (z.B. <code>ignore_prefixes</code>, <code>ignore_names</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Das generierte Label oder der korrigierte Pfadbestandteil.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li><strong>Normalisierung:</strong> Der Pfad wird auf Unix-ähnliche Pfadzeichen (<code>/</code>) umgewandelt und führende/endende Leerzeichen entfernt.</li>
+<li><strong>Präfix-Prüfung:</strong> Es wird geprüft, ob der normalisierte Pfad mit den Präfixen in <code>config.ignore_prefixes</code> übereinstimmt oder diesen beginnt. Wenn ja, wird das entsprechende Präfix (normalisiert) als Label zurückgegeben.</li>
+<li><strong>Ignorierte Namen:</strong> Der Pfad wird in seine Teile zerlegt. Es wird geprüft, ob irgendein Teil des Pfades mit den Namen in <code>config.ignore_names</code> übereinstimmt. Wenn ja, wird der entsprechende Name aus der Konfiguration zurückgegeben.</li>
+<li><strong>Artefakt-Prüfung:</strong> Es wird geprüft, ob der normalisierte Pfad ein &quot;Dump-Artefakt&quot; ist (siehe <code>_is_dump_artifact</code>). Falls ja, wird <code>&quot;codedump-artifacts&quot;</code> zurückgegeben.</li>
+<li><strong>Standardfall:</strong> Wenn keine der oben genannten Bedingungen zutrifft, wird der erste Teil des normalisierten Pfades (<code>parts[0]</code>) oder, falls der Pfad leer ist, <code>&quot;.&quot;</code> zurückgegeben.</li>
+<p>---</p>
+</ol>
+<h3 id="2-is-dump-artifact-path-str-bool">2. <code>_is_dump_artifact(path: str) -&gt; bool</code></h3>
+<p>Diese interne Funktion prüft, ob ein gegebenen Pfad als ein generiertes Code-Dump-Artefakt identifiziert werden kann. <strong>Beschreibung:</strong> Sie prüft, ob der Name des Pfades bestimmte Muster aufweist, die auf ein Artefakt hindeuten. <strong>Parameter:</strong></p>
+<ul>
+<li><code>path: str</code>: Der Pfad, der überprüft werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn der Pfad ein Dump-Artefakt ist, <code>False</code> andernfalls.</li>
+<p><strong>Logikdetails:</strong></p>
+<li>Sie extrahiert den Namen des Pfades, konvertiert ihn in Kleinbuchstaben und prüft, ob er entweder mit <code>&quot;codedump&quot;</code> beginnt und mit <code>&quot;.md&quot;</code> endet, oder mit <code>&quot;.codedump.md&quot;</code> endet.</li>
+<p>---</p>
+</ul>
+<h3 id="3-is-directory-like-target-target-path-bool">3. <code>_is_directory_like_target(target: Path) -&gt; bool</code></h3>
+<p>Diese interne Funktion prüft, ob ein gegebenes <code>Path</code>-Objekt wie ein Verzeichnis aussieht. <strong>Beschreibung:</strong> Sie entscheidet, ob ein Zielpfad entweder ein tatsächliches Verzeichnis ist oder ob er als &quot;verzeichnisähnlich&quot; betrachtet werden soll (z.B. wenn er keine Endung hat). <strong>Parameter:</strong></p>
+<ul>
+<li><code>target: Path</code>: Das <code>Path</code>-Objekt zur Prüfung.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>bool</code>: <code>True</code>, wenn das Ziel ein Verzeichnis ist oder keine Endung hat.</li>
+<p><strong>Logikdetails:</strong></p>
+<li>Wenn <code>target.exists()</code> wahr ist, wird geprüft, ob <code>target.is_dir()</code> zurückgibt.</li>
+<li>Andernfalls wird geprüft, ob <code>target.suffix</code> leer ist (was oft auf ein Verzeichnis hindeutet, das noch keine Datei hat).</li>
+<p>---</p>
+</ul>
+<h3 id="4-default-output-path-target-str-path-path">4. <code>default_output_path(target: str | Path) -&gt; Path</code></h3>
+<p>Diese Funktion bestimmt den Standard-Ausgabepfad für einen gegebenen Zielpfad. <strong>Beschreibung:</strong> Sie konfiguriert die Endung des Pfades, basierend darauf, ob das Ziel ein Verzeichnis ist oder nicht. <strong>Parameter:</strong></p>
+<ul>
+<li><code>target: str | Path</code>: Der ursprüngliche Pfad, für den der Ausgabepfad bestimmt werden soll.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Der berechnete, standardmäßige Ausgabepfad.</li>
+<p><strong>Logikdetails:</strong></p>
+</ul>
+<ol>
+<li>Der Eingabepfad wird zu einem <code>Path</code>-Objekt konvertiert.</li>
+<li><strong>Verzeichnis-Logik:</strong> Wenn <code>_is_directory_like_target</code> zurückgibt (<code>True</code>), wird <code>.CODEDUMP.md</code> am Ende des Pfades angehängt.</li>
+<li><strong>Datei-Logik:</strong> Andernfalls (wenn es eine Datei oder ein spezifischer Pfad ist), wird die Endung durch <code>.codedump.md</code> ersetzt (<code>target.with_suffix(&quot;.codedump.md&quot;)</code>).</li>
+</ol>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>pathlib.Path</code>: Für die Manipulation von Pfaden.</li>
+</ul>
+<h2 id="zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</h2>
+<p>Diese Tools werden typischerweise verwendet, um:</p>
+<ol>
+<li><strong>Pfad-Mapping:</strong> Unstrukturierte oder komplexe Pfade in konsistente, lesbare Labels umzuwandeln (<code>_summary_label_for_path</code>).</li>
+<li><strong>Artefakt-Erkennung:</strong> Spezifische Dateien, die als Code-Dump-Artefakte markiert sind, zu erkennen (<code>_is_dump_artifact</code>).</li>
+<li><strong>Standardisierung:</strong> Sicherzustellen, dass alle Ausgaben (Dateien oder Verzeichnisse) einen konformen Namen erhalten (<code>default_output_path</code>).</li>
+</ol>
+<h1 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Dokumentation beschreibt die Funktionen im Modul <code>codedump_tools.py</code>, die für die Konfiguration und die Bestimmung der Ausgabepfade von Code-Dump-Operationen verwendet werden.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-config-for-profile-profile-str-max-file-size-int-none-none-dumpconfig">1. <code>config_for_profile(profile: str, *, max_file_size: int | None = None) -&gt; DumpConfig</code></h3>
+<p>Diese Funktion erstellt eine <code>DumpConfig</code>-Instanz basierend auf dem angegebenen Dump-Profil und optionalen Optionen für die maximale Dateigröße. <strong>Parameter:</strong></p>
+<ul>
+<li><code>profile: str</code>: Der gewünschte Dump-Profilname (z.B. <code>&quot;compact&quot;</code>, <code>&quot;deep&quot;</code>, oder ein anderer Name). Optional, wird standardmäßig <code>&quot;standard&quot;</code> verwendet.</li>
+<li><code>max_file_size: int | None = None</code>: Optionaler Wert für die maximale Dateigröße in Bytes. Wenn angegeben, wird die Konfiguration entsprechend angepasst.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>DumpConfig</code>: Eine Konfigurationsstruktur für die Dump-Operation.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li><strong>Profil-Normalisierung:</strong> Der eingegebene <code>profile</code> wird bereinigt (Entfernen von Leerzeichen, Kleinbuchstaben) und mit dem Standardwert <code>&quot;standard&quot;</code> verglichen.</li>
+<li><strong>Validierung:</strong> Es wird überprüft, ob der normalisierte Profilname in der globalen Liste <code>PROFILE_NAMES</code> enthalten ist. Bei unbekannten Profilen wird eine <code>ValueError</code> raised.</li>
+<li><strong>Konfiguration:</strong> Basierend auf dem normalisierten Profil werden spezifische Einstellungen für <code>ignore_prefixes</code>, <code>max_file_size</code> und <code>skipped_preview_limit</code> gesetzt:</li>
+</ol>
+<ul>
+<li>**<code>compact</code>:**</li>
+<li><code>ignore_prefixes</code>: <code>(&quot;data&quot;, &quot;docs&quot;, &quot;wiki&quot;, &quot;nova_school_server/tests&quot;)</code></li>
+<li><code>max_file_size</code>: <code>80_000</code> Bytes</li>
+<li><code>skipped_preview_limit</code>: <code>12</code></li>
+<li>**<code>deep</code>:**</li>
+<li><code>ignore_prefixes</code>: <code>(&quot;data&quot;,)</code></li>
+<li><code>max_file_size</code>: <code>350_000</code> Bytes</li>
+<li><code>skipped_preview_limit</code>: <code>60</code></li>
+<li><strong>Standard:</strong> Keine spezifischen Änderungen (außer der Profilzuweisung).</li>
+</ul>
+<ol>
+<li><strong>Maximale Dateigröße:</strong> Wenn <code>max_file_size</code> angegeben wird, wird der Wert auf mindestens <code>1</code> gesetzt und in eine Integer-Konvertierung umgewandelt, um <code>config.max_file_size</code> zu setzen.</li>
+<p>---</p>
+</ol>
+<h3 id="2-def-default-output-path-for-profile-target-str-path-profile-str-path">2. <code>def default_output_path_for_profile(target: str | Path, profile: str) -&gt; Path</code></h3>
+<p>Diese Funktion berechnet den Standard-Ausgabepfad für einen Code-Dump basierend auf dem Zielpfad und dem gewählten Profil. <strong>Parameter:</strong></p>
+<ul>
+<li><code>target: str | Path</code>: Der ursprüngliche Pfad, an dem der Dump erstellt werden soll.</li>
+<li><code>profile: str</code>: Das gewählte Dump-Profil (z.B. <code>&quot;standard&quot;</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Der berechnete, vollständige Ausgabe-Pfad.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li><strong>Profil-Normalisierung:</strong> Der <code>profile</code> wird normalisiert (Entfernen von Leerzeichen, Kleinbuchstaben).</li>
+<li><strong>Zielpfad-Analyse:</strong> Der <code>target</code> wird als <code>Path</code>-Objekt konvertiert und überprüft, ob es sich um ein Verzeichnis handelt (<code>_is_directory_like_target(target_path)</code>).</li>
+</ol>
+<ul>
+<li><strong>Wenn es ein Verzeichnis ist:</strong></li>
+<li>Wenn das Profil <code>&quot;standard&quot;</code> ist, wird der Pfad mit <code>CODEDUMP.md</code> am Ende hinzugefügt.</li>
+<li>Andere Profile fügen den Profilnamen als Suffix hinzu (z.B. <code>CODEDUMP.compact.md</code>).</li>
+<li>**Wenn das Profil <code>&quot;standard&quot;</code> ist (und es kein Verzeichnis ist):**</li>
+<li>Die Dateiendung wird auf <code>.codedump.md</code> geändert.</li>
+<li><strong>Andere Profile:</strong></li>
+<li>Der Pfad erhält den Namen des ursprünglichen Pfades (<code>target.stem</code>) und den Profilnamen als Suffix, gefolgt von <code>.codedump.md</code> (z.B. <code>mein_projekt.compact.codedump.md</code>).</li>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>DumpConfig</code>: Eine Klasse, die die Konfigurationsparameter für einen Code-Dump speichert (impliziert).</li>
+<li><code>Path</code>: Ein Objekt aus dem <code>pathlib</code>-Modul (impliziert).</li>
+<li><code>PROFILE_NAMES</code>: Eine globale Struktur (impliziert), die die validierten Dump-Profile speichert.</li>
+<li><code>_is_directory_like_target(target_path)</code>: Eine interne Hilfsfunktion zur Erkennung von Verzeichnissen (impliziert).</li>
+</ul>
+<h2 id="verwendungshinweise">Verwendungshinweise</h2>
+<ul>
+<li>**<code>config_for_profile</code>**: Sollte verwendet werden, um die spezifischen Parameter (wie <code>ignore_prefixes</code> oder <code>max_file_size</code>) für eine Dump-Operation vorzubereiten.</li>
+<li>**<code>default_output_path_for_profile</code>**: Sollte verwendet werden, um den korrekten Speicherort für die generierte Dump-Datei zu bestimmen.</li>
+</ul>
+<h2 id="technische-dokumentation-codedump-tools-py">Technische Dokumentation: <code>codedump_tools.py</code></h2>
+<h3 id="1-bersicht">1. Übersicht</h3>
+<p>Die Python-Skriptdatei <code>codedump_tools.py</code> implementiert eine Hauptfunktion (<code>main</code>), die dazu dient, einen Markdown-Code-Dump aus einem angegebenen Projektordner oder einer ZIP-Datei zu generieren. Das Tool bietet verschiedene Konfigurationsoptionen (Profile) und eine Anpassung der Dateigröße pro Datei.</p>
+<h3 id="2-funktion-main">2. Funktion: <code>main()</code></h3>
+<p>Die <code>main</code>-Funktion ist der zentrale Einstiegspunkt des Skripts. Sie verwendet das <code>argparse</code>-Modul, um Kommandozeilenargumente zu verarbeiten, um die notwendigen Eingaben und Konfigurationen für den Code-Dump zu definieren.</p>
+<h4 id="2-1-argumente">2.1. Argumente</h4>
+<p>Die Funktion definiert folgende Kommandozeilenargumente:</p>
+<table><thead><tr>
+<th>Argument</th>
+<th>Typ</th>
+<th>Pflicht</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>target</code></td>
+<td><code>str</code></td>
+<td>Ja</td>
+<td>Der Pfad zum Ziel (Projektordner oder ZIP-Datei).</td>
+<td><code>.</code> (aktueller Ordner)</td>
+</tr>
+<tr>
+<td><code>-o</code>, <code>--output</code></td>
+<td><code>str</code></td>
+<td>Nein</td>
+<td>Der gewünschte Zielpfad für die generierte Markdown-Datei.</td>
+<td><code>CODEDUMP.md</code> im Projektordner</td>
+</tr>
+<tr>
+<td><code>--profile</code></td>
+<td><code>str</code></td>
+<td>Nein</td>
+<td>Definiert das Dump-Profil, das die Struktur und Tiefe des Code-Dumps bestimmt.</td>
+<td><code>standard</code></td>
+</tr>
+<tr>
+<td><code>--max-file-size</code></td>
+<td><code>int</code></td>
+<td>Nein</td>
+<td>Maximale Dateigröße (in Bytes) pro Datei, die im Dump berücksichtigt werden soll.</td>
+<td><code>None</code></td>
+</tr>
+</tbody></table>
+<h4 id="2-2-abh-ngigkeiten-und-hilfskonstanten">2.2. Abhängigkeiten und Hilfskonstanten</h4>
+<ul>
+<li>**<code>argparse</code>**: Wird für die Verarbeitung der Kommandozeilenargumente verwendet.</li>
+<li>**<code>PROFILE_NAMES</code>**: Eine Konstante (nicht im bereitgestellten Code sichtbar, aber impliziert), die eine Liste der verfügbaren Dump-Profile definiert.</li>
+<li>**<code>config_for_profile(...)</code>**: Eine Funktion, die basierend auf dem gewählten <code>--profile</code> und <code>--max-file-size</code> die spezifische Konfigurationsstruktur für den Code-Dump erstellt.</li>
+<li>**<code>default_output_path_for_profile(...)</code>**: Eine Funktion, die den Standard-Ausgabepfad basierend auf dem <code>target</code> und dem <code>profile</code> bestimmt.</li>
+<li>**<code>dump_target_to_markdown(...)</code>**: Die Kernfunktion, die den eigentlichen Prozess des Parsens und Formatierens des Zielpfads in ein Markdown-Format durchführt.</li>
+</ul>
+<h4 id="2-3-funktionsablauf">2.3. Funktionsablauf</h4>
+<ol>
+<li><strong>Argumentenpar parsing</strong>: Das <code>argparse</code>-Modul wird initialisiert, um alle definierten Argumente zu erfassen.</li>
+<li><strong>Konfiguration</strong>: Die <code>config</code>-Struktur wird mithilfe von <code>config_for_profile</code> basierend auf dem <code>--profile</code> und <code>--max-file-size</code> erstellt.</li>
+<li><strong>Ausgabepfad Bestimmung</strong>: Der finale <code>output_path</code> wird bestimmt. Wenn <code>--output</code> angegeben ist, wird dieser verwendet; andernfalls wird <code>default_output_path_for_profile</code> aufgerufen, um den Standardpfad zu berechnen.</li>
+<li><strong>Zielpfad Vorbereitung</strong>: Der <code>target_path</code> wird als <code>Path</code>-Objekt erstellt.</li>
+<li><strong>Dump-Prozess</strong>: Die Funktion <code>dump_target_to_markdown</code> wird aufgerufen, um den eigentlichen Dump durchzuführen.</li>
+<li><strong>Ergebnis-Feedback</strong>: Das Skript gibt eine Erfolgsmeldung aus, die angibt, wie viele Dateien erfolgreich in das Markdown-Format konvertiert wurden (<code>Code-Dump geschrieben: [Anzahl der Dateien]</code>).</li>
+</ol>
+<h3 id="3-voraussetzungen">3. Voraussetzungen</h3>
+<ul>
+<li>Python 3.x</li>
+<li>Die notwendigen Bibliotheken (z.B. <code>pathlib</code> für Pfadmanipulation) müssen importiert sein (impliziert durch die Verwendung von <code>Path</code>).</li>
+</ul>
+<h3 id="4-beispiel-nutzung-konzeptuell">4. Beispiel-Nutzung (Konzeptuell)</h3>
+<p><strong>A. Standard-Dump im aktuellen Ordner:</strong></p>
+<pre><code class="language-bash">python codedump_tools.py</code></pre>
+<p>*(Erzeugt <code>CODEDUMP.md</code> im aktuellen Verzeichnis.)* <strong>B. Dump in einem spezifischen Ordner mit spezifischem Profil:</strong></p>
+<pre><code class="language-bash">python codedump_tools.py /pfad/zum/projekt --profile deep</code></pre>
+<p><strong>C. Dump in ein externes Verzeichnis mit benutzerdefiniertem Output:</strong></p>
+<pre><code class="language-bash">python codedump_tools.py /pfad/zum/projekt -o /pfad/zum/output/mein_dump.md --profile compact</code></pre>
+<p><strong>D. Begrenzung der Dateigröße:</strong></p>
+<pre><code class="language-bash">python codedump_tools.py . --max-file-size 102400  # Maximale 100 KB pro Datei</code></pre>
+<p>--- *Hinweis: Die genauen Implementierungen der Funktionen <code>config_for_profile</code>, <code>default_output_path_for_profile</code> und <code>dump_target_to_markdown</code> sind in diesem Ausschnitt nicht enthalten, werden aber als kritische Abhängigkeiten für die korrekte Funktionsweise des Skripts betrachtet.*</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-importe">2.1. Importe</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-datenstrukturen-dataclasses">2.2. Datenstrukturen (Dataclasses)</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionsweise-analyse-des-anfangs">3. Funktionsweise (Analyse des Anfangs)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-dateisystem-interaktion-pathlib-path">3.1. Dateisystem-Interaktion (`pathlib.Path`)</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-2-archivverarbeitung-zipfile">3.2. Archivverarbeitung (`zipfile`)</a></li>
+<li class="wiki-toc-link"><a href="#4-api-design-voraussicht">4. API-Design (Voraussicht)</a></li>
+<li class="wiki-toc-link"><a href="#5-anwendungsf-lle-beispielhaft">5. Anwendungsfälle (Beispielhaft)</a></li>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-klasse-dumpconfig">2. Klasse: `DumpConfig`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-attribute">2.1. Attribute</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-standardwerte-und-initialisierung">2.2. Standardwerte und Initialisierung</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-3-globale-konstanten">2.3. Globale Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#3-verwendung">3. Verwendung</a></li>
+<li class="wiki-toc-link"><a href="#4-design-berlegungen">4. Design-Überlegungen</a></li>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-klassen-und-datentypen">2. Klassen und Datentypen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-dumpentry">2.1. `DumpEntry`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-dumpresult">2.2. `DumpResult`</a></li>
+<li class="wiki-toc-link"><a href="#3-konfigurationsdaten">3. Konfigurationsdaten</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-1-language-map">3.1. `LANGUAGE_MAP`</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-funktion">4. Zusammenfassung der Funktion</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-is-ignored-path-str-config-dumpconfig-output-path-str-none-none-bool">1. `is_ignored(path: str, config: DumpConfig, *, output_path: str | None = None) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-def-is-code-file-path-str-config-dumpconfig-bool">2. `def is_code_file(path: str, config: DumpConfig) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-def-detect-language-path-str-str">3. `def detect_language(path: str) -&gt; str`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-konstanten">Abhängigkeiten und Konstanten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-codedump-tools-py">Technische Dokumentation: `codedump_tools.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktionen">2. Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-abh-ngigkeiten-und-notizen">3. Abhängigkeiten und Notizen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-zusammenfassung-der-nutzungsszenarien">4. Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-dump-target-to-markdown-funktion">Technische Dokumentation: `dump_target_to_markdown` Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-funktion-overview">1. Funktion overview</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-signatur">2. Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-parameter">3. Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-r-ckgabe-return-value">4. Rückgabe (Return Value)</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-logik-und-verhalten">5. Logik und Verhalten</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-abh-ngigkeiten">6. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-fehlerbehandlung">7. Fehlerbehandlung</a></li>
+<li class="wiki-toc-link level-3"><a href="#8-anwendungsf-lle">8. Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-collect-directory-dump-funktion">Technische Dokumentation: `collect_directory_dump` Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-funktion-collect-directory-dump">1. Funktion: `collect_directory_dump`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktionsbeschreibung-und-logik">2. Funktionsbeschreibung und Logik</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-abh-ngigkeiten-und-schl-sselkonzepte">3. Abhängigkeiten und Schlüsselkonzepte</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-anwendungsf-lle">4. Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-collect-zip-dump-funktion">Technische Dokumentation: `collect_zip_dump` Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion">2. Funktion</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-beschreibung">3. Beschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-parameter">4. Parameter</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-r-ckgabe-return-value">5. Rückgabe (Return Value)</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-funktionsweise-algorithmus">6. Funktionsweise (Algorithmus)</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-abh-ngigkeiten">7. Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#8-anwendungsf-lle">8. Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-funktion-render-dump-markdown">Technische Dokumentation: Funktion `render_dump_markdown`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-signatur">2. Signatur</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-funktionsbeschreibung">3. Funktionsbeschreibung</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-abh-ngigkeiten-und-interne-logik">4. Abhängigkeiten und interne Logik</a></li>
+<li class="wiki-toc-link level-3"><a href="#5-datenfluss-und-logikschritte">5. Datenfluss und Logikschritte</a></li>
+<li class="wiki-toc-link level-3"><a href="#6-randbedingungen-und-besonderheiten">6. Randbedingungen und Besonderheiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#7-nutzungsszenario">7. Nutzungsszenario</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktion-entry-from-path">Funktion: `_entry_from_path`</a></li>
+<li class="wiki-toc-link"><a href="#beispiel-workflow">Beispiel-Workflow</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-codedump-tools-py">Technische Dokumentation: `codedump_tools.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#funktion-entry-from-zip">Funktion: `_entry_from_zip`</a></li>
+<li class="wiki-toc-link level-3"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#anwendungsf-lle">Anwendungsfälle</a></li>
+<li class="wiki-toc-link level-3"><a href="#verbesserungsvorschl-ge-optional">Verbesserungsvorschläge (Optional)</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-entry-from-bytes-relative-path-str-raw-bytes-size-int-config-dumpconfig-dumpentry">1. `_entry_from_bytes(relative_path: str, raw: bytes, size: int, config: DumpConfig) -&gt; DumpEntry`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-summarize-paths-paths-iterable-str-config-dumpconfig-list-tuple-str-int">2. `_summarize_paths(paths: Iterable[str], *, config: DumpConfig) -&gt; list[tuple[str, int]]`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-notizen">Abhängigkeiten und Notizen</a></li>
+<li class="wiki-toc-link"><a href="#verwendungshinweise">Verwendungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-summary-label-for-path-path-str-config-dumpconfig-str">1. `_summary_label_for_path(path: str, *, config: DumpConfig) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-is-dump-artifact-path-str-bool">2. `_is_dump_artifact(path: str) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-is-directory-like-target-target-path-bool">3. `_is_directory_like_target(target: Path) -&gt; bool`</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-default-output-path-target-str-path-path">4. `default_output_path(target: str | Path) -&gt; Path`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-nutzungsszenarien">Zusammenfassung der Nutzungsszenarien</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-config-for-profile-profile-str-max-file-size-int-none-none-dumpconfig">1. `config_for_profile(profile: str, *, max_file_size: int | None = None) -&gt; DumpConfig`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-def-default-output-path-for-profile-target-str-path-profile-str-path">2. `def default_output_path_for_profile(target: str | Path, profile: str) -&gt; Path`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#verwendungshinweise">Verwendungshinweise</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-codedump-tools-py">Technische Dokumentation: `codedump_tools.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-bersicht">1. Übersicht</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-funktion-main">2. Funktion: `main()`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-voraussetzungen">3. Voraussetzungen</a></li>
+<li class="wiki-toc-link level-3"><a href="#4-beispiel-nutzung-konzeptuell">4. Beispiel-Nutzung (Konzeptuell)</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "codedump_tools.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

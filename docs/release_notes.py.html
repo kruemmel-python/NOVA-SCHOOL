@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `release_notes.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `release_notes.py`</h1>
+          <p>Source: release_notes.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>release_notes.py</code>) definiert die Datenstrukturen (Dataclasses) und die Logik zur Verwaltung von Versions- und Commit-Historien für Software-Releases. Sie dient dazu, Metadaten über Commits und veröffentlichte Versionen zu strukturieren und zu speichern.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei enthält drei Haupt-Dataclasses, die die verschiedenen Entitäten der Versionsverwaltung modellieren, sowie eine globale Konfiguration für Kategorien.</p>
+<h3 id="2-1-dataclasses">2.1. Dataclasses</h3>
+<h4 id="2-1-1-releasecommit">2.1.1. <code>ReleaseCommit</code></h4>
+<p>Diese Klasse repräsentiert einen einzelnen Git-Commit und speichert relevante Metadaten. <strong>Attribute:</strong></p>
+<ul>
+<li><code>full_hash: str</code>: Der vollständige Git-Commit-Hash.</li>
+<li><code>short_hash: str</code>: Eine verkürzte Version des Commit-Hashes.</li>
+<li><code>subject: str</code>: Die Beschreibung des Commits.</li>
+<li><code>date: str</code>: Das Datum des Commits (im String-Format).</li>
+<li><code>category: str</code>: Die Klassifizierung des Commits (z.B. &quot;Release&quot;, &quot;Fixed&quot;, &quot;Changed&quot;).</li>
+<p><strong>Merkmale:</strong></p>
+<li>Verwendet <code>slots=True</code> für eine effizientere Speicherung.</li>
+</ul>
+<h4 id="2-1-2-releaseversion">2.1.2. <code>ReleaseVersion</code></h4>
+<p>Diese Klasse fasst eine Reihe von Commits zusammen, die zu einer spezifischen veröffentlichten Version gehören. <strong>Attribute:</strong></p>
+<ul>
+<li><code>tag: str</code>: Der Versions-Tag (z.B. &quot;v1.0.0&quot;).</li>
+<li><code>date: str</code>: Das Datum der Veröffentlichung dieser Version.</li>
+<li><code>commits: list[ReleaseCommit]</code>: Eine Liste aller <code>ReleaseCommit</code>-Instanzen, die zu dieser Version gehören.</li>
+<p><strong>Merkmale:</strong></p>
+<li>Verwendet <code>slots=True</code>.</li>
+</ul>
+<h4 id="2-1-3-releasehistory">2.1.3. <code>ReleaseHistory</code></h4>
+<p>Diese Klasse dient als Container für die gesamte Historie des Projekts, trennt zwischen unpublizierten Änderungen und veröffentlichten Versionen. <strong>Attribute:</strong></p>
+<ul>
+<li><code>unreleased: list[ReleaseCommit]</code>: Eine Liste aller Commits, die noch nicht in einer offiziellen Version verpackt wurden.</li>
+<li><code>releases: list[ReleaseVersion]</code>: Eine Liste aller offiziell veröffentlichten Versionsobjekte.</li>
+<p><strong>Merkmale:</strong></p>
+<li>Verwendet <code>slots=True</code>.</li>
+</ul>
+<h3 id="2-2-konfiguration">2.2. Konfiguration</h3>
+<h4 id="category-rules"><code>_CATEGORY_RULES</code></h4>
+<p>Dies ist eine globale Konstante, die die Regeln definiert, wie Commits automatisch in Kategorien eingeordnet werden können. <strong>Typ:</strong> <code>tuple[tuple[str, tuple[str, ...]], ...]</code> <strong>Definition:</strong> Eine Tupel-Liste von Tupeln. Jedes Tupel definiert eine Kategorie und eine Liste von Schlüsselwörtern (Strings), die als Indikatoren für diese Kategorie dienen. <strong>Beispiel:</strong></p>
+<pre><code class="language-python">_CATEGORY_RULES = (
+(&quot;Release&quot;, (&quot;release&quot;, &quot;publish&quot;)),
+(&quot;Added&quot;, (&quot;add&quot;, &quot;create&quot;, &quot;introduce&quot;, &quot;implement&quot;, &quot;build&quot;)),
+(&quot;Fixed&quot;, (&quot;fix&quot;, &quot;correct&quot;, &quot;repair&quot;, &quot;harden&quot;, &quot;normalize&quot;, &quot;resolve&quot;)),
+(&quot;Changed&quot;, (&quot;update&quot;, &quot;change&quot;, &quot;adjust&quot;, &quot;refactor&quot;, &quot;rename&quot;, &quot;extend&quot;)),
+)</code></pre>
+<p><strong>Funktion:</strong> Diese Struktur wird implizit für die Klassifizierung von <code>ReleaseCommit.category</code> verwendet (obwohl die eigentliche Klassifizierungslogik in diesem Ausschnitt nicht vollständig implementiert ist, deutet die Struktur darauf hin).</p>
+<h2 id="3-funktionen">3. Funktionen</h2>
+<p>Der bereitgestellte Code enthält keine explizit definierten Funktionen, außer der Definition der Datenstrukturen und der Konfiguration. <strong>Hinweis:</strong> Die Zeile <code>def &lt;|end|&gt; </code> deutet darauf hin, dass hier die Implementierung der Hauptlogik (z.B. Funktionen zur Verarbeitung von Commits, zur Erstellung von Releases oder zur Klassifizierung) folgen wird.</p>
+<h2 id="4-zusammenfassung-der-nutzung">4. Zusammenfassung der Nutzung</h2>
+<p>Die Datei bietet eine robuste, datenorientierte Methode, um die Entwicklungshistorie (Commits) und die daraus resultierenden Versionen (Releases) strukturiert zu speichern und zu verwalten. Die Verwendung von <code>dataclasses</code> sorgt für eine klare, wartbare und typisierte Datenstruktur.</p>
+<h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Die Datei <code>release_notes.py</code> enthält Funktionen zur Generierung einer Versionshistorie basierend auf Git-Tags und Commits in einem angegebenen Pfad. Sie dient dazu, eine strukturierte Übersicht über frühere Releases und den aktuellen unreleaseden Zustand zu erstellen.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-build-release-history-base-path-path-releasehistory">1. <code>build_release_history(base_path: Path) -&gt; ReleaseHistory</code></h3>
+<p>Diese Hauptfunktion konstruiert die vollständige Versionshistorie, einschließlich vergangener Releases und des unreleaseden Bereichs. <strong>Beschreibung:</strong> Sie nimmt einen Pfad zu einem Git-Repository (<code>base_path</code>) entgegen und generiert eine <code>ReleaseHistory</code>-Instanz. Diese Instanz enthält eine Liste der offiziellen Releases (basierend auf Git-Tags) und eine Liste der Commits im unreleaseden Bereich. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der absolute oder relativ zu dem Skript definierte Pfad zum Git-Repository.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>ReleaseHistory</code>: Eine Klasse (nicht definiert in diesem Ausschnitt, aber impliziert), die die Versionshistorie enthält.</li>
+<p><strong>Schritte:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfad auflösen:</strong> Der bereitgestellte <code>base_path</code> wird aufgelöst (<code>resolve(strict=False)</code>).</li>
+<li><strong>Tags extrahieren:</strong> Ruft die Funktion <code>list_git_tags</code> auf, um alle Git-Tags im Repository zu finden.</li>
+<li><strong>Releases erstellen:</strong> Iteriert über die gefundenen Tags, um für jedes Tag eine <code>ReleaseVersion</code> zu erstellen.</li>
+</ol>
+<ul>
+<li>Für jedes Tag wird der <strong>Revisionenbereich</strong> (<code>previous_tag..tag</code> oder nur <code>tag</code> für das erste Tag) berechnet.</li>
+<li>Die Commits innerhalb dieses Bereichs werden über <code>list_git_commits</code> abgerufen.</li>
+<li>Eine <code>ReleaseVersion</code> wird mit dem Tag, dem Datum und den zugehörigen Commits erstellt und in die Liste <code>releases</code> hinzugefügt.</li>
+</ul>
+<ol>
+<li><strong>Unreleased-Bereich bestimmen:</strong> Identifiziert das neueste Tag und definiert den unreleaseden Bereich als <code>latest_tag..HEAD</code>.</li>
+<li><strong>Ergebnis zurückgeben:</strong> Gibt eine <code>ReleaseHistory</code> zurück, die den unreleaseden Bereich und die Liste der Releases enthält.</li>
+<p>---</p>
+</ol>
+<h3 id="2-list-git-tags-base-path-path-list-dict-str-str">2. <code>list_git_tags(base_path: Path) -&gt; list[dict[str, str]]</code></h3>
+<p>Diese Funktion führt einen Git-Befehl aus, um alle Git-Tags im Repository zu extrahieren. <strong>Beschreibung:</strong> Sie führt den Git-Befehl <code>git for-each-ref --sort=-creatordate --format=%(refname:strip=2)|%(creatordate:short) refs/tags</code> aus, um eine Liste von Tag-Namen und deren Erstellungsdaten zu erhalten. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Pfad zum Git-Repository.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>list[dict[str, str]]</code>: Eine Liste von Dictionaries, wobei jedes Dictionary den Schlüssel <code>&quot;tag&quot;</code> (der Tag-Name) und den Schlüssel <code>&quot;date&quot;</code> (das Datum der Erstellung) enthält.</li>
+<p><strong>Schritte:</strong></p>
+</ul>
+<ol>
+<li><strong>Git-Befehl ausführen:</strong> Führt den spezifischen Git-Befehl aus, um die Tag-Informationen zu generieren.</li>
+<li><strong>Ergebnis verarbeiten:</strong> Parset die Ausgabe des Git-Befehls Zeile für Zeile.</li>
+<li><strong>Daten extrahieren:</strong> Trennt den Tag-Namen und das Datum anhand des Trennzeichens (<code>|</code>) und speichert sie als Dictionary in der <code>tags</code>-Liste.</li>
+<li><strong>Rückgabe:</strong> Gibt die final bereinigte Liste der Tag-Informationen zurück.</li>
+<p>---</p>
+</ol>
+<h2 id="abh-ngigkeiten-und-konzepte">Abhängigkeiten und Konzepte</h2>
+<ul>
+<li>**<code>Path</code> (von <code>pathlib</code>):** Wird verwendet, um Dateipfade im Betriebssystem-unabhängig zu verwalten.</li>
+<li>**<code>ReleaseHistory</code> und <code>ReleaseVersion</code>:** Diese Klassen sind impliziert und dienen der Strukturierung der Ergebnisse.</li>
+<li>**<code>_run_git(...)</code>:** Eine interne oder externe Funktion, die den eigentlichen Git-Befehl ausführt und die Rohausgabe (String) zurückgibt.</li>
+<li>**<code>list_git_commits(...)</code>:** Eine interne Funktion, die Commits innerhalb eines angegebenen Revisionenbereichs abruft.</li>
+</ul>
+<h2 id="zusammenfassung-des-datenflusses">Zusammenfassung des Datenflusses</h2>
+<ol>
+<li>**<code>build_release_history</code>** startet den Prozess.</li>
+<li>Sie ruft **<code>list_git_tags</code>** auf, um die Struktur der Releases zu ermitteln.</li>
+<li>Basierend auf den Tags erstellt sie detaillierte **<code>ReleaseVersion</code>**-Objekte, indem sie Commits im jeweiligen Revisionenbereich abruft.</li>
+<li>Sie definiert den <strong>unreleaseden Bereich</strong> (<code>latest_tag..HEAD</code>).</li>
+<li>Sie fasst alle Ergebnisse in die finale **<code>ReleaseHistory</code>** zusammen.</li>
+</ol>
+<h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei (<code>release_notes.py</code>) enthält Funktionen zur automatisierten Extraktion und Kategorisierung von Git-Commits, um diese in ein strukturiertes Format für Release Notes zu konvertieren. Die Hauptfunktionen umfassen das Abrufen von Git-Historie und die Klassifizierung der Commit-Themen.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-list-git-commits-base-path-path-revision-range-str-list-releasecommit">1. <code>list_git_commits(base_path: Path, revision_range: str) -&gt; list[ReleaseCommit]</code></h3>
+<p>Diese Funktion führt den Git-Log aus einem angegebenen Pfad mit einer bestimmten Revisionspanage aus und parst die Ausgabe, um eine Liste von <code>ReleaseCommit</code>-Objekten zu erstellen. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>base_path: Path</code>**: Der lokale Pfad zum Git-Repository, aus dem die Commits abgerufen werden sollen.</li>
+<li>**<code>revision_range: str</code>**: Der Git-Revisionspanage (z.B. <code>HEAD~1</code>, <code>v1.0..HEAD</code>), die definiert, welche Commits abgerufen werden sollen.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li>Rufen die interne Funktion <code>_run_git</code> auf, um die Git-Historie basierend auf <code>base_path</code> und <code>revision_range</code> abzurufen.</li>
+<li>Die Git-Ausgabe wird in eine Liste von Zeilen aufgeteilt.</li>
+<li>Jede Zeile wird analysiert, um den vollständigen Hash, den kurzen Hash, das Datum und den Commit-Titel zu extrahieren.</li>
+<li>Ein <code>ReleaseCommit</code>-Objekt wird für jeden Commit erstellt, wobei der Commit-Titel mithilfe der Funktion <code>categorize_commit_subject</code> in eine Kategorie klassifiziert wird.</li>
+<li>Die Liste der erstellten <code>ReleaseCommit</code>-Objekte wird zurückgegeben.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li>Eine Liste von Objekten vom Typ <code>list[ReleaseCommit]</code>.</li>
+<p><strong>Abhängigkeiten:</strong></p>
+<li><code>_run_git()</code>: Eine interne Funktion, die die eigentliche Git-Befehlsausführung übernimmt.</li>
+<li><code>ReleaseCommit</code>: Eine Klasse, die die Struktur für ein einzelnes Commit darstellt.</li>
+<li><code>categorize_commit_subject()</code>: Die Funktion zur Themenklassifizierung.</li>
+<p>---</p>
+</ul>
+<h3 id="2-categorize-commit-subject-subject-str-str">2. <code>categorize_commit_subject(subject: str) -&gt; str</code></h3>
+<p>Diese Funktion analysiert den Titel eines Git-Commits und ordnet ihn einer vordefinierten Kategorie zu. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>subject: str</code>**: Der Titel des Git-Commits, der analysiert werden soll.</li>
+<p><strong>Beschreibung:</strong></p>
+</ul>
+<ol>
+<li><strong>Normalisierung:</strong> Der eingehende <code>subject</code> wird bereinigt:</li>
+</ol>
+<ul>
+<li>Alle Zeichen, die nicht alphanumerisch sind, werden durch Leerzeichen ersetzt.</li>
+<li>Der String wird kleingeschrieben (<code>.lower()</code>).</li>
+<li>Überflüssige Leerzeichen werden entfernt.</li>
+</ul>
+<ol>
+<li><strong>Erste Wort-Prüfung:</strong> Das erste Wort der normalisierten Zeichenkette wird extrahiert.</li>
+<li><strong>Kategorie-Prüfung (Erste Iteration):</strong> Die Funktion durchläuft die globale Konfiguration <code>_CATEGORY_RULES</code>. Wenn das erste Wort mit einem definierten Schlüsselwort in einer Kategorie übereinstimmt, wird diese Kategorie zurückgegeben.</li>
+<li><strong>Kategorie-Prüfung (Zweite Iteration):</strong> Falls die erste Prüfung fehlschlägt, wird erneut durch die <code>_CATEGORY_RULES</code> iteriert. Wenn <em>irgendein</em> Schlüsselwort aus einer Kategorie im gesamten normalisierten String vorkommt, wird diese Kategorie zurückgegeben.</li>
+<li><strong>Standardfall:</strong> Wenn keine der definierten Regeln zutrifft, wird die Kategorie <code>&quot;Changed&quot;</code> zurückgegeben.</li>
+<p><strong>Rückgabe:</strong></p>
+</ol>
+<ul>
+<li>Ein String, der die zugewiesene Kategorie darstellt (z.B. <code>&quot;Feature&quot;</code>, <code>&quot;Bugfix&quot;</code>, oder <code>&quot;Changed&quot;</code>).</li>
+<p><strong>Abhängigkeiten:</strong></p>
+<li><code>_CATEGORY_RULES</code>: Eine globale Struktur (wahrscheinlich ein Dictionary oder eine Liste von Tupeln), die die Regeln für die Commit-Kategorisierung definiert.</li>
+<li><code>re</code>: Das Python-RegExp-Modul zur Zeichenkettenmanipulation.</li>
+<p>---</p>
+</ul>
+<h2 id="strukturierte-datenmodelle-impliziert">Strukturierte Datenmodelle (Impliziert)</h2>
+<ul>
+<li>**<code>ReleaseCommit</code>**: Eine Klasse, die die Metadaten eines Git-Commits speichert (z.B. <code>full_hash</code>, <code>short_hash</code>, <code>subject</code>, <code>date</code>, <code>category</code>).</li>
+<li>**<code>_CATEGORY_RULES</code>**: Eine globale Konfiguration, die die Mapping-Regeln zwischen Commit-Themen und Kategorien definiert.</li>
+</ul>
+<h2 id="zusammenfassung-des-workflows">Zusammenfassung des Workflows</h2>
+<p>Der Prozess beginnt mit der Definition eines Git-Bereichs (<code>revision_range</code>) und der Suche nach den relevanten Commits (<code>list_git_commits</code>). Anschließend wird jeder identifizierte Commit analysiert, um seine Beschreibung zu extrahieren und ihn mithilfe von <code>categorize_commit_subject</code> in eine sinnvolle Kategorie einzuordnen, was die Grundlage für die Erstellung der Release Notes bildet.</p>
+<h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Die Datei <code>release_notes.py</code> enthält Funktionen zur automatischen Erstellung und Generierung von Versions-Changelogs basierend auf der Git-Historie eines Projekts. Sie nutzt eine Klasse <code>ReleaseHistory</code> (impliziert), um die notwendigen Daten zu verarbeiten und formatierte Markdown-Texte zu erzeugen.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="1-render-changelog-history-releasehistory-str">1. <code>render_changelog(history: ReleaseHistory) -&gt; str</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion generiert das vollständige Changelog-Dokument. Sie strukturiert das Dokument in Abschnitte für &quot;Unreleased&quot; und für jede veröffentlichte Version. <strong>Parameter:</strong></p>
+<ul>
+<li><code>history: ReleaseHistory</code>: Eine Instanz der Klasse <code>ReleaseHistory</code>, die die gesamte Git-Historie enthält.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der formatierte Markdown-String des gesamten Changelogs.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Initialisiert eine Liste von Zeilen für den Header und den &quot;Unreleased&quot;-Abschnitt.</li>
+<li>Fügt die Ergebnisse der Funktion <code>_render_commit_groups</code> für die &quot;Unreleased&quot;-Phase hinzu.</li>
+<li>Iteriert über alle <code>releases</code> in <code>history.releases</code>.</li>
+<li>Für jede Veröffentlichung fügt sie einen Abschnitt für den Tag und das Datum hinzu.</li>
+<li>Fügt die Ergebnisse der Funktion <code>_render_commit_groups</code> für die Commits dieser spezifischen Veröffentlichung hinzu.</li>
+<li>Fügt alle generierten Zeilen zusammen und gibt sie als zusammenhängenden String zurück.</li>
+</ol>
+<h3 id="2-render-release-notes-history-releasehistory-tag-str-str">2. <code>render_release_notes(history: ReleaseHistory, tag: str) -&gt; str</code></h3>
+<p><strong>Beschreibung:</strong> Diese Funktion generiert die spezifischen Notizen für eine einzelne, gegebene Versions-Tag. <strong>Parameter:</strong></p>
+<ul>
+<li><code>history: ReleaseHistory</code>: Eine Instanz der Klasse <code>ReleaseHistory</code>.</li>
+<li><code>tag: str</code>: Der spezifische Tag (z.B. <code>v1.0.0</code>), für den die Notizen generiert werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>str</code>: Der formatierte Markdown-String für die Release-Notizen.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li>Sucht in <code>history.releases</code> nach einem Eintrag, dessen <code>tag</code> mit dem übergebenen <code>tag</code> übereinstimmt.</li>
+<li><strong>Fehlerbehandlung:</strong> Wenn kein passender Tag gefunden wird, wirft sie eine <code>ValueError</code> mit der Fehlermeldung <code>&quot;unknown tag: {tag}&quot;</code>.</li>
+<li>Initialisiert die Zeilen für den Release-Header (Tag und Datum).</li>
+<li>Fügt die Ergebnisse der Funktion <code>_render_commit_groups</code> für die Commits dieser spezifischen Veröffentlichung hinzu.</li>
+<li>Gibt den zusammengefassten String zurück.</li>
+</ol>
+<h3 id="3-write-changelog-base-path-path-target-path-path-none-none-path">3. <code>write_changelog(base_path: Path, target_path: Path | None = None) -&gt; Path</code></h3>
+<p><strong>Beschreibung:</strong> Diese Hauptfunktion orchestriert den gesamten Prozess: baut die Historie, rendert das Changelog und schreibt das Ergebnis in eine Datei. <strong>Parameter:</strong></p>
+<ul>
+<li><code>base_path: Path</code>: Der Pfad zum Git-Repository oder zum Verzeichnis, aus dem die Historie abgeleitet werden soll.</li>
+<li><code>target_path: Path | None = None</code>: Optionaler Zielpfad für die Ausgabe. Wenn <code>None</code>, wird automatisch <code>CHANGELOG.md</code> im <code>base_path</code> erstellt.</li>
+<p><strong>Rückgabe:</strong></p>
+<li><code>Path</code>: Der vollständige Pfad zur erstellten oder überschriebenen Changelog-Datei.</li>
+<p><strong>Logik:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfadauflösung:</strong> Stellt sicher, dass <code>base_path</code> aufgelöst wird (<code>resolve(strict=False)</code>).</li>
+<li><strong>Historien-Erstellung:</strong> Ruft <code>build_release_history(base_path)</code> auf, um die <code>ReleaseHistory</code>-Instanz zu erstellen.</li>
+<li><strong>Ausgabe-Pfad-Bestimmung:</strong> Bestimmt den <code>output_path</code>. Wenn <code>target_path</code> angegeben ist, wird dieser verwendet; andernfalls wird <code>base_path / &quot;CHANGELOG.md&quot;</code> verwendet.</li>
+<li><strong>Rendern:</strong> Ruft <code>render_changelog(history)</code> auf, um den gesamten Inhalt zu generieren.</li>
+<li><strong>Schreiben:</strong> Schreibt den generierten String in die <code>output_path</code> mit der Kodierung <code>&quot;utf-8&quot;</code>.</li>
+<li>Gibt den finalen <code>output_path</code> zurück.</li>
+<p>---</p>
+</ol>
+<h2 id="abh-ngigkeiten-und-annahmen">Abhängigkeiten und Annahmen</h2>
+<ul>
+<li>**<code>ReleaseHistory</code>:** Eine Klasse, die die Struktur der Git-Historie (Unreleased, Releases, Commits) hält.</li>
+<li>**<code>_render_commit_groups(commits: list) -&gt; list[str]</code>:** Eine interne, nicht gezeigte Funktion, die die einzelnen Commits einer Version in eine formatierte Liste von Markdown-Zeilen umwandelt.</li>
+<li>**<code>build_release_history(base_path: Path) -&gt; ReleaseHistory</code>:** Eine externe Funktion, die die Git-Historie basierend auf dem gegebenen Pfad konstruiert.</li>
+<li>**<code>Path</code>:** Ein Typ aus der <code>pathlib</code>-Bibliothek, der für Pfadmanipulation verwendet wird.</li>
+</ul>
+<h2 id="nutzungsszenario">Nutzungsszenario</h2>
+<p>Um das Changelog zu erstellen, wird <code>write_changelog</code> aufgerufen:</p>
+<pre><code class="language-python">from pathlib import Path
+# Angenommen, ReleaseHistory und build_release_history sind definiert
+from release_notes import write_changelog
+repo_root = Path(&quot;/path/to/your/project&quot;)
+output_file = Path(&quot;/path/to/output/CHANGELOG.md&quot;)
+final_path = write_changelog(repo_root, target_path=output_file)
+print(f&quot;Changelog erfolgreich erstellt unter: {final_path}&quot;)</code></pre>
+<h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Die Datei <code>release_notes.py</code> enthält Funktionen, die für die automatische Erstellung von Versionshinweisen (Release Notes) basierend auf Git-Commit-Historien zuständig sind. Die Hauptfunktion <code>write_release_notes</code> orchestriert den gesamten Prozess: das Sammeln der Git-Historie, das Rendern der Commit-Gruppen und das Schreiben der finalen Notizen in eine Zieldatei.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="write-release-notes-base-path-path-tag-str-target-path-path-path"><code>write_release_notes(base_path: Path, tag: str, target_path: Path) -&gt; Path</code></h3>
+<p>Diese Hauptfunktion ist der zentrale Einstiegspunkt für die Erstellung der Release Notes. <strong>Zweck:</strong> Löst den gesamten Workflow aus:</p>
+<ol>
+<li>Bereinigt den Basis-Pfad.</li>
+<li>Ruft die Funktion <code>build_release_history</code> auf, um die notwendige Git-Historie zu erstellen.</li>
+<li>Bereinigt den Zielpfad.</li>
+<li>Ruft die Funktion <code>render_release_notes</code> auf, um die generierten Daten in einen Textstring umzuwandeln.</li>
+<li>Schreibt den resultierenden Text in die Zieldatei.</li>
+<p><strong>Parameter:</strong></p>
+</ol>
+<ul>
+<li>**<code>base_path: Path</code>**: Der Pfad zum Git-Repository (oder zum relevanten Verzeichnis), aus dem die Commit-Historie abgerufen werden soll.</li>
+<li>**<code>tag: str</code>**: Der Git-Tag, der für die aktuelle Release-Version verwendet wird (wird in den Release Notes verwendet).</li>
+<li>**<code>target_path: Path</code>**: Der vollständige Pfad, an dem die generierten Release Notes gespeichert werden sollen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>Path</code>**: Der vollständige Pfad zur erfolgreich erstellten Release Notes Datei.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Pfad-Resolvierung:</strong> <code>base_path</code> wird auf seinen absoluten Pfad normalisiert (<code>resolve(strict=False)</code>).</li>
+<li><strong>Historie-Erstellung:</strong> <code>build_release_history(base_path)</code> wird aufgerufen, um die notwendigen Commit-Daten zu sammeln.</li>
+<li><strong>Zielpfad-Resolvierung:</strong> <code>target_path</code> wird auf seinen absoluten Pfad normalisiert.</li>
+<li><strong>Rendern und Schreiben:</strong></li>
+</ol>
+<ul>
+<li><code>render_release_notes(history, tag)</code> wird aufgerufen, um den finalen Text zu generieren.</li>
+<li>Der Text wird in die Zieldatei geschrieben, wobei die Zeichenkodierung <code>utf-8</code> verwendet wird.</li>
+<p>---</p>
+</ul>
+<h3 id="render-commit-groups-commits-iterable-releasecommit-list-str"><code>_render_commit_groups(commits: Iterable[ReleaseCommit]) -&gt; list[str]</code></h3>
+<p>Diese interne Funktion ist für die Formatierung der Commit-Daten verantwortlich. <strong>Zweck:</strong> Gruppiert die eingehenden <code>ReleaseCommit</code>-Objekte nach ihrer Kategorie (z. B. &quot;Release&quot;, &quot;Added&quot;, &quot;Fixed&quot;, &quot;Changed&quot;) und formatiert diese Gruppen in eine lesbare Textliste. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>commits: Iterable[ReleaseCommit]</code>**: Eine iterable Sammlung von Commit-Objekten, die die Historie darstellen.</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>list[str]</code>**: Eine Liste von Strings, die den finalen, formatierten Inhalt der Release Notes darstellen.</li>
+<p><strong>Details:</strong></p>
+</ul>
+<ol>
+<li><strong>Gruppierung:</strong> Es wird ein Dictionary (<code>grouped</code>) verwendet, um Commits basierend auf ihrem <code>category</code>-Attribut zu speichern.</li>
+<li><strong>Fehlfall-Handling:</strong> Wenn keine Commits vorhanden sind, wird eine Meldung &quot;- Keine Eintraege.&quot; zurückgegeben.</li>
+<li><strong>Formatierung:</strong> Es werden die Kategorien (&quot;Release&quot;, &quot;Added&quot;, &quot;Fixed&quot;, &quot;Changed&quot;) sequenziell durchlaufen.</li>
+</ol>
+<ul>
+<li>Für jede Kategorie wird eine Überschrift (<code>### Kategorie</code>) und eine Liste der Commits mit ihrem Subject und Short Hash (<code>- Subject (hash)</code>) erstellt.</li>
+</ul>
+<ol>
+<li><strong>Sauberkeit:</strong> Am Ende wird sichergestellt, dass ein unnötiger leeres Ende (<code>lines[-1] == &quot;&quot;</code>) entfernt wird, falls die letzte Kategorie leer war.</li>
+<p>---</p>
+</ol>
+<h3 id="run-git-base-path-path-args-list-str-str"><code>_run_git(base_path: Path, args: list[str]) -&gt; str</code></h3>
+<p>Diese interne Funktion dient zur sicheren Ausführung von Git-Befehlen. <strong>Zweck:</strong> Führt einen spezifischen Git-Befehl (z. B. <code>git log</code>, <code>git rev-parse</code> etc.) im angegebenen Arbeitsverzeichnis aus und gibt die Standardausgabe zurück. <strong>Parameter:</strong></p>
+<ul>
+<li>**<code>base_path: Path</code>**: Das Verzeichnis, in dem der Git-Befehl ausgeführt werden soll.</li>
+<li>**<code>args: list[str]</code>**: Die Argumente, die an den Git-Befehl übergeben werden (z. B. <code>[&quot;log&quot;, &quot;--pretty=format:%s&quot;]</code>).</li>
+<p><strong>Rückgabe:</strong></p>
+<li>**<code>str</code>**: Die Standardausgabe (<code>stdout</code>) des Git-Befehls, bereinigt um unnötigen Whitespace.</li>
+<p><strong>Fehlerbehandlung:</strong></p>
+<li>**<code>RuntimeError</code>:** Wenn der Git-Befehl fehlschlägt (Return Code $\neq 0$), wird eine <code>RuntimeError</code> geworfen, die entweder die Fehlermeldung aus <code>stderr</code> oder eine generische Fehlermeldung enthält.</li>
+<p><strong>Details:</strong></p>
+<li><strong>Ausführung:</strong> Nutzt <code>subprocess.run</code> zur Synchronous-Ausführung.</li>
+<li><strong>Sicherheit:</strong> <code>check=False</code> wird gesetzt, damit die Funktion selbst nicht sofort abstürzt, sondern den Fehler über eine <code>RuntimeError</code> an den Aufrufer weitergibt.</li>
+<li><strong>Text-Handling:</strong> <code>capture_output=True</code> und <code>text=True</code> stellen sicher, dass die Ausgabe als Text (String) zurückgegeben wird.</li>
+<p>---</p>
+</ul>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li>**<code>pathlib.Path</code>**: Für die Verwaltung von Dateipfaden.</li>
+<li>**<code>subprocess</code>**: Für die Ausführung externer Befehle (Git).</li>
+<li>**<code>typing</code>**: Für die Typisierung von Parametern und Rückgabewerten (<code>Path</code>, <code>Iterable</code>, <code>list</code>).</li>
+<li>**<code>ReleaseCommit</code>**: Eine definierte Klasse (nicht in dieser Datei sichtbar), die die Struktur der Git-Commits abbildet.</li>
+<li>**<code>render_release_notes</code>**: Eine externe Funktion (nicht definiert), die die Logik zur eigentlichen Textgenerierung übernimmt.</li>
+<li>**<code>build_release_history</code>**: Eine externe Funktion (nicht definiert), die die Git-Historie sammelt.</li>
+</ul>
+<h2 id="zusammenfassung-des-workflows">Zusammenfassung des Workflows</h2>
+<p>Der Prozess folgt dieser Kette: $$\text{Input (Path, Tag)} \rightarrow \text{build\_release\_history} \rightarrow \text{_run\_git (für Historie)} \rightarrow \text{render\_release\_notes} \rightarrow \text{write\_release\_notes (Schreiben)}$$</p>
+<h1 id="technische-dokumentation-release-notes-py">Technische Dokumentation: <code>release_notes.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Die Python-Skriptdatei <code>release_notes.py</code> dient dazu, Versionshinweise (Changelog) und optionalen Release Notes basierend auf der Git-Historie eines angegebenen Projektverzeichnisses zu generieren. Das Skript verwendet das <code>argparse</code>-Modul, um eine flexible Kommandozeilen-Schnittstelle (CLI) zu ermöglichen, die den Benutzer bei der Auswahl des Projektwurzelpfads, der Zielpfade für die Ausgaben und optionaler Tags für die Release Notes unterstützt.</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="main"><code>main()</code></h3>
+<p>Die Hauptfunktion des Skripts, die die gesamte Logik der Argumentenverarbeitung und der Generierung der Dokumentationen koordiniert. <strong>Argumentenverarbeitung:</strong> Die Funktion definiert und parst die folgenden Kommandozeilen-Argumente:</p>
+<table><thead><tr>
+<th>Argument</th>
+<th>Typ</th>
+<th>Pflicht</th>
+<th>Beschreibung</th>
+<th>Standardwert</th>
+</tr></thead><tbody>
+<tr>
+<td><code>base_path</code></td>
+<td>String</td>
+<td>Nein</td>
+<td>Der Pfad zum Projektwurzelverzeichnis, aus dem die Git-Historie analysiert wird.</td>
+<td><code>.</code> (Aktueller Verzeichnis)</td>
+</tr>
+<tr>
+<td><code>--changelog-path</code></td>
+<td>String</td>
+<td>Nein</td>
+<td>Der gewünschte Pfad für die Ausgabe des Versionshinweises (CHANGELOG).</td>
+<td><code>CHANGELOG.md</code></td>
+</tr>
+<tr>
+<td><code>--notes-tag</code></td>
+<td>String</td>
+<td>Nein</td>
+<td>Ein optionales Tag, das für die Generierung der Release Notes verwendet wird (z.B. <code>v1.2.0</code>).</td>
+<td><code>&quot;&quot;</code> (Leer)</td>
+</tr>
+<tr>
+<td><code>--notes-path</code></td>
+<td>String</td>
+<td>Nein</td>
+<td>Ein optionaler spezifischer Pfad für die Ausgabe der Release Notes. Wenn leer, wird ein Standardpfad generiert.</td>
+<td><code>&quot;&quot;</code> (Leer)</td>
+</tr>
+</tbody></table>
+<p><strong>Logikablauf:</strong></p>
+<ol>
+<li><strong>Argumentenpar parsing:</strong> Die Argumente werden über <code>argparse</code> erfasst.</li>
+<li><strong>Pfad-Resolution:</strong></li>
+</ol>
+<ul>
+<li><code>base_path</code> wird als <code>Path</code>-Objekt gespeichert.</li>
+<li><code>changelog_path</code> wird berechnet: Wenn der angegebene Pfad nicht absolut ist, wird er relativ zum <code>base_path</code> konstruiert.</li>
+</ul>
+<ol>
+<li><strong>Changelog-Generierung:</strong></li>
+</ol>
+<ul>
+<li>Die Funktion <code>write_changelog(base_path, changelog_path)</code> wird aufgerufen, um das CHANGELOG zu erstellen.</li>
+<li>Das Ergebnis der Schreiboperation wird ausgegeben.</li>
+</ul>
+<ol>
+<li><strong>Release Notes Generierung (Optional):</strong></li>
+</ol>
+<ul>
+<li>Wenn das Argument <code>--notes-tag</code> einen Wert enthält (d.h., <code>args.notes_tag</code> ist nicht leer):</li>
+<li><strong>Ausgabepfad-Bestimmung:</strong> Der <code>notes_path</code> wird bestimmt. Wenn <code>args.notes_path</code> leer ist, wird ein Standardpfad im Format <code>release-notes-{args.notes_tag}.md</code> relativ zum <code>base_path</code> erstellt.</li>
+<li><strong>Absoluter Pfad:</strong> Falls <code>args.notes_path</code> einen Wert hat, wird dieser als absoluter Pfad verwendet.</li>
+<li>Die Funktion <code>write_release_notes(base_path, args.notes_tag, notes_path)</code> wird aufgerufen.</li>
+<li>Das Ergebnis der Release Notes-Generierung wird ausgegeben.</li>
+</ul>
+<h3 id="if-name-main"><code>if __name__ == &quot;__main__&quot;:</code></h3>
+<p>Dieser Block stellt sicher, dass die <code>main()</code>-Funktion nur ausgeführt wird, wenn das Skript direkt als Skript gestartet wird (nicht als Modul importiert).</p>
+<h2 id="abh-ngigkeiten">Abhängigkeiten</h2>
+<ul>
+<li><code>argparse</code> (Standardbibliothek)</li>
+<li><code>pathlib.Path</code> (Standardbibliothek)</li>
+<li><strong>Nicht explizit definiert:</strong> Die Funktionen <code>write_changelog</code> und <code>write_release_notes</code> müssen in anderen Teilen des Codes definiert sein, um die Funktion <code>main</code> vollständig auszuführen.</li>
+</ul>
+<h2 id="beispielhafte-verwendung-cli-syntax">Beispielhafte Verwendung (CLI-Syntax)</h2>
+<p><strong>1. Generieren eines CHANGELOGs im aktuellen Verzeichnis:</strong></p>
+<pre><code class="language-bash">python release_notes.py</code></pre>
+<p><strong>2. Generieren eines CHANGELOGs in einem spezifischen Pfad und optionaler Release Notes:</strong></p>
+<pre><code class="language-bash">python release_notes.py ./my_project --changelog-path ./docs/CHANGELOG.md --notes-tag v1.0.0</code></pre>
+<p><strong>3. Generieren von Release Notes mit einem spezifischen Pfad:</strong></p>
+<pre><code class="language-bash">python release_notes.py ./my_project --notes-tag v1.0.0 --notes-path ./reports/v1.0.0_notes.md</code></pre>
+<h2 id="hinweise-zur-implementierung">Hinweise zur Implementierung</h2>
+<ul>
+<li><strong>Pfad-Handling:</strong> Das Skript verwendet <code>pathlib.Path</code> für eine moderne und plattformübergreifende Pfadmanipulation.</li>
+<li><strong>Robustheit:</strong> Die Logik prüft explizit, ob Pfade absolut sind, um sicherzustellen, dass die Konstruktion von relativen Pfaden korrekt erfolgt.</li>
+<li><strong>Fehlende Implementierung:</strong> Die Dokumentation basiert auf der Struktur der <code>main</code>-Funktion. Die genaue Funktionsweise der externen Funktionen (<code>write_changelog</code>, <code>write_release_notes</code>) muss in der vollständigen Quelle überprüft werden, um die genaue Datenverarbeitung zu verstehen.</li>
+</ul>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-dataclasses">2.1. Dataclasses</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-konfiguration">2.2. Konfiguration</a></li>
+<li class="wiki-toc-link"><a href="#3-funktionen">3. Funktionen</a></li>
+<li class="wiki-toc-link"><a href="#4-zusammenfassung-der-nutzung">4. Zusammenfassung der Nutzung</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-build-release-history-base-path-path-releasehistory">1. `build_release_history(base_path: Path) -&gt; ReleaseHistory`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-list-git-tags-base-path-path-list-dict-str-str">2. `list_git_tags(base_path: Path) -&gt; list[dict[str, str]]`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-konzepte">Abhängigkeiten und Konzepte</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-des-datenflusses">Zusammenfassung des Datenflusses</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-list-git-commits-base-path-path-revision-range-str-list-releasecommit">1. `list_git_commits(base_path: Path, revision_range: str) -&gt; list[ReleaseCommit]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-categorize-commit-subject-subject-str-str">2. `categorize_commit_subject(subject: str) -&gt; str`</a></li>
+<li class="wiki-toc-link"><a href="#strukturierte-datenmodelle-impliziert">Strukturierte Datenmodelle (Impliziert)</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-des-workflows">Zusammenfassung des Workflows</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-render-changelog-history-releasehistory-str">1. `render_changelog(history: ReleaseHistory) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-render-release-notes-history-releasehistory-tag-str-str">2. `render_release_notes(history: ReleaseHistory, tag: str) -&gt; str`</a></li>
+<li class="wiki-toc-link level-3"><a href="#3-write-changelog-base-path-path-target-path-path-none-none-path">3. `write_changelog(base_path: Path, target_path: Path | None = None) -&gt; Path`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten-und-annahmen">Abhängigkeiten und Annahmen</a></li>
+<li class="wiki-toc-link"><a href="#nutzungsszenario">Nutzungsszenario</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#write-release-notes-base-path-path-tag-str-target-path-path-path">`write_release_notes(base_path: Path, tag: str, target_path: Path) -&gt; Path`</a></li>
+<li class="wiki-toc-link level-3"><a href="#render-commit-groups-commits-iterable-releasecommit-list-str">`_render_commit_groups(commits: Iterable[ReleaseCommit]) -&gt; list[str]`</a></li>
+<li class="wiki-toc-link level-3"><a href="#run-git-base-path-path-args-list-str-str">`_run_git(base_path: Path, args: list[str]) -&gt; str`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-des-workflows">Zusammenfassung des Workflows</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#funktionen">Funktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#main">`main()`</a></li>
+<li class="wiki-toc-link level-3"><a href="#if-name-main">`if __name__ == &quot;__main__&quot;:`</a></li>
+<li class="wiki-toc-link"><a href="#abh-ngigkeiten">Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#beispielhafte-verwendung-cli-syntax">Beispielhafte Verwendung (CLI-Syntax)</a></li>
+<li class="wiki-toc-link"><a href="#hinweise-zur-implementierung">Hinweise zur Implementierung</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "release_notes.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

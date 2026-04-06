@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_server.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_server.py`</h1>
+          <p>Source: test_server.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <h1 id="technische-dokumentation-test-server-py">Technische Dokumentation: <code>test_server.py</code></h1>
+<h2 id="1-berblick">1. Überblick</h2>
+<p>Diese Datei (<code>test_server.py</code>) dient wahrscheinlich als Test- oder Setup-Skript für einen Server, der mit der <code>NovaSchoolApplication</code> und <code>NovaSchoolRequestHandler</code> interagiert. Sie definiert grundlegende Klassenstrukturen (<code>_Repo</code> und <code>_App</code>), die für die Konfiguration und das Repository-Management des Servers zuständig sind.</p>
+<h2 id="2-struktur-und-komponenten">2. Struktur und Komponenten</h2>
+<p>Die Datei definiert zwei Hauptklassen: <code>_Repo</code> und <code>_App</code>.</p>
+<h3 id="2-1-klasse-repo">2.1. Klasse <code>_Repo</code></h3>
+<p>Diese Klasse ist verantwortlich für das Abrufen von Konfigurationsdaten (Settings) aus einem bereitgestellten Dictionary. <strong>Zweck:</strong> Bereitstellung einer einfachen Schnittstelle zum Abrufen von Einstellungen. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.settings: dict[str, str]</code>: Ein Dictionary, das die Konfigurationsparameter des Servers speichert.</li>
+<p><strong>Methoden:</strong></p>
+<li><code>__init__(self, settings: dict[str, str]) -&gt; None</code>: Initialisiert die Klasse mit dem Konfigurations-Dictionary.</li>
+<li><code>get_setting(self, key: str, default=None) -&gt; str | None</code>: Gibt den Wert der Schlüssel (<code>key</code>) aus dem <code>self.settings</code> zurück. Wenn der Schlüssel nicht existiert, wird der vom Benutzer bereitgestellte <code>default</code> Wert verwendet (oder <code>None</code>, falls kein Default angegeben ist).</li>
+</ul>
+<h3 id="2-2-klasse-app">2.2. Klasse <code>_App</code></h3>
+<p>Diese Klasse stellt die Hauptanwendungseinheit dar und initialisiert das Repository sowie die spezifische Konfiguration. <strong>Zweck:</strong> Initialisierung der Hauptanwendung mit Repository-Zugriff und Port-Konfiguration. <strong>Attribute:</strong></p>
+<ul>
+<li><code>self.repository: _Repo</code>: Eine Instanz der <code>_Repo</code>-Klasse, die für den Zugriff auf die Einstellungen zuständig ist.</li>
+<li><code>self.config</code>: Eine interne Klasse (oder eine einfache Klasse), die die spezifischen Konfigurationsparameter der Anwendung hält.</li>
+<p>**Konstruktor (<code>__init__</code>):**</p>
+<li><code>__init__(self, settings: dict[str, str], port: int = 8877) -&gt; None</code>:</li>
+<li>Initialisiert das <code>self.repository</code> mit den übergebenen <code>settings</code>.</li>
+<li>Definiert eine interne Klasse namens <code>Config</code>, die die Anwendungskonfiguration hält und standardmäßig einen <code>port</code> von <code>8877</code> verwendet.</li>
+<p>**Interne Klasse <code>Config</code>:**</p>
+<li>Diese Klasse ist eine einfache, nicht-erweiterbare Klasse, die nur das Attribut <code>port</code> enthält.</li>
+</ul>
+<h2 id="3-abh-ngigkeiten">3. Abhängigkeiten</h2>
+<ul>
+<li><code>__future__ import annotations</code>: Wird verwendet, um moderne Typ-Hinting-Syntax zu ermöglichen.</li>
+<li><code>import tempfile</code>: Importiert das <code>tempfile</code>-Modul (wahrscheinlich für temporäre Dateisystemoperationen in den Tests).</li>
+<li><code>import unittest</code>: Importiert das <code>unittest</code>-Modul (bestätigt, dass dies ein Test-Kontext ist).</li>
+<li><code>from pathlib import Path</code>: Importiert das <code>pathlib</code>-Modul für objektorientierte Dateisystemoperationen.</li>
+<li><code>from nova_school_server.server import NovaSchoolApplication, NovaSchoolRequestHandler</code>: Importiert die Hauptlogik-Klassen des Servers.</li>
+</ul>
+<h2 id="4-verwendung-und-anwendungsf-lle">4. Verwendung und Anwendungsfälle</h2>
+<p>Die Klassen <code>_Repo</code> und <code>_App</code> dienen als <strong>Low-Level-Abstraktionen</strong> für die Konfiguration und das Datenmanagement des Servers.</p>
+<ol>
+<li><strong>Konfigurationsmanagement:</strong> <code>_Repo.get_setting()</code> wird verwendet, um dynamisch Einstellungen aus einer zentralen Quelle (dem <code>settings</code>-Dictionary) abzurufen.</li>
+<li><strong>Anwendungsinitialisierung:</strong> <code>_App.__init__()</code> wird verwendet, um die gesamte Anwendungsumgebung einzurichten, indem sie das Repository und die spezifische Port-Konfiguration initialisiert.</li>
+</ol>
+<h2 id="5-zusammenfassung-der-klassenstruktur">5. Zusammenfassung der Klassenstruktur</h2>
+<table><thead><tr>
+<th>Klasse</th>
+<th>Hauptverantwortung</th>
+<th>Schlüsselmethoden</th>
+</tr></thead><tbody>
+<tr>
+<td><code>_Repo</code></td>
+<td>Abrufen von Konfigurationsdaten.</td>
+<td><code>get_setting(key, default)</code></td>
+</tr>
+<tr>
+<td><code>_App</code></td>
+<td>Initialisierung der Anwendung, Verwaltung von Repository und Port-Konfiguration.</td>
+<td><code>__init__(settings, port)</code></td>
+</tr>
+</tbody></table>
+<p>--- <strong>Hinweis:</strong> Die Datei scheint primär die <strong>Setup- und Konfigurationsschicht</strong> zu definieren. Die eigentliche Geschäftslogik (Server-Start, Request-Handling) wird wahrscheinlich in <code>NovaSchoolApplication</code> und <code>NovaSchoolRequestHandler</code> implementiert.</p>
+<h1 id="technische-dokumentation-test-server-py">Technische Dokumentation: <code>test_server.py</code></h1>
+<h2 id="bersicht">Übersicht</h2>
+<p>Diese Datei enthält eine Reihe von Unit-Tests, die die Funktionalität der Klasse <code>NovaSchoolRequestHandler</code> und der zugrunde liegenden Komponenten (wie <code>_App</code> und <code>NovaSchoolApplication</code>) validieren. Die Tests konzentrieren sich insbesondere auf:</p>
+<ol>
+<li><strong>Cookie-Header-Verhalten:</strong> Wie Secure-Attribute in Cookies basieren, wenn der Host HTTPS ist oder ein <code>X-Forwarded-Proto</code>-Header vorhanden ist.</li>
+<li><strong>URL-Generierung:</strong> Wie die URL für die Zertifikatsprüfung (<code>_certificate_verification_url</code>) basierend auf dem öffentlichen Host und Forwarded-Proto konstruiert wird.</li>
+<li><strong>Dateisystem-Sicherheit:</strong> Die Ablehnung von Dateitour-Operationen (<code>../</code>) durch die Funktion <code>_resolve_relative_file</code>.</li>
+<li><strong>Konfiguration von Binärpfaden:</strong> Die korrekte Auflösung des Pfades für den Standard-LITLM-Binary-Pfad unter bestimmten Bedingungen.</li>
+</ol>
+<h2 id="struktur-der-datei">Struktur der Datei</h2>
+<p>Die Datei enthält eine Testklasse, die von der Standardbibliothek <code>unittest</code> verwendet wird.</p>
+<h3 id="klasse-requesthandlertlstests">Klasse: <code>RequestHandlerTlsTests</code></h3>
+<p>Diese Klasse erbt von <code>unittest.TestCase</code> und enthält spezifische Testmethoden.</p>
+<h4 id="1-methode-handler-self-settings-dict-str-str-none-none-headers-dict-str-str-none-none-novaschoolrequesthandler">1. Methode: <code>_handler(self, settings: dict[str, str] | None = None, headers: dict[str, str] | None = None) -&gt; NovaSchoolRequestHandler</code></h4>
+<ul>
+<li><strong>Zweck:</strong> Eine private Hilfsmethode, die eine Instanz von <code>NovaSchoolRequestHandler</code> erstellt.</li>
+<li><strong>Funktionalität:</strong></li>
+<li>Erstellt eine Instanz von <code>NovaSchoolRequestHandler</code> über den Konstruktor (<code>NovaSchoolRequestHandler.__new__</code>).</li>
+<li>Initialisiert die <code>handler.application</code> mit den bereitgestellten <code>settings</code> (oder einem leeren Dictionary, falls <code>None</code> übergeben wird).</li>
+<li>Initialisiert die <code>handler.headers</code> mit den bereitgestellten <code>headers</code> (oder einem leeren Dictionary).</li>
+<li>Gibt die konfigurierte <code>handler</code> zurück.</li>
+</ul>
+<h4 id="2-testf-lle-f-r-cookie-header">2. Testfälle für Cookie-Header</h4>
+<p>Diese Tests prüfen, ob der Cookie-Header korrekt mit dem <code>Secure</code>-Attribut versehen wird, wenn die Umgebung HTTPS verwendet.</p>
+<ul>
+<li>**<code>test_cookie_header_uses_secure_when_public_host_is_https()</code>:**</li>
+<li><strong>Szenario:</strong> Der öffentliche Host ist <code>https://nova.schule.local</code>.</li>
+<li><strong>Erwartung:</strong> Der zurückgegebene Cookie-Header enthält <code>; Secure</code>.</li>
+<li>**<code>test_cookie_header_uses_secure_when_forwarded_proto_is_https()</code>:**</li>
+<li><strong>Szenario:</strong> Der <code>Host</code>-Header ist <code>nova.schule.local</code> und <code>X-Forwarded-Proto</code> ist <code>https</code>.</li>
+<li><strong>Erwartung:</strong> Der zurückgegebene Cookie-Header enthält <code>; Secure</code>.</li>
+<li>**<code>test_clear_cookie_header_uses_secure_when_forwarded_proto_is_https()</code>:**</li>
+<li><strong>Szenario:</strong> Gleiches Szenario wie oben, aber für die Methode <code>_clear_cookie_header()</code>.</li>
+<li><strong>Erwartung:</strong> Der zurückgegebene Cookie-Header enthält <code>; Secure</code>.</li>
+</ul>
+<h4 id="3-testf-lle-f-r-zertifikatspr-fung-url-generierung">3. Testfälle für Zertifikatsprüfung (URL-Generierung)</h4>
+<p>Diese Tests validieren, wie die URL für die Zertifikatsprüfung konstruiert wird, basierend auf der Konfiguration.</p>
+<ul>
+<li>**<code>test_certificate_verification_url_prefers_https_public_host()</code>:**</li>
+<li><strong>Szenario:</strong> <code>server_public_host</code> ist <code>https://nova.schule.local</code>.</li>
+<li><strong>Erwartung:</strong> Die generierte URL beginnt mit <code>https://nova.schule.local/certificate/verify?certificate_id=...</code>.</li>
+<li>**<code>test_certificate_verification_url_uses_forwarded_https_for_bare_public_host()</code>:**</li>
+<li><strong>Szenario:</strong> <code>server_public_host</code> ist <code>nova.schule.local</code>, aber <code>X-Forwarded-Proto</code> ist <code>https</code>.</li>
+<li><strong>Erwartung:</strong> Die generierte URL beginnt mit <code>https://nova.schule.local/certificate/verify?certificate_id=...</code> (Hinweis: Die URL scheint den vollständigen Hostname zu verwenden, was auf eine korrekte Logik zur Host-Resolution hindeutet).</li>
+</ul>
+<h4 id="4-testfall-f-r-dateisystem-sicherheit">4. Testfall für Dateisystem-Sicherheit</h4>
+<ul>
+<li>**<code>test_resolve_relative_file_rejects_traversal()</code>:**</li>
+<li><strong>Szenario:</strong> Versucht, einen relativen Pfad (<code>../secret.txt</code>) von einem temporären Verzeichnis zu einem Verzeichnis außerhalb des Verzeichnisses zu auflösen.</li>
+<li><strong>Erwartung:</strong> Es wird eine <code>PermissionError</code> (oder eine ähnliche Fehlermeldung, die auf eine Sicherheitsbeschränkung hinweist) geworfen, was die Traversal-Angriffe verhindert.</li>
+</ul>
+<h4 id="5-testfall-f-r-konfiguration-von-bin-rpfaden">5. Testfall für Konfiguration von Binärpfaden</h4>
+<ul>
+<li>**<code>test_default_litertlm_binary_path_accepts_linux_lit_binary()</code>:**</li>
+<li><strong>Szenario:</strong> Ein temporäres Verzeichnis wird erstellt, und ein spezifischer Pfad (<code>base_path/Linux/LIT/lit.linux_x86_64</code>) wird erstellt und mit Inhalt gefüllt.</li>
+<li><strong>Erwartung:</strong> Die Methode <code>app.default_litertlm_binary_path()</code> muss den absoluten, aufgelösten Pfad zum erstellten Binary-Datei zurückgeben. Dies stellt sicher, dass die Konfiguration korrekt auf das tatsächliche Dateisystem-Objekt verweist.</li>
+</ul>
+<h2 id="zusammenfassung-der-testziele">Zusammenfassung der Testziele</h2>
+<p>Die Testsuite stellt sicher, dass die <code>NovaSchoolRequestHandler</code> robuste und sichere Verhaltensweisen bei der Verarbeitung von HTTP/HTTPS-Kontexten, der Generierung von Ressourcen-URLs und der Handhabung von Dateipfaden gewährleistet.</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-komponenten">2. Struktur und Komponenten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-klasse-repo">2.1. Klasse `_Repo`</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-klasse-app">2.2. Klasse `_App`</a></li>
+<li class="wiki-toc-link"><a href="#3-abh-ngigkeiten">3. Abhängigkeiten</a></li>
+<li class="wiki-toc-link"><a href="#4-verwendung-und-anwendungsf-lle">4. Verwendung und Anwendungsfälle</a></li>
+<li class="wiki-toc-link"><a href="#5-zusammenfassung-der-klassenstruktur">5. Zusammenfassung der Klassenstruktur</a></li>
+<li class="wiki-toc-link"><a href="#bersicht">Übersicht</a></li>
+<li class="wiki-toc-link"><a href="#struktur-der-datei">Struktur der Datei</a></li>
+<li class="wiki-toc-link level-3"><a href="#klasse-requesthandlertlstests">Klasse: `RequestHandlerTlsTests`</a></li>
+<li class="wiki-toc-link"><a href="#zusammenfassung-der-testziele">Zusammenfassung der Testziele</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_server.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>

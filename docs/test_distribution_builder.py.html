@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Nova-school-server wiki builder">
+  <title>Technische Dokumentation: `test_distribution_builder.py` | Nova-school-server Wiki</title>
+  <link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+  <div class="wiki-shell">
+    <aside class="wiki-sidebar" data-sidebar>
+      <div class="wiki-brand">
+        <a href="Home.html">Nova-school-server Wiki</a>
+        <p>HTML documentation for the Nova-school-server platform.</p>
+      </div>
+      <label class="wiki-search">
+        <span>Search</span>
+        <input type="search" placeholder="Find pages, classes, methods..." data-wiki-search>
+      </label>
+      <div class="wiki-search-results" data-search-results></div>
+      <nav class="wiki-nav">
+        <section class="wiki-nav-section">
+<h2>Pages</h2>
+<ul>
+<li><a class="wiki-nav-link" data-nav-href="ai_service.py.html" href="ai_service.py.html">ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="analysis_archive_builder.py.html" href="analysis_archive_builder.py.html">analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="archive_utils.py.html" href="archive_utils.py.html">archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="auth.py.html" href="auth.py.html">auth.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="code_runner.py.html" href="code_runner.py.html">code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="codedump_tools.py.html" href="codedump_tools.py.html">codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="collaboration.py.html" href="collaboration.py.html">collaboration.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="config.py.html" href="config.py.html">config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="container_seccomp.py.html" href="container_seccomp.py.html">container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum.py.html" href="curriculum.py.html">curriculum.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_catalog.py.html" href="curriculum_catalog.py.html">curriculum_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="curriculum_certificate_pdf.py.html" href="curriculum_certificate_pdf.py.html">curriculum_certificate_pdf.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="database.py.html" href="database.py.html">database.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="deployments.py.html" href="deployments.py.html">deployments.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distributed.py.html" href="distributed.py.html">distributed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="distribution_builder.py.html" href="distribution_builder.py.html">distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="docs_catalog.py.html" href="docs_catalog.py.html">docs_catalog.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="embedded_nova.py.html" href="embedded_nova.py.html">embedded_nova.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="Index.html" href="Index.html">Index</a></li>
+<li><a class="wiki-nav-link" data-nav-href="material_studio.py.html" href="material_studio.py.html">material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="materialize_linux_project.py.html" href="materialize_linux_project.py.html">materialize_linux_project.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="mentor.py.html" href="mentor.py.html">mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bootstrap.py.html" href="nova_bootstrap.py.html">nova_bootstrap.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_bridge.py.html" href="nova_bridge.py.html">nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_launch.py.html" href="nova_launch.py.html">nova_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_launch.py.html" href="nova_linux_launch.py.html">nova_linux_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_linux_worker_launch.py.html" href="nova_linux_worker_launch.py.html">nova_linux_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_product_docs.py.html" href="nova_product_docs.py.html">nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_test_launch.py.html" href="nova_test_launch.py.html">nova_test_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="nova_worker_launch.py.html" href="nova_worker_launch.py.html">nova_worker_launch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="permissions.py.html" href="permissions.py.html">permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="project_files.py.html" href="project_files.py.html">project_files.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="pty_host.py.html" href="pty_host.py.html">pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="realtime.py.html" href="realtime.py.html">realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_cpp.py.html" href="reference_import_cpp.py.html">reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_import_web.py.html" href="reference_import_web.py.html">reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reference_library.py.html" href="reference_library.py.html">reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="release_notes.py.html" href="release_notes.py.html">release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="reviews.py.html" href="reviews.py.html">reviews.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="seed.py.html" href="seed.py.html">seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="server.py.html" href="server.py.html">server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_ai_service.py.html" href="test_ai_service.py.html">test_ai_service.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_analysis_archive_builder.py.html" href="test_analysis_archive_builder.py.html">test_analysis_archive_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_archive_utils.py.html" href="test_archive_utils.py.html">test_archive_utils.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_code_runner.py.html" href="test_code_runner.py.html">test_code_runner.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_codedump_tools.py.html" href="test_codedump_tools.py.html">test_codedump_tools.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_config.py.html" href="test_config.py.html">test_config.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_container_seccomp.py.html" href="test_container_seccomp.py.html">test_container_seccomp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_curriculum.py.html" href="test_curriculum.py.html">test_curriculum.py</a></li>
+<li><a class="wiki-nav-link active" data-nav-href="test_distribution_builder.py.html" href="test_distribution_builder.py.html">test_distribution_builder.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_docs.py.html" href="test_docs.py.html">test_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_gold_features.py.html" href="test_gold_features.py.html">test_gold_features.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_material_studio.py.html" href="test_material_studio.py.html">test_material_studio.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_mentor.py.html" href="test_mentor.py.html">test_mentor.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_bridge.py.html" href="test_nova_bridge.py.html">test_nova_bridge.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_nova_product_docs.py.html" href="test_nova_product_docs.py.html">test_nova_product_docs.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_permissions.py.html" href="test_permissions.py.html">test_permissions.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_pty_host.py.html" href="test_pty_host.py.html">test_pty_host.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_realtime.py.html" href="test_realtime.py.html">test_realtime.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_cpp.py.html" href="test_reference_import_cpp.py.html">test_reference_import_cpp.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_import_web.py.html" href="test_reference_import_web.py.html">test_reference_import_web.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_reference_library.py.html" href="test_reference_library.py.html">test_reference_library.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_release_notes.py.html" href="test_release_notes.py.html">test_release_notes.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_seed.py.html" href="test_seed.py.html">test_seed.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_server.py.html" href="test_server.py.html">test_server.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_user_admin.py.html" href="test_user_admin.py.html">test_user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_virtual_lecturer.py.html" href="test_virtual_lecturer.py.html">test_virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_wiki_manual.py.html" href="test_wiki_manual.py.html">test_wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_agent.py.html" href="test_worker_agent.py.html">test_worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_worker_dispatch.py.html" href="test_worker_dispatch.py.html">test_worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="test_workspace.py.html" href="test_workspace.py.html">test_workspace.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="user_admin.py.html" href="user_admin.py.html">user_admin.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="virtual_lecturer.py.html" href="virtual_lecturer.py.html">virtual_lecturer.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="wiki_manual.py.html" href="wiki_manual.py.html">wiki_manual.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_agent.py.html" href="worker_agent.py.html">worker_agent.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="worker_dispatch.py.html" href="worker_dispatch.py.html">worker_dispatch.py</a></li>
+<li><a class="wiki-nav-link" data-nav-href="workspace.py.html" href="workspace.py.html">workspace.py</a></li>
+</ul></section>
+      </nav>
+    </aside>
+    <main class="wiki-main">
+      <header class="wiki-header">
+        <button type="button" class="wiki-nav-toggle" data-nav-toggle>Menu</button>
+        <div class="wiki-header-copy">
+          <span class="wiki-kicker">Nova-school-server Documentation</span>
+          <h1>Technische Dokumentation: `test_distribution_builder.py`</h1>
+          <p>Source: test_distribution_builder.py.md</p>
+        </div>
+      </header>
+      <div class="wiki-layout">
+        <article class="wiki-article">
+          <p>Gerne, hier ist ein Entwurf für eine technische Dokumentation basierend auf dem bereitgestellten Code-Ausschnitt. Da es sich um einen Python-Code-Ausschnitt handelt, werde ich die Dokumentation strukturieren, um die Funktion und die Abhängigkeiten des Moduls <code>test_distribution_builder.py</code> zu erklären. ---</p>
+<h1 id="technische-dokumentation-test-distribution-builder-py">Technische Dokumentation: <code>test_distribution_builder.py</code></h1>
+<p><strong>Version:</strong> 1.0 <strong>Datum:</strong> 2023-10-27 <strong>Autor:</strong> [Ihr Name/Team]</p>
+<h2 id="1-einf-hrung">1. Einführung</h2>
+<p>Dieses Modul, <code>test_distribution_builder.py</code>, dient primär der Implementierung und Testung von Funktionen, die für die Erstellung und das Verpacken von Distributionsarchiven zuständig sind. Es orchestriert den Prozess, der wahrscheinlich das Erstellen von Installationspaketen, Linux-Projekten und Materialisierungen von Distributionsstrukturen beinhaltet. Das Modul importiert Kernfunktionen aus dem Modul <code>nova_school_server.distribution_builder</code>, was darauf hindeutet, dass dieses Modul die Hauptlogik für die Distributionen bereitstellt.</p>
+<h2 id="2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</h2>
+<h3 id="2-1-hauptfunktionen">2.1 Hauptfunktionen</h3>
+<p>Das Hauptziel dieses Skripts ist die Testung oder die Implementierung von Logik, die folgende Kernfunktionen aus <code>nova_school_server.distribution_builder</code> nutzt:</p>
+<ul>
+<li><code>build_distribution_archive</code>: Wahrscheinlich für die Erstellung eines allgemeinen Distributionsarchivs.</li>
+<li><code>build_linux_project_archive</code>: Speziell für die Erstellung von Archiven, die Linux-Projekte enthalten.</li>
+<li><code>materialize_distribution_directory</code>: Für die physische Erstellung oder Materialisierung des resultierenden Distributionsverzeichnisses.</li>
+</ul>
+<h3 id="2-2-importe">2.2 Importe</h3>
+<p>Das Skript importiert notwendige Bibliotheken und Funktionen:</p>
+<ul>
+<li>**<code>from __future__ import annotations</code>**: Ermöglicht die Verwendung von Typ-Hints in älteren Python-Versionen.</li>
+<li>**<code>import tempfile</code>**: Wird verwendet, um temporäre Dateien oder Verzeichnisse für die Testzwecke zu erstellen.</li>
+<li>**<code>import unittest</code>**: Zeigt an, dass das Skript wahrscheinlich Testfälle enthält oder mit dem <code>unittest</code>-Framework interagiert.</li>
+<li>**<code>import zipfile</code>**: Wird benötigt, um Archivdateien (z.B. <code>.zip</code>) zu erstellen oder zu verwalten.</li>
+<li>**<code>from pathlib import Path</code>**: Wird für eine objektorientierte und plattformunabhängige Dateiverwaltung verwendet.</li>
+<li>**<code>from nova_school_server.distribution_builder import ...</code>**: Importiert die spezifischen Builder-Funktionen.</li>
+</ul>
+<h2 id="3-code-analyse-auszug">3. Code-Analyse (Auszug)</h2>
+<p>Der bereitgestellte Code-Auszug definiert eine Klasse (oder eine Funktion, die als Klasse implementiert ist, da die Definition mit <code>class &lt;|end|&gt;</code> endet), die die oben genannten Builder-Funktionen nutzt.</p>
+<pre><code class="language-python">from __future__ import annotations
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+from nova_school_server.distribution_builder import (
+build_distribution_archive,
+build_linux_project_archive,
+materialize_distribution_directory,
+)
+class &lt;|end|&gt;</code></pre>
+<p><strong>Analyse des Code-Auszugs:</strong></p>
+<ol>
+<li><strong>Setup:</strong> Das Skript beginnt mit Standard-Imports für Dateimanagement (<code>pathlib</code>), temporäre Ressourcen (<code>tempfile</code>), Test-Frameworks (<code>unittest</code>) und Archivierung (<code>zipfile</code>).</li>
+<li><strong>Abhängigkeitsmanagement:</strong> Die Abhängigkeit von <code>nova_school_server.distribution_builder</code> ist zentral. Dies impliziert, dass die Logik zur eigentlichen Distributionserstellung in einer separaten, gut definierten Module-Struktur liegt.</li>
+<li><strong>Klassenstruktur:</strong> Die Definition einer Klasse (durch <code>class &lt;|end|&gt;</code> markiert) deutet darauf hin, dass hier eine <strong>Testklasse</strong> oder eine <strong>Orchestrierungsklasse</strong> definiert wird, die die verschiedenen Builder-Funktionen sequenziell oder in Abhängigkeit auf bestimmte Eingaben aufruft.</li>
+</ol>
+<h2 id="4-nutzung-und-anwendung">4. Nutzung und Anwendung</h2>
+<p>Dieses Modul wird primär für folgende Zwecke verwendet:</p>
+<ol>
+<li><strong>Unit Testing:</strong> Durchführung von Tests, um sicherzustellen, dass die <code>build_distribution_archive</code>, <code>build_linux_project_archive</code> und <code>materialize_distribution_directory</code> korrekt funktionieren, unter verschiedenen Bedingungen.</li>
+<li><strong>Distribution-Pipeline-Orchestrierung:</strong> Wenn das Ziel ist, eine vollständige Distribution zu erstellen, wird diese Klasse wahrscheinlich als zentraler Punkt dienen, der die Schritte (Archivierung $\rightarrow$ Materialisierung) koordiniert.</li>
+</ol>
+<h2 id="5-sicherheit-und-fehlerbehandlung-empfehlung">5. Sicherheit und Fehlerbehandlung (Empfehlung)</h2>
+<p>Da es sich um eine Implementierung von Build-Prozessen handelt, sollten folgende Punkte in der vollständigen Implementierung berücksichtigt werden:</p>
+<ul>
+<li><strong>Ressourcenmanagement:</strong> Sicherstellen, dass temporäre Dateien und erstellte Archive nach Abschluss der Operation korrekt gelöscht werden (z.B. durch <code>try...finally</code> Blöcke oder <code>tempfile.NamedTemporaryFile</code>).</li>
+<li><strong>Fehlerbehandlung:</strong> Implementierung robuster <code>try...except</code>-Blöcke, um Fehler bei der Archivierung (z.B. fehlende Abhängigkeiten, I/O-Fehler) oder Materialisierung abzufangen und aussagekräftige Fehlermeldungen zu generieren.</li>
+<li><strong>Input-Validierung:</strong> Überprüfung der Eingabeparameter, die an die Builder-Funktionen übergeben werden, um zu verhindern, dass fehlerhafte oder unvollständige Daten zu fehlerhaften Archiven führen.</li>
+<p>--- <strong>Zusammenfassung:</strong> <code>test_distribution_builder.py</code> ist ein zentrales Skript, das die Komponenten zur Erstellung von Distributionsarchiven und deren physische Materialisierung aus dem <code>distribution_builder</code>-Modul zusammenführt. Es dient als Schnittstelle für die Test- und Orchestrierungslogik dieser komplexen Build-Prozesse.</p>
+</ul>
+<h2 id="technische-dokumentation-test-distribution-builder-py">Technische Dokumentation: <code>test_distribution_builder.py</code></h2>
+<p>Dieses Dokument beschreibt die Testfälle der Klasse <code>DistributionBuilderTests</code> aus der Datei <code>test_distribution_builder.py</code>. Diese Tests validieren die Funktionalität der Funktionen, die für die Erstellung von Distributions-Archiven und die Materialisierung von Projektstrukturen verantwortlich sind. ---</p>
+<h3 id="1-berblick">1. Überblick</h3>
+<p>Die Datei enthält eine Reihe von Unit-Tests, die sicherstellen sollen, dass die Logik zur Erstellung von Distributionen (Archivierung, Flavor-spezifische Anpassungen, Materialisierung von Unterstrukturen) korrekt funktioniert. Die Tests verwenden die <code>unittest</code>-Bibliothek und temporäre Dateisysteme (<code>tempfile.TemporaryDirectory</code>) zur Isolierung der Testumgebungen.</p>
+<h3 id="2-testf-lle-im-detail">2. Testfälle im Detail</h3>
+<p>Die Tests sind in verschiedene Kategorien unterteilt, die spezifische Aspekte des <code>DistributionBuilder</code>-Systems abdecken.</p>
+<h4 id="2-1-test-distribution-archive-excludes-runtime-data-and-adds-scaffold">2.1. <code>test_distribution_archive_excludes_runtime_data_and_adds_scaffold</code></h4>
+<p><strong>Ziel:</strong> Überprüfen, dass das generierte Distribution-Archiv sensible oder nicht notwendige Laufzeitdaten ausschließt und notwendige Scaffold-Dateien hinzufügt. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Verzeichnis (<code>tmp</code>) wird erstellt, das die Struktur eines Projekts simuliert (inkl. <code>pyproject.toml</code>, <code>README.md</code>, <code>start_server.ps1</code>, <code>data/school.db</code>, <code>LIT/lit.windows_x86_64.exe</code>, <code>.nova/secret.txt</code>).</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+</ul>
+<ol>
+<li>Das Archiv (<code>result.archive_path</code>) existiert.</li>
+<li><strong>Inhalt des Archivs (Inklusive):</strong></li>
+</ol>
+<ul>
+<li><code>Nova-School-Server-v1.2.3-distribution/README.md</code></li>
+<li><code>Nova-School-Server-v1.2.3-distribution/server_config.json.example</code></li>
+<li><code>Nova-School-Server-v1.2.3-distribution/DISTRIBUTION_README.md</code></li>
+<li><code>Nova-School-Server-v1.2.3-distribution/LIT/README.md</code></li>
+<li><code>Nova-School-Server-v1.2.3-distribution/data/workspaces/users/.gitkeep</code></li>
+</ul>
+<ol>
+<li><strong>Ausschluss (Nicht Inklusive):</strong></li>
+</ol>
+<ul>
+<li><code>Nova-School-Server-v1.2.3-distribution/data/school.db</code> (Sensible Daten)</li>
+<li><code>Nova-School-Server-v1.2.3-distribution/server.zip</code> (Original-ZIP-Datei)</li>
+<li><code>Nova-School-Server-v1.2.3-distribution/LIT/lit.windows_x86_64.exe</code> (Binärdatei)</li>
+<li><code>Nova-School-Server-v1.2.3-distribution/.nova/secret.txt</code> (Konfigurationsdaten)</li>
+</ul>
+<h4 id="2-2-test-windows-server-package-excludes-linux-scripts-and-adds-windows-guide">2.2. <code>test_windows_server_package_excludes_linux_scripts_and_adds_windows_guide</code></h4>
+<p><strong>Ziel:</strong> Validieren, dass der Flavor <code>windows-server-package</code> die Windows-spezifischen Skripte beibehält und Linux-Skripte ausschließt, sowie eine Windows-spezifische Anleitung hinzufügt. <strong>Setup:</strong></p>
+<ul>
+<li>Ein temporäres Verzeichnis wird erstellt, das sowohl Windows-Skripte (<code>.ps1</code>) als auch Linux-Skripte (<code>.sh</code>) enthält.</li>
+<p><strong>Erwartete Ergebnisse (Assertions):</strong></p>
+</ul>
+<ol>
+<li>Das Archiv (<code>result.archive_path</code>) existiert.</li>
+<li><strong>Inhalt des Archivs (Inklusive):</strong></li>
+</ol>
+<ul>
+<li><code>Nova-School-Server-v1.2.3-windows-server-package/WINDOWS_SERVER_PACKAGE.md</code> (Windows-Guide)</li>
+<li><code>Nova-School-Server-v1.2.3-windows-server-package/start_server.ps1</code> (Windows-Skript)</li>
+</ul>
+<ol>
+<li><strong>Ausschluss (Nicht Inklusive):</strong></li>
+</ol>
+<ul>
+<li><code>Nova-School-Server-v1.2.3-windows-server-package/start_server.sh</code> (Linux-Skript)</li>
+<li><code>Nova-School-Server-v1.2.3-windows-server-package/run_tests.sh</code> (Linux-Skript)</li>
+</ul>
+<h4 id="2-3-test-linux-server-package-excludes-windows-scripts-and-adds-linux-guide">2.3. <code>test_linux_server_package_excludes_windows_scripts_and_adds_linux_guide</code></h4>
+<p><strong>Ziel:</strong> Validieren, dass der Flavor <code>linux-server-package</code> die Linux-spezifischen Skripte beibeh</p>
+        </article>
+        <aside class="wiki-toc">
+          <div class="wiki-toc-card"><h2>On this page</h2><ul>
+<li class="wiki-toc-link"><a href="#1-einf-hrung">1. Einführung</a></li>
+<li class="wiki-toc-link"><a href="#2-struktur-und-abh-ngigkeiten">2. Struktur und Abhängigkeiten</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-1-hauptfunktionen">2.1 Hauptfunktionen</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-2-importe">2.2 Importe</a></li>
+<li class="wiki-toc-link"><a href="#3-code-analyse-auszug">3. Code-Analyse (Auszug)</a></li>
+<li class="wiki-toc-link"><a href="#4-nutzung-und-anwendung">4. Nutzung und Anwendung</a></li>
+<li class="wiki-toc-link"><a href="#5-sicherheit-und-fehlerbehandlung-empfehlung">5. Sicherheit und Fehlerbehandlung (Empfehlung)</a></li>
+<li class="wiki-toc-link"><a href="#technische-dokumentation-test-distribution-builder-py">Technische Dokumentation: `test_distribution_builder.py`</a></li>
+<li class="wiki-toc-link level-3"><a href="#1-berblick">1. Überblick</a></li>
+<li class="wiki-toc-link level-3"><a href="#2-testf-lle-im-detail">2. Testfälle im Detail</a></li>
+</ul></div>
+        </aside>
+      </div>
+      <footer class="wiki-footer">
+        <p>Generated by Nova-shell wiki builder.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    window.NOVA_WIKI = {
+      currentPage: "test_distribution_builder.py.html",
+      searchIndex: "assets/search-index.json"
+    };
+  </script>
+  <script src="assets/wiki.js" defer></script>
+</body>
+</html>
